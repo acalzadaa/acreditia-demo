@@ -4,6 +4,7 @@
 	import { slide } from 'svelte/transition';
 	import Icon from '../ui/Icon.svelte';
 	import { findParentIdByUrl } from '$lib/utils/navigation';
+	import { resolve } from '$app/paths';
 	
 	interface Props {
 		showNavigationBar: boolean;
@@ -32,7 +33,7 @@
 	>
 		<div class="navbar-panel--content text-body">
 			<ul class="navbar-list">
-				{#each navigationItems as item}
+				{#each navigationItems as item (item.id) }
 					{#if item.status === 'active'}
 						<li class="navbar-item" role="none">
 							{#if item.children && item.children.length > 0}
@@ -53,12 +54,12 @@
 								{#if expandedParentIndex === item.id}
 									<ul transition:slide={{ duration: 200 }}>
 										{#each item.children as child (child.id)}
-											{#if child.status == 'active'}
+											{#if child.status == 'active' && child.href}
 												<li class="navbar-child-item">
 													<a
 														class="navbar-item--child-anchor"
 														class:current={page.url.pathname === child.href}
-														href={child.href}
+														href={resolve(child.href)}
 													>
 														{child.label}
 													</a>

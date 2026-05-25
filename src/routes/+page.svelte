@@ -1,2 +1,24 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
+	import Header from '$lib/components/common/Header.svelte';
+	import { auth } from '$lib/stores/auth.svelte';
+
+	async function handleLogin() {
+		goto(resolve('/login'));
+	}
+
+	function handleLogout() {
+		auth.logout();
+	}
+
+	// Redirigir si ya está logueado
+	$effect(() => {
+		if (auth.user) {
+			goto(resolve('/dashboard'));
+		}
+	});
+
+</script>
+
+<Header isLoggedIn={!!auth.user}  onClickLogout={handleLogout} onClickLogin={handleLogin} />
