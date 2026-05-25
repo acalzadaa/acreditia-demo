@@ -1,0 +1,12 @@
+{
+    "regionItems": [
+        {
+            "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "code": "RE-001",
+            "name": "Region Noreste",
+            "status": "activo",
+            "createdAt": "2024-01-01T00:00:00Z",
+            "updatedAt": "2024-01-01T00:00:00Z"
+        }
+    ]
+}

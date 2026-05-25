@@ -1,0 +1,9 @@
+:root {
+    --icon-size-sm: 1em;
+    --icon-size-md: 1.5em;
+    --icon-size-lg: 2em;
+}
+
+.icon {
+    color: var(--text-primary);
+}

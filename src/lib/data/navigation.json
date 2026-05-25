@@ -1,0 +1,308 @@
+{
+  "navigationItems": [
+    {
+      "id": 1,
+      "label": "Dirección Estratégica",
+      "description": "Base ideologica e inmaterial de la institucion",
+      "itemType": "section",
+      "status": "active",
+      "children": [
+        {
+          "id": 100,
+          "label": "Filosofia Institucional",
+          "href": "/filosofia-institucional",
+          "description": "La filosofia institucional define su mision y valores",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 101,
+          "label": "Planeacion Estrategica",
+          "href": "/planeacion-estrategica",
+          "description": "La planeacion estrategica establece las metas que llevaran al cumplimiento de la mision y valores",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 102,
+          "label": "Objetivos Estrategicos",
+          "href": "/objetivo-estrategico",
+          "description": "Los objetivos estrategicos son los resultados que se esperan alcanzar con la planeacion estrategica",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 103,
+          "label": "Indicadores Estrategicos",
+          "href": "/indicador-estrategico",
+          "description": "Los indicadores estrategicos son las metricas que se utilizan para medir el cumplimiento de los objetivos estrategicos",
+          "itemType": "link",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Normativa",
+      "href": "/normativa",
+      "description": "Define el marco normativo interno y externo de la institucion",
+      "itemType": "link",
+      "status": "active",
+      "children": []
+    },
+    {
+      "id": 3,
+      "label": "Estructura Institucional",
+      "href": "/estructura-institucional",
+      "description": "Define la estructura fisica de la institucion",
+      "itemType": "section",
+      "status": "active",
+      "children": [
+        {
+          "id": 399,
+          "label": "Entidad Legal",
+          "href": "/entidad-legal",
+          "description": "Define el nombre de la entidad legal de la institucion",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 300,
+          "label": "Region",
+          "href": "/region",
+          "description": "Define la region geografica en la que se encuentra la institucion",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 301,
+          "label": "Institucion",
+          "href": "/institucion",
+          "description": "Define la institucion establecida en la region geografica bajo una entidad legal",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 302,
+          "label": "Campus",
+          "href": "/campus",
+          "description": "Define el campus perteneciente a la universidad",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 303,
+          "label": "Unidad Academica",
+          "href": "/unidad-academica",
+          "description": "Define la unidad academica que tiene disponible el campus",
+          "itemType": "link",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "label": "Estructura Funcional",
+      "description": "Define la estructura funcional de la institucion",
+      "itemType": "section",
+      "status": "active",
+      "children": [
+        {
+          "id": 400,
+          "label": "Area Funcional",
+          "href": "/area-funcional",
+          "description": "Define las areas funcionales de la institucion",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 401,
+          "label": "Subarea funcional",
+          "href": "/subarea-funcional",
+          "description": "Define las subareas funcionales de la institucion",
+          "itemType": "link",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Estructura Ejecutiva",
+      "description": "Define la estructura ejecutiva de la institucion",
+      "itemType": "section",
+      "status": "active",
+      "children": [
+        {
+          "id": 500,
+          "label": "Area Responsable",
+          "href": "/area-responsable",
+          "description": "Define las areas responsables de la institucion",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 501,
+          "label": "Subarea responsable",
+          "href": "/subarea-responsable",
+          "description": "Define las subareas responsables de la institucion",
+          "itemType": "link",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "label": "Puesto de Trabajo",
+      "href": "/puesto-de-trabajo",
+      "description": "Define los puestos, competencias y perfiles del talento humano",
+      "itemType": "link",
+      "status": "active",
+      "children": []
+    },
+    {
+      "id": 7,
+      "label": "Procesos",
+      "href": "/procesos",
+      "description": "Catálogo de procesos institucionales",
+      "itemType": "link",
+      "status": "active",
+      "children": []
+    },
+    {
+      "id": 8,
+      "label": "Administracion de Gestion de Calidad",
+      "href": "/calidad/administracion",
+      "description": "Selecciona el marco de referencia (FIMPES, ISO 9001, modelo propio, etc.)",
+      "itemType": "link",
+      "status": "active",
+      "children": [
+        {
+          "id": 900,
+          "label": "Modelos de Gestion de Calidad",
+          "href": "/calidad/modelo",
+          "description": "Define los modeloss de gestion de calidad",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 901,
+          "label": "Capitulos",
+          "href": "/calidad/capitulo",
+          "description": "Aplicación de instrumentos, registro de evidencias y calificaciones",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 902,
+          "label": "Secciones",
+          "href": "/calidad/seccion",
+          "description": "Dashboards, gráficas de tendencia, brechas y hallazgos",
+          "itemType": "link",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "label": "Evaluación y Mejora Continua",
+      "description": "Ciclo completo: planeación, ejecución, análisis y acciones correctivas",
+      "itemType": "section",
+      "status": "active",
+      "children": [
+        {
+          "id": 900,
+          "label": "Planeación de Evaluación",
+          "href": "/evaluacion/planeacion",
+          "description": "Define período, alcance, participantes, procesos a evaluar y criterios",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 901,
+          "label": "Ejecución",
+          "href": "/evaluacion/ejecucion",
+          "description": "Aplicación de instrumentos, registro de evidencias y calificaciones",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 902,
+          "label": "Resultados y Análisis",
+          "href": "/evaluacion/resultados",
+          "description": "Dashboards, gráficas de tendencia, brechas y hallazgos",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 903,
+          "label": "Planes de Mejora",
+          "href": "/evaluacion/planes-mejora",
+          "description": "Acciones correctivas, responsables, fechas y seguimiento",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 904,
+          "label": "Histórico de Evaluaciones",
+          "href": "/evaluacion/historico",
+          "description": "Comparativa entre ciclos anteriores y evolución",
+          "itemType": "link",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "label": "Administración del Sistema",
+      "description": "Gestión de usuarios, roles, permisos y configuración de la plataforma",
+      "itemType": "section",
+      "status": "active",
+      "roles": [
+        "super-admin",
+        "admin"
+      ],
+      "children": [
+        {
+          "id": 1000,
+          "label": "Usuarios",
+          "href": "/admin/usuarios",
+          "description": "Lista, crea, edita, bloquea o elimina usuarios",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 1001,
+          "label": "Roles y Permisos",
+          "href": "/admin/roles",
+          "description": "Define roles personalizados y sus permisos",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 1002,
+          "label": "Sesiones Activas",
+          "href": "/admin/sesiones",
+          "description": "Visualiza y revoca sesiones de usuarios",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 1003,
+          "label": "Bitácora de Acciones",
+          "href": "/admin/auditoria",
+          "description": "Registro de acciones de usuarios para auditoría",
+          "itemType": "link",
+          "status": "active"
+        },
+        {
+          "id": 1004,
+          "label": "Configuración de la Plataforma",
+          "href": "/admin/configuracion",
+          "description": "Parámetros generales del sistema",
+          "itemType": "link",
+          "status": "active"
+        }
+      ]
+    }
+  ]
+}

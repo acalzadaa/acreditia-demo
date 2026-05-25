@@ -1,0 +1,156 @@
+	/* navbar */
+	.navbar-panel {
+		grid-area: navbar;
+		display: flex;
+		flex-direction: column;
+		left: 0px;
+		width: 240px;
+		background-color: var(--bg-overlay);
+		color: var(--text-primary);
+		z-index: var(--z-navbar);
+		box-shadow: var(--shadow-xs);
+		height: 100%;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	.navbar-panel::-webkit-scrollbar {
+		width: 3px;
+	}
+
+	.navbar-panel::-webkit-scrollbar-track {
+		background: var(--bg-overlay);
+	}
+
+	.navbar-panel::-webkit-scrollbar-thumb {
+		background: var(--border-regular);
+		border-radius: var(--border-radius-sm);
+	}
+
+	.navbar-panel::-webkit-scrollbar-thumb:hover {
+		background: var(--border-strong);
+	}
+
+	@keyframes slideRight {
+		from {
+			opacity: 0;
+			transform: translateX(-100px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	.navbar-panel--content,
+	.navbar-list {
+		background-color: var(--bg-overlay);
+	}
+
+	/* ── Shared: relative positioning for the triangle pseudo-element ── */
+	.navbar-item--parent,
+	.navbar-item--child-anchor,
+	.navbar-item--anchor {
+		position: relative;
+	}
+
+	/* ── Triangle indicator ──────────────────────────────────────────── */
+	/*
+	 * Rendered with a CSS border-trick triangle on ::before.
+	 * Hidden by default; shown only on .current / .active items.
+	 * The triangle points right (▶) and sits flush against the left edge.
+	 *
+	 * Triangle size: border-width controls height (top+bottom) and
+	 * the right border controls the depth (how far it pokes in).
+	 */
+	.navbar-item--anchor::before,
+	.navbar-item--child-anchor::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+
+		width: 10px;
+		height: 20px;
+		background-color: var(--border-brand);
+		clip-path: polygon(0 0, 100% 50%, 0 100%);
+
+		opacity: 0;
+		transition: opacity 0.15s ease;
+	}
+
+	.navbar-item--anchor.current::before,
+	.navbar-item--child-anchor.current::before {
+		opacity: 1;
+	}
+
+	/* ── Parent button ───────────────────────────────────────────────── */
+	.navbar-item--parent {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		padding: var(--space-3) var(--space-4);
+		border: none;
+		text-align: left;
+		cursor: pointer;
+		transition: background-color 0.2s;
+		background-color: var(--bg-overlay);
+	}
+
+	.navbar-item--parent:hover {
+		background-color: var(--bg-overlay-hover);
+	}
+
+	.navbar-item--parent.active {
+		background-color: var(--bg-overlay-brand);
+		font-weight: var(--weight-medium);
+	}
+
+	/* ── Links ───────────────────────────────────────────────────────── */
+	.navbar-item--child-anchor,
+	.navbar-item--anchor {
+		display: block;
+		text-decoration: none;
+	}
+
+	.navbar-item--child-anchor {
+		padding: var(--space-2) var(--space-4) var(--space-2) var(--space-6);
+		color: var(--text-primary);
+	}
+
+	.navbar-item--anchor {
+		padding: var(--space-3) var(--space-4);
+		background-color: var(--bg-overlay);
+	}
+
+	.navbar-item--child-anchor:hover,
+	.navbar-item--anchor:hover {
+		background-color: var(--bg-overlay-hover);
+	}
+
+	/* ── Current state ───────────────────────────────────────────────── */
+	.navbar-item--child-anchor.current {
+		color: var(--text-on-surface);
+		font-weight: var(--weight-semibold);
+	}
+
+	.navbar-item--anchor.current {
+		color: var(--text-on-surface);
+		font-weight: var(--weight-semibold);
+	}
+
+	/* ── Inactive ────────────────────────────────────────────────────── */
+	.navbar-item--inactive {
+		display: block;
+		padding: var(--space-3) var(--space-4);
+		cursor: not-allowed;
+		color: var(--text-muted);
+	}
+
+	/* ── Chevron ─────────────────────────────────────────────────────── */
+	.nav-chevron {
+		transition: rotate 0.2s ease;
+	}

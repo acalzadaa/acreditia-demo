@@ -1,0 +1,23 @@
+{
+    "objetivoEstrategicoItems": [
+        {
+            "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "planeacionId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "code": "OE_001",
+            "name": "Educacion accesible",
+            "description": "Otorgar becas al 20% de los alumnos",
+            "status": "activo",
+            "createdAt": "2024-01-01T00:00:00Z",
+            "updatedAt": "2024-01-01T00:00:00Z",
+            "planeacion": {
+                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+                "code": "PE_001",
+                "name": "Educacion accesible",
+                "description": "Otorgar becas al 20% de los alumnos",
+                "status": "activo",
+                "createdAt": "2024-01-01T00:00:00Z",
+                "updatedAt": "2024-01-01T00:00:00Z"
+            }
+        }
+    ]
+}

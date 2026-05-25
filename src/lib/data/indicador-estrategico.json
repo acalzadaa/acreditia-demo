@@ -1,0 +1,50 @@
+{
+    "indicadorEstrategicoItems": [
+        {
+            "id": "81199e85-1e28-4056-a212-d371d15a07e8",
+            "objetivoId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "code": "IE_001",
+            "name": "Tasa de Cobertura de Becas",
+            "description": "Porcentaje de alumnos que reciben beca respecto al total de alumnos elegibles",
+            "dataOrigin": "Sistema de Gestión Académica - Tabla alumnos_becados",
+            "dataFormula": "(Alumnos con beca / Total alumnos elegibles) * 100",
+            "target": 20,
+            "frequencyValue": 1,
+            "frequencyUnit": "mes",
+            "responsible": "ed25ea27-19fd-45b7-9e5c-7ce02a56b16a",
+            "status": "activo",
+            "createdAt": "2024-01-15T10:30:00Z",
+            "updatedAt": "2024-01-15T10:30:00Z",
+            "objetivo": {
+                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+                "code": "OE_001",
+                "name": "Educacion accesible",
+                "description": "Otorgar becas al 20% de los alumnos",
+                "status": "activo"
+            }
+        },
+        {
+            "id": "aef2904f-2790-4385-b6fc-04a1bd1f1829",
+            "objetivoId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "code": "IE_002",
+            "name": "Tiempo de Respuesta en Solicitudes",
+            "description": "Tiempo promedio de respuesta a solicitudes de beca",
+            "dataOrigin": "Sistema de Gestión de Solicitudes - Tabla solicitudes_becas",
+            "dataFormula": "AVG(fecha_respuesta - fecha_solicitud)",
+            "target": 5,
+            "frequencyValue": 1,
+            "frequencyUnit": "mes",
+            "responsible": "e42e027c-567b-45f7-9672-974806ce669b",
+            "status": "activo",
+            "createdAt": "2024-01-20T14:45:00Z",
+            "updatedAt": "2024-02-01T09:15:00Z",
+            "objetivo": {
+                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+                "code": "OE_001",
+                "name": "Educacion accesible",
+                "description": "Otorgar becas al 20% de los alumnos",
+                "status": "activo"
+            }
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+:root {
+    --shadow-card: var(--shadow-sm);
+    --shadow-modal: var(--shadow-sm);
+    --shadow-tooltip: var(--shadow-md);
+    --shadow-drawer: var(--shadow-lg);
+    --shadow-dropdown: var(--shadow-xs);
+    --shadow-avatar: var(--shadow-xs);
+    --shadow-button-focus: 0 0 0 3px var(--primary-200);
+}

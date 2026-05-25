@@ -1,0 +1,34 @@
+{
+    "subareaResponsableItems": [
+        {
+            "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "areaResponsableId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "code": "AF_001",
+            "name": "Direccion de Capital Humano",
+            "descripcion": "",
+            "status": "activo",
+            "areaResponsable": {
+                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+                "code": "AF_001",
+                "name": "Direccion de Capital Humano"
+            },
+            "createdAt": "2024-01-01T00:00:00Z",
+            "updatedAt": "2024-01-01T00:00:00Z"
+        },
+        {
+            "id": "1ea61636-f38a-43ef-be6a-7ee9c088bafb",
+            "areaResponsableId": "1ea61636-f38a-43ef-be6a-7ee9c088bafb",
+            "code": "AF_002",
+            "name": "Direccion de Operaciones",
+            "descripcion": "",
+            "status": "activo",
+            "areaResponsable": {
+                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+                "code": "AF_001",
+                "name": "Direccion de Capital Humano"
+            },
+            "createdAt": "2024-01-01T00:00:00Z",
+            "updatedAt": "2024-01-01T00:00:00Z"
+        }
+    ]
+}
