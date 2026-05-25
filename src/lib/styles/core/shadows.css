@@ -1,0 +1,28 @@
+/* box-shadow: offset-x | offset-y | blur-radius | spread-radius | color */
+
+:root {
+    --shadow-inset-lower: inset 0 -2px 0 var(--neutral-900-20);
+    
+    --shadow-inset-upper: inset 0 2px 2px var(--neutral-900-10);
+    --shadow-inset: var(--shadow-inset-lower), var(--shadow-inset-upper);
+
+    --shadow-0-direct: 0 1px 3px var(--neutral-900-10);
+    --shadow-0-ambient: 0 1px 2px var(--neutral-900-20);
+    --shadow-xs: var(--shadow-0-direct), var(--shadow-0-ambient);
+
+    --shadow-1-direct: 0 3px 6px var(--neutral-900-20);
+    --shadow-1-ambient: 0 2px 4px var(--neutral-900-10);
+    --shadow-sm: var(--shadow-1-direct), var(--shadow-1-ambient);
+
+    --shadow-2-direct: 0 10px 20px var(--neutral-900-20);
+    --shadow-2-ambient: 0 3px 6px var(--neutral-900-10);
+    --shadow-md: var(--shadow-2-direct), var(--shadow-2-ambient);
+
+    --shadow-3-direct: 0 15px 25px var(--neutral-900-10);
+    --shadow-3-ambient: 0 5px 10px var(--neutral-900-10);
+    --shadow-lg: var(--shadow-3-direct), var(--shadow-3-ambient);
+
+    --shadow-4-direct: 0 20px 40px var(--neutral-900-20);
+    --shadow-4-ambient: 0 5px 15px var(--neutral-900-20);
+    --shadow-xl: var(--shadow-4-direct), var(--shadow-4-ambient);
+}

@@ -1,0 +1,19 @@
+:root {
+    --focus-ring-width: 2px;
+    --focus-ring-style: solid;
+    --focus-ring-color: var(--border-brand);
+    --focus-ring-offset: 2px;
+    --focus-ring: var(--focus-ring-width) var(--focus-ring-style) var(--focus-ring-color);
+}
+
+/* Global focus styles */
+*:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+}
+
+/* Focus dentro de elementos con shadow (modales, dropdowns) */
+.modal:focus-visible,
+.dropdown:focus-visible {
+    outline-offset: -2px;
+}

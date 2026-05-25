@@ -1,0 +1,24 @@
+:root {
+    /* Layout */
+    --layout-gutter: var(--space-6);
+    --layout-container-padding: var(--space-4);
+
+    /* Componentes */
+    --card-padding: var(--space-6);
+    --button-padding-x: var(--space-4);
+    --button-padding-y: var(--space-2);
+    --input-padding-x: var(--space-3);
+    --input-padding-y: var(--space-2);
+
+    /* Stacking (vertical rhythm) */
+    --stack-xs: var(--space-2);
+    --stack-sm: var(--space-4);
+    --stack-md: var(--space-6);
+    --stack-lg: var(--space-8);
+    --stack-xl: var(--space-12);
+
+    /* Inset (padding consistente) */
+    --inset-sm: var(--space-2);
+    --inset-md: var(--space-4);
+    --inset-lg: var(--space-6);
+}
