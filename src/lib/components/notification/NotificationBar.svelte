@@ -38,7 +38,7 @@
 		right: 0;
 		width: 200px;
 		box-shadow: var(--shadow-md);
-		border: var(border-width-thin) solid var(--border-light);
+		border: var(--border-width-thin) solid var(--border-light);
 		border-radius: var(--border-radius-none);
 		border-top-left-radius: var(--border-radius-lg);
 		border-bottom-left-radius: var(--border-radius-lg);
@@ -83,7 +83,7 @@
 		display: flex;
 		align-items: center;
 		padding: var(--space-4);
-		border: var(border-width-thin) solid var(border-regular);
+		border: var(--border-width-thin) solid var(border-regular);
 		border-radius: var(--border-radius-md);
 		cursor: pointer;
 		transition: background-color 0.2s ease;
