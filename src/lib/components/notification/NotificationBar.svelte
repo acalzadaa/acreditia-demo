@@ -83,7 +83,7 @@
 		display: flex;
 		align-items: center;
 		padding: var(--space-4);
-		border: var(--border-width-thin) solid var(border-regular);
+		border: var(--border-width-thin) solid var(--border-regular);
 		border-radius: var(--border-radius-md);
 		cursor: pointer;
 		transition: background-color 0.2s ease;
