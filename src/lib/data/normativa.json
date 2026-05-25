@@ -1,0 +1,99 @@
+{
+    "normativaItem": [
+        {
+            "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "code": "LFT",
+            "name": "Ley Federal del Trabajo",
+            "description": "Ley Federal del Trabajo - Regula las relaciones laborales en México",
+            "origen": "externo",
+            "status": "activo",
+            "activeVersionId": "ver_5f84bdd4_001",
+            "createdAt": "2024-01-01T00:00:00Z",
+            "createdBy": "usuario_admin",
+            "updatedAt": "2024-03-15T00:00:00Z",
+            "updatedBy": "usuario_legal",
+            "versions": [
+                {
+                    "id": "ver_5f84bdd4_003",
+                    "versionNumber": 3,
+                    "isActive": true,
+                    "filename": "LFT_v3_20240315.pdf",
+                    "originalFilename": "Ley_Federal_Trabajo_Reforma_2024.pdf",
+                    "s3Key": "normativas/LFT/v3_20240315.pdf",
+                    "fileSize": 2048576,
+                    "mimeType": "application/pdf",
+                    "fileHash": "sha256:abc123def456...",
+                    "uploadedBy": "usuario_legal",
+                    "uploadedAt": "2024-03-15T10:30:00Z"
+                },
+                {
+                    "id": "ver_5f84bdd4_002",
+                    "versionNumber": 2,
+                    "isActive": false,
+                    "filename": "LFT_v2_20230201.pdf",
+                    "originalFilename": "LFT_2023.pdf",
+                    "s3Key": "normativas/LFT/v2_20230201.pdf",
+                    "fileSize": 1987456,
+                    "mimeType": "application/pdf",
+                    "fileHash": "sha256:xyz789ghi012...",
+                    "uploadedBy": "usuario_admin",
+                    "uploadedAt": "2023-02-01T14:20:00Z"
+                },
+                {
+                    "id": "ver_5f84bdd4_001",
+                    "versionNumber": 1,
+                    "isActive": false,
+                    "filename": "LFT_v1_20220101.pdf",
+                    "originalFilename": "LFT_original.pdf",
+                    "s3Key": "normativas/LFT/v1_20220101.pdf",
+                    "fileSize": 1950000,
+                    "mimeType": "application/pdf",
+                    "fileHash": "sha256:lmn345opq678...",
+                    "uploadedBy": "usuario_admin",
+                    "uploadedAt": "2022-01-01T09:00:00Z"
+                }
+            ]
+        },
+        {
+            "id": "1ea61636-f38a-43ef-be6a-7ee9c088bafb",
+            "code": "N_001",
+            "name": "Reglamento de Conducta",
+            "description": "Reglamento institucional sobre las conductas de los colaboradores internos, externos y el alumnado dentro de la institucion",
+            "origen": "interno",
+            "status": "activo",
+            "activeVersionId": "ver_1ea61636_002",
+            "createdAt": "2024-01-01T00:00:00Z",
+            "createdBy": "usuario_rrhh",
+            "updatedAt": "2024-02-10T00:00:00Z",
+            "updatedBy": "usuario_rrhh",
+            "versiones": [
+                {
+                    "id": "ver_1ea61636_002",
+                    "versionNumber": 2,
+                    "isActive": true,
+                    "filename": "N_001_Reglamento_Conducta_V02.pdf",
+                    "originalFilename": "Reglamento_Conducta_Actualizado.pdf",
+                    "s3Key": "normativas/N_001/v2_20240210.pdf",
+                    "fileSize": 524288,
+                    "mimeType": "application/pdf",
+                    "fileHash": "sha256:rst123uvw456...",
+                    "uploadedBy": "usuario_rrhh",
+                    "uploadedAt": "2024-02-10T11:45:00Z"
+                },
+                {
+                    "id": "ver_1ea61636_001",
+                    "versionNumber": 1,
+                    "isActive": false,
+                    "filename": "N_001_Reglamento_Conducta_V01.pdf",
+                    "originalFilename": "Reglamento_Conducta_Original.pdf",
+                    "s3Key": "normativas/N_001/v1_20240101.pdf",
+                    "fileSize": 498000,
+                    "mimeType": "application/pdf",
+                    "fileHash": "sha256:xyz789abc012...",
+                    "uploadedBy": "usuario_admin",
+                    "uploadedAt": "2024-01-01T10:00:00Z"
+                }
+            ]
+        }
+    ]
+}

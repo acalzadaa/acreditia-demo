@@ -1,0 +1,39 @@
+{
+    "campusItems": [
+        {
+            "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "entidadLegalId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "regionId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "institucionId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+            "code": "CA_001",
+            "name": "Universidad del Sureste Campus Monterrey",
+            "status": "activo",
+            "entidadLegal": {
+                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+                "code": "IENAC",
+                "name": "Instituto Educativo del Noreste A.C",
+                "status": "activo",
+                "createdAt": "2024-01-01T00:00:00Z",
+                "updatedAt": "2024-01-01T00:00:00Z"
+            },
+            "region": {
+                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+                "code": "RE-001",
+                "name": "Region Noreste",
+                "status": "activo",
+                "createdAt": "2024-01-01T00:00:00Z",
+                "updatedAt": "2024-01-01T00:00:00Z"
+            },
+            "institucion": {
+                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+                "code": "IA_001",
+                "name": "Universidad del Sureste S.A de C.V",
+                "status": "activo",
+                "createdAt": "2024-01-01T00:00:00Z",
+                "updatedAt": "2024-01-01T00:00:00Z"
+            },
+            "createdAt": "2024-01-01T00:00:00Z",
+            "updatedAt": "2024-01-01T00:00:00Z"
+        }
+    ]
+}
