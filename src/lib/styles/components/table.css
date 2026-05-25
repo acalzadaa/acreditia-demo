@@ -1,0 +1,102 @@
+:root {
+    --table-bg-odd-row: var(--neutral-tinted-50);
+    --table-bg-even-row: var(--neutral-tinted-75);
+    --table-bg-hover: var(--neutral-tinted-100);
+}
+
+/* Contenedor de la tabla con scroll */
+.table-container {
+    flex: 1;
+    overflow: auto;
+    padding: 0 var(--space-2);
+    position: relative;
+    height: 100%;
+}
+
+.data-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    /* ajustar min-width en cada componente */
+    min-width: 50rem;
+}
+
+/* =============================================
+   CABECERA
+   ============================================= */
+
+.data-table thead {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-raised);
+    z-index: var(--z-10);
+    box-shadow: var(--shadow-xs);
+}
+
+.data-table th {
+    text-align: left;
+    padding: var(--space-4) var(--space-3);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    background-color: var(--bg-raised);
+    border-bottom: var(--border-width-thin) solid var(--border-regular);
+    /* Evita que el texto del header se corte raro */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* =============================================
+   CELDAS
+   ============================================= */
+
+.data-table td {
+    padding: var(--space-3);
+    color: var(--text-primary);
+    border-bottom: var(--border-width-thin) solid var(--border-light);
+    /* overflow seguro para celdas sin wrap explícito */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =============================================
+   FILAS
+   ============================================= */
+
+/* Stripe pattern */
+.data-table tbody tr:nth-child(odd) {
+    background-color: var(--table-bg-odd-row);
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: var(--table-bg-even-row);
+}
+
+/* Hover en filas para mejorar la legibilidad */
+.data-table tbody tr:hover {
+    background-color: var(--table-bg-hover);
+}
+
+.data-table .tr-expandable {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+}
+
+/* =============================================
+MOBILE — placeholder para cards
+============================================= 
+*/
+
+/*
+* A partir de ~640px la tabla horizontal deja de ser cómoda.
+* Aquí irá la transformación a cards.
+* Por ahora solo ocultamos la tabla si el contenedor
+* es demasiado angosto; más adelante se reemplaza por cards.
+*
+* @media (max-width: 640px) {
+*		.table-container { padding: 0 var(--space-4) var(--space-4); }
+*     .data-table { display: none; }
+*     .card-list  { display: flex; flex-direction: column; gap: var(--space-3); }
+* }
+*/

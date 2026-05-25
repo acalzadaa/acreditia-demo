@@ -1,0 +1,36 @@
+:root {
+	--header-height: 80px;
+	--subheader-height: 60px;
+}
+
+.header {
+	height: var(--header-height);
+}
+
+.subheader {
+	height: var(--subheader-height);
+}
+
+.app-grid {
+	display: grid;
+	grid-template-areas:
+		'header header'
+		'subheader subheader'
+		'navbar main'
+		'footer footer';
+	grid-template-columns: auto 1fr;
+	grid-template-rows: auto auto 1fr auto;
+	height: 100vh;
+	min-width: 1277px;
+	position: relative;
+	overflow: hidden;
+}
+
+.main-panel {
+	grid-area: main;
+	background-color: var(--bg-ground);
+	min-height: 0;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}

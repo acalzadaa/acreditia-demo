@@ -1,0 +1,380 @@
+/* components/button.css - VERSIÓN SIMPLIFICADA */
+
+:root {
+  /* ===== BASE BUTTON TOKENS ===== */
+  --button-border-radius: var(--border-radius-lg);
+  --button-transition: all 0.2s ease;
+  --button-focus-outline: var(--border-width-regular) solid var(--border-brand);
+  --button-focus-outline-offset: var(--space-1);
+
+  /* ===== SIZES (unchanged, good) ===== */
+  --button-padding-xs: var(--space-1) var(--space-2);
+  --button-padding-sm: var(--space-2) var(--space-3);
+  --button-padding-md: var(--space-3) var(--space-4);
+  --button-padding-lg: var(--space-4) var(--space-5);
+  --button-padding-xl: var(--space-5) var(--space-6);
+
+  --button-gap-xs: var(--space-1);
+  --button-gap-sm: var(--space-1);
+  --button-gap-md: var(--space-2);
+  --button-gap-lg: var(--space-2);
+  --button-gap-xl: var(--space-3);
+
+  --button-font-xs: var(--text-caption);
+  --button-font-sm: var(--text-body-small);
+  --button-font-md: var(--text-body);
+  --button-font-lg: var(--text-body-large);
+  --button-font-xl: var(--text-body-large);
+
+  --button-height-xs: 24px;
+  --button-height-sm: 32px;
+  --button-height-md: 40px;
+  --button-height-lg: 48px;
+  --button-height-xl: 56px;
+
+  /* ===== STATES ===== */
+  --button-disabled-opacity: 0.5;
+  --button-scale-active: 0.98;
+}
+
+/* ==========================================
+   BASE BUTTON
+   ========================================== */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap-md);
+
+  border-radius: var(--button-border-radius);
+  border: var(--border-width-thin) solid transparent;
+
+  font: var(--button-font-md);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--spacing-wider);
+
+  cursor: pointer;
+  transition: var(--button-transition);
+
+  white-space: nowrap;
+  text-decoration: none;
+
+  /* Default size (md) */
+  padding: var(--button-padding-md);
+  height: var(--button-height-md);
+}
+
+/* ==========================================
+   SIZES
+   ========================================== */
+.button--size-xs {
+  padding: var(--button-padding-xs);
+  gap: var(--button-gap-xs);
+  height: var(--button-height-xs);
+  font: var(--button-font-xs);
+}
+
+.button--size-sm {
+  padding: var(--button-padding-sm);
+  gap: var(--button-gap-sm);
+  height: var(--button-height-sm);
+  font: var(--button-font-sm);
+}
+
+.button--size-md {
+  padding: var(--button-padding-md);
+  gap: var(--button-gap-md);
+  height: var(--button-height-md);
+  font: var(--button-font-md);
+}
+
+.button--size-lg {
+  padding: var(--button-padding-lg);
+  gap: var(--button-gap-lg);
+  height: var(--button-height-lg);
+  font: var(--button-font-lg);
+}
+
+.button--size-xl {
+  padding: var(--button-padding-xl);
+  gap: var(--button-gap-xl);
+  height: var(--button-height-xl);
+  font: var(--button-font-xl);
+}
+
+/* ==========================================
+   FULL WIDTH
+   ========================================== */
+.button--full-width {
+  width: 100%;
+}
+
+/* ==========================================
+   ICON SUPPORT (simplificado)
+   ========================================== */
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Icon-only buttons - tamaño cuadrado consistente */
+.button:has(.button__icon:only-child) {
+  padding: var(--button-padding-md);
+}
+
+.button--size-xs:has(.button__icon:only-child) { padding: var(--space-1); }
+.button--size-sm:has(.button__icon:only-child) { padding: var(--space-2); }
+.button--size-md:has(.button__icon:only-child) { padding: var(--space-2); }
+.button--size-lg:has(.button__icon:only-child) { padding: var(--space-3); }
+.button--size-xl:has(.button__icon:only-child) { padding: var(--space-3); }
+
+/* Icon spacing when text is present */
+.button__icon:first-child {
+  margin-right: calc(var(--button-gap-md) * -0.5);
+}
+
+.button__icon:last-child {
+  margin-left: calc(var(--button-gap-md) * -0.5);
+}
+
+/* ==========================================
+   VARIANTES (6 en total, no 8)
+   ========================================== */
+
+/* -------------------------------------------
+   1. PRIMARY - Brand principal
+   ------------------------------------------- */
+.button--variant-primary {
+  background-color: var(--bg-brand-primary);
+  color: var(--text-on-brand-primary);
+  border-color: transparent;
+  box-shadow: var(--shadow-xs);
+}
+
+.button--variant-primary:hover:not(:disabled):not(.button--disabled) {
+  background-color: var(--bg-brand-primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.button--variant-primary:active:not(:disabled):not(.button--disabled) {
+  background-color: var(--bg-brand-primary-active);
+  transform: scale(var(--button-scale-active));
+  box-shadow: var(--shadow-inset);
+}
+
+/* -------------------------------------------
+   2. SECONDARY - Brand secundario
+   ------------------------------------------- */
+.button--variant-secondary {
+  background-color: var(--bg-brand-secondary);
+  color: var(--text-on-brand-secondary);
+  border-color: transparent;
+  box-shadow: var(--shadow-xs);
+}
+
+.button--variant-secondary:hover:not(:disabled):not(.button--disabled) {
+  background-color: var(--bg-brand-secondary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.button--variant-secondary:active:not(:disabled):not(.button--disabled) {
+  background-color: var(--bg-brand-secondary-active);
+  transform: scale(var(--button-scale-active));
+  box-shadow: var(--shadow-inset);
+}
+
+/* -------------------------------------------
+   3. OUTLINE - Borde simple, sin color de marca
+   (Reemplaza outline-primary y outline-secondary)
+   ------------------------------------------- */
+.button--variant-outline {
+  background-color: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-regular);
+  box-shadow: none;
+}
+
+.button--variant-outline:hover:not(:disabled):not(.button--disabled) {
+  background-color: var(--neutral-900-10);
+  color: var(--text-primary-hover);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.button--variant-outline:active:not(:disabled):not(.button--disabled) {
+  background-color: var(--neutral-900-20);
+  transform: scale(var(--button-scale-active));
+}
+
+/* -------------------------------------------
+   4. CRITICAL - Para acciones destructivas
+   ------------------------------------------- */
+.button--variant-critical {
+  background-color: var(--error-500);
+  color: white;
+  border-color: transparent;
+  box-shadow: var(--shadow-xs);
+}
+
+.button--variant-critical:hover:not(:disabled):not(.button--disabled) {
+  background-color: var(--error-400);
+  box-shadow: var(--shadow-sm);
+}
+
+.button--variant-critical:active:not(:disabled):not(.button--disabled) {
+  background-color: var(--error-600);
+  transform: scale(var(--button-scale-active));
+  box-shadow: var(--shadow-inset);
+}
+
+/* -------------------------------------------
+   5. GHOST - Transparente, aparece en hover
+   ------------------------------------------- */
+.button--variant-ghost {
+  background-color: transparent;
+  color: var(--text-primary);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.button--variant-ghost:hover:not(:disabled):not(.button--disabled) {
+  background-color: var(--neutral-900-10);
+  color: var(--text-primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.button--variant-ghost:active:not(:disabled):not(.button--disabled) {
+  background-color: var(--neutral-900-20);
+  transform: scale(var(--button-scale-active));
+}
+
+/* Active state for toggles (ej: sidebar collapsed) */
+.button--variant-ghost.button--active {
+  background-color: var(--neutral-900-20);
+  color: var(--text-primary);
+}
+
+/* -------------------------------------------
+   6. LINK - Como texto, subrayado en hover
+   ------------------------------------------- */
+.button--variant-link {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  height: auto;
+  min-height: auto;
+  font-weight: var(--weight-regular);
+  letter-spacing: normal;
+}
+
+.button--variant-link:hover:not(:disabled):not(.button--disabled) {
+  color: var(--bg-brand-primary-hover);
+  text-decoration: underline;
+  box-shadow: none;
+  transform: none;
+}
+
+.button--variant-link:active:not(:disabled):not(.button--disabled) {
+  color: var(--bg-brand-primary-active);
+  transform: none;
+}
+
+.button--variant-link.button--active {
+  color: var(--bg-brand-primary-active);
+  font-weight: var(--weight-medium);
+  text-decoration: underline;
+}
+
+/* -------------------------------------------
+   7. TEXT - Como link, pero con background en hover
+   (Opcional - si realmente lo necesitas)
+   ------------------------------------------- */
+.button--variant-text {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: none;
+  box-shadow: none;
+  padding: var(--space-1) var(--space-2);
+  height: auto;
+  font-weight: var(--weight-regular);
+  letter-spacing: normal;
+}
+
+.button--variant-text:hover:not(:disabled):not(.button--disabled) {
+  background-color: var(--neutral-900-10);
+  color: var(--text-primary-hover);
+  box-shadow: none;
+  transform: none;
+}
+
+.button--variant-text:active:not(:disabled):not(.button--disabled) {
+  background-color: var(--neutral-900-20);
+  transform: none;
+}
+
+.button--variant-text.button--active {
+  background-color: var(--neutral-900-20);
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+/* ==========================================
+   DISABLED STATE (unificado)
+   ========================================== */
+.button:disabled,
+.button--disabled {
+  opacity: var(--button-disabled-opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Override específico por variante */
+.button--variant-primary:disabled,
+.button--variant-primary.button--disabled {
+  background-color: var(--neutral-tinted-300);
+  color: var(--neutral-tinted-500);
+}
+
+.button--variant-secondary:disabled,
+.button--variant-secondary.button--disabled {
+  background-color: var(--neutral-tinted-300);
+  color: var(--neutral-tinted-500);
+}
+
+.button--variant-critical:disabled,
+.button--variant-critical.button--disabled {
+  background-color: var(--error-200);
+  color: var(--error-400);
+}
+
+.button--variant-outline:disabled,
+.button--variant-outline.button--disabled,
+.button--variant-ghost:disabled,
+.button--variant-ghost.button--disabled,
+.button--variant-link:disabled,
+.button--variant-link.button--disabled,
+.button--variant-text:disabled,
+.button--variant-text.button--disabled {
+  background-color: transparent;
+  color: var(--text-disabled);
+  border-color: var(--border-regular);
+}
+
+/* ==========================================
+   FOCUS VISIBLE (accessibility)
+   ========================================== */
+.button:focus-visible {
+  outline: var(--button-focus-outline);
+  outline-offset: var(--button-focus-outline-offset);
+}
+
+.button:focus:not(:focus-visible) {
+  outline: none;
+}
