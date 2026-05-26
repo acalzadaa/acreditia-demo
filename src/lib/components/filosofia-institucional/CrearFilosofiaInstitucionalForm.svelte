@@ -1,49 +1,69 @@
 <script lang="ts">
-	import { superForm, type SuperValidated } from 'sveltekit-superforms';
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import {
-		filosofiaInstitucionalFormSchema,
-		type FilosofiaInstitucionalForm
-	} from '$lib/schemas/filosofiaInstitucional.schema';
-	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import Input from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
 
 	interface Props {
 		open: boolean;
-		form: SuperValidated<FilosofiaInstitucionalForm>;
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, ...props }: Props = $props();
+	let { open = $bindable(false), onClose }: Props = $props();
 
-	// NOTE: The form prop is replaced via server response and page re-render,
-	// not through reactive updates within this component instance.
-	// Therefore ignoring the state_referenced_locally warning is safe.
-	// svelte-ignore state_referenced_locally
-	const { form, errors, message, enhance, constraints } = superForm(props.form, {
-		resetForm: true,
-		validators: zod4Client(filosofiaInstitucionalFormSchema),
-		validationMethod: 'auto',
-		customValidity: false,
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
-				handleClose();
-			}
-		}
+	// Estado local del formulario
+	let formData = $state({
+		code: '',
+		name: '',
+		description: ''
 	});
+
+	// Estado para mensajes de error (opcional, para demo)
+	let errorMessage = $state('');
+
+	function handleSubmit() {
+		// Aquí podrías validar los datos si quieres
+		if (!formData.code || !formData.name) {
+			errorMessage = 'Código y nombre son requeridos';
+			return;
+		}
+		
+		// Limpiar el formulario
+		formData = {
+			code: '',
+			name: '',
+			description: ''
+		};
+		
+		// Limpiar mensaje de error
+		errorMessage = '';
+		
+		// Cerrar el modal
+		handleClose();
+	}
 
 	function handleClose() {
 		onClose();
 	}
 
 	function onKeydownClose(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			handleClose();
+		if (e.key === 'Enter' && !e.shiftKey) {
+			e.preventDefault();
+			handleSubmit();
 		}
+	}
+
+	function handleCancel() {
+		// Limpiar formulario al cancelar también
+		formData = {
+			code: '',
+			name: '',
+			description: ''
+		};
+		errorMessage = '';
+		handleClose();
 	}
 </script>
 
@@ -52,70 +72,61 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Crear filosofía institucional</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
-				onClick={handleClose}
+				name='close'
+				variant='ghost'
+				size='lg'
+				onClick={handleCancel}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
 		</header>
 
-		<!--
-			El <form> solo gestiona el envío.
-			El scroll y el padding los maneja .modal-body.
-			Los campos usan .form-fields sin modificador --scrollable
-			porque el scroll ya lo aporta el contenedor padre.
-		-->
-		<form method="POST" action="?/create" use:enhance>
+		<form onsubmit={(e) => {
+			e.preventDefault();
+			handleSubmit();
+		}}>
 			<div class="modal-body">
-				{#if $message}
+				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
-						{$message}
+						<Icon name='warning'></Icon>
+						{errorMessage}
 					</div>
 				{/if}
 
 				<div class="form-fields">
 					<Input
-						label={'Código'}
-						name={'code'}
+						label='Código'
+						name='code'
 						required={true}
-						placeholder={'PE-001'}
-						status={$errors.code ? 'error' : 'normal'}
+						placeholder='PE-001'
+						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
-						{...$constraints.code}
+						bind:value={formData.code}
 					/>
 
 					<Input
-						label={'Nombre'}
-						name={'name'}
+						label='Nombre'
+						name='name'
 						required={true}
-						placeholder={'Excelencia educativa'}
-						status={$errors.name ? 'error' : 'normal'}
+						placeholder='Excelencia educativa'
+						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.name}
-						errors={$errors.name}
-						{...$constraints.name}
+						bind:value={formData.name}
 					/>
 
 					<TextArea
 						label="Descripcion"
 						name="description"
 						placeholder="Descripcion..."
-						status={$errors.description ? 'error' : 'normal'}
+						status='normal'
 						disabled={false}
-						bind:value={$form.description}
-						errors={$errors.description}
-						{...$constraints.description}
+						bind:value={formData.description}
 						rows={4}
 					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
-				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
+				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
 				<Button type="submit" variant="primary">Crear filosofia</Button>
 			</footer>
 		</form>
