@@ -21,7 +21,7 @@
 
 	$effect(() => {
 		if (!dialogElement) return;
-		
+
 		if (open) {
 			dialogElement.showModal();
 		} else {
@@ -35,7 +35,7 @@
 
 	function handleBackdropClick(e: MouseEvent) {
 		if (!closeOnBackdropClick) return;
-		
+
 		const target = e.target as HTMLElement;
 		if (target === dialogElement) {
 			open = false;
@@ -63,7 +63,7 @@
 		margin: auto;
 		overflow: visible;
 		z-index: var(--z-modal);
-	}	
+	}
 
 	dialog::backdrop {
 		background: var(--primary-500-alpha);

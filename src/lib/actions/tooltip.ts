@@ -10,7 +10,6 @@ export function tooltip(node: HTMLElement, options: TooltipOptions) {
     let tooltipEl: HTMLElement | null = null;
     let showTimeout: ReturnType<typeof setTimeout> | null = null;
 
-
     function createTooltip() {
         if (!options.content || !options.active) return;
 
@@ -63,10 +62,18 @@ export function tooltip(node: HTMLElement, options: TooltipOptions) {
         tooltipEl = null;
     }
 
+    function handleClick() {
+        // Solo cerrar si el tooltip está visible (existe en el DOM)
+        if (tooltipEl) {
+            removeTooltip();
+        }
+    }
+
     node.addEventListener('mouseenter', createTooltip);
     node.addEventListener('mouseleave', removeTooltip);
     node.addEventListener('focus', createTooltip);
     node.addEventListener('blur', removeTooltip);
+    node.addEventListener('click', handleClick);
 
     return {
         update(newOptions: TooltipOptions) {
@@ -83,6 +90,7 @@ export function tooltip(node: HTMLElement, options: TooltipOptions) {
             node.removeEventListener('mouseleave', removeTooltip);
             node.removeEventListener('focus', createTooltip);
             node.removeEventListener('blur', removeTooltip);
+            node.removeEventListener('click', handleClick);
         }
     };
 }
