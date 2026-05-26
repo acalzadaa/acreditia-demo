@@ -87,7 +87,7 @@
             "isCurrent": false,
             "validFrom": "2020-11-01T00:00:00Z",
             "validTo": "2023-02-28T23:59:59Z",
-            "isDeleted": false,
+            "isDeleted": true,
             "createdAt": "2020-11-01T13:45:00Z",
             "createdBy": "bienestar_estudiantil@universidad.edu"
         },
