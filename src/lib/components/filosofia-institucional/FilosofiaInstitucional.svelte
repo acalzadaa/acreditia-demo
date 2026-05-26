@@ -46,35 +46,35 @@
 							<td class="col-name">{item.name}</td>
 							<td class="col-description">{item.description}</td>
 							<td class="col-status">
-								<Badge variant={item.isCurrent ? 'success' : 'error'}>
-									{item.isCurrent ? 'activo' : 'borrado'}
+								<Badge variant={item.isDeleted ? 'error' : 'success'}>
+									{item.isDeleted ? 'borrado' : 'activo'}
 								</Badge>
 							</td>
 							<td class="col-actions">
 								<IconButton
 									isDisabled={item.isDeleted}
-									name='edit'
-									size='md'
-									borderShape='square'
-									variant='ghost'
+									name="edit"
+									size="md"
+									borderShape="square"
+									variant="ghost"
 									onClick={() => onClickEditar(item)}
 									onKeydown={(e) => onKeydownEditar(e, item)}
 								/>
 								<IconButton
 									isDisabled={item.isDeleted}
-									name='delete'
-									size='md'
-									borderShape='square'
-									variant='ghost'
+									name="delete"
+									size="md"
+									borderShape="square"
+									variant="ghost"
 									onClick={() => onClickBorrar(item)}
 									onKeydown={(e) => onKeydownBorrar(e, item)}
 								/>
 								<IconButton
 									isDisabled={!item.isDeleted}
-									name='restore'
-									size='md'
-									borderShape='square'
-									variant='ghost'
+									name="restore"
+									size="md"
+									borderShape="square"
+									variant="ghost"
 									onClick={() => onClickRestaurar(item)}
 									onKeydown={(e) => onKeydownRestaurar(e, item)}
 								/>
@@ -84,14 +84,13 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message='No hay elementos de filosofía institucional'></EmptySection>
+			<EmptySection message="No hay elementos de filosofía institucional"></EmptySection>
 		{/if}
 	</section>
 </main>
 
 <style>
-
-/*
+	/*
  * table-layout: fixed permite que las columnas respeten
  * los anchos declarados en thead th.
  * min-width en la tabla = suma de los min-width de columnas,

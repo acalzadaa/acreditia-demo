@@ -5,9 +5,9 @@ import { filosofiaInstitucionalRefSchema } from './filosofiaInstitucional.schema
 // 1. REFERENCE SCHEMAS (Para relaciones)
 // ============================================
 export const planeacionEstrategicaRefSchema = z.object({
-    id: z.uuid(),
-    code: z.string(),
-    name: z.string(),
+	id: z.uuid(),
+	code: z.string(),
+	name: z.string()
 });
 export type PlaneacionEstrategicaRefSchema = z.infer<typeof planeacionEstrategicaRefSchema>;
 
@@ -17,16 +17,12 @@ export type PlaneacionEstrategicaRefSchema = z.infer<typeof planeacionEstrategic
 // ============================================
 
 export const planeacionEstrategicaFormSchema = z.object({
-    id: z.uuid().optional(),
-    filosofiaId: z.uuid(),
-    code: z.string()
-        .min(1, "Codigo requerido")
-        .max(255),
-    name: z.string()
-        .min(1, "Nombre requerido")
-        .max(255),
-    description: z.string().default(''),
-    createdBy: z.string().optional()
+	id: z.uuid().optional(),
+	filosofiaId: z.uuid(),
+	code: z.string().min(1, 'Codigo requerido').max(255),
+	name: z.string().min(1, 'Nombre requerido').max(255),
+	description: z.string().default(''),
+	createdBy: z.string().optional()
 });
 export type PlaneacionEstrategicaForm = z.infer<typeof planeacionEstrategicaFormSchema>;
 
@@ -35,33 +31,42 @@ export type PlaneacionEstrategicaForm = z.infer<typeof planeacionEstrategicaForm
 // Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
 
-export const planeacionEstrategicaItemSchema = planeacionEstrategicaFormSchema.extend({
-    id: z.uuid(),
-    filosofia: filosofiaInstitucionalRefSchema.optional(),
-    version: z.number().default(0),
-    isCurrent: z.boolean().default(false),
-    validFrom: z.date().optional(),
-    validTo: z.date().optional(),
-    isDeleted: z.boolean().default(false),
-    createdAt: z.iso.datetime().optional(),
-    createdBy: z.string()
-
+export const planeacionEstrategicaItemSchema = z.object({
+	id: z.uuid(),
+	filosofiaId: z.uuid(),
+	code: z.string(),
+	name: z.string(),
+	description: z.string(),
+	filosofia: filosofiaInstitucionalRefSchema.optional(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.coerce.date().optional(),
+	validTo: z.coerce.date().optional(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 export type PlaneacionEstrategicaItem = z.infer<typeof planeacionEstrategicaItemSchema>;
 
-export const planeacionEstrategicaWithFilosofiaItemSchema = planeacionEstrategicaItemSchema.extend({
-    filosofia: z.object({
-        id: z.uuid(),
-        code: z.string(),
-        name: z.string(),
-        description: z.string(),
-        isCurrent: z.boolean(),
-        isDeleted: z.boolean(),
-        createdBy: z.string().optional()
-    }).nullable().optional()
-});
+export const planeacionEstrategicaWithFilosofiaItemSchema = planeacionEstrategicaItemSchema
+	.omit({ filosofia: true })
+	.extend({
+		filosofia: z
+			.object({
+				id: z.uuid(),
+				code: z.string(),
+				name: z.string(),
+				description: z.string(),
+				isCurrent: z.boolean(),
+				isDeleted: z.boolean()
+			})
+			.nullable()
+			.optional()
+	});
 
-export type PlaneacionEstrategicaWithFilosofiaItem = z.infer<typeof planeacionEstrategicaWithFilosofiaItemSchema>;
+export type PlaneacionEstrategicaWithFilosofiaItem = z.infer<
+	typeof planeacionEstrategicaWithFilosofiaItemSchema
+>;
 
 // ============================================
 // 4. CONFIG SCHEMA (Servidor → Cliente)
@@ -69,6 +74,6 @@ export type PlaneacionEstrategicaWithFilosofiaItem = z.infer<typeof planeacionEs
 // ============================================
 
 export const planeacionEstrategicaConfigSchema = z.object({
-    planeacionEstrategicaItems: z.array(planeacionEstrategicaItemSchema),
+	planeacionEstrategicaItems: z.array(planeacionEstrategicaItemSchema)
 });
 export type PlaneacionEstrategicaConfig = z.infer<typeof planeacionEstrategicaConfigSchema>;

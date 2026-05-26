@@ -4,24 +4,27 @@
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import FilosofiaInstitucional from '$lib/components/filosofia-institucional/FilosofiaInstitucional.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import CrearFilosofiaInstitucional from '$lib/components/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';
-	import {  type FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
-	import BorrarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/BorrarFilosofiaInstitucionalForm.svelte';
-	import EditarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/EditarFilosofiaInstitucionalForm.svelte';
-	import RestaurarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/RestaurarFilosofiaInstitucionalForm.svelte';
+	import type { PlaneacionEstrategicaWithFilosofiaItem } from '$lib/schemas/planeacionEstrategica.schema';
+	
 	import { goto } from '$app/navigation';
+	import { getFilosofias, getPlaneaciones } from '$lib/stores/data.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { getFilosofias } from '$lib/stores/data.svelte';
+	import PlaneacionEstrategica from '$lib/components/planeacion-estrategica/PlaneacionEstrategica.svelte';
+	import CrearPlaneacionEstrategicaForm from '$lib/components/planeacion-estrategica/CrearPlaneacionEstrategicaForm.svelte';
+	import EditarPlaneacionEstrategicaForm from '$lib/components/planeacion-estrategica/EditarPlaneacionEstrategicaForm.svelte';
+	import BorrarPlaneacionEstrategicaForm from '$lib/components/planeacion-estrategica/BorrarPlaneacionEstrategicaForm.svelte';
+	import RestaurarPlaneacionEstrategicaForm from '$lib/components/planeacion-estrategica/RestaurarPlaneacionEstrategicaForm.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let filosofiaInstitucionalItems = getFilosofias().filter((item) => item.isCurrent);
+	let planeacionEstrategicaItems = getPlaneaciones().filter((item) => item.isCurrent);
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let itemSeleccionado: FilosofiaInstitucionalItem | null = $state(null);
+	let filosofias = getFilosofias().filter((item) => item.isCurrent && !item.isDeleted);
+	
+	let itemSeleccionado: PlaneacionEstrategicaWithFilosofiaItem | null = $state(null);
 
 	// ===== HEADER =====
 
@@ -81,38 +84,38 @@
 	}
 
 	/* EDITAR */
-	function onClickEditar(item: FilosofiaInstitucionalItem) {
+	function onClickEditar(item: PlaneacionEstrategicaWithFilosofiaItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: FilosofiaInstitucionalItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
 	}
 
 	/* BORRAR */
-	function onClickBorrar(item: FilosofiaInstitucionalItem) {
+	function onClickBorrar(item: PlaneacionEstrategicaWithFilosofiaItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: FilosofiaInstitucionalItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: FilosofiaInstitucionalItem) {
+	function onClickRestaurar(item: PlaneacionEstrategicaWithFilosofiaItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: FilosofiaInstitucionalItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) {
 		if (e.key === 'Enter') {
-			onClickRestaurar(item);
+			onClickBorrar(item);
 		}
 	}
 
@@ -148,31 +151,36 @@
 		showExport={true}
 		showFilter={true}
 	/>
-	<FilosofiaInstitucional
-		{filosofiaInstitucionalItems}
-		onClickEditar={(item) => onClickEditar(item)}
-		onKeydownEditar={(e, item) => onKeydownEditar(e, item)}
-		onClickBorrar={(item) => onClickBorrar(item)}
-		onKeydownBorrar={(e, item) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e, item) => onKeydownRestaurar(e, item)}
+	<PlaneacionEstrategica
+		{planeacionEstrategicaItems}
+		onClickEditar={(item: PlaneacionEstrategicaWithFilosofiaItem) => onClickEditar(item)}
+		onKeydownEditar={(e: KeyboardEvent, item : PlaneacionEstrategicaWithFilosofiaItem) => onKeydownEditar(e, item)}
+		onClickBorrar={(item : PlaneacionEstrategicaWithFilosofiaItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) => onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: PlaneacionEstrategicaWithFilosofiaItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) => onKeydownRestaurar(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearFilosofiaInstitucional bind:open={showCrearModal} onClose={handleCerrar} />
+	<CrearPlaneacionEstrategicaForm
+		bind:open={showCrearModal}
+		refs={filosofias}
+		onClose={handleCerrar}
+	/>
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
-		<EditarFilosofiaInstitucionalForm
+		<EditarPlaneacionEstrategicaForm
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
+			refs={filosofias}
 			onClose={handleCerrar}
 		/>
 	{/if}
 
 	<!-- MODAL BORRAR -->
 	{#if showBorrarModal && itemSeleccionado}
-		<BorrarFilosofiaInstitucionalForm
+		<BorrarPlaneacionEstrategicaForm
 			bind:open={showBorrarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
@@ -181,12 +189,13 @@
 
 	<!-- MODAL RESTAURAR -->
 	{#if showRestaurarModal && itemSeleccionado}
-		<RestaurarFilosofiaInstitucionalForm
+		<RestaurarPlaneacionEstrategicaForm
 			bind:open={showRestaurarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
 		/>
 	{/if}
+
 	<Footer />
 </div>
 
@@ -203,6 +212,5 @@
 		grid-template-rows: auto auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
-		min-width: 1277px;
 	}
 </style>

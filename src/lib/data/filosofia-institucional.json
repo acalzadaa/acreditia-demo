@@ -22,7 +22,7 @@
             "isCurrent": true,
             "validFrom": "2023-01-01T00:00:00Z",
             "validTo": null,
-            "isDeleted": false,
+            "isDeleted": true,
             "createdAt": "2023-01-02T09:15:00Z",
             "createdBy": "planeacion@universidad.edu"
         },

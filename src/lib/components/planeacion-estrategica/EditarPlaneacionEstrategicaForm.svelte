@@ -4,8 +4,8 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import {
-		planeacionEstrategicaItemSchema,
-		type PlaneacionEstrategicaItem
+		planeacionEstrategicaWithFilosofiaItemSchema,
+		type PlaneacionEstrategicaWithFilosofiaItem
 	} from '$lib/schemas/planeacionEstrategica.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
@@ -16,7 +16,7 @@
 
 	interface Props {
 		open: boolean;
-		selectedItem: PlaneacionEstrategicaItem;
+		selectedItem: PlaneacionEstrategicaWithFilosofiaItem;
 		refs: FilosofiaInstitucionalRefSchema[];
 		onClose: () => void;
 	}
@@ -38,7 +38,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(planeacionEstrategicaItemSchema),
+			validators: zod4(planeacionEstrategicaWithFilosofiaItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,

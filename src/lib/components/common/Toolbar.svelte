@@ -32,8 +32,6 @@
 			size={'md'}
 			variant="outline"
 			borderShape={'round'}
-			tooltipDirection={'right'}
-			tooltipLabel={'crear un nuevo registro'}
 			name="add"
 			onClick={onClickCrear}
 			onKeydown={onKeydownCrear}
