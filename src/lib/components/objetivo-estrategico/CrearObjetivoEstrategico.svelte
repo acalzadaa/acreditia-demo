@@ -2,7 +2,6 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { estatusOptions } from '$lib/types/common.types';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
@@ -102,11 +101,11 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Nuevo Objetivo Estratégico</h2>
+			<h2 class="modal-title text-h4">Crear objetivo estratégico</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={handleCancel}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
@@ -119,15 +118,15 @@
 			<div class="modal-body">
 				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'} />
+						<Icon name="warning" />
 						{errorMessage}
 					</div>
 				{/if}
 				
 				<div class="form-fields">
 					<InputSelect
-						label={'Planeación Estratégica'}
-						name={'planeacionId'}
+						label="Planeación Estratégica"
+						name="planeacionId"
 						optionsData={planeacionesOptions}
 						required={true}
 						bind:value={formData.planeacionId}
@@ -135,10 +134,10 @@
 					/>
 
 					<InputText
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'OE-001'}
+						placeholder="OE-001"
 						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.code}
@@ -146,10 +145,10 @@
 					/>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'Excelencia educativa'}
+						placeholder="Excelencia educativa"
 						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.name}
@@ -164,37 +163,13 @@
 						rows={4}
 					/>
 
-					<InputSelect
-						label={'Estado'}
-						name={'status'}
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={formData.status}
-						errors={errorMessage && !formData.status ? [errorMessage] : undefined}
-					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="submit" variant="primary">Crear objetivo</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
-
-<style>
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>

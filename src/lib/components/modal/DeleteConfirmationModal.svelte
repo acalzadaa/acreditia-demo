@@ -26,9 +26,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Confirmar eliminación</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 				isDisabled={isDeleting}
@@ -40,7 +40,7 @@
 				¿Estás seguro de que deseas eliminar el registro <strong>"{selectedItem?.name}"</strong>?
 			</p>
 			<span class="confirm-warning text-body">
-			<Icon name={'warning'} color={'var(--bg-warning-bold)'}></Icon>
+			<Icon name="warning" color="var(--bg-warning-bold)"></Icon>
 				Esta acción no se puede deshacer.</span>
 		</div>
 

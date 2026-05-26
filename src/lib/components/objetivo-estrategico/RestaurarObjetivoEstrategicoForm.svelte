@@ -5,13 +5,13 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
-		filosofiaInstitucionalItemSchema,
-		type FilosofiaInstitucionalItem
-	} from '$lib/schemas/filosofiaInstitucional.schema';
+		planeacionEstrategicaWithFilosofiaItemSchema
+	} from '$lib/schemas/planeacionEstrategica.schema';
+	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: FilosofiaInstitucionalItem;
+		selectedItem: ObjetivoEstrategicoWithPlaneacionItem;
 		onClose: () => void;
 	}
 
@@ -23,7 +23,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(filosofiaInstitucionalItemSchema),
+		validators: zod4(planeacionEstrategicaWithFilosofiaItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
@@ -50,7 +50,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Eliminar filosofia institucional</h2>
+			<h2 class="modal-title text-h4">Restaurar objetivo estrategico</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -60,43 +60,21 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/delete" use:enhance>
+		<form method="POST" action="?/restore" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
+			<input type="hidden" name="code" value={$form.code} />
 
-			<div class="modal-body">
-				<div class="confirm-content">
-					<p class="confirm-message text-body-large">
-						¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.name}"</strong
-						>?
-					</p>
-				</div>
+			<div class="modal-form confirm-content">
+				<p class="confirm-message text-body-large">
+					¿Estás seguro de que deseas restaurar el registro <strong>"{selectedItem?.name}"</strong>?
+				</p>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Eliminar filosofia</Button>
+				<Button type="submit" variant="primary">Restaurar objetivo</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
-
-<style>
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-
-	.confirm-content {
-		padding: var(--space-3) var(--space-6);
-		text-align: center;
-	}
-</style>

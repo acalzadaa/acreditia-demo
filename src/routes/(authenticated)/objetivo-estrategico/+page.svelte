@@ -5,7 +5,6 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import DeleteConfirmationModal from '$lib/components/modal/DeleteConfirmationModal.svelte';
 	import ObjetivoEstrategico from '$lib/components/objetivo-estrategico/ObjetivoEstrategico.svelte';
 	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
 	import CrearObjetivoEstrategico from '$lib/components/objetivo-estrategico/CrearObjetivoEstrategico.svelte';
@@ -15,6 +14,8 @@
 	import { getObjetivos, getPlaneaciones } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
+	import BorrarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/BorrarObjetivoEstrategicoForm.svelte';
+	import RestaurarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/RestaurarObjetivoEstrategicoForm.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let objetivoEstrategicoItems = getObjetivos().filter((item) => item.isCurrent);
@@ -66,6 +67,7 @@
 	let showCrearModal = $state(false);
 	let showEditarModal = $state(false);
 	let showBorrarModal = $state(false);
+	let showRestaurarModal = $state(false);
 
 	// ===== HANDLERS =====
 
@@ -107,33 +109,24 @@
 		}
 	}
 
-	function handleCerrarCrear() {
-		showCrearModal = false;
+	/* RESTAURAR */
+	function onClickRestaurar(item: ObjetivoEstrategicoWithPlaneacionItem) {
+		itemSeleccionado = item;
+		showRestaurarModal = true;
 	}
 
-	function handleCerrarEditar() {
-		showEditarModal = false;
-		itemSeleccionado = null;
-	}
-
-	function handleCerrarBorrar() {
-		showBorrarModal = false;
-		itemSeleccionado = null;
-	}
-
-	async function handleConfirmarBorrar() {
-		if (itemSeleccionado) {
-			/* TODO action server delete */
-			const formData = new FormData();
-			formData.append('id', itemSeleccionado.id);
-
-			await fetch('?/delete', {
-				method: 'POST',
-				body: formData
-			});
-			showBorrarModal = false;
-			itemSeleccionado = null;
+	function onKeydownRestaurar(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) {
+		if (e.key === 'Enter') {
+			onClickBorrar(item);
 		}
+	}
+
+	function handleCerrar() {
+		showCrearModal = false;
+		showEditarModal = false;
+		showBorrarModal = false;
+		showRestaurarModal = false;
+		itemSeleccionado = null;
 	}
 </script>
 
@@ -163,18 +156,19 @@
 
 	<ObjetivoEstrategico
 		{objetivoEstrategicoItems}
-		onClickEditar={(item) => onClickEditar(item)}
-		onKeydownEditar={(e, item) => onKeydownEditar(e, item)}
-		onClickBorrar={(item) => onClickBorrar(item)}
-		onKeydownBorrar={(e, item) => onKeydownBorrar(e, item)}
+		onClickEditar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickEditar(item)}
+		onKeydownEditar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
+			onKeydownEditar(e, item)}
+		onClickBorrar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
+			onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
+			onKeydownRestaurar(e, item)}
 	></ObjetivoEstrategico>
 
 	<!-- MODAL CREAR -->
-	<CrearObjetivoEstrategico
-		bind:open={showCrearModal}
-		refs={planeaciones}
-		onClose={handleCerrarCrear}
-	/>
+	<CrearObjetivoEstrategico bind:open={showCrearModal} refs={planeaciones} onClose={handleCerrar} />
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
@@ -182,17 +176,25 @@
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
 			refs={planeaciones}
-			onClose={handleCerrarEditar}
+			onClose={handleCerrar}
 		/>
 	{/if}
 
 	<!-- MODAL BORRAR -->
 	{#if showBorrarModal && itemSeleccionado}
-		<DeleteConfirmationModal
+		<BorrarObjetivoEstrategicoForm
 			bind:open={showBorrarModal}
 			selectedItem={itemSeleccionado}
-			onClose={handleCerrarBorrar}
-			onConfirm={handleConfirmarBorrar}
+			onClose={handleCerrar}
+		/>
+	{/if}
+
+	<!-- MODAL RESTAURAR -->
+	{#if showRestaurarModal && itemSeleccionado}
+		<RestaurarObjetivoEstrategicoForm
+			bind:open={showRestaurarModal}
+			selectedItem={itemSeleccionado}
+			onClose={handleCerrar}
 		/>
 	{/if}
 

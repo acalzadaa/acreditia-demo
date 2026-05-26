@@ -38,10 +38,10 @@
 			{/if}
 
 			<div class="form-fields">
-				{#if message}
+				{#if $message}
 					<div
 						class={['form-feedback-container', `form-feedback--error`]}
-						id={`message-error`}
+						id="message-error"
 						role="alert"
 					>
 						<span class="form-feedback text-body-small">
@@ -51,11 +51,11 @@
 				{/if}
 
 				<Input
-					label={'Email'}
-					name={'email'}
-					type={'email'}
+					label="Email"
+					name="email"
+					type="email"
 					required={true}
-					placeholder={'usuario@dominio.com'}
+					placeholder="usuario@dominio.com"
 					status={$errors.email ? 'error' : 'normal'}
 					disabled={false}
 					bind:value={$form.email}
@@ -64,11 +64,11 @@
 				/>
 
 				<Input
-					label={'Password'}
-					name={'password'}
-					type={'password'}
+					label="Password"
+					name="password"
+					type="password"
 					required={true}
-					placeholder={'********'}
+					placeholder="********"
 					status={$errors.password ? 'error' : 'normal'}
 					disabled={false}
 					bind:value={$form.password}

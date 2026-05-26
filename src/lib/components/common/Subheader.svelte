@@ -44,10 +44,10 @@
 >
 	<section class="navigation-control">
 		<IconButton
-			name={"hamburger"}
-			variant={'ghost'}
+			name="hamburger"
+			variant="ghost"
 			size='md'
-			shape={'round'}
+			shape="round"
 			isActive={showNavigationBar}
 			onClick={onClickNavigationBar}
 			onKeydown={onKeydownNavigationBar}
@@ -84,9 +84,9 @@
 
 	<section class="notification-control">
 		<IconButton
-			name={"bell"}
-			variant={'ghost'}
-			shape={'round'}
+			name="bell"
+			variant="ghost"
+			shape="round"
 			isActive={showNotificationBar}
 			isFilled={showNotificationBar}
 			onClick={onClickNotificationBar}

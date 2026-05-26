@@ -52,9 +52,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Confirmar restauracion</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>

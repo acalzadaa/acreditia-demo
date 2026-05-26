@@ -63,9 +63,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Crear Subarea Responsable</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
@@ -75,24 +75,24 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
+						<Icon name="warning"></Icon>
 						{$message}
 					</div>
 				{/if}
 				<div class="form-fields">
 					<InputSelect
-						label={'Subarea Responsable'}
-						name={'areaResponsableId'}
+						label="Subarea Responsable"
+						name="areaResponsableId"
 						optionsData={areaResponsableOptions}
 						required={true}
 						bind:value={$form.areaResponsableId}
 						errors={$errors.areaResponsableId}
 					/>
 					<Input
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'AF-001'}
+						placeholder="AF-001"
 						status={$errors.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.code}
@@ -100,10 +100,10 @@
 					/>
 
 					<Input
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'Direccion Academica'}
+						placeholder="Direccion Academica"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}
@@ -119,8 +119,8 @@
 					/>
 
 					<InputSelect
-						label={'Estado'}
-						name={'status'}
+						label="Estado"
+						name="status"
 						optionsData={estatusOptions}
 						required={true}
 						bind:value={$form.status}

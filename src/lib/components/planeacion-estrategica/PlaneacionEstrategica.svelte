@@ -93,7 +93,7 @@
 </main>
 
 <style>
-	/*
+/*
  * table-layout: fixed permite que las columnas respeten
  * los anchos declarados en thead th.
  * min-width en la tabla = suma de los min-width de columnas,

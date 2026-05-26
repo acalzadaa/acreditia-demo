@@ -27,7 +27,7 @@
 		status = 'normal',
 		disabled = false,
 		rows = 4,
-		maxLength = 200,
+		maxLength = 255,
 		showCounter = true,
 		class: className = '',
 		...props

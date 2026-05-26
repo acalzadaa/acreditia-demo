@@ -51,10 +51,10 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Crear puesto de trabajo</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
-				shape={'round'}
+				name="close"
+				variant="ghost"
+				size="lg"
+				shape="round"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
@@ -64,17 +64,17 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
+						<Icon name="warning"></Icon>
 						{$message}
 					</div>
 				{/if}
 
 				<div class="form-fields">
 					<InputText
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'PT-001'}
+						placeholder="PT-001"
 						status={$errors.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.code}
@@ -83,10 +83,10 @@
 					/>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'p.e Director Academico'}
+						placeholder="p.e Director Academico"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}
@@ -95,8 +95,8 @@
 					/>
 
 					<InputSelect
-						label={'Tipo'}
-						name={'type'}
+						label="Tipo"
+						name="type"
 						optionsData={jobTypeOptions}
 						required={true}
 						bind:value={$form.type}

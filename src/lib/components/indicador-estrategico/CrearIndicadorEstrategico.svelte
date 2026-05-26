@@ -62,9 +62,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Nuevo Indicador Estrategico</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
@@ -74,14 +74,14 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
+						<Icon name="warning"></Icon>
 						{$message}
 					</div>
 				{/if}
 				<div class="form-fields">
 					<InputSelect
-						label={'Objetivo Estrategico'}
-						name={'objetivoId'}
+						label="Objetivo Estrategico"
+						name="objetivoId"
 						optionsData={objetivoOptions}
 						required={true}
 						bind:value={$form.objetivoId}
@@ -89,10 +89,10 @@
 					/>
 
 					<InputText
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'PE-001'}
+						placeholder="PE-001"
 						status={$errors.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.code}
@@ -100,10 +100,10 @@
 					/>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'Excelencia educativa'}
+						placeholder="Excelencia educativa"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}
@@ -136,10 +136,10 @@
 						rows={4}
 					/>
 					<InputNumber
-						label={'Meta'}
-						name={'target'}
+						label="Meta"
+						name="target"
 						required={true}
-						placeholder={'20'}
+						placeholder="20"
 						status={$errors.target ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.target}
@@ -147,10 +147,10 @@
 					/>
 
 					<InputNumber
-						label={'Frecuencia'}
-						name={'frequencyValue'}
+						label="Frecuencia"
+						name="frequencyValue"
 						required={true}
-						placeholder={'1'}
+						placeholder="1"
 						status={$errors.frequencyValue ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.frequencyValue}
@@ -158,8 +158,8 @@
 					/>
 
 					<InputSelect
-						label={'Unidad de Frecuencia'}
-						name={'frequencyUnit'}
+						label="Unidad de Frecuencia"
+						name="frequencyUnit"
 						optionsData={frequencyUnitOptions}
 						required={true}
 						bind:value={$form.frequencyUnit}
@@ -167,9 +167,9 @@
 					></InputSelect>
 
 					<InputText
-						label={'Responsable'}
-						name={'responsible'}
-						placeholder={'Nombre del responsable'}
+						label="Responsable"
+						name="responsible"
+						placeholder="Nombre del responsable"
 						status={$errors.responsible ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.responsible}
@@ -177,8 +177,8 @@
 					/>
 
 					<InputSelect
-						label={'Estado'}
-						name={'status'}
+						label="Estado"
+						name="status"
 						optionsData={estatusOptions}
 						required={true}
 						bind:value={$form.status}

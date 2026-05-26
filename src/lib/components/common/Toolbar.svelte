@@ -29,9 +29,9 @@
 <header class="toolbar">
 	<section class="toolbar-actions">
 		<IconButton
-			size={'md'}
+			size="md"
 			variant="outline"
-			borderShape={'round'}
+			borderShape="round"
 			name="add"
 			onClick={onClickCrear}
 			onKeydown={onKeydownCrear}
@@ -40,9 +40,9 @@
 	<section>
 		{#if showExport}
 			<IconButton
-				size={'md'}
+				size="md"
 				variant="ghost"
-				borderShape={'square'}
+				borderShape="square"
 				name="export"
 				onClick={onClickExport || (() => {})}
 				onKeydown={onKeydownExport || (() => {})}
@@ -50,9 +50,9 @@
 		{/if}
 		{#if showFilter}
 			<IconButton
-				size={'md'}
-				variant={'ghost'}
-				borderShape={'square'}
+				size="md"
+				variant="ghost"
+				borderShape="square"
 				name="filter"
 				onClick={onClickFilter || (() => {})}
 				onKeydown={onKeydownFilter || (() => {})}

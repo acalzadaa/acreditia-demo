@@ -38,16 +38,16 @@
 	{#if showAuth}
 		<div class="header-user">
 			{#if isLoggedIn}
-				<Button variant={'ghost'} onClick={onClickLogout} onKeydown={onKeydownLogout}>
+				<Button variant="ghost" onClick={onClickLogout} onKeydown={onKeydownLogout}>
 					Cerrar Sesion
 				</Button>
 				<p class="text-body-strong">{username}</p>
 				<Avatar {username} src={avatarImage}></Avatar>
 			{:else}
-				<Button variant={'ghost'} onClick={onClickRegister} onKeydown={onKeydownRegister}>
+				<Button variant="ghost" onClick={onClickRegister} onKeydown={onKeydownRegister}>
 					Crear Cuenta
 				</Button>
-				<Button variant={'primary'} onClick={onClickLogin} onKeydown={onKeydownLogin}>
+				<Button variant="primary" onClick={onClickLogin} onKeydown={onKeydownLogin}>
 					Iniciar Sesion
 				</Button>
 			{/if}
