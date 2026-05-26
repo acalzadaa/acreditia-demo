@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { filosofiaInstitucionalRefSchema } from './filosofiaInstitucional.schema';
+import { filosofiaInstitucionalItemSchema, filosofiaInstitucionalRefSchema } from './filosofiaInstitucional.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -51,15 +51,7 @@ export type PlaneacionEstrategicaItem = z.infer<typeof planeacionEstrategicaItem
 export const planeacionEstrategicaWithFilosofiaItemSchema = planeacionEstrategicaItemSchema
 	.omit({ filosofia: true })
 	.extend({
-		filosofia: z
-			.object({
-				id: z.uuid(),
-				code: z.string(),
-				name: z.string(),
-				description: z.string(),
-				isCurrent: z.boolean(),
-				isDeleted: z.boolean()
-			})
+		filosofia: filosofiaInstitucionalItemSchema
 			.nullable()
 			.optional()
 	});

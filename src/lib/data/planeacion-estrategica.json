@@ -11,8 +11,13 @@
                 "code": "FIL-001",
                 "name": "Compromiso con la Excelencia Académica y la Innovación",
                 "description": "La universidad promueve la mejora continua y la innovación educativa, formando profesionales competentes, éticos y adaptados a los desafíos del siglo XXI.",
+                "version": 2,
                 "isCurrent": true,
-                "isDeleted": false
+                "validFrom": "2023-01-01T00:00:00Z",
+                "validTo": null,
+                "isDeleted": true,
+                "createdAt": "2023-01-02T09:15:00Z",
+                "createdBy": "planeacion@universidad.edu"
             },
             "version": 1,
             "isCurrent": true,
@@ -33,8 +38,13 @@
                 "code": "FIL-001",
                 "name": "Compromiso con la Excelencia Académica",
                 "description": "La universidad promueve la mejora continua de sus programas académicos, asegurando altos estándares de calidad en la formación de profesionales competentes y éticos.",
+                "version": 1,
                 "isCurrent": false,
-                "isDeleted": false
+                "validFrom": "2020-01-15T00:00:00Z",
+                "validTo": "2022-12-31T23:59:59Z",
+                "isDeleted": false,
+                "createdAt": "2020-01-15T10:30:00Z",
+                "createdBy": "rectoria@universidad.edu"
             },
             "version": 0,
             "isCurrent": false,
@@ -55,8 +65,13 @@
                 "code": "FIL-002",
                 "name": "Formación Integral con Sentido Humano",
                 "description": "La institución forma profesionales con sólidos conocimientos técnicos y científicos, fortalecidos por valores humanistas, responsabilidad social y compromiso ético.",
+                "version": 1,
                 "isCurrent": true,
-                "isDeleted": false
+                "validFrom": "2021-08-20T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2021-08-20T14:45:00Z",
+                "createdBy": "direccion_general@universidad.edu"
             },
             "version": 1,
             "isCurrent": true,
@@ -77,8 +92,13 @@
                 "code": "FIL-003",
                 "name": "Investigación e Innovación con Impacto Social",
                 "description": "Promovemos la investigación aplicada y la innovación abierta para generar soluciones transformadoras que impacten positivamente a la sociedad y al entorno productivo regional y nacional.",
+                "version": 2,
                 "isCurrent": true,
-                "isDeleted": false
+                "validFrom": "2022-07-01T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2022-07-01T16:30:00Z",
+                "createdBy": "vice_investigacion@universidad.edu"
             },
             "version": 1,
             "isCurrent": true,
@@ -99,8 +119,13 @@
                 "code": "FIL-003",
                 "name": "Investigación Aplicada para el Desarrollo Regional",
                 "description": "Fomentamos la investigación científica y tecnológica orientada a resolver problemas concretos de la región, impulsando el desarrollo sostenible y la vinculación con los sectores productivos.",
+                "version": 1,
                 "isCurrent": false,
-                "isDeleted": true
+                "validFrom": "2019-03-10T00:00:00Z",
+                "validTo": "2022-06-30T23:59:59Z",
+                "isDeleted": true,
+                "createdAt": "2019-03-10T11:20:00Z",
+                "createdBy": "vice_investigacion@universidad.edu"
             },
             "version": 0,
             "isCurrent": false,
@@ -121,8 +146,13 @@
                 "code": "FIL-004",
                 "name": "Internacionalización y Diversidad Cultural",
                 "description": "La universidad impulsa la cooperación académica internacional, la movilidad estudiantil y docente, y el respeto por la diversidad cultural como ejes de enriquecimiento institucional.",
+                "version": 1,
                 "isCurrent": true,
-                "isDeleted": false
+                "validFrom": "2022-02-14T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2022-02-14T08:00:00Z",
+                "createdBy": "internacionalizacion@universidad.edu"
             },
             "version": 1,
             "isCurrent": true,
@@ -143,8 +173,13 @@
                 "code": "FIL-005",
                 "name": "Equidad, Inclusión y Excelencia Social",
                 "description": "Promovemos una comunidad educativa diversa e inclusiva, asegurando igualdad de oportunidades y eliminando toda forma de discriminación, con programas de apoyo integral a poblaciones vulnerables.",
+                "version": 2,
                 "isCurrent": true,
-                "isDeleted": false
+                "validFrom": "2023-03-01T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2023-03-01T10:00:00Z",
+                "createdBy": "rectoria@universidad.edu"
             },
             "version": 1,
             "isCurrent": true,
@@ -165,8 +200,13 @@
                 "code": "FIL-005",
                 "name": "Compromiso con la Equidad e Inclusión",
                 "description": "Garantizamos el acceso, permanencia y egreso de estudiantes en condiciones de equidad, implementando políticas inclusivas que eliminen barreras educativas y promuevan la justicia social.",
+                "version": 1,
                 "isCurrent": false,
-                "isDeleted": true
+                "validFrom": "2020-11-01T00:00:00Z",
+                "validTo": "2023-02-28T23:59:59Z",
+                "isDeleted": true,
+                "createdAt": "2020-11-01T13:45:00Z",
+                "createdBy": "bienestar_estudiantil@universidad.edu"
             },
             "version": 0,
             "isCurrent": false,
@@ -187,8 +227,13 @@
                 "code": "FIL-006",
                 "name": "Sostenibilidad Ambiental y Campus Verde",
                 "description": "La universidad asume el compromiso de operar bajo criterios de sostenibilidad ambiental, reduciendo su huella ecológica y formando ciudadanos responsables con el planeta.",
+                "version": 1,
                 "isCurrent": true,
-                "isDeleted": false
+                "validFrom": "2024-01-01T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2024-01-01T00:00:00Z",
+                "createdBy": "gestion_ambiental@universidad.edu"
             },
             "version": 1,
             "isCurrent": true,
@@ -209,8 +254,13 @@
                 "code": "FIL-007",
                 "name": "Vinculación con el Entorno y Extensión Universitaria",
                 "description": "Fortalecer la relación universidad-sociedad mediante proyectos de extensión, servicio comunitario y transferencia de conocimiento que contribuyan al desarrollo local y nacional.",
+                "version": 1,
                 "isCurrent": true,
-                "isDeleted": false
+                "validFrom": "2024-01-01T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2024-01-01T00:00:00Z",
+                "createdBy": "extension@universidad.edu"
             },
             "version": 1,
             "isCurrent": true,

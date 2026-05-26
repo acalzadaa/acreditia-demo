@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { ObjetivoEstrategicoItem } from '$lib/schemas/objetivoEstrategico.schema';
+	import type {  ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		objetivoEstrategicoItems: ObjetivoEstrategicoItem[];
-		onClickEditar: (item: ObjetivoEstrategicoItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: ObjetivoEstrategicoItem) => void;
-		onClickBorrar: (item: ObjetivoEstrategicoItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: ObjetivoEstrategicoItem) => void;
+		objetivoEstrategicoItems: ObjetivoEstrategicoWithPlaneacionItem[];
+		onClickEditar: (item: ObjetivoEstrategicoWithPlaneacionItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) => void;
+		onClickBorrar: (item: ObjetivoEstrategicoWithPlaneacionItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) => void;
 	}
 
 	const {
@@ -46,8 +46,8 @@
 							<td>{item.name}</td>
 							<td>{item.description}</td>
 							<td>
-								<Badge variant={item.status === 'activo' ? 'success' : 'warning'}>
-									{item.status}
+								<Badge variant={item.isDeleted ? 'error' : 'success'}>
+									{item.isDeleted ? 'borrado' : 'activo'}
 								</Badge>
 							</td>
 							<td>
@@ -79,8 +79,6 @@
 </main>
 
 <style>
-
-
 	.parent-relationship {
 		display: flex;
 		flex-direction: column;
