@@ -3,6 +3,8 @@ import planeacionJsonData from '$lib/data/planeacion-estrategica.json';
 import objetivoJsonData from '$lib/data/objetivo-estrategico.json';
 import indicadorJsonData from '$lib/data/indicador-estrategico.json';
 
+import normativaJsonData from '$lib/data/normativa.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
@@ -17,14 +19,16 @@ import {
 } from '$lib/schemas/planeacionEstrategica.schema';
 import {
 	indicadorEstrategicoWithObjetivoItemSchema,
-	type IndicadorEstrategicoWithObjetivoItem,
+	type IndicadorEstrategicoWithObjetivoItem
 } from '$lib/schemas/indicadorEstrategico.schema';
+import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
 let planeaciones = $state<PlaneacionEstrategicaWithFilosofiaItem[]>([]);
 let objetivos = $state<ObjetivoEstrategicoWithPlaneacionItem[]>([]);
 let indicadores = $state<IndicadorEstrategicoWithObjetivoItem[]>([]);
+let normativas = $state<NormativaItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -42,6 +46,9 @@ indicadores = indicadoresRawData.map((item) =>
 	indicadorEstrategicoWithObjetivoItemSchema.parse(item)
 );
 
+const normativasRawData = normativaJsonData['normativas'];
+normativas = normativasRawData.map((item) => normativaItemSchema.parse(item));
+
 // Helpers
 export function getFilosofias() {
 	return filosofias;
@@ -57,4 +64,8 @@ export function getObjetivos() {
 
 export function getIndicadores() {
 	return indicadores;
+}
+
+export function getNormativas() {
+	return normativas;
 }

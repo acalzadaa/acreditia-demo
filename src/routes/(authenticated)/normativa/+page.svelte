@@ -5,28 +5,29 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import ObjetivoEstrategico from '$lib/components/objetivo-estrategico/ObjetivoEstrategico.svelte';
-	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
-	import CrearObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/CrearObjetivoEstrategicoForm.svelte';
-	import EditarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/EditarObjetivoEstrategicoForm.svelte';
+	import type { NormativaItem } from '$lib/schemas/normativa.schema';
+	import BorrarNormativaForm from '$lib/components/normativa/BorrarNormativaForm.svelte';
+	import RestaurarNormativaForm from '$lib/components/normativa/RestaurarNormativaForm.svelte';
+	import EditarNormativaForm from '$lib/components/normativa/EditarNormativaForm.svelte';
+	import CrearNormativaForm from '$lib/components/normativa/CrearNormativaForm.svelte';
+	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getObjetivos, getPlaneaciones } from '$lib/stores/data.svelte';
+	import Normativa from '$lib/components/normativa/Normativa.svelte';
 	import { page } from '$app/state';
-	import { resolve } from '$app/paths';
-	import BorrarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/BorrarObjetivoEstrategicoForm.svelte';
-	import RestaurarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/RestaurarObjetivoEstrategicoForm.svelte';
+	import { getNormativas } from '$lib/stores/data.svelte';
+
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let objetivoEstrategicoItems = getObjetivos().filter((item) => item.isCurrent);
+	let normativaItems = getNormativas();
+
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let planeaciones = getPlaneaciones().filter((item) => item.isCurrent && !item.isDeleted);
 
-	let itemSeleccionado: ObjetivoEstrategicoWithPlaneacionItem | null = $state(null);
+	let itemSeleccionado: NormativaItem | null = $state(null);
 
-	// ===== HEADER =====
-
+	/* LOGOUT */
+	
 	/* LOGOUT */
 	async function onClickLogout() {
 		auth.logout();
@@ -72,7 +73,6 @@
 	// ===== HANDLERS =====
 
 	/* CREAR */
-
 	function onClickCrear() {
 		showCrearModal = true;
 	}
@@ -84,13 +84,12 @@
 	}
 
 	/* EDITAR */
-
-	function onClickEditar(item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onClickEditar(item: NormativaItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: NormativaItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
@@ -98,24 +97,24 @@
 
 	/* BORRAR */
 
-	function onClickBorrar(item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onClickBorrar(item: NormativaItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: NormativaItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onClickRestaurar(item: NormativaItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: NormativaItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
@@ -153,36 +152,31 @@
 		showExport={true}
 		showFilter={true}
 	/>
-
-	<ObjetivoEstrategico
-		{objetivoEstrategicoItems}
-		onClickEditar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickEditar(item)}
-		onKeydownEditar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
-			onKeydownEditar(e, item)}
-		onClickBorrar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
-			onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
-			onKeydownRestaurar(e, item)}
-	></ObjetivoEstrategico>
+	<Normativa
+		{normativaItems}
+		onClickEditar={(item: NormativaItem) => onClickEditar(item)}
+		onKeydownEditar={(e: KeyboardEvent, item: NormativaItem) => onKeydownEditar(e, item)}
+		onClickBorrar={(item: NormativaItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e: KeyboardEvent, item: NormativaItem) => onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: NormativaItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: NormativaItem) => onKeydownRestaurar(e, item)}
+	/>
 
 	<!-- MODAL CREAR -->
-	<CrearObjetivoEstrategicoForm bind:open={showCrearModal} refs={planeaciones} onClose={handleCerrar} />
+	<CrearNormativaForm bind:open={showCrearModal} onClose={handleCerrar} />
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
-		<EditarObjetivoEstrategicoForm
+		<EditarNormativaForm
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
-			refs={planeaciones}
 			onClose={handleCerrar}
 		/>
 	{/if}
 
 	<!-- MODAL BORRAR -->
 	{#if showBorrarModal && itemSeleccionado}
-		<BorrarObjetivoEstrategicoForm
+		<BorrarNormativaForm
 			bind:open={showBorrarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
@@ -191,13 +185,12 @@
 
 	<!-- MODAL RESTAURAR -->
 	{#if showRestaurarModal && itemSeleccionado}
-		<RestaurarObjetivoEstrategicoForm
+		<RestaurarNormativaForm
 			bind:open={showRestaurarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
 		/>
 	{/if}
-
 	<Footer />
 </div>
 

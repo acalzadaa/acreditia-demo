@@ -1,18 +1,17 @@
 <script lang="ts">
-	import { superForm, type SuperValidated } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms';
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { estatusOptions } from '$lib/types/common.types';
-	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
-	import { normativaFormSchema, type NormativaForm } from '$lib/schemas/normativa.schema';
+	import { zod4 } from 'sveltekit-superforms/adapters';
+	import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 	import Icon from '../ui/Icon.svelte';
+	import TextArea from '../ui/input/TextArea.svelte';
 
 	interface Props {
 		open: boolean;
-		form: SuperValidated<NormativaForm>;
+		selectedItem: NormativaItem;
 		onClose: () => void;
 	}
 
@@ -22,9 +21,20 @@
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, message } = superForm(props.form, {
+	const { form, errors, enhance, tainted, isTainted, message } = superForm(props.selectedItem, {
+		dataType: 'json',
+		validators: zod4(normativaItemSchema),
+		validationMethod: 'onblur',
+		customValidity: false,
 		resetForm: false,
-		validators: zod4(normativaFormSchema),
+		taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
+		onSubmit: ({ cancel }) => {
+			if (!isTainted($tainted)) {
+				cancel();
+				handleClose();
+				console.log('No hay cambios para guardar');
+			}
+		},
 		onUpdated: async ({ form }) => {
 			if (form.valid) {
 				handleClose();
@@ -46,7 +56,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear Entidad Legal</h2>
+			<h2 class="modal-title text-h4">Editar normativa</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -56,7 +66,10 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/create" use:enhance>
+		<form method="POST" action="?/edit" use:enhance>
+			<!-- Hidden input para el ID -->
+			<input type="hidden" name="id" value={$form.id} />
+
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -64,7 +77,6 @@
 						{$message}
 					</div>
 				{/if}
-
 				<div class="form-fields">
 					<InputText
 						label="Código"
@@ -88,20 +100,21 @@
 						errors={$errors.name}
 					/>
 
-					<InputSelect
-						label="Estado"
-						name="status"
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
-					></InputSelect>
+					<TextArea
+						label="Descripcion"
+						name="description"
+						placeholder="Descripcion..."
+						status="normal"
+						disabled={false}
+						bind:value={$form.description}
+						rows={4}
+					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="submit" variant="primary">Editar</Button>
 			</footer>
 		</form>
 	</div>
