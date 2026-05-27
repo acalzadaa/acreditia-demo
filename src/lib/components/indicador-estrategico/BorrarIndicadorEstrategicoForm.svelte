@@ -6,11 +6,11 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
 		planeacionEstrategicaWithFilosofiaItemSchema} from '$lib/schemas/planeacionEstrategica.schema';
-	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
+	import type { IndicadorEstrategicoWithObjetivoItem } from '$lib/schemas/indicadorEstrategico.schema';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: ObjetivoEstrategicoWithPlaneacionItem;
+		selectedItem: IndicadorEstrategicoWithObjetivoItem;
 		onClose: () => void;
 	}
 

@@ -1,7 +1,7 @@
 {
   "indicadores-estrategicos": [
     {
-      "id": "a1b2c3d4-1234-5678-9101-112131415161",
+      "id": "80a33186-5007-4110-8113-d304d9699a80",
       "objetivoId": "2b23f123-136d-449f-b3d0-30c21ea0d8c9",
       "code": "IE-001",
       "name": "Porcentaje de avance en implementación del sistema de acreditación",
@@ -11,7 +11,7 @@
       "dataOrigin": "Sistema de gestión de calidad / Informes trimestrales de autoevaluación",
       "dataFormula": "(Fases completadas / Total fases definidas) * 100",
       "frequencyValue": 3,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-01-15T00:00:00Z",
@@ -34,7 +34,7 @@
       }
     },
     {
-      "id": "b2c3d4e5-2345-6789-1011-213141516171",
+      "id": "09021781-0290-4bc8-a65b-0bf6c1c8e698",
       "objetivoId": "34906a1a-5b09-4445-b78c-c52a6b13ec54",
       "code": "IE-002",
       "name": "Porcentaje de docentes capacitados en evaluación por competencias",
@@ -44,7 +44,7 @@
       "dataOrigin": "Plataforma de gestión académica / Registros de capacitación docente",
       "dataFormula": "(Docentes capacitados / Total docentes planta) * 100",
       "frequencyValue": 6,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-02-01T00:00:00Z",
@@ -67,7 +67,7 @@
       }
     },
     {
-      "id": "c3d4e5f6-3456-7890-1112-314151617181",
+      "id": "0141703e-4c19-4cc1-86fc-8ed34aacaf18",
       "objetivoId": "b2d308e5-d3dd-4043-bc99-20b25c17a025",
       "code": "IE-003",
       "name": "Número de programas académicos con ruta de formación ética implementada",
@@ -77,7 +77,7 @@
       "dataOrigin": "Sistema de gestión curricular / Vicerrectoría académica",
       "dataFormula": "Conteo directo de programas que reportan implementación completa",
       "frequencyValue": 6,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-03-10T00:00:00Z",
@@ -100,7 +100,7 @@
       }
     },
     {
-      "id": "d4e5f6a7-4567-8901-1213-415161718191",
+      "id": "b168a6d0-c351-4ae0-9011-f1780018820d",
       "objetivoId": "f6c9fba3-185c-43ad-bd9c-ee3b695f382a",
       "code": "IE-004",
       "name": "Monto ejecutado del fondo concursable para investigación aplicada (millones $)",
@@ -110,7 +110,7 @@
       "dataOrigin": "Sistema de gestión financiera / Vicerrectoría de investigación",
       "dataFormula": "Sumatoria de montos aprobados y desembolsados por convocatoria",
       "frequencyValue": 12,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-04-05T00:00:00Z",
@@ -133,7 +133,7 @@
       }
     },
     {
-      "id": "e5f6a7b8-5678-9012-1314-516171819192",
+      "id": "4332497c-cbc0-4c88-8cbd-2ea768ea2964",
       "objetivoId": "6c1d368a-0284-424c-abea-29693599b60b",
       "code": "IE-005",
       "name": "Número de proyectos de innovación social desarrollados en el laboratorio ciudadano",
@@ -143,7 +143,7 @@
       "dataOrigin": "Plataforma de gestión de proyectos de innovación / Laboratorio ciudadano",
       "dataFormula": "Conteo de proyectos que completan fase de prototipado funcional",
       "frequencyValue": 12,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-05-20T00:00:00Z",
@@ -166,7 +166,7 @@
       }
     },
     {
-      "id": "f6a7b8c9-6789-0123-1415-617181919293",
+      "id": "51a393f1-8860-46fb-8497-062135c57ef3",
       "objetivoId": "91395b18-307d-4a9d-a8ef-8f92331ea9e5",
       "code": "IE-006",
       "name": "Número de convenios internacionales activos con universidades acreditadas de alta calidad",
@@ -176,7 +176,7 @@
       "dataOrigin": "Sistema de gestión de internacionalización / Oficina de relaciones internacionales",
       "dataFormula": "Conteo de convenios con estado 'activo' que cumplen criterios de calidad",
       "frequencyValue": 6,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-06-01T00:00:00Z",
@@ -199,7 +199,7 @@
       }
     },
     {
-      "id": "a7b8c9d0-7890-1234-1516-718191920294",
+      "id": "c1287982-99ea-4d46-b49e-6e0d10faceaa",
       "objetivoId": "1401dba2-05ad-4fa7-8efc-9107ac960169",
       "code": "IE-007",
       "name": "Número de estudiantes beneficiarios del programa de becas para población víctima",
@@ -209,7 +209,7 @@
       "dataOrigin": "Sistema de bienestar estudiantil / Registro único de beneficiarios",
       "dataFormula": "Conteo de estudiantes activos en el programa con todos los componentes activos",
       "frequencyValue": 3,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-07-15T00:00:00Z",
@@ -232,7 +232,7 @@
       }
     },
     {
-      "id": "b8c9d0e1-8901-2345-1617-819192021395",
+      "id": "8e9ec2ca-7e8b-4278-a1e1-f863f5fba2e2",
       "objetivoId": "66d660d1-1ef9-4130-ae7b-b1e498474028",
       "code": "IE-008",
       "name": "Porcentaje de reducción de huella de carbono institucional",
@@ -242,7 +242,7 @@
       "dataOrigin": "Sistema de gestión ambiental / Inventario de emisiones institucional",
       "dataFormula": "((Huella_base - Huella_actual) / Huella_base) * 100",
       "frequencyValue": 12,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-08-01T00:00:00Z",
@@ -265,7 +265,7 @@
       }
     },
     {
-      "id": "c9d0e1f2-9012-3456-1718-192021222496",
+      "id": "40e892c5-f3db-43d7-b56a-7ced6d0f3ef0",
       "objetivoId": "7e7783e9-2c33-4465-9da9-5d7b1480cf7e",
       "code": "IE-009",
       "name": "Tasa de aprovechamiento (reciclaje + compostaje) de residuos institucionales (%)",
@@ -275,7 +275,7 @@
       "dataOrigin": "Sistema de gestión de residuos / Reportes de pesaje y caracterización",
       "dataFormula": "((Toneladas recicladas + Toneladas compostadas) / Total residuos generados) * 100",
       "frequencyValue": 3,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-09-10T00:00:00Z",
@@ -298,7 +298,7 @@
       }
     },
     {
-      "id": "d0e1f2a3-0123-4567-1819-202122232597",
+      "id": "1d79d5c0-290e-4ecb-8404-f7330367fd06",
       "objetivoId": "2980df0b-e31b-4960-8a9d-963f38889ae5",
       "code": "IE-010",
       "name": "Número de empresas incubadas activas con base social y tecnológica",
@@ -308,7 +308,7 @@
       "dataOrigin": "Sistema de gestión de incubadora / Reportes de seguimiento a emprendimientos",
       "dataFormula": "Conteo de empresas que cumplen criterios de permanencia en incubadora (facturación, hitos, mentorías)",
       "frequencyValue": 12,
-      "frequencyUnit": "months",
+      "frequencyUnit": "mes",
       "version": 1,
       "isCurrent": true,
       "validFrom": "2024-10-01T00:00:00Z",

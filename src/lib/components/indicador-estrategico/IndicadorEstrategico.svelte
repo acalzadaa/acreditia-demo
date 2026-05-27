@@ -31,7 +31,7 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-parent">Objetivo Estrategico</th>
+						<th class="col-parent">Objetivo</th>
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-description">Descripción</th>

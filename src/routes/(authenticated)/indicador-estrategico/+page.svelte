@@ -106,6 +106,17 @@
 			onClickBorrar(item);
 		}
 	}
+	/* RESTAURAR */
+	function onClickRestaurar(item: IndicadorEstrategicoWithObjetivoItem) {
+		itemSeleccionado = item;
+		showRestaurarModal = true;
+	}
+
+	function onKeydownRestaurar(e: KeyboardEvent, item: IndicadorEstrategicoWithObjetivoItem) {
+		if (e.key === 'Enter') {
+			onClickBorrar(item);
+		}
+	}
 
 	function handleCerrar() {
 		showCrearModal = false;
@@ -146,7 +157,7 @@
 		onKeydownEditar={(e, item) => onKeydownEditar(e, item)}
 		onClickBorrar={(item) => onClickBorrar(item)}
 		onKeydownBorrar={(e, item) => onKeydownBorrar(e, item)}
-			onClickRestaurar={(item: IndicadorEstrategicoWithObjetivoItem) => onClickRestaurar(item)}
+		onClickRestaurar={(item: IndicadorEstrategicoWithObjetivoItem) => onClickRestaurar(item)}
 		onKeydownRestaurar={(e: KeyboardEvent, item: IndicadorEstrategicoWithObjetivoItem) =>
 			onKeydownRestaurar(e, item)}
 	></IndicadorEstrategico>

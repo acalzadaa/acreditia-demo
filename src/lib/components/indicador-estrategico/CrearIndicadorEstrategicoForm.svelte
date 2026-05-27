@@ -1,16 +1,11 @@
 <script lang="ts">
-	import { superForm } from 'sveltekit-superforms';
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {  frequencyUnitOptions } from '$lib/types/common.types';
+	import { frequencyUnitOptions } from '$lib/types/common.types';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
-	import {
-		indicadorEstrategicoFormSchema,
-	} from '$lib/schemas/indicadorEstrategico.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
 	import Icon from '../ui/Icon.svelte';
 	import type { ObjetivoEstrategicoRefSchema } from '$lib/schemas/objetivoEstrategico.schema';
@@ -21,56 +16,111 @@
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, ...props }: Props = $props();
-
-	const objetivoOptions = $derived(
-		props.refs?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
-
+	let { open = $bindable(false), onClose, refs = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
-		planeacionId: '',
+		objetivoId: '',
 		code: '',
 		name: '',
 		description: '',
-		status: 'active'
+		dataOrigin: '',
+		dataFormula: '',
+		target: 0,
+		targetUnit: '',
+		frequencyValue: 0,
+		frequencyUnit: ''
 	});
 
 	let errorMessage = $state('');
 
-	function handleSubmit() {
-		
+	// Opciones para el select de objetivo estratégico
+	const objetivoOptions = $derived(
+		refs.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		}))
+	);
 
-		// Aquí podrías console.log o guardar los datos si quieres
-		console.log('Datos enviados (demo):', formData);
+	function handleSubmit() {
+		// Validación básica
+		if (!formData.objetivoId) {
+			errorMessage = 'Debes seleccionar un objetivo estratégico';
+			return;
+		}
+		if (!formData.code) {
+			errorMessage = 'El código es requerido';
+			return;
+		}
+		if (!formData.name) {
+			errorMessage = 'El nombre es requerido';
+			return;
+		}
+		if (!formData.dataOrigin) {
+			errorMessage = 'El origen de datos es requerido';
+			return;
+		}
+		if (!formData.dataFormula) {
+			errorMessage = 'La fórmula de datos es requerida';
+			return;
+		}
+		if (!formData.target || formData.target <= 0) {
+			errorMessage = 'La meta es requerida y debe ser mayor a 0';
+			return;
+		}
+		if (!formData.targetUnit) {
+			errorMessage = 'La unidad de meta es requerida';
+			return;
+		}
+		if (!formData.frequencyValue || formData.frequencyValue <= 0) {
+			errorMessage = 'La frecuencia es requerida y debe ser mayor a 0';
+			return;
+		}
+		if (!formData.frequencyUnit) {
+			errorMessage = 'La unidad de frecuencia es requerida';
+			return;
+		}
+
+		// Demo: solo mostrar en consola
+		console.log('Demo - Crear indicador estratégico:', formData);
 		
 		// Limpiar formulario
-		formData = {
-			planeacionId: '',
-			code: '',
-			name: '',
-			description: '',
-			status: 'active'
-		};
-		
-		// Limpiar mensaje de error
-		errorMessage = '';
+		clearForm();
 		
 		// Cerrar modal
 		handleClose();
 	}
 
+	function clearForm() {
+		formData = {
+			objetivoId: '',
+			code: '',
+			name: '',
+			description: '',
+			dataOrigin: '',
+			dataFormula: '',
+			target: 0,
+			targetUnit: '',
+			frequencyValue: 0,
+			frequencyUnit: ''
+		};
+		errorMessage = '';
+	}
+
 	function handleClose() {
+		// Limpiar estado al cerrar
+		clearForm();
 		onClose();
 	}
 
+	function handleCancel() {
+		handleClose();
+	}
+
 	function onKeydownClose(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			handleClose();
+		if (e.key === 'Enter' && !e.shiftKey) {
+			e.preventDefault();
+			handleSubmit();
 		}
 	}
 </script>
@@ -78,92 +128,110 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Nuevo Indicador Estrategico</h2>
+			<h2 class="modal-title text-h4">Nuevo Indicador Estratégico</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
 				size="lg"
-				onClick={handleClose}
+				onClick={handleCancel}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
 		</header>
 
-	<form onsubmit={(e) => {
+		<form onsubmit={(e) => {
 			e.preventDefault();
 			handleSubmit();
-		}}>			<div class="modal-body">
+		}}>
+			<div class="modal-body">
 				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name="warning"></Icon>
+						<Icon name="warning" />
 						{errorMessage}
 					</div>
 				{/if}
+				
 				<div class="form-fields">
 					<InputSelect
-						label="Objetivo Estrategico"
+						label="Objetivo Estratégico"
 						name="objetivoId"
 						optionsData={objetivoOptions}
 						required={true}
-						bind:value={$form.objetivoId}
-						errors={$errors.objetivoId}
+						bind:value={formData.objetivoId}
+						errors={errorMessage && !formData.objetivoId ? [errorMessage] : undefined}
 					/>
 
 					<InputText
 						label="Código"
 						name="code"
 						required={true}
-						placeholder="PE-001"
-						status={$errors.code ? 'error' : 'normal'}
+						placeholder="IE-001"
+						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
+						bind:value={formData.code}
+						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
 					/>
 
 					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
-						placeholder="Excelencia educativa"
-						status={$errors.name ? 'error' : 'normal'}
+						placeholder="Nombre del indicador"
+						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.name}
-						errors={$errors.name}
+						bind:value={formData.name}
+						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
 					/>
 
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
-						placeholder="Descripcion..."
-						bind:value={$form.description}
+						placeholder="Descripción del indicador..."
+						bind:value={formData.description}
 						rows={4}
 					/>
 
 					<TextArea
 						label="Origen de Datos"
 						name="dataOrigin"
-						placeholder="e.j Reporte SEP..."
-						bind:value={$form.dataOrigin}
+						placeholder="Ej. Reporte SEP..."
+						bind:value={formData.dataOrigin}
 						required={true}
 						rows={4}
+						status={errorMessage && !formData.dataOrigin ? 'error' : 'normal'}
+						errors={errorMessage && !formData.dataOrigin ? [errorMessage] : undefined}
 					/>
 
 					<TextArea
-						label="Formula de Datos"
+						label="Fórmula de Datos"
 						name="dataFormula"
-						placeholder="e.j (Alumnos con beca/Total de Alumnos)*100"
-						bind:value={$form.dataFormula}
+						placeholder="Ej. (Alumnos con beca/Total de Alumnos)*100"
+						bind:value={formData.dataFormula}
 						required={true}
 						rows={4}
+						status={errorMessage && !formData.dataFormula ? 'error' : 'normal'}
+						errors={errorMessage && !formData.dataFormula ? [errorMessage] : undefined}
 					/>
+
 					<InputNumber
 						label="Meta"
 						name="target"
 						required={true}
-						placeholder="20"
-						status={$errors.target ? 'error' : 'normal'}
+						placeholder="85"
+						status={errorMessage && (!formData.target || formData.target <= 0) ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.target}
-						errors={$errors.target}
+						bind:value={formData.target}
+						errors={errorMessage && (!formData.target || formData.target <= 0) ? [errorMessage] : undefined}
+					/>
+
+					<InputText
+						label="Unidades de Meta"
+						name="targetUnit"
+						required={true}
+						placeholder="%"
+						status={errorMessage && !formData.targetUnit ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={formData.targetUnit}
+						errors={errorMessage && !formData.targetUnit ? [errorMessage] : undefined}
 					/>
 
 					<InputNumber
@@ -171,10 +239,10 @@
 						name="frequencyValue"
 						required={true}
 						placeholder="1"
-						status={$errors.frequencyValue ? 'error' : 'normal'}
+						status={errorMessage && (!formData.frequencyValue || formData.frequencyValue <= 0) ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.frequencyValue}
-						errors={$errors.frequencyValue}
+						bind:value={formData.frequencyValue}
+						errors={errorMessage && (!formData.frequencyValue || formData.frequencyValue <= 0) ? [errorMessage] : undefined}
 					/>
 
 					<InputSelect
@@ -182,33 +250,16 @@
 						name="frequencyUnit"
 						optionsData={frequencyUnitOptions}
 						required={true}
-						bind:value={$form.frequencyUnit}
-						status={$errors.frequencyUnit ? 'error' : 'normal'}
-					></InputSelect>
-
+						bind:value={formData.frequencyUnit}
+						errors={errorMessage && !formData.frequencyUnit ? [errorMessage] : undefined}
+					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
-				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
+				<Button type="submit" variant="primary">Crear indicador</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
-
-<style>
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>
