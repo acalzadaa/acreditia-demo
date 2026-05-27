@@ -77,9 +77,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Modificar Indicador Estrategico</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
@@ -92,14 +92,14 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
+						<Icon name="warning"></Icon>
 						{$message}
 					</div>
 				{/if}
 				<div class="form-fields">
 					<InputSelect
-						label={'Entidad Legal'}
-						name={'entidadLegalId'}
+						label="Entidad Legal"
+						name="entidadLegalId"
 						optionsData={entidadLegalOptions}
 						required={true}
 						bind:value={$form.entidadLegalId}
@@ -107,8 +107,8 @@
 					/>
 
 					<InputSelect
-						label={'Region'}
-						name={'regionId'}
+						label="Region"
+						name="regionId"
 						optionsData={regionOptions}
 						required={true}
 						bind:value={$form.regionId}
@@ -116,10 +116,10 @@
 					/>
 
 					<InputText
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'PE-001'}
+						placeholder="PE-001"
 						status={$errors.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.code}
@@ -127,10 +127,10 @@
 					/>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'Excelencia educativa'}
+						placeholder="Excelencia educativa"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}
@@ -138,8 +138,8 @@
 					/>
 
 					<InputSelect
-						label={'Estado'}
-						name={'status'}
+						label="Estado"
+						name="status"
 						optionsData={estatusOptions}
 						required={true}
 						bind:value={$form.status}

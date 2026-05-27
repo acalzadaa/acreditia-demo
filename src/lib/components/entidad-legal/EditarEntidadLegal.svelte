@@ -59,9 +59,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar entidad legal</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
@@ -74,17 +74,17 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
+						<Icon name="warning"></Icon>
 						{$message}
 					</div>
 				{/if}
 
 				<div class="form-fields">
 					<InputText
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'GESEAC'}
+						placeholder="GESEAC"
 						status={$errors.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.code}
@@ -92,10 +92,10 @@
 					/>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'p.e Grupo Educativo del Sureste A.C'}
+						placeholder="p.e Grupo Educativo del Sureste A.C"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}
@@ -103,8 +103,8 @@
 					/>
 
 					<InputSelect
-						label={'Estado'}
-						name={'status'}
+						label="Estado"
+						name="status"
 						optionsData={estatusOptions}
 						required={true}
 						bind:value={$form.status}

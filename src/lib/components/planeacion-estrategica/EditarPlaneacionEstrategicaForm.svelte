@@ -4,8 +4,8 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import {
-		planeacionEstrategicaItemSchema,
-		type PlaneacionEstrategicaItem
+		planeacionEstrategicaWithFilosofiaItemSchema,
+		type PlaneacionEstrategicaWithFilosofiaItem
 	} from '$lib/schemas/planeacionEstrategica.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
@@ -16,7 +16,7 @@
 
 	interface Props {
 		open: boolean;
-		selectedItem: PlaneacionEstrategicaItem;
+		selectedItem: PlaneacionEstrategicaWithFilosofiaItem;
 		refs: FilosofiaInstitucionalRefSchema[];
 		onClose: () => void;
 	}
@@ -38,7 +38,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(planeacionEstrategicaItemSchema),
+			validators: zod4(planeacionEstrategicaWithFilosofiaItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -74,9 +74,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar planeacion estrategica</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
 				isDisabled={false}
@@ -90,15 +90,15 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
+						<Icon name="warning"></Icon>
 						{$message}
 					</div>
 				{/if}
 
 				<div class="form-fields">
 					<InputSelect
-						label={'Filosofía Institucional'}
-						name={'filosofiaId'}
+						label="Filosofía Institucional"
+						name="filosofiaId"
 						optionsData={filosofiaOptions}
 						required={true}
 						bind:value={$form.filosofiaId}
@@ -107,10 +107,10 @@
 					></InputSelect>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'Excelencia educativa'}
+						placeholder="Excelencia educativa"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}

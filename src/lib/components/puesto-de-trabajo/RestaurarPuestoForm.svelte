@@ -49,9 +49,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Restaurar puesto de trabajo</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>

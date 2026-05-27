@@ -5,13 +5,12 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
-		planeacionEstrategicaItemSchema,
-		type PlaneacionEstrategicaItem
-	} from '$lib/schemas/planeacionEstrategica.schema';
-
+		planeacionEstrategicaWithFilosofiaItemSchema,	
+		type PlaneacionEstrategicaWithFilosofiaItem} from '$lib/schemas/planeacionEstrategica.schema';
+	
 	interface Props {
 		open: boolean;
-		selectedItem: PlaneacionEstrategicaItem;
+		selectedItem: PlaneacionEstrategicaWithFilosofiaItem;
 		onClose: () => void;
 	}
 
@@ -23,7 +22,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(planeacionEstrategicaItemSchema),
+		validators: zod4(planeacionEstrategicaWithFilosofiaItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
@@ -52,9 +51,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Confirmar eliminación</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name='close'
+				variant='ghost'
+				size='lg'
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>

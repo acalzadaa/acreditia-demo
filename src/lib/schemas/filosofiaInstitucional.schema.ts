@@ -4,9 +4,9 @@ import { z } from 'zod';
 // 1. REFERENCE SCHEMAS (Para relaciones)
 // ============================================
 export const filosofiaInstitucionalRefSchema = z.object({
-    id: z.uuid(),
-    code: z.string(),
-    name: z.string(),
+	id: z.uuid(),
+	code: z.string(),
+	name: z.string()
 });
 export type FilosofiaInstitucionalRefSchema = z.infer<typeof filosofiaInstitucionalRefSchema>;
 
@@ -16,15 +16,17 @@ export type FilosofiaInstitucionalRefSchema = z.infer<typeof filosofiaInstitucio
 // ============================================
 
 export const filosofiaInstitucionalFormSchema = z.object({
-    id: z.uuid().optional(),
-    code: z.string()
-        .min(1, "El código debe tener al menos 1 caracter")
-        .max(50, "El código debe tener máximo 50 caracteres"),
-    name: z.string()
-        .min(1, "El nombre es obligatorio")
-        .max(255, "El nombre debe tener máximo 255 caracteres"),
-    description: z.string().default(''),
-    createdBy: z.string().optional()
+	id: z.uuid().optional(),
+	code: z
+		.string()
+		.min(1, 'El código debe tener al menos 1 caracter')
+		.max(50, 'El código debe tener máximo 50 caracteres'),
+	name: z
+		.string()
+		.min(1, 'El nombre es obligatorio')
+		.max(255, 'El nombre debe tener máximo 255 caracteres'),
+	description: z.string().default(''),
+	createdBy: z.string().optional()
 });
 export type FilosofiaInstitucionalForm = z.infer<typeof filosofiaInstitucionalFormSchema>;
 
@@ -33,15 +35,18 @@ export type FilosofiaInstitucionalForm = z.infer<typeof filosofiaInstitucionalFo
 // Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
 
-export const filosofiaInstitucionalItemSchema = filosofiaInstitucionalFormSchema.extend({
-    id: z.uuid(),
-    version: z.number().default(0),
-    isCurrent: z.boolean().default(false),
-    validFrom: z.date().optional(),
-    validTo: z.date().optional(),
-    isDeleted: z.boolean().default(false),
-    createdAt: z.iso.datetime().optional(),
-    createdBy: z.string()
+export const filosofiaInstitucionalItemSchema = z.object({
+	id: z.uuid(),
+	code: z.string(),
+	name: z.string(),
+	description: z.string(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.coerce.date().optional(),
+	validTo: z.coerce.date().optional(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 export type FilosofiaInstitucionalItem = z.infer<typeof filosofiaInstitucionalItemSchema>;
 
@@ -51,6 +56,6 @@ export type FilosofiaInstitucionalItem = z.infer<typeof filosofiaInstitucionalIt
 // ============================================
 
 export const filosofiaInstitucionalConfigSchema = z.object({
-    filosofiaInstitucionalItems: z.array(filosofiaInstitucionalItemSchema),
+	filosofiaInstitucionalItems: z.array(filosofiaInstitucionalItemSchema)
 });
 export type FilosofiaInstitucionalConfig = z.infer<typeof filosofiaInstitucionalConfigSchema>;

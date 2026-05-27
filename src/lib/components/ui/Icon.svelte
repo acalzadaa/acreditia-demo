@@ -49,5 +49,5 @@
 	style:display="block"
 	{...restProps}
 >
-	<use href={`/sprites.svg#${name}`} />
+	<use href={`sprites.svg#${name}`} />
 </svg>

@@ -1,65 +1,99 @@
 <script lang="ts">
-	import { superForm, type SuperValidated } from 'sveltekit-superforms';
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
-	import {
-		planeacionEstrategicaFormSchema,
-		type PlaneacionEstrategicaForm
-	} from '$lib/schemas/planeacionEstrategica.schema';
-	import type { FilosofiaInstitucionalRefSchema } from '$lib/schemas/filosofiaInstitucional.schema';
-	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
+	import type { FilosofiaInstitucionalRefSchema } from '$lib/schemas/filosofiaInstitucional.schema';
 
 	interface Props {
 		open: boolean;
-		form: SuperValidated<PlaneacionEstrategicaForm>;
 		refs: FilosofiaInstitucionalRefSchema[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, ...props }: Props = $props();
+	let { open = $bindable(false), onClose, refs = [] }: Props = $props();
 
+	// Estado local del formulario
+	let formData = $state({
+		filosofiaId: '',
+		code: '',
+		name: '',
+		description: ''
+	});
+
+	let errorMessage = $state('');
+
+	// Opciones para el select
 	const filosofiaOptions = $derived(
-		props.refs?.map((ref) => ({
+		refs.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
-		})) ?? []
+		}))
 	);
 
-	// NOTE: The form prop is replaced via server response and page re-render,
-	// not through reactive updates within this component instance.
-	// Therefore ignoring the state_referenced_locally warning is safe.
-	// svelte-ignore state_referenced_locally
-	const { form, errors, message, enhance, constraints } = superForm(props.form, {
-		resetForm: true,
-		validators: zod4Client(planeacionEstrategicaFormSchema),
-		validationMethod: 'auto',
-		customValidity: false,
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
-				handleClose();
-			}
+	// Auto-seleccionar si solo hay una opción
+	$effect(() => {
+		if (filosofiaOptions.length === 1 && !formData.filosofiaId) {
+			formData.filosofiaId = filosofiaOptions[0].id;
 		}
 	});
 
-	$effect(() => {
-		if (filosofiaOptions.length === 1 && !$form.filosofiaId) {
-			$form.filosofiaId = filosofiaOptions[0]!.id;
+	function handleSubmit() {
+		// Validación básica
+		if (!formData.filosofiaId) {
+			errorMessage = 'Debes seleccionar una filosofía institucional';
+			return;
 		}
-	});
+		if (!formData.code) {
+			errorMessage = 'El código es requerido';
+			return;
+		}
+		if (!formData.name) {
+			errorMessage = 'El nombre es requerido';
+			return;
+		}
+
+		// Aquí podrías console.log o guardar los datos si quieres
+		console.log('Datos enviados (demo):', formData);
+
+		// Limpiar formulario
+		formData = {
+			filosofiaId: '',
+			code: '',
+			name: '',
+			description: ''
+		};
+
+		// Limpiar mensaje de error
+		errorMessage = '';
+
+		// Cerrar modal
+		handleClose();
+	}
 
 	function handleClose() {
+		// Limpiar estado al cerrar
+		formData = {
+			filosofiaId: '',
+			code: '',
+			name: '',
+			description: ''
+		};
+		errorMessage = '';
 		onClose();
 	}
 
+	function handleCancel() {
+		handleClose();
+	}
+
 	function onKeydownClose(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			handleClose();
+		if (e.key === 'Enter' && !e.shiftKey) {
+			e.preventDefault();
+			handleSubmit();
 		}
 	}
 </script>
@@ -67,81 +101,74 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear planeación estratégica {$message}</h2>
+			<h2 class="modal-title text-h4">Crear planeación estratégica</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
-				onClick={handleClose}
+				name="close"
+				variant="ghost"
+				size="lg"
+				onClick={handleCancel}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
 		</header>
 
-		<form method="POST" action="?/create" use:enhance>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
-				{#if $message}
-					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
-						{$message}
-					</div>
-				{/if}
-
-						<div class="modal-body">
-			{#if $message}
-				<div class="form-feedback form-feedback--error" role="alert">
-					<Icon name={'warning'}></Icon>
-					{$message}
-				</div>
-			{/if}
-		</div><div class="form-fields">
+				<div class="form-fields">
+					{#if errorMessage}
+						<div class="form-feedback form-feedback--error" role="alert">
+							<Icon name="warning" />
+							{errorMessage}
+						</div>
+					{/if}
 					<InputSelect
-						label={'Filosofía Institucional'}
-						name={'filosofiaId'}
+						label="Filosofía Institucional"
+						name="filosofiaId"
 						optionsData={filosofiaOptions}
 						required={true}
-						bind:value={$form.filosofiaId}
-						errors={$errors.filosofiaId}
-						{...$constraints.filosofiaId}
+						bind:value={formData.filosofiaId}
+						errors={errorMessage && !formData.filosofiaId ? [errorMessage] : undefined}
 					/>
 
 					<InputText
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'PE-001'}
-						status={$errors.code ? 'error' : 'normal'}
+						placeholder="PE-001"
+						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
-						{...$constraints.code}
+						bind:value={formData.code}
+						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
 					/>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'Excelencia educativa'}
-						status={$errors.name ? 'error' : 'normal'}
+						placeholder="Excelencia educativa"
+						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.name}
-						errors={$errors.name}
-						{...$constraints.name}
+						bind:value={formData.name}
+						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
 					/>
 
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
-						placeholder="Descripcion..."
-						bind:value={$form.description}
+						placeholder="Descripción..."
+						bind:value={formData.description}
 						rows={4}
-						{...$constraints.description}
 					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
-				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear planeacion</Button>
+				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
+				<Button type="submit" variant="primary">Crear planeación</Button>
 			</footer>
 		</form>
 	</div>

@@ -4,21 +4,20 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import {
-		objetivoEstrategicoItemSchema,
-		type ObjetivoEstrategicoItem,
-		type PlaneacionEstrategicaRef
+		objetivoEstrategicoWithPlaneacionItemSchema,
+		type ObjetivoEstrategicoWithPlaneacionItem
 	} from '$lib/schemas/objetivoEstrategico.schema';
 	import InputSelect, { type OptionData } from '../ui/input/InputSelect.svelte';
-	import { estatusOptions } from '$lib/types/common.types';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
+	import type { PlaneacionEstrategicaRefSchema } from '$lib/schemas/planeacionEstrategica.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: ObjetivoEstrategicoItem;
-		refs: PlaneacionEstrategicaRef[];
+		selectedItem: ObjetivoEstrategicoWithPlaneacionItem;
+		refs: PlaneacionEstrategicaRefSchema[];
 		onClose: () => void;
 	}
 
@@ -39,7 +38,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(objetivoEstrategicoItemSchema),
+			validators: zod4(objetivoEstrategicoWithPlaneacionItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -75,10 +74,10 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar objetivo estrategico</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'md'}
-				borderShape={'square'}
+				name="close"
+				variant="ghost"
+				size="md"
+				borderShape="square"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
 				isDisabled={false}
@@ -92,14 +91,14 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
+						<Icon name="warning"></Icon>
 						{$message}
 					</div>
 				{/if}
 				<div class="form-fields">
 					<InputSelect
-						label={'Planeacion Estrategica'}
-						name={'planeacionId'}
+						label="Planeacion Estrategica"
+						name="planeacionId"
 						optionsData={planeacionesOptions}
 						required={true}
 						bind:value={$form.planeacionId}
@@ -107,10 +106,10 @@
 					></InputSelect>
 
 					<InputText
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'OE-001'}
+						placeholder="OE-001"
 						status={$errors.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.code}
@@ -118,10 +117,10 @@
 					/>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'Excelencia educativa'}
+						placeholder="Excelencia educativa"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}
@@ -135,16 +134,6 @@
 						bind:value={$form.description}
 						rows={4}
 					/>
-
-					<!-- Campo status -->
-					<InputSelect
-						label={'Estado'}
-						name={'status'}
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
-					></InputSelect>
 				</div>
 			</div>
 
@@ -157,19 +146,3 @@
 		</form>
 	</div>
 </Modal>
-
-<style>
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>

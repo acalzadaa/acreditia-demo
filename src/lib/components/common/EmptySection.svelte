@@ -2,14 +2,14 @@
 	import Icon from '../ui/Icon.svelte';
 
 	interface Props {
-		message: String;
+		message: string;
 	}
 
 	let { message }: Props = $props();
 </script>
 
 <div class="empty-state">
-	<Icon name="warning" size="xl" class="empty-icon" color={'var(--bg-warning-bold'} />
+	<Icon name="warning" size="xl" class="empty-icon" color="var(--bg-warning-bold" />
 	<p class="text-h6 empty-message">{message}</p>
 	<p class="text-body empty-submessage">
 		Presiona el botón <Icon name="add" size="sm" /> para crear el primer elemento

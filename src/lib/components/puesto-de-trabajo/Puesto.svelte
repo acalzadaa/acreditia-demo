@@ -54,28 +54,28 @@
 							<td>
 								<IconButton
 									isDisabled={item.isDeleted}
-									name={'edit'}
-									size={'md'}
-									borderShape={'square'}
-									variant={'ghost'}
+									name="edit"
+									size="md"
+									borderShape="square"
+									variant="ghost"
 									onClick={() => onClickEditar(item)}
 									onKeydown={(e) => onKeydownEditar(e, item)}
 								/>
 								<IconButton
 									isDisabled={item.isDeleted}
-									name={'delete'}
-									size={'md'}
-									borderShape={'square'}
-									variant={'ghost'}
+									name="delete"
+									size="md"
+									borderShape="square"
+									variant="ghost"
 									onClick={() => onClickBorrar(item)}
 									onKeydown={(e) => onKeydownBorrar(e, item)}
 								/>
 								<IconButton
 									isDisabled={!item.isDeleted}
-									name={'restore'}
-									size={'md'}
-									borderShape={'square'}
-									variant={'ghost'}
+									name="restore"
+									size="md"
+									borderShape="square"
+									variant="ghost"
 									onClick={() => onClickRestaurar(item)}
 									onKeydown={(e) => onKeydownRestaurar(e, item)}
 								/>
@@ -85,7 +85,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message={'No hay puestos de trabajo'}></EmptySection>
+			<EmptySection message="No hay puestos de trabajo"></EmptySection>
 		{/if}
 	</section>
 </main>

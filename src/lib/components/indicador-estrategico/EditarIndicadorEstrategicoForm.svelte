@@ -3,23 +3,23 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { estatusOptions, frequencyUnitOptions } from '$lib/types/common.types';
+	import {  frequencyUnitOptions } from '$lib/types/common.types';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import InputNumber from '../ui/input/InputNumber.svelte';
+	import { type IndicadorEstrategicoWithObjetivoItem } from '$lib/schemas/indicadorEstrategico.schema';
 	import {
-		type IndicadorEstrategicoItem,
-		type ObjetivoEstrategicoRef
-	} from '$lib/schemas/indicadorEstrategico.schema';
-	import { objetivoEstrategicoItemSchema } from '$lib/schemas/objetivoEstrategico.schema';
+		objetivoEstrategicoItemSchema,
+		type ObjetivoEstrategicoRefSchema
+	} from '$lib/schemas/objetivoEstrategico.schema';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 
 	interface Props {
 		open: boolean;
-		selectedItem: IndicadorEstrategicoItem;
-		refs: ObjetivoEstrategicoRef[];
+		selectedItem: IndicadorEstrategicoWithObjetivoItem;
+		refs: ObjetivoEstrategicoRefSchema[];
 		onClose: () => void;
 	}
 
@@ -71,11 +71,11 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Modificar Indicador Estrategico</h2>
+			<h2 class="modal-title text-h4">Editar Indicador Estrategico</h2>
 			<IconButton
-				name={'close'}
-				variant={'ghost'}
-				size={'lg'}
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
@@ -88,14 +88,14 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name={'warning'}></Icon>
+						<Icon name="warning"></Icon>
 						{$message}
 					</div>
 				{/if}
 				<div class="form-fields">
 					<InputSelect
-						label={'Objetivo Estrategico'}
-						name={'objetivoId'}
+						label="Objetivo Estrategico"
+						name="objetivoId"
 						optionsData={objetivoOptions}
 						required={true}
 						bind:value={$form.objetivoId}
@@ -103,10 +103,10 @@
 					/>
 
 					<InputText
-						label={'Código'}
-						name={'code'}
+						label="Código"
+						name="code"
 						required={true}
-						placeholder={'PE-001'}
+						placeholder="PE-001"
 						status={$errors.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.code}
@@ -114,10 +114,10 @@
 					/>
 
 					<InputText
-						label={'Nombre'}
-						name={'name'}
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder={'Excelencia educativa'}
+						placeholder="Excelencia educativa"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}
@@ -130,6 +130,26 @@
 						placeholder="Descripcion..."
 						bind:value={$form.description}
 						rows={4}
+					/>
+					<InputNumber
+						label="Meta"
+						name="target"
+						required={true}
+						placeholder="20"
+						status={$errors.target ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.target}
+						errors={$errors.target}
+					/>
+					<InputText
+						label="Unidad de Meta"
+						name="targetUnit"
+						required={true}
+						placeholder="20"
+						status={$errors.targetUnit ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.targetUnit}
+						errors={$errors.targetUnit}
 					/>
 
 					<TextArea
@@ -149,22 +169,12 @@
 						required={true}
 						rows={4}
 					/>
-					<InputNumber
-						label={'Meta'}
-						name={'target'}
-						required={true}
-						placeholder={'20'}
-						status={$errors.target ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.target}
-						errors={$errors.target}
-					/>
 
 					<InputNumber
-						label={'Frecuencia'}
-						name={'frequencyValue'}
+						label="Frecuencia"
+						name="frequencyValue"
 						required={true}
-						placeholder={'1'}
+						placeholder="1"
 						status={$errors.frequencyValue ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.frequencyValue}
@@ -172,55 +182,20 @@
 					/>
 
 					<InputSelect
-						label={'Unidad de Frecuencia'}
-						name={'frequencyUnit'}
+						label="Unidad de Frecuencia"
+						name="frequencyUnit"
 						optionsData={frequencyUnitOptions}
 						required={true}
 						bind:value={$form.frequencyUnit}
 						status={$errors.frequencyUnit ? 'error' : 'normal'}
-					></InputSelect>
-
-					<InputText
-						label={'Responsable'}
-						name={'responsible'}
-						placeholder={'UUID del responsable'}
-						status={$errors.responsible ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.responsible}
-						errors={$errors.responsible}
-					/>
-
-					<InputSelect
-						label={'Estado'}
-						name={'status'}
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
 					></InputSelect>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="submit" variant="primary">Editar indicador</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
-
-<style>
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>

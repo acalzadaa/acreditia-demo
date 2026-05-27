@@ -47,7 +47,7 @@
       "href": "/normativa",
       "description": "Define el marco normativo interno y externo de la institucion",
       "itemType": "link",
-      "status": "active",
+      "status": "inactive",
       "children": []
     },
     {
@@ -56,7 +56,7 @@
       "href": "/estructura-institucional",
       "description": "Define la estructura fisica de la institucion",
       "itemType": "section",
-      "status": "active",
+      "status": "inactive",
       "children": [
         {
           "id": 399,
@@ -105,7 +105,7 @@
       "label": "Estructura Funcional",
       "description": "Define la estructura funcional de la institucion",
       "itemType": "section",
-      "status": "active",
+      "status": "inactive",
       "children": [
         {
           "id": 400,
@@ -130,7 +130,7 @@
       "label": "Estructura Ejecutiva",
       "description": "Define la estructura ejecutiva de la institucion",
       "itemType": "section",
-      "status": "active",
+      "status": "inactive",
       "children": [
         {
           "id": 500,
@@ -156,7 +156,7 @@
       "href": "/puesto-de-trabajo",
       "description": "Define los puestos, competencias y perfiles del talento humano",
       "itemType": "link",
-      "status": "active",
+      "status": "inactive",
       "children": []
     },
     {
@@ -165,7 +165,7 @@
       "href": "/procesos",
       "description": "Catálogo de procesos institucionales",
       "itemType": "link",
-      "status": "active",
+      "status": "inactive",
       "children": []
     },
     {
@@ -174,7 +174,7 @@
       "href": "/calidad/administracion",
       "description": "Selecciona el marco de referencia (FIMPES, ISO 9001, modelo propio, etc.)",
       "itemType": "link",
-      "status": "active",
+      "status": "inactive",
       "children": [
         {
           "id": 900,
@@ -207,7 +207,7 @@
       "label": "Evaluación y Mejora Continua",
       "description": "Ciclo completo: planeación, ejecución, análisis y acciones correctivas",
       "itemType": "section",
-      "status": "active",
+      "status": "inactive",
       "children": [
         {
           "id": 900,
@@ -256,7 +256,7 @@
       "label": "Administración del Sistema",
       "description": "Gestión de usuarios, roles, permisos y configuración de la plataforma",
       "itemType": "section",
-      "status": "active",
+      "status": "inactive",
       "roles": [
         "super-admin",
         "admin"
