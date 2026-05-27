@@ -1,25 +1,25 @@
 <script lang="ts">
-	import { superForm, type SuperValidated } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms';
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { estatusOptions, frequencyUnitOptions } from '$lib/types/common.types';
+	import {  frequencyUnitOptions } from '$lib/types/common.types';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
-	import {
-		indicadorEstrategicoFormSchema,
-		type IndicadorEstrategicoForm,
-		type ObjetivoEstrategicoRef
-	} from '$lib/schemas/indicadorEstrategico.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
+	import { type IndicadorEstrategicoWithObjetivoItem } from '$lib/schemas/indicadorEstrategico.schema';
+	import {
+		objetivoEstrategicoItemSchema,
+		type ObjetivoEstrategicoRefSchema
+	} from '$lib/schemas/objetivoEstrategico.schema';
+	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 
 	interface Props {
 		open: boolean;
-		form: SuperValidated<IndicadorEstrategicoForm>;
-		refs: ObjetivoEstrategicoRef[];
+		selectedItem: IndicadorEstrategicoWithObjetivoItem;
+		refs: ObjetivoEstrategicoRefSchema[];
 		onClose: () => void;
 	}
 
@@ -36,9 +36,20 @@
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, message } = superForm(props.form, {
+	const { form, errors, enhance, tainted, isTainted, message } = superForm(props.selectedItem, {
+		dataType: 'json',
+		validators: zod4(objetivoEstrategicoItemSchema),
+		validationMethod: 'onblur',
+		customValidity: false,
 		resetForm: false,
-		validators: zod4(indicadorEstrategicoFormSchema),
+		taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
+		onSubmit: ({ cancel }) => {
+			if (!isTainted($tainted)) {
+				cancel();
+				handleClose();
+				console.log('No hay cambios para guardar');
+			}
+		},
 		onUpdated: async ({ form }) => {
 			if (form.valid) {
 				handleClose();
@@ -60,7 +71,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Nuevo Indicador Estrategico</h2>
+			<h2 class="modal-title text-h4">Editar Indicador Estrategico</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -70,7 +81,10 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/create" use:enhance>
+		<form method="POST" action="?/edit" use:enhance>
+			<!-- Hidden input para el ID -->
+			<input type="hidden" name="id" value={$form.id} />
+
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -117,6 +131,26 @@
 						bind:value={$form.description}
 						rows={4}
 					/>
+					<InputNumber
+						label="Meta"
+						name="target"
+						required={true}
+						placeholder="20"
+						status={$errors.target ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.target}
+						errors={$errors.target}
+					/>
+					<InputText
+						label="Unidad de Meta"
+						name="targetUnit"
+						required={true}
+						placeholder="20"
+						status={$errors.targetUnit ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.targetUnit}
+						errors={$errors.targetUnit}
+					/>
 
 					<TextArea
 						label="Origen de Datos"
@@ -134,16 +168,6 @@
 						bind:value={$form.dataFormula}
 						required={true}
 						rows={4}
-					/>
-					<InputNumber
-						label="Meta"
-						name="target"
-						required={true}
-						placeholder="20"
-						status={$errors.target ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.target}
-						errors={$errors.target}
 					/>
 
 					<InputNumber
@@ -165,48 +189,13 @@
 						bind:value={$form.frequencyUnit}
 						status={$errors.frequencyUnit ? 'error' : 'normal'}
 					></InputSelect>
-
-					<InputText
-						label="Responsable"
-						name="responsible"
-						placeholder="Nombre del responsable"
-						status={$errors.responsible ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.responsible}
-						errors={$errors.responsible}
-					/>
-
-					<InputSelect
-						label="Estado"
-						name="status"
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
-					></InputSelect>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="submit" variant="primary">Editar indicador</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
-
-<style>
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>

@@ -8,7 +8,6 @@
 		type ObjetivoEstrategicoWithPlaneacionItem
 	} from '$lib/schemas/objetivoEstrategico.schema';
 	import InputSelect, { type OptionData } from '../ui/input/InputSelect.svelte';
-	import { estatusOptions } from '$lib/types/common.types';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';

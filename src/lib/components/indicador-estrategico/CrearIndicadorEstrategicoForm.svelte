@@ -3,23 +3,21 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { estatusOptions, frequencyUnitOptions } from '$lib/types/common.types';
+	import { zod4 } from 'sveltekit-superforms/adapters';
+	import {  frequencyUnitOptions } from '$lib/types/common.types';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
-	import InputNumber from '../ui/input/InputNumber.svelte';
 	import {
-		type IndicadorEstrategicoItem,
-		type ObjetivoEstrategicoRef
+		indicadorEstrategicoFormSchema,
 	} from '$lib/schemas/indicadorEstrategico.schema';
-	import { objetivoEstrategicoItemSchema } from '$lib/schemas/objetivoEstrategico.schema';
-	import { zod4 } from 'sveltekit-superforms/adapters';
+	import InputNumber from '../ui/input/InputNumber.svelte';
 	import Icon from '../ui/Icon.svelte';
+	import type { ObjetivoEstrategicoRefSchema } from '$lib/schemas/objetivoEstrategico.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: IndicadorEstrategicoItem;
-		refs: ObjetivoEstrategicoRef[];
+		refs: ObjetivoEstrategicoRefSchema[];
 		onClose: () => void;
 	}
 
@@ -32,30 +30,39 @@
 		})) ?? []
 	);
 
-	// NOTE: The form prop is replaced via server response and page re-render,
-	// not through reactive updates within this component instance.
-	// Therefore ignoring the state_referenced_locally warning is safe.
-	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, tainted, isTainted, message } = superForm(props.selectedItem, {
-		dataType: 'json',
-		validators: zod4(objetivoEstrategicoItemSchema),
-		validationMethod: 'onblur',
-		customValidity: false,
-		resetForm: false,
-		taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
-		onSubmit: ({ cancel }) => {
-			if (!isTainted($tainted)) {
-				cancel();
-				handleClose();
-				console.log('No hay cambios para guardar');
-			}
-		},
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
-				handleClose();
-			}
-		}
+
+	// Estado local del formulario
+	let formData = $state({
+		planeacionId: '',
+		code: '',
+		name: '',
+		description: '',
+		status: 'active'
 	});
+
+	let errorMessage = $state('');
+
+	function handleSubmit() {
+		
+
+		// Aquí podrías console.log o guardar los datos si quieres
+		console.log('Datos enviados (demo):', formData);
+		
+		// Limpiar formulario
+		formData = {
+			planeacionId: '',
+			code: '',
+			name: '',
+			description: '',
+			status: 'active'
+		};
+		
+		// Limpiar mensaje de error
+		errorMessage = '';
+		
+		// Cerrar modal
+		handleClose();
+	}
 
 	function handleClose() {
 		onClose();
@@ -71,7 +78,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Modificar Indicador Estrategico</h2>
+			<h2 class="modal-title text-h4">Nuevo Indicador Estrategico</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -81,15 +88,14 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/edit" use:enhance>
-			<!-- Hidden input para el ID -->
-			<input type="hidden" name="id" value={$form.id} />
-
-			<div class="modal-body">
-				{#if $message}
+	<form onsubmit={(e) => {
+			e.preventDefault();
+			handleSubmit();
+		}}>			<div class="modal-body">
+				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">
 						<Icon name="warning"></Icon>
-						{$message}
+						{errorMessage}
 					</div>
 				{/if}
 				<div class="form-fields">
@@ -180,24 +186,6 @@
 						status={$errors.frequencyUnit ? 'error' : 'normal'}
 					></InputSelect>
 
-					<InputText
-						label="Responsable"
-						name="responsible"
-						placeholder="UUID del responsable"
-						status={$errors.responsible ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.responsible}
-						errors={$errors.responsible}
-					/>
-
-					<InputSelect
-						label="Estado"
-						name="status"
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
-					></InputSelect>
 				</div>
 			</div>
 
