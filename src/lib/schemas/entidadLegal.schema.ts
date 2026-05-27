@@ -1,17 +1,15 @@
-import { ESTATUS } from '$lib/types/common.types';
 import { z } from 'zod';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
 // ============================================
 export const entidadLegalRefSchema = z.object({
-    id: z.uuid(),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido")
+	id: z.uuid(),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido')
 });
 
 export type EntidadLegalRef = z.infer<typeof entidadLegalRefSchema>;
-
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -19,10 +17,17 @@ export type EntidadLegalRef = z.infer<typeof entidadLegalRefSchema>;
 // ============================================
 
 export const entidadLegalFormSchema = z.object({
-    id: z.uuid().optional(), // optional para crear, presente para actualizar
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido"),
-    status: z.enum(ESTATUS).default('activo')
+	id: z.uuid().optional(),
+	code: z
+		.string()
+		.min(1, 'El código debe tener al menos 1 caracter')
+		.max(50, 'El código debe tener máximo 50 caracteres'),
+	name: z
+		.string()
+		.min(1, 'El nombre es obligatorio')
+		.max(255, 'El nombre debe tener máximo 255 caracteres'),
+	description: z.string().default(''),
+	createdBy: z.string().optional()
 });
 
 export type EntidadLegalForm = z.infer<typeof entidadLegalFormSchema>;
@@ -33,12 +38,17 @@ export type EntidadLegalForm = z.infer<typeof entidadLegalFormSchema>;
 // ============================================
 
 export const entidadLegalItemSchema = z.object({
-    id: z.uuid(),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido"),
-    status: z.enum(ESTATUS).default('activo'),
-    createdAt: z.iso.datetime().optional(),
-    updatedAt: z.iso.datetime().optional()
+	id: z.uuid(),
+	code: z.string(),
+	name: z.string(),
+	description: z.string().optional(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.date().optional(),
+	validTo: z.date().optional(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 
 export type EntidadLegalItem = z.infer<typeof entidadLegalItemSchema>;
@@ -49,7 +59,7 @@ export type EntidadLegalItem = z.infer<typeof entidadLegalItemSchema>;
 // ============================================
 
 export const entidadLegalConfigSchema = z.object({
-    entidadLegalItems: z.array(entidadLegalItemSchema)
+	entidadLegalItems: z.array(entidadLegalItemSchema)
 });
 
 export type EntidadLegalConfig = z.infer<typeof entidadLegalConfigSchema>;

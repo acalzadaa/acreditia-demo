@@ -1,20 +1,18 @@
-import { ESTATUS } from '$lib/types/common.types';
 import { z } from 'zod';
-import { entidadLegalRefSchema } from './entidadLegal.schema';
-import { regionRefSchema } from './region.schema';
+import { entidadLegalItemSchema } from './entidadLegal.schema';
+import { regionItemSchema } from './region.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
 // ============================================
 
 export const institucionRefSchema = z.object({
-    id: z.uuid(),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido")
+	id: z.uuid(),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido')
 });
 
 export type InstitucionRef = z.infer<typeof institucionRefSchema>;
-
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -22,12 +20,12 @@ export type InstitucionRef = z.infer<typeof institucionRefSchema>;
 // ============================================
 
 export const institucionFormSchema = z.object({
-    id: z.uuid().optional(),
-    entidadLegalId: z.uuid("Debes seleccionar una entidad legal"),
-    regionId: z.uuid("Debes seleccionar una region"),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido"),
-    status: z.enum(ESTATUS).default('activo')
+	id: z.uuid().optional(),
+	entidadLegalId: z.uuid('Debes seleccionar una entidad legal'),
+	regionId: z.uuid('Debes seleccionar una region'),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido'),
+	createdBy: z.string().optional()
 });
 
 export type InstitucionForm = z.infer<typeof institucionFormSchema>;
@@ -38,16 +36,20 @@ export type InstitucionForm = z.infer<typeof institucionFormSchema>;
 // ============================================
 
 export const institucionItemSchema = z.object({
-    id: z.uuid(),
-    entidadLegalId: z.uuid("Debes seleccionar una entidad legal"),
-    regionId: z.uuid("Debes seleccionar una region"),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido"),
-    entidadLegal: entidadLegalRefSchema.optional(),
-    region: regionRefSchema.optional(),
-    status: z.enum(ESTATUS).default('activo'),
-    createdAt: z.iso.datetime().optional(),
-    updatedAt: z.iso.datetime().optional()
+	id: z.uuid(),
+	entidadLegalId: z.uuid('Debes seleccionar una entidad legal'),
+	regionId: z.uuid('Debes seleccionar una region'),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido'),
+	entidadLegal: entidadLegalItemSchema.optional(),
+	region: regionItemSchema.optional(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.date().optional(),
+	validTo: z.date().optional(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 
 export type InstitucionItem = z.infer<typeof institucionItemSchema>;
@@ -58,7 +60,7 @@ export type InstitucionItem = z.infer<typeof institucionItemSchema>;
 // ============================================
 
 export const institucionConfigSchema = z.object({
-    institucionItems: z.array(institucionItemSchema)
+	institucionItems: z.array(institucionItemSchema)
 });
 
 export type InstitucionConfig = z.infer<typeof institucionConfigSchema>;
