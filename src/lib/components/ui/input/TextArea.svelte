@@ -105,7 +105,7 @@
 
 	{#if hasErrors}
 		<div class="form-feedback-container" id="{name}-error" role="alert">
-			{#each errorList as err}
+			{#each errorList as err (err)}
 				<span class="form-feedback form-feedback--{status} text-body-small">
 					{err}
 				</span>
