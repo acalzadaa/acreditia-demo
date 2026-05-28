@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { entidadLegalItemSchema, entidadLegalRefSchema } from './entidadLegal.schema';
 import { regionItemSchema, regionRefSchema } from './region.schema';
 
 // ============================================
@@ -21,7 +20,6 @@ export type InstitucionRef = z.infer<typeof institucionRefSchema>;
 
 export const institucionFormSchema = z.object({
 	id: z.uuid().optional(),
-	entidadLegalId: z.uuid('Debes seleccionar una entidad legal'),
 	regionId: z.uuid('Debes seleccionar una region'),
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
@@ -37,11 +35,9 @@ export type InstitucionForm = z.infer<typeof institucionFormSchema>;
 
 export const institucionItemSchema = z.object({
 	id: z.uuid(),
-	entidadLegalId: z.uuid('Debes seleccionar una entidad legal'),
-	regionId: z.uuid('Debes seleccionar una region'),
-	code: z.string().min(1, 'El código es requerido'),
-	name: z.string().min(1, 'El nombre es requerido'),
-	entidadLegal: entidadLegalRefSchema.optional(),
+	regionId: z.uuid(),
+	code: z.string(),
+	name: z.string(),
 	region: regionRefSchema.optional(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
@@ -56,11 +52,9 @@ export type InstitucionItem = z.infer<typeof institucionItemSchema>;
 
 export const institucionWithRelationsItemSchema = institucionItemSchema
 	.omit({
-		entidadLegal: true,
 		region: true
 	})
 	.extend({
-		entidadLegal: entidadLegalItemSchema.nullable(),
 		region: regionItemSchema.omit({ entidadLegal: true, entidadLegalId: true })
 	});
 

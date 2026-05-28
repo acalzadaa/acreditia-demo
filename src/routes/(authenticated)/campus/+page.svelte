@@ -5,25 +5,27 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import type { InstitucionWithRelationsItem } from '$lib/schemas/institucion.schema';
+	import type { CampusWithRelationsItem } from '$lib/schemas/campus.schema';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import CrearInstitucionForm from '$lib/components/institucion/CrearInstitucionForm.svelte';
-	import EditarInstitucionForm from '$lib/components/institucion/EditarInstitucionForm.svelte';
-	import BorrarInstitucionForm from '$lib/components/institucion/BorrarInstitucionForm.svelte';
-	import RestaurarInstitucionForm from '$lib/components/institucion/RestaurarInstitucionForm.svelte';
-	import Institucion from '$lib/components/institucion/Institucion.svelte';
-	import {  getInstitucion, getRegionRef } from '$lib/stores/data.svelte';
+	import Campus from '$lib/components/campus/Campus.svelte';
+	import CrearCampusForm from '$lib/components/campus/CrearCampusForm.svelte';
+	import EditarCampusForm from '$lib/components/campus/EditarCampusForm.svelte';
+	import BorrarCampusForm from '$lib/components/campus/BorrarCampusForm.svelte';
+	import RestaurarCampusForm from '$lib/components/campus/RestaurarCampusForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
+	import { getCampus, getInstitucionRef } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
 
+	
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let institucionItems = getInstitucion();
-	let regiones = getRegionRef();
+	let campusItems = getCampus();
+
+	let instituciones = getInstitucionRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let itemSeleccionado: InstitucionWithRelationsItem | null = $state(null);
+	let itemSeleccionado: CampusWithRelationsItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -83,12 +85,12 @@
 
 	/* EDITAR */
 
-	function onClickEditar(item: InstitucionWithRelationsItem) {
+	function onClickEditar(item: CampusWithRelationsItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: InstitucionWithRelationsItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: CampusWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
@@ -96,24 +98,24 @@
 
 	/* BORRAR */
 
-	function onClickBorrar(item: InstitucionWithRelationsItem) {
+	function onClickBorrar(item: CampusWithRelationsItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: InstitucionWithRelationsItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: CampusWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: InstitucionWithRelationsItem) {
+	function onClickRestaurar(item: CampusWithRelationsItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: InstitucionWithRelationsItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: CampusWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
@@ -151,30 +153,24 @@
 		showFilter={true}
 	/>
 
-	<Institucion
-		{institucionItems}
-		onClickEditar={(item: InstitucionWithRelationsItem) => onClickEditar(item)}
-		onKeydownEditar={(e: KeyboardEvent, item: InstitucionWithRelationsItem) =>
-			onKeydownEditar(e, item)}
-		onClickBorrar={(item: InstitucionWithRelationsItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: InstitucionWithRelationsItem) =>
-			onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: InstitucionWithRelationsItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: InstitucionWithRelationsItem) =>
+	<Campus
+		{campusItems}
+		onClickEditar={(item: CampusWithRelationsItem) => onClickEditar(item)}
+		onKeydownEditar={(e: KeyboardEvent, item: CampusWithRelationsItem) => onKeydownEditar(e, item)}
+		onClickBorrar={(item: CampusWithRelationsItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e: KeyboardEvent, item: CampusWithRelationsItem) => onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: CampusWithRelationsItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: CampusWithRelationsItem) =>
 			onKeydownRestaurar(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearInstitucionForm
-		bind:open={showCrearModal}
-		{regiones}
-		onClose={handleCerrar}
-	/>
+	<CrearCampusForm bind:open={showCrearModal} {instituciones} onClose={handleCerrar} />
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
-		<EditarInstitucionForm
-			{regiones}
+		<EditarCampusForm
+			{instituciones}
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
@@ -183,7 +179,7 @@
 
 	<!-- MODAL BORRAR -->
 	{#if showBorrarModal && itemSeleccionado}
-		<BorrarInstitucionForm
+		<BorrarCampusForm
 			bind:open={showBorrarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
@@ -192,7 +188,7 @@
 
 	<!-- MODAL RESTAURAR -->
 	{#if showRestaurarModal && itemSeleccionado}
-		<RestaurarInstitucionForm
+		<RestaurarCampusForm
 			bind:open={showRestaurarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}

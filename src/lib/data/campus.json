@@ -1,8 +1,8 @@
 {
     "campusItems": [
         {
-            "id": "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
-            "institucionId": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
+            "id": "46b1ec36-bb7f-4130-abd6-8a0081fcb885",
+            "institucionId": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
             "code": "CAMPUS-MTY-001",
             "name": "Campus Monterrey",
             "version": 1,
@@ -13,9 +13,7 @@
             "createdAt": "2024-02-01T11:00:00Z",
             "createdBy": "admin@system.com",
             "institucion": {
-                "id": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
-                "entidadLegalId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                "regionId": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
+                "id": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
                 "code": "IA-001",
                 "name": "Universidad Tecnológica del Norte",
                 "version": 1,
@@ -28,8 +26,8 @@
             }
         },
         {
-            "id": "8d9e0f1a-2b3c-4d5e-6f7a-8b9c0d1e2f3a",
-            "institucionId": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
+            "id": "1b85eecd-0115-400c-b418-b70d9d3826e0",
+            "institucionId": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
             "code": "CAMPUS-SALT-002",
             "name": "Campus Saltillo",
             "version": 1,
@@ -40,9 +38,7 @@
             "createdAt": "2024-02-15T14:30:00Z",
             "createdBy": "admin@system.com",
             "institucion": {
-                "id": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
-                "entidadLegalId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                "regionId": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
+                "id": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
                 "code": "IA-001",
                 "name": "Universidad Tecnológica del Norte",
                 "version": 1,

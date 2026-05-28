@@ -9,22 +9,20 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 	import {
-		institucionWithRelationsItemSchema,
-		type InstitucionWithRelationsItem
-	} from '$lib/schemas/institucion.schema';
-	import type { RegionRef } from '$lib/schemas/region.schema';
+		type InstitucionRef	} from '$lib/schemas/institucion.schema';
+	import { campusWithRelationsItemSchema, type CampusWithRelationsItem } from '$lib/schemas/campus.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: InstitucionWithRelationsItem;
-		regiones: RegionRef[];
+		selectedItem: CampusWithRelationsItem;
+		instituciones: InstitucionRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	let regionesOptions = $derived(
-		props.regiones?.map((ref) => ({
+	let institucionOptions = $derived(
+		props.instituciones?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		})) ?? []
@@ -38,7 +36,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(institucionWithRelationsItemSchema),
+			validators: zod4(campusWithRelationsItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -72,7 +70,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar region</h2>
+			<h2 class="modal-title text-h4">Editar campus</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -99,11 +97,11 @@
 					<InputSelect
 						label="Region"
 						name="regionId"
-						optionsData={regionesOptions}
+						optionsData={institucionOptions}
 						required={true}
-						bind:value={$form.regionId}
-						errors={$errors.regionId}
-						{...$constraints.regionId}
+						bind:value={$form.institucionId}
+						errors={$errors.institucionId}
+						{...$constraints.institucionId}
 					></InputSelect>
 
 					<InputText

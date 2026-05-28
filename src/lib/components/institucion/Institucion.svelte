@@ -1,17 +1,17 @@
 <script lang="ts">
-	import type { InstitucionWithRelations } from '$lib/server/db/tables/institucion.table';
+	import type { InstitucionWithRelationsItem } from '$lib/schemas/institucion.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		institucionItems: InstitucionWithRelations[];
-		onClickEditar: (item: InstitucionWithRelations) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: InstitucionWithRelations) => void;
-		onClickBorrar: (item: InstitucionWithRelations) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: InstitucionWithRelations) => void;
-		onClickRestaurar: (item: InstitucionWithRelations) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: InstitucionWithRelations) => void;
+		institucionItems: InstitucionWithRelationsItem[];
+		onClickEditar: (item: InstitucionWithRelationsItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: InstitucionWithRelationsItem) => void;
+		onClickBorrar: (item: InstitucionWithRelationsItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: InstitucionWithRelationsItem) => void;
+		onClickRestaurar: (item: InstitucionWithRelationsItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: InstitucionWithRelationsItem) => void;
 	}
 
 	const {
@@ -136,17 +136,6 @@
 	.data-table .col-name {
 		width: 18rem;
 		min-width: 12rem;
-		/* wrap controlado */
-		overflow-wrap: break-word;
-		word-break: break-word;
-		hyphens: auto;
-	}
-
-	/* Descripción — columna flexible; toma el espacio sobrante.
-   Hace wrap y tiene un mínimo para no volverse ilegible.     */
-	.data-table .col-description {
-		width: 18rem;
-		min-width: 14rem;
 		/* wrap controlado */
 		overflow-wrap: break-word;
 		word-break: break-word;

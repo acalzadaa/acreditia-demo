@@ -8,6 +8,7 @@ import normativaJsonData from '$lib/data/normativa.json';
 import entidadLegalJsonData from '$lib/data/entidad-legal.json';
 import regionJsonData from '$lib/data/region.json';
 import institucionJsonData from '$lib/data/institucion.json';
+import campusJsonData from '$lib/data/campus.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -36,15 +37,23 @@ import {
 	type InstitucionWithRelationsItem
 } from '$lib/schemas/institucion.schema';
 
+import {
+	campusWithRelationsItemSchema,
+	type CampusWithRelationsItem
+} from '$lib/schemas/campus.schema';
+
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
 let planeaciones = $state<PlaneacionEstrategicaWithFilosofiaItem[]>([]);
 let objetivos = $state<ObjetivoEstrategicoWithPlaneacionItem[]>([]);
 let indicadores = $state<IndicadorEstrategicoWithObjetivoItem[]>([]);
+
 let normativas = $state<NormativaItem[]>([]);
+
 let entidadLegal = $state<EntidadLegalItem[]>([]);
 let region = $state<RegionWithEntidadLegalItem[]>([]);
 let institucion = $state<InstitucionWithRelationsItem[]>([]);
+let campus = $state<CampusWithRelationsItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -73,6 +82,9 @@ region = regionRawData.map((item) => regionWithEntidadLegalItemSchema.parse(item
 
 const institucionRawData = institucionJsonData.institucionItems;
 institucion = institucionRawData.map((item) => institucionWithRelationsItemSchema.parse(item));
+
+const campusRawData = campusJsonData.campusItems;
+campus = campusRawData.map((item) => campusWithRelationsItemSchema.parse(item));
 
 // Helpers
 export function getFilosofias() {
@@ -125,6 +137,18 @@ export function getInstitucion() {
 
 export function getInstitucionRef() {
 	return institucion.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
+}
+
+export function getCampus() {
+	return campus;
+}
+
+export function getCampusRef() {
+	return campus.map((item) => ({
 		id: item.id,
 		code: item.code,
 		name: item.name
