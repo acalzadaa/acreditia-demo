@@ -3,18 +3,21 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { estatusOptions } from '$lib/types/common.types';
+
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { institucionItemSchema, type InstitucionItem } from '$lib/schemas/institucion.schema';
-	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
-	import type { RegionRef } from '$lib/schemas/region.schema';
 	import Icon from '../ui/Icon.svelte';
+	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
+	import {
+		institucionWithRelationsItemSchema,
+		type InstitucionWithRelationsItem
+	} from '$lib/schemas/institucion.schema';
+	import type { RegionRef } from '$lib/schemas/region.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: InstitucionItem;
+		selectedItem: InstitucionWithRelationsItem;
 		entidadesLegales: EntidadLegalRef[];
 		regiones: RegionRef[];
 		onClose: () => void;
@@ -22,14 +25,14 @@
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	const entidadLegalOptions = $derived(
+	let entidadLegalOptions = $derived(
 		props.entidadesLegales?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		})) ?? []
 	);
 
-	const regionOptions = $derived(
+	let regionesOptions = $derived(
 		props.regiones?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
@@ -40,26 +43,29 @@
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, tainted, isTainted, message } = superForm(props.selectedItem, {
-		dataType: 'json',
-		validators: zod4(institucionItemSchema),
-		validationMethod: 'onblur',
-		customValidity: false,
-		resetForm: false,
-		taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
-		onSubmit: ({ cancel }) => {
-			if (!isTainted($tainted)) {
-				cancel();
-				handleClose();
-				console.log('No hay cambios para guardar');
-			}
-		},
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
-				handleClose();
+	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
+		props.selectedItem,
+		{
+			dataType: 'json',
+			validators: zod4(institucionWithRelationsItemSchema),
+			validationMethod: 'onblur',
+			customValidity: false,
+			resetForm: false,
+			taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
+			onSubmit: ({ cancel }) => {
+				if (!isTainted($tainted)) {
+					cancel();
+					handleClose();
+					console.log('No hay cambios para guardar');
+				}
+			},
+			onUpdated: async ({ form }) => {
+				if (form.valid) {
+					handleClose();
+				}
 			}
 		}
-	});
+	);
 
 	function handleClose() {
 		onClose();
@@ -75,13 +81,14 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Modificar Indicador Estrategico</h2>
+			<h2 class="modal-title text-h4">Editar region</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
 				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
+				isDisabled={false}
 			/>
 		</header>
 
@@ -96,6 +103,7 @@
 						{$message}
 					</div>
 				{/if}
+
 				<div class="form-fields">
 					<InputSelect
 						label="Entidad Legal"
@@ -104,27 +112,18 @@
 						required={true}
 						bind:value={$form.entidadLegalId}
 						errors={$errors.entidadLegalId}
-					/>
+						{...$constraints.entidadLegalId}
+					></InputSelect>
 
 					<InputSelect
 						label="Region"
 						name="regionId"
-						optionsData={regionOptions}
+						optionsData={regionesOptions}
 						required={true}
 						bind:value={$form.regionId}
 						errors={$errors.regionId}
-					/>
-
-					<InputText
-						label="Código"
-						name="code"
-						required={true}
-						placeholder="PE-001"
-						status={$errors.code ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
-					/>
+						{...$constraints.regionId}
+					></InputSelect>
 
 					<InputText
 						label="Nombre"
@@ -135,39 +134,17 @@
 						disabled={false}
 						bind:value={$form.name}
 						errors={$errors.name}
+						{...$constraints.name}
 					/>
-
-					<InputSelect
-						label="Estado"
-						name="status"
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
-					></InputSelect>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
-				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
+					Cancelar
+				</Button>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
-
-<style>
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>

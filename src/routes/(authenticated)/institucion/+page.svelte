@@ -5,26 +5,26 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import type { RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
-	import RestaurarRegionForm from '$lib/components/region/RestaurarRegionForm.svelte';
-	import BorrarRegionForm from '$lib/components/region/BorrarRegionForm.svelte';
+	import type { InstitucionWithRelationsItem } from '$lib/schemas/institucion.schema';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import CrearRegionForm from '$lib/components/region/CrearRegionForm.svelte';
-	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
-	import Region from '$lib/components/region/Region.svelte';
+	import CrearInstitucionForm from '$lib/components/institucion/CrearInstitucionForm.svelte';
+	import EditarInstitucionForm from '$lib/components/institucion/EditarInstitucionForm.svelte';
+	import BorrarInstitucionForm from '$lib/components/institucion/BorrarInstitucionForm.svelte';
+	import RestaurarInstitucionForm from '$lib/components/institucion/RestaurarInstitucionForm.svelte';
+	import Institucion from '$lib/components/institucion/Institucion.svelte';
+	import { getEntidadLegalRef, getInstitucion, getRegionRef } from '$lib/stores/data.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import {  getEntidadLegalRef, getRegion } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
+
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-
-	let regionItems = getRegion();
-	let entidadLegal = getEntidadLegalRef();
-
+	let institucionItems = getInstitucion();
+	let entidadesLegales = getEntidadLegalRef();
+	let regiones = getRegionRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let itemSeleccionado: RegionWithEntidadLegalItem | null = $state(null);
+	let itemSeleccionado: InstitucionWithRelationsItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -84,12 +84,12 @@
 
 	/* EDITAR */
 
-	function onClickEditar(item: RegionWithEntidadLegalItem) {
+	function onClickEditar(item: InstitucionWithRelationsItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: InstitucionWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
@@ -97,24 +97,24 @@
 
 	/* BORRAR */
 
-	function onClickBorrar(item: RegionWithEntidadLegalItem) {
+	function onClickBorrar(item: InstitucionWithRelationsItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: InstitucionWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: RegionWithEntidadLegalItem) {
+	function onClickRestaurar(item: InstitucionWithRelationsItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: InstitucionWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
@@ -152,32 +152,41 @@
 		showFilter={true}
 	/>
 
-	<Region
-		{regionItems}
-		onClickEditar={(item: RegionWithEntidadLegalItem) => onClickEditar(item)}
-		onKeydownEditar={(e, item: RegionWithEntidadLegalItem) => onKeydownEditar(e, item)}
-		onClickBorrar={(item: RegionWithEntidadLegalItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e, item: RegionWithEntidadLegalItem) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: RegionWithEntidadLegalItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: RegionWithEntidadLegalItem) => onKeydownRestaurar(e, item)}
+	<Institucion
+		{institucionItems}
+		onClickEditar={(item: InstitucionWithRelationsItem) => onClickEditar(item)}
+		onKeydownEditar={(e: KeyboardEvent, item: InstitucionWithRelationsItem) =>
+			onKeydownEditar(e, item)}
+		onClickBorrar={(item: InstitucionWithRelationsItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e: KeyboardEvent, item: InstitucionWithRelationsItem) =>
+			onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: InstitucionWithRelationsItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: InstitucionWithRelationsItem) =>
+			onKeydownRestaurar(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearRegionForm bind:open={showCrearModal} refs={entidadLegal} onClose={handleCerrar} />
+	<CrearInstitucionForm
+		bind:open={showCrearModal}
+		{entidadesLegales}
+		{regiones}
+		onClose={handleCerrar}
+	/>
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
-		<EditarRegionForm
+		<EditarInstitucionForm
+			{entidadesLegales}
+			{regiones}
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
-			refs={entidadLegal}
 			onClose={handleCerrar}
 		/>
 	{/if}
 
 	<!-- MODAL BORRAR -->
 	{#if showBorrarModal && itemSeleccionado}
-		<BorrarRegionForm
+		<BorrarInstitucionForm
 			bind:open={showBorrarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
@@ -186,7 +195,7 @@
 
 	<!-- MODAL RESTAURAR -->
 	{#if showRestaurarModal && itemSeleccionado}
-		<RestaurarRegionForm
+		<RestaurarInstitucionForm
 			bind:open={showRestaurarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}

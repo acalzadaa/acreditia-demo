@@ -47,7 +47,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Eliminar entidad legal</h2>
+			<h2 class="modal-title text-h4">Borrar entidad legal</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -72,7 +72,7 @@
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Eliminar entidad</Button>
+				<Button type="submit" variant="critical">Borrar entidad</Button>
 			</footer>
 		</form>
 	</div>

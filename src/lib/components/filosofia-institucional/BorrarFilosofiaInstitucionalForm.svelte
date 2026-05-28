@@ -50,7 +50,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Eliminar filosofia institucional</h2>
+			<h2 class="modal-title text-h4">Borrar filosofia institucional</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -75,7 +75,7 @@
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Eliminar filosofia</Button>
+				<Button type="submit" variant="critical">Borrar filosofia</Button>
 			</footer>
 		</form>
 	</div>

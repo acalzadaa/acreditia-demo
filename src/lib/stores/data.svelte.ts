@@ -2,10 +2,12 @@ import filosofiaJsonData from '$lib/data/filosofia-institucional.json';
 import planeacionJsonData from '$lib/data/planeacion-estrategica.json';
 import objetivoJsonData from '$lib/data/objetivo-estrategico.json';
 import indicadorJsonData from '$lib/data/indicador-estrategico.json';
-import normativaJsonData from '$lib/data/normativa.json';
-import entidadLegalJsonData from '$lib/data/entidad-legal.json';
 
+import normativaJsonData from '$lib/data/normativa.json';
+
+import entidadLegalJsonData from '$lib/data/entidad-legal.json';
 import regionJsonData from '$lib/data/region.json';
+import institucionJsonData from '$lib/data/institucion.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -25,7 +27,14 @@ import {
 } from '$lib/schemas/indicadorEstrategico.schema';
 import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 import { entidadLegalItemSchema, type EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
-import {  regionWithEntidadLegalItemSchema, type RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
+import {
+	regionWithEntidadLegalItemSchema,
+	type RegionWithEntidadLegalItem
+} from '$lib/schemas/region.schema';
+import {
+	institucionWithRelationsItemSchema,
+	type InstitucionWithRelationsItem
+} from '$lib/schemas/institucion.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -35,6 +44,7 @@ let indicadores = $state<IndicadorEstrategicoWithObjetivoItem[]>([]);
 let normativas = $state<NormativaItem[]>([]);
 let entidadLegal = $state<EntidadLegalItem[]>([]);
 let region = $state<RegionWithEntidadLegalItem[]>([]);
+let institucion = $state<InstitucionWithRelationsItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -60,6 +70,9 @@ entidadLegal = entidadLegalRawData.map((item) => entidadLegalItemSchema.parse(it
 
 const regionRawData = regionJsonData.regionItems;
 region = regionRawData.map((item) => regionWithEntidadLegalItemSchema.parse(item));
+
+const institucionRawData = institucionJsonData.institucionItems;
+institucion = institucionRawData.map((item) => institucionWithRelationsItemSchema.parse(item));
 
 // Helpers
 export function getFilosofias() {
@@ -100,6 +113,18 @@ export function getRegion() {
 
 export function getRegionRef() {
 	return region.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
+}
+
+export function getInstitucion() {
+	return institucion;
+}
+
+export function getInstitucionRef() {
+	return institucion.map((item) => ({
 		id: item.id,
 		code: item.code,
 		name: item.name

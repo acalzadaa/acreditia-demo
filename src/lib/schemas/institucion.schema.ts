@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { entidadLegalItemSchema } from './entidadLegal.schema';
-import { regionItemSchema } from './region.schema';
+import { entidadLegalItemSchema, entidadLegalRefSchema } from './entidadLegal.schema';
+import { regionItemSchema, regionRefSchema } from './region.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -41,8 +41,8 @@ export const institucionItemSchema = z.object({
 	regionId: z.uuid('Debes seleccionar una region'),
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
-	entidadLegal: entidadLegalItemSchema.optional(),
-	region: regionItemSchema.optional(),
+	entidadLegal: entidadLegalRefSchema.optional(),
+	region: regionRefSchema.optional(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -53,6 +53,18 @@ export const institucionItemSchema = z.object({
 });
 
 export type InstitucionItem = z.infer<typeof institucionItemSchema>;
+
+export const institucionWithRelationsItemSchema = institucionItemSchema
+	.omit({
+		entidadLegal: true,
+		region: true
+	})
+	.extend({
+		entidadLegal: entidadLegalItemSchema.nullable(),
+		region: regionItemSchema.omit({ entidadLegal: true, entidadLegalId: true })
+	});
+
+export type InstitucionWithRelationsItem = z.infer<typeof institucionWithRelationsItemSchema>;
 
 // ============================================
 // 4. CONFIG SCHEMA (Servidor → Cliente)
