@@ -116,7 +116,7 @@
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Actualiza filosofia</Button
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar filosofia</Button
 				>
 			</footer>
 		</form>
