@@ -1,8 +1,8 @@
 {
     "unidadAcademicaItems": [
         {
-            "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
-            "campusId": "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+            "id": "85547c54-5d7c-4613-abf3-baa4e530b3a3",
+            "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
             "code": "FIC-001",
             "name": "Facultad de Ingeniería y Ciencias",
             "version": 1,
@@ -13,8 +13,7 @@
             "createdAt": "2024-03-01T09:00:00Z",
             "createdBy": "admin@system.com",
             "campus": {
-                "id": "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
-                "institucionId": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
+                "id": "99be4241-389d-430a-83f2-b1c612c029ac",
                 "code": "CAMPUS-MTY-001",
                 "name": "Campus Monterrey",
                 "version": 1,
@@ -23,53 +22,12 @@
                 "validTo": null,
                 "isDeleted": false,
                 "createdAt": "2024-02-01T11:00:00Z",
-                "createdBy": "admin@system.com",
-                "institucion": {
-                    "id": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
-                    "entidadLegalId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "regionId": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
-                    "code": "IA-001",
-                    "name": "Universidad Tecnológica del Norte",
-                    "version": 1,
-                    "isCurrent": true,
-                    "validFrom": "2024-01-15T00:00:00Z",
-                    "validTo": null,
-                    "isDeleted": false,
-                    "createdAt": "2024-01-15T09:00:00Z",
-                    "createdBy": "admin@system.com",
-                    "region": {
-                        "id": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
-                        "entidadLegalId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                        "code": "REG-NORTE",
-                        "name": "Región Norte",
-                        "description": "Zona norte del país",
-                        "version": 1,
-                        "isCurrent": true,
-                        "validFrom": "2024-01-01T00:00:00Z",
-                        "validTo": null,
-                        "isDeleted": false,
-                        "createdAt": "2024-01-01T10:30:00Z",
-                        "createdBy": "admin@system.com"
-                    },
-                    "entidadLegal": {
-                        "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                        "code": "EL-001",
-                        "name": "Instituto Educativo del Noreste A.C",
-                        "description": "Organización educativa sin fines de lucro",
-                        "version": 1,
-                        "isCurrent": true,
-                        "validFrom": "2024-01-01T00:00:00Z",
-                        "validTo": null,
-                        "isDeleted": false,
-                        "createdAt": "2024-01-01T10:00:00Z",
-                        "createdBy": "admin@system.com"
-                    }
-                }
+                "createdBy": "admin@system.com"
             }
         },
         {
-            "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
-            "campusId": "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+            "id": "2cf46373-8999-46f5-8b3e-ce3ad3ca29f2",
+            "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
             "code": "ECO-002",
             "name": "Escuela de Economía y Negocios",
             "version": 1,
@@ -80,8 +38,7 @@
             "createdAt": "2024-03-01T10:00:00Z",
             "createdBy": "admin@system.com",
             "campus": {
-                "id": "7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
-                "institucionId": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
+                "id": "99be4241-389d-430a-83f2-b1c612c029ac",
                 "code": "CAMPUS-MTY-001",
                 "name": "Campus Monterrey",
                 "version": 1,
@@ -90,48 +47,7 @@
                 "validTo": null,
                 "isDeleted": false,
                 "createdAt": "2024-02-01T11:00:00Z",
-                "createdBy": "admin@system.com",
-                "institucion": {
-                    "id": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
-                    "entidadLegalId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                    "regionId": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
-                    "code": "IA-001",
-                    "name": "Universidad Tecnológica del Norte",
-                    "version": 1,
-                    "isCurrent": true,
-                    "validFrom": "2024-01-15T00:00:00Z",
-                    "validTo": null,
-                    "isDeleted": false,
-                    "createdAt": "2024-01-15T09:00:00Z",
-                    "createdBy": "admin@system.com",
-                    "region": {
-                        "id": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
-                        "entidadLegalId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                        "code": "REG-NORTE",
-                        "name": "Región Norte",
-                        "description": "Zona norte del país",
-                        "version": 1,
-                        "isCurrent": true,
-                        "validFrom": "2024-01-01T00:00:00Z",
-                        "validTo": null,
-                        "isDeleted": false,
-                        "createdAt": "2024-01-01T10:30:00Z",
-                        "createdBy": "admin@system.com"
-                    },
-                    "entidadLegal": {
-                        "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                        "code": "EL-001",
-                        "name": "Instituto Educativo del Noreste A.C",
-                        "description": "Organización educativa sin fines de lucro",
-                        "version": 1,
-                        "isCurrent": true,
-                        "validFrom": "2024-01-01T00:00:00Z",
-                        "validTo": null,
-                        "isDeleted": false,
-                        "createdAt": "2024-01-01T10:00:00Z",
-                        "createdBy": "admin@system.com"
-                    }
-                }
+                "createdBy": "admin@system.com"
             }
         }
     ]

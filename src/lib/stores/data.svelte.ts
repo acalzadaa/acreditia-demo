@@ -9,6 +9,7 @@ import entidadLegalJsonData from '$lib/data/entidad-legal.json';
 import regionJsonData from '$lib/data/region.json';
 import institucionJsonData from '$lib/data/institucion.json';
 import campusJsonData from '$lib/data/campus.json';
+import unidadAcademicaJsonData from '$lib/data/unidad-academica.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -41,6 +42,10 @@ import {
 	campusWithRelationsItemSchema,
 	type CampusWithRelationsItem
 } from '$lib/schemas/campus.schema';
+import {
+	type UnidadAcademicaWithRelationsItem,
+	unidadAcademicaWithRelationsItemSchema
+} from '$lib/schemas/unidadAcademica.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -54,6 +59,7 @@ let entidadLegal = $state<EntidadLegalItem[]>([]);
 let region = $state<RegionWithEntidadLegalItem[]>([]);
 let institucion = $state<InstitucionWithRelationsItem[]>([]);
 let campus = $state<CampusWithRelationsItem[]>([]);
+let unidadAcademica = $state<UnidadAcademicaWithRelationsItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -85,6 +91,11 @@ institucion = institucionRawData.map((item) => institucionWithRelationsItemSchem
 
 const campusRawData = campusJsonData.campusItems;
 campus = campusRawData.map((item) => campusWithRelationsItemSchema.parse(item));
+
+const unidadAcademicaRawData = unidadAcademicaJsonData.unidadAcademicaItems;
+unidadAcademica = unidadAcademicaRawData.map((item) =>
+	unidadAcademicaWithRelationsItemSchema.parse(item)
+);
 
 // Helpers
 export function getFilosofias() {
@@ -153,4 +164,8 @@ export function getCampusRef() {
 		code: item.code,
 		name: item.name
 	}));
+}
+
+export function getUnidadAcademica() {
+	return unidadAcademica;
 }

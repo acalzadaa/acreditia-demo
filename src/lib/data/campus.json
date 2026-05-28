@@ -1,7 +1,7 @@
 {
     "campusItems": [
         {
-            "id": "46b1ec36-bb7f-4130-abd6-8a0081fcb885",
+            "id": "99be4241-389d-430a-83f2-b1c612c029ac",
             "institucionId": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
             "code": "CAMPUS-MTY-001",
             "name": "Campus Monterrey",
@@ -26,7 +26,7 @@
             }
         },
         {
-            "id": "1b85eecd-0115-400c-b418-b70d9d3826e0",
+            "id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
             "institucionId": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
             "code": "CAMPUS-SALT-002",
             "name": "Campus Saltillo",
