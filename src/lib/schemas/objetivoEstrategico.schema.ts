@@ -12,7 +12,7 @@ export const objetivoEstrategicoRefSchema = z.object({
 	code: z.string(),
 	name: z.string()
 });
-export type ObjetivoEstrategicoRefSchema = z.infer<typeof objetivoEstrategicoRefSchema>;
+export type ObjetivoEstrategicoRef = z.infer<typeof objetivoEstrategicoRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { entidadLegalItemSchema, entidadLegalRefSchema } from './entidadLegal.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
@@ -33,17 +34,29 @@ export const regionItemSchema = z.object({
   entidadLegalId: z.uuid(),
   code: z.string(),
   name: z.string(),
-  description: z.string().optional(),
+  description: z.string(),
+  entidadLegal: entidadLegalRefSchema.optional(),
   version: z.number().default(0),
   isCurrent: z.boolean().default(false),
-  validFrom: z.date().optional(),
-  validTo: z.date().optional(),
+  validFrom: z.coerce.date().optional(),
+  validTo: z.coerce.date().optional(),
   isDeleted: z.boolean().default(false),
   createdAt: z.iso.datetime().optional(),
   createdBy: z.string()
 });
 
 export type RegionItem = z.infer<typeof regionItemSchema>;
+
+
+export const regionWithEntidadLegalItemSchema = regionItemSchema
+  .omit({ entidadLegal: true })
+  .extend({
+    entidadLegal: entidadLegalItemSchema.nullable()
+  });
+
+export type RegionWithEntidadLegalItem = z.infer<
+  typeof regionWithEntidadLegalItemSchema
+>;
 
 // ============================================
 // 4. CONFIG SCHEMA

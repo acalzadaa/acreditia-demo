@@ -1,28 +1,31 @@
 <script lang="ts">
-	import { superForm, type SuperValidated } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms';
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import InputText from '../ui/input/InputText.svelte';
-	import { regionFormSchema, type RegionForm } from '$lib/schemas/region.schema';
-	import Icon from '../ui/Icon.svelte';
+	import { regionWithEntidadLegalItemSchema, type RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
 
 	interface Props {
 		open: boolean;
-		form: SuperValidated<RegionForm>;
+		selectedItem: RegionWithEntidadLegalItem;
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, ...props }: Props = $props();
-
+	let { open = $bindable(false), onClose, selectedItem }: Props = $props();
+	
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, message } = superForm(props.form, {
+	const { form, enhance } = superForm(selectedItem, {
+		dataType: 'json',
+		validators: zod4(regionWithEntidadLegalItemSchema),
+		customValidity: false,
 		resetForm: false,
-		validators: zod4(regionFormSchema),
+		onSubmit: () => {
+			handleClose();
+		},
 		onUpdated: async ({ form }) => {
 			if (form.valid) {
 				handleClose();
@@ -44,52 +47,30 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear Region</h2>
+			<h2 class="modal-title text-h4">Restaurar region</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
 				size="lg"
-				onClick={handleClose}
+				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
 		</header>
 
-		<form method="POST" action="?/create" use:enhance>
-			<div class="modal-body">
-				{#if $message}
-					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name="warning"></Icon>
-						{$message}
-					</div>
-				{/if}
-				<div class="form-fields">
-					<InputText
-						label="Código"
-						name="code"
-						required={true}
-						placeholder="R-001"
-						status={$errors.code ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
-					/>
+		<form method="POST" action="?/restore" use:enhance>
+			<!-- Hidden input para el ID -->
+			<input type="hidden" name="id" value={$form.id} />
+			<input type="hidden" name="code" value={$form.code} />
 
-					<InputText
-						label="Nombre"
-						name="name"
-						required={true}
-						placeholder="p.e Region Noreste"
-						status={$errors.name ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.name}
-						errors={$errors.name}
-					/>
-				</div>
+			<div class="modal-form confirm-content">
+				<p class="confirm-message text-body-large">
+					¿Estás seguro de que deseas restaurar el registro <strong>"{selectedItem?.name}"</strong>?
+				</p>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="submit" variant="primary">Restaurar</Button>
 			</footer>
 		</form>
 	</div>
@@ -104,9 +85,13 @@
 		}
 
 		.modal-header,
-		.form-fields,
 		.modal-footer {
 			padding: var(--space-4);
 		}
+	}
+
+	.confirm-content {
+		padding: var(--space-6);
+		text-align: center;
 	}
 </style>

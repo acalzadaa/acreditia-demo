@@ -6,11 +6,11 @@
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { FilosofiaInstitucionalRef } from '$lib/schemas/filosofiaInstitucional.schema';
+	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
 
 	interface Props {
 		open: boolean;
-		refs: FilosofiaInstitucionalRef[];
+		refs: EntidadLegalRef[];
 		onClose: () => void;
 	}
 
@@ -18,7 +18,7 @@
 
 	// Estado local del formulario
 	let formData = $state({
-		filosofiaId: '',
+		entidadLegalId: '',
 		code: '',
 		name: '',
 		description: ''
@@ -26,8 +26,8 @@
 
 	let errorMessage = $state('');
 
-	// Opciones para el select
-	const filosofiaOptions = $derived(
+	// Opciones para el select de entidad legal
+	const entidadLegalOptions = $derived(
 		refs.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
@@ -36,15 +36,15 @@
 
 	// Auto-seleccionar si solo hay una opción
 	$effect(() => {
-		if (filosofiaOptions.length === 1 && !formData.filosofiaId) {
-			formData.filosofiaId = filosofiaOptions[0].id;
+		if (entidadLegalOptions.length === 1 && !formData.entidadLegalId) {
+			formData.entidadLegalId = entidadLegalOptions[0].id;
 		}
 	});
 
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.filosofiaId) {
-			errorMessage = 'Debes seleccionar una filosofía institucional';
+		if (!formData.entidadLegalId) {
+			errorMessage = 'Debes seleccionar una entidad legal';
 			return;
 		}
 		if (!formData.code) {
@@ -58,18 +58,18 @@
 
 		// Aquí podrías console.log o guardar los datos si quieres
 		console.log('Datos enviados (demo):', formData);
-
+		
 		// Limpiar formulario
 		formData = {
-			filosofiaId: '',
+			entidadLegalId: '',
 			code: '',
 			name: '',
 			description: ''
 		};
-
+		
 		// Limpiar mensaje de error
 		errorMessage = '';
-
+		
 		// Cerrar modal
 		handleClose();
 	}
@@ -77,7 +77,7 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			filosofiaId: '',
+			entidadLegalId: '',
 			code: '',
 			name: '',
 			description: ''
@@ -101,7 +101,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear planeación estratégica</h2>
+			<h2 class="modal-title text-h4">Crear región</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -111,12 +111,10 @@
 			/>
 		</header>
 
-		<form
-			onsubmit={(e) => {
-				e.preventDefault();
-				handleSubmit();
-			}}
-		>
+		<form onsubmit={(e) => {
+			e.preventDefault();
+			handleSubmit();
+		}}>
 			<div class="modal-body">
 				<div class="form-fields">
 					{#if errorMessage}
@@ -125,20 +123,21 @@
 							{errorMessage}
 						</div>
 					{/if}
+					
 					<InputSelect
-						label="Filosofía Institucional"
-						name="filosofiaId"
-						optionsData={filosofiaOptions}
+						label="Entidad Legal"
+						name="entidadLegalId"
+						optionsData={entidadLegalOptions}
 						required={true}
-						bind:value={formData.filosofiaId}
-						errors={errorMessage && !formData.filosofiaId ? [errorMessage] : undefined}
+						bind:value={formData.entidadLegalId}
+						errors={errorMessage && !formData.entidadLegalId ? [errorMessage] : undefined}
 					/>
 
 					<InputText
 						label="Código"
 						name="code"
 						required={true}
-						placeholder="PE-001"
+						placeholder="REG-001"
 						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.code}
@@ -149,7 +148,7 @@
 						label="Nombre"
 						name="name"
 						required={true}
-						placeholder="Excelencia educativa"
+						placeholder="Región Norte"
 						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.name}
@@ -168,7 +167,7 @@
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear planeación</Button>
+				<Button type="submit" variant="primary">Crear región</Button>
 			</footer>
 		</form>
 	</div>

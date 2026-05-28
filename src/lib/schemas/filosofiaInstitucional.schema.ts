@@ -8,7 +8,7 @@ export const filosofiaInstitucionalRefSchema = z.object({
 	code: z.string(),
 	name: z.string()
 });
-export type FilosofiaInstitucionalRefSchema = z.infer<typeof filosofiaInstitucionalRefSchema>;
+export type FilosofiaInstitucionalRef = z.infer<typeof filosofiaInstitucionalRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -36,17 +36,17 @@ export type FilosofiaInstitucionalForm = z.infer<typeof filosofiaInstitucionalFo
 // ============================================
 
 export const filosofiaInstitucionalItemSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	description: z.string(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
+    id: z.uuid(),
+    code: z.string(),
+    name: z.string(),
+    description: z.string(),
+    version: z.number().default(0),
+    isCurrent: z.boolean().default(false),
+    validFrom: z.coerce.date().optional(),
+    validTo: z.coerce.date().optional(),
+    isDeleted: z.boolean().default(false),
+    createdAt: z.iso.datetime().optional(),
+    createdBy: z.string()
 });
 export type FilosofiaInstitucionalItem = z.infer<typeof filosofiaInstitucionalItemSchema>;
 

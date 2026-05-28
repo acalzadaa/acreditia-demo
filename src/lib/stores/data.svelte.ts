@@ -5,6 +5,8 @@ import indicadorJsonData from '$lib/data/indicador-estrategico.json';
 import normativaJsonData from '$lib/data/normativa.json';
 import entidadLegalJsonData from '$lib/data/entidad-legal.json';
 
+import regionJsonData from '$lib/data/region.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
@@ -23,6 +25,7 @@ import {
 } from '$lib/schemas/indicadorEstrategico.schema';
 import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 import { entidadLegalItemSchema, type EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
+import {  regionWithEntidadLegalItemSchema, type RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -31,6 +34,7 @@ let objetivos = $state<ObjetivoEstrategicoWithPlaneacionItem[]>([]);
 let indicadores = $state<IndicadorEstrategicoWithObjetivoItem[]>([]);
 let normativas = $state<NormativaItem[]>([]);
 let entidadLegal = $state<EntidadLegalItem[]>([]);
+let region = $state<RegionWithEntidadLegalItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -53,6 +57,9 @@ normativas = normativasRawData.map((item) => normativaItemSchema.parse(item));
 
 const entidadLegalRawData = entidadLegalJsonData.entidadLegalItems;
 entidadLegal = entidadLegalRawData.map((item) => entidadLegalItemSchema.parse(item));
+
+const regionRawData = regionJsonData.regionItems;
+region = regionRawData.map((item) => regionWithEntidadLegalItemSchema.parse(item));
 
 // Helpers
 export function getFilosofias() {
@@ -77,4 +84,24 @@ export function getNormativas() {
 
 export function getEntidadLegal() {
 	return entidadLegal;
+}
+
+export function getEntidadLegalRef() {
+	return entidadLegal.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
+}
+
+export function getRegion() {
+	return region;
+}
+
+export function getRegionRef() {
+	return region.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
 }

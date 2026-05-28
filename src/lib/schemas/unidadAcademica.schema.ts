@@ -54,8 +54,8 @@ export const unidadAcademicaItemSchema = z.object({
   }).optional(),
   version: z.number().default(0),
   isCurrent: z.boolean().default(false),
-  validFrom: z.date().optional(),
-  validTo: z.date().optional(),
+  validFrom: z.coerce.date().optional(),
+  validTo: z.coerce.date().optional(),
   isDeleted: z.boolean().default(false),
   createdAt: z.iso.datetime().optional(),
   createdBy: z.string()

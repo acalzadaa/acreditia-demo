@@ -12,6 +12,9 @@ export const subareaResponsableRefSchema = z.object({
     name: z.string().min(1, "El nombre es requerido")
 });
 
+export type SubareaResponsableRef = z.infer<typeof subareaResponsableRefSchema>
+
+
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // Para operaciones CRUD: crear y actualizar
