@@ -13,14 +13,13 @@
 	import BorrarInstitucionForm from '$lib/components/institucion/BorrarInstitucionForm.svelte';
 	import RestaurarInstitucionForm from '$lib/components/institucion/RestaurarInstitucionForm.svelte';
 	import Institucion from '$lib/components/institucion/Institucion.svelte';
-	import { getEntidadLegalRef, getInstitucion, getRegionRef } from '$lib/stores/data.svelte';
+	import { getInstitucion, getRegionRef } from '$lib/stores/data.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
 
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let institucionItems = getInstitucion();
-	let entidadesLegales = getEntidadLegalRef();
 	let regiones = getRegionRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
@@ -168,7 +167,6 @@
 	<!-- MODAL CREAR -->
 	<CrearInstitucionForm
 		bind:open={showCrearModal}
-		{entidadesLegales}
 		{regiones}
 		onClose={handleCerrar}
 	/>

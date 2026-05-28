@@ -5,35 +5,24 @@
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
 	import type { RegionRef } from '$lib/schemas/region.schema';
 
 	interface Props {
 		open: boolean;
-		entidadesLegales: EntidadLegalRef[];
 		regiones: RegionRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, entidadesLegales = [], regiones = [] }: Props = $props();
+	let { open = $bindable(false), onClose, regiones = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
-		entidadLegalId: '',
 		regionId: '',
 		code: '',
 		name: ''
 	});
 
 	let errorMessage = $state('');
-
-	// Opciones para los selects
-	const entidadLegalOptions = $derived(
-		entidadesLegales.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		}))
-	);
 
 	const regionesOptions = $derived(
 		regiones.map((ref) => ({
@@ -44,8 +33,8 @@
 
 	// Auto-seleccionar entidad legal si solo hay una opción
 	$effect(() => {
-		if (entidadLegalOptions.length === 1 && !formData.entidadLegalId) {
-			formData.entidadLegalId = entidadLegalOptions[0].id;
+		if (regionesOptions.length === 1 && !formData.regionId) {
+			formData.regionId = regionesOptions[0].id;
 		}
 	});
 
@@ -58,10 +47,7 @@
 
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.entidadLegalId) {
-			errorMessage = 'Debes seleccionar una entidad legal';
-			return;
-		}
+
 		if (!formData.regionId) {
 			errorMessage = 'Debes seleccionar una región';
 			return;
@@ -77,18 +63,17 @@
 
 		// Aquí podrías console.log o guardar los datos si quieres
 		console.log('Datos enviados (demo):', formData);
-		
+
 		// Limpiar formulario
 		formData = {
-			entidadLegalId: '',
 			regionId: '',
 			code: '',
 			name: ''
 		};
-		
+
 		// Limpiar mensaje de error
 		errorMessage = '';
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -96,7 +81,6 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			entidadLegalId: '',
 			regionId: '',
 			code: '',
 			name: ''
@@ -130,10 +114,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				<div class="form-fields">
 					{#if errorMessage}
@@ -142,15 +128,6 @@
 							{errorMessage}
 						</div>
 					{/if}
-					
-					<InputSelect
-						label="Entidad Legal"
-						name="entidadLegalId"
-						optionsData={entidadLegalOptions}
-						required={true}
-						bind:value={formData.entidadLegalId}
-						errors={errorMessage && !formData.entidadLegalId ? [errorMessage] : undefined}
-					/>
 
 					<InputSelect
 						label="Región"

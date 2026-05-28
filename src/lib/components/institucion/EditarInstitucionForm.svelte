@@ -25,13 +25,6 @@
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	let entidadLegalOptions = $derived(
-		props.entidadesLegales?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
-
 	let regionesOptions = $derived(
 		props.regiones?.map((ref) => ({
 			id: ref.id,
@@ -105,16 +98,6 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelect
-						label="Entidad Legal"
-						name="entidadLegalId"
-						optionsData={entidadLegalOptions}
-						required={true}
-						bind:value={$form.entidadLegalId}
-						errors={$errors.entidadLegalId}
-						{...$constraints.entidadLegalId}
-					></InputSelect>
-
 					<InputSelect
 						label="Region"
 						name="regionId"
