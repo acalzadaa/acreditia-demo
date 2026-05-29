@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const JOB_TYPE = ['funcional', 'responsable'] as const;
+export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
 export const ESTATUS = ['activo', 'inactivo', 'borrado'] as const;
 
 // ============================================
