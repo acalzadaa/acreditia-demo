@@ -3,12 +3,11 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { estatusOptions } from '$lib/types/common.types';
-	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { entidadLegalItemSchema, type EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
 	import Icon from '../ui/Icon.svelte';
+	import TextArea from '../ui/input/TextArea.svelte';
 
 	interface Props {
 		open: boolean;
@@ -22,26 +21,29 @@
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, tainted, isTainted, message } = superForm(props.selectedItem, {
-		dataType: 'json',
-		validators: zod4(entidadLegalItemSchema),
-		validationMethod: 'onblur',
-		customValidity: false,
-		resetForm: false,
-		taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
-		onSubmit: ({ cancel }) => {
-			if (!isTainted($tainted)) {
-				cancel();
-				handleClose();
-				console.log('No hay cambios para guardar');
-			}
-		},
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
-				handleClose();
+	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
+		props.selectedItem,
+		{
+			dataType: 'json',
+			validators: zod4(entidadLegalItemSchema),
+			validationMethod: 'onblur',
+			customValidity: false,
+			resetForm: false,
+			taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
+			onSubmit: ({ cancel }) => {
+				if (!isTainted($tainted)) {
+					cancel();
+					handleClose();
+					console.log('No hay cambios para guardar');
+				}
+			},
+			onUpdated: async ({ form }) => {
+				if (form.valid) {
+					handleClose();
+				}
 			}
 		}
-	});
+	);
 
 	function handleClose() {
 		onClose();
@@ -81,17 +83,6 @@
 
 				<div class="form-fields">
 					<InputText
-						label="Código"
-						name="code"
-						required={true}
-						placeholder="GESEAC"
-						status={$errors.code ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
-					/>
-
-					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -102,20 +93,25 @@
 						errors={$errors.name}
 					/>
 
-					<InputSelect
-						label="Estado"
-						name="status"
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
-					></InputSelect>
+					<TextArea
+						label="Descripcion"
+						name="description"
+						placeholder="Descripcion..."
+						status={$errors.description ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.description}
+						errors={$errors.description}
+						{...$constraints.description}
+						rows={4}
+					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
-				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}
+					>Cancelar</Button
+				>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar entidad</Button>
 			</footer>
 		</form>
 	</div>

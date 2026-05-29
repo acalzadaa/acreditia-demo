@@ -4,13 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		planeacionEstrategicaWithFilosofiaItemSchema,	
-		type PlaneacionEstrategicaWithFilosofiaItem} from '$lib/schemas/planeacionEstrategica.schema';
-	
+	import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
+
 	interface Props {
 		open: boolean;
-		selectedItem: PlaneacionEstrategicaWithFilosofiaItem;
+		selectedItem: NormativaItem;
 		onClose: () => void;
 	}
 
@@ -22,7 +20,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(planeacionEstrategicaWithFilosofiaItemSchema),
+		validators: zod4(normativaItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
@@ -49,29 +47,33 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Confirmar eliminación</h2>
+			<h2 class="modal-title text-h4">Restaurar entidad legal</h2>
 			<IconButton
-				name='close'
-				variant='ghost'
-				size='lg'
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
 		</header>
 
-		<form method="POST" action="?/delete" use:enhance>
+		<form method="POST" action="?/restore" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
+			<input type="hidden" name="code" value={$form.code} />
 
-			<div class="modal-form confirm-content">
-				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.name}"</strong>?
-				</p>
+			<div class="modal-body">
+				<div class="confirm-content">
+					<p class="confirm-message text-body-large">
+						¿Estás seguro de que deseas restaurar el registro <strong>"{selectedItem?.name}"</strong
+						>?
+					</p>
+				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Borrar filosofia</Button>
+				<Button type="submit" variant="primary">Restaurar entidad</Button>
 			</footer>
 		</form>
 	</div>
@@ -92,7 +94,7 @@
 	}
 
 	.confirm-content {
-		padding: var(--space-6);
+		padding: var(--space-3) var(--space-6);
 		text-align: center;
 	}
 </style>

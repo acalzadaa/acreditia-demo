@@ -5,26 +5,26 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import type { NormativaItem } from '$lib/schemas/normativa.schema';
-	import BorrarNormativaForm from '$lib/components/normativa/BorrarNormativaForm.svelte';
-	import RestaurarNormativaForm from '$lib/components/normativa/RestaurarNormativaForm.svelte';
-	import EditarNormativaForm from '$lib/components/normativa/EditarNormativaForm.svelte';
-	import CrearNormativaForm from '$lib/components/normativa/CrearNormativaForm.svelte';
+	import type { RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
+	import RestaurarRegionForm from '$lib/components/region/RestaurarRegionForm.svelte';
+	import BorrarRegionForm from '$lib/components/region/BorrarRegionForm.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
+	import CrearRegionForm from '$lib/components/region/CrearRegionForm.svelte';
+	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
+	import Region from '$lib/components/region/Region.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import Normativa from '$lib/components/normativa/Normativa.svelte';
+	import {  getEntidadLegalRef, getRegion } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import { getNormativas } from '$lib/stores/data.svelte';
-
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let normativaItems = getNormativas();
+
+	let regionItems = getRegion();
+	let entidadLegal = getEntidadLegalRef();
 
 	let navigationItems = $derived(page.data.navigationItems);
 
-
-	let itemSeleccionado: NormativaItem | null = $state(null);
+	let itemSeleccionado: RegionWithEntidadLegalItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -71,6 +71,7 @@
 	// ===== HANDLERS =====
 
 	/* CREAR */
+
 	function onClickCrear() {
 		showCrearModal = true;
 	}
@@ -82,12 +83,13 @@
 	}
 
 	/* EDITAR */
-	function onClickEditar(item: NormativaItem) {
+
+	function onClickEditar(item: RegionWithEntidadLegalItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: NormativaItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
@@ -95,29 +97,28 @@
 
 	/* BORRAR */
 
-	function onClickBorrar(item: NormativaItem) {
+	function onClickBorrar(item: RegionWithEntidadLegalItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: NormativaItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: NormativaItem) {
+	function onClickRestaurar(item: RegionWithEntidadLegalItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: NormativaItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
-
 	function handleCerrar() {
 		showCrearModal = false;
 		showEditarModal = false;
@@ -150,31 +151,33 @@
 		showExport={true}
 		showFilter={true}
 	/>
-	<Normativa
-		{normativaItems}
-		onClickEditar={(item: NormativaItem) => onClickEditar(item)}
-		onKeydownEditar={(e: KeyboardEvent, item: NormativaItem) => onKeydownEditar(e, item)}
-		onClickBorrar={(item: NormativaItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: NormativaItem) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: NormativaItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: NormativaItem) => onKeydownRestaurar(e, item)}
+
+	<Region
+		{regionItems}
+		onClickEditar={(item: RegionWithEntidadLegalItem) => onClickEditar(item)}
+		onKeydownEditar={(e, item: RegionWithEntidadLegalItem) => onKeydownEditar(e, item)}
+		onClickBorrar={(item: RegionWithEntidadLegalItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e, item: RegionWithEntidadLegalItem) => onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: RegionWithEntidadLegalItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: RegionWithEntidadLegalItem) => onKeydownRestaurar(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearNormativaForm bind:open={showCrearModal} onClose={handleCerrar} />
+	<CrearRegionForm bind:open={showCrearModal} refs={entidadLegal} onClose={handleCerrar} />
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
-		<EditarNormativaForm
+		<EditarRegionForm
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
+			refs={entidadLegal}
 			onClose={handleCerrar}
 		/>
 	{/if}
 
 	<!-- MODAL BORRAR -->
 	{#if showBorrarModal && itemSeleccionado}
-		<BorrarNormativaForm
+		<BorrarRegionForm
 			bind:open={showBorrarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
@@ -183,12 +186,13 @@
 
 	<!-- MODAL RESTAURAR -->
 	{#if showRestaurarModal && itemSeleccionado}
-		<RestaurarNormativaForm
+		<RestaurarRegionForm
 			bind:open={showRestaurarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
 		/>
 	{/if}
+
 	<Footer />
 </div>
 

@@ -1,59 +1,72 @@
-import { ESTATUS } from '$lib/types/common.types';
 import { z } from 'zod';
-import { entidadLegalRefSchema } from './entidadLegal.schema';
-import { regionRefSchema } from './region.schema';
-import { institucionRefSchema } from './institucion.schema';
-import { campusRefSchema } from './campus.schema';
+import { campusItemSchema, campusRefSchema } from './campus.schema';
+
+// ============================================
+// 1. REFERENCE SCHEMAS
+// ============================================
+export const unidadAcademicaRefSchema = z.object({
+	id: z.uuid(),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido')
+});
+
+export type UnidadAcademicaRef = z.infer<typeof unidadAcademicaRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
-// Para operaciones CRUD: crear y actualizar
 // ============================================
-
 export const unidadAcademicaFormSchema = z.object({
-    id: z.uuid().optional(),
-    entidadLegalId: z.uuid("Debes seleccionar una entidad legal"),
-    regionId: z.uuid("Debes seleccionar una region"),
-    institucionId: z.uuid("Debes seleccionar una institucion"),
-    campusId: z.uuid("Debes seleccionar un campus"),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido"),
-    status: z.enum(ESTATUS).default('activo')
+	id: z.uuid().optional(),
+	campusId: z.uuid('Debes seleccionar un campus'),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido'),
+	createdBy: z.string().optional()
 });
 
 export type UnidadAcademicaForm = z.infer<typeof unidadAcademicaFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
-// Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
-
-export const unidadacademicaItemSchema = z.object({
-    id: z.uuid(),
-    entidadLegalId: z.uuid("Debes seleccionar una entidad legal"),
-    regionId: z.uuid("Debes seleccionar una region"),
-    institucionId: z.uuid("Debes seleccionar una institucion"),
-    campusId: z.uuid("Debes seleccionar un campus"),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido"),
-    entidadLegal: entidadLegalRefSchema.optional(),
-    region: regionRefSchema.optional(),
-    institucion: institucionRefSchema.optional(),
-    campus: campusRefSchema.optional(),
-    status: z.enum(ESTATUS).default('activo'),
-    createdAt: z.iso.datetime().optional(),
-    updatedAt: z.iso.datetime().optional()
+export const unidadAcademicaItemSchema = z.object({
+	id: z.uuid(),
+	campusId: z.uuid(),
+	code: z.string(),
+	name: z.string(),
+	campus: campusRefSchema.optional(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.coerce.date().optional(),
+	validTo: z.coerce.date().optional(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 
-export type UnidadAcademicaItem = z.infer<typeof unidadacademicaItemSchema>;
+export type UnidadAcademicaItem = z.infer<typeof unidadAcademicaItemSchema>;
+
+export const unidadAcademicaWithRelationsItemSchema = unidadAcademicaItemSchema
+  .omit({
+	campus: true
+  })
+  .extend({
+	campus: campusItemSchema.omit({ institucion: true, institucionId: true })
+  });
+
+export type UnidadAcademicaWithRelationsItem = z.infer<typeof unidadAcademicaWithRelationsItemSchema>;
 
 // ============================================
-// 4. CONFIG SCHEMA (Servidor → Cliente)
-// Para listas o configuraciones completas
+// 4. CONFIG SCHEMA
 // ============================================
-
-export const unidadacademicaConfigSchema = z.object({
-    unidadacademicaItems: z.array(unidadacademicaItemSchema)
+export const unidadAcademicaConfigSchema = z.object({
+	unidadAcademicaItems: z.array(unidadAcademicaItemSchema)
 });
 
-export type UnidadAcademicaConfig = z.infer<typeof unidadacademicaConfigSchema>;
+export type UnidadAcademicaConfig = z.infer<typeof unidadAcademicaConfigSchema>;
+
+// ============================================
+// 5. UTILITY TYPE: Para respuestas con jerarquía completa
+// ============================================
+export type UnidadAcademicaWithFullHierarchy = UnidadAcademicaItem & {
+	campus: NonNullable<UnidadAcademicaItem['campus']>;
+};

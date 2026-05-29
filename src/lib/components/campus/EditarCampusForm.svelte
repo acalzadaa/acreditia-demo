@@ -4,22 +4,29 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
-	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import {
-		filosofiaInstitucionalItemSchema,
-		type FilosofiaInstitucionalItem
-	} from '$lib/schemas/filosofiaInstitucional.schema';
-	import Input from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
+	import InputSelect from '../ui/input/InputSelect.svelte';
+	import InputText from '../ui/input/InputText.svelte';
+	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
+	import {
+		type InstitucionRef	} from '$lib/schemas/institucion.schema';
+	import { campusWithRelationsItemSchema, type CampusWithRelationsItem } from '$lib/schemas/campus.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: FilosofiaInstitucionalItem;
+		selectedItem: CampusWithRelationsItem;
+		instituciones: InstitucionRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
+
+	let institucionOptions = $derived(
+		props.instituciones?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
+	);
 
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
@@ -29,7 +36,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4Client(filosofiaInstitucionalItemSchema),
+			validators: zod4(campusWithRelationsItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -63,7 +70,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar filosofía institucional</h2>
+			<h2 class="modal-title text-h4">Editar campus</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -77,6 +84,7 @@
 		<form method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
+
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -86,7 +94,17 @@
 				{/if}
 
 				<div class="form-fields">
-					<Input
+					<InputSelect
+						label="Region"
+						name="regionId"
+						optionsData={institucionOptions}
+						required={true}
+						bind:value={$form.institucionId}
+						errors={$errors.institucionId}
+						{...$constraints.institucionId}
+					></InputSelect>
+
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -97,18 +115,6 @@
 						errors={$errors.name}
 						{...$constraints.name}
 					/>
-
-					<TextArea
-						label="Descripcion"
-						name="description"
-						placeholder="Descripcion..."
-						status={$errors.description ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.description}
-						errors={$errors.description}
-						{...$constraints.description}
-						rows={4}
-					/>
 				</div>
 			</div>
 
@@ -116,8 +122,7 @@
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar filosofia</Button
-				>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar</Button>
 			</footer>
 		</form>
 	</div>

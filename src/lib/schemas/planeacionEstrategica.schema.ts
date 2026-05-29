@@ -9,7 +9,7 @@ export const planeacionEstrategicaRefSchema = z.object({
 	code: z.string(),
 	name: z.string()
 });
-export type PlaneacionEstrategicaRefSchema = z.infer<typeof planeacionEstrategicaRefSchema>;
+export type PlaneacionEstrategicaRef = z.infer<typeof planeacionEstrategicaRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -17,12 +17,16 @@ export type PlaneacionEstrategicaRefSchema = z.infer<typeof planeacionEstrategic
 // ============================================
 
 export const planeacionEstrategicaFormSchema = z.object({
-	id: z.uuid().optional(),
-	filosofiaId: z.uuid(),
-	code: z.string().min(1, 'Codigo requerido').max(255),
-	name: z.string().min(1, 'Nombre requerido').max(255),
-	description: z.string().default(''),
-	createdBy: z.string().optional()
+    id: z.uuid().optional(),
+    filosofiaId: z.uuid(),
+    code: z.string()
+        .min(1, "Codigo requerido")
+        .max(255),
+    name: z.string()
+        .min(1, "Nombre requerido")
+        .max(255),
+    description: z.string().default(''),
+    createdBy: z.string().optional()
 });
 export type PlaneacionEstrategicaForm = z.infer<typeof planeacionEstrategicaFormSchema>;
 
@@ -51,9 +55,7 @@ export type PlaneacionEstrategicaItem = z.infer<typeof planeacionEstrategicaItem
 export const planeacionEstrategicaWithFilosofiaItemSchema = planeacionEstrategicaItemSchema
 	.omit({ filosofia: true })
 	.extend({
-		filosofia: filosofiaInstitucionalItemSchema
-			.nullable()
-			.optional()
+		filosofia: filosofiaInstitucionalItemSchema.nullable()
 	});
 
 export type PlaneacionEstrategicaWithFilosofiaItem = z.infer<

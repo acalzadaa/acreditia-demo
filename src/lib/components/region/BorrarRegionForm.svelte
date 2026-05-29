@@ -4,13 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		planeacionEstrategicaWithFilosofiaItemSchema,	
-		type PlaneacionEstrategicaWithFilosofiaItem} from '$lib/schemas/planeacionEstrategica.schema';
+	import { regionWithEntidadLegalItemSchema, type RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: PlaneacionEstrategicaWithFilosofiaItem;
+		selectedItem: RegionWithEntidadLegalItem;
 		onClose: () => void;
 	}
 
@@ -22,7 +20,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(planeacionEstrategicaWithFilosofiaItemSchema),
+		validators: zod4(regionWithEntidadLegalItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
@@ -49,11 +47,11 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Confirmar eliminación</h2>
+			<h2 class="modal-title text-h4">Borrar region</h2>
 			<IconButton
-				name='close'
-				variant='ghost'
-				size='lg'
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
@@ -71,7 +69,7 @@
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Borrar filosofia</Button>
+				<Button type="submit" variant="critical">Borrar region</Button>
 			</footer>
 		</form>
 	</div>

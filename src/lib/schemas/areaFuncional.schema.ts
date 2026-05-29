@@ -11,7 +11,7 @@ export const areaFuncionalRefSchema = z.object({
     name: z.string().min(1, "El nombre es requerido")
 });
 
-export type AreaFuncionalRefSchema = z.infer<typeof areaFuncionalRefSchema>
+export type AreaFuncionalRef = z.infer<typeof areaFuncionalRefSchema>
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)

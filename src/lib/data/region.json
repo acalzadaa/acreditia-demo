@@ -1,12 +1,31 @@
 {
     "regionItems": [
         {
-            "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
-            "code": "RE-001",
-            "name": "Region Noreste",
-            "status": "activo",
-            "createdAt": "2024-01-01T00:00:00Z",
-            "updatedAt": "2024-01-01T00:00:00Z"
+            "id": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
+            "entidadLegalId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+            "code": "REG-NORTE",
+            "name": "Región Norte",
+            "description": "Zona norte del país, caracterizada por su desarrollo industrial y educativo",
+            "entidadLegal": {
+                "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                "code": "EL-001",
+                "name": "Instituto Educativo del Noreste A.C",
+                "description": "Organización educativa sin fines de lucro",
+                "version": 1,
+                "isCurrent": true,
+                "validFrom": "2024-01-01T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2024-01-01T10:00:00Z",
+                "createdBy": "admin@system.com"
+            },
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
         }
     ]
 }

@@ -4,22 +4,31 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
-	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import {
-		filosofiaInstitucionalItemSchema,
-		type FilosofiaInstitucionalItem
-	} from '$lib/schemas/filosofiaInstitucional.schema';
-	import Input from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
+	import InputSelect from '../ui/input/InputSelect.svelte';
+	import InputText from '../ui/input/InputText.svelte';
+	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
+	import {
+		unidadAcademicaWithRelationsItemSchema,
+		type UnidadAcademicaWithRelationsItem
+	} from '$lib/schemas/unidadAcademica.schema';
+	import type { CampusRef } from '$lib/schemas/campus.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: FilosofiaInstitucionalItem;
+		selectedItem: UnidadAcademicaWithRelationsItem;
+		campus: CampusRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
+
+	let unidadAcademicaOptions = $derived(
+		props.campus?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
+	);
 
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
@@ -29,7 +38,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4Client(filosofiaInstitucionalItemSchema),
+			validators: zod4(unidadAcademicaWithRelationsItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -63,7 +72,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar filosofía institucional</h2>
+			<h2 class="modal-title text-h4">Editar unidad academica</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -77,6 +86,7 @@
 		<form method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
+
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -86,7 +96,17 @@
 				{/if}
 
 				<div class="form-fields">
-					<Input
+					<InputSelect
+						label="Campus"
+						name="campusId"
+						optionsData={unidadAcademicaOptions}
+						required={true}
+						bind:value={$form.campusId}
+						errors={$errors.campusId}
+						{...$constraints.campusId}
+					></InputSelect>
+
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -97,18 +117,6 @@
 						errors={$errors.name}
 						{...$constraints.name}
 					/>
-
-					<TextArea
-						label="Descripcion"
-						name="description"
-						placeholder="Descripcion..."
-						status={$errors.description ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.description}
-						errors={$errors.description}
-						{...$constraints.description}
-						rows={4}
-					/>
 				</div>
 			</div>
 
@@ -116,8 +124,7 @@
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar filosofia</Button
-				>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar unidad</Button>
 			</footer>
 		</form>
 	</div>

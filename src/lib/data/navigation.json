@@ -56,7 +56,7 @@
       "href": "/estructura-institucional",
       "description": "Define la estructura fisica de la institucion",
       "itemType": "section",
-      "status": "inactive",
+      "status": "active",
       "children": [
         {
           "id": 399,

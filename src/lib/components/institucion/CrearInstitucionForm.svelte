@@ -4,47 +4,52 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { FilosofiaInstitucionalRef } from '$lib/schemas/filosofiaInstitucional.schema';
+	import type { RegionRef } from '$lib/schemas/region.schema';
 
 	interface Props {
 		open: boolean;
-		refs: FilosofiaInstitucionalRef[];
+		regiones: RegionRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, refs = [] }: Props = $props();
+	let { open = $bindable(false), onClose, regiones = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
-		filosofiaId: '',
+		regionId: '',
 		code: '',
-		name: '',
-		description: ''
+		name: ''
 	});
 
 	let errorMessage = $state('');
 
-	// Opciones para el select
-	const filosofiaOptions = $derived(
-		refs.map((ref) => ({
+	const regionesOptions = $derived(
+		regiones.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		}))
 	);
 
-	// Auto-seleccionar si solo hay una opción
+	// Auto-seleccionar entidad legal si solo hay una opción
 	$effect(() => {
-		if (filosofiaOptions.length === 1 && !formData.filosofiaId) {
-			formData.filosofiaId = filosofiaOptions[0].id;
+		if (regionesOptions.length === 1 && !formData.regionId) {
+			formData.regionId = regionesOptions[0].id;
+		}
+	});
+
+	// Auto-seleccionar región si solo hay una opción
+	$effect(() => {
+		if (regionesOptions.length === 1 && !formData.regionId) {
+			formData.regionId = regionesOptions[0].id;
 		}
 	});
 
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.filosofiaId) {
-			errorMessage = 'Debes seleccionar una filosofía institucional';
+
+		if (!formData.regionId) {
+			errorMessage = 'Debes seleccionar una región';
 			return;
 		}
 		if (!formData.code) {
@@ -61,10 +66,9 @@
 
 		// Limpiar formulario
 		formData = {
-			filosofiaId: '',
+			regionId: '',
 			code: '',
-			name: '',
-			description: ''
+			name: ''
 		};
 
 		// Limpiar mensaje de error
@@ -77,10 +81,9 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			filosofiaId: '',
+			regionId: '',
 			code: '',
-			name: '',
-			description: ''
+			name: ''
 		};
 		errorMessage = '';
 		onClose();
@@ -101,7 +104,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear planeación estratégica</h2>
+			<h2 class="modal-title text-h4">Crear institución</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -125,20 +128,21 @@
 							{errorMessage}
 						</div>
 					{/if}
+
 					<InputSelect
-						label="Filosofía Institucional"
-						name="filosofiaId"
-						optionsData={filosofiaOptions}
+						label="Región"
+						name="regionId"
+						optionsData={regionesOptions}
 						required={true}
-						bind:value={formData.filosofiaId}
-						errors={errorMessage && !formData.filosofiaId ? [errorMessage] : undefined}
+						bind:value={formData.regionId}
+						errors={errorMessage && !formData.regionId ? [errorMessage] : undefined}
 					/>
 
 					<InputText
 						label="Código"
 						name="code"
 						required={true}
-						placeholder="PE-001"
+						placeholder="INST-001"
 						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.code}
@@ -149,26 +153,18 @@
 						label="Nombre"
 						name="name"
 						required={true}
-						placeholder="Excelencia educativa"
+						placeholder="Instituto Tecnológico..."
 						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.name}
 						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
-					/>
-
-					<TextArea
-						label="Descripción"
-						name="description"
-						placeholder="Descripción..."
-						bind:value={formData.description}
-						rows={4}
 					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear planeación</Button>
+				<Button type="submit" variant="primary">Crear institución</Button>
 			</footer>
 		</form>
 	</div>

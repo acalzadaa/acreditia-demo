@@ -5,26 +5,27 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import type { NormativaItem } from '$lib/schemas/normativa.schema';
-	import BorrarNormativaForm from '$lib/components/normativa/BorrarNormativaForm.svelte';
-	import RestaurarNormativaForm from '$lib/components/normativa/RestaurarNormativaForm.svelte';
-	import EditarNormativaForm from '$lib/components/normativa/EditarNormativaForm.svelte';
-	import CrearNormativaForm from '$lib/components/normativa/CrearNormativaForm.svelte';
+
+	import type { UnidadAcademicaWithRelationsItem } from '$lib/schemas/unidadAcademica.schema';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
+	import BorrarUnidadAcademicaForm from '$lib/components/unidad-academica/BorrarUnidadAcademicaForm.svelte';
+	import RestaurarUnidadAcademicaForm from '$lib/components/unidad-academica/RestaurarUnidadAcademicaForm.svelte';
+	import UnidadAcademica from '$lib/components/unidad-academica/UnidadAcademica.svelte';
+	import CrearUnidadAcademicaForm from '$lib/components/unidad-academica/CrearUnidadAcademicaForm.svelte';
+	import EditarUnidadAcademicaForm from '$lib/components/unidad-academica/EditarUnidadAcademicaForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import Normativa from '$lib/components/normativa/Normativa.svelte';
+	import { getCampusRef, getUnidadAcademica } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import { getNormativas } from '$lib/stores/data.svelte';
-
-
+	
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let normativaItems = getNormativas();
 
+	let unidadAcademicaItems = getUnidadAcademica();
+
+	let campus = getCampusRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
-
-	let itemSeleccionado: NormativaItem | null = $state(null);
+	let itemSeleccionado: UnidadAcademicaWithRelationsItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -71,6 +72,7 @@
 	// ===== HANDLERS =====
 
 	/* CREAR */
+
 	function onClickCrear() {
 		showCrearModal = true;
 	}
@@ -82,12 +84,13 @@
 	}
 
 	/* EDITAR */
-	function onClickEditar(item: NormativaItem) {
+
+	function onClickEditar(item: UnidadAcademicaWithRelationsItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: NormativaItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
@@ -95,29 +98,28 @@
 
 	/* BORRAR */
 
-	function onClickBorrar(item: NormativaItem) {
+	function onClickBorrar(item: UnidadAcademicaWithRelationsItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: NormativaItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: NormativaItem) {
+	function onClickRestaurar(item: UnidadAcademicaWithRelationsItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: NormativaItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
-
 	function handleCerrar() {
 		showCrearModal = false;
 		showEditarModal = false;
@@ -150,22 +152,31 @@
 		showExport={true}
 		showFilter={true}
 	/>
-	<Normativa
-		{normativaItems}
-		onClickEditar={(item: NormativaItem) => onClickEditar(item)}
-		onKeydownEditar={(e: KeyboardEvent, item: NormativaItem) => onKeydownEditar(e, item)}
-		onClickBorrar={(item: NormativaItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: NormativaItem) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: NormativaItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: NormativaItem) => onKeydownRestaurar(e, item)}
+
+	<UnidadAcademica
+		{unidadAcademicaItems}
+		onClickEditar={(item: UnidadAcademicaWithRelationsItem) => onClickEditar(item)}
+		onKeydownEditar={(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) =>
+			onKeydownEditar(e, item)}
+		onClickBorrar={(item: UnidadAcademicaWithRelationsItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) =>
+			onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: UnidadAcademicaWithRelationsItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) =>
+			onKeydownRestaurar(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearNormativaForm bind:open={showCrearModal} onClose={handleCerrar} />
+	<CrearUnidadAcademicaForm
+		bind:open={showCrearModal}
+		refs={campus}
+		onClose={handleCerrar}
+	/>
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
-		<EditarNormativaForm
+		<EditarUnidadAcademicaForm
+			{campus}
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
@@ -174,7 +185,7 @@
 
 	<!-- MODAL BORRAR -->
 	{#if showBorrarModal && itemSeleccionado}
-		<BorrarNormativaForm
+		<BorrarUnidadAcademicaForm
 			bind:open={showBorrarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
@@ -183,12 +194,13 @@
 
 	<!-- MODAL RESTAURAR -->
 	{#if showRestaurarModal && itemSeleccionado}
-		<RestaurarNormativaForm
+		<RestaurarUnidadAcademicaForm
 			bind:open={showRestaurarModal}
 			selectedItem={itemSeleccionado}
 			onClose={handleCerrar}
 		/>
 	{/if}
+
 	<Footer />
 </div>
 
