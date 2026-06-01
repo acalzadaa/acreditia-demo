@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type InstitucionWithRelationsItem } from '$lib/schemas/institucion.schema';
+	import type { InstitucionWithRelationsItem } from '$lib/schemas/institucion.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
@@ -31,7 +31,7 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-parent">Entidad</th>
+						<th class="col-parent">Region</th>
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-status">Estatus</th>
