@@ -11,6 +11,8 @@ import institucionJsonData from '$lib/data/institucion.json';
 import campusJsonData from '$lib/data/campus.json';
 import unidadAcademicaJsonData from '$lib/data/unidad-academica.json';
 
+import puestoJsonData from '$lib/data/puesto.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
@@ -29,10 +31,7 @@ import {
 } from '$lib/schemas/indicadorEstrategico.schema';
 import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 import { entidadLegalItemSchema, type EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
-import {
-	regionWithEntidadLegalItemSchema,
-	type RegionWithEntidadLegalItem
-} from '$lib/schemas/region.schema';
+
 import {
 	institucionWithRelationsItemSchema,
 	type InstitucionWithRelationsItem
@@ -42,10 +41,9 @@ import {
 	campusWithRelationsItemSchema,
 	type CampusWithRelationsItem
 } from '$lib/schemas/campus.schema';
-import {
-	type UnidadAcademicaWithRelationsItem,
-	unidadAcademicaWithRelationsItemSchema
-} from '$lib/schemas/unidadAcademica.schema';
+import { regionWithDirectorSchema, type RegionWithDirectorItem } from '$lib/schemas/region.schema';
+import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
+import { unidadAcademicaItemSchema, type UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -56,10 +54,12 @@ let indicadores = $state<IndicadorEstrategicoWithObjetivoItem[]>([]);
 let normativas = $state<NormativaItem[]>([]);
 
 let entidadLegal = $state<EntidadLegalItem[]>([]);
-let region = $state<RegionWithEntidadLegalItem[]>([]);
+let region = $state<RegionWithDirectorItem[]>([]);
 let institucion = $state<InstitucionWithRelationsItem[]>([]);
 let campus = $state<CampusWithRelationsItem[]>([]);
-let unidadAcademica = $state<UnidadAcademicaWithRelationsItem[]>([]);
+let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
+
+let puesto = $state<PuestoItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -84,7 +84,7 @@ const entidadLegalRawData = entidadLegalJsonData.entidadLegalItems;
 entidadLegal = entidadLegalRawData.map((item) => entidadLegalItemSchema.parse(item));
 
 const regionRawData = regionJsonData.regionItems;
-region = regionRawData.map((item) => regionWithEntidadLegalItemSchema.parse(item));
+region = regionRawData.map((item) => regionWithDirectorSchema.parse(item));
 
 const institucionRawData = institucionJsonData.institucionItems;
 institucion = institucionRawData.map((item) => institucionWithRelationsItemSchema.parse(item));
@@ -94,8 +94,11 @@ campus = campusRawData.map((item) => campusWithRelationsItemSchema.parse(item));
 
 const unidadAcademicaRawData = unidadAcademicaJsonData.unidadAcademicaItems;
 unidadAcademica = unidadAcademicaRawData.map((item) =>
-	unidadAcademicaWithRelationsItemSchema.parse(item)
+	unidadAcademicaItemSchema.parse(item)
 );
+
+const puestoRawData = puestoJsonData.puestos;
+puesto = puestoRawData.map((item) => puestoItemSchema.parse(item));
 
 // Helpers
 export function getFilosofias() {
@@ -168,4 +171,16 @@ export function getCampusRef() {
 
 export function getUnidadAcademica() {
 	return unidadAcademica;
+}
+
+export function getPuesto() {
+	return puesto;
+}
+
+export function getPuestoRef(jobType: string) {
+	return puesto.filter((item) => item.type === jobType).map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
 }

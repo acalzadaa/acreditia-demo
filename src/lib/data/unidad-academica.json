@@ -2,7 +2,6 @@
     "unidadAcademicaItems": [
         {
             "id": "85547c54-5d7c-4613-abf3-baa4e530b3a3",
-            "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
             "code": "FIC-001",
             "name": "Facultad de Ingeniería y Ciencias",
             "version": 1,
@@ -11,23 +10,10 @@
             "validTo": null,
             "isDeleted": false,
             "createdAt": "2024-03-01T09:00:00Z",
-            "createdBy": "admin@system.com",
-            "campus": {
-                "id": "99be4241-389d-430a-83f2-b1c612c029ac",
-                "code": "CAMPUS-MTY-001",
-                "name": "Campus Monterrey",
-                "version": 1,
-                "isCurrent": true,
-                "validFrom": "2024-02-01T00:00:00Z",
-                "validTo": null,
-                "isDeleted": false,
-                "createdAt": "2024-02-01T11:00:00Z",
-                "createdBy": "admin@system.com"
-            }
+            "createdBy": "admin@system.com"
         },
         {
             "id": "2cf46373-8999-46f5-8b3e-ce3ad3ca29f2",
-            "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
             "code": "ECO-002",
             "name": "Escuela de Economía y Negocios",
             "version": 1,
@@ -36,19 +22,7 @@
             "validTo": null,
             "isDeleted": false,
             "createdAt": "2024-03-01T10:00:00Z",
-            "createdBy": "admin@system.com",
-            "campus": {
-                "id": "99be4241-389d-430a-83f2-b1c612c029ac",
-                "code": "CAMPUS-MTY-001",
-                "name": "Campus Monterrey",
-                "version": 1,
-                "isCurrent": true,
-                "validFrom": "2024-02-01T00:00:00Z",
-                "validTo": null,
-                "isDeleted": false,
-                "createdAt": "2024-02-01T11:00:00Z",
-                "createdBy": "admin@system.com"
-            }
+            "createdBy": "admin@system.com"
         }
     ]
 }

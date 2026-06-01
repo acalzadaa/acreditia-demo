@@ -1,7 +1,7 @@
 {
     "objetivos-estrategicos": [
         {
-            "id": "2b23f123-136d-449f-b3d0-30c21ea0d8c9",
+            "id": "7ac73143-38fc-4a9d-a127-dec13c9ebbbf",
             "planeacionId": "ccfb6854-6f5a-416f-af90-c5138717bb6f",
             "code": "OE-001",
             "name": "Implementar sistema de acreditación institucional",
@@ -28,7 +28,7 @@
             }
         },
         {
-            "id": "34906a1a-5b09-4445-b78c-c52a6b13ec54",
+            "id": "abc98456-0671-4e1b-81e5-f95a20c9d170",
             "planeacionId": "ccfb6854-6f5a-416f-af90-c5138717bb6f",
             "code": "OE-002",
             "name": "Fortalecer competencias docentes en evaluación por competencias",
@@ -55,7 +55,7 @@
             }
         },
         {
-            "id": "b2d308e5-d3dd-4043-bc99-20b25c17a025",
+            "id": "600e1611-b4cc-49d7-8369-1f6bf73c06e1",
             "planeacionId": "e8de4b59-6118-4513-b046-1f6bdf9ce977",
             "code": "OE-003",
             "name": "Diseñar ruta de formación ética transversal en todos los programas",
@@ -82,7 +82,7 @@
             }
         },
         {
-            "id": "f6c9fba3-185c-43ad-bd9c-ee3b695f382a",
+            "id": "a0aa7ee2-7a80-4d56-9529-cfa4106f38a3",
             "planeacionId": "5b4aedc8-cb4d-4695-bd9d-2dfd10607477",
             "code": "OE-004",
             "name": "Crear fondo concursable para investigación aplicada con impacto social",
@@ -109,7 +109,7 @@
             }
         },
         {
-            "id": "6c1d368a-0284-424c-abea-29693599b60b",
+            "id": "46a9ad10-a598-4416-9a87-e880e49fb292",
             "planeacionId": "5b4aedc8-cb4d-4695-bd9d-2dfd10607477",
             "code": "OE-005",
             "name": "Establecer laboratorio ciudadano de innovación social",
@@ -136,7 +136,7 @@
             }
         },
         {
-            "id": "91395b18-307d-4a9d-a8ef-8f92331ea9e5",
+            "id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
             "planeacionId": "ac684c23-56df-400c-92fb-165a16b41035",
             "code": "OE-006",
             "name": "Duplicar convenios internacionales con universidades de alta calidad",
@@ -163,7 +163,7 @@
             }
         },
         {
-            "id": "1401dba2-05ad-4fa7-8efc-9107ac960169",
+            "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
             "planeacionId": "d23d5c0c-7bea-4a2d-8e57-5c21e40ffa85",
             "code": "OE-007",
             "name": "Implementar programa de becas para población víctima del conflicto",
@@ -190,7 +190,7 @@
             }
         },
         {
-            "id": "66d660d1-1ef9-4130-ae7b-b1e498474028",
+            "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
             "planeacionId": "77bf2c8e-6709-40b2-9773-025dbe63ce08",
             "code": "OE-008",
             "name": "Reducir huella de carbono institucional en un 40%",
@@ -244,7 +244,7 @@
             }
         },
         {
-            "id": "2980df0b-e31b-4960-8a9d-963f38889ae5",
+            "id": "17af1054-0b3a-45ca-9b86-1910b4226ce0",
             "planeacionId": "f682e2f8-2955-4051-baa6-d04d5c25e505",
             "code": "OE-010",
             "name": "Crear incubadora de empresas de base social y tecnológica",

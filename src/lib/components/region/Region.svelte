@@ -1,17 +1,18 @@
 <script lang="ts">
-	import type { RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
+	import type { RegionWithDirectorItem } from '$lib/schemas/region.schema';
+	import type { UsuarioRef } from '$lib/schemas/usuario.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		regionItems: RegionWithEntidadLegalItem[];
-		onClickEditar: (item: RegionWithEntidadLegalItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: RegionWithEntidadLegalItem) => void;
-		onClickBorrar: (item: RegionWithEntidadLegalItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithEntidadLegalItem) => void;
-		onClickRestaurar: (item: RegionWithEntidadLegalItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithEntidadLegalItem) => void;
+		regionItems: RegionWithDirectorItem[];
+		onClickEditar: (item: RegionWithDirectorItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
+		onClickBorrar: (item: RegionWithDirectorItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
+		onClickRestaurar: (item: RegionWithDirectorItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
 	}
 
 	const {
@@ -23,6 +24,30 @@
 		onClickRestaurar,
 		onKeydownRestaurar
 	}: Props = $props();
+
+	function getUsername(usuario: UsuarioRef | null | undefined): string {
+		if (!usuario) {
+			return 'Director no asignado';
+		}
+
+		// Si tiene nombre y apellido (incluso si son strings vacíos)
+		if (usuario.firstName && usuario.lastName) {
+			return `${usuario.lastName}, ${usuario.firstName}`;
+		}
+
+		// Si solo tiene nombre
+		if (usuario.firstName) {
+			return usuario.firstName;
+		}
+
+		// Si solo tiene apellido
+		if (usuario.lastName) {
+			return usuario.lastName;
+		}
+
+		// Fallback a email o valor por defecto
+		return usuario.email || 'Director de Region';
+	}
 </script>
 
 <main class="main-panel">
@@ -31,10 +56,11 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-parent">Entidad</th>
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-description">Descripción</th>
+						<th class="col-name">Director</th>
+
 						<th class="col-status">Estatus</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
@@ -42,12 +68,10 @@
 				<tbody class="text-body">
 					{#each regionItems as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-parent">
-								{item.entidadLegal?.code}
-							</td>
 							<td class="col-code">{item.code}</td>
 							<td class="col-name">{item.name}</td>
 							<td class="col-description">{item.description}</td>
+							<td class="col-name">{getUsername(item?.director)}</td>
 							<td class="col-status">
 								<Badge variant={item.isDeleted ? 'error' : 'success'}>
 									{item.isDeleted ? 'borrado' : 'activo'}
@@ -87,7 +111,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de planeacion estrategica"></EmptySection>
+			<EmptySection message="No hay elementos de region"></EmptySection>
 		{/if}
 	</section>
 </main>
@@ -102,16 +126,15 @@
  * Columnas y sus límites:
  *
  *   código      ~20 chars ~10rem  (min: 7rem)
- *   parent   ~20 chars ~10rem  (min: 7rem)
  *   nombre      ~50 chars ~18rem  (min: 12rem)
  *   descripción ~255 chars flex   (min: 14rem, max: auto)
  *   badge       ~20 chars ~8rem   (min: 6rem)
  *   acciones      4 iconos  ~9rem   (min: 9rem, fijo)
  *
- * Total mínimo: 7 + 7 + 12 + 14 + 6 + 9 = 55rem
+ * Total mínimo: 7 + 12 + 14 + 6 + 9 = 48rem
  */
 	.data-table {
-		min-width: 55rem;
+		min-width: 48rem;
 	}
 
 	/* =============================================
@@ -122,13 +145,6 @@
 
 	/* Código — corto, no hace wrap */
 	.data-table .col-code {
-		width: 10rem;
-		min-width: 7rem;
-		white-space: nowrap;
-	}
-
-	/* Parent — corto, no hace wrap */
-	.data-table .col-parent {
 		width: 10rem;
 		min-width: 7rem;
 		white-space: nowrap;

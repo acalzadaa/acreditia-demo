@@ -1,8 +1,8 @@
 {
     "institucionItems": [
         {
-            "id": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
-            "regionId": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
+            "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
+            "entidadLegalId": "105aa8ed-a5e0-4d9c-9371-6ffd25bab058",
             "code": "IA-001",
             "name": "Universidad Tecnológica del Norte",
             "version": 1,
@@ -12,17 +12,17 @@
             "isDeleted": false,
             "createdAt": "2024-01-15T09:00:00Z",
             "createdBy": "admin@system.com",
-            "region": {
-                "id": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
-                "code": "REG-NORTE",
-                "name": "Región Norte",
-                "description": "Zona norte del país, caracterizada por su desarrollo industrial y educativo",
+            "entidadLegal": {
+                "id": "105aa8ed-a5e0-4d9c-9371-6ffd25bab058",
+                "code": "EL-001",
+                "name": "Instituto Educativo del Noreste A.C",
+                "description": "Organización educativa sin fines de lucro",
                 "version": 1,
                 "isCurrent": true,
                 "validFrom": "2024-01-01T00:00:00Z",
                 "validTo": null,
                 "isDeleted": false,
-                "createdAt": "2024-01-01T10:30:00Z",
+                "createdAt": "2024-01-01T10:00:00Z",
                 "createdBy": "admin@system.com"
             }
         }

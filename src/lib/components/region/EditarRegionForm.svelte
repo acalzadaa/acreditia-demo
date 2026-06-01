@@ -9,23 +9,21 @@
 	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
-	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
-	import {
-		regionWithEntidadLegalItemSchema,
-		type RegionWithEntidadLegalItem
-	} from '$lib/schemas/region.schema';
+	import type { PuestoRef } from '$lib/schemas/puesto.schema';
+	import { regionWithDirectorSchema, type RegionWithDirectorItem } from '$lib/schemas/region.schema';
+	
 
 	interface Props {
 		open: boolean;
-		selectedItem: RegionWithEntidadLegalItem;
-		refs: EntidadLegalRef[];
+		selectedItem: RegionWithDirectorItem;
+		refs: PuestoRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), refs, onClose, ...props }: Props = $props();
+	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	const entidadLegalOptions = $derived(
-		refs?.map((ref) => ({
+	const puestoOptions = $derived(
+		props.refs?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		})) ?? []
@@ -39,7 +37,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(regionWithEntidadLegalItemSchema),
+			validators: zod4(regionWithDirectorSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -98,20 +96,20 @@
 
 				<div class="form-fields">
 					<InputSelect
-						label="Entidad Legal"
-						name="entidadLegalId"
-						optionsData={entidadLegalOptions}
+						label="Puesto de director"
+						name="directorPuestoId"
+						optionsData={puestoOptions}
 						required={true}
-						bind:value={$form.entidadLegalId}
-						errors={$errors.entidadLegalId}
-						{...$constraints.entidadLegalId}
+						bind:value={$form.directorPuestoId}
+						errors={$errors.directorPuestoId}
+						{...$constraints.directorPuestoId}
 					></InputSelect>
 
 					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
-						placeholder="Excelencia educativa"
+						placeholder="Region Norte"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}

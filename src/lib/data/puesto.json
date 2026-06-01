@@ -1,0 +1,88 @@
+{
+    "puestos": [
+        {
+            "id": "bf35d065-b622-4703-bc1d-90894c2a657e",
+            "code": "REGION 1",
+            "name": "Director de Region 1",
+            "type": "region",
+            "description": "",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
+            "code": "VPA",
+            "name": "VP Académica",
+            "type": "funcional",
+            "description": "",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
+            "code": "VPC",
+            "name": "VP Comercial y Experiencia del Estudiante",
+            "type": "funcional",
+            "description": "",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "e5f078a6-20b2-4ee9-89fd-4b85e7ca7153",
+            "code": "VPRH",
+            "name": "VP Recursos Humanos",
+            "type": "funcional",
+            "description": "",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
+            "code": "VPTI",
+            "name": "VP Tecnologías de Información",
+            "type": "funcional",
+            "description": "",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "9c39c016-b0f5-443a-b143-50bda4004ad3",
+            "code": "VPO",
+            "name": "VP Operaciones en Campus",
+            "type": "funcional",
+            "description": "",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
+        }
+    ]
+}

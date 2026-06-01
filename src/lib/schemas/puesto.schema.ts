@@ -11,13 +11,12 @@ export const puestoRefSchema = z.object({
     code: z.string(),
     name: z.string(),
 });
-export type PuestoRefSchema = z.infer<typeof puestoRefSchema>;
+
+export type PuestoRef = z.infer<typeof puestoRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
-// Para operaciones CRUD: crear y actualizar
 // ============================================
-
 export const puestoFormSchema = z.object({
     id: z.uuid().optional(),
     code: z.string()
@@ -29,30 +28,33 @@ export const puestoFormSchema = z.object({
     type: z.enum(JOB_TYPE).default('funcional'),
     description: z.string().default(''),
 });
+
 export type PuestoForm = z.infer<typeof puestoFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
-// Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
-
-export const puestoItemSchema = puestoFormSchema.extend({
+export const puestoItemSchema = z.object({
     id: z.uuid(),
-    version: z.number().default(0),
-    isCurrent: z.boolean().default(false),
-    validFrom: z.coerce.date().optional(),
-    validTo: z.coerce.date().optional(),
+    code: z.string(),
+    name: z.string(),
+    type: z.enum(JOB_TYPE),
+    description: z.string().default(''),
+    version: z.number().int().nonnegative().default(0),
+    isCurrent: z.boolean().default(true),
+    validFrom: z.coerce.date(),
+    validTo: z.coerce.date().nullable(),
     isDeleted: z.boolean().default(false),
-    createdAt: z.iso.datetime().optional(),
+    createdAt: z.coerce.date().nullable(),
 });
+
 export type PuestoItem = z.infer<typeof puestoItemSchema>;
 
 // ============================================
 // 4. CONFIG SCHEMA (Servidor → Cliente)
-// Para listas o configuraciones completas
 // ============================================
-
 export const puestoConfigSchema = z.object({
     puestoItems: z.array(puestoItemSchema),
 });
+
 export type PuestoConfig = z.infer<typeof puestoConfigSchema>;

@@ -4,11 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { regionWithEntidadLegalItemSchema, type RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
+	import { regionWithDirectorSchema, type RegionWithDirectorItem } from '$lib/schemas/region.schema';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: RegionWithEntidadLegalItem;
+		selectedItem: RegionWithDirectorItem;
 		onClose: () => void;
 	}
 
@@ -20,7 +20,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(regionWithEntidadLegalItemSchema),
+		validators: zod4(regionWithDirectorSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
@@ -69,7 +69,7 @@
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Borrar region</Button>
+				<Button type="submit" variant="critical">Borrar</Button>
 			</footer>
 		</form>
 	</div>

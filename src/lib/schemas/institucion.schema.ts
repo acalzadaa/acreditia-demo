@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { regionItemSchema, regionRefSchema } from './region.schema';
+import { entidadLegalItemSchema, entidadLegalRefSchema } from './entidadLegal.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -20,7 +20,7 @@ export type InstitucionRef = z.infer<typeof institucionRefSchema>;
 
 export const institucionFormSchema = z.object({
 	id: z.uuid().optional(),
-	regionId: z.uuid('Debes seleccionar una region'),
+	entidadLegalId: z.uuid('Debes seleccionar una entidad legal'),
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
 	createdBy: z.string().optional()
@@ -35,10 +35,10 @@ export type InstitucionForm = z.infer<typeof institucionFormSchema>;
 
 export const institucionItemSchema = z.object({
 	id: z.uuid(),
-	regionId: z.uuid(),
+	entidadLegalId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
-	region: regionRefSchema.optional(),
+	entidadLegal: entidadLegalRefSchema.optional(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -52,10 +52,10 @@ export type InstitucionItem = z.infer<typeof institucionItemSchema>;
 
 export const institucionWithRelationsItemSchema = institucionItemSchema
 	.omit({
-		region: true
+		entidadLegal: true
 	})
 	.extend({
-		region: regionItemSchema.omit({ entidadLegal: true, entidadLegalId: true })
+		entidadLegal: entidadLegalItemSchema.nullable()
 	});
 
 export type InstitucionWithRelationsItem = z.infer<typeof institucionWithRelationsItemSchema>;
