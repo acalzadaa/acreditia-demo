@@ -2,49 +2,25 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { CampusRef } from '$lib/schemas/campus.schema';
 
 	interface Props {
 		open: boolean;
-		refs: CampusRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, refs = [] }: Props = $props();
+	let { open = $bindable(false), onClose }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
-		campusId: '',
 		code: '',
 		name: ''
 	});
 
 	let errorMessage = $state('');
 
-	// Opciones para el select de campus
-	const campusOptions = $derived(
-		refs.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		}))
-	);
-
-	// Auto-seleccionar si solo hay una opción
-	$effect(() => {
-		if (campusOptions.length === 1 && !formData.campusId) {
-			formData.campusId = campusOptions[0].id;
-		}
-	});
-
 	function handleSubmit() {
-		// Validación básica
-		if (!formData.campusId) {
-			errorMessage = 'Debes seleccionar un campus';
-			return;
-		}
 		if (!formData.code) {
 			errorMessage = 'El código es requerido';
 			return;
@@ -56,17 +32,16 @@
 
 		// Aquí podrías console.log o guardar los datos si quieres
 		console.log('Datos enviados (demo):', formData);
-		
+
 		// Limpiar formulario
 		formData = {
-			campusId: '',
 			code: '',
 			name: ''
 		};
-		
+
 		// Limpiar mensaje de error
 		errorMessage = '';
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -74,7 +49,6 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			campusId: '',
 			code: '',
 			name: ''
 		};
@@ -107,10 +81,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				<div class="form-fields">
 					{#if errorMessage}
@@ -119,15 +95,6 @@
 							{errorMessage}
 						</div>
 					{/if}
-
-					<InputSelect
-						label="Campus"
-						name="campusId"
-						optionsData={campusOptions}
-						required={true}
-						bind:value={formData.campusId}
-						errors={errorMessage && !formData.campusId ? [errorMessage] : undefined}
-					/>
 
 					<InputText
 						label="Código"

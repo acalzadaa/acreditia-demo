@@ -1,17 +1,17 @@
 <script lang="ts">
-	import type { UnidadAcademicaWithRelationsItem } from '$lib/schemas/unidadAcademica.schema';
+	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		unidadAcademicaItems: UnidadAcademicaWithRelationsItem[];
-		onClickEditar: (item: UnidadAcademicaWithRelationsItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) => void;
-		onClickBorrar: (item: UnidadAcademicaWithRelationsItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) => void;
-		onClickRestaurar: (item: UnidadAcademicaWithRelationsItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) => void;
+		unidadAcademicaItems: UnidadAcademicaItem[];
+		onClickEditar: (item: UnidadAcademicaItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
+		onClickBorrar: (item: UnidadAcademicaItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
+		onClickRestaurar: (item: UnidadAcademicaItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
 	}
 
 	const {
@@ -31,7 +31,6 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-parent">Campus</th>
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-status">Estatus</th>
@@ -41,9 +40,6 @@
 				<tbody class="text-body">
 					{#each unidadAcademicaItems as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-parent">
-								{item.campus?.code}
-							</td>
 							<td class="col-code">{item.code}</td>
 							<td class="col-name">{item.name}</td>
 							<td class="col-status">
@@ -100,16 +96,15 @@
  * Columnas y sus límites:
  *
  *   código      ~20 chars ~10rem  (min: 7rem)
- *   parent   ~20 chars ~10rem  (min: 7rem)
  *   nombre      ~50 chars ~18rem  (min: 12rem)
  *   descripción ~255 chars flex   (min: 14rem, max: auto)
  *   badge       ~20 chars ~8rem   (min: 6rem)
  *   acciones      4 iconos  ~9rem   (min: 9rem, fijo)
  *
- * Total mínimo: 7 + 7 + 12 + 14 + 6 + 9 = 55rem
+ * Total mínimo: 7 + 12 + 14 + 6 + 9 = 55rem
  */
 	.data-table {
-		min-width: 55rem;
+		min-width: 48rem;
 	}
 
 	/* =============================================
@@ -120,13 +115,6 @@
 
 	/* Código — corto, no hace wrap */
 	.data-table .col-code {
-		width: 10rem;
-		min-width: 7rem;
-		white-space: nowrap;
-	}
-
-	/* Parent — corto, no hace wrap */
-	.data-table .col-parent {
 		width: 10rem;
 		min-width: 7rem;
 		white-space: nowrap;
