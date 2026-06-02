@@ -1,6 +1,6 @@
-// campus.schema.ts (ACTUALIZADO)
 import { z } from 'zod';
 import { institucionItemSchema, institucionRefSchema } from './institucion.schema';
+import { regionRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
@@ -19,6 +19,7 @@ export type CampusRef = z.infer<typeof campusRefSchema>;
 export const campusFormSchema = z.object({
 	id: z.uuid().optional(),
 	institucionId: z.uuid('Debes seleccionar una institución'),
+	regionId: z.uuid('Debes seleccionar una región'),  // ← NUEVO CAMPO
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
 	createdBy: z.string().optional()
@@ -33,9 +34,11 @@ export type CampusForm = z.infer<typeof campusFormSchema>;
 export const campusItemSchema = z.object({
 	id: z.uuid(),
 	institucionId: z.uuid(),
+	regionId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
 	institucion: institucionRefSchema.optional(),
+	region: regionRefSchema.optional(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -47,8 +50,11 @@ export const campusItemSchema = z.object({
 
 export type CampusItem = z.infer<typeof campusItemSchema>;
 
-export const campusWithRelationsItemSchema = campusItemSchema.omit({ institucion: true }).extend({
-	institucion: institucionItemSchema.omit({ entidadLegal: true, entidadLegalId: true })
-});
+export const campusWithRelationsItemSchema = campusItemSchema
+	.omit({ institucion: true, region: true })
+	.extend({
+		institucion: institucionItemSchema.omit({ entidadLegal: true, entidadLegalId: true }),
+		region: regionRefSchema
+	});
 
 export type CampusWithRelationsItem = z.infer<typeof campusWithRelationsItemSchema>;

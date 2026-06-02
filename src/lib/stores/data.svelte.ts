@@ -7,7 +7,6 @@ import normativaJsonData from '$lib/data/normativa.json';
 
 import entidadLegalJsonData from '$lib/data/entidad-legal.json';
 import regionJsonData from '$lib/data/region.json';
-import regionCampusJsonData from '$lib/data/region-campus.json';
 
 import institucionJsonData from '$lib/data/institucion.json';
 import campusJsonData from '$lib/data/campus.json';
@@ -43,16 +42,12 @@ import {
 	campusWithRelationsItemSchema,
 	type CampusWithRelationsItem
 } from '$lib/schemas/campus.schema';
-import { regionWithDirectorSchema, type RegionWithDirectorItem } from '$lib/schemas/region.schema';
+import { regionWithRelationItemSchema, type RegionWithRelationItem } from '$lib/schemas/region.schema';
 import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
 import {
 	unidadAcademicaItemSchema,
 	type UnidadAcademicaItem
 } from '$lib/schemas/unidadAcademica.schema';
-import {
-	regionCampusWithRelationsItemSchema,
-	type RegionCampusWithRelationItem
-} from '$lib/schemas/regionCampus.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -63,8 +58,7 @@ let indicadores = $state<IndicadorEstrategicoWithObjetivoItem[]>([]);
 let normativas = $state<NormativaItem[]>([]);
 
 let entidadLegal = $state<EntidadLegalItem[]>([]);
-let region = $state<RegionWithDirectorItem[]>([]);
-let regionCampus = $state<RegionCampusWithRelationItem[]>([]);
+let region = $state<RegionWithRelationItem[]>([]);
 
 let institucion = $state<InstitucionWithRelationsItem[]>([]);
 
@@ -96,10 +90,7 @@ const entidadLegalRawData = entidadLegalJsonData.entidadLegalItems;
 entidadLegal = entidadLegalRawData.map((item) => entidadLegalItemSchema.parse(item));
 
 const regionRawData = regionJsonData.regionItems;
-region = regionRawData.map((item) => regionWithDirectorSchema.parse(item));
-
-const regionCampusRawData = regionCampusJsonData.regionCampusItems;
-regionCampus = regionCampusRawData.map((item) => regionCampusWithRelationsItemSchema.parse(item));
+region = regionRawData.map((item) => regionWithRelationItemSchema.parse(item));
 
 const institucionRawData = institucionJsonData.institucionItems;
 institucion = institucionRawData.map((item) => institucionWithRelationsItemSchema.parse(item));
@@ -156,10 +147,6 @@ export function getRegionRef() {
 		code: item.code,
 		name: item.name
 	}));
-}
-
-export function getRegionCampus() {
-	return regionCampus;
 }
 
 export function getInstitucion() {

@@ -10,12 +10,12 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 	import type { PuestoRef } from '$lib/schemas/puesto.schema';
-	import { regionWithDirectorSchema, type RegionWithDirectorItem } from '$lib/schemas/region.schema';
+	import { regionWithRelationItemSchema, type RegionWithRelationItem } from '$lib/schemas/region.schema';
 	
 
 	interface Props {
 		open: boolean;
-		selectedItem: RegionWithDirectorItem;
+		selectedItem: RegionWithRelationItem;
 		refs: PuestoRef[];
 		onClose: () => void;
 	}
@@ -37,7 +37,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(regionWithDirectorSchema),
+			validators: zod4(regionWithRelationItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -97,12 +97,12 @@
 				<div class="form-fields">
 					<InputSelect
 						label="Puesto de director"
-						name="directorPuestoId"
+						name="puestoId"
 						optionsData={puestoOptions}
 						required={true}
-						bind:value={$form.directorPuestoId}
-						errors={$errors.directorPuestoId}
-						{...$constraints.directorPuestoId}
+						bind:value={$form.puestoId}
+						errors={$errors.puestoId}
+						{...$constraints.puestoId}
 					></InputSelect>
 
 					<InputText

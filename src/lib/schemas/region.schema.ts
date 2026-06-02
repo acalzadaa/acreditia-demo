@@ -1,25 +1,13 @@
-// region.schema.ts (ACTUALIZADO)
 import { z } from 'zod';
-import { puestoItemSchema, puestoRefSchema } from './puesto.schema';
+import { puestoRefSchema } from './puesto.schema';
 import { usuarioRefSchema } from './usuario.schema';
-
-// ============================================
-// 1. REFERENCE SCHEMAS
-// ============================================
-export const regionRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string().min(1, 'El código es requerido'),
-	name: z.string().min(1, 'El nombre es requerido')
-});
-
-export type RegionRef = z.infer<typeof regionRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
 export const regionFormSchema = z.object({
 	id: z.uuid().optional(),
-	directorPuestoId: z.uuid(),
+	puestoId: z.uuid(),
 	code: z
 		.string()
 		.min(3, 'El código debe tener al menos 3 caracteres')
@@ -44,11 +32,13 @@ export type RegionForm = z.infer<typeof regionFormSchema>;
 // ============================================
 export const regionItemSchema = z.object({
 	id: z.uuid(),
-	directorPuestoId: z.uuid(),
+	puestoId: z.uuid(),
+	usuarioId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	directorPuesto: puestoRefSchema.nullable(),
+	puesto: puestoRefSchema.nullable(),
+	usuario: usuarioRefSchema.nullable(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -64,24 +54,12 @@ export type RegionItem = z.infer<typeof regionItemSchema>;
 // 4. ITEM WITH RELATIONS SCHEMA (Versión completa)
 // ============================================
 
-export const regionWithPuestoItemSchema = regionItemSchema
-	.omit({
-		directorPuesto: true
-	})
-	.extend({
-		directorPuesto: puestoItemSchema.nullable()
-	});
+export const regionWithRelationItemSchema = regionItemSchema;
 
-export type RegionWithPuestoItem = z.infer<typeof regionWithPuestoItemSchema>;
-
-export const regionWithDirectorSchema = regionWithPuestoItemSchema.extend({
-	director: usuarioRefSchema.nullable()
-});
-
-export type RegionWithDirectorItem = z.infer<typeof regionWithDirectorSchema>;
+export type RegionWithRelationItem = z.infer<typeof regionWithRelationItemSchema>;
 
 // ============================================
-// 5. CONFIG SCHEMA
+// 6. CONFIG SCHEMA
 // ============================================
 export const regionConfigSchema = z.object({
 	regionItems: z.array(regionItemSchema)

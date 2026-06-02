@@ -13,9 +13,9 @@
 	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
 	import Region from '$lib/components/region/Region.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import {  getPuestoRef, getRegion } from '$lib/stores/data.svelte';
+	import { getPuestoRef, getRegion } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import type { RegionWithDirectorItem } from '$lib/schemas/region.schema';
+	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
@@ -24,7 +24,7 @@
 
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let itemSeleccionado: RegionWithDirectorItem | null = $state(null);
+	let itemSeleccionado: RegionWithRelationItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -84,12 +84,12 @@
 
 	/* EDITAR */
 
-	function onClickEditar(item: RegionWithDirectorItem) {
+	function onClickEditar(item: RegionWithRelationItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: RegionWithDirectorItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: RegionWithRelationItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
@@ -97,28 +97,40 @@
 
 	/* BORRAR */
 
-	function onClickBorrar(item: RegionWithDirectorItem) {
+	function onClickBorrar(item: RegionWithRelationItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: RegionWithDirectorItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: RegionWithRelationItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: RegionWithDirectorItem) {
+	function onClickRestaurar(item: RegionWithRelationItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: RegionWithDirectorItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: RegionWithRelationItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
+
+	/* RESTAURAR */
+	function onClickDetalle(item: RegionWithRelationItem) {
+		goto(resolve(`/region/${item.code}`));
+	}
+
+	function onKeydownDetalle(e: KeyboardEvent, item: RegionWithRelationItem) {
+		if (e.key === 'Enter') {
+			onClickDetalle(item);
+		}
+	}
+
 	function handleCerrar() {
 		showCrearModal = false;
 		showEditarModal = false;
@@ -154,12 +166,15 @@
 
 	<Region
 		{regionItems}
-		onClickEditar={(item: RegionWithDirectorItem) => onClickEditar(item)}
-		onKeydownEditar={(e, item: RegionWithDirectorItem) => onKeydownEditar(e, item)}
-		onClickBorrar={(item: RegionWithDirectorItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e, item: RegionWithDirectorItem) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: RegionWithDirectorItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: RegionWithDirectorItem) => onKeydownRestaurar(e, item)}
+		onClickEditar={(item: RegionWithRelationItem) => onClickEditar(item)}
+		onKeydownEditar={(e, item: RegionWithRelationItem) => onKeydownEditar(e, item)}
+		onClickBorrar={(item: RegionWithRelationItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e, item: RegionWithRelationItem) => onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: RegionWithRelationItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: RegionWithRelationItem) =>
+			onKeydownRestaurar(e, item)}
+		onClickDetalle={(item: RegionWithRelationItem) => onClickDetalle(item)}
+		onKeydownDetalle={(e: KeyboardEvent, item: RegionWithRelationItem) => onKeydownDetalle(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->

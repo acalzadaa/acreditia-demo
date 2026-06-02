@@ -18,7 +18,7 @@
 
 	// Estado local del formulario
 	let formData = $state({
-		directorPuestoId: '',
+		puestoId: '',
 		code: '',
 		name: '',
 		description: ''
@@ -36,14 +36,14 @@
 
 	// Auto-seleccionar si solo hay una opción
 	$effect(() => {
-		if (puestoOptions.length === 1 && !formData.directorPuestoId) {
-			formData.directorPuestoId = puestoOptions[0].id;
+		if (puestoOptions.length === 1 && !formData.puestoId) {
+			formData.puestoId = puestoOptions[0].id;
 		}
 	});
 
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.directorPuestoId) {
+		if (!formData.puestoId) {
 			errorMessage = 'Debes seleccionar un puesto de director';
 			return;
 		}
@@ -61,7 +61,7 @@
 		
 		// Limpiar formulario
 		formData = {
-			directorPuestoId: '',
+			puestoId: '',
 			code: '',
 			name: '',
 			description: ''
@@ -77,7 +77,7 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			directorPuestoId: '',
+			puestoId: '',
 			code: '',
 			name: '',
 			description: ''
@@ -126,11 +126,11 @@
 					
 					<InputSelect
 						label="Puesto de Director"
-						name="directorPuestoId"
+						name="puestoId"
 						optionsData={puestoOptions}
 						required={true}
-						bind:value={formData.directorPuestoId}
-						errors={errorMessage && !formData.directorPuestoId ? [errorMessage] : undefined}
+						bind:value={formData.puestoId}
+						errors={errorMessage && !formData.puestoId ? [errorMessage] : undefined}
 					/>
 
 					<InputText

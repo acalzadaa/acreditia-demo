@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { RegionWithDirectorItem } from '$lib/schemas/region.schema';
+	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
+
 
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
@@ -9,19 +10,19 @@
 	interface Props {
 		gridArea?: string;
 
-		regionItems: RegionWithDirectorItem[];
+		regionItems: RegionWithRelationItem[];
 		showDetailIcon?: boolean;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		onClickEditar: (item: RegionWithDirectorItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
-		onClickBorrar: (item: RegionWithDirectorItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
-		onClickRestaurar: (item: RegionWithDirectorItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
-		onClickDetalle?: (item: RegionWithDirectorItem) => void;
-		onKeydownDetalle?: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
+		onClickEditar: (item: RegionWithRelationItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
+		onClickBorrar: (item: RegionWithRelationItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
+		onClickRestaurar: (item: RegionWithRelationItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
+		onClickDetalle?: (item: RegionWithRelationItem) => void;
+		onKeydownDetalle?: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
 	}
 
 	const {

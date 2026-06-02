@@ -54,6 +54,12 @@
       <path d="M3 4.001v5h5M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0" />
     </g>
   </symbol>
+  <symbol id="detail" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0" />
+      <path d="M2 12c1.6-4.097 5.336-7 10-7s8.4 2.903 10 7c-1.6 4.097-5.336 7-10 7s-8.4-2.903-10-7" />
+    </g>
+  </symbol>
 
   <!-- SEMANTIC -->
   <symbol id="warning" viewBox="0 0 24 24">
