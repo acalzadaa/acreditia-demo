@@ -6,11 +6,11 @@
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
+	import type { PuestoRef } from '$lib/schemas/puesto.schema';
 
 	interface Props {
 		open: boolean;
-		refs: EntidadLegalRef[];
+		refs: PuestoRef[];
 		onClose: () => void;
 	}
 
@@ -18,7 +18,7 @@
 
 	// Estado local del formulario
 	let formData = $state({
-		entidadLegalId: '',
+		puestoId: '',
 		code: '',
 		name: '',
 		description: ''
@@ -26,8 +26,8 @@
 
 	let errorMessage = $state('');
 
-	// Opciones para el select de entidad legal
-	const entidadLegalOptions = $derived(
+	// Opciones para el select de puesto
+	const puestoOptions = $derived(
 		refs.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
@@ -36,15 +36,15 @@
 
 	// Auto-seleccionar si solo hay una opción
 	$effect(() => {
-		if (entidadLegalOptions.length === 1 && !formData.entidadLegalId) {
-			formData.entidadLegalId = entidadLegalOptions[0].id;
+		if (puestoOptions.length === 1 && !formData.puestoId) {
+			formData.puestoId = puestoOptions[0].id;
 		}
 	});
 
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.entidadLegalId) {
-			errorMessage = 'Debes seleccionar una entidad legal';
+		if (!formData.puestoId) {
+			errorMessage = 'Debes seleccionar un puesto de director';
 			return;
 		}
 		if (!formData.code) {
@@ -61,7 +61,7 @@
 		
 		// Limpiar formulario
 		formData = {
-			entidadLegalId: '',
+			puestoId: '',
 			code: '',
 			name: '',
 			description: ''
@@ -77,7 +77,7 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			entidadLegalId: '',
+			puestoId: '',
 			code: '',
 			name: '',
 			description: ''
@@ -125,12 +125,12 @@
 					{/if}
 					
 					<InputSelect
-						label="Entidad Legal"
-						name="entidadLegalId"
-						optionsData={entidadLegalOptions}
+						label="Puesto de Director"
+						name="puestoId"
+						optionsData={puestoOptions}
 						required={true}
-						bind:value={formData.entidadLegalId}
-						errors={errorMessage && !formData.entidadLegalId ? [errorMessage] : undefined}
+						bind:value={formData.puestoId}
+						errors={errorMessage && !formData.puestoId ? [errorMessage] : undefined}
 					/>
 
 					<InputText

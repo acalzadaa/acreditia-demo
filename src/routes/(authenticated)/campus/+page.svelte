@@ -5,7 +5,6 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import type { CampusWithRelationsItem } from '$lib/schemas/campus.schema';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import Campus from '$lib/components/campus/Campus.svelte';
@@ -16,9 +15,8 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import { getCampus, getInstitucionRef } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
+	import type { CampusWithRelationsItem } from '$lib/schemas/campus.schema';
 
-
-	
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let campusItems = getCampus();
 

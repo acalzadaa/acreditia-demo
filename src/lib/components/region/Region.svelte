@@ -1,37 +1,57 @@
 <script lang="ts">
-	import type { RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
+	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
+
+
 	import EmptySection from '../common/EmptySection.svelte';
+	import PageHeader from '../common/PageHeader.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		regionItems: RegionWithEntidadLegalItem[];
-		onClickEditar: (item: RegionWithEntidadLegalItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: RegionWithEntidadLegalItem) => void;
-		onClickBorrar: (item: RegionWithEntidadLegalItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithEntidadLegalItem) => void;
-		onClickRestaurar: (item: RegionWithEntidadLegalItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithEntidadLegalItem) => void;
+		gridArea?: string;
+
+		regionItems: RegionWithRelationItem[];
+		showDetailIcon?: boolean;
+		showHeader?: boolean;
+		title?: string;
+		subtitle?: string;
+		onClickEditar: (item: RegionWithRelationItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
+		onClickBorrar: (item: RegionWithRelationItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
+		onClickRestaurar: (item: RegionWithRelationItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
+		onClickDetalle?: (item: RegionWithRelationItem) => void;
+		onKeydownDetalle?: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
 	}
 
 	const {
+		gridArea = 'main',
 		regionItems,
+		showDetailIcon = true,
+		showHeader = false,
+		title = '',
+		subtitle = '',
 		onClickEditar,
 		onKeydownEditar,
 		onClickBorrar,
 		onKeydownBorrar,
 		onClickRestaurar,
-		onKeydownRestaurar
+		onKeydownRestaurar,
+		onClickDetalle,
+		onKeydownDetalle
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel" style="grid-area: {gridArea}">
+	{#if showHeader}
+		<PageHeader {title} {subtitle} />
+	{/if}
 	<section class="table-container">
 		{#if regionItems.length > 0}
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-parent">Entidad</th>
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-description">Descripción</th>
@@ -42,9 +62,6 @@
 				<tbody class="text-body">
 					{#each regionItems as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-parent">
-								{item.entidadLegal?.code}
-							</td>
 							<td class="col-code">{item.code}</td>
 							<td class="col-name">{item.name}</td>
 							<td class="col-description">{item.description}</td>
@@ -54,6 +71,18 @@
 								</Badge>
 							</td>
 							<td class="col-actions">
+								{#if showDetailIcon && onClickDetalle && onKeydownDetalle}
+									<IconButton
+										isDisabled={item.isDeleted}
+										name="detail"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickDetalle(item)}
+										onKeydown={(e) => onKeydownDetalle(e, item)}
+									/>
+								{/if}
+
 								<IconButton
 									isDisabled={item.isDeleted}
 									name="edit"
@@ -87,7 +116,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de planeacion estrategica"></EmptySection>
+			<EmptySection message="No hay elementos de region"></EmptySection>
 		{/if}
 	</section>
 </main>
@@ -102,16 +131,15 @@
  * Columnas y sus límites:
  *
  *   código      ~20 chars ~10rem  (min: 7rem)
- *   parent   ~20 chars ~10rem  (min: 7rem)
  *   nombre      ~50 chars ~18rem  (min: 12rem)
  *   descripción ~255 chars flex   (min: 14rem, max: auto)
  *   badge       ~20 chars ~8rem   (min: 6rem)
  *   acciones      4 iconos  ~9rem   (min: 9rem, fijo)
  *
- * Total mínimo: 7 + 7 + 12 + 14 + 6 + 9 = 55rem
+ * Total mínimo: 7 + 12 + 14 + 6 + 9 = 48rem
  */
 	.data-table {
-		min-width: 55rem;
+		min-width: 48rem;
 	}
 
 	/* =============================================
@@ -122,13 +150,6 @@
 
 	/* Código — corto, no hace wrap */
 	.data-table .col-code {
-		width: 10rem;
-		min-width: 7rem;
-		white-space: nowrap;
-	}
-
-	/* Parent — corto, no hace wrap */
-	.data-table .col-parent {
 		width: 10rem;
 		min-width: 7rem;
 		white-space: nowrap;

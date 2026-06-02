@@ -42,7 +42,7 @@
 					{#each institucionItems as item (item.id)}
 						<tr class="table-row tr-expandable">
 							<td class="col-parent">
-								{item.region?.code}
+								{item.entidadLegal?.code}
 							</td>
 							<td class="col-code">{item.code}</td>
 							<td class="col-name">{item.name}</td>

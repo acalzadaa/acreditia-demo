@@ -4,31 +4,21 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
-	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 	import {
-		unidadAcademicaWithRelationsItemSchema,
-		type UnidadAcademicaWithRelationsItem
+		unidadAcademicaItemSchema,
+		type UnidadAcademicaItem
 	} from '$lib/schemas/unidadAcademica.schema';
-	import type { CampusRef } from '$lib/schemas/campus.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: UnidadAcademicaWithRelationsItem;
-		campus: CampusRef[];
+		selectedItem: UnidadAcademicaItem;
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
-
-	let unidadAcademicaOptions = $derived(
-		props.campus?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
 
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
@@ -38,7 +28,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(unidadAcademicaWithRelationsItemSchema),
+			validators: zod4(unidadAcademicaItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -96,16 +86,6 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelect
-						label="Campus"
-						name="campusId"
-						optionsData={unidadAcademicaOptions}
-						required={true}
-						bind:value={$form.campusId}
-						errors={$errors.campusId}
-						{...$constraints.campusId}
-					></InputSelect>
-
 					<InputText
 						label="Nombre"
 						name="name"

@@ -2,18 +2,43 @@
     "campusItems": [
         {
             "id": "99be4241-389d-430a-83f2-b1c612c029ac",
-            "institucionId": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
+            "institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
+            "regionId": "d9a9f1fd-e2b8-4acf-8ede-2e08be7ff88f",
             "code": "CAMPUS-MTY-001",
             "name": "Campus Monterrey",
+            "institucion": {
+                "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
+                "code": "IA-001",
+                "name": "Universidad Tecnológica del Norte",
+                "version": 1,
+                "isCurrent": true,
+                "validFrom": "2024-01-15T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2024-01-15T09:00:00Z",
+                "createdBy": "admin@system.com"
+            },
+            "region": {
+                "id": "d9a9f1fd-e2b8-4acf-8ede-2e08be7ff88f",
+                "code": "r-001",
+                "name": "Región Norte"
+            },
             "version": 1,
             "isCurrent": true,
             "validFrom": "2024-02-01T00:00:00Z",
             "validTo": null,
             "isDeleted": false,
             "createdAt": "2024-02-01T11:00:00Z",
-            "createdBy": "admin@system.com",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+            "institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
+            "regionId": "d9a9f1fd-e2b8-4acf-8ede-2e08be7ff88f",
+            "code": "CAMPUS-SALT-002",
+            "name": "Campus Saltillo",
             "institucion": {
-                "id": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
+                "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
                 "code": "IA-001",
                 "name": "Universidad Tecnológica del Norte",
                 "version": 1,
@@ -23,32 +48,19 @@
                 "isDeleted": false,
                 "createdAt": "2024-01-15T09:00:00Z",
                 "createdBy": "admin@system.com"
-            }
-        },
-        {
-            "id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
-            "institucionId": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
-            "code": "CAMPUS-SALT-002",
-            "name": "Campus Saltillo",
+            },
+            "region": {
+                "id": "d9a9f1fd-e2b8-4acf-8ede-2e08be7ff88f",
+                "code": "r-001",
+                "name": "Región Norte"
+            },
             "version": 1,
             "isCurrent": true,
             "validFrom": "2024-02-15T00:00:00Z",
             "validTo": null,
             "isDeleted": false,
             "createdAt": "2024-02-15T14:30:00Z",
-            "createdBy": "admin@system.com",
-            "institucion": {
-                "id": "2d90f0ed-152c-475c-b393-72e9d96d08f4",
-                "code": "IA-001",
-                "name": "Universidad Tecnológica del Norte",
-                "version": 1,
-                "isCurrent": true,
-                "validFrom": "2024-01-15T00:00:00Z",
-                "validTo": null,
-                "isDeleted": false,
-                "createdAt": "2024-01-15T09:00:00Z",
-                "createdBy": "admin@system.com"
-            }
+            "createdBy": "admin@system.com"
         }
     ]
 }

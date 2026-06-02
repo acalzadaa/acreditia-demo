@@ -5,7 +5,6 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import type { RegionWithEntidadLegalItem } from '$lib/schemas/region.schema';
 	import RestaurarRegionForm from '$lib/components/region/RestaurarRegionForm.svelte';
 	import BorrarRegionForm from '$lib/components/region/BorrarRegionForm.svelte';
 	import { resolve } from '$app/paths';
@@ -14,17 +13,18 @@
 	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
 	import Region from '$lib/components/region/Region.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import {  getEntidadLegalRef, getRegion } from '$lib/stores/data.svelte';
+	import { getPuestoRef, getRegion } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
+	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
 	let regionItems = getRegion();
-	let entidadLegal = getEntidadLegalRef();
+	let puestos = getPuestoRef('region');
 
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let itemSeleccionado: RegionWithEntidadLegalItem | null = $state(null);
+	let itemSeleccionado: RegionWithRelationItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -84,12 +84,12 @@
 
 	/* EDITAR */
 
-	function onClickEditar(item: RegionWithEntidadLegalItem) {
+	function onClickEditar(item: RegionWithRelationItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: RegionWithRelationItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
@@ -97,28 +97,40 @@
 
 	/* BORRAR */
 
-	function onClickBorrar(item: RegionWithEntidadLegalItem) {
+	function onClickBorrar(item: RegionWithRelationItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: RegionWithRelationItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: RegionWithEntidadLegalItem) {
+	function onClickRestaurar(item: RegionWithRelationItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: RegionWithEntidadLegalItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: RegionWithRelationItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
+
+	/* RESTAURAR */
+	function onClickDetalle(item: RegionWithRelationItem) {
+		goto(resolve(`/region/${item.code}`));
+	}
+
+	function onKeydownDetalle(e: KeyboardEvent, item: RegionWithRelationItem) {
+		if (e.key === 'Enter') {
+			onClickDetalle(item);
+		}
+	}
+
 	function handleCerrar() {
 		showCrearModal = false;
 		showEditarModal = false;
@@ -154,23 +166,26 @@
 
 	<Region
 		{regionItems}
-		onClickEditar={(item: RegionWithEntidadLegalItem) => onClickEditar(item)}
-		onKeydownEditar={(e, item: RegionWithEntidadLegalItem) => onKeydownEditar(e, item)}
-		onClickBorrar={(item: RegionWithEntidadLegalItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e, item: RegionWithEntidadLegalItem) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: RegionWithEntidadLegalItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: RegionWithEntidadLegalItem) => onKeydownRestaurar(e, item)}
+		onClickEditar={(item: RegionWithRelationItem) => onClickEditar(item)}
+		onKeydownEditar={(e, item: RegionWithRelationItem) => onKeydownEditar(e, item)}
+		onClickBorrar={(item: RegionWithRelationItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e, item: RegionWithRelationItem) => onKeydownBorrar(e, item)}
+		onClickRestaurar={(item: RegionWithRelationItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: RegionWithRelationItem) =>
+			onKeydownRestaurar(e, item)}
+		onClickDetalle={(item: RegionWithRelationItem) => onClickDetalle(item)}
+		onKeydownDetalle={(e: KeyboardEvent, item: RegionWithRelationItem) => onKeydownDetalle(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearRegionForm bind:open={showCrearModal} refs={entidadLegal} onClose={handleCerrar} />
+	<CrearRegionForm bind:open={showCrearModal} refs={puestos} onClose={handleCerrar} />
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
 		<EditarRegionForm
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
-			refs={entidadLegal}
+			refs={puestos}
 			onClose={handleCerrar}
 		/>
 	{/if}

@@ -1,23 +1,30 @@
 {
     "regionItems": [
         {
-            "id": "b3e5c8f9-1a2b-4c3d-9e8f-7a6b5c4d3e2f",
-            "entidadLegalId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-            "code": "REG-NORTE",
+            "id": "d9a9f1fd-e2b8-4acf-8ede-2e08be7ff88f",
+            "puestoId": "bf35d065-b622-4703-bc1d-90894c2a657e",
+            "usuarioId": "061dfb45-1261-49ea-9374-4e9b3610d533",
+            "code": "r-001",
             "name": "Región Norte",
             "description": "Zona norte del país, caracterizada por su desarrollo industrial y educativo",
-            "entidadLegal": {
-                "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                "code": "EL-001",
-                "name": "Instituto Educativo del Noreste A.C",
-                "description": "Organización educativa sin fines de lucro",
+            "puesto": {
+                "id": "bf35d065-b622-4703-bc1d-90894c2a657e",
+                "code": "dir-r1",
+                "name": "Director de Region 1",
+                "type": "region",
+                "description": "",
                 "version": 1,
                 "isCurrent": true,
-                "validFrom": "2024-01-01T00:00:00Z",
+                "validFrom": "2024-02-01T00:00:00Z",
                 "validTo": null,
                 "isDeleted": false,
-                "createdAt": "2024-01-01T10:00:00Z",
-                "createdBy": "admin@system.com"
+                "createdAt": "2024-02-01T11:00:00Z"
+            },
+            "usuario": {
+                "id": "061dfb45-1261-49ea-9374-4e9b3610d533",
+                "firstName": "Martin",
+                "lastName": "Martinez",
+                "email": "martin.martinez@system.com"
             },
             "version": 1,
             "isCurrent": true,

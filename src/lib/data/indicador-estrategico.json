@@ -1,8 +1,8 @@
 {
   "indicadores-estrategicos": [
     {
-      "id": "80a33186-5007-4110-8113-d304d9699a80",
-      "objetivoId": "2b23f123-136d-449f-b3d0-30c21ea0d8c9",
+      "id": "1800bfb3-ce76-467f-b983-c282cef417da",
+      "objetivoId": "7ac73143-38fc-4a9d-a127-dec13c9ebbbf",
       "code": "IE-001",
       "name": "Porcentaje de avance en implementación del sistema de acreditación",
       "description": "Mide el porcentaje de cumplimiento de las fases del sistema de autoevaluación y aseguramiento de la calidad",
@@ -20,7 +20,7 @@
       "createdAt": "2024-01-15T10:30:00Z",
       "createdBy": "planeacion@universidad.edu",
       "objetivo": {
-        "id": "2b23f123-136d-449f-b3d0-30c21ea0d8c9",
+        "id": "7ac73143-38fc-4a9d-a127-dec13c9ebbbf",
         "code": "OE-001",
         "name": "Implementar sistema de acreditación institucional",
         "description": "Desarrollar e implementar un sistema integral de autoevaluación y aseguramiento de la calidad que permita obtener acreditación institucional de alta calidad para 2026",
@@ -34,8 +34,8 @@
       }
     },
     {
-      "id": "09021781-0290-4bc8-a65b-0bf6c1c8e698",
-      "objetivoId": "34906a1a-5b09-4445-b78c-c52a6b13ec54",
+      "id": "00290c8e-2ca9-4f83-97d9-a935f333db66",
+      "objetivoId": "abc98456-0671-4e1b-81e5-f95a20c9d170",
       "code": "IE-002",
       "name": "Porcentaje de docentes capacitados en evaluación por competencias",
       "description": "Indica el porcentaje de profesores que han completado el programa de formación en metodologías de evaluación auténtica",
@@ -53,7 +53,7 @@
       "createdAt": "2024-02-01T12:00:00Z",
       "createdBy": "planeacion@universidad.edu",
       "objetivo": {
-        "id": "34906a1a-5b09-4445-b78c-c52a6b13ec54",
+        "id": "abc98456-0671-4e1b-81e5-f95a20c9d170",
         "code": "OE-002",
         "name": "Fortalecer competencias docentes en evaluación por competencias",
         "description": "Capacitar al 100% del profesorado en metodologías de evaluación auténtica y por competencias, con especial énfasis en retroalimentación formativa",
@@ -67,8 +67,8 @@
       }
     },
     {
-      "id": "0141703e-4c19-4cc1-86fc-8ed34aacaf18",
-      "objetivoId": "b2d308e5-d3dd-4043-bc99-20b25c17a025",
+      "id": "2172eae4-6852-4927-9845-c452f49eea81",
+      "objetivoId": "600e1611-b4cc-49d7-8369-1f6bf73c06e1",
       "code": "IE-003",
       "name": "Número de programas académicos con ruta de formación ética implementada",
       "description": "Cantidad de programas de pregrado que han incorporado la ruta formativa en ética profesional",
@@ -86,7 +86,7 @@
       "createdAt": "2024-03-10T09:45:00Z",
       "createdBy": "vicerrectoria_academica@universidad.edu",
       "objetivo": {
-        "id": "b2d308e5-d3dd-4043-bc99-20b25c17a025",
+        "id": "600e1611-b4cc-49d7-8369-1f6bf73c06e1",
         "code": "OE-003",
         "name": "Diseñar ruta de formación ética transversal en todos los programas",
         "description": "Crear e implementar una ruta formativa en ética profesional, responsabilidad social y pensamiento crítico para ser incorporada en todos los programas de pregrado",
@@ -100,8 +100,8 @@
       }
     },
     {
-      "id": "b168a6d0-c351-4ae0-9011-f1780018820d",
-      "objetivoId": "f6c9fba3-185c-43ad-bd9c-ee3b695f382a",
+      "id": "492348cd-989b-4845-97a6-88991726c42b",
+      "objetivoId": "a0aa7ee2-7a80-4d56-9529-cfa4106f38a3",
       "code": "IE-004",
       "name": "Monto ejecutado del fondo concursable para investigación aplicada (millones $)",
       "description": "Mide la inversión anual en proyectos de investigación aplicada financiados por el fondo concursable",
@@ -119,7 +119,7 @@
       "createdAt": "2024-04-05T14:30:00Z",
       "createdBy": "vice_investigacion@universidad.edu",
       "objetivo": {
-        "id": "f6c9fba3-185c-43ad-bd9c-ee3b695f382a",
+        "id": "a0aa7ee2-7a80-4d56-9529-cfa4106f38a3",
         "code": "OE-004",
         "name": "Crear fondo concursable para investigación aplicada con impacto social",
         "description": "Implementar un fondo anual de $500 millones para financiar proyectos de investigación aplicada que generen soluciones transformadoras para la comunidad",
@@ -133,8 +133,8 @@
       }
     },
     {
-      "id": "4332497c-cbc0-4c88-8cbd-2ea768ea2964",
-      "objetivoId": "6c1d368a-0284-424c-abea-29693599b60b",
+      "id": "ad5eff36-d42f-4eec-9825-2b502094f636",
+      "objetivoId": "46a9ad10-a598-4416-9a87-e880e49fb292",
       "code": "IE-005",
       "name": "Número de proyectos de innovación social desarrollados en el laboratorio ciudadano",
       "description": "Cantidad de prototipos o soluciones tecnológicas co-creadas con comunidad en el laboratorio de innovación social",
@@ -152,7 +152,7 @@
       "createdAt": "2024-05-20T11:00:00Z",
       "createdBy": "vice_investigacion@universidad.edu",
       "objetivo": {
-        "id": "6c1d368a-0284-424c-abea-29693599b60b",
+        "id": "46a9ad10-a598-4416-9a87-e880e49fb292",
         "code": "OE-005",
         "name": "Establecer laboratorio ciudadano de innovación social",
         "description": "Crear un espacio físico y virtual de co-creación donde estudiantes, docentes y comunidad desarrollen soluciones tecnológicas a problemas territoriales",
@@ -166,8 +166,8 @@
       }
     },
     {
-      "id": "51a393f1-8860-46fb-8497-062135c57ef3",
-      "objetivoId": "91395b18-307d-4a9d-a8ef-8f92331ea9e5",
+      "id": "756f343c-23a6-4df8-a54f-50473c11f334",
+      "objetivoId": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
       "code": "IE-006",
       "name": "Número de convenios internacionales activos con universidades acreditadas de alta calidad",
       "description": "Conteo de convenios de cooperación académica vigentes con universidades extranjeras acreditadas",
@@ -185,7 +185,7 @@
       "createdAt": "2024-06-01T09:00:00Z",
       "createdBy": "internacionalizacion@universidad.edu",
       "objetivo": {
-        "id": "91395b18-307d-4a9d-a8ef-8f92331ea9e5",
+        "id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
         "code": "OE-006",
         "name": "Duplicar convenios internacionales con universidades de alta calidad",
         "description": "Aumentar de 15 a 30 los convenios de cooperación académica con universidades extranjeras acreditadas de alta calidad para 2026",
@@ -199,8 +199,8 @@
       }
     },
     {
-      "id": "c1287982-99ea-4d46-b49e-6e0d10faceaa",
-      "objetivoId": "1401dba2-05ad-4fa7-8efc-9107ac960169",
+      "id": "2e7022e3-2a00-4b58-a09c-fe124ebc1fee",
+      "objetivoId": "d647cf88-bf43-4963-97d3-06e4eb496745",
       "code": "IE-007",
       "name": "Número de estudiantes beneficiarios del programa de becas para población víctima",
       "description": "Cantidad de estudiantes víctimas del conflicto armado que reciben beca integral (matrícula, manutención, acompañamiento)",
@@ -218,7 +218,7 @@
       "createdAt": "2024-07-15T09:30:00Z",
       "createdBy": "bienestar_estudiantil@universidad.edu",
       "objetivo": {
-        "id": "1401dba2-05ad-4fa7-8efc-9107ac960169",
+        "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
         "code": "OE-007",
         "name": "Implementar programa de becas para población víctima del conflicto",
         "description": "Crear un programa de becas integrales que cubra matrícula, manutención y acompañamiento psicosocial para 200 estudiantes víctimas del conflicto armado",
@@ -232,8 +232,8 @@
       }
     },
     {
-      "id": "8e9ec2ca-7e8b-4278-a1e1-f863f5fba2e2",
-      "objetivoId": "66d660d1-1ef9-4130-ae7b-b1e498474028",
+      "id": "a1385e35-31e2-4934-b99d-594f4261f58d",
+      "objetivoId": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
       "code": "IE-008",
       "name": "Porcentaje de reducción de huella de carbono institucional",
       "description": "Mide el avance en la reducción de emisiones de CO2 equivalente respecto al año base",
@@ -251,7 +251,7 @@
       "createdAt": "2024-08-01T11:30:00Z",
       "createdBy": "gestion_ambiental@universidad.edu",
       "objetivo": {
-        "id": "66d660d1-1ef9-4130-ae7b-b1e498474028",
+        "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
         "code": "OE-008",
         "name": "Reducir huella de carbono institucional en un 40%",
         "description": "Implementar programa de eficiencia energética, movilidad sostenible y gestión de residuos para reducir la huella de carbono del campus en un 40% para 2028",
@@ -265,7 +265,7 @@
       }
     },
     {
-      "id": "40e892c5-f3db-43d7-b56a-7ced6d0f3ef0",
+      "id": "b240ff4d-16b1-4974-b0e8-9a3bd1bd7e3c",
       "objetivoId": "7e7783e9-2c33-4465-9da9-5d7b1480cf7e",
       "code": "IE-009",
       "name": "Tasa de aprovechamiento (reciclaje + compostaje) de residuos institucionales (%)",
@@ -298,8 +298,8 @@
       }
     },
     {
-      "id": "1d79d5c0-290e-4ecb-8404-f7330367fd06",
-      "objetivoId": "2980df0b-e31b-4960-8a9d-963f38889ae5",
+      "id": "405c4c1b-26fa-4afe-ac4f-20c8d85356a8",
+      "objetivoId": "17af1054-0b3a-45ca-9b86-1910b4226ce0",
       "code": "IE-010",
       "name": "Número de empresas incubadas activas con base social y tecnológica",
       "description": "Cantidad de emprendimientos en portafolio activo de incubadora, liderados por estudiantes o egresados",
@@ -317,7 +317,7 @@
       "createdAt": "2024-10-01T08:30:00Z",
       "createdBy": "extension@universidad.edu",
       "objetivo": {
-        "id": "2980df0b-e31b-4960-8a9d-963f38889ae5",
+        "id": "17af1054-0b3a-45ca-9b86-1910b4226ce0",
         "code": "OE-010",
         "name": "Crear incubadora de empresas de base social y tecnológica",
         "description": "Establecer una incubadora que apoye la creación de 30 empresas de base social y tecnológica lideradas por estudiantes y egresados en los próximos 5 años",

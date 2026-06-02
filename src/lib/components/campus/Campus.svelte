@@ -1,10 +1,16 @@
 <script lang="ts">
 	import type { CampusWithRelationsItem } from '$lib/schemas/campus.schema';
 	import EmptySection from '../common/EmptySection.svelte';
+	import PageHeader from '../common/PageHeader.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
+		gridArea?: string;
+		showActionButtons?: boolean;
+		showHeader?: boolean;
+		title?: string;
+		subtitle?: string;
 		campusItems: CampusWithRelationsItem[];
 		onClickEditar: (item: CampusWithRelationsItem) => void;
 		onKeydownEditar: (e: KeyboardEvent, item: CampusWithRelationsItem) => void;
@@ -15,6 +21,11 @@
 	}
 
 	const {
+		gridArea = 'main',
+		showActionButtons = true,
+		showHeader = false,
+		title = 'Add',
+		subtitle = '',
 		campusItems,
 		onClickEditar,
 		onKeydownEditar,
@@ -25,7 +36,10 @@
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel" style="grid-area: {gridArea}">
+	{#if showHeader}
+		<PageHeader {title} {subtitle} />
+	{/if}
 	<section class="table-container">
 		{#if campusItems.length > 0}
 			<table class="data-table text-body">
@@ -35,7 +49,10 @@
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-status">Estatus</th>
-						<th class="col-actions">Acciones</th>
+
+						{#if showActionButtons}
+							<th class="col-actions">Acciones</th>
+						{/if}
 					</tr>
 				</thead>
 				<tbody class="text-body">
@@ -51,41 +68,43 @@
 									{item.isDeleted ? 'borrado' : 'activo'}
 								</Badge>
 							</td>
-							<td class="col-actions">
-								<IconButton
-									isDisabled={item.isDeleted}
-									name="edit"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickEditar(item)}
-									onKeydown={(e) => onKeydownEditar(e, item)}
-								/>
-								<IconButton
-									isDisabled={item.isDeleted}
-									name="delete"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickBorrar(item)}
-									onKeydown={(e) => onKeydownBorrar(e, item)}
-								/>
-								<IconButton
-									isDisabled={!item.isDeleted}
-									name="restore"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickRestaurar(item)}
-									onKeydown={(e) => onKeydownRestaurar(e, item)}
-								/>
-							</td>
+							{#if showActionButtons}
+								<td class="col-actions">
+									<IconButton
+										isDisabled={item.isDeleted}
+										name="edit"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickEditar(item)}
+										onKeydown={(e) => onKeydownEditar(e, item)}
+									/>
+									<IconButton
+										isDisabled={item.isDeleted}
+										name="delete"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickBorrar(item)}
+										onKeydown={(e) => onKeydownBorrar(e, item)}
+									/>
+									<IconButton
+										isDisabled={!item.isDeleted}
+										name="restore"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickRestaurar(item)}
+										onKeydown={(e) => onKeydownRestaurar(e, item)}
+									/>
+								</td>
+							{/if}
 						</tr>
 					{/each}
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de planeacion estrategica"></EmptySection>
+			<EmptySection message="No hay elementos de campus"></EmptySection>
 		{/if}
 	</section>
 </main>

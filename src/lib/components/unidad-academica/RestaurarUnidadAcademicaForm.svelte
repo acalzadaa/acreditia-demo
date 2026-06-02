@@ -4,11 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { unidadAcademicaWithRelationsItemSchema, type UnidadAcademicaWithRelationsItem } from '$lib/schemas/unidadAcademica.schema';
+	import { unidadAcademicaItemSchema, type UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: UnidadAcademicaWithRelationsItem;
+		selectedItem: UnidadAcademicaItem;
 		onClose: () => void;
 	}
 
@@ -20,7 +20,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(unidadAcademicaWithRelationsItemSchema),
+		validators: zod4(unidadAcademicaItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {

@@ -1,10 +1,13 @@
 <script lang="ts">
+	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		onClickCrear: (e: MouseEvent) => void;
-		onKeydownCrear: (e: KeyboardEvent) => void;
+		gridArea?: string;
 
+		onClickCrear: (e: MouseEvent) => void;
+		crearTitle?: string;
+		onKeydownCrear: (e: KeyboardEvent) => void;
 		onClickExport?: (e: MouseEvent) => void;
 		onKeydownExport?: (e: KeyboardEvent) => void;
 		showExport?: boolean;
@@ -15,7 +18,10 @@
 	}
 
 	const {
+		gridArea = 'toolbar',
+		
 		onClickCrear,
+		crearTitle = 'Nuevo',
 		onKeydownCrear,
 		onClickExport,
 		onKeydownExport,
@@ -26,16 +32,17 @@
 	}: Props = $props();
 </script>
 
-<header class="toolbar">
-	<section class="toolbar-actions">
-		<IconButton
-			size="md"
+<header class="toolbar" style="grid-area: {gridArea}">
+	<section class="toolbar-actions text-body">
+		<Button
 			variant="outline"
-			borderShape="round"
+			iconPosition="left"
 			name="add"
 			onClick={onClickCrear}
 			onKeydown={onKeydownCrear}
-		/>
+		>
+			{crearTitle}
+		</Button>
 	</section>
 	<section>
 		{#if showExport}

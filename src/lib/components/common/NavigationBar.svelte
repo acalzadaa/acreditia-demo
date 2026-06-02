@@ -3,7 +3,7 @@
 	import type { NavigationItem } from '$lib/types/navigation.types';
 	import { slide } from 'svelte/transition';
 	import Icon from '../ui/Icon.svelte';
-	import { findParentIdByUrl } from '$lib/utils/navigation';
+	import { findParentIdByUrl } from '$lib/helpers/navigation';
 	
 	interface Props {
 		showNavigationBar: boolean;
