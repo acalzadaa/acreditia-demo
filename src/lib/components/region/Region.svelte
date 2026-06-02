@@ -1,56 +1,51 @@
 <script lang="ts">
 	import type { RegionWithDirectorItem } from '$lib/schemas/region.schema';
-	import type { UsuarioRef } from '$lib/schemas/usuario.schema';
+
 	import EmptySection from '../common/EmptySection.svelte';
+	import PageHeader from '../common/PageHeader.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
+		gridArea?: string;
+
 		regionItems: RegionWithDirectorItem[];
+		showDetailIcon?: boolean;
+		showHeader?: boolean;
+		title?: string;
+		subtitle?: string;
 		onClickEditar: (item: RegionWithDirectorItem) => void;
 		onKeydownEditar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
 		onClickBorrar: (item: RegionWithDirectorItem) => void;
 		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
 		onClickRestaurar: (item: RegionWithDirectorItem) => void;
 		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
+		onClickDetalle?: (item: RegionWithDirectorItem) => void;
+		onKeydownDetalle?: (e: KeyboardEvent, item: RegionWithDirectorItem) => void;
 	}
 
 	const {
+		gridArea = 'main',
 		regionItems,
+		showDetailIcon = true,
+		showHeader = false,
+		title = '',
+		subtitle = '',
 		onClickEditar,
 		onKeydownEditar,
 		onClickBorrar,
 		onKeydownBorrar,
 		onClickRestaurar,
-		onKeydownRestaurar
+		onKeydownRestaurar,
+		onClickDetalle,
+		onKeydownDetalle
 	}: Props = $props();
-
-	function getUsername(usuario: UsuarioRef | null | undefined): string {
-		if (!usuario) {
-			return 'Director no asignado';
-		}
-
-		// Si tiene nombre y apellido (incluso si son strings vacíos)
-		if (usuario.firstName && usuario.lastName) {
-			return `${usuario.lastName}, ${usuario.firstName}`;
-		}
-
-		// Si solo tiene nombre
-		if (usuario.firstName) {
-			return usuario.firstName;
-		}
-
-		// Si solo tiene apellido
-		if (usuario.lastName) {
-			return usuario.lastName;
-		}
-
-		// Fallback a email o valor por defecto
-		return usuario.email || 'Director de Region';
-	}
 </script>
 
-<main class="main-panel">
+<main class="main-panel" style="grid-area: {gridArea}">
+	{#if showHeader}
+		<PageHeader {title} {subtitle} />
+	{/if}
 	<section class="table-container">
 		{#if regionItems.length > 0}
 			<table class="data-table text-body">
@@ -59,8 +54,6 @@
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-description">Descripción</th>
-						<th class="col-name">Director</th>
-
 						<th class="col-status">Estatus</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
@@ -71,13 +64,24 @@
 							<td class="col-code">{item.code}</td>
 							<td class="col-name">{item.name}</td>
 							<td class="col-description">{item.description}</td>
-							<td class="col-name">{getUsername(item?.director)}</td>
 							<td class="col-status">
 								<Badge variant={item.isDeleted ? 'error' : 'success'}>
 									{item.isDeleted ? 'borrado' : 'activo'}
 								</Badge>
 							</td>
 							<td class="col-actions">
+								{#if showDetailIcon && onClickDetalle && onKeydownDetalle}
+									<IconButton
+										isDisabled={item.isDeleted}
+										name="detail"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickDetalle(item)}
+										onKeydown={(e) => onKeydownDetalle(e, item)}
+									/>
+								{/if}
+
 								<IconButton
 									isDisabled={item.isDeleted}
 									name="edit"

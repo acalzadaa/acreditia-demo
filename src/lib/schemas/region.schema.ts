@@ -19,11 +19,16 @@ export type RegionRef = z.infer<typeof regionRefSchema>;
 // ============================================
 export const regionFormSchema = z.object({
 	id: z.uuid().optional(),
-	directorPuestoId: z.uuid().nullable().optional(), // Cambiado: puede ser null si no tiene director asignado
+	directorPuestoId: z.uuid(),
 	code: z
 		.string()
-		.min(1, 'El código debe tener al menos 1 caracter')
-		.max(50, 'El código debe tener máximo 50 caracteres'),
+		.min(3, 'El código debe tener al menos 3 caracteres')
+		.max(100, 'El código no puede tener más de 100 caracteres')
+		.regex(
+			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+			'Formato de slug inválido. Use solo letras minúsculas, números y guiones simples entre palabras'
+		)
+		.transform((val) => val.toLowerCase()),
 	name: z
 		.string()
 		.min(1, 'El nombre es obligatorio')

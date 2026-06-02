@@ -5,6 +5,7 @@
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
+		gridArea?: string;
 		campusItems: CampusWithRelationsItem[];
 		onClickEditar: (item: CampusWithRelationsItem) => void;
 		onKeydownEditar: (e: KeyboardEvent, item: CampusWithRelationsItem) => void;
@@ -15,6 +16,7 @@
 	}
 
 	const {
+		gridArea = 'main',
 		campusItems,
 		onClickEditar,
 		onKeydownEditar,
@@ -25,7 +27,7 @@
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel" style="grid-area: {gridArea}">
 	<section class="table-container">
 		{#if campusItems.length > 0}
 			<table class="data-table text-body">
