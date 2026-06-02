@@ -1,42 +1,59 @@
 <script lang="ts">
-	import { superForm, type SuperValidated } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms';
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { estatusOptions } from '$lib/types/common.types';
-	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import Input from '../ui/input/InputText.svelte';
 	import InputSelect from '../ui/input/InputSelect.svelte';
+	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
-	import {
-		areaResponsableItemSchema,
-		type AreaResponsableForm
-	} from '$lib/schemas/areaResponsable.schema';
+	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
+	import { areaFuncionalWithRelationsItemSchema, type AreaFuncionalWithRelationsItem } from '$lib/schemas/areaFuncional.schema';
+	import type { PuestoRef } from '$lib/schemas/puesto.schema';
 
 	interface Props {
 		open: boolean;
-		form: SuperValidated<AreaResponsableForm>;
+		selectedItem: AreaFuncionalWithRelationsItem;
+		refs: PuestoRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
+	const puestoOptions = $derived(
+		props.refs?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
+	);
+
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, message } = superForm(props.form, {
-		resetForm: true,
-		validators: zod4Client(areaResponsableItemSchema),
-		validationMethod: 'onblur',
-		customValidity: false,
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
-				handleClose();
+	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
+		props.selectedItem,
+		{
+			dataType: 'json',
+			validators: zod4(areaFuncionalWithRelationsItemSchema),
+			validationMethod: 'onblur',
+			customValidity: false,
+			resetForm: false,
+			taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
+			onSubmit: ({ cancel }) => {
+				if (!isTainted($tainted)) {
+					cancel();
+					handleClose();
+					console.log('No hay cambios para guardar');
+				}
+			},
+			onUpdated: async ({ form }) => {
+				if (form.valid) {
+					handleClose();
+				}
 			}
 		}
-	});
+	);
 
 	function handleClose() {
 		onClose();
@@ -52,17 +69,21 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear Area Responsable</h2>
+			<h2 class="modal-title text-h4">Editar area funcional</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
 				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
+				isDisabled={false}
 			/>
 		</header>
 
-		<form method="POST" action="?/create" use:enhance>
+		<form method="POST" action="?/edit" use:enhance>
+			<!-- Hidden input para el ID -->
+			<input type="hidden" name="id" value={$form.id} />
+
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -72,18 +93,17 @@
 				{/if}
 
 				<div class="form-fields">
-					<Input
-						label="Código"
-						name="code"
+					<InputSelect
+						label="puesto"
+						name="puestoId"
+						optionsData={puestoOptions}
 						required={true}
-						placeholder="PE-001"
-						status={$errors.code ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
+						bind:value={$form.puestoId}
+						errors={$errors.puestoId}
+						{...$constraints.puestoId}
 					/>
 
-					<Input
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -101,38 +121,15 @@
 						bind:value={$form.description}
 						rows={4}
 					/>
-
-					<InputSelect
-						label="Estado"
-						name="status"
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
-					></InputSelect>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
-				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
+					Cancelar
+				</Button>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar area</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
-
-<style>
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>

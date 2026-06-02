@@ -3,35 +3,39 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-
-	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import Input from '../ui/input/InputText.svelte';
 	import InputSelect from '../ui/input/InputSelect.svelte';
-	import { estatusOptions } from '$lib/types/common.types';
+	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
-	import {
-		areaFuncionalItemSchema,
-		type AreaFuncionalItem
-	} from '$lib/schemas/areaFuncional.schema';
+	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
+	import { areaResponsableWithRelationsItemSchema, type AreaResponsableWithRelationsItem } from '$lib/schemas/areaResponsable.schema';
+	import type { PuestoRef } from '$lib/schemas/puesto.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: AreaFuncionalItem;
+		selectedItem: AreaResponsableWithRelationsItem;
+		refs: PuestoRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
+	const puestoOptions = $derived(
+		props.refs?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
+	);
+
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, submitting, tainted, isTainted, message } = superForm(
+	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4Client(areaFuncionalItemSchema),
+			validators: zod4(areaResponsableWithRelationsItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -65,7 +69,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar area funcional</h2>
+			<h2 class="modal-title text-h4">Editar area responsable</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -89,18 +93,17 @@
 				{/if}
 
 				<div class="form-fields">
-					<Input
-						label="Código"
-						name="code"
+					<InputSelect
+						label="Filosofía Institucional"
+						name="filosofiaId"
+						optionsData={puestoOptions}
 						required={true}
-						placeholder="PE-001"
-						status={$errors.code ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
-					/>
+						bind:value={$form.puestoId}
+						errors={$errors.puestoId}
+						{...$constraints.puestoId}
+					></InputSelect>
 
-					<Input
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -118,15 +121,6 @@
 						bind:value={$form.description}
 						rows={4}
 					/>
-
-					<InputSelect
-						label="Estado"
-						name="status"
-						optionsData={estatusOptions}
-						required={true}
-						bind:value={$form.status}
-						errors={$errors.status}
-					></InputSelect>
 				</div>
 			</div>
 
@@ -139,47 +133,3 @@
 		</form>
 	</div>
 </Modal>
-
-<style>
-	.form-fields {
-		padding: var(--space-6);
-		flex: 1;
-		overflow-y: auto;
-		min-height: 0;
-		scrollbar-width: thin;
-		scrollbar-color: var(--border-regular) var(--bg-ground);
-	}
-
-	.form-fields::-webkit-scrollbar {
-		width: 8px;
-	}
-
-	.form-fields::-webkit-scrollbar-track {
-		background: var(--bg-ground);
-		border-radius: 4px;
-	}
-
-	.form-fields::-webkit-scrollbar-thumb {
-		background-color: var(--border-regular);
-		border-radius: 4px;
-		border: 2px solid var(--bg-ground);
-	}
-
-	.form-fields::-webkit-scrollbar-thumb:hover {
-		background-color: var(--border-brand);
-	}
-
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>

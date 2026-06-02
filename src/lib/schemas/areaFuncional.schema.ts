@@ -1,57 +1,69 @@
-import { ESTATUS } from '$lib/types/common.types';
 import { z } from 'zod';
-
+import { puestoRefSchema } from './puesto.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
 // ============================================
 export const areaFuncionalRefSchema = z.object({
-    id: z.uuid(),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido")
+	id: z.uuid(),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido')
 });
 
-export type AreaFuncionalRef = z.infer<typeof areaFuncionalRefSchema>
+export type AreaFuncionalRef = z.infer<typeof areaFuncionalRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
-// Para operaciones CRUD: crear y actualizar
 // ============================================
-
 export const areaFuncionalFormSchema = z.object({
-    id: z.uuid().optional(),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido"),
-    description: z.string().default(''),
-    status: z.enum(ESTATUS).default('activo')
+	id: z.uuid().optional(),
+	puestoId: z.uuid({ message: 'El puesto es requerido' }),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido'),
+	description: z.string().default(''),
+	reportsTo: z.uuid().nullable().optional(),
+	createdBy: z.string().optional()
 });
 
 export type AreaFuncionalForm = z.infer<typeof areaFuncionalFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
-// Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
-
 export const areaFuncionalItemSchema = z.object({
-    id: z.uuid(),
-    code: z.string(),
-    name: z.string(),
-    description: z.string().default(''),
-    status: z.enum(ESTATUS),
-    createdAt: z.iso.datetime().optional(),
-    updatedAt: z.iso.datetime().optional(),
+	id: z.uuid(),
+	puestoId: z.uuid(),
+	code: z.string(),
+	name: z.string(),
+	description: z.string().default(''),
+	reportsTo: z.uuid().nullable(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.coerce.date().optional(),
+	validTo: z.coerce.date().optional(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 
 export type AreaFuncionalItem = z.infer<typeof areaFuncionalItemSchema>;
 
 // ============================================
-// 4. CONFIG SCHEMA (Servidor → Cliente)
-// Para listas o configuraciones completas
+// 3b. ITEM WITH RELATIONS SCHEMA (Servidor → Cliente)
+// Incluye el puesto completo
 // ============================================
+export const areaFuncionalWithRelationsItemSchema = areaFuncionalItemSchema.extend({
+	puesto: puestoRefSchema.nullable().optional(),
+	parent: areaFuncionalRefSchema.nullable().optional()
+});
 
+export type AreaFuncionalWithRelationsItem = z.infer<typeof areaFuncionalWithRelationsItemSchema>;
+
+// ============================================
+// 4. CONFIG SCHEMA (Servidor → Cliente)
+// ============================================
 export const areaFuncionalConfigSchema = z.object({
-    areafuncionalItems: z.array(areaFuncionalItemSchema)
+	areaFuncionalItems: z.array(areaFuncionalItemSchema)
 });
 
 export type AreaFuncionalConfig = z.infer<typeof areaFuncionalConfigSchema>;
