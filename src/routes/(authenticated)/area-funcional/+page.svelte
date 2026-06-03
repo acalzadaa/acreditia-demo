@@ -5,7 +5,10 @@
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import type { AreaFuncionalItem, AreaFuncionalWithRelationsItem } from '$lib/schemas/areaFuncional.schema';
+	import type {
+		AreaFuncionalItem,
+		AreaFuncionalWithRelationsItem
+	} from '$lib/schemas/areaFuncional.schema';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import AreaFuncional from '$lib/components/area-funcional/AreaFuncional.svelte';
@@ -14,12 +17,13 @@
 	import BorrarAreaFuncionalForm from '$lib/components/area-funcional/BorrarAreaFuncionalForm.svelte';
 	import RestaurarAreaFuncionalForm from '$lib/components/area-funcional/RestaurarAreaFuncionalForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getAreaFuncional, getPuestoRef } from '$lib/stores/data.svelte';
+	import { getAreaFuncional, getAreaFuncionalRef, getPuestoRef } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
 	let areaFuncionalItems = getAreaFuncional();
+	let areaFuncionalRef = getAreaFuncionalRef();
 	let navigationItems = $derived(page.data.navigationItems);
 	let puestos = getPuestoRef('funcional');
 
@@ -162,7 +166,12 @@
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearAreaFuncionalForm bind:open={showCrearModal} refs={puestos} onClose={handleCerrar} />
+	<CrearAreaFuncionalForm
+		bind:open={showCrearModal}
+		refs={puestos}
+		{areaFuncionalRef}
+		onClose={handleCerrar}
+	/>
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}
@@ -170,6 +179,7 @@
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
 			refs={puestos}
+			{areaFuncionalRef}
 			onClose={handleCerrar}
 		/>
 	{/if}

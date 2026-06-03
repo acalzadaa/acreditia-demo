@@ -8,13 +8,18 @@
 	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
-	import { areaResponsableWithRelationsItemSchema, type AreaResponsableWithRelationsItem } from '$lib/schemas/areaResponsable.schema';
+	import {
+		areaResponsableFormSchema,
+		type AreaResponsableWithRelationsItem
+	} from '$lib/schemas/areaResponsable.schema';
 	import type { PuestoRef } from '$lib/schemas/puesto.schema';
+	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
 		selectedItem: AreaResponsableWithRelationsItem;
 		refs: PuestoRef[];
+		areaResponsableRef: AreaResponsableRef[];
 		onClose: () => void;
 	}
 
@@ -27,15 +32,30 @@
 		})) ?? []
 	);
 
+	const areaResponsableOptions = $derived(
+		props.areaResponsableRef?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
+	);
+
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
-		props.selectedItem,
+		{
+			id: props.selectedItem.id,
+			puestoId: props.selectedItem.puestoId,
+			code: props.selectedItem.code,
+			name: props.selectedItem.name,
+			description: props.selectedItem.description,
+			parentId: props.selectedItem.parentId ?? '',
+			createdBy: props.selectedItem.createdBy
+		},
 		{
 			dataType: 'json',
-			validators: zod4(areaResponsableWithRelationsItemSchema),
+			validators: zod4(areaResponsableFormSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -94,8 +114,8 @@
 
 				<div class="form-fields">
 					<InputSelect
-						label="Filosofía Institucional"
-						name="filosofiaId"
+						label="Puesto"
+						name="puestoId"
 						optionsData={puestoOptions}
 						required={true}
 						bind:value={$form.puestoId}
@@ -120,6 +140,17 @@
 						placeholder="Descripcion..."
 						bind:value={$form.description}
 						rows={4}
+					/>
+
+					<InputSelect
+						label="Reporta a"
+						name="parentId"
+						optionsData={areaResponsableOptions}
+						required={true}
+						bind:value={$form.parentId}
+						nullOption="Ninguno (es un elemento raiz)"
+						errors={$errors.parentId}
+						{...$constraints.parentId}
 					/>
 				</div>
 			</div>

@@ -35,6 +35,7 @@
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-description">Descripción</th>
+						<th class="col-name">Reporta a</th>
 						<th class="col-status">Estatus</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
@@ -48,6 +49,7 @@
 							<td class="col-code">{item.code}</td>
 							<td class="col-name">{item.name}</td>
 							<td class="col-description">{item.description}</td>
+							<td class="col-name">{item.parent?.name}</td>
 							<td class="col-status">
 								<Badge variant={item.isDeleted ? 'error' : 'success'}>
 									{item.isDeleted ? 'borrado' : 'activo'}
@@ -105,13 +107,14 @@
  *   parent   ~20 chars ~10rem  (min: 7rem)
  *   nombre      ~50 chars ~18rem  (min: 12rem)
  *   descripción ~255 chars flex   (min: 14rem, max: auto)
+ *   reporta a ~50 chars ~18rem  (min: 12rem)
  *   badge       ~20 chars ~8rem   (min: 6rem)
  *   acciones      4 iconos  ~9rem   (min: 9rem, fijo)
  *
- * Total mínimo: 7 + 7 + 12 + 14 + 6 + 9 = 55rem
+ * Total mínimo: 7 + 7 + 12 + 14 + 12 + 6 + 9 = 67rem
  */
 	.data-table {
-		min-width: 55rem;
+		min-width: 67rem;
 	}
 
 	/* =============================================

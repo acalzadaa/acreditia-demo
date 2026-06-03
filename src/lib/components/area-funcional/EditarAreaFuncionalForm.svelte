@@ -6,15 +6,20 @@
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
-	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
-	import { areaFuncionalWithRelationsItemSchema, type AreaFuncionalWithRelationsItem } from '$lib/schemas/areaFuncional.schema';
+	import {
+		areaFuncionalFormSchema,
+		type AreaFuncionalRef,
+		type AreaFuncionalWithRelationsItem
+	} from '$lib/schemas/areaFuncional.schema';
 	import type { PuestoRef } from '$lib/schemas/puesto.schema';
+	import { zod4 } from 'sveltekit-superforms/adapters';
 
 	interface Props {
 		open: boolean;
 		selectedItem: AreaFuncionalWithRelationsItem;
 		refs: PuestoRef[];
+		areaFuncionalRef: AreaFuncionalRef[];
 		onClose: () => void;
 	}
 
@@ -27,15 +32,30 @@
 		})) ?? []
 	);
 
+	const areaFuncionalOptions = $derived(
+		props.areaFuncionalRef?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
+	);
+
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
-		props.selectedItem,
+		{
+			id: props.selectedItem.id,
+			puestoId: props.selectedItem.puestoId,
+			code: props.selectedItem.code,
+			name: props.selectedItem.name,
+			description: props.selectedItem.description,
+			parentId: props.selectedItem.parentId ?? '',
+			createdBy: props.selectedItem.createdBy
+		},
 		{
 			dataType: 'json',
-			validators: zod4(areaFuncionalWithRelationsItemSchema),
+			validators: zod4(areaFuncionalFormSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -120,6 +140,17 @@
 						placeholder="Descripcion..."
 						bind:value={$form.description}
 						rows={4}
+					/>
+
+					<InputSelect
+						label="Reporta a"
+						name="parentId"
+						optionsData={areaFuncionalOptions}
+						required={true}
+						bind:value={$form.parentId}
+						nullOption="Ninguno (es un elemento raiz)"
+						errors={$errors.parentId}
+						{...$constraints.parentId}
 					/>
 				</div>
 			</div>

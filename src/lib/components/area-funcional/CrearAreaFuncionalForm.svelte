@@ -7,31 +7,42 @@
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
 	import type { PuestoRef } from '$lib/schemas/puesto.schema';
+	import type { AreaFuncionalRef } from '$lib/schemas/areaFuncional.schema';
 
 	interface Props {
 		open: boolean;
 		refs: PuestoRef[];
+		areaFuncionalRef: AreaFuncionalRef[];
+
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, refs = [] }: Props = $props();
+	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
 		puestoId: '',
 		code: '',
 		name: '',
-		description: ''
+		description: '',
+		parentId: ''
 	});
 
 	let errorMessage = $state('');
 
 	// Opciones para el select de puesto
 	const puestoOptions = $derived(
-		refs.map((ref) => ({
+		props.refs?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
-		}))
+		})) ?? []
+	);
+
+	const areaFuncionalOptions = $derived(
+		props.areaFuncionalRef?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
 	);
 
 	// Auto-seleccionar si solo hay una opción
@@ -58,18 +69,19 @@
 
 		// Aquí podrías console.log o guardar los datos si quieres
 		console.log('Datos enviados (demo):', formData);
-		
+
 		// Limpiar formulario
 		formData = {
 			puestoId: '',
 			code: '',
 			name: '',
-			description: ''
+			description: '',
+			parentId: ''
 		};
-		
+
 		// Limpiar mensaje de error
 		errorMessage = '';
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -80,7 +92,8 @@
 			puestoId: '',
 			code: '',
 			name: '',
-			description: ''
+			description: '',
+			parentId: ''
 		};
 		errorMessage = '';
 		onClose();
@@ -111,10 +124,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				<div class="form-fields">
 					{#if errorMessage}
@@ -123,7 +138,7 @@
 							{errorMessage}
 						</div>
 					{/if}
-					
+
 					<InputSelect
 						label="Puesto"
 						name="puestoId"
@@ -161,6 +176,16 @@
 						placeholder="Descripción..."
 						bind:value={formData.description}
 						rows={4}
+					/>
+
+					<InputSelect
+						label="Reporta a"
+						name="parentId"
+						optionsData={areaFuncionalOptions}
+						required={true}
+						bind:value={formData.parentId}
+						nullOption="Ninguno (es un elemento raiz)"
+						errors={errorMessage && !formData.parentId ? [errorMessage] : undefined}
 					/>
 				</div>
 			</div>

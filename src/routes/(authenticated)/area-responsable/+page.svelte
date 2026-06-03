@@ -14,12 +14,13 @@
 	import BorrarAreaResponsableForm from '$lib/components/area-responsable/BorrarAreaResponsableForm.svelte';
 	import RestaurarAreaResponsableForm from '$lib/components/area-responsable/RestaurarAreaResponsableForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getAreaResponsable, getPuestoRef } from '$lib/stores/data.svelte';
+	import { getAreaResponsable, getAreaResponsableRef, getPuestoRef } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
 	let areaResponsableItems = getAreaResponsable();
+	let areaResponsableRef = getAreaResponsableRef();
 	let navigationItems = $derived(page.data.navigationItems);
 	let puestos = getPuestoRef('responsable');
 
@@ -166,6 +167,7 @@
 	<CrearAreaResponsableForm
 		bind:open={showCrearModal}
 		refs={puestos}
+		{areaResponsableRef}
 		onClose={handleCerrar}
 	/>
 
@@ -175,6 +177,7 @@
 			bind:open={showEditarModal}
 			selectedItem={itemSeleccionado}
 			refs={puestos}
+			{areaResponsableRef}
 			onClose={handleCerrar}
 		/>
 	{/if}

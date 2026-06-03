@@ -1,12 +1,12 @@
 {
     "areaFuncionalItems": [
         {
-            "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "id": "f29d5788-1d1d-46c4-8ef6-ea94538f7185",
             "puestoId": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
             "code": "ACPA",
             "name": "Aseguramiento de la Calidad y Planeación Académica",
-            "description": "",
-            "reportsTo": null,
+            "description": "Garantiza la calidad académica y planeación institucional",
+            "parentId": null,
             "puesto": {
                 "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
                 "code": "VPA",
@@ -22,12 +22,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+            "id": "9bd9b4e5-7169-473d-aa23-a25f64a50f30",
             "puestoId": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
             "code": "DEOC",
             "name": "Dirección Ejecutiva de Operación en Campus",
-            "description": "",
-            "reportsTo": null,
+            "description": "Coordina las operaciones en todos los campus",
+            "parentId": null,
             "puesto": {
                 "id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
                 "code": "VPC",
@@ -43,12 +43,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+            "id": "b387f6dd-ebc4-4963-9af5-4989b50c36b6",
             "puestoId": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
             "code": "DIES",
             "name": "Dirección Institucional de Educación Superior",
-            "description": "",
-            "reportsTo": null,
+            "description": "Define políticas y estrategias para educación superior",
+            "parentId": null,
             "puesto": {
                 "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
                 "code": "VPA",
@@ -64,18 +64,22 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "d4e5f6a7-b8c9-0123-def4-567890123456",
-            "puestoId": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
+            "id": "d9215b10-8987-4f37-8ca6-328c0044cd5a",
+            "puestoId": "9c39c016-b0f5-443a-b143-50bda4004ad3",
             "code": "DGA",
-            "name": "Dirección de Operaciones Administrativas",
-            "description": "",
-            "reportsTo": null,
+            "name": "Dirección de Gestión Administrativa",
+            "description": "Gestiona operaciones administrativas en campus",
+            "parentId": "9bd9b4e5-7169-473d-aa23-a25f64a50f30",
             "puesto": {
-                "id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
-                "code": "VPC",
-                "name": "VP Comercial y Experiencia del Estudiante"
+                "id": "9c39c016-b0f5-443a-b143-50bda4004ad3",
+                "code": "VPO",
+                "name": "VP Operaciones en Campus"
             },
-            "parent": null,
+            "parent": {
+                "id": "9bd9b4e5-7169-473d-aa23-a25f64a50f30",
+                "code": "DEOC",
+                "name": "Dirección Ejecutiva de Operación en Campus"
+            },
             "version": 1,
             "isCurrent": true,
             "validFrom": "2024-02-01T00:00:00Z",
@@ -85,12 +89,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "e5f6a7b8-c9d0-1234-ef56-789012345678",
+            "id": "a632940c-42e1-4b9d-80ad-8048871d6cd4",
             "puestoId": "e5f078a6-20b2-4ee9-89fd-4b85e7ca7153",
-            "code": "RRHH",
+            "code": "DRHH",
             "name": "Dirección de Recursos Humanos",
-            "description": "",
-            "reportsTo": null,
+            "description": "Gestiona el talento humano institucional",
+            "parentId": null,
             "puesto": {
                 "id": "e5f078a6-20b2-4ee9-89fd-4b85e7ca7153",
                 "code": "VPRH",
@@ -106,12 +110,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "f6a7b8c9-d0e1-2345-f678-901234567890",
+            "id": "d7c39cac-8ab3-4971-8ed8-4982a81abf9e",
             "puestoId": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
             "code": "VLRE",
             "name": "Dirección de Vinculación Laboral y Relación con Egresados",
-            "description": "",
-            "reportsTo": null,
+            "description": "Conecta estudiantes con oportunidades laborales y gestiona egresados",
+            "parentId": null,
             "puesto": {
                 "id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
                 "code": "VPC",
@@ -127,12 +131,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "a7b8c9d0-e1f2-3456-7890-123456789abc",
+            "id": "0234a7de-f2f1-4f73-b154-7c08e1b9ecba",
             "puestoId": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
             "code": "DRYR",
             "name": "Dirección de Retención y Regresos",
-            "description": "",
-            "reportsTo": null,
+            "description": "Implementa estrategias para retención estudiantil",
+            "parentId": null,
             "puesto": {
                 "id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
                 "code": "VPC",
@@ -148,12 +152,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "b8c9d0e1-f2a3-4567-8901-23456789abcd",
+            "id": "68bc8e31-666e-4051-a254-3f7a71d0ff98",
             "puestoId": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
             "code": "STYCN",
             "name": "Secretaría Técnica y Cumplimiento Normativo",
-            "description": "",
-            "reportsTo": null,
+            "description": "Asegura el cumplimiento normativo académico",
+            "parentId": null,
             "puesto": {
                 "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
                 "code": "VPA",
@@ -169,12 +173,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "c9d0e1f2-a3b4-5678-9012-3456789abcde",
+            "id": "29fb7988-ea41-4800-be47-7c0015675b0d",
             "puestoId": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
-            "code": "SA/TE",
+            "code": "SATE",
             "name": "Dirección de Servicios Académicos y Tecnología Educativa",
-            "description": "",
-            "reportsTo": null,
+            "description": "Provee servicios académicos y soporte tecnológico educativo",
+            "parentId": null,
             "puesto": {
                 "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
                 "code": "VPA",
@@ -190,12 +194,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "d0e1f2a3-b4c5-6789-0123-456789abcdef",
+            "id": "8e90f2d2-9088-4c4d-8c43-a27ab9faa4f9",
             "puestoId": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
             "code": "SYCAE",
             "name": "Dirección de Servicios y Canal de Atención al Estudiante",
-            "description": "",
-            "reportsTo": null,
+            "description": "Gestiona servicios y atención al estudiante",
+            "parentId": null,
             "puesto": {
                 "id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
                 "code": "VPC",
@@ -211,12 +215,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "e1f2a3b4-c5d6-7890-1234-56789abcdef0",
+            "id": "db571ee8-296b-4fd3-a1dc-aa8755bb42af",
             "puestoId": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
             "code": "DDTI",
             "name": "Dirección de Operaciones de Tecnología de Información",
-            "description": "",
-            "reportsTo": null,
+            "description": "Opera y mantiene la infraestructura tecnológica",
+            "parentId": null,
             "puesto": {
                 "id": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
                 "code": "VPTI",
@@ -232,16 +236,16 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "f2a3b4c5-d6e7-8901-2345-6789abcdef01",
-            "puestoId": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
-            "code": "VCIB",
-            "name": "Vicerrectoría Institucional de Ciencias de la Salud",
-            "description": "",
-            "reportsTo": null,
+            "id": "9a2f91c3-8141-44b8-bcdf-4018b100893b",
+            "puestoId": "9c39c016-b0f5-443a-b143-50bda4004ad3",
+            "code": "DOC",
+            "name": "Dirección de Operaciones en Campus",
+            "description": "Supervisa operaciones diarias en campus",
+            "parentId": null,
             "puesto": {
-                "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
-                "code": "VPA",
-                "name": "VP Académica"
+                "id": "9c39c016-b0f5-443a-b143-50bda4004ad3",
+                "code": "VPO",
+                "name": "VP Operaciones en Campus"
             },
             "parent": null,
             "version": 1,
@@ -253,12 +257,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "a934e854-8bb7-4815-8e1f-b49cb221d8a4",
+            "id": "24b51583-bd4e-40e2-ab46-6f16e78e4256",
             "puestoId": "98408da3-9ad6-4b67-be1e-f68a41e8d409",
             "code": "VPCOM",
             "name": "Vicerrectoría de Comunicación y Marketing Institucional",
             "description": "Estrategia de comunicación, marca institucional, relaciones públicas y marketing educativo",
-            "reportsTo": null,
+            "parentId": null,
             "puesto": {
                 "id": "98408da3-9ad6-4b67-be1e-f68a41e8d409",
                 "code": "VP_COM",
@@ -274,12 +278,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "f697fdcb-f21a-42e4-8092-4172678b49d0",
+            "id": "a42fc00d-1d2e-4379-97ce-c036782870eb",
             "puestoId": "84d2cd04-5632-49d0-8024-589dff1251c5",
             "code": "VPPDI",
             "name": "Vicerrectoría de Planeación y Desarrollo Institucional",
             "description": "Planeación estratégica, indicadores FIMPES, mejora continua, evaluación institucional",
-            "reportsTo": null,
+            "parentId": null,
             "puesto": {
                 "id": "84d2cd04-5632-49d0-8024-589dff1251c5",
                 "code": "VP_PLAN",
@@ -295,12 +299,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "97ce6fcc-14cb-4b09-acd5-6a94f2c19869",
+            "id": "539ab826-12a0-475c-8dc8-e1d2f1233968",
             "puestoId": "f1e097bd-37ca-4aa5-819d-cda579119aa9",
             "code": "VPF",
             "name": "Vicerrectoría de Finanzas y Administración",
             "description": "Estrategia financiera, presupuesto institucional, control de gestión y tesorería",
-            "reportsTo": null,
+            "parentId": null,
             "puesto": {
                 "id": "f1e097bd-37ca-4aa5-819d-cda579119aa9",
                 "code": "VP_FIN",
@@ -316,12 +320,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "86b2ff8b-4577-4ab3-964f-e679e0645566",
+            "id": "b18aacd8-ac46-4167-99cd-d8e3de824cf7",
             "puestoId": "bd8f0fba-8f2d-4c8f-bea0-6c2166545fad",
             "code": "VPII",
             "name": "Vicerrectoría de Investigación e Innovación",
             "description": "Estrategia de investigación, posgrado, innovación educativa, cuerpos académicos y laboratorios",
-            "reportsTo": null,
+            "parentId": null,
             "puesto": {
                 "id": "bd8f0fba-8f2d-4c8f-bea0-6c2166545fad",
                 "code": "VP_INV",
@@ -337,12 +341,12 @@
             "createdBy": "admin@system.com"
         },
         {
-            "id": "1890b23a-6482-4061-a238-b10505f9b4fc",
+            "id": "5ec0562e-de97-4981-8f3e-cbbf2daae0f2",
             "puestoId": "5232efe0-a21d-4c07-afa1-90e875e3fd53",
             "code": "VPI",
             "name": "Vicerrectoría de Internacionalización",
             "description": "Estrategia de internacionalización, alianzas globales, acreditaciones internacionales, movilidad estratégica",
-            "reportsTo": null,
+            "parentId": null,
             "puesto": {
                 "id": "5232efe0-a21d-4c07-afa1-90e875e3fd53",
                 "code": "VP_INT",

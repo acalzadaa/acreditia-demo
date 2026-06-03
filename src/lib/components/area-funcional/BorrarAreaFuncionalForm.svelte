@@ -4,34 +4,48 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { areaFuncionalWithRelationsItemSchema, type AreaFuncionalWithRelationsItem } from '$lib/schemas/areaFuncional.schema';
-	
+	import {
+		areaFuncionalFormSchema,
+		type AreaFuncionalWithRelationsItem
+	} from '$lib/schemas/areaFuncional.schema';
+
 	interface Props {
 		open: boolean;
 		selectedItem: AreaFuncionalWithRelationsItem;
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, selectedItem }: Props = $props();
+	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, enhance } = superForm(selectedItem, {
-		dataType: 'json',
-		validators: zod4(areaFuncionalWithRelationsItemSchema),
-		customValidity: false,
-		resetForm: false,
-		onSubmit: () => {
-			handleClose();
+	const { form, enhance } = superForm(
+		{
+			id: props.selectedItem.id,
+			puestoId: props.selectedItem.puestoId,
+			code: props.selectedItem.code,
+			name: props.selectedItem.name,
+			description: props.selectedItem.description,
+			parentId: props.selectedItem.parentId ?? '',
+			createdBy: props.selectedItem.createdBy
 		},
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
+		{
+			dataType: 'json',
+			validators: zod4(areaFuncionalFormSchema),
+			customValidity: false,
+			resetForm: false,
+			onSubmit: () => {
 				handleClose();
+			},
+			onUpdated: async ({ form }) => {
+				if (form.valid) {
+					handleClose();
+				}
 			}
 		}
-	});
+	);
 
 	function handleClose() {
 		onClose();
@@ -63,7 +77,9 @@
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.name}"</strong>?
+					¿Estás seguro de que deseas aliminar el registro <strong
+						>"{props.selectedItem?.name}"</strong
+					>?
 				</p>
 			</div>
 

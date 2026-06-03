@@ -1,12 +1,10 @@
 import { z } from 'zod';
-import { puestoItemSchema } from './puesto.schema';
+import { puestoRefSchema } from './puesto.schema';
 import { areaResponsableRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
 // ============================================
-
-
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -17,6 +15,7 @@ export const areaResponsableFormSchema = z.object({
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
 	description: z.string().default(''),
+	parentId: z.string().default(''),
 	createdBy: z.string().optional()
 });
 
@@ -32,7 +31,7 @@ export const areaResponsableItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	description: z.string().default(''),
-	reportsTo: z.uuid().nullable(),
+	parentId: z.uuid().nullable(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -45,7 +44,7 @@ export const areaResponsableItemSchema = z.object({
 export type AreaResponsableItem = z.infer<typeof areaResponsableItemSchema>;
 
 export const areaResponsableWithRelationsItemSchema = areaResponsableItemSchema.extend({
-	puesto: puestoItemSchema,
+	puesto: puestoRefSchema.nullable().optional(),
 	parent: areaResponsableRefSchema.nullable().optional()
 });
 

@@ -21,7 +21,7 @@ export const areaFuncionalFormSchema = z.object({
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
 	description: z.string().default(''),
-	reportsTo: z.uuid().nullable().optional(),
+	parentId: z.string().default(''),
 	createdBy: z.string().optional()
 });
 
@@ -36,7 +36,7 @@ export const areaFuncionalItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	description: z.string().default(''),
-	reportsTo: z.uuid().nullable(),
+	parentId: z.uuid().nullable(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),

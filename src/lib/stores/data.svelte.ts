@@ -54,8 +54,14 @@ import {
 	unidadAcademicaItemSchema,
 	type UnidadAcademicaItem
 } from '$lib/schemas/unidadAcademica.schema';
-import { areaFuncionalWithRelationsItemSchema, type AreaFuncionalWithRelationsItem } from '$lib/schemas/areaFuncional.schema';
-import { areaResponsableWithRelationsItemSchema, type AreaResponsableWithRelationsItem } from '$lib/schemas/areaResponsable.schema';
+import {
+	areaFuncionalWithRelationsItemSchema,
+	type AreaFuncionalWithRelationsItem
+} from '$lib/schemas/areaFuncional.schema';
+import {
+	areaResponsableWithRelationsItemSchema,
+	type AreaResponsableWithRelationsItem
+} from '$lib/schemas/areaResponsable.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -216,6 +222,21 @@ export function getAreaFuncional() {
 	return areaFuncional;
 }
 
+export function getAreaFuncionalRef() {
+	return areaFuncional.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
+}
+
 export function getAreaResponsable() {
 	return areaResponsable;
+}
+export function getAreaResponsableRef() {
+	return areaResponsable.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
 }
