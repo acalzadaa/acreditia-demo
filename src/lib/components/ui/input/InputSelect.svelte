@@ -9,6 +9,7 @@
 		name: string;
 		label?: string;
 		value: string;
+		nullOption?: string;
 		errors?: string | string[];
 		required?: boolean;
 		placeholder?: string;
@@ -16,12 +17,13 @@
 		disabled?: boolean;
 		optionsData: OptionData[];
 		class?: string;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 	let {
 		name,
 		label = '',
 		value = $bindable(''),
+		nullOption = undefined,
 		errors = [],
 		required = false,
 		placeholder = 'Selecciona una opción',
@@ -60,11 +62,18 @@
 		aria-describedby={hasErrors ? `${name}-error` : undefined}
 		{...props}
 	>
-		<option value="" disabled selected={!value}>
-			{placeholder}
-		</option>
+		{#if !nullOption}
+			<option value="" disabled selected={!value}>
+				{placeholder}
+			</option>
+		{/if}
 
-		{#each optionsData as { id, option }}
+		<!-- Opción seleccionable para "ninguno" = null -->
+		{#if nullOption}
+			<option value="">{nullOption}</option>
+		{/if}
+
+		{#each optionsData as { id, option } (id)}
 			<option value={id}>
 				{option}
 			</option>
@@ -72,7 +81,7 @@
 	</select>
 	{#if hasErrors}
 		<div class="form-feedback-container" id="{name}-error" role="alert">
-			{#each errorList as err}
+			{#each errorList as err (err)}
 				<span class="form-feedback form-feedback--{status} text-body-small">
 					{err}
 				</span>

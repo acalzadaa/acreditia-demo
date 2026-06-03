@@ -1,57 +1,53 @@
-import { ESTATUS } from '$lib/types/common.types';
 import { z } from 'zod';
-
+import { puestoRefSchema } from './puesto.schema';
+import { areaResponsableRefSchema } from './shared.schema';
 
 // ============================================
-// 1. REFERENCE SCHEMAS (Para relaciones)
+// 1. REFERENCE SCHEMAS
 // ============================================
-export const areaResponsableRefSchema = z.object({
-    id: z.uuid(),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido")
-});
-
-export type AreaResponsableRef = z.infer<typeof areaResponsableRefSchema>
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
-// Para operaciones CRUD: crear y actualizar
 // ============================================
-
 export const areaResponsableFormSchema = z.object({
-    id: z.uuid().optional(),
-    code: z.string().min(1, "El código es requerido"),
-    name: z.string().min(1, "El nombre es requerido"),
-    description: z.string().default(''),
-    status: z.enum(ESTATUS).default('activo')
+	id: z.uuid().optional(),
+	puestoId: z.uuid({ message: 'El puesto es requerido' }),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido'),
+	description: z.string().default(''),
+	parentId: z.string().default(''),
+	createdBy: z.string().optional()
 });
 
 export type AreaResponsableForm = z.infer<typeof areaResponsableFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
-// Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
 
 export const areaResponsableItemSchema = z.object({
-    id: z.uuid(),
-    code: z.string(),
-    name: z.string(),
-    description: z.string().default(''),
-    status: z.enum(ESTATUS),
-    createdAt: z.iso.datetime().optional(),
-    updatedAt: z.iso.datetime().optional(),
+	id: z.uuid(),
+	puestoId: z.uuid(),
+	code: z.string(),
+	name: z.string(),
+	description: z.string().default(''),
+	parentId: z.uuid().nullable(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.coerce.date().optional(),
+	validTo: z.coerce.date().optional(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 
 export type AreaResponsableItem = z.infer<typeof areaResponsableItemSchema>;
 
-// ============================================
-// 4. CONFIG SCHEMA (Servidor → Cliente)
-// Para listas o configuraciones completas
-// ============================================
-
-export const areaResponsableConfigSchema = z.object({
-    arearesponsableItems: z.array(areaResponsableItemSchema)
+export const areaResponsableWithRelationsItemSchema = areaResponsableItemSchema.extend({
+	puesto: puestoRefSchema.nullable().optional(),
+	parent: areaResponsableRefSchema.nullable().optional()
 });
 
-export type AreaResponsableConfig = z.infer<typeof areaResponsableConfigSchema>;
+export type AreaResponsableWithRelationsItem = z.infer<
+	typeof areaResponsableWithRelationsItemSchema
+>;

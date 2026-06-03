@@ -14,6 +14,9 @@ import unidadAcademicaJsonData from '$lib/data/unidad-academica.json';
 
 import puestoJsonData from '$lib/data/puesto.json';
 
+import areaFuncionalJsonData from '$lib/data/area-funcional.json';
+import areaResponsableJsonData from '$lib/data/area-responsable.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
@@ -42,12 +45,23 @@ import {
 	campusWithRelationsItemSchema,
 	type CampusWithRelationsItem
 } from '$lib/schemas/campus.schema';
-import { regionWithRelationItemSchema, type RegionWithRelationItem } from '$lib/schemas/region.schema';
+import {
+	regionWithRelationItemSchema,
+	type RegionWithRelationItem
+} from '$lib/schemas/region.schema';
 import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
 import {
 	unidadAcademicaItemSchema,
 	type UnidadAcademicaItem
 } from '$lib/schemas/unidadAcademica.schema';
+import {
+	areaFuncionalWithRelationsItemSchema,
+	type AreaFuncionalWithRelationsItem
+} from '$lib/schemas/areaFuncional.schema';
+import {
+	areaResponsableWithRelationsItemSchema,
+	type AreaResponsableWithRelationsItem
+} from '$lib/schemas/areaResponsable.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -66,6 +80,9 @@ let campus = $state<CampusWithRelationsItem[]>([]);
 let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
 
 let puesto = $state<PuestoItem[]>([]);
+
+let areaResponsable = $state<AreaResponsableWithRelationsItem[]>([]);
+let areaFuncional = $state<AreaFuncionalWithRelationsItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -103,6 +120,16 @@ unidadAcademica = unidadAcademicaRawData.map((item) => unidadAcademicaItemSchema
 
 const puestoRawData = puestoJsonData.puestos;
 puesto = puestoRawData.map((item) => puestoItemSchema.parse(item));
+
+const areaFuncionalRawData = areaFuncionalJsonData.areaFuncionalItems;
+areaFuncional = areaFuncionalRawData.map((item) =>
+	areaFuncionalWithRelationsItemSchema.parse(item)
+);
+
+const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;
+areaResponsable = areaResponsableRawData.map((item) =>
+	areaResponsableWithRelationsItemSchema.parse(item)
+);
 
 // Helpers
 export function getFilosofias() {
@@ -189,4 +216,27 @@ export function getPuestoRef(jobType: string) {
 			code: item.code,
 			name: item.name
 		}));
+}
+
+export function getAreaFuncional() {
+	return areaFuncional;
+}
+
+export function getAreaFuncionalRef() {
+	return areaFuncional.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
+}
+
+export function getAreaResponsable() {
+	return areaResponsable;
+}
+export function getAreaResponsableRef() {
+	return areaResponsable.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
 }
