@@ -1,17 +1,17 @@
 <script lang="ts">
-	import type { CalidadModeloItem } from '$lib/schemas/calidadModelo.schema';
+	import type { ModeloItem } from '$lib/schemas/modelo.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		items?: CalidadModeloItem[] | null;
-		onClickEditar: (item: CalidadModeloItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: CalidadModeloItem) => void;
-		onClickBorrar: (item: CalidadModeloItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: CalidadModeloItem) => void;
-		onClickRestaurar: (item: CalidadModeloItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: CalidadModeloItem) => void;
+		items?: ModeloItem[] | null;
+		onClickEditar: (item: ModeloItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: ModeloItem) => void;
+		onClickBorrar: (item: ModeloItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: ModeloItem) => void;
+		onClickRestaurar: (item: ModeloItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: ModeloItem) => void;
 	}
 
 	const {

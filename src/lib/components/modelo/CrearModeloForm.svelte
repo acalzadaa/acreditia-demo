@@ -17,7 +17,8 @@
 	let formData = $state({
 		code: '',
 		name: '',
-		description: ''
+		description: '',
+		entidadAcreditadora: ''
 	});
 
 	let errorMessage = $state('');
@@ -40,7 +41,8 @@
 		formData = {
 			code: '',
 			name: '',
-			description: ''
+			description: '',
+			entidadAcreditadora: ''
 		};
 
 		// Limpiar mensaje de error
@@ -55,7 +57,8 @@
 		formData = {
 			code: '',
 			name: '',
-			description: ''
+			description: '',
+			entidadAcreditadora: ''
 		};
 		errorMessage = '';
 		onClose();
@@ -131,6 +134,17 @@
 						disabled={false}
 						bind:value={formData.description}
 						rows={4}
+					/>
+
+					<Input
+						label="Acreditadora"
+						name="acreditadora"
+						required={true}
+						placeholder="FIMPES"
+						status={errorMessage && !formData.entidadAcreditadora ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={formData.entidadAcreditadora}
+						errors={errorMessage && !formData.entidadAcreditadora ? [errorMessage] : undefined}
 					/>
 				</div>
 			</div>

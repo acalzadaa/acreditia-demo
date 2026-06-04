@@ -8,21 +8,22 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import type { CalidadModeloItem } from '$lib/schemas/calidadModelo.schema';
 	
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getCalidadModelo } from '$lib/stores/data.svelte';
+	import { getModelo } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import CalidadModelo from '$lib/components/calidad-modelo/CalidadModelo.svelte';
-	import CrearCalidadModeloForm from '$lib/components/calidad-modelo/CrearCalidadModeloForm.svelte';
-	import EditarCalidadModeloForm from '$lib/components/calidad-modelo/EditarCalidadModeloForm.svelte';
-	import BorrarCalidadModeloForm from '$lib/components/calidad-modelo/BorrarCalidadModeloForm.svelte';
-	import RestaurarCalidadModeloForm from '$lib/components/calidad-modelo/RestaurarCalidadModeloForm.svelte';
+	
+	import Modelo from '$lib/components/modelo/Modelo.svelte';
+	import type { ModeloItem } from '$lib/schemas/modelo.schema';
+	import EditarModeloForm from '$lib/components/modelo/EditarModeloForm.svelte';
+	import BorrarModeloForm from '$lib/components/modelo/BorrarModeloForm.svelte';
+	import RestaurarModeloForm from '$lib/components/modelo/RestaurarModeloForm.svelte';
+	import CrearModeloForm from '$lib/components/modelo/CrearModeloForm.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
-	let calidadModeloItems = getCalidadModelo();
+	let calidadModeloItems = getModelo();
 	let navigationItems = $derived(page.data.navigationItems);
 
 	// ===== HEADER =====
@@ -40,7 +41,7 @@
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let modal = createModalManager<CalidadModeloItem>();
+	let modal = createModalManager<ModeloItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
@@ -68,7 +69,7 @@
 		showExport={true}
 		showFilter={true}
 	/>
-	<CalidadModelo
+	<Modelo
 		items={calidadModeloItems}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
@@ -79,26 +80,26 @@
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearCalidadModeloForm open={modal.isOpen('create')} onClose={modal.close} />
+	<CrearModeloForm open={modal.isOpen('create')} onClose={modal.close} />
 	{#if modal.selectedItem}
 		<!-- MODAL EDITAR -->
-		<EditarCalidadModeloForm
+		<EditarModeloForm
 			open={modal.isOpen('edit')}
-			selectedItem={modal.selectedItem}
+			item={modal.selectedItem}
 			onClose={modal.close}
 		/>
 
 		<!-- MODAL BORRAR -->
-		<BorrarCalidadModeloForm
+		<BorrarModeloForm
 			open={modal.isOpen('delete')}
-			selectedItem={modal.selectedItem}
+			item={modal.selectedItem}
 			onClose={modal.close}
 		/>
 
 		<!-- MODAL RESTAURAR -->
-		<RestaurarCalidadModeloForm
+		<RestaurarModeloForm
 			open={modal.isOpen('restore')}
-			selectedItem={modal.selectedItem}
+			item={modal.selectedItem}
 			onClose={modal.close}
 		/>
 	{/if}

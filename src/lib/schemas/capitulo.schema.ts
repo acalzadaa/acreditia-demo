@@ -1,14 +1,15 @@
 import { z } from 'zod';
-import { calidadCapituloRefSchema } from './shared.schema';
+import { modeloRefSchema } from './shared.schema';
+import { modeloItemSchema } from './modelo.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // Para operaciones CRUD: crear y actualizar
 // ============================================
 
-export const calidadSeccionFormSchema = z.object({
+export const capituloFormSchema = z.object({
 	id: z.uuid().optional(),
-	capituloId: z.uuid('El ID del capítulo debe ser un UUID válido'),
+	modeloId: z.uuid('El ID del modelo debe ser un UUID válido'),
 	code: z
 		.string()
 		.min(1, 'El código debe tener al menos 1 caracter')
@@ -22,16 +23,16 @@ export const calidadSeccionFormSchema = z.object({
 	orden: z.number().int().min(0).default(0),
 	createdBy: z.string().optional()
 });
-export type CalidadSeccionForm = z.infer<typeof calidadSeccionFormSchema>;
+export type CapituloForm = z.infer<typeof capituloFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // Datos completos desde la base de datos
 // ============================================
 
-export const calidadSeccionItemSchema = z.object({
+export const capituloItemSchema = z.object({
 	id: z.uuid(),
-	capituloId: z.uuid(),
+	modeloId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
@@ -45,41 +46,50 @@ export const calidadSeccionItemSchema = z.object({
 	createdAt: z.iso.datetime().optional(),
 	createdBy: z.string()
 });
-export type CalidadSeccionItem = z.infer<typeof calidadSeccionItemSchema>;
+export type CapituloItem = z.infer<typeof capituloItemSchema>;
 
 // ============================================
 // 4. CONFIG SCHEMA (Servidor → Cliente)
 // Para listas o configuraciones completas
 // ============================================
 
-export const calidadSeccionConfigSchema = z.object({
-	calidadSeccionItems: z.array(calidadSeccionItemSchema)
+export const capituloConfigSchema = z.object({
+	capituloItems: z.array(capituloItemSchema)
 });
-export type CalidadSeccionConfig = z.infer<typeof calidadSeccionConfigSchema>;
+export type CalidadCapituloConfig = z.infer<typeof capituloConfigSchema>;
 
 // ============================================
 // 5. WITH RELATIONS SCHEMA (Servidor → Cliente)
 // Cuando necesitas incluir las relaciones
 // ============================================
 
-// Sección con su capítulo padre
-export const calidadSeccionWithCapituloItemSchema = calidadSeccionItemSchema.extend({
-	capitulo: calidadCapituloRefSchema.nullable()
+// Capítulo con su modelo padre
+export const capituloWithModeloItemSchema = capituloItemSchema.extend({
+	modelo: modeloRefSchema.nullable()
 });
-export type CalidadSeccionWithCapituloItem = z.infer<typeof calidadSeccionWithCapituloItemSchema>;
+export type CapituloWithModeloItem = z.infer<typeof capituloWithModeloItemSchema>;
 
-// Sección con capítulo y modelo (jerarquía completa)
-export const calidadSeccionFullSchema = calidadSeccionItemSchema.extend({
-	capitulo: z.object({
+// Capítulo con sus secciones
+export const capituloWithSeccionesSchema = capituloItemSchema.extend({
+	secciones: z.array(z.object({
 		id: z.uuid(),
 		code: z.string(),
 		name: z.string(),
-		modelo: z.object({
-			id: z.uuid(),
-			code: z.string(),
-			name: z.string(),
-			entidadAcreditadora: z.string().nullable()
-		}).nullable()
-	}).nullable()
+		orden: z.number()
+	})).optional()
 });
-export type CalidadSeccionFull = z.infer<typeof calidadSeccionFullSchema>;
+export type CapituloWithSecciones = z.infer<typeof capituloWithSeccionesSchema>;
+
+// Capítulo completo (modelo + secciones)
+export const capituloFullSchema = capituloItemSchema.extend({
+	modelo: modeloItemSchema.nullable(),
+	secciones: z.array(z.object({
+		id: z.uuid(),
+		code: z.string(),
+		name: z.string(),
+		description: z.string(),
+		contenido: z.string(),
+		orden: z.number()
+	})).optional()
+});
+export type CapituloFull = z.infer<typeof capituloFullSchema>;

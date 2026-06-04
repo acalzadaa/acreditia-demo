@@ -9,7 +9,7 @@ import { z } from 'zod';
 // Para operaciones CRUD: crear y actualizar
 // ============================================
 
-export const calidadModeloFormSchema = z.object({
+export const modeloFormSchema = z.object({
 	id: z.uuid().optional(),
 	code: z
 		.string()
@@ -20,27 +20,24 @@ export const calidadModeloFormSchema = z.object({
 		.min(1, 'El nombre es obligatorio')
 		.max(255, 'El nombre debe tener máximo 255 caracteres'),
 	description: z.string().default(''),
-    
 	entidadAcreditadora: z
 		.string()
-		.max(255, 'La entidad acreditadora debe tener máximo 255 caracteres')
-		.nullable()
-		.optional(),
+		.max(50, 'La entidad acreditadora debe tener máximo 255 caracteres'),
 	createdBy: z.string().optional()
 });
-export type CalidadModeloForm = z.infer<typeof calidadModeloFormSchema>;
+export type ModeloForm = z.infer<typeof modeloFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
 
-export const calidadModeloItemSchema = z.object({
+export const modeloItemSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	entidadAcreditadora: z.string().nullable(),
+	entidadAcreditadora: z.string(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -49,29 +46,33 @@ export const calidadModeloItemSchema = z.object({
 	createdAt: z.iso.datetime().optional(),
 	createdBy: z.string()
 });
-export type CalidadModeloItem = z.infer<typeof calidadModeloItemSchema>;
+export type ModeloItem = z.infer<typeof modeloItemSchema>;
 
 // ============================================
 // 4. CONFIG SCHEMA (Servidor → Cliente)
 // Para listas o configuraciones completas
 // ============================================
 
-export const calidadModeloConfigSchema = z.object({
-	calidadModeloItems: z.array(calidadModeloItemSchema)
+export const modeloConfigSchema = z.object({
+	calidadModeloItems: z.array(modeloItemSchema)
 });
-export type CalidadModeloConfig = z.infer<typeof calidadModeloConfigSchema>;
+export type CalidadModeloConfig = z.infer<typeof modeloConfigSchema>;
 
 // ============================================
 // 5. WITH RELATIONS SCHEMA (Servidor → Cliente)
 // Cuando necesitas incluir las relaciones
 // ============================================
 
-export const calidadModeloWithCapitulosSchema = calidadModeloItemSchema.extend({
-	capitulos: z.array(z.object({
-		id: z.uuid(),
-		code: z.string(),
-		name: z.string(),
-		orden: z.number()
-	})).optional()
+export const modeloWithCapitulosSchema = modeloItemSchema.extend({
+	capitulos: z
+		.array(
+			z.object({
+				id: z.uuid(),
+				code: z.string(),
+				name: z.string(),
+				orden: z.number()
+			})
+		)
+		.optional()
 });
-export type CalidadModeloWithCapitulos = z.infer<typeof calidadModeloWithCapitulosSchema>;
+export type ModeloWithCapitulos = z.infer<typeof modeloWithCapitulosSchema>;

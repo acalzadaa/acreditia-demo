@@ -27,23 +27,23 @@ export const areaResponsableRefSchema = z.object({
 
 export type AreaResponsableRef = z.infer<typeof areaResponsableRefSchema>;
 
-export const calidadSeccionRefSchema = z.object({
+export const seccionRefSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	name: z.string()
 });
-export type CalidadSeccionRef = z.infer<typeof calidadSeccionRefSchema>;
+export type SeccionRef = z.infer<typeof seccionRefSchema>;
 
-export const calidadCapituloRefSchema = z.object({
+export const capituloRefSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	name: z.string()
 });
-export type CalidadCapituloRef = z.infer<typeof calidadCapituloRefSchema>;
+export type CapituloRef = z.infer<typeof capituloRefSchema>;
 
-export const calidadModeloRefSchema = z.object({
+export const modeloRefSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	name: z.string()
 });
-export type CalidadModeloRef = z.infer<typeof calidadModeloRefSchema>;
+export type ModeloRef = z.infer<typeof modeloRefSchema>;
