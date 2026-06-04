@@ -162,7 +162,7 @@
         {
           "id": 900,
           "label": "Modelos de gestion de calidad",
-          "href": "/calidad-modelo",
+          "href": "/modelo",
           "description": "Define los modelos de gestion de calidad",
           "itemType": "link",
           "status": "active"
@@ -170,7 +170,7 @@
         {
           "id": 901,
           "label": "Capitulos",
-          "href": "/calidad-capitulo",
+          "href": "/capitulo",
           "description": "Define los capitulos de un modelo de calidad",
           "itemType": "link",
           "status": "active"
@@ -178,7 +178,7 @@
         {
           "id": 902,
           "label": "Secciones",
-          "href": "/calidad-seccion",
+          "href": "/seccion",
           "description": "Define las secciones de un capitulo",
           "itemType": "link",
           "status": "active"

@@ -8,10 +8,7 @@
 	import Input from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import {
-		modeloFormSchema,
-		type ModeloItem
-	} from '$lib/schemas/modelo.schema';
+	import { modeloFormSchema, type ModeloItem } from '$lib/schemas/modelo.schema';
 
 	interface Props {
 		open: boolean;
@@ -69,7 +66,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar filosofía institucional</h2>
+			<h2 class="modal-title text-h4">Editar modelo de calidad</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -114,6 +111,18 @@
 						errors={$errors.description}
 						{...$constraints.description}
 						rows={4}
+					/>
+
+					<Input
+						label="Acreditadora"
+						name="acreditadora"
+						required={true}
+						placeholder="FIMPES"
+						status={$errors.entidadAcreditadora ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.entidadAcreditadora}
+						errors={$errors.entidadAcreditadora}
+						{...$constraints.entidadAcreditadora}
 					/>
 				</div>
 			</div>

@@ -20,12 +20,9 @@ export const modeloFormSchema = z.object({
 		.min(1, 'El nombre es obligatorio')
 		.max(255, 'El nombre debe tener máximo 255 caracteres'),
 	description: z.string().default(''),
-    
 	entidadAcreditadora: z
 		.string()
-		.max(255, 'La entidad acreditadora debe tener máximo 255 caracteres')
-		.nullable()
-		.optional(),
+		.max(50, 'La entidad acreditadora debe tener máximo 255 caracteres'),
 	createdBy: z.string().optional()
 });
 export type ModeloForm = z.infer<typeof modeloFormSchema>;
@@ -40,7 +37,7 @@ export const modeloItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	entidadAcreditadora: z.string().nullable(),
+	entidadAcreditadora: z.string(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -67,11 +64,15 @@ export type CalidadModeloConfig = z.infer<typeof modeloConfigSchema>;
 // ============================================
 
 export const modeloWithCapitulosSchema = modeloItemSchema.extend({
-	capitulos: z.array(z.object({
-		id: z.uuid(),
-		code: z.string(),
-		name: z.string(),
-		orden: z.number()
-	})).optional()
+	capitulos: z
+		.array(
+			z.object({
+				id: z.uuid(),
+				code: z.string(),
+				name: z.string(),
+				orden: z.number()
+			})
+		)
+		.optional()
 });
 export type ModeloWithCapitulos = z.infer<typeof modeloWithCapitulosSchema>;
