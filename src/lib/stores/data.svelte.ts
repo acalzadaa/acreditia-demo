@@ -17,6 +17,10 @@ import puestoJsonData from '$lib/data/puesto.json';
 import areaFuncionalJsonData from '$lib/data/area-funcional.json';
 import areaResponsableJsonData from '$lib/data/area-responsable.json';
 
+import calidadModeloJsonData from '$lib/data/calidad-modelo.json';
+import calidadCapituloJsonData from '$lib/data/calidad-capitulo.json';
+import calidadSeccionJsonData from '$lib/data/calidad-seccion.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
@@ -62,6 +66,15 @@ import {
 	areaResponsableWithRelationsItemSchema,
 	type AreaResponsableWithRelationsItem
 } from '$lib/schemas/areaResponsable.schema';
+import { type CalidadModeloItem, calidadModeloItemSchema } from '$lib/schemas/calidadModelo.schema';
+import {
+	calidadCapituloItemSchema,
+	type CalidadCapituloItem
+} from '$lib/schemas/calidadCapitulo.schema';
+import {
+	calidadSeccionItemSchema,
+	type CalidadSeccionItem
+} from '$lib/schemas/calidadSeccion.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -83,6 +96,10 @@ let puesto = $state<PuestoItem[]>([]);
 
 let areaResponsable = $state<AreaResponsableWithRelationsItem[]>([]);
 let areaFuncional = $state<AreaFuncionalWithRelationsItem[]>([]);
+
+let calidadModelo = $state<CalidadModeloItem[]>([]);
+let calidadCapitulo = $state<CalidadCapituloItem[]>([]);
+let calidadSeccion = $state<CalidadSeccionItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -130,6 +147,15 @@ const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;
 areaResponsable = areaResponsableRawData.map((item) =>
 	areaResponsableWithRelationsItemSchema.parse(item)
 );
+
+const calidadModeloRawData = calidadModeloJsonData.calidadModeloItems;
+calidadModelo = calidadModeloRawData.map((item) => calidadModeloItemSchema.parse(item));
+
+const calidadCapituloRawData = calidadCapituloJsonData.calidadCapituloItems;
+calidadCapitulo = calidadCapituloRawData.map((item) => calidadCapituloItemSchema.parse(item));
+
+const calidadSeccionRawData = calidadSeccionJsonData.calidadSeccionItems;
+calidadSeccion = calidadSeccionRawData.map((item) => calidadSeccionItemSchema.parse(item));
 
 // Helpers
 export function getFilosofias() {
@@ -239,4 +265,16 @@ export function getAreaResponsableRef() {
 		code: item.code,
 		name: item.name
 	}));
+}
+
+export function getCalidadModelo() {
+	return calidadModelo;
+}
+
+export function getCalidadCapitulo() {
+	return calidadCapitulo;
+}
+
+export function getCalidadSeccion() {
+	return calidadSeccion;
 }

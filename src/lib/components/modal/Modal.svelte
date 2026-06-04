@@ -6,7 +6,7 @@
 		closeOnEscape?: boolean;
 		closeOnBackdropClick?: boolean;
 		children?: Snippet;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let {
