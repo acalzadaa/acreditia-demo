@@ -9,13 +9,13 @@
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
 	import {
-		calidadModeloFormSchema,
-		type CalidadModeloItem
-	} from '$lib/schemas/calidadModelo.schema';
+		modeloFormSchema,
+		type ModeloItem
+	} from '$lib/schemas/modelo.schema';
 
 	interface Props {
 		open: boolean;
-		item: CalidadModeloItem;
+		item: ModeloItem;
 		onClose: () => void;
 	}
 
@@ -35,7 +35,7 @@
 		},
 		{
 			dataType: 'json',
-			validators: zod4Client(calidadModeloFormSchema),
+			validators: zod4Client(modeloFormSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,

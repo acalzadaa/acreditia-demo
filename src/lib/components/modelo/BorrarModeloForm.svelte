@@ -5,13 +5,13 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
-		calidadModeloFormSchema,
-		type CalidadModeloItem
-	} from '$lib/schemas/calidadModelo.schema';
+		modeloFormSchema,
+		type ModeloItem
+	} from '$lib/schemas/modelo.schema';
 
 	interface Props {
 		open: boolean;
-		item: CalidadModeloItem;
+		item: ModeloItem;
 		onClose: () => void;
 	}
 
@@ -31,7 +31,7 @@
 		},
 		{
 			dataType: 'json',
-			validators: zod4(calidadModeloFormSchema),
+			validators: zod4(modeloFormSchema),
 			customValidity: false,
 			resetForm: false,
 			onSubmit: () => {
@@ -59,7 +59,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Confirmar restauracion</h2>
+			<h2 class="modal-title text-h4">Borrar modelo de calidad</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -69,22 +69,21 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/restore" use:enhance>
+		<form method="POST" action="?/delete" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
-			<input type="hidden" name="code" value={$form.code} />
 
 			<div class="modal-body">
 				<div class="confirm-content">
 					<p class="confirm-message text-body-large">
-						¿Estás seguro de que deseas restaurar el registro <strong>"{props.item?.name}"</strong>?
+						¿Estás seguro de que deseas aliminar el registro <strong>"{props.item?.name}"</strong>?
 					</p>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Restaurar filosofia</Button>
+				<Button type="submit" variant="critical">Borrar modelo</Button>
 			</footer>
 		</form>
 	</div>
