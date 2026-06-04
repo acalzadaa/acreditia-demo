@@ -49,6 +49,9 @@
 		if (puestoOptions.length === 1 && !formData.puestoId) {
 			formData.puestoId = puestoOptions[0].id;
 		}
+		if (areaResponsableOptions.length === 1 && !formData.parentId) {
+			formData.parentId = puestoOptions[0]!.id;
+		}
 	});
 
 	function handleSubmit() {
