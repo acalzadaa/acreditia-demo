@@ -50,6 +50,9 @@
 		if (puestoOptions.length === 1 && !formData.puestoId) {
 			formData.puestoId = puestoOptions[0].id;
 		}
+		if (areaFuncionalOptions.length === 1 && !formData.parentId) {
+			formData.parentId = puestoOptions[0]!.id;
+		}
 	});
 
 	function handleSubmit() {
