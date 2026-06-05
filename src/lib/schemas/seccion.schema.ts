@@ -6,7 +6,7 @@ import { capituloRefSchema } from './shared.schema';
 // Para operaciones CRUD: crear y actualizar
 // ============================================
 
-export const calidadSeccionFormSchema = z.object({
+export const seccionFormSchema = z.object({
 	id: z.uuid().optional(),
 	capituloId: z.uuid('El ID del capítulo debe ser un UUID válido'),
 	code: z
@@ -18,11 +18,11 @@ export const calidadSeccionFormSchema = z.object({
 		.min(1, 'El nombre es obligatorio')
 		.max(255, 'El nombre debe tener máximo 255 caracteres'),
 	description: z.string().default(''),
-	contenido: z.string().default(''),
-	orden: z.number().int().min(0).default(0),
+	content: z.string().default(''),
+	order: z.number().int().min(0).default(0),
 	createdBy: z.string().optional()
 });
-export type CalidadSeccionForm = z.infer<typeof calidadSeccionFormSchema>;
+export type SeccionForm = z.infer<typeof seccionFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
@@ -35,8 +35,8 @@ export const seccionItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	contenido: z.string(),
-	orden: z.number(),
+	content: z.string(),
+	order: z.number(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -66,7 +66,7 @@ export type SeccionConfig = z.infer<typeof seccionConfigSchema>;
 export const seccionWithCapituloItemSchema = seccionItemSchema.extend({
 	capitulo: capituloRefSchema.nullable()
 });
-export type CalidadSeccionWithCapituloItem = z.infer<typeof seccionWithCapituloItemSchema>;
+export type SeccionWithCapituloItem = z.infer<typeof seccionWithCapituloItemSchema>;
 
 // Sección con capítulo y modelo (jerarquía completa)
 export const seccionFullSchema = seccionItemSchema.extend({

@@ -161,7 +161,7 @@
       "children": [
         {
           "id": 900,
-          "label": "Modelos de gestion de calidad",
+          "label": "Modelos de calidad",
           "href": "/modelo",
           "description": "Define los modelos de gestion de calidad",
           "itemType": "link",

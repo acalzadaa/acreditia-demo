@@ -68,7 +68,7 @@ import {
 } from '$lib/schemas/areaResponsable.schema';
 import { type ModeloItem, modeloItemSchema } from '$lib/schemas/modelo.schema';
 import { capituloWithModeloItemSchema, type CapituloWithModeloItem } from '$lib/schemas/capitulo.schema';
-import { seccionItemSchema, type SeccionItem } from '$lib/schemas/seccion.schema';
+import { seccionWithCapituloItemSchema, type SeccionWithCapituloItem } from '$lib/schemas/seccion.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -93,7 +93,7 @@ let areaFuncional = $state<AreaFuncionalWithRelationsItem[]>([]);
 
 let modelo = $state<ModeloItem[]>([]);
 let capitulo = $state<CapituloWithModeloItem[]>([]);
-let seccion = $state<SeccionItem[]>([]);
+let seccion = $state<SeccionWithCapituloItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -149,7 +149,7 @@ const capituloRawData = capituloJsonData.capituloItems;
 capitulo = capituloRawData.map((item) => capituloWithModeloItemSchema.parse(item));
 
 const seccionRawData = seccionJsonData.seccionItems;
-seccion = seccionRawData.map((item) => seccionItemSchema.parse(item));
+seccion = seccionRawData.map((item) => seccionWithCapituloItemSchema.parse(item));
 
 // Helpers
 export function getFilosofias() {
