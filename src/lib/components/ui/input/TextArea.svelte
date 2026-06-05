@@ -14,7 +14,7 @@
 		maxLength?: number;
 		showCounter?: boolean;
 		class?: string;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let {
@@ -27,7 +27,7 @@
 		status = 'normal',
 		disabled = false,
 		rows = 4,
-		maxLength = 255,
+		maxLength = 200,
 		showCounter = true,
 		class: className = '',
 		...props

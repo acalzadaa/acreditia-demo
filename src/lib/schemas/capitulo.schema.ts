@@ -19,8 +19,8 @@ export const capituloFormSchema = z.object({
 		.min(1, 'El nombre es obligatorio')
 		.max(255, 'El nombre debe tener máximo 255 caracteres'),
 	description: z.string().default(''),
-	contenido: z.string().default(''),
-	orden: z.number().int().min(0).default(0),
+	content: z.string().default(''),
+	order: z.number().int().min(0).default(0),
 	createdBy: z.string().optional()
 });
 export type CapituloForm = z.infer<typeof capituloFormSchema>;
@@ -36,8 +36,8 @@ export const capituloItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	contenido: z.string(),
-	orden: z.number(),
+	content: z.string(),
+	order: z.number(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),

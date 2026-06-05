@@ -67,7 +67,7 @@ import {
 	type AreaResponsableWithRelationsItem
 } from '$lib/schemas/areaResponsable.schema';
 import { type ModeloItem, modeloItemSchema } from '$lib/schemas/modelo.schema';
-import { capituloItemSchema, type CapituloItem } from '$lib/schemas/capitulo.schema';
+import { capituloWithModeloItemSchema, type CapituloWithModeloItem } from '$lib/schemas/capitulo.schema';
 import { seccionItemSchema, type SeccionItem } from '$lib/schemas/seccion.schema';
 
 // Estado reactivo
@@ -92,7 +92,7 @@ let areaResponsable = $state<AreaResponsableWithRelationsItem[]>([]);
 let areaFuncional = $state<AreaFuncionalWithRelationsItem[]>([]);
 
 let modelo = $state<ModeloItem[]>([]);
-let capitulo = $state<CapituloItem[]>([]);
+let capitulo = $state<CapituloWithModeloItem[]>([]);
 let seccion = $state<SeccionItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
@@ -146,7 +146,7 @@ const modeloRawData = modeloJsonData.modeloItems;
 modelo = modeloRawData.map((item) => modeloItemSchema.parse(item));
 
 const capituloRawData = capituloJsonData.capituloItems;
-capitulo = capituloRawData.map((item) => capituloItemSchema.parse(item));
+capitulo = capituloRawData.map((item) => capituloWithModeloItemSchema.parse(item));
 
 const seccionRawData = seccionJsonData.seccionItems;
 seccion = seccionRawData.map((item) => seccionItemSchema.parse(item));
