@@ -8,9 +8,9 @@
 	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
-	import { hasFormErrors } from '$lib/utils/superform';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
+	import { hasFormErrors } from '$lib/helpers/superform';
 
 	interface Props {
 		open: boolean;
