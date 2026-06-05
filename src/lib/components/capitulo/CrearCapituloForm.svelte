@@ -7,7 +7,7 @@
 	import Icon from '../ui/Icon.svelte';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import type { ModeloRef } from '$lib/schemas/shared.schema';
-
+	
 	interface Props {
 		open: boolean;
 		refs: ModeloRef[];
@@ -63,7 +63,7 @@
 
 		// Aquí podrías console.log o guardar los datos si quieres
 		console.log('Datos enviados (demo):', formData);
-		
+
 		// Limpiar formulario
 		formData = {
 			modeloId: '',
@@ -72,10 +72,10 @@
 			description: '',
 			content: ''
 		};
-		
+
 		// Limpiar mensaje de error
 		errorMessage = '';
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -118,10 +118,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				<div class="form-fields">
 					{#if errorMessage}
@@ -163,24 +165,25 @@
 					/>
 
 					<TextArea
-						label="Descripción"
-						name="description"
-						placeholder="Descripción..."
-						status='normal'
-						disabled={false}
-						bind:value={formData.description}
-						rows={4}
-					/>
-
-					<TextArea
 						label="Contenido"
 						name="content"
+						required={true}
 						placeholder="La institución deberá..."
 						status={errorMessage && !formData.content ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.content}
 						errors={errorMessage && !formData.content ? [errorMessage] : undefined}
 						rows={6}
+					/>
+
+					<TextArea
+						label="Descripción"
+						name="description"
+						placeholder="Descripción..."
+						status="normal"
+						disabled={false}
+						bind:value={formData.description}
+						rows={4}
 					/>
 				</div>
 			</div>
