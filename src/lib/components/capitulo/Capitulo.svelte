@@ -32,12 +32,11 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-index">Orden</th>
 						<th class="col-code">Modelo</th>
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
-						<th class="col-descripcion">Description</th>
 						<th class="col-descripcion">Contenido</th>
+						<th class="col-descripcion">Description</th>
 						<th class="col-status">Estatus</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
@@ -46,12 +45,11 @@
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-index">{item.order}</td>
 							<td class="col-code">{item.modelo?.code}</td>
 							<td class="col-code">{item.code}</td>
 							<td class="col-name">{item.name}</td>
+							<td class="col-description">{item.content}</td>
 							<td class="col-description">{item.description}</td>
-							<td class="col-content">{item.content}</td>
 							<td class="col-status">
 								<Badge variant={item.isDeleted ? 'error' : 'success'}>
 									{item.isDeleted ? 'borrado' : 'activo'}
@@ -104,7 +102,6 @@
  * así la tabla no encoge más allá de donde todo quepa justo.
  *
  * Columnas y sus límites:
- *   orden       → ~2 chars → ~4rem (min: 2rem)
  *   parent      → ~20 chars → ~10rem (min: 7rem)
  *   código      → ~20 chars → ~10rem (min: 7rem)
  *   nombre      → ~50 chars → ~18rem (min: 12rem)
@@ -113,10 +110,10 @@
  *   badge       → ~20 chars → ~8rem (min: 6rem)
  *   acciones    → 4 iconos → ~9rem (min: 9rem, fijo)
  *
- * Total mínimo: 3 + 7 + 7 + 10 + 12 + 14 + 6 + 9 = 68rem
+ * Total mínimo: 7 + 7 + 12 + 14 + 14 + 6 + 9 = 55rem
  */
 	.data-table {
-		min-width: 68rem;
+		min-width: 55rem;
 	}
 
 	/* =============================================
@@ -124,13 +121,6 @@
    Declara los anchos en thead th para que
    table-layout: fixed los respete en todo el body.
    ============================================= */
-
-	/* Index — muy corto, no hace wrap */
-	.data-table .col-index {
-		width: 5rem;
-		min-width: 3rem;
-		white-space: nowrap;
-	}
 
 	/* Código — corto, no hace wrap */
 	.data-table .col-code {
@@ -141,8 +131,8 @@
 
 	/* Nombre — mediano, puede hacer wrap si hay presión */
 	.data-table .col-name {
-		width: 14rem;
-		min-width: 10rem;
+		width: 18rem;
+		min-width: 12rem;
 		/* wrap controlado */
 		overflow-wrap: break-word;
 		word-break: break-word;
@@ -152,17 +142,6 @@
 	/* Descripción — columna flexible; toma el espacio sobrante.
    Hace wrap y tiene un mínimo para no volverse ilegible.     */
 	.data-table .col-description {
-		width: 14rem;
-		min-width: 12rem;
-		/* wrap controlado */
-		overflow-wrap: break-word;
-		word-break: break-word;
-		hyphens: auto;
-	}
-
-		/* Descripción — columna flexible; toma el espacio sobrante.
-   Hace wrap y tiene un mínimo para no volverse ilegible.     */
-	.data-table .col-content {
 		width: 18rem;
 		min-width: 14rem;
 		/* wrap controlado */
@@ -173,14 +152,14 @@
 
 	/* Badge de estatus — ancho fijo chico */
 	.data-table .col-status {
-		width: 10rem;
+		width: 8rem;
 		min-width: 6rem;
 		white-space: nowrap;
 	}
 
 	/* Acciones — completamente fijo, los 4 iconos siempre caben */
 	.data-table .col-actions {
-		width: 10rem;
+		width: 9rem;
 		min-width: 9rem;
 		white-space: nowrap;
 	}

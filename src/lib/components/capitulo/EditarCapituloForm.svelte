@@ -129,6 +129,19 @@
 					/>
 
 					<TextArea
+						label="Contenido"
+						name="content"
+						required={true}
+						placeholder="La institucion debera..."
+						maxLength={400}
+						status={$errors.content ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.content}
+						errors={$errors.content}
+						{...$constraints.content}
+						rows={4}
+					/>
+					<TextArea
 						label="Descripcion"
 						name="description"
 						placeholder="Descripcion..."
@@ -137,19 +150,6 @@
 						bind:value={$form.description}
 						errors={$errors.description}
 						{...$constraints.description}
-						rows={4}
-					/>
-
-					<TextArea
-						label="Contenido"
-						name="content"
-						placeholder="La institucion debera..."
-						maxLength={400}
-						status={$errors.content ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.content}
-						errors={$errors.content}
-						{...$constraints.content}
 						rows={4}
 					/>
 				</div>
