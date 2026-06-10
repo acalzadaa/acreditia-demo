@@ -1,14 +1,20 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
+	export type BadgeStatus =
+		| 'info'
+		| 'warning'
+		| 'error'
+		| 'success';
+
 	interface Props {
-		variant: 'info' | 'success' | 'warning' | 'error';
+		variant: BadgeStatus;
 		class?: string;
 		children: Snippet;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
-	const { variant, children, class: className = '' }: Props = $props();
+	const { variant, children, class: className = '', ...props }: Props = $props();
 </script>
 
 <span
@@ -18,7 +24,8 @@
 		className,
 		{
 			[`status-badge--variant-${variant}`]: true
-		}
+		},
+		props
 	]}
 >
 	{@render children?.()}

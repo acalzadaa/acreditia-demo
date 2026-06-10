@@ -1,7 +1,6 @@
 // areaResponsableCampus.schema.ts
 import { z } from 'zod';
-import { campusRefSchema } from './campus.schema';
-import { areaResponsableRefSchema } from './shared.schema';
+import { areaResponsableRefSchema, campusRefSchema } from './shared.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)

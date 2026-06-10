@@ -22,6 +22,7 @@ import capituloJsonData from '$lib/data/capitulo.json';
 import seccionJsonData from '$lib/data/seccion.json';
 
 import evidenciaJsonData from '$lib/data/evidencia.json';
+import evaluacionJsonData from '$lib/data/evaluacion.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -41,7 +42,6 @@ import {
 } from '$lib/schemas/indicadorEstrategico.schema';
 import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 import { entidadLegalItemSchema, type EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
-
 import {
 	institucionWithRelationsItemSchema,
 	type InstitucionWithRelationsItem
@@ -69,9 +69,16 @@ import {
 	type AreaResponsableWithRelationsItem
 } from '$lib/schemas/areaResponsable.schema';
 import { type ModeloItem, modeloItemSchema } from '$lib/schemas/modelo.schema';
-import { capituloWithModeloItemSchema, type CapituloWithModeloItem } from '$lib/schemas/capitulo.schema';
-import { seccionWithCapituloItemSchema, type SeccionWithCapituloItem } from '$lib/schemas/seccion.schema';
+import {
+	capituloWithModeloItemSchema,
+	type CapituloWithModeloItem
+} from '$lib/schemas/capitulo.schema';
+import {
+	seccionWithCapituloItemSchema,
+	type SeccionWithCapituloItem
+} from '$lib/schemas/seccion.schema';
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
+import { evaluacionWithRelationsItemSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -99,6 +106,8 @@ let capitulo = $state<CapituloWithModeloItem[]>([]);
 let seccion = $state<SeccionWithCapituloItem[]>([]);
 
 let evidencia = $state<EvidenciaItem[]>([]);
+
+let evaluacion = $state<EvaluacionItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -158,6 +167,9 @@ seccion = seccionRawData.map((item) => seccionWithCapituloItemSchema.parse(item)
 
 const evidenciaRawData = evidenciaJsonData.evidenciaItems;
 evidencia = evidenciaRawData.map((item) => evidenciaItemSchema.parse(item));
+
+const evaluacionRawData = evaluacionJsonData.evaluacionItems;
+evaluacion = evaluacionRawData.map((item) => evaluacionWithRelationsItemSchema.parse(item));
 
 // Helpers
 export function getFilosofias() {
@@ -307,4 +319,16 @@ export function getEvidenciaRef() {
 
 export function getEvidencia() {
 	return evidencia;
+}
+
+export function getEvaluacionRef() {
+	return evaluacion.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
+}
+
+export function getEvaluacion() {
+	return evaluacion;
 }

@@ -125,8 +125,8 @@
     },
     {
       "id": 4,
-      "label": "Gestión de Calidad",
-      "description": "Configuración del sistema de calidad para acreditación FIMPES",
+      "label": "Sistemas de Acreditación",
+      "description": "Estructura y estándares definidos por organismos acreditadores (FIMPES, COPAES, CIEES, etc.)",
       "itemType": "section",
       "status": "active",
       "children": [
@@ -142,7 +142,7 @@
           "id": 402,
           "label": "Capítulos",
           "href": "/capitulo",
-          "description": "Define los capítulos de un modelo de calidad",
+          "description": "Define los capítulos de un modelo de acreditación",
           "itemType": "link",
           "status": "active"
         },
@@ -153,9 +153,18 @@
           "description": "Define las secciones de un capítulo",
           "itemType": "link",
           "status": "active"
-        },
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Sistema de Evaluación",
+      "description": "Reglas, métricas y evidencias para medir el cumplimiento de los estándares de acreditación",
+      "itemType": "section",
+      "status": "active",
+      "children": [
         {
-          "id": 404,
+          "id": 501,
           "label": "Normativa",
           "href": "/normativa",
           "description": "Define las normativas internas y externas que rigen los indicadores",
@@ -163,15 +172,7 @@
           "status": "active"
         },
         {
-          "id": 405,
-          "label": "Indicadores",
-          "href": "/indicador",
-          "description": "Define los indicadores de calidad para cada sección, basados en la normativa",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 406,
+          "id": 502,
           "label": "Evidencias",
           "href": "/evidencia",
           "description": "Define las evidencias válidas para utilizar en un indicador",
@@ -179,35 +180,10 @@
           "status": "active"
         },
         {
-          "id": 407,
-          "label": "Criterios de revisión institucional",
-          "href": "/etapas",
-          "description": "Determina las etapas de un ciclo de evaluación",
-          "itemType": "link",
-          "status": "active"
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "label": "Planeación de Evaluación",
-      "description": "Configuración de ciclos, etapas y tiempos de ejecución",
-      "itemType": "section",
-      "status": "active",
-      "children": [
-        {
-          "id": 501,
-          "label": "Ciclo de evaluación",
-          "href": "/ciclo",
-          "description": "Crea un nuevo ciclo de evaluación",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 502,
-          "label": "Etapas de evaluación",
-          "href": "/etapas",
-          "description": "Determina las etapas de un ciclo de evaluación",
+          "id": 503,
+          "label": "Indicadores",
+          "href": "/indicador",
+          "description": "Define los indicadores de calidad para cada sección, basados en la normativa",
           "itemType": "link",
           "status": "active"
         }
@@ -215,26 +191,24 @@
     },
     {
       "id": 6,
-      "label": "Ejecución de Evaluaciones",
-      "description": "Evaluación activa de indicadores y criterios",
+      "label": "Proceso de Evaluación",
+      "description": "Configuración de ciclos, etapas y tiempos de ejecución",
       "itemType": "section",
       "status": "active",
       "children": [
         {
           "id": 601,
-          "order": 1,
-          "label": "Evaluación de indicadores",
+          "label": "Evaluación",
           "href": "/evaluacion",
-          "description": "Evalúa los indicadores por etapas, aplicando la normativa vigente",
+          "description": "Crea un nuevo ciclo de evaluación",
           "itemType": "link",
           "status": "active"
         },
         {
           "id": 602,
-          "order": 2,
-          "label": "Evaluación de criterios",
-          "href": "/criterios",
-          "description": "Evalúa los criterios de los indicadores",
+          "label": "Criterios de evaluación",
+          "href": "/criterios-evaluacion",
+          "description": "Configura los criterios de evaluacion por etapa",
           "itemType": "link",
           "status": "active"
         }

@@ -1,7 +1,6 @@
 <script lang="ts">
-	import type { IconName } from '$lib/types/icon.types';
 	import type { Snippet } from 'svelte';
-	import Icon from './Icon.svelte';
+	import Icon, { type IconName } from './Icon.svelte';
 	import type { ButtonSize, ButtonVariant } from '$lib/types/button.types';
 	import { tooltip, type TooltipPosition } from '$lib/actions/tooltip';
 
@@ -29,7 +28,7 @@
 
 		children?: Snippet;
 
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	const {

@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { puestoRefSchema } from './puesto.schema';
-import { usuarioRefSchema } from './usuario.schema';
+import { puestoRefSchema, usuarioRefSchema } from './shared.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)

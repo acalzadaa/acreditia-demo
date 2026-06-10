@@ -14,7 +14,7 @@
 		min?: number;
 		max?: number;
 		step?: number;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let {
@@ -40,11 +40,7 @@
 
 	// El input type=number trabaja con strings internamente;
 	// sincronizamos manualmente para mantener value como number | null.
-	let stringValue = $state(value != null && !isNaN(value) ? String(value) : '');
-
-	$effect(() => {
-		stringValue = value != null && !isNaN(value) ? String(value) : '';
-	});
+	let stringValue = $derived(value != null && !isNaN(value) ? String(value) : '');
 
 	function handleInput(e: Event) {
 		const raw = (e.target as HTMLInputElement).value;
@@ -98,7 +94,7 @@
 
 	{#if hasErrors}
 		<div class="form-feedback-container" id="{name}-error" role="alert">
-			{#each errorList as err}
+			{#each errorList as err (err)}
 				<span class="form-feedback form-feedback--{status} text-body-small">
 					{err}
 				</span>

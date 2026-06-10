@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { tooltip, type TooltipPosition } from '$lib/actions/tooltip';
-	import type { IconName } from '$lib/types/icon.types';
-	import Icon from './Icon.svelte';
+	import Icon, { type IconName } from './Icon.svelte';
 
 	interface Props {
 		name: IconName;
@@ -19,7 +18,7 @@
 		class?: string;
 		onClick: (e: MouseEvent) => void;
 		onKeydown: (e: KeyboardEvent) => void;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	const {

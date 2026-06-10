@@ -1,17 +1,10 @@
 import { z } from 'zod';
-import { institucionItemSchema, institucionRefSchema } from './institucion.schema';
-import { regionRefSchema } from './shared.schema';
+import { institucionItemSchema } from './institucion.schema';
+import { institucionRefSchema, regionRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
 // ============================================
-export const campusRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string().min(1, 'El código es requerido'),
-	name: z.string().min(1, 'El nombre es requerido')
-});
-
-export type CampusRef = z.infer<typeof campusRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA
