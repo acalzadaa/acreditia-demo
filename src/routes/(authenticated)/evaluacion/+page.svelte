@@ -46,6 +46,29 @@
 	let modal = createModalManager<EvaluacionWithRelationsItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
+
+	/* DETALLE */
+	function onClickDetalle(item: EvaluacionWithRelationsItem) {
+		console.log('detalle de evaluacion...', item.year, item.cycle);
+	}
+
+	function onKeydownDetalle(e: KeyboardEvent, item: EvaluacionWithRelationsItem) {
+		if (e.key === 'Enter') {
+			onClickDetalle(item);
+		}
+	}
+
+	/* ACCION */
+	function onClickIniciarEvaluacion(item: EvaluacionWithRelationsItem) {
+		//llamar a action server /iniciarEvaluacion
+		console.log('iniciando evaluacion...', item.year, item.cycle);
+	}
+
+	function onKeydownIniciarEvaluacion(e: KeyboardEvent, item: EvaluacionWithRelationsItem) {
+		if (e.key === 'Enter') {
+			onClickIniciarEvaluacion(item);
+		}
+	}
 </script>
 
 <div class="app-grid">
@@ -80,6 +103,12 @@
 		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
+		onClickDetalle={(item: EvaluacionWithRelationsItem) => onClickDetalle(item)}
+		onKeydownDetalle={(e: KeyboardEvent, item: EvaluacionWithRelationsItem) =>
+			onKeydownDetalle(e, item)}
+		onClickIniciarEvaluacion={(item: EvaluacionWithRelationsItem) => onClickIniciarEvaluacion(item)}
+		onKeydownIniciarEvaluacion={(e: KeyboardEvent, item: EvaluacionWithRelationsItem) =>
+			onKeydownIniciarEvaluacion(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
