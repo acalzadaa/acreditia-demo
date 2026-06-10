@@ -1,5 +1,27 @@
 <script lang="ts">
-	import type { IconName } from '$lib/types/icon.types';
+	/**
+	 * Agregar el nombre del id de los iconos configurados en sprites.svg
+	 */
+	export type IconName =
+		| 'hamburger'
+		| 'bell'
+		| 'chevron-down'
+		| 'chevron-right'
+		| 'home'
+		| 'add'
+		| 'filter'
+		| 'export'
+		| 'edit'
+		| 'close'
+		| 'delete'
+		| 'warning'
+		| 'success'
+		| 'info'
+		| 'upload'
+		| 'history'
+		| 'restore'
+		| 'detail'
+		| 'play';
 
 	interface Props {
 		name: IconName;
@@ -9,7 +31,7 @@
 		weight?: number;
 		class?: string;
 		rotate?: number;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let {
@@ -49,5 +71,5 @@
 	style:display="block"
 	{...restProps}
 >
-	<use href={`sprites.svg#${name}`} />
+	<use href={`/sprites.svg#${name}`} />
 </svg>

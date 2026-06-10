@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { PageProps } from './$types';
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
@@ -9,21 +10,23 @@
 	import { resolve } from '$app/paths';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
-	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	
+	import type { EvaluacionWithRelationsItem } from '$lib/schemas/evaluacion.schema';
+	import Evaluacion from '$lib/components/evaluacion/Evaluacion.svelte';
+	import CrearEvaluacionForm from '$lib/components/evaluacion/CrearEvaluacionForm.svelte';
+	import EditarEvaluacionForm from '$lib/components/evaluacion/EditarEvaluacionForm.svelte';
+	import BorrarEvaluacionForm from '$lib/components/evaluacion/BorrarEvaluacionForm.svelte';
+	import RestaurarEvaluacionForm from '$lib/components/evaluacion/RestaurarEvaluacionForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { page } from '$app/state';
-	import { getEvidencia } from '$lib/stores/data.svelte';
-	import Evidencia from '$lib/components/evidencia/Evidencia.svelte';
-	import CrearEvidenciaForm from '$lib/components/evidencia/CrearEvidenciaForm.svelte';
-	import EditarEvidenciaForm from '$lib/components/evidencia/EditarEvidenciaForm.svelte';
-	import BorrarEvidenciaForm from '$lib/components/evidencia/BorrarEvidenciaForm.svelte';
-	import RestaurarEvidenciaForm from '$lib/components/evidencia/RestaurarEvidenciaForm.svelte';
+	import { getEvaluacion, getInstitucionRef, getModeloRef } from '$lib/stores/data.svelte';
+
+	let { data }: PageProps = $props();
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
-	let evidenciaItems = getEvidencia();
-	let navigationItems = $derived(page.data.navigationItems);
+	let evaluacionItems = getEvaluacion();
+	let modeloRef = getModeloRef();
+	let institucionRef = getInstitucionRef();
+	let navigationItems = $derived(data.navigationItems);
 
 	// ===== HEADER =====
 
@@ -40,7 +43,7 @@
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let modal = createModalManager<EvidenciaItem>();
+	let modal = createModalManager<EvaluacionWithRelationsItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
@@ -63,13 +66,14 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
+		crearTitle="Nueva evaluacion"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}
 		showFilter={true}
 	/>
-	<Evidencia
-		items={evidenciaItems}
+	<Evaluacion
+		items={evaluacionItems}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
 		onClickBorrar={modal.handlers('delete').onClickItem}
@@ -79,24 +83,32 @@
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearEvidenciaForm open={modal.isOpen('create')} onClose={modal.close} />
+	<CrearEvaluacionForm
+		open={modal.isOpen('create')}
+		{modeloRef}
+		{institucionRef}
+		onClose={modal.close}
+	/>
+
 	{#if modal.selectedItem}
 		<!-- MODAL EDITAR -->
-		<EditarEvidenciaForm
+		<EditarEvaluacionForm
 			open={modal.isOpen('edit')}
 			item={modal.selectedItem}
+			{modeloRef}
+			{institucionRef}
 			onClose={modal.close}
 		/>
 
 		<!-- MODAL BORRAR -->
-		<BorrarEvidenciaForm
+		<BorrarEvaluacionForm
 			open={modal.isOpen('delete')}
 			item={modal.selectedItem}
 			onClose={modal.close}
 		/>
 
 		<!-- MODAL RESTAURAR -->
-		<RestaurarEvidenciaForm
+		<RestaurarEvaluacionForm
 			open={modal.isOpen('restore')}
 			item={modal.selectedItem}
 			onClose={modal.close}

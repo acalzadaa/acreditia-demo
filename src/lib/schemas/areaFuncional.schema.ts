@@ -1,16 +1,9 @@
 import { z } from 'zod';
-import { puestoRefSchema } from './puesto.schema';
+import { areaFuncionalRefSchema, puestoRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
 // ============================================
-export const areaFuncionalRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string().min(1, 'El código es requerido'),
-	name: z.string().min(1, 'El nombre es requerido')
-});
-
-export type AreaFuncionalRef = z.infer<typeof areaFuncionalRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)

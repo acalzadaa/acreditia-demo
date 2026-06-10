@@ -2,17 +2,6 @@
 import { z } from 'zod';
 
 // ============================================
-// 1. REFERENCE SCHEMAS
-// ============================================
-export const unidadAcademicaRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string().min(1, 'El código es requerido'),
-	name: z.string().min(1, 'El nombre es requerido')
-});
-
-export type UnidadAcademicaRef = z.infer<typeof unidadAcademicaRefSchema>;
-
-// ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
 export const unidadAcademicaFormSchema = z.object({

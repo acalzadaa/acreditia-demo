@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { puestoRefSchema } from './puesto.schema';
-import { areaResponsableRefSchema } from './shared.schema';
+import { areaResponsableRefSchema, puestoRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS

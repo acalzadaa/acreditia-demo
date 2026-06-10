@@ -1,7 +1,6 @@
 import { ESTATUS } from '$lib/types/common.types';
 import { z } from 'zod';
-import { campusRefSchema } from './campus.schema';
-import { puestoRefSchema } from './puesto.schema';
+import { campusRefSchema, puestoRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
