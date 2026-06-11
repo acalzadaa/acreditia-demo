@@ -20,10 +20,10 @@
 	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let id = page.params.id;
-	let regionItems = getRegion().filter((item) => item.code === id);
+	let regionId = page.params.id;
+	let regionItems = getRegion().filter((item) => item.code === regionId);
 	let puestos = getPuestoRef('region');
-	let campusItems = getCampus().filter((item) => item.region.code === id);
+	let campusItems = getCampus().filter((item) => item.region.code === regionId);
 	let campusRef = getCampusRef();
 
 	let navigationItems = $derived(page.data.navigationItems);
@@ -198,7 +198,7 @@
 	<Campus
 		gridArea="campus"
 		showHeader={true}
-		title='Lista de campus asignados'
+		title="Lista de campus asignados"
 		showActionButtons={false}
 		{campusItems}
 		onClickEditar={(item: CampusWithRelationsItem) => onClickEditarCampus(item)}
@@ -249,11 +249,12 @@
 		grid-template-areas:
 			'header header'
 			'subheader subheader'
-			'navbar region'
-			'navbar campus'
+			'navbar main'
+			'navbar toolbar'
+			'navbar detail'
 			'footer footer';
 		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto 1fr 1fr auto;
+		grid-template-rows: auto auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
 	}
