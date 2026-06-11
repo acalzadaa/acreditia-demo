@@ -21,7 +21,8 @@
 		| 'history'
 		| 'restore'
 		| 'detail'
-		| 'play';
+		| 'play'
+		| 'calendar';
 
 	interface Props {
 		name: IconName;

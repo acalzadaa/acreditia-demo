@@ -9,7 +9,6 @@
 
 	interface Props {
 		gridArea?: string;
-
 		regionItems: RegionWithRelationItem[];
 		showDetailIcon?: boolean;
 		showHeader?: boolean;

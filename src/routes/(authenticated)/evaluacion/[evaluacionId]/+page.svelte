@@ -1,31 +1,32 @@
 <script lang="ts">
-	import type { PageProps } from './$types';
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
-	import type { EvaluacionWithRelationsItem } from '$lib/schemas/evaluacion.schema';
 	import Evaluacion from '$lib/components/evaluacion/Evaluacion.svelte';
-	import CrearEvaluacionForm from '$lib/components/evaluacion/CrearEvaluacionForm.svelte';
+	import { type EvaluacionWithRelationsItem } from '$lib/schemas/evaluacion.schema';
 	import EditarEvaluacionForm from '$lib/components/evaluacion/EditarEvaluacionForm.svelte';
 	import BorrarEvaluacionForm from '$lib/components/evaluacion/BorrarEvaluacionForm.svelte';
 	import RestaurarEvaluacionForm from '$lib/components/evaluacion/RestaurarEvaluacionForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getEvaluacion, getInstitucionRef, getModeloRef } from '$lib/stores/data.svelte';
+	import {
+		getEvaluacion,
+		getInstitucionRef,
+		getModeloRef
+	} from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
-
+	let evaluacionCode = page.params.evaluacionId;
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let evaluacionItems = getEvaluacion();
+	let evaluacionItems = getEvaluacion().filter((item) => item.code === evaluacionCode);
+	let navigationItems = $derived(page.data.navigationItems);
 	let modeloRef = getModeloRef();
 	let institucionRef = getInstitucionRef();
-	let navigationItems = $derived(page.data.navigationItems);
 
 	// ===== HEADER =====
 
@@ -41,22 +42,6 @@
 		}
 	}
 
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let modal = createModalManager<EvaluacionWithRelationsItem>();
-	let navigationToggle = createToggle(true);
-	let notificationToggle = createToggle(false);
-
-	/* DETALLE */
-	function onClickDetalle(item: EvaluacionWithRelationsItem) {
-		goto(resolve(`/evaluacion/${item.code}`));
-	}
-
-	function onKeydownDetalle(e: KeyboardEvent, item: EvaluacionWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickDetalle(item);
-		}
-	}
-
 	/* ACCION */
 	function onClickIniciarEvaluacion(item: EvaluacionWithRelationsItem) {
 		//llamar a action server /iniciarEvaluacion
@@ -68,6 +53,22 @@
 			onClickIniciarEvaluacion(item);
 		}
 	}
+
+	/* DETALLE */
+	function onClickDetalle() {
+		goto(resolve(`/evaluacion/${evaluacionCode}/etapa`));
+	}
+
+	function onKeydownDetalle(e: KeyboardEvent) {
+		if (e.key === 'Enter') {
+			onClickDetalle();
+		}
+	}
+
+	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
+	let navigationToggle = createToggle(true);
+	let notificationToggle = createToggle(false);
+	let modal = createModalManager<EvaluacionWithRelationsItem>();
 </script>
 
 <div class="app-grid">
@@ -87,14 +88,13 @@
 	/>
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
-	<Toolbar
-		crearTitle="Nueva evaluacion"
-		onClickCrear={modal.handlers('create').onclick}
-		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
-		showExport={true}
-		showFilter={true}
-	/>
+
 	<Evaluacion
+		gridArea="evaluacion"
+		showHeader={true}
+		title="Evaluacion"
+		subtitle={evaluacionCode}
+		showDetailIcon={true}
 		items={evaluacionItems}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
@@ -102,20 +102,12 @@
 		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
-		onClickDetalle={(item: EvaluacionWithRelationsItem) => onClickDetalle(item)}
-		onKeydownDetalle={(e: KeyboardEvent, item: EvaluacionWithRelationsItem) =>
-			onKeydownDetalle(e, item)}
+		{onClickDetalle}
+		onKeydownDetalle={(e: KeyboardEvent) =>
+			onKeydownDetalle(e)}
 		onClickIniciarEvaluacion={(item: EvaluacionWithRelationsItem) => onClickIniciarEvaluacion(item)}
 		onKeydownIniciarEvaluacion={(e: KeyboardEvent, item: EvaluacionWithRelationsItem) =>
 			onKeydownIniciarEvaluacion(e, item)}
-	/>
-
-	<!-- MODAL CREAR -->
-	<CrearEvaluacionForm
-		open={modal.isOpen('create')}
-		{modeloRef}
-		{institucionRef}
-		onClose={modal.close}
 	/>
 
 	{#if modal.selectedItem}
@@ -142,6 +134,7 @@
 			onClose={modal.close}
 		/>
 	{/if}
+
 	<Footer />
 </div>
 
@@ -151,8 +144,8 @@
 		grid-template-areas:
 			'header header'
 			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
+			'navbar evaluacion'
+			'navbar etapa'
 			'footer footer';
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto auto auto 1fr auto;

@@ -23,6 +23,7 @@ import seccionJsonData from '$lib/data/seccion.json';
 
 import evidenciaJsonData from '$lib/data/evidencia.json';
 import evaluacionJsonData from '$lib/data/evaluacion.json';
+import etapaJsonData from '$lib/data/etapa.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -79,6 +80,7 @@ import {
 } from '$lib/schemas/seccion.schema';
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
 import { evaluacionWithRelationsItemSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
+import { etapaWithRelationsItemSchema, type EtapaWithRelationsItem } from '$lib/schemas/etapa.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -108,6 +110,7 @@ let seccion = $state<SeccionWithCapituloItem[]>([]);
 let evidencia = $state<EvidenciaItem[]>([]);
 
 let evaluacion = $state<EvaluacionItem[]>([]);
+let etapa = $state<EtapaWithRelationsItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -170,6 +173,9 @@ evidencia = evidenciaRawData.map((item) => evidenciaItemSchema.parse(item));
 
 const evaluacionRawData = evaluacionJsonData.evaluacionItems;
 evaluacion = evaluacionRawData.map((item) => evaluacionWithRelationsItemSchema.parse(item));
+
+const etapaRawData = etapaJsonData.etapaItems;
+etapa = etapaRawData.map((item) => etapaWithRelationsItemSchema.parse(item));
 
 // Helpers
 export function getFilosofias() {
@@ -331,4 +337,8 @@ export function getEvaluacionRef() {
 
 export function getEvaluacion() {
 	return evaluacion;
+}
+
+export function getEtapa() {
+	return etapa;
 }

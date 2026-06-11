@@ -12,7 +12,7 @@ import { institucionRefSchema, regionRefSchema } from './shared.schema';
 export const campusFormSchema = z.object({
 	id: z.uuid().optional(),
 	institucionId: z.uuid('Debes seleccionar una institución'),
-	regionId: z.uuid('Debes seleccionar una región'),  // ← NUEVO CAMPO
+	regionId: z.uuid('Debes seleccionar una región'),
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
 	createdBy: z.string().optional()

@@ -12,7 +12,7 @@
 		status?: Status;
 		disabled?: boolean;
 		class?: string;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 	let {
 		name,
@@ -68,7 +68,7 @@
 
 	{#if hasErrors}
 		<div class="form-feedback-container" id="{name}-error" role="alert">
-			{#each errorList as err}
+			{#each errorList as err (err)}
 				<span class="form-feedback form-feedback--{status} text-body-small">
 					{err}
 				</span>
