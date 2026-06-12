@@ -79,7 +79,7 @@ import {
 	type SeccionWithCapituloItem
 } from '$lib/schemas/seccion.schema';
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
-import { evaluacionWithRelationsItemSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
+import { evaluacionWithRelationsItemSchema, type EvaluacionWithRelationsItem } from '$lib/schemas/evaluacion.schema';
 import { etapaWithRelationsItemSchema, type EtapaWithRelationsItem } from '$lib/schemas/etapa.schema';
 
 // Estado reactivo
@@ -109,7 +109,7 @@ let seccion = $state<SeccionWithCapituloItem[]>([]);
 
 let evidencia = $state<EvidenciaItem[]>([]);
 
-let evaluacion = $state<EvaluacionItem[]>([]);
+let evaluacion = $state<EvaluacionWithRelationsItem[]>([]);
 let etapa = $state<EtapaWithRelationsItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];

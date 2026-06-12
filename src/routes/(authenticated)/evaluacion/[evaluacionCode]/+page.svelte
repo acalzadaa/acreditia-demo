@@ -21,7 +21,7 @@
 	} from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
-	let evaluacionCode = page.params.evaluacionId;
+	let evaluacionCode = page.params.evaluacionCode;
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let evaluacionItems = getEvaluacion().filter((item) => item.code === evaluacionCode);
 	let navigationItems = $derived(page.data.navigationItems);

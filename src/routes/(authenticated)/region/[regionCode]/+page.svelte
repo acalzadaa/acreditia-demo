@@ -20,10 +20,10 @@
 	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let regionId = page.params.id;
-	let regionItems = getRegion().filter((item) => item.code === regionId);
+	let regionCode = page.params.regionCode;
+	let regionItems = getRegion().filter((item) => item.code === regionCode);
 	let puestos = getPuestoRef('region');
-	let campusItems = getCampus().filter((item) => item.region.code === regionId);
+	let campusItems = getCampus().filter((item) => item.region.code === regionCode);
 	let campusRef = getCampusRef();
 
 	let navigationItems = $derived(page.data.navigationItems);
@@ -184,7 +184,7 @@
 		{regionItems}
 		showHeader={true}
 		title="Region"
-		subtitle={id}
+		subtitle={regionCode}
 		showDetailIcon={false}
 		onClickEditar={(item: RegionWithRelationItem) => onClickEditarRegion(item)}
 		onKeydownEditar={(e, item: RegionWithRelationItem) => onKeydownEditarRegion(e, item)}

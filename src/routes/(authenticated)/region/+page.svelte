@@ -16,6 +16,8 @@
 	import { getPuestoRef, getRegion } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
+	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createToggle } from '$lib/utils/toggle.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
@@ -23,8 +25,6 @@
 	let puestos = getPuestoRef('region');
 
 	let navigationItems = $derived(page.data.navigationItems);
-
-	let itemSeleccionado: RegionWithRelationItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -38,91 +38,9 @@
 		}
 	}
 
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let showNotificationBar = $state(false);
-	let showNavigationBar = $state(true);
-
-	function onClickNavigationBar() {
-		showNavigationBar = !showNavigationBar;
-	}
-
-	function onKeydownNavigationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNavigationBar();
-		}
-	}
-
-	function onClickNotificationBar() {
-		showNotificationBar = !showNotificationBar;
-	}
-
-	function onKeydownNotificationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNotificationBar();
-		}
-	}
-
-	// ===== ESTADOS DE MODALES =====
-	let showCrearModal = $state(false);
-	let showEditarModal = $state(false);
-	let showBorrarModal = $state(false);
-	let showRestaurarModal = $state(false);
-
-	// ===== HANDLERS =====
-
-	/* CREAR */
-
-	function onClickCrear() {
-		showCrearModal = true;
-	}
-
-	function onKeydownCrear(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickCrear();
-		}
-	}
-
-	/* EDITAR */
-
-	function onClickEditar(item: RegionWithRelationItem) {
-		itemSeleccionado = item;
-		showEditarModal = true;
-	}
-
-	function onKeydownEditar(e: KeyboardEvent, item: RegionWithRelationItem) {
-		if (e.key === 'Enter') {
-			onClickEditar(item);
-		}
-	}
-
-	/* BORRAR */
-
-	function onClickBorrar(item: RegionWithRelationItem) {
-		itemSeleccionado = item;
-		showBorrarModal = true;
-	}
-
-	function onKeydownBorrar(e: KeyboardEvent, item: RegionWithRelationItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	/* RESTAURAR */
-	function onClickRestaurar(item: RegionWithRelationItem) {
-		itemSeleccionado = item;
-		showRestaurarModal = true;
-	}
-
-	function onKeydownRestaurar(e: KeyboardEvent, item: RegionWithRelationItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	/* RESTAURAR */
+	/* DETALLE */
 	function onClickDetalle(item: RegionWithRelationItem) {
-		goto(resolve(`/region/${item.code}`));
+		goto(resolve(`/region/${item.id}`));
 	}
 
 	function onKeydownDetalle(e: KeyboardEvent, item: RegionWithRelationItem) {
@@ -131,13 +49,10 @@
 		}
 	}
 
-	function handleCerrar() {
-		showCrearModal = false;
-		showEditarModal = false;
-		showBorrarModal = false;
-		showRestaurarModal = false;
-		itemSeleccionado = null;
-	}
+	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR + MODALS =====
+	let modal = createModalManager<RegionWithRelationItem>();
+	let navigationToggle = createToggle(true);
+	let notificationToggle = createToggle(false);
 </script>
 
 <div class="app-grid">
@@ -148,63 +63,58 @@
 		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
 	<Subheader
-		{onClickNavigationBar}
-		onKeydownNavigationBar={(e) => onKeydownNavigationBar(e)}
-		{onClickNotificationBar}
-		onKeydownNotificationBar={(e) => onKeydownNotificationBar(e)}
-		{showNavigationBar}
-		{showNotificationBar}
+		onClickNavigationBar={navigationToggle.onclick}
+		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
+		onClickNotificationBar={navigationToggle.onclick}
+		onKeydownNotificationBar={(e) => navigationToggle.onkeydown(e)}
+		showNavigationBar={navigationToggle.value}
+		showNotificationBar={notificationToggle.value}
 	/>
-	<NavigationBar {showNavigationBar} {navigationItems} />
-	<NotificationBar {showNotificationBar} />
+	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
+	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
-		{onClickCrear}
-		onKeydownCrear={(e) => onKeydownCrear(e)}
+		crearTitle="Nueva region"
+		onClickCrear={modal.handlers('create').onclick}
+		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}
 		showFilter={true}
 	/>
-
 	<Region
 		{regionItems}
-		onClickEditar={(item: RegionWithRelationItem) => onClickEditar(item)}
-		onKeydownEditar={(e, item: RegionWithRelationItem) => onKeydownEditar(e, item)}
-		onClickBorrar={(item: RegionWithRelationItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e, item: RegionWithRelationItem) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: RegionWithRelationItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: RegionWithRelationItem) =>
-			onKeydownRestaurar(e, item)}
+		onClickEditar={modal.handlers('edit').onClickItem}
+		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
+		onClickBorrar={modal.handlers('delete').onClickItem}
+		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
+		onClickRestaurar={modal.handlers('restore').onClickItem}
+		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
 		onClickDetalle={(item: RegionWithRelationItem) => onClickDetalle(item)}
 		onKeydownDetalle={(e: KeyboardEvent, item: RegionWithRelationItem) => onKeydownDetalle(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearRegionForm bind:open={showCrearModal} refs={puestos} onClose={handleCerrar} />
+	<CrearRegionForm open={modal.isOpen('create')} refs={puestos} onClose={modal.close} />
 
 	<!-- MODAL EDITAR -->
-	{#if showEditarModal && itemSeleccionado}
+	{#if modal.selectedItem}
 		<EditarRegionForm
-			bind:open={showEditarModal}
-			selectedItem={itemSeleccionado}
+			open={modal.isOpen('edit')}
+			selectedItem={modal.selectedItem}
 			refs={puestos}
-			onClose={handleCerrar}
+			onClose={modal.close}
 		/>
-	{/if}
 
-	<!-- MODAL BORRAR -->
-	{#if showBorrarModal && itemSeleccionado}
+		<!-- MODAL BORRAR -->
 		<BorrarRegionForm
-			bind:open={showBorrarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
+			open={modal.isOpen('delete')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
 		/>
-	{/if}
 
-	<!-- MODAL RESTAURAR -->
-	{#if showRestaurarModal && itemSeleccionado}
+		<!-- MODAL RESTAURAR -->
 		<RestaurarRegionForm
-			bind:open={showRestaurarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
+			open={modal.isOpen('restore')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
 		/>
 	{/if}
 
