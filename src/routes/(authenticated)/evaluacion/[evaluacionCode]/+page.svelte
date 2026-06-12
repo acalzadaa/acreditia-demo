@@ -3,28 +3,32 @@
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import RestaurarRegionForm from '$lib/components/region/RestaurarRegionForm.svelte';
-	import BorrarRegionForm from '$lib/components/region/BorrarRegionForm.svelte';
-	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import CrearRegionForm from '$lib/components/region/CrearRegionForm.svelte';
-	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
-	import Region from '$lib/components/region/Region.svelte';
-	import { auth } from '$lib/stores/auth.svelte';
-	import { getPuestoRef, getRegion } from '$lib/stores/data.svelte';
-	import { page } from '$app/state';
-	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
+	import { resolve } from '$app/paths';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
+	import Evaluacion from '$lib/components/evaluacion/Evaluacion.svelte';
+	import { type EvaluacionWithRelationsItem } from '$lib/schemas/evaluacion.schema';
+	import EditarEvaluacionForm from '$lib/components/evaluacion/EditarEvaluacionForm.svelte';
+	import BorrarEvaluacionForm from '$lib/components/evaluacion/BorrarEvaluacionForm.svelte';
+	import RestaurarEvaluacionForm from '$lib/components/evaluacion/RestaurarEvaluacionForm.svelte';
+	import { auth } from '$lib/stores/auth.svelte';
+	import {
+		getEvaluacion,
+		getInstitucionRef,
+		getModeloRef
+	} from '$lib/stores/data.svelte';
+	import { page } from '$app/state';
 
+	let evaluacionCode = page.params.evaluacionCode;
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-
-	let regionItems = getRegion();
-	let puestos = getPuestoRef('region');
-
+	let evaluacionItems = getEvaluacion().filter((item) => item.code === evaluacionCode);
 	let navigationItems = $derived(page.data.navigationItems);
+	let modeloRef = getModeloRef();
+	let institucionRef = getInstitucionRef();
+
+	// ===== HEADER =====
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -38,21 +42,33 @@
 		}
 	}
 
-	/* DETALLE */
-	function onClickDetalle(item: RegionWithRelationItem) {
-		goto(resolve(`/region/${item.id}`));
+	/* ACCION */
+	function onClickIniciarEvaluacion(item: EvaluacionWithRelationsItem) {
+		//llamar a action server /iniciarEvaluacion
+		console.log('iniciando evaluacion...', item.year, item.cycle);
 	}
 
-	function onKeydownDetalle(e: KeyboardEvent, item: RegionWithRelationItem) {
+	function onKeydownIniciarEvaluacion(e: KeyboardEvent, item: EvaluacionWithRelationsItem) {
 		if (e.key === 'Enter') {
-			onClickDetalle(item);
+			onClickIniciarEvaluacion(item);
 		}
 	}
 
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR + MODALS =====
-	let modal = createModalManager<RegionWithRelationItem>();
+	/* DETALLE */
+	function onClickDetalle() {
+		goto(resolve(`/evaluacion/${evaluacionCode}/etapa`));
+	}
+
+	function onKeydownDetalle(e: KeyboardEvent) {
+		if (e.key === 'Enter') {
+			onClickDetalle();
+		}
+	}
+
+	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
+	let modal = createModalManager<EvaluacionWithRelationsItem>();
 </script>
 
 <div class="app-grid">
@@ -72,48 +88,49 @@
 	/>
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
-	<Toolbar
-		crearTitle="Nueva region"
-		onClickCrear={modal.handlers('create').onclick}
-		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
-		showExport={true}
-		showFilter={true}
-	/>
-	<Region
-		{regionItems}
+
+	<Evaluacion
+		gridArea="evaluacion"
+		showHeader={true}
+		title="Evaluacion"
+		subtitle={evaluacionCode}
+		showDetailIcon={true}
+		items={evaluacionItems}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
 		onClickBorrar={modal.handlers('delete').onClickItem}
 		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
-		onClickDetalle={(item: RegionWithRelationItem) => onClickDetalle(item)}
-		onKeydownDetalle={(e: KeyboardEvent, item: RegionWithRelationItem) => onKeydownDetalle(e, item)}
+		{onClickDetalle}
+		onKeydownDetalle={(e: KeyboardEvent) =>
+			onKeydownDetalle(e)}
+		onClickIniciarEvaluacion={(item: EvaluacionWithRelationsItem) => onClickIniciarEvaluacion(item)}
+		onKeydownIniciarEvaluacion={(e: KeyboardEvent, item: EvaluacionWithRelationsItem) =>
+			onKeydownIniciarEvaluacion(e, item)}
 	/>
 
-	<!-- MODAL CREAR -->
-	<CrearRegionForm open={modal.isOpen('create')} refs={puestos} onClose={modal.close} />
-
-	<!-- MODAL EDITAR -->
 	{#if modal.selectedItem}
-		<EditarRegionForm
+		<!-- MODAL EDITAR -->
+		<EditarEvaluacionForm
 			open={modal.isOpen('edit')}
-			selectedItem={modal.selectedItem}
-			refs={puestos}
+			item={modal.selectedItem}
+			{modeloRef}
+			{institucionRef}
 			onClose={modal.close}
 		/>
 
 		<!-- MODAL BORRAR -->
-		<BorrarRegionForm
+		<BorrarEvaluacionForm
 			open={modal.isOpen('delete')}
-			selectedItem={modal.selectedItem}
+			item={modal.selectedItem}
 			onClose={modal.close}
 		/>
 
 		<!-- MODAL RESTAURAR -->
-		<RestaurarRegionForm
+		<RestaurarEvaluacionForm
 			open={modal.isOpen('restore')}
-			selectedItem={modal.selectedItem}
+			item={modal.selectedItem}
 			onClose={modal.close}
 		/>
 	{/if}
@@ -127,12 +144,13 @@
 		grid-template-areas:
 			'header header'
 			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
+			'navbar evaluacion'
+			'navbar etapa'
 			'footer footer';
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
+		min-width: 1277px;
 	}
 </style>

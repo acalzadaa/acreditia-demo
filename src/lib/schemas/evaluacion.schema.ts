@@ -2,26 +2,11 @@ import { z } from 'zod';
 import { modeloItemSchema } from './modelo.schema';
 import { institucionItemSchema } from './institucion.schema';
 import { institucionRefSchema, modeloRefSchema } from './shared.schema';
+import { etapaWithRelationsItemSchema } from './etapa.schema';
 
-export const EvaluacionStatusEnum = z.enum([
-    'planned',
-    'active',
-    'completed',
-    'cancelled'
-]);
+export const EvaluacionStatusEnum = z.enum(['planned', 'active', 'completed', 'cancelled']);
 
 export type EvaluacionStatus = z.infer<typeof EvaluacionStatusEnum>;
-
-// ============================================
-// 1. REFERENCE SCHEMAS (Para relaciones)
-// ============================================
-
-export const evaluacionRefSchema = z.object({
-    id: z.uuid(),
-    code: z.string(),
-    name: z.string()
-});
-export type EvaluacionRef = z.infer<typeof evaluacionRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -29,14 +14,21 @@ export type EvaluacionRef = z.infer<typeof evaluacionRefSchema>;
 // ============================================
 
 export const evaluacionFormSchema = z.object({
-    id: z.uuid().optional(),
-    code: z.string().min(1, 'Código requerido').max(255),
-    modeloId: z.uuid('Modelo de calidad requerido'),
-    institucionId: z.uuid('Institución requerida'),
-    name: z.string().min(1, 'Nombre requerido').max(255),
-    year: z.number().int().min(2000).max(2100),
-    cycle: z.number().int().min(1).max(99),
-    createdBy: z.string().default('')
+	id: z.uuid().optional(),
+	code: z
+		.string()
+		.min(3, 'Code debe tener al menos 3 caracteres')
+		.max(100, 'Code no puede exceder 100 caracteres')
+		.regex(
+			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
+		),
+	modeloId: z.uuid('Modelo de calidad requerido'),
+	institucionId: z.uuid('Institución requerida'),
+	name: z.string().min(1, 'Nombre requerido').max(255),
+	year: z.number().int().min(2000).max(2100),
+	cycle: z.number().int().min(1).max(99),
+	createdBy: z.string().default('')
 });
 export type EvaluacionForm = z.infer<typeof evaluacionFormSchema>;
 
@@ -46,26 +38,26 @@ export type EvaluacionForm = z.infer<typeof evaluacionFormSchema>;
 // ============================================
 
 export const evaluacionItemSchema = z.object({
-    id: z.uuid(),
-    code: z.string(),
-    modeloId: z.uuid(),
-    institucionId: z.uuid(),
-    name: z.string(),
-    year: z.number(),
-    cycle: z.number(),
-    version: z.number().default(0),
-    isCurrent: z.boolean().default(false),
-    validFrom: z.coerce.date().optional(),
-    validTo: z.coerce.date().optional().nullable(),
+	id: z.uuid(),
+	code: z.string(),
+	modeloId: z.uuid(),
+	institucionId: z.uuid(),
+	name: z.string(),
+	year: z.number(),
+	cycle: z.number(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.coerce.date().optional(),
+	validTo: z.coerce.date().optional().nullable(),
 
-    status: EvaluacionStatusEnum.default('planned'),
-    startedAt: z.coerce.date().optional().nullable(),
-    startedBy: z.string().optional().nullable(),
-    completedAt: z.coerce.date().optional().nullable(),
+	status: EvaluacionStatusEnum.default('planned'),
+	startedAt: z.coerce.date().optional().nullable(),
+	startedBy: z.string().optional().nullable(),
+	completedAt: z.coerce.date().optional().nullable(),
 
-    isDeleted: z.boolean().default(false),
-    createdAt: z.iso.datetime().optional(),
-    createdBy: z.string()
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 export type EvaluacionItem = z.infer<typeof evaluacionItemSchema>;
 
@@ -75,20 +67,20 @@ export type EvaluacionItem = z.infer<typeof evaluacionItemSchema>;
 // ============================================
 
 export const evaluacionWithRelationsItemSchema = evaluacionItemSchema
-    .omit({ modeloId: true, institucionId: true })
-    .extend({
-        modelo: modeloRefSchema,
-        institucion: institucionRefSchema
-    });
+	.extend({
+		modelo: modeloRefSchema,
+		institucion: institucionRefSchema
+	});
 export type EvaluacionWithRelationsItem = z.infer<typeof evaluacionWithRelationsItemSchema>;
 
-// Versión con relaciones completas (si necesitas más datos)
+// Versión con relaciones completas (incluye etapas)
 export const evaluacionWithFullRelationsItemSchema = evaluacionItemSchema
-    .omit({ modeloId: true, institucionId: true })
-    .extend({
-        modelo: modeloItemSchema.nullable(),
-        institucion: institucionItemSchema.nullable()
-    });
+	.omit({ modeloId: true, institucionId: true })
+	.extend({
+		modelo: modeloItemSchema.nullable(),
+		institucion: institucionItemSchema.nullable(),
+		etapas: z.array(etapaWithRelationsItemSchema).optional()
+	});
 export type EvaluacionWithFullRelationsItem = z.infer<typeof evaluacionWithFullRelationsItemSchema>;
 
 // ============================================
@@ -97,7 +89,7 @@ export type EvaluacionWithFullRelationsItem = z.infer<typeof evaluacionWithFullR
 // ============================================
 
 export const evaluacionConfigSchema = z.object({
-    evaluacionItems: z.array(evaluacionWithRelationsItemSchema)
+	evaluacionItems: z.array(evaluacionWithRelationsItemSchema)
 });
 export type EvaluacionConfig = z.infer<typeof evaluacionConfigSchema>;
 
@@ -106,6 +98,6 @@ export type EvaluacionConfig = z.infer<typeof evaluacionConfigSchema>;
 // ============================================
 
 export const evaluacionResponseSchema = z.object({
-    evaluacionItem: evaluacionWithRelationsItemSchema
+	evaluacionItem: evaluacionWithRelationsItemSchema
 });
 export type EvaluacionResponse = z.infer<typeof evaluacionResponseSchema>;

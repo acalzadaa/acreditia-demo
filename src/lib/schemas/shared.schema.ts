@@ -96,3 +96,10 @@ export const areaFuncionalRefSchema = z.object({
 });
 
 export type AreaFuncionalRef = z.infer<typeof areaFuncionalRefSchema>;
+
+export const evaluacionRefSchema = z.object({
+	id: z.uuid(),
+	code: z.string(),
+	name: z.string()
+});
+export type EvaluacionRef = z.infer<typeof evaluacionRefSchema>;
