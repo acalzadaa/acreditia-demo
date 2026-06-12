@@ -1,16 +1,16 @@
 import { z } from 'zod';
-import { puestoRefSchema, usuarioRefSchema } from './shared.schema';
+import { puestoRefSchema } from './shared.schema';
 
 // ============================================
-// 2. FORM SCHEMA (Cliente ↔ Servidor)
+// 1. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
 export const regionFormSchema = z.object({
 	id: z.uuid().optional(),
-	puestoId: z.uuid(),
+	puestoId: z.uuid('El puesto es requerido'), // FIX: required, no optional
 	code: z
 		.string()
-		.min(3, 'El código debe tener al menos 3 caracteres')
-		.max(100, 'El código no puede tener más de 100 caracteres')
+		.min(3, 'El código es requerido')
+		.max(50, 'El código no puede tener más de 50 caracteres')
 		.regex(
 			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
 			'Formato de slug inválido. Use solo letras minúsculas, números y guiones simples entre palabras'
@@ -27,41 +27,31 @@ export const regionFormSchema = z.object({
 export type RegionForm = z.infer<typeof regionFormSchema>;
 
 // ============================================
-// 3. ITEM SCHEMA (Servidor → Cliente)
+// 2. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
 export const regionItemSchema = z.object({
 	id: z.uuid(),
 	puestoId: z.uuid(),
-	usuarioId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
-	description: z.string(),
-	puesto: puestoRefSchema.nullable(),
-	usuario: usuarioRefSchema.nullable(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional(),
+	description: z.string().default(''),
+	version: z.number().int().nonnegative().default(0),
+	isCurrent: z.boolean().default(true),
+	validFrom: z.coerce.date(),
+	validTo: z.coerce.date().nullable(),
 	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
+	createdAt: z.iso.datetime().nullable().optional(),
 	createdBy: z.string()
 });
 
 export type RegionItem = z.infer<typeof regionItemSchema>;
 
 // ============================================
-// 4. ITEM WITH RELATIONS SCHEMA (Versión completa)
+// 3. ITEM WITH RELATIONS SCHEMA
 // ============================================
-
-export const regionWithRelationItemSchema = regionItemSchema;
-
-export type RegionWithRelationItem = z.infer<typeof regionWithRelationItemSchema>;
-
-// ============================================
-// 6. CONFIG SCHEMA
-// ============================================
-export const regionConfigSchema = z.object({
-	regionItems: z.array(regionItemSchema)
+export const regionWithRelationsItemSchema = regionItemSchema.extend({
+	puesto: puestoRefSchema.nullable().optional(),
+	campusActuales: z.array(z.object({ id: z.uuid(), code: z.string(), name: z.string() })).optional()
 });
 
-export type RegionConfig = z.infer<typeof regionConfigSchema>;
+export type RegionWithRelationsItem = z.infer<typeof regionWithRelationsItemSchema>;

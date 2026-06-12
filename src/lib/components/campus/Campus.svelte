@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CampusWithRelationsItem } from '$lib/schemas/campus.schema';
+	import type { CampusItem } from '$lib/schemas/campus.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
 	import Badge from '../ui/Badge.svelte';
@@ -11,13 +11,13 @@
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		campusItems: CampusWithRelationsItem[];
-		onClickEditar: (item: CampusWithRelationsItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: CampusWithRelationsItem) => void;
-		onClickBorrar: (item: CampusWithRelationsItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: CampusWithRelationsItem) => void;
-		onClickRestaurar: (item: CampusWithRelationsItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: CampusWithRelationsItem) => void;
+		campusItems: CampusItem[];
+		onClickEditar: (item: CampusItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: CampusItem) => void;
+		onClickBorrar: (item: CampusItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: CampusItem) => void;
+		onClickRestaurar: (item: CampusItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: CampusItem) => void;
 	}
 
 	const {

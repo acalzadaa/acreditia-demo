@@ -7,6 +7,7 @@ import normativaJsonData from '$lib/data/normativa.json';
 
 import entidadLegalJsonData from '$lib/data/entidad-legal.json';
 import regionJsonData from '$lib/data/region.json';
+import regionCampusJsonData from '$lib/data/region-campus.json';
 
 import institucionJsonData from '$lib/data/institucion.json';
 import campusJsonData from '$lib/data/campus.json';
@@ -24,6 +25,9 @@ import seccionJsonData from '$lib/data/seccion.json';
 import evidenciaJsonData from '$lib/data/evidencia.json';
 import evaluacionJsonData from '$lib/data/evaluacion.json';
 import etapaJsonData from '$lib/data/etapa.json';
+
+import campusAreaResponsableJsonData from '$lib/data/campus-area-responsable.json';
+import campusUnidadAcademicaJsonData from '$lib/data/campus-unidad-academica.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -48,14 +52,7 @@ import {
 	type InstitucionWithRelationsItem
 } from '$lib/schemas/institucion.schema';
 
-import {
-	campusWithRelationsItemSchema,
-	type CampusWithRelationsItem
-} from '$lib/schemas/campus.schema';
-import {
-	regionWithRelationItemSchema,
-	type RegionWithRelationItem
-} from '$lib/schemas/region.schema';
+
 import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
 import {
 	unidadAcademicaItemSchema,
@@ -65,10 +62,7 @@ import {
 	areaFuncionalWithRelationsItemSchema,
 	type AreaFuncionalWithRelationsItem
 } from '$lib/schemas/areaFuncional.schema';
-import {
-	areaResponsableWithRelationsItemSchema,
-	type AreaResponsableWithRelationsItem
-} from '$lib/schemas/areaResponsable.schema';
+
 import { type ModeloItem, modeloItemSchema } from '$lib/schemas/modelo.schema';
 import {
 	capituloWithModeloItemSchema,
@@ -79,8 +73,33 @@ import {
 	type SeccionWithCapituloItem
 } from '$lib/schemas/seccion.schema';
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
-import { evaluacionWithRelationsItemSchema, type EvaluacionWithRelationsItem } from '$lib/schemas/evaluacion.schema';
-import { etapaWithRelationsItemSchema, type EtapaWithRelationsItem } from '$lib/schemas/etapa.schema';
+import {
+	evaluacionWithRelationsItemSchema,
+	type EvaluacionWithRelationsItem
+} from '$lib/schemas/evaluacion.schema';
+import {
+	etapaWithRelationsItemSchema,
+	type EtapaWithRelationsItem
+} from '$lib/schemas/etapa.schema';
+import {
+	regionWithRelationsItemSchema,
+	type RegionWithRelationsItem
+} from '$lib/schemas/region.schema';
+import {
+	type CampusUnidadAcademicaWithRelationsItem,
+	campusUnidadAcademicaWithRelationsItemSchema
+} from '$lib/schemas/campusUnidadAcademica.schema';
+import {
+	campusAreaResponsableWithRelationsItemSchema,
+	type CampusAreaResponsableWithRelationsItem
+} from '$lib/schemas/campusAreaResponsable.schema';
+import {
+	regionCampusWithRelationsItemSchema,
+	type RegionCampusWithRelationsItem
+} from '$lib/schemas/regionCampus.schema';
+import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
+import { areaResponsableWithRelationsItemSchema, type AreaResponsableWithRelationsItem } from '$lib/schemas/areaResponsable.schema';
+
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -91,11 +110,15 @@ let indicadores = $state<IndicadorEstrategicoWithObjetivoItem[]>([]);
 let normativas = $state<NormativaItem[]>([]);
 
 let entidadLegal = $state<EntidadLegalItem[]>([]);
-let region = $state<RegionWithRelationItem[]>([]);
+let region = $state<RegionWithRelationsItem[]>([]);
+let regionCampus = $state<RegionCampusWithRelationsItem[]>([]);
 
 let institucion = $state<InstitucionWithRelationsItem[]>([]);
 
-let campus = $state<CampusWithRelationsItem[]>([]);
+let campus = $state<CampusItem[]>([]);
+let campusUnidadAcademica = $state<CampusUnidadAcademicaWithRelationsItem[]>([]);
+let campusAreaResponsable = $state<CampusAreaResponsableWithRelationsItem[]>([]);
+
 let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
 
 let puesto = $state<PuestoItem[]>([]);
@@ -135,13 +158,26 @@ const entidadLegalRawData = entidadLegalJsonData.entidadLegalItems;
 entidadLegal = entidadLegalRawData.map((item) => entidadLegalItemSchema.parse(item));
 
 const regionRawData = regionJsonData.regionItems;
-region = regionRawData.map((item) => regionWithRelationItemSchema.parse(item));
+region = regionRawData.map((item) => regionWithRelationsItemSchema.parse(item));
+
+const regionCampusRawData = regionCampusJsonData.regionCampusItems;
+regionCampus = regionCampusRawData.map((item) => regionCampusWithRelationsItemSchema.parse(item));
 
 const institucionRawData = institucionJsonData.institucionItems;
 institucion = institucionRawData.map((item) => institucionWithRelationsItemSchema.parse(item));
 
 const campusRawData = campusJsonData.campusItems;
-campus = campusRawData.map((item) => campusWithRelationsItemSchema.parse(item));
+campus = campusRawData.map((item) => campusItemSchema.parse(item));
+
+const campusAreaResponsableRawData = campusAreaResponsableJsonData.campusAreaResponsableItems;
+campusAreaResponsable = campusAreaResponsableRawData.map((item) =>
+	campusAreaResponsableWithRelationsItemSchema.parse(item)
+);
+
+const campusUnidadAcademicaRawData = campusUnidadAcademicaJsonData.campusUnidadAcademicaItems;
+campusUnidadAcademica = campusUnidadAcademicaRawData.map((item) =>
+	campusUnidadAcademicaWithRelationsItemSchema.parse(item)
+);
 
 const unidadAcademicaRawData = unidadAcademicaJsonData.unidadAcademicaItems;
 unidadAcademica = unidadAcademicaRawData.map((item) => unidadAcademicaItemSchema.parse(item));
@@ -222,6 +258,10 @@ export function getRegionRef() {
 	}));
 }
 
+export function getRegionCampus() {
+	return regionCampus;
+}
+
 export function getInstitucion() {
 	return institucion;
 }
@@ -244,6 +284,14 @@ export function getCampusRef() {
 		code: item.code,
 		name: item.name
 	}));
+}
+
+export function getCampusUnidadAcademica() {
+	return campusUnidadAcademica;
+}
+
+export function getCampusAreaResponsable() {
+	return campusAreaResponsable;
 }
 
 export function getUnidadAcademica() {

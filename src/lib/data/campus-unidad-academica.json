@@ -1,0 +1,484 @@
+{
+  "campusUnidadAcademicaItems": [
+    {
+      "id": "bc5c0793-b223-4499-9cf5-8abf5f268130",
+      "unidadAcademica": {
+        "id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+        "code": "FIC-001",
+        "name": "Facultad de Ingeniería y Ciencias Aplicadas"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:00:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "d3f4fad0-a8ec-4fb8-9cfc-ef38e542d688",
+      "unidadAcademica": {
+        "id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+        "code": "ECO-002",
+        "name": "Escuela de Economía y Negocios Internacionales"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:05:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "17640acb-c0e8-4cbd-902f-7d96dbf04a8b",
+      "unidadAcademica": {
+        "id": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+        "code": "HUM-003",
+        "name": "Facultad de Humanidades y Educación"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:10:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "c5e74487-2d74-4bed-beab-e7b7aa088663",
+      "unidadAcademica": {
+        "id": "b9cb6eef-5606-447b-b4f8-bb6c94a029b5",
+        "code": "POS-004",
+        "name": "Escuela de Postgrado y Estudios Avanzados"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:15:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "2eb8c13a-db55-427f-ae4c-1a5a40575bed",
+      "unidadAcademica": {
+        "id": "1966c26b-1399-42bc-a58b-a8a294e7d647",
+        "code": "DER-005",
+        "name": "Facultad de Derecho y Ciencias Jurídicas"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:20:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "afc6926a-1168-477b-b5ff-1d43699ca9fc",
+      "unidadAcademica": {
+        "id": "6bab8738-f5f2-4804-b95d-f427fd6a3be8",
+        "code": "SAL-006",
+        "name": "Escuela de Ciencias de la Salud"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:25:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "d327d659-6301-4966-b53b-1f15d94fba90",
+      "unidadAcademica": {
+        "id": "ee984bae-4e2c-4634-8e8e-f2101869e06e",
+        "code": "ART-007",
+        "name": "Facultad de Artes y Diseño"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:30:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "ff03edab-13b6-46ad-a8dc-8e24b41c1a32",
+      "unidadAcademica": {
+        "id": "d0d06456-d0b2-45ab-9b5e-366451714d52",
+        "code": "IDI-008",
+        "name": "Escuela de Idiomas y Lingüística Aplicada"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:35:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "a152eb49-c8d4-44ed-a286-e9b66544ada8",
+      "unidadAcademica": {
+        "id": "424734b2-a584-40a7-b956-66ffaf009523",
+        "code": "TEC-009",
+        "name": "Escuela de Tecnologías de la Información"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:40:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "2aaf04ee-f043-4fa5-a04f-12df92018428",
+      "unidadAcademica": {
+        "id": "85dd994a-6f21-411e-b3cc-e28cd143ca02",
+        "code": "AGR-010",
+        "name": "Facultad de Ciencias Agropecuarias"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:45:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "ae96bde4-988a-4714-a5c4-8cee89adfa44",
+      "unidadAcademica": {
+        "id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+        "code": "FIC-001",
+        "name": "Facultad de Ingeniería y Ciencias Aplicadas"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:00:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "15641a82-5f4b-4b76-870d-9d2bd7cd5693",
+      "unidadAcademica": {
+        "id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+        "code": "ECO-002",
+        "name": "Escuela de Economía y Negocios Internacionales"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:05:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "5d420b83-d12c-4b9b-9358-ecf368d99f86",
+      "unidadAcademica": {
+        "id": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+        "code": "HUM-003",
+        "name": "Facultad de Humanidades y Educación"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:10:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "47046f96-b193-4b4a-8c81-99c263a3fbe9",
+      "unidadAcademica": {
+        "id": "b9cb6eef-5606-447b-b4f8-bb6c94a029b5",
+        "code": "POS-004",
+        "name": "Escuela de Postgrado y Estudios Avanzados"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:15:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "6639a71b-32b2-40ec-bc19-2b93266a3f50",
+      "unidadAcademica": {
+        "id": "1966c26b-1399-42bc-a58b-a8a294e7d647",
+        "code": "DER-005",
+        "name": "Facultad de Derecho y Ciencias Jurídicas"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:20:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "bc11dcbb-408a-42ae-abab-756d2a4173b7",
+      "unidadAcademica": {
+        "id": "6bab8738-f5f2-4804-b95d-f427fd6a3be8",
+        "code": "SAL-006",
+        "name": "Escuela de Ciencias de la Salud"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:25:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "99a9ec53-70ac-4e1f-af07-54939f95333e",
+      "unidadAcademica": {
+        "id": "ee984bae-4e2c-4634-8e8e-f2101869e06e",
+        "code": "ART-007",
+        "name": "Facultad de Artes y Diseño"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:30:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "f79dac81-9e3e-42a6-a513-9527c869a8cf",
+      "unidadAcademica": {
+        "id": "d0d06456-d0b2-45ab-9b5e-366451714d52",
+        "code": "IDI-008",
+        "name": "Escuela de Idiomas y Lingüística Aplicada"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:35:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "c4df655d-309f-44e3-9a39-f9b99b0e9fe0",
+      "unidadAcademica": {
+        "id": "424734b2-a584-40a7-b956-66ffaf009523",
+        "code": "TEC-009",
+        "name": "Escuela de Tecnologías de la Información"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:40:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "0c5def7d-ee0d-42ca-a5a9-d01e8cff184a",
+      "unidadAcademica": {
+        "id": "85dd994a-6f21-411e-b3cc-e28cd143ca02",
+        "code": "AGR-010",
+        "name": "Facultad de Ciencias Agropecuarias"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:45:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "2937eebc-973e-4edd-9f17-37b9271aa9ba",
+      "unidadAcademica": {
+        "id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+        "code": "FIC-001",
+        "name": "Facultad de Ingeniería y Ciencias Aplicadas"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:00:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "267f7a46-cb6d-410b-a33e-df81bf71daf3",
+      "unidadAcademica": {
+        "id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+        "code": "ECO-002",
+        "name": "Escuela de Economía y Negocios Internacionales"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:05:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "47a180cd-e4c8-4e61-a4c6-3af13b11a0d1",
+      "unidadAcademica": {
+        "id": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+        "code": "HUM-003",
+        "name": "Facultad de Humanidades y Educación"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:10:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "1fe1a1c7-ec8c-4821-b5b3-96161d6a411e",
+      "unidadAcademica": {
+        "id": "b9cb6eef-5606-447b-b4f8-bb6c94a029b5",
+        "code": "POS-004",
+        "name": "Escuela de Postgrado y Estudios Avanzados"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:15:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "25680b06-611d-4709-8bd1-2567db707343",
+      "unidadAcademica": {
+        "id": "1966c26b-1399-42bc-a58b-a8a294e7d647",
+        "code": "DER-005",
+        "name": "Facultad de Derecho y Ciencias Jurídicas"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:20:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "4ecb33b0-d0ad-47e3-a289-42a88687deec",
+      "unidadAcademica": {
+        "id": "6bab8738-f5f2-4804-b95d-f427fd6a3be8",
+        "code": "SAL-006",
+        "name": "Escuela de Ciencias de la Salud"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:25:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "72fb7164-46cf-40bb-824c-e923ddf36e0c",
+      "unidadAcademica": {
+        "id": "ee984bae-4e2c-4634-8e8e-f2101869e06e",
+        "code": "ART-007",
+        "name": "Facultad de Artes y Diseño"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:30:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "0d161b4c-ab27-49f1-843e-424f9894479d",
+      "unidadAcademica": {
+        "id": "d0d06456-d0b2-45ab-9b5e-366451714d52",
+        "code": "IDI-008",
+        "name": "Escuela de Idiomas y Lingüística Aplicada"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:35:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "54863f62-4590-443e-b282-1bc9fd6fe88d",
+      "unidadAcademica": {
+        "id": "424734b2-a584-40a7-b956-66ffaf009523",
+        "code": "TEC-009",
+        "name": "Escuela de Tecnologías de la Información"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:40:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    },
+    {
+      "id": "e51aff63-cae6-446b-a1c9-1ea872873e5e",
+      "unidadAcademica": {
+        "id": "85dd994a-6f21-411e-b3cc-e28cd143ca02",
+        "code": "AGR-010",
+        "name": "Facultad de Ciencias Agropecuarias"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2025-01-15T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2025-01-15T10:45:00Z",
+      "createdBy": "admin@fimpes-system.com"
+    }
+  ]
+}

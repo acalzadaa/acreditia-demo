@@ -1,37 +1,40 @@
-// unidadAcademica.schema.ts (ACTUALIZADO)
 import { z } from 'zod';
 
 // ============================================
-// 2. FORM SCHEMA (Cliente ↔ Servidor)
+// 1. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
 export const unidadAcademicaFormSchema = z.object({
 	id: z.uuid().optional(),
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
-	createdBy: z.string().optional(),
-	version: z.number().int().nonnegative().default(0),
-	isCurrent: z.boolean().default(true),
-	validFrom: z.coerce.date().default(() => new Date()),
-	validTo: z.coerce.date().nullable().optional(),
-	isDeleted: z.boolean().default(false)
+	createdBy: z.string().optional()
 });
 
 export type UnidadAcademicaForm = z.infer<typeof unidadAcademicaFormSchema>;
 
 // ============================================
-// 3. ITEM SCHEMA (Servidor → Cliente)
+// 2. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
 export const unidadAcademicaItemSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	name: z.string(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional(),
+	version: z.number().int().nonnegative().default(0),
+	isCurrent: z.boolean().default(true),
+	validFrom: z.coerce.date(),
+	validTo: z.coerce.date().nullable(),
 	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
+	createdAt: z.iso.datetime().nullable().optional(),
 	createdBy: z.string()
 });
 
 export type UnidadAcademicaItem = z.infer<typeof unidadAcademicaItemSchema>;
+
+// ============================================
+// 3. ITEM WITH RELATIONS SCHEMA
+// ============================================
+export const unidadAcademicaWithRelationsItemSchema = unidadAcademicaItemSchema.extend({
+	campusAsignados: z.array(z.object({ id: z.uuid(), code: z.string(), name: z.string() })).optional()
+});
+
+export type UnidadAcademicaWithRelationsItem = z.infer<typeof unidadAcademicaWithRelationsItemSchema>;

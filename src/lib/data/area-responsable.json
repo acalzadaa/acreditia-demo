@@ -6,17 +6,13 @@
             "code": "AR_DIR_CAMPUS",
             "name": "Dirección del Campus",
             "description": "Responsable de la operación general del campus, liderazgo académico y administrativo.",
-            "parentId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+            "parentId": null,
             "puesto": {
                 "id": "1bc2af06-6e0a-48b8-abea-0d1a965e9726",
                 "code": "DIR_CAMPUS",
                 "name": "Director de Campus"
             },
-            "parent": {
-                "id": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
-                "code": "AR_DIR_ACAD",
-                "name": "Dirección Académica"
-            },
+            "parent": null,
             "version": 1,
             "isCurrent": true,
             "validFrom": "2024-02-01T00:00:00Z",
@@ -31,11 +27,16 @@
             "code": "AR_DIR_ACAD",
             "name": "Dirección Académica",
             "description": "Planeación y seguimiento de programas académicos, diseño curricular y evaluación docente.",
-            "parentId": null,
+            "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
             "puesto": {
                 "id": "e8f31c04-4d07-43c5-989b-ab3521e369cc",
                 "code": "DIR_ACAD",
                 "name": "Director Académico"
+            },
+            "parent": {
+                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+                "code": "AR_DIR_CAMPUS",
+                "name": "Dirección del Campus"
             },
             "version": 1,
             "isCurrent": true,
@@ -51,11 +52,16 @@
             "code": "AR_DIR_CALIDAD",
             "name": "Dirección de Calidad y Acreditación",
             "description": "Gestión de la mejora continua, indicadores FIMPES, autoevaluación y seguimiento de planes de mejora.",
-            "parentId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+            "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
             "puesto": {
                 "id": "4faca26a-2ee1-47b7-9d49-4a6e80c28137",
                 "code": "DIR_CALIDAD",
                 "name": "Director de Calidad y Acreditación"
+            },
+            "parent": {
+                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+                "code": "AR_DIR_CAMPUS",
+                "name": "Dirección del Campus"
             },
             "version": 1,
             "isCurrent": true,
@@ -71,11 +77,16 @@
             "code": "AR_DIR_ADMIN",
             "name": "Dirección Administrativa",
             "description": "Gestión de recursos financieros, compras, servicios generales y mantenimiento.",
-            "parentId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+            "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
             "puesto": {
                 "id": "697112e3-f6f9-4030-b512-d081970cff1b",
                 "code": "DIR_ADMIN",
                 "name": "Director Administrativo"
+            },
+            "parent": {
+                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+                "code": "AR_DIR_CAMPUS",
+                "name": "Dirección del Campus"
             },
             "version": 1,
             "isCurrent": true,
@@ -91,11 +102,16 @@
             "code": "AR_DIR_RRHH",
             "name": "Dirección de Recursos Humanos",
             "description": "Administración del personal, desarrollo organizacional, clima laboral y capacitación.",
-            "parentId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+            "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
             "puesto": {
                 "id": "e4b5f476-ce56-4309-801a-ecd6181a4192",
                 "code": "DIR_RRHH",
                 "name": "Director de Recursos Humanos"
+            },
+            "parent": {
+                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+                "code": "AR_DIR_CAMPUS",
+                "name": "Dirección del Campus"
             },
             "version": 1,
             "isCurrent": true,
@@ -111,11 +127,16 @@
             "code": "AR_DIR_TIC",
             "name": "Dirección de Tecnologías de Información",
             "description": "Infraestructura tecnológica, sistemas académicos y administrativos, soporte técnico.",
-            "parentId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+            "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
             "puesto": {
                 "id": "34137283-e3d2-4b4d-a637-cb1a63a53c8c",
                 "code": "DIR_TIC",
                 "name": "Director de Tecnologías de Información"
+            },
+            "parent": {
+                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+                "code": "AR_DIR_CAMPUS",
+                "name": "Dirección del Campus"
             },
             "version": 1,
             "isCurrent": true,
@@ -137,6 +158,11 @@
                 "code": "DIR_ESTUDIANTES",
                 "name": "Director de Servicios Estudiantiles"
             },
+            "parent": {
+                "id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+                "code": "AR_DIR_ADMIN",
+                "name": "Dirección Administrativa"
+            },
             "version": 1,
             "isCurrent": true,
             "validFrom": "2024-02-01T00:00:00Z",
@@ -151,11 +177,16 @@
             "code": "AR_DIR_INVESTIGACION",
             "name": "Dirección de Investigación",
             "description": "Fomento a la investigación, cuerpos académicos, laboratorios y publicaciones.",
-            "parentId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+            "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
             "puesto": {
                 "id": "90df56f8-3d4d-4768-93e3-5f9c87388410",
                 "code": "DIR_INVESTIGACION",
                 "name": "Director de Investigación"
+            },
+            "parent": {
+                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+                "code": "AR_DIR_CAMPUS",
+                "name": "Dirección del Campus"
             },
             "version": 1,
             "isCurrent": true,
@@ -171,11 +202,16 @@
             "code": "AR_DIR_EXTENSION",
             "name": "Dirección de Extensión y Vinculación",
             "description": "Relación con sector externo, educación continua, vinculación empresarial y responsabilidad social.",
-            "parentId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+            "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
             "puesto": {
                 "id": "0fda6c93-b025-4100-bc1b-01f006c9906f",
                 "code": "DIR_EXTENSION",
                 "name": "Director de Extensión y Vinculación"
+            },
+            "parent": {
+                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+                "code": "AR_DIR_CAMPUS",
+                "name": "Dirección del Campus"
             },
             "version": 1,
             "isCurrent": true,
@@ -191,11 +227,16 @@
             "code": "AR_DIR_INTERNACIONAL",
             "name": "Dirección de Internacionalización",
             "description": "Movilidad estudiantil y docente, convenios internacionales, dobles titulaciones.",
-            "parentId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+            "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
             "puesto": {
                 "id": "a1eeafd5-1545-4c5d-9557-c88c17fc6823",
                 "code": "DIR_INTERNACIONAL",
                 "name": "Director de Internacionalización"
+            },
+            "parent": {
+                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+                "code": "AR_DIR_CAMPUS",
+                "name": "Dirección del Campus"
             },
             "version": 1,
             "isCurrent": true,

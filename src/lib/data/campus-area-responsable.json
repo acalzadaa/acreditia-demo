@@ -1,0 +1,1102 @@
+{
+  "campusAreaResponsableItems": [
+    {
+      "id": "6e72dbd1-efa3-403f-a2ab-6a794efa55d3",
+      "areaResponsableId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+      "areaResponsable": {
+        "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puestoId": "1bc2af06-6e0a-48b8-abea-0d1a965e9726",
+        "code": "AR_DIR_CAMPUS",
+        "name": "Dirección del Campus",
+        "description": "Responsable de la operación general del campus, liderazgo académico y administrativo.",
+        "parentId": null,
+        "puesto": {
+          "id": "1bc2af06-6e0a-48b8-abea-0d1a965e9726",
+          "code": "DIR_CAMPUS",
+          "name": "Director de Campus"
+        },
+        "parent": null,
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "6f31beb7-45fe-4dc2-8717-b86579ca5955",
+      "areaResponsableId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+      "areaResponsable": {
+        "id": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+        "puestoId": "e8f31c04-4d07-43c5-989b-ab3521e369cc",
+        "code": "AR_DIR_ACAD",
+        "name": "Dirección Académica",
+        "description": "Planeación y seguimiento de programas académicos, diseño curricular y evaluación docente.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "e8f31c04-4d07-43c5-989b-ab3521e369cc",
+          "code": "DIR_ACAD",
+          "name": "Director Académico"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "5ca92d6a-e719-4379-8532-855212368dc2",
+      "areaResponsableId": "be96c912-6cec-4195-aef9-1bfdd1c1fce6",
+      "areaResponsable": {
+        "id": "be96c912-6cec-4195-aef9-1bfdd1c1fce6",
+        "puestoId": "4faca26a-2ee1-47b7-9d49-4a6e80c28137",
+        "code": "AR_DIR_CALIDAD",
+        "name": "Dirección de Calidad y Acreditación",
+        "description": "Gestión de la mejora continua, indicadores FIMPES, autoevaluación y seguimiento de planes de mejora.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "4faca26a-2ee1-47b7-9d49-4a6e80c28137",
+          "code": "DIR_CALIDAD",
+          "name": "Director de Calidad y Acreditación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "d3d5c8da-f2af-4ac6-b3b8-5e5c08ef10e1",
+      "areaResponsableId": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+      "areaResponsable": {
+        "id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+        "puestoId": "697112e3-f6f9-4030-b512-d081970cff1b",
+        "code": "AR_DIR_ADMIN",
+        "name": "Dirección Administrativa",
+        "description": "Gestión de recursos financieros, compras, servicios generales y mantenimiento.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "697112e3-f6f9-4030-b512-d081970cff1b",
+          "code": "DIR_ADMIN",
+          "name": "Director Administrativo"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "015e6078-acd7-48dc-bf34-65c4ac59af1e",
+      "areaResponsableId": "dbef1f3f-713f-405b-9c76-1df20f652348",
+      "areaResponsable": {
+        "id": "dbef1f3f-713f-405b-9c76-1df20f652348",
+        "puestoId": "e4b5f476-ce56-4309-801a-ecd6181a4192",
+        "code": "AR_DIR_RRHH",
+        "name": "Dirección de Recursos Humanos",
+        "description": "Administración del personal, desarrollo organizacional, clima laboral y capacitación.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "e4b5f476-ce56-4309-801a-ecd6181a4192",
+          "code": "DIR_RRHH",
+          "name": "Director de Recursos Humanos"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "1abb2f24-0447-4842-897b-af3794bedd69",
+      "areaResponsableId": "9adf4263-3812-4b2d-a842-961a1a86389a",
+      "areaResponsable": {
+        "id": "9adf4263-3812-4b2d-a842-961a1a86389a",
+        "puestoId": "34137283-e3d2-4b4d-a637-cb1a63a53c8c",
+        "code": "AR_DIR_TIC",
+        "name": "Dirección de Tecnologías de Información",
+        "description": "Infraestructura tecnológica, sistemas académicos y administrativos, soporte técnico.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "34137283-e3d2-4b4d-a637-cb1a63a53c8c",
+          "code": "DIR_TIC",
+          "name": "Director de Tecnologías de Información"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "8c13b780-3dd0-4d80-8033-b244274cbf83",
+      "areaResponsableId": "5260e4c1-1089-47a3-8985-984f8f64b039",
+      "areaResponsable": {
+        "id": "5260e4c1-1089-47a3-8985-984f8f64b039",
+        "puestoId": "89f174f4-faff-44d5-a9b2-3b7061dc3f71",
+        "code": "AR_DIR_ESTUDIANTES",
+        "name": "Dirección de Servicios Estudiantiles",
+        "description": "Atención a estudiantes, becas, tutorías, actividades extracurriculares y egresados.",
+        "parentId": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+        "puesto": {
+          "id": "89f174f4-faff-44d5-a9b2-3b7061dc3f71",
+          "code": "DIR_ESTUDIANTES",
+          "name": "Director de Servicios Estudiantiles"
+        },
+        "parent": {
+          "id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+          "code": "AR_DIR_ADMIN",
+          "name": "Dirección Administrativa"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "e4d31b4d-2ae6-468c-8e80-4184e9b0c9ca",
+      "areaResponsableId": "af9a643b-6ad0-4b3a-a746-de5ce7f5cf22",
+      "areaResponsable": {
+        "id": "af9a643b-6ad0-4b3a-a746-de5ce7f5cf22",
+        "puestoId": "90df56f8-3d4d-4768-93e3-5f9c87388410",
+        "code": "AR_DIR_INVESTIGACION",
+        "name": "Dirección de Investigación",
+        "description": "Fomento a la investigación, cuerpos académicos, laboratorios y publicaciones.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "90df56f8-3d4d-4768-93e3-5f9c87388410",
+          "code": "DIR_INVESTIGACION",
+          "name": "Director de Investigación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "42f1f9f5-86fe-40a7-8207-1b8bcac58a5a",
+      "areaResponsableId": "1097f076-2a22-4adc-8e91-a2f3e815220d",
+      "areaResponsable": {
+        "id": "1097f076-2a22-4adc-8e91-a2f3e815220d",
+        "puestoId": "0fda6c93-b025-4100-bc1b-01f006c9906f",
+        "code": "AR_DIR_EXTENSION",
+        "name": "Dirección de Extensión y Vinculación",
+        "description": "Relación con sector externo, educación continua, vinculación empresarial y responsabilidad social.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "0fda6c93-b025-4100-bc1b-01f006c9906f",
+          "code": "DIR_EXTENSION",
+          "name": "Director de Extensión y Vinculación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "456e111f-d014-40a4-8867-56850ca9dc63",
+      "areaResponsableId": "b204f185-f579-4bd6-952a-f4abe3ab7a57",
+      "areaResponsable": {
+        "id": "b204f185-f579-4bd6-952a-f4abe3ab7a57",
+        "puestoId": "a1eeafd5-1545-4c5d-9557-c88c17fc6823",
+        "code": "AR_DIR_INTERNACIONAL",
+        "name": "Dirección de Internacionalización",
+        "description": "Movilidad estudiantil y docente, convenios internacionales, dobles titulaciones.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "a1eeafd5-1545-4c5d-9557-c88c17fc6823",
+          "code": "DIR_INTERNACIONAL",
+          "name": "Director de Internacionalización"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "99be4241-389d-430a-83f2-b1c612c029ac",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "885e7a78-a08e-4eb3-85fb-24f9cf9d5c21",
+      "areaResponsableId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+      "areaResponsable": {
+        "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puestoId": "1bc2af06-6e0a-48b8-abea-0d1a965e9726",
+        "code": "AR_DIR_CAMPUS",
+        "name": "Dirección del Campus",
+        "description": "Responsable de la operación general del campus, liderazgo académico y administrativo.",
+        "parentId": null,
+        "puesto": {
+          "id": "1bc2af06-6e0a-48b8-abea-0d1a965e9726",
+          "code": "DIR_CAMPUS",
+          "name": "Director de Campus"
+        },
+        "parent": null,
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "3e053f01-4408-493a-893d-39f0b910af74",
+      "areaResponsableId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+      "areaResponsable": {
+        "id": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+        "puestoId": "e8f31c04-4d07-43c5-989b-ab3521e369cc",
+        "code": "AR_DIR_ACAD",
+        "name": "Dirección Académica",
+        "description": "Planeación y seguimiento de programas académicos, diseño curricular y evaluación docente.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "e8f31c04-4d07-43c5-989b-ab3521e369cc",
+          "code": "DIR_ACAD",
+          "name": "Director Académico"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "3e901297-b76d-4683-9b2d-37e2be71e2d0",
+      "areaResponsableId": "be96c912-6cec-4195-aef9-1bfdd1c1fce6",
+      "areaResponsable": {
+        "id": "be96c912-6cec-4195-aef9-1bfdd1c1fce6",
+        "puestoId": "4faca26a-2ee1-47b7-9d49-4a6e80c28137",
+        "code": "AR_DIR_CALIDAD",
+        "name": "Dirección de Calidad y Acreditación",
+        "description": "Gestión de la mejora continua, indicadores FIMPES, autoevaluación y seguimiento de planes de mejora.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "4faca26a-2ee1-47b7-9d49-4a6e80c28137",
+          "code": "DIR_CALIDAD",
+          "name": "Director de Calidad y Acreditación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "318f26f4-296d-4fad-bcc9-8ce998d5ce2b",
+      "areaResponsableId": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+      "areaResponsable": {
+        "id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+        "puestoId": "697112e3-f6f9-4030-b512-d081970cff1b",
+        "code": "AR_DIR_ADMIN",
+        "name": "Dirección Administrativa",
+        "description": "Gestión de recursos financieros, compras, servicios generales y mantenimiento.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "697112e3-f6f9-4030-b512-d081970cff1b",
+          "code": "DIR_ADMIN",
+          "name": "Director Administrativo"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "1f2a16e7-65d9-4316-97b7-3ecf977f6492",
+      "areaResponsableId": "dbef1f3f-713f-405b-9c76-1df20f652348",
+      "areaResponsable": {
+        "id": "dbef1f3f-713f-405b-9c76-1df20f652348",
+        "puestoId": "e4b5f476-ce56-4309-801a-ecd6181a4192",
+        "code": "AR_DIR_RRHH",
+        "name": "Dirección de Recursos Humanos",
+        "description": "Administración del personal, desarrollo organizacional, clima laboral y capacitación.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "e4b5f476-ce56-4309-801a-ecd6181a4192",
+          "code": "DIR_RRHH",
+          "name": "Director de Recursos Humanos"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "cadd2025-109f-4c4f-a01b-00d620c05de4",
+      "areaResponsableId": "9adf4263-3812-4b2d-a842-961a1a86389a",
+      "areaResponsable": {
+        "id": "9adf4263-3812-4b2d-a842-961a1a86389a",
+        "puestoId": "34137283-e3d2-4b4d-a637-cb1a63a53c8c",
+        "code": "AR_DIR_TIC",
+        "name": "Dirección de Tecnologías de Información",
+        "description": "Infraestructura tecnológica, sistemas académicos y administrativos, soporte técnico.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "34137283-e3d2-4b4d-a637-cb1a63a53c8c",
+          "code": "DIR_TIC",
+          "name": "Director de Tecnologías de Información"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "5894c14c-5cca-4a3e-96dd-653ccfef8556",
+      "areaResponsableId": "5260e4c1-1089-47a3-8985-984f8f64b039",
+      "areaResponsable": {
+        "id": "5260e4c1-1089-47a3-8985-984f8f64b039",
+        "puestoId": "89f174f4-faff-44d5-a9b2-3b7061dc3f71",
+        "code": "AR_DIR_ESTUDIANTES",
+        "name": "Dirección de Servicios Estudiantiles",
+        "description": "Atención a estudiantes, becas, tutorías, actividades extracurriculares y egresados.",
+        "parentId": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+        "puesto": {
+          "id": "89f174f4-faff-44d5-a9b2-3b7061dc3f71",
+          "code": "DIR_ESTUDIANTES",
+          "name": "Director de Servicios Estudiantiles"
+        },
+        "parent": {
+          "id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+          "code": "AR_DIR_ADMIN",
+          "name": "Dirección Administrativa"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "dc98f3fc-dec9-462f-a982-f05ec2672fe2",
+      "areaResponsableId": "af9a643b-6ad0-4b3a-a746-de5ce7f5cf22",
+      "areaResponsable": {
+        "id": "af9a643b-6ad0-4b3a-a746-de5ce7f5cf22",
+        "puestoId": "90df56f8-3d4d-4768-93e3-5f9c87388410",
+        "code": "AR_DIR_INVESTIGACION",
+        "name": "Dirección de Investigación",
+        "description": "Fomento a la investigación, cuerpos académicos, laboratorios y publicaciones.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "90df56f8-3d4d-4768-93e3-5f9c87388410",
+          "code": "DIR_INVESTIGACION",
+          "name": "Director de Investigación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "36b9c07e-1a02-46a5-bc6e-dd0b86eb1b25",
+      "areaResponsableId": "1097f076-2a22-4adc-8e91-a2f3e815220d",
+      "areaResponsable": {
+        "id": "1097f076-2a22-4adc-8e91-a2f3e815220d",
+        "puestoId": "0fda6c93-b025-4100-bc1b-01f006c9906f",
+        "code": "AR_DIR_EXTENSION",
+        "name": "Dirección de Extensión y Vinculación",
+        "description": "Relación con sector externo, educación continua, vinculación empresarial y responsabilidad social.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "0fda6c93-b025-4100-bc1b-01f006c9906f",
+          "code": "DIR_EXTENSION",
+          "name": "Director de Extensión y Vinculación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "ae4a279d-64c0-461a-97da-c897ed85f6a5",
+      "areaResponsableId": "b204f185-f579-4bd6-952a-f4abe3ab7a57",
+      "areaResponsable": {
+        "id": "b204f185-f579-4bd6-952a-f4abe3ab7a57",
+        "puestoId": "a1eeafd5-1545-4c5d-9557-c88c17fc6823",
+        "code": "AR_DIR_INTERNACIONAL",
+        "name": "Dirección de Internacionalización",
+        "description": "Movilidad estudiantil y docente, convenios internacionales, dobles titulaciones.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "a1eeafd5-1545-4c5d-9557-c88c17fc6823",
+          "code": "DIR_INTERNACIONAL",
+          "name": "Director de Internacionalización"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "2cb50db0-bb98-44c9-9bee-514125ac0cda",
+      "areaResponsableId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+      "areaResponsable": {
+        "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puestoId": "1bc2af06-6e0a-48b8-abea-0d1a965e9726",
+        "code": "AR_DIR_CAMPUS",
+        "name": "Dirección del Campus",
+        "description": "Responsable de la operación general del campus, liderazgo académico y administrativo.",
+        "parentId": null,
+        "puesto": {
+          "id": "1bc2af06-6e0a-48b8-abea-0d1a965e9726",
+          "code": "DIR_CAMPUS",
+          "name": "Director de Campus"
+        },
+        "parent": null,
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "e3512af6-478f-4618-ae19-d26b4d890880",
+      "areaResponsableId": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+      "areaResponsable": {
+        "id": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+        "puestoId": "e8f31c04-4d07-43c5-989b-ab3521e369cc",
+        "code": "AR_DIR_ACAD",
+        "name": "Dirección Académica",
+        "description": "Planeación y seguimiento de programas académicos, diseño curricular y evaluación docente.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "e8f31c04-4d07-43c5-989b-ab3521e369cc",
+          "code": "DIR_ACAD",
+          "name": "Director Académico"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "33f40dca-48a3-4bb9-b7b8-fd69a26d1f1f",
+      "areaResponsableId": "be96c912-6cec-4195-aef9-1bfdd1c1fce6",
+      "areaResponsable": {
+        "id": "be96c912-6cec-4195-aef9-1bfdd1c1fce6",
+        "puestoId": "4faca26a-2ee1-47b7-9d49-4a6e80c28137",
+        "code": "AR_DIR_CALIDAD",
+        "name": "Dirección de Calidad y Acreditación",
+        "description": "Gestión de la mejora continua, indicadores FIMPES, autoevaluación y seguimiento de planes de mejora.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "4faca26a-2ee1-47b7-9d49-4a6e80c28137",
+          "code": "DIR_CALIDAD",
+          "name": "Director de Calidad y Acreditación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "9b8d29af-9a4e-46f0-acc1-0a6ab26fb7dd",
+      "areaResponsableId": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+      "areaResponsable": {
+        "id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+        "puestoId": "697112e3-f6f9-4030-b512-d081970cff1b",
+        "code": "AR_DIR_ADMIN",
+        "name": "Dirección Administrativa",
+        "description": "Gestión de recursos financieros, compras, servicios generales y mantenimiento.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "697112e3-f6f9-4030-b512-d081970cff1b",
+          "code": "DIR_ADMIN",
+          "name": "Director Administrativo"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "0b231621-e02a-4bdf-aea4-78b632b198eb",
+      "areaResponsableId": "dbef1f3f-713f-405b-9c76-1df20f652348",
+      "areaResponsable": {
+        "id": "dbef1f3f-713f-405b-9c76-1df20f652348",
+        "puestoId": "e4b5f476-ce56-4309-801a-ecd6181a4192",
+        "code": "AR_DIR_RRHH",
+        "name": "Dirección de Recursos Humanos",
+        "description": "Administración del personal, desarrollo organizacional, clima laboral y capacitación.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "e4b5f476-ce56-4309-801a-ecd6181a4192",
+          "code": "DIR_RRHH",
+          "name": "Director de Recursos Humanos"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "6e461490-e953-42c9-889f-c49bad08dd9c",
+      "areaResponsableId": "9adf4263-3812-4b2d-a842-961a1a86389a",
+      "areaResponsable": {
+        "id": "9adf4263-3812-4b2d-a842-961a1a86389a",
+        "puestoId": "34137283-e3d2-4b4d-a637-cb1a63a53c8c",
+        "code": "AR_DIR_TIC",
+        "name": "Dirección de Tecnologías de Información",
+        "description": "Infraestructura tecnológica, sistemas académicos y administrativos, soporte técnico.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "34137283-e3d2-4b4d-a637-cb1a63a53c8c",
+          "code": "DIR_TIC",
+          "name": "Director de Tecnologías de Información"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "a371d2f7-c500-4732-817e-a81b7b8b9aa4",
+      "areaResponsableId": "5260e4c1-1089-47a3-8985-984f8f64b039",
+      "areaResponsable": {
+        "id": "5260e4c1-1089-47a3-8985-984f8f64b039",
+        "puestoId": "89f174f4-faff-44d5-a9b2-3b7061dc3f71",
+        "code": "AR_DIR_ESTUDIANTES",
+        "name": "Dirección de Servicios Estudiantiles",
+        "description": "Atención a estudiantes, becas, tutorías, actividades extracurriculares y egresados.",
+        "parentId": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+        "puesto": {
+          "id": "89f174f4-faff-44d5-a9b2-3b7061dc3f71",
+          "code": "DIR_ESTUDIANTES",
+          "name": "Director de Servicios Estudiantiles"
+        },
+        "parent": {
+          "id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+          "code": "AR_DIR_ADMIN",
+          "name": "Dirección Administrativa"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "3b115a58-bef9-4d5e-ad38-6c9e5418e94d",
+      "areaResponsableId": "af9a643b-6ad0-4b3a-a746-de5ce7f5cf22",
+      "areaResponsable": {
+        "id": "af9a643b-6ad0-4b3a-a746-de5ce7f5cf22",
+        "puestoId": "90df56f8-3d4d-4768-93e3-5f9c87388410",
+        "code": "AR_DIR_INVESTIGACION",
+        "name": "Dirección de Investigación",
+        "description": "Fomento a la investigación, cuerpos académicos, laboratorios y publicaciones.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "90df56f8-3d4d-4768-93e3-5f9c87388410",
+          "code": "DIR_INVESTIGACION",
+          "name": "Director de Investigación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "7f3c38a5-64af-45e2-873b-076204016d0a",
+      "areaResponsableId": "1097f076-2a22-4adc-8e91-a2f3e815220d",
+      "areaResponsable": {
+        "id": "1097f076-2a22-4adc-8e91-a2f3e815220d",
+        "puestoId": "0fda6c93-b025-4100-bc1b-01f006c9906f",
+        "code": "AR_DIR_EXTENSION",
+        "name": "Dirección de Extensión y Vinculación",
+        "description": "Relación con sector externo, educación continua, vinculación empresarial y responsabilidad social.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "0fda6c93-b025-4100-bc1b-01f006c9906f",
+          "code": "DIR_EXTENSION",
+          "name": "Director de Extensión y Vinculación"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    },
+    {
+      "id": "1436b7a1-4c60-469a-aede-82f78ac6500e",
+      "areaResponsableId": "b204f185-f579-4bd6-952a-f4abe3ab7a57",
+      "areaResponsable": {
+        "id": "b204f185-f579-4bd6-952a-f4abe3ab7a57",
+        "puestoId": "a1eeafd5-1545-4c5d-9557-c88c17fc6823",
+        "code": "AR_DIR_INTERNACIONAL",
+        "name": "Dirección de Internacionalización",
+        "description": "Movilidad estudiantil y docente, convenios internacionales, dobles titulaciones.",
+        "parentId": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+        "puesto": {
+          "id": "a1eeafd5-1545-4c5d-9557-c88c17fc6823",
+          "code": "DIR_INTERNACIONAL",
+          "name": "Director de Internacionalización"
+        },
+        "parent": {
+          "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+          "code": "AR_DIR_CAMPUS",
+          "name": "Dirección del Campus"
+        },
+        "version": 1,
+        "isCurrent": true,
+        "validFrom": "2024-02-01T00:00:00Z",
+        "validTo": null,
+        "isDeleted": false,
+        "createdAt": "2024-02-01T11:00:00Z",
+        "createdBy": "admin@system.com"
+      },
+      "campusId": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2026-06-12T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2026-06-12T00:00:00Z",
+      "createdBy": "system@generator.com"
+    }
+  ]
+}
