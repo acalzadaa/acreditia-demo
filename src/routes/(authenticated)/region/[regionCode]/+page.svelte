@@ -18,17 +18,21 @@
 	import RestaurarRegionForm from '$lib/components/region/RestaurarRegionForm.svelte';
 	import BorrarRegionForm from '$lib/components/region/BorrarRegionForm.svelte';
 	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
+	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createToggle } from '$lib/utils/toggle.svelte';
+	import EditarRegionCampusForm from '$lib/components/region/campus/EditarRegionCampusForm.svelte';
+	import BorrarRegionCampusForm from '$lib/components/region/campus/BorrarRegionCampusForm.svelte';
+	import RestaurarRegionCampusForm from '$lib/components/region/campus/RestaurarRegionCampusForm.svelte';
+	import AddRegionCampusForm from '$lib/components/region/campus/AddRegionCampusForm.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let regionCode = page.params.regionCode;
 	let regionItems = getRegion().filter((item) => item.code === regionCode);
-	let puestos = getPuestoRef('region');
+	let puestosRef = getPuestoRef('region');
 	let campusItems = getCampus().filter((item) => item.region.code === regionCode);
-	let campusRef = getCampusRef();
+	let campusRef = getCampusRef().filter(item => !campusItems.some(campusItem => campusItem.id === item.id));
 
 	let navigationItems = $derived(page.data.navigationItems);
-
-	let itemSeleccionadoRegion: RegionWithRelationItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -41,124 +45,11 @@
 			onClickLogout();
 		}
 	}
-
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let showNotificationBar = $state(false);
-	let showNavigationBar = $state(true);
-
-	function onClickNavigationBar() {
-		showNavigationBar = !showNavigationBar;
-	}
-
-	function onKeydownNavigationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNavigationBar();
-		}
-	}
-
-	function onClickNotificationBar() {
-		showNotificationBar = !showNotificationBar;
-	}
-
-	function onKeydownNotificationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNotificationBar();
-		}
-	}
-
-	// ===== ESTADOS DE MODALES =====
-
-	let showEditarRegionModal = $state(false);
-	let showBorrarRegionModal = $state(false);
-	let showRestaurarRegionModal = $state(false);
-
-	// ===== REGION HANDLERS =====
-
-	/* EDITAR */
-
-	function onClickEditarRegion(item: RegionWithRelationItem) {
-		itemSeleccionadoRegion = item;
-		showEditarRegionModal = true;
-	}
-
-	function onKeydownEditarRegion(e: KeyboardEvent, item: RegionWithRelationItem) {
-		if (e.key === 'Enter') {
-			onClickEditarRegion(item);
-		}
-	}
-
-	/* BORRAR */
-
-	function onClickBorrarRegion(item: RegionWithRelationItem) {
-		itemSeleccionadoRegion = item;
-		showBorrarRegionModal = true;
-	}
-
-	function onKeydownBorrarRegion(e: KeyboardEvent, item: RegionWithRelationItem) {
-		if (e.key === 'Enter') {
-			onClickBorrarRegion(item);
-		}
-	}
-
-	/* RESTAURAR */
-	function onClickRestaurarRegion(item: RegionWithRelationItem) {
-		itemSeleccionadoRegion = item;
-		showRestaurarRegionModal = true;
-	}
-
-	function onKeydownRestaurarRegion(e: KeyboardEvent, item: RegionWithRelationItem) {
-		if (e.key === 'Enter') {
-			onClickBorrarRegion(item);
-		}
-	}
-
-	// ===== CAMPUS HANDLERS =====
-
-	/* ADD */
-
-	function onClickAddCampus() {}
-
-	function onKeydownAddCampus(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickAddCampus();
-		}
-	}
-
-	/* EDITAR */
-
-	function onClickEditarCampus(item: CampusWithRelationsItem) {}
-
-	function onKeydownEditarCampus(e: KeyboardEvent, item: CampusWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickEditarCampus(item);
-		}
-	}
-
-	/* BORRAR */
-
-	function onClickBorrarCampus(item: CampusWithRelationsItem) {}
-
-	function onKeydownBorrarCampus(e: KeyboardEvent, item: CampusWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickBorrarCampus(item);
-		}
-	}
-
-	/* RESTAURAR */
-	function onClickRestaurarCampus(item: CampusWithRelationsItem) {}
-
-	function onKeydownRestaurarCampus(e: KeyboardEvent, item: CampusWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickBorrarCampus(item);
-		}
-	}
-
-	function handleCerrar() {
-		showEditarRegionModal = false;
-		showBorrarRegionModal = false;
-		showRestaurarRegionModal = false;
-		itemSeleccionadoRegion = null;
-	}
+	let modal = createModalManager<RegionWithRelationItem>();
+	let modalCampus = createModalManager<CampusWithRelationsItem>();
+	let navigationToggle = createToggle(true);
+	let notificationToggle = createToggle(false);
 </script>
 
 <div class="app-grid">
@@ -169,15 +60,15 @@
 		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
 	<Subheader
-		{onClickNavigationBar}
-		onKeydownNavigationBar={(e) => onKeydownNavigationBar(e)}
-		{onClickNotificationBar}
-		onKeydownNotificationBar={(e) => onKeydownNotificationBar(e)}
-		{showNavigationBar}
-		{showNotificationBar}
+		onClickNavigationBar={navigationToggle.onclick}
+		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
+		onClickNotificationBar={navigationToggle.onclick}
+		onKeydownNotificationBar={(e) => navigationToggle.onkeydown(e)}
+		showNavigationBar={navigationToggle.value}
+		showNotificationBar={notificationToggle.value}
 	/>
-	<NavigationBar {showNavigationBar} {navigationItems} />
-	<NotificationBar {showNotificationBar} />
+	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
+	<NotificationBar showNotificationBar={notificationToggle.value} />
 
 	<Region
 		gridArea="region"
@@ -186,59 +77,87 @@
 		title="Region"
 		subtitle={regionCode}
 		showDetailIcon={false}
-		onClickEditar={(item: RegionWithRelationItem) => onClickEditarRegion(item)}
-		onKeydownEditar={(e, item: RegionWithRelationItem) => onKeydownEditarRegion(e, item)}
-		onClickBorrar={(item: RegionWithRelationItem) => onClickBorrarRegion(item)}
-		onKeydownBorrar={(e, item: RegionWithRelationItem) => onKeydownBorrarRegion(e, item)}
-		onClickRestaurar={(item: RegionWithRelationItem) => onClickRestaurarRegion(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: RegionWithRelationItem) =>
-			onKeydownRestaurarRegion(e, item)}
+		onClickEditar={modal.handlers('edit').onClickItem}
+		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
+		onClickBorrar={modal.handlers('delete').onClickItem}
+		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
+		onClickRestaurar={modal.handlers('restore').onClickItem}
+		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
 	></Region>
+
+	<Toolbar
+		gridArea="campusToolbar"
+		crearTitle="Agregar campus"
+		onClickCrear={modalCampus.handlers('create').onclick}
+		onKeydownCrear={(e) => modalCampus.handlers('create').onkeydown(e)}
+	/>
 
 	<Campus
 		gridArea="campus"
 		showHeader={true}
 		title="Lista de campus asignados"
-		showActionButtons={false}
 		{campusItems}
-		onClickEditar={(item: CampusWithRelationsItem) => onClickEditarCampus(item)}
-		onKeydownEditar={(e: KeyboardEvent, item: CampusWithRelationsItem) =>
-			onKeydownEditarCampus(e, item)}
-		onClickBorrar={(item: CampusWithRelationsItem) => onClickBorrarCampus(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: CampusWithRelationsItem) =>
-			onKeydownBorrarCampus(e, item)}
-		onClickRestaurar={(item: CampusWithRelationsItem) => onClickRestaurarCampus(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: CampusWithRelationsItem) =>
-			onKeydownRestaurarCampus(e, item)}
+		onClickEditar={modalCampus.handlers('edit').onClickItem}
+		onKeydownEditar={(e, item) => modalCampus.handlers('edit').onKeydownItem(e, item)}
+		onClickBorrar={modalCampus.handlers('delete').onClickItem}
+		onKeydownBorrar={(e, item) => modalCampus.handlers('delete').onKeydownItem(e, item)}
+		onClickRestaurar={modalCampus.handlers('restore').onClickItem}
+		onKeydownRestaurar={(e, item) => modalCampus.handlers('restore').onKeydownItem(e, item)}
 	/>
 
 	<Footer />
 
-	<!-- MODAL EDITAR REGION -->
-	{#if showEditarRegionModal && itemSeleccionadoRegion}
+	{#if modal.selectedItem}
+		<!-- MODAL EDITAR -->
 		<EditarRegionForm
-			bind:open={showEditarRegionModal}
-			selectedItem={itemSeleccionadoRegion}
-			refs={puestos}
-			onClose={handleCerrar}
+			open={modal.isOpen('edit')}
+			selectedItem={modal.selectedItem}
+			refs={puestosRef}
+			onClose={modal.close}
 		/>
-	{/if}
 
-	<!-- MODAL BORRAR REGION -->
-	{#if showBorrarRegionModal && itemSeleccionadoRegion}
+		<!-- MODAL BORRAR -->
 		<BorrarRegionForm
-			bind:open={showBorrarRegionModal}
-			selectedItem={itemSeleccionadoRegion}
-			onClose={handleCerrar}
+			open={modal.isOpen('delete')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
+		/>
+
+		<!-- MODAL RESTAURAR -->
+		<RestaurarRegionForm
+			open={modal.isOpen('restore')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
 		/>
 	{/if}
 
-	<!-- MODAL RESTAURAR REGION -->
-	{#if showRestaurarRegionModal && itemSeleccionadoRegion}
-		<RestaurarRegionForm
-			bind:open={showRestaurarRegionModal}
-			selectedItem={itemSeleccionadoRegion}
-			onClose={handleCerrar}
+	<AddRegionCampusForm
+		open={modalCampus.isOpen('create')}
+		{campusRef}
+		onClose={modalCampus.close}
+	/>
+
+	{#if modalCampus.selectedItem}
+		<!-- MODAL EDITAR -->
+		<EditarRegionCampusForm
+			open={modalCampus.isOpen('edit')}
+			selectedItem={modalCampus.selectedItem}
+			{campusRef}
+			onClose={modalCampus.close}
+		/>
+
+		<!-- MODAL BORRAR -->
+		<BorrarRegionCampusForm
+			open={modalCampus.isOpen('delete')}
+			selectedItem={modalCampus.selectedItem}
+			onClose={modalCampus.close}
+		/>
+
+		<!-- MODAL RESTAURAR -->
+		<RestaurarRegionCampusForm
+			open={modalCampus.isOpen('restore')}
+			selectedItem={modalCampus.selectedItem}
+			onClose={modalCampus.close}
 		/>
 	{/if}
 </div>
@@ -249,12 +168,12 @@
 		grid-template-areas:
 			'header header'
 			'subheader subheader'
-			'navbar main'
-			'navbar toolbar'
-			'navbar detail'
+			'navbar region'
+			'navbar campusToolbar'
+			'navbar campus'
 			'footer footer';
 		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
+		grid-template-rows: auto auto auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
 	}

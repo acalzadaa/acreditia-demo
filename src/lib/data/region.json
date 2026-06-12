@@ -9,7 +9,7 @@
             "description": "Zona norte del país, caracterizada por su desarrollo industrial y educativo",
             "puesto": {
                 "id": "bf35d065-b622-4703-bc1d-90894c2a657e",
-                "code": "dir-r1",
+                "code": "REGION-1",
                 "name": "Director de Region 1",
                 "type": "region",
                 "description": "",
@@ -19,6 +19,41 @@
                 "validTo": null,
                 "isDeleted": false,
                 "createdAt": "2024-02-01T11:00:00Z"
+            },
+            "usuario": {
+                "id": "061dfb45-1261-49ea-9374-4e9b3610d533",
+                "firstName": "Martin",
+                "lastName": "Martinez",
+                "email": "martin.martinez@system.com"
+            },
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+            "puestoId": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+            "usuarioId": "061dfb45-1261-49ea-9374-4e9b3610d533",
+            "code": "r-002",
+            "name": "Región Centro",
+            "description": "Zona centro del país, caracterizada por su riqueza cultural y artistica",
+            "puesto": {
+                "id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+                "code": "REGION-2",
+                "name": "Director de Region 2",
+                "type": "region",
+                "description": "",
+                "version": 1,
+                "isCurrent": true,
+                "validFrom": "2024-01-01T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2024-01-01T10:30:00Z",
+                "createdBy": "admin@system.com"
             },
             "usuario": {
                 "id": "061dfb45-1261-49ea-9374-4e9b3610d533",

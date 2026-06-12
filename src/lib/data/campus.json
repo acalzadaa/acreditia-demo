@@ -61,6 +61,37 @@
             "isDeleted": false,
             "createdAt": "2024-02-15T14:30:00Z",
             "createdBy": "admin@system.com"
+        },
+        {
+            "id": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+            "institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
+            "regionId": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+            "code": "CAMPUS-ZAC-003",
+            "name": "Campus Zacatecas",
+            "institucion": {
+                "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
+                "code": "IA-001",
+                "name": "Universidad Tecnológica del Norte",
+                "version": 1,
+                "isCurrent": true,
+                "validFrom": "2024-01-15T00:00:00Z",
+                "validTo": null,
+                "isDeleted": false,
+                "createdAt": "2024-01-15T09:00:00Z",
+                "createdBy": "admin@system.com"
+            },
+            "region": {
+                "id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+                "code": "r-002",
+                "name": "Región Centro"
+            },
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-02-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-02-15T14:30:00Z",
+            "createdBy": "admin@system.com"
         }
     ]
 }
