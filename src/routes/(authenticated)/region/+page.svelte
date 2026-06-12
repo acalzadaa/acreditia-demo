@@ -40,7 +40,7 @@
 
 	/* DETALLE */
 	function onClickDetalle(item: RegionWithRelationItem) {
-		goto(resolve(`/region/${item.id}`));
+		goto(resolve(`/region/${item.code}`));
 	}
 
 	function onKeydownDetalle(e: KeyboardEvent, item: RegionWithRelationItem) {

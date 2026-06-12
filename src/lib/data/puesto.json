@@ -15,6 +15,20 @@
             "createdBy": "admin@system.com"
         },
         {
+            "id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+            "code": "REGION-2",
+            "name": "Director de Region 2",
+            "type": "region",
+            "description": "",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:30:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
             "id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
             "code": "VPA",
             "name": "VP Académica",
