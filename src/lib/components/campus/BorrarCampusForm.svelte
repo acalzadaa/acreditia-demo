@@ -4,11 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { campusWithRelationsItemSchema, type CampusWithRelationsItem } from '$lib/schemas/campus.schema';
+	import { campusWithRelationsItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: CampusWithRelationsItem;
+		selectedItem: CampusItem;
 		onClose: () => void;
 	}
 
@@ -59,7 +59,7 @@
 
 		<form method="POST" action="?/delete" use:enhance>
 			<!-- Hidden input para el ID -->
-			<input type="hidden" name="id" value={$form.id} />
+			<input type="hidden" name="code" value={$form.code} />
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">

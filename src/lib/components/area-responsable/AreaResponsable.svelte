@@ -1,11 +1,16 @@
 <script lang="ts">
 	import type { AreaResponsableWithRelationsItem } from '$lib/schemas/areaResponsable.schema';
 	import EmptySection from '../common/EmptySection.svelte';
+	import PageHeader from '../common/PageHeader.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
+		gridArea?: string;
 		areaResponsableItems: AreaResponsableWithRelationsItem[];
+		showHeader?: boolean;
+		title?: string;
+		subtitle?: string;
 		onClickEditar: (item: AreaResponsableWithRelationsItem) => void;
 		onKeydownEditar: (e: KeyboardEvent, item: AreaResponsableWithRelationsItem) => void;
 		onClickBorrar: (item: AreaResponsableWithRelationsItem) => void;
@@ -15,7 +20,11 @@
 	}
 
 	const {
+		gridArea = 'main',
 		areaResponsableItems,
+		showHeader = false,
+		title = '',
+		subtitle = '',
 		onClickEditar,
 		onKeydownEditar,
 		onClickBorrar,
@@ -25,7 +34,10 @@
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel" style="grid-area: {gridArea}">
+	{#if showHeader}
+		<PageHeader {title} {subtitle} />
+	{/if}
 	<section class="table-container">
 		{#if areaResponsableItems.length > 0}
 			<table class="data-table text-body">
@@ -43,7 +55,7 @@
 				<tbody class="text-body">
 					{#each areaResponsableItems as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-parent">
+							<td class="col-filosofia">
 								{item.puesto?.code}
 							</td>
 							<td class="col-code">{item.code}</td>

@@ -12,13 +12,12 @@
 		areaResponsableFormSchema,
 		type AreaResponsableWithRelationsItem
 	} from '$lib/schemas/areaResponsable.schema';
-	import type { PuestoRef } from '$lib/schemas/puesto.schema';
-	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, PuestoRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
 		selectedItem: AreaResponsableWithRelationsItem;
-		refs: PuestoRef[];
+		puestoRef: PuestoRef[];
 		areaResponsableRef: AreaResponsableRef[];
 		onClose: () => void;
 	}
@@ -26,7 +25,7 @@
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
 	const puestoOptions = $derived(
-		props.refs?.map((ref) => ({
+		props.puestoRef?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		})) ?? []
@@ -102,7 +101,7 @@
 
 		<form method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
-			<input type="hidden" name="id" value={$form.id} />
+			<input type="hidden" name="code" value={$form.code} />
 
 			<div class="modal-body">
 				{#if $message}

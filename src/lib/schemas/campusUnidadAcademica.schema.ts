@@ -1,13 +1,14 @@
 import { z } from 'zod';
-import { unidadAcademicaRefSchema } from './shared.schema';
+import { unidadAcademicaItemSchema } from './unidadAcademica.schema';
+import { campusRefSchema, unidadAcademicaRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
 export const campusUnidadAcademicaFormSchema = z.object({
 	id: z.uuid().optional(),
-	unidadAcademicaId: z.uuid('Debes seleccionar una unidad académica'), // FIX: mensaje corregido
-	campusId: z.uuid('Debes seleccionar un campus'),
+	unidadAcademicaCode: z.string('Debes seleccionar una unidad académica'),
+	campusCode: z.string().optional(),
 	createdBy: z.string().optional()
 });
 
@@ -18,8 +19,8 @@ export type CampusUnidadAcademicaForm = z.infer<typeof campusUnidadAcademicaForm
 // ============================================
 export const campusUnidadAcademicaItemSchema = z.object({
 	id: z.uuid(),
-	unidadAcademicaId: z.uuid(),
-	campusId: z.uuid(),
+	unidadAcademica: unidadAcademicaRefSchema,
+	campus: campusRefSchema,
 	version: z.number().int().nonnegative().default(0),
 	isCurrent: z.boolean().default(true),
 	validFrom: z.coerce.date(),
@@ -34,11 +35,9 @@ export type CampusUnidadAcademicaItem = z.infer<typeof campusUnidadAcademicaItem
 // ============================================
 // 3. ITEM WITH RELATIONS SCHEMA
 // ============================================
-export const campusUnidadAcademicaWithRelationsItemSchema = campusUnidadAcademicaItemSchema
-	.omit({ unidadAcademicaId: true })
-	.extend({
-		unidadAcademica: unidadAcademicaRefSchema.optional()
-	});
+export const campusUnidadAcademicaWithRelationsItemSchema = campusUnidadAcademicaItemSchema.extend({
+	unidadAcademica: unidadAcademicaItemSchema.optional()
+});
 
 export type CampusUnidadAcademicaWithRelationsItem = z.infer<
 	typeof campusUnidadAcademicaWithRelationsItemSchema

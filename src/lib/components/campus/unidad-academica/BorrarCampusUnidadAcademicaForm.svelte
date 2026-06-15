@@ -1,26 +1,29 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
+	import Modal from '../../modal/Modal.svelte';
+	import Button from '../../ui/Button.svelte';
+	import IconButton from '../../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
-	
+	import {
+		unidadAcademicaItemSchema,
+		type UnidadAcademicaItem
+	} from '$lib/schemas/unidadAcademica.schema';
+
 	interface Props {
 		open: boolean;
-		selectedItem: CampusItem;
+		selectedItem: UnidadAcademicaItem;
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, selectedItem }: Props = $props();
-	
+
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(campusItemSchema),
+		validators: zod4(unidadAcademicaItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
@@ -47,7 +50,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Restaurar campus</h2>
+			<h2 class="modal-title text-h4">Borrar unidad</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -57,19 +60,18 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/restore" use:enhance>
-			<!-- Hidden input para el ID -->
+		<form method="POST" action="?/deleteCampusUnidadAcademica" use:enhance>
 			<input type="hidden" name="code" value={$form.code} />
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas restaurar el registro <strong>"{selectedItem?.name}"</strong>?
+					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.name}"</strong>?
 				</p>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Restaurar</Button>
+				<Button type="submit" variant="critical">Borrar unidad</Button>
 			</footer>
 		</form>
 	</div>

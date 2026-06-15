@@ -1,56 +1,38 @@
 <script lang="ts">
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
-	import InputText from '../ui/input/InputText.svelte';
-	import Icon from '../ui/Icon.svelte';
-	import type { InstitucionRef } from '$lib/schemas/shared.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		institucionRef: InstitucionRef[];
+		areaResponsableRef: AreaResponsableRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, institucionRef = [] }: Props = $props();
+	let { open = $bindable(false), onClose, areaResponsableRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
-		institucionId: '',
-		code: '',
-		name: ''
+		code: ''
 	});
 
 	let errorMessage = $state('');
 
-	// Opciones para el select de institución
-	const institucionOptions = $derived(
-		institucionRef.map((ref) => ({
-			id: ref.id,
+	// Opciones para el select de área responsable
+	const areaResponsableOptions = $derived(
+		areaResponsableRef.map((ref) => ({
+			id: ref.code,
 			option: `${ref.code} - ${ref.name}`
 		}))
 	);
 
-	// Auto-seleccionar si solo hay una opción
-	$effect(() => {
-		if (institucionOptions.length === 1 && !formData.institucionId) {
-			formData.institucionId = institucionOptions[0].id;
-		}
-	});
-
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.institucionId) {
-			errorMessage = 'Debes seleccionar una institución';
-			return;
-		}
 		if (!formData.code) {
-			errorMessage = 'El código es requerido';
-			return;
-		}
-		if (!formData.name) {
-			errorMessage = 'El nombre es requerido';
+			errorMessage = 'Debes seleccionar un área responsable';
 			return;
 		}
 
@@ -59,9 +41,7 @@
 		
 		// Limpiar formulario
 		formData = {
-			institucionId: '',
-			code: '',
-			name: ''
+			code: ''
 		};
 		
 		// Limpiar mensaje de error
@@ -74,9 +54,7 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			institucionId: '',
-			code: '',
-			name: ''
+			code: ''
 		};
 		errorMessage = '';
 		onClose();
@@ -97,7 +75,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear campus</h2>
+			<h2 class="modal-title text-h4">Agregar área responsable</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -121,41 +99,19 @@
 					{/if}
 
 					<InputSelect
-						label="Institución"
-						name="institucionId"
-						optionsData={institucionOptions}
-						required={true}
-						bind:value={formData.institucionId}
-						errors={errorMessage && !formData.institucionId ? [errorMessage] : undefined}
-					/>
-
-					<InputText
-						label="Código"
+						label="Área Responsable"
 						name="code"
+						optionsData={areaResponsableOptions}
 						required={true}
-						placeholder="CAMP-001"
-						status={errorMessage && !formData.code ? 'error' : 'normal'}
-						disabled={false}
 						bind:value={formData.code}
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
-					/>
-
-					<InputText
-						label="Nombre"
-						name="name"
-						required={true}
-						placeholder="Campus Norte"
-						status={errorMessage && !formData.name ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={formData.name}
-						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
 					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear campus</Button>
+				<Button type="submit" variant="primary">Agregar área</Button>
 			</footer>
 		</form>
 	</div>

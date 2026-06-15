@@ -52,7 +52,6 @@ import {
 	type InstitucionWithRelationsItem
 } from '$lib/schemas/institucion.schema';
 
-
 import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
 import {
 	unidadAcademicaItemSchema,
@@ -86,20 +85,22 @@ import {
 	type RegionWithRelationsItem
 } from '$lib/schemas/region.schema';
 import {
-	type CampusUnidadAcademicaWithRelationsItem,
-	campusUnidadAcademicaWithRelationsItemSchema
+	type CampusUnidadAcademicaItem,
+	campusUnidadAcademicaItemSchema
 } from '$lib/schemas/campusUnidadAcademica.schema';
 import {
-	campusAreaResponsableWithRelationsItemSchema,
-	type CampusAreaResponsableWithRelationsItem
+	campusAreaResponsableItemSchema,
+	type CampusAreaResponsableItem
 } from '$lib/schemas/campusAreaResponsable.schema';
 import {
 	regionCampusWithRelationsItemSchema,
 	type RegionCampusWithRelationsItem
 } from '$lib/schemas/regionCampus.schema';
 import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
-import { areaResponsableWithRelationsItemSchema, type AreaResponsableWithRelationsItem } from '$lib/schemas/areaResponsable.schema';
-
+import {
+	areaResponsableWithRelationsItemSchema,
+	type AreaResponsableWithRelationsItem
+} from '$lib/schemas/areaResponsable.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -116,8 +117,8 @@ let regionCampus = $state<RegionCampusWithRelationsItem[]>([]);
 let institucion = $state<InstitucionWithRelationsItem[]>([]);
 
 let campus = $state<CampusItem[]>([]);
-let campusUnidadAcademica = $state<CampusUnidadAcademicaWithRelationsItem[]>([]);
-let campusAreaResponsable = $state<CampusAreaResponsableWithRelationsItem[]>([]);
+let campusUnidadAcademica = $state<CampusUnidadAcademicaItem[]>([]);
+let campusAreaResponsable = $state<CampusAreaResponsableItem[]>([]);
 
 let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
 
@@ -171,12 +172,12 @@ campus = campusRawData.map((item) => campusItemSchema.parse(item));
 
 const campusAreaResponsableRawData = campusAreaResponsableJsonData.campusAreaResponsableItems;
 campusAreaResponsable = campusAreaResponsableRawData.map((item) =>
-	campusAreaResponsableWithRelationsItemSchema.parse(item)
+	campusAreaResponsableItemSchema.parse(item)
 );
 
 const campusUnidadAcademicaRawData = campusUnidadAcademicaJsonData.campusUnidadAcademicaItems;
 campusUnidadAcademica = campusUnidadAcademicaRawData.map((item) =>
-	campusUnidadAcademicaWithRelationsItemSchema.parse(item)
+	campusUnidadAcademicaItemSchema.parse(item)
 );
 
 const unidadAcademicaRawData = unidadAcademicaJsonData.unidadAcademicaItems;
@@ -296,6 +297,14 @@ export function getCampusAreaResponsable() {
 
 export function getUnidadAcademica() {
 	return unidadAcademica;
+}
+
+export function getUnidadAcademicaRef() {
+	return unidadAcademica.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
 }
 
 export function getPuesto() {

@@ -1,13 +1,14 @@
 import { z } from 'zod';
 import { areaResponsableWithRelationsItemSchema } from './areaResponsable.schema';
+import { areaResponsableRefSchema, campusRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
 export const campusAreaResponsableFormSchema = z.object({
 	id: z.uuid().optional(),
-	areaResponsableId: z.uuid('Debes seleccionar un área responsable'),
-	campusId: z.uuid('Debes seleccionar un campus'),
+	campusCode: z.string().optional(),
+	areaResponsableCode: z.string().min(1, 'Favor de seleccionar un area responsable'),
 	createdBy: z.string().optional()
 });
 
@@ -18,8 +19,8 @@ export type CampusAreaResponsableForm = z.infer<typeof campusAreaResponsableForm
 // ============================================
 export const campusAreaResponsableItemSchema = z.object({
 	id: z.uuid(),
-	areaResponsableId: z.uuid(),
-	campusId: z.uuid(),
+	campus: campusRefSchema,
+	areaResponsable: areaResponsableRefSchema,
 	version: z.number().int().nonnegative().default(0),
 	isCurrent: z.boolean().default(true),
 	validFrom: z.coerce.date(),
@@ -35,7 +36,7 @@ export type CampusAreaResponsableItem = z.infer<typeof campusAreaResponsableItem
 // 3. ITEM WITH RELATIONS SCHEMA
 // ============================================
 export const campusAreaResponsableWithRelationsItemSchema = campusAreaResponsableItemSchema.extend({
-	areaResponsable: areaResponsableWithRelationsItemSchema.optional(),
+	areaResponsable: areaResponsableWithRelationsItemSchema.optional()
 });
 
 export type CampusAreaResponsableWithRelationsItem = z.infer<

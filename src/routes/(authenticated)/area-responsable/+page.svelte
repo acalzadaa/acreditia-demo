@@ -16,15 +16,15 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import { getAreaResponsable, getAreaResponsableRef, getPuestoRef } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
+	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createToggle } from '$lib/utils/toggle.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
 	let areaResponsableItems = getAreaResponsable();
 	let areaResponsableRef = getAreaResponsableRef();
 	let navigationItems = $derived(page.data.navigationItems);
-	let puestos = getPuestoRef('responsable');
-
-	let itemSeleccionado: AreaResponsableWithRelationsItem | null = $state(null);
+	let puestoRef = getPuestoRef('responsable');
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -39,94 +39,9 @@
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let showNotificationBar = $state(false);
-	let showNavigationBar = $state(true);
-
-	function onClickNavigationBar() {
-		showNavigationBar = !showNavigationBar;
-	}
-
-	function onKeydownNavigationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNavigationBar();
-		}
-	}
-
-	function onClickNotificationBar() {
-		showNotificationBar = !showNotificationBar;
-	}
-
-	function onKeydownNotificationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNotificationBar();
-		}
-	}
-
-	// ===== ESTADOS DE MODALES =====
-	let showCrearModal = $state(false);
-	let showEditarModal = $state(false);
-	let showBorrarModal = $state(false);
-	let showRestaurarModal = $state(false);
-
-	// ===== HANDLERS =====
-
-	/* CREAR */
-
-	function onClickCrear() {
-		showCrearModal = true;
-	}
-
-	function onKeydownCrear(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickCrear();
-		}
-	}
-
-	/* EDITAR */
-
-	function onClickEditar(item: AreaResponsableWithRelationsItem) {
-		itemSeleccionado = item;
-		showEditarModal = true;
-	}
-
-	function onKeydownEditar(e: KeyboardEvent, item: AreaResponsableWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickEditar(item);
-		}
-	}
-
-	/* BORRAR */
-
-	function onClickBorrar(item: AreaResponsableWithRelationsItem) {
-		itemSeleccionado = item;
-		showBorrarModal = true;
-	}
-
-	function onKeydownBorrar(e: KeyboardEvent, item: AreaResponsableWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	/* RESTAURAR */
-	function onClickRestaurar(item: AreaResponsableWithRelationsItem) {
-		itemSeleccionado = item;
-		showRestaurarModal = true;
-	}
-
-	function onKeydownRestaurar(e: KeyboardEvent, item: AreaResponsableWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	function handleCerrar() {
-		showCrearModal = false;
-		showEditarModal = false;
-		showBorrarModal = false;
-		showRestaurarModal = false;
-		itemSeleccionado = null;
-	}
+	let modal = createModalManager<AreaResponsableWithRelationsItem>();
+	let navigationToggle = createToggle(true);
+	let notificationToggle = createToggle(false);
 </script>
 
 <div class="app-grid">
@@ -137,66 +52,64 @@
 		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
 	<Subheader
-		{onClickNavigationBar}
-		onKeydownNavigationBar={(e) => onKeydownNavigationBar(e)}
-		{onClickNotificationBar}
-		onKeydownNotificationBar={(e) => onKeydownNotificationBar(e)}
-		{showNavigationBar}
-		{showNotificationBar}
+		onClickNavigationBar={navigationToggle.onclick}
+		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
+		onClickNotificationBar={navigationToggle.onclick}
+		onKeydownNotificationBar={(e) => navigationToggle.onkeydown(e)}
+		showNavigationBar={navigationToggle.value}
+		showNotificationBar={notificationToggle.value}
 	/>
-	<NavigationBar {showNavigationBar} {navigationItems} />
-	<NotificationBar {showNotificationBar} />
+	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
+	<NotificationBar showNotificationBar={notificationToggle.value} />
+
 	<Toolbar
-		{onClickCrear}
-		onKeydownCrear={(e) => onKeydownCrear(e)}
+		crearTitle="Nueva area responsable"
+		onClickCrear={modal.handlers('create').onclick}
+		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}
 		showFilter={true}
 	/>
+
 	<AreaResponsable
 		{areaResponsableItems}
-		onClickEditar={(item) => onClickEditar(item)}
-		onKeydownEditar={(e, item) => onKeydownEditar(e, item)}
-		onClickBorrar={(item) => onClickBorrar(item)}
-		onKeydownBorrar={(e, item) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: AreaResponsableWithRelationsItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: AreaResponsableWithRelationsItem) =>
-			onKeydownRestaurar(e, item)}
+		onClickEditar={modal.handlers('edit').onClickItem}
+		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
+		onClickBorrar={modal.handlers('delete').onClickItem}
+		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
+		onClickRestaurar={modal.handlers('restore').onClickItem}
+		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
 	<CrearAreaResponsableForm
-		bind:open={showCrearModal}
-		refs={puestos}
+		open={modal.isOpen('create')}
+		{puestoRef}
 		{areaResponsableRef}
-		onClose={handleCerrar}
+		onClose={modal.close}
 	/>
 
-	<!-- MODAL EDITAR -->
-	{#if showEditarModal && itemSeleccionado}
+	{#if modal.selectedItem}
+		<!-- MODAL EDITAR -->
 		<EditarAreaResponsableForm
-			bind:open={showEditarModal}
-			selectedItem={itemSeleccionado}
-			refs={puestos}
+			open={modal.isOpen('edit')}
+			selectedItem={modal.selectedItem}
+			{puestoRef}
 			{areaResponsableRef}
-			onClose={handleCerrar}
+			onClose={modal.close}
 		/>
-	{/if}
 
-	<!-- MODAL BORRAR -->
-	{#if showBorrarModal && itemSeleccionado}
+		<!-- MODAL BORRAR -->
 		<BorrarAreaResponsableForm
-			bind:open={showBorrarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
+			open={modal.isOpen('delete')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
 		/>
-	{/if}
 
-	<!-- MODAL RESTAURAR -->
-	{#if showRestaurarModal && itemSeleccionado}
+		<!-- MODAL RESTAURAR -->
 		<RestaurarAreaResponsableForm
-			bind:open={showRestaurarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
+			open={modal.isOpen('restore')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
 		/>
 	{/if}
 	<Footer />

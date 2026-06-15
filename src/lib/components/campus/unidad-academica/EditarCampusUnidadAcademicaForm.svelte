@@ -1,29 +1,28 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
 
-	import InputSelect from '../ui/input/InputSelect.svelte';
-	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import Icon from '../ui/Icon.svelte';
-
-	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
-	import type { InstitucionRef } from '$lib/schemas/shared.schema';
+	import { campusItemSchema } from '$lib/schemas/campus.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import type { UnidadAcademicaRef } from '$lib/schemas/shared.schema';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: CampusItem;
-		institucionRef: InstitucionRef[];
+		selectedItem: UnidadAcademicaItem;
+		unidadAcademicaRef: UnidadAcademicaRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	let institucionOptions = $derived(
-		props.institucionRef?.map((ref) => ({
-			id: ref.id,
+	let unidadAcademicaOptions = $derived(
+		props.unidadAcademicaRef?.map((ref) => ({
+			id: ref.code,
 			option: `${ref.code} - ${ref.name}`
 		})) ?? []
 	);
@@ -70,7 +69,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar campus</h2>
+			<h2 class="modal-title text-h4">Editar unidad academica</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -81,10 +80,7 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/edit" use:enhance>
-			<!-- Hidden input para el ID -->
-			<input type="hidden" name="code" value={$form.code} />
-
+		<form method="POST" action="?/editCampusUnidadAcademica" use:enhance>
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -95,26 +91,14 @@
 
 				<div class="form-fields">
 					<InputSelect
-						label="Region"
-						name="regionId"
-						optionsData={institucionOptions}
+						label="Unidad Academica"
+						name="code"
+						optionsData={unidadAcademicaOptions}
 						required={true}
-						bind:value={$form.institucionId}
-						errors={$errors.institucionId}
-						{...$constraints.institucionId}
+						bind:value={$form.code}
+						errors={$errors.code}
+						{...$constraints.code}
 					></InputSelect>
-
-					<InputText
-						label="Nombre"
-						name="name"
-						required={true}
-						placeholder="Excelencia educativa"
-						status={$errors.name ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.name}
-						errors={$errors.name}
-						{...$constraints.name}
-					/>
 				</div>
 			</div>
 
@@ -122,7 +106,7 @@
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar</Button>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar unidad</Button>
 			</footer>
 		</form>
 	</div>

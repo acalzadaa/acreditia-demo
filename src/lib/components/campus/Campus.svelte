@@ -7,7 +7,7 @@
 
 	interface Props {
 		gridArea?: string;
-		showActionButtons?: boolean;
+		showDetailIcon?: boolean;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
@@ -18,11 +18,13 @@
 		onKeydownBorrar: (e: KeyboardEvent, item: CampusItem) => void;
 		onClickRestaurar: (item: CampusItem) => void;
 		onKeydownRestaurar: (e: KeyboardEvent, item: CampusItem) => void;
+		onClickDetalle?: (item: CampusItem) => void;
+		onKeydownDetalle?: (e: KeyboardEvent, item: CampusItem) => void;
 	}
 
 	const {
 		gridArea = 'main',
-		showActionButtons = true,
+		showDetailIcon = true,
 		showHeader = false,
 		title = 'Add',
 		subtitle = '',
@@ -32,7 +34,9 @@
 		onClickBorrar,
 		onKeydownBorrar,
 		onClickRestaurar,
-		onKeydownRestaurar
+		onKeydownRestaurar,
+		onClickDetalle,
+		onKeydownDetalle
 	}: Props = $props();
 </script>
 
@@ -49,10 +53,7 @@
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-status">Estatus</th>
-
-						{#if showActionButtons}
-							<th class="col-actions">Acciones</th>
-						{/if}
+						<th class="col-actions">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">
@@ -68,37 +69,46 @@
 									{item.isDeleted ? 'borrado' : 'activo'}
 								</Badge>
 							</td>
-							{#if showActionButtons}
-								<td class="col-actions">
+							<td class="col-actions">
+								{#if showDetailIcon && onClickDetalle && onKeydownDetalle}
 									<IconButton
 										isDisabled={item.isDeleted}
-										name="edit"
+										name="detail"
 										size="md"
 										borderShape="square"
 										variant="ghost"
-										onClick={() => onClickEditar(item)}
-										onKeydown={(e) => onKeydownEditar(e, item)}
+										onClick={() => onClickDetalle(item)}
+										onKeydown={(e) => onKeydownDetalle(e, item)}
 									/>
-									<IconButton
-										isDisabled={item.isDeleted}
-										name="delete"
-										size="md"
-										borderShape="square"
-										variant="ghost"
-										onClick={() => onClickBorrar(item)}
-										onKeydown={(e) => onKeydownBorrar(e, item)}
-									/>
-									<IconButton
-										isDisabled={!item.isDeleted}
-										name="restore"
-										size="md"
-										borderShape="square"
-										variant="ghost"
-										onClick={() => onClickRestaurar(item)}
-										onKeydown={(e) => onKeydownRestaurar(e, item)}
-									/>
-								</td>
-							{/if}
+								{/if}
+								<IconButton
+									isDisabled={item.isDeleted}
+									name="edit"
+									size="md"
+									borderShape="square"
+									variant="ghost"
+									onClick={() => onClickEditar(item)}
+									onKeydown={(e) => onKeydownEditar(e, item)}
+								/>
+								<IconButton
+									isDisabled={item.isDeleted}
+									name="delete"
+									size="md"
+									borderShape="square"
+									variant="ghost"
+									onClick={() => onClickBorrar(item)}
+									onKeydown={(e) => onKeydownBorrar(e, item)}
+								/>
+								<IconButton
+									isDisabled={!item.isDeleted}
+									name="restore"
+									size="md"
+									borderShape="square"
+									variant="ghost"
+									onClick={() => onClickRestaurar(item)}
+									onKeydown={(e) => onKeydownRestaurar(e, item)}
+								/>
+							</td>
 						</tr>
 					{/each}
 				</tbody>

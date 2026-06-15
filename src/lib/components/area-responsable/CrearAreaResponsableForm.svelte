@@ -6,12 +6,11 @@
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { PuestoRef } from '$lib/schemas/puesto.schema';
-	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, PuestoRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		refs: PuestoRef[];
+		puestoRef: PuestoRef[];
 		areaResponsableRef: AreaResponsableRef[];
 		onClose: () => void;
 	}
@@ -31,7 +30,7 @@
 
 	// Opciones para el select de puesto
 	const puestoOptions = $derived(
-		props.refs.map((ref) => ({
+		props.puestoRef.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		}))
