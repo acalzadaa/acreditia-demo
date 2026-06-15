@@ -9,28 +9,32 @@
 	import { goto } from '$app/navigation';
 	import Region from '$lib/components/region/Region.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getCampus, getCampusRef, getPuestoRef, getRegion } from '$lib/stores/data.svelte';
+	import { getCampusRef, getPuestoRef, getRegion, getRegionCampus } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
 	import Campus from '$lib/components/campus/Campus.svelte';
-	import type { CampusWithRelationsItem } from '$lib/schemas/campus.schema';
 	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
 	import RestaurarRegionForm from '$lib/components/region/RestaurarRegionForm.svelte';
 	import BorrarRegionForm from '$lib/components/region/BorrarRegionForm.svelte';
-	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import EditarRegionCampusForm from '$lib/components/region/campus/EditarRegionCampusForm.svelte';
 	import BorrarRegionCampusForm from '$lib/components/region/campus/BorrarRegionCampusForm.svelte';
 	import RestaurarRegionCampusForm from '$lib/components/region/campus/RestaurarRegionCampusForm.svelte';
 	import AddRegionCampusForm from '$lib/components/region/campus/AddRegionCampusForm.svelte';
+	import type { CampusItem } from '$lib/schemas/campus.schema';
+	import type { RegionWithRelationsItem } from '$lib/schemas/region.schema';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let regionCode = page.params.regionCode;
 	let regionItems = getRegion().filter((item) => item.code === regionCode);
 	let puestosRef = getPuestoRef('region');
-	let campusItems = getCampus().filter((item) => item.region.code === regionCode);
-	let campusRef = getCampusRef().filter(item => !campusItems.some(campusItem => campusItem.id === item.id));
+	let campusItems = getRegionCampus()
+		.filter((item) => !regionItems.some((regionItem) => regionItem.id === item.regionId))
+		.map((item) => item.campus);
+	let campusRef = getCampusRef().filter(
+		(item) => !campusItems.some((campusItem) => campusItem?.id === item.id)
+	);
 
 	let navigationItems = $derived(page.data.navigationItems);
 
@@ -46,8 +50,8 @@
 		}
 	}
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let modal = createModalManager<RegionWithRelationItem>();
-	let modalCampus = createModalManager<CampusWithRelationsItem>();
+	let modal = createModalManager<RegionWithRelationsItem>();
+	let modalCampus = createModalManager<CampusItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>

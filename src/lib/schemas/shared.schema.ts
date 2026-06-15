@@ -12,12 +12,12 @@ export const regionRefSchema = z.object({
 
 export type RegionRef = z.infer<typeof regionRefSchema>;
 
-export const areaResponsableCampusRefSchema = z.object({
+export const campusAreaResponsableRefSchema = z.object({
 	areaResponsableId: z.uuid(),
 	campusId: z.uuid()
 });
 
-export type AreaResponsableCampusRef = z.infer<typeof areaResponsableCampusRefSchema>;
+export type CampusAreaResponsableRef = z.infer<typeof campusAreaResponsableRefSchema>;
 
 export const areaResponsableRefSchema = z.object({
 	id: z.uuid(),

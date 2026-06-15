@@ -19,7 +19,6 @@
 
 	const {
 		gridArea = 'toolbar',
-		
 		onClickCrear,
 		crearTitle = 'Nuevo',
 		onKeydownCrear,

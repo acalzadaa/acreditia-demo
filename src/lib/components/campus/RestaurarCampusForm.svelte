@@ -4,11 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { campusWithRelationsItemSchema, type CampusWithRelationsItem } from '$lib/schemas/campus.schema';
+	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: CampusWithRelationsItem;
+		selectedItem: CampusItem;
 		onClose: () => void;
 	}
 
@@ -20,7 +20,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(campusWithRelationsItemSchema),
+		validators: zod4(campusItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
@@ -59,7 +59,6 @@
 
 		<form method="POST" action="?/restore" use:enhance>
 			<!-- Hidden input para el ID -->
-			<input type="hidden" name="id" value={$form.id} />
 			<input type="hidden" name="code" value={$form.code} />
 
 			<div class="modal-form confirm-content">

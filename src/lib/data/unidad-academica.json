@@ -1,28 +1,124 @@
 {
     "unidadAcademicaItems": [
         {
-            "id": "85547c54-5d7c-4613-abf3-baa4e530b3a3",
+            "id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
             "code": "FIC-001",
-            "name": "Facultad de Ingeniería y Ciencias",
+            "name": "Facultad de Ingeniería y Ciencias Aplicadas",
             "version": 1,
             "isCurrent": true,
-            "validFrom": "2024-03-01T00:00:00Z",
+            "validFrom": "2025-01-15T00:00:00Z",
             "validTo": null,
             "isDeleted": false,
-            "createdAt": "2024-03-01T09:00:00Z",
-            "createdBy": "admin@system.com"
+            "createdAt": "2025-01-15T10:00:00Z",
+            "createdBy": "admin@fimpes-system.com"
         },
         {
-            "id": "2cf46373-8999-46f5-8b3e-ce3ad3ca29f2",
+            "id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
             "code": "ECO-002",
-            "name": "Escuela de Economía y Negocios",
+            "name": "Escuela de Economía y Negocios Internacionales",
             "version": 1,
             "isCurrent": true,
-            "validFrom": "2024-03-01T00:00:00Z",
+            "validFrom": "2025-01-15T00:00:00Z",
             "validTo": null,
             "isDeleted": false,
-            "createdAt": "2024-03-01T10:00:00Z",
-            "createdBy": "admin@system.com"
+            "createdAt": "2025-01-15T10:05:00Z",
+            "createdBy": "admin@fimpes-system.com"
+        },
+        {
+            "id": "2ced5499-2c1a-4998-b8e9-a6b7ca6e7df7",
+            "code": "HUM-003",
+            "name": "Facultad de Humanidades y Educación",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2025-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2025-01-15T10:10:00Z",
+            "createdBy": "admin@fimpes-system.com"
+        },
+        {
+            "id": "b9cb6eef-5606-447b-b4f8-bb6c94a029b5",
+            "code": "POS-004",
+            "name": "Escuela de Postgrado y Estudios Avanzados",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2025-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2025-01-15T10:15:00Z",
+            "createdBy": "admin@fimpes-system.com"
+        },
+        {
+            "id": "1966c26b-1399-42bc-a58b-a8a294e7d647",
+            "code": "DER-005",
+            "name": "Facultad de Derecho y Ciencias Jurídicas",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2025-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2025-01-15T10:20:00Z",
+            "createdBy": "admin@fimpes-system.com"
+        },
+        {
+            "id": "6bab8738-f5f2-4804-b95d-f427fd6a3be8",
+            "code": "SAL-006",
+            "name": "Escuela de Ciencias de la Salud",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2025-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2025-01-15T10:25:00Z",
+            "createdBy": "admin@fimpes-system.com"
+        },
+        {
+            "id": "ee984bae-4e2c-4634-8e8e-f2101869e06e",
+            "code": "ART-007",
+            "name": "Facultad de Artes y Diseño",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2025-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2025-01-15T10:30:00Z",
+            "createdBy": "admin@fimpes-system.com"
+        },
+        {
+            "id": "d0d06456-d0b2-45ab-9b5e-366451714d52",
+            "code": "IDI-008",
+            "name": "Escuela de Idiomas y Lingüística Aplicada",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2025-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2025-01-15T10:35:00Z",
+            "createdBy": "admin@fimpes-system.com"
+        },
+        {
+            "id": "424734b2-a584-40a7-b956-66ffaf009523",
+            "code": "TEC-009",
+            "name": "Escuela de Tecnologías de la Información",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2025-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2025-01-15T10:40:00Z",
+            "createdBy": "admin@fimpes-system.com"
+        },
+        {
+            "id": "85dd994a-6f21-411e-b3cc-e28cd143ca02",
+            "code": "AGR-010",
+            "name": "Facultad de Ciencias Agropecuarias",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2025-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2025-01-15T10:45:00Z",
+            "createdBy": "admin@fimpes-system.com"
         }
     ]
 }

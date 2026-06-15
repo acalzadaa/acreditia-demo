@@ -1,11 +1,16 @@
 <script lang="ts">
 	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 	import EmptySection from '../common/EmptySection.svelte';
+	import PageHeader from '../common/PageHeader.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
+		gridArea?: string;
 		unidadAcademicaItems: UnidadAcademicaItem[];
+		showHeader?: boolean;
+		title?: string;
+		subtitle?: string;
 		onClickEditar: (item: UnidadAcademicaItem) => void;
 		onKeydownEditar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
 		onClickBorrar: (item: UnidadAcademicaItem) => void;
@@ -15,7 +20,11 @@
 	}
 
 	const {
+		gridArea = 'main',
 		unidadAcademicaItems,
+		showHeader = false,
+		title = '',
+		subtitle = '',
 		onClickEditar,
 		onKeydownEditar,
 		onClickBorrar,
@@ -25,7 +34,10 @@
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel" style="grid-area: {gridArea}">
+	{#if showHeader}
+		<PageHeader {title} {subtitle} />
+	{/if}
 	<section class="table-container">
 		{#if unidadAcademicaItems.length > 0}
 			<table class="data-table text-body">

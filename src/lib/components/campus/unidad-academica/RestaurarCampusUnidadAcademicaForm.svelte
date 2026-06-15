@@ -2,14 +2,15 @@
 	import { superForm } from 'sveltekit-superforms';
 	
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
+	import { campusItemSchema } from '$lib/schemas/campus.schema';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: CampusItem;
+		selectedItem: UnidadAcademicaItem;
 		onClose: () => void;
 	}
 
@@ -48,7 +49,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Restaurar campus</h2>
+			<h2 class="modal-title text-h4">Restaurar unidad academica</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -58,9 +59,8 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/restoreRegionCampus" use:enhance>
+		<form method="POST" action="?/restoreCampusUnidadAcademica" use:enhance>
 			<!-- Hidden input para el ID -->
-			<input type="hidden" name="id" value={$form.id} />
 			<input type="hidden" name="code" value={$form.code} />
 
 			<div class="modal-form confirm-content">
@@ -71,7 +71,7 @@
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Restaurar</Button>
+				<Button type="submit" variant="primary">Restaurar unidad</Button>
 			</footer>
 		</form>
 	</div>

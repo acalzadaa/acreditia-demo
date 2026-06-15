@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
+	import type { RegionWithRelationsItem } from '$lib/schemas/region.schema';
 
 
 	import EmptySection from '../common/EmptySection.svelte';
@@ -9,19 +9,19 @@
 
 	interface Props {
 		gridArea?: string;
-		regionItems: RegionWithRelationItem[];
+		regionItems: RegionWithRelationsItem[];
 		showDetailIcon?: boolean;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		onClickEditar: (item: RegionWithRelationItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
-		onClickBorrar: (item: RegionWithRelationItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
-		onClickRestaurar: (item: RegionWithRelationItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
-		onClickDetalle?: (item: RegionWithRelationItem) => void;
-		onKeydownDetalle?: (e: KeyboardEvent, item: RegionWithRelationItem) => void;
+		onClickEditar: (item: RegionWithRelationsItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: RegionWithRelationsItem) => void;
+		onClickBorrar: (item: RegionWithRelationsItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: RegionWithRelationsItem) => void;
+		onClickRestaurar: (item: RegionWithRelationsItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: RegionWithRelationsItem) => void;
+		onClickDetalle?: (item: RegionWithRelationsItem) => void;
+		onKeydownDetalle?: (e: KeyboardEvent, item: RegionWithRelationsItem) => void;
 	}
 
 	const {

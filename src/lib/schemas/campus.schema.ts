@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { institucionItemSchema } from './institucion.schema';
-import { institucionRefSchema, regionRefSchema } from './shared.schema';
+import { institucionRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
@@ -12,7 +12,6 @@ import { institucionRefSchema, regionRefSchema } from './shared.schema';
 export const campusFormSchema = z.object({
 	id: z.uuid().optional(),
 	institucionId: z.uuid('Debes seleccionar una institución'),
-	regionId: z.uuid('Debes seleccionar una región'),
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
 	createdBy: z.string().optional()
@@ -27,11 +26,9 @@ export type CampusForm = z.infer<typeof campusFormSchema>;
 export const campusItemSchema = z.object({
 	id: z.uuid(),
 	institucionId: z.uuid(),
-	regionId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
 	institucion: institucionRefSchema.optional(),
-	region: regionRefSchema.optional(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -43,11 +40,8 @@ export const campusItemSchema = z.object({
 
 export type CampusItem = z.infer<typeof campusItemSchema>;
 
-export const campusWithRelationsItemSchema = campusItemSchema
-	.omit({ institucion: true, region: true })
-	.extend({
-		institucion: institucionItemSchema.omit({ entidadLegal: true, entidadLegalId: true }),
-		region: regionRefSchema
-	});
+export const campusWithRelationsItemSchema = campusItemSchema.omit({ institucionId: true }).extend({
+	institucion: institucionItemSchema.omit({ entidadLegal: true, entidadLegalId: true })
+});
 
 export type CampusWithRelationsItem = z.infer<typeof campusWithRelationsItemSchema>;

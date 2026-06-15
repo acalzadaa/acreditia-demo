@@ -3,8 +3,8 @@
 
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
-		campusWithRelationsItemSchema,
-		type CampusWithRelationsItem
+	campusItemSchema,
+		type CampusItem
 	} from '$lib/schemas/campus.schema';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
@@ -15,7 +15,7 @@
 
 	interface Props {
 		open: boolean;
-		selectedItem: CampusWithRelationsItem;
+		selectedItem: CampusItem;
 		campusRef: CampusRef[];
 		onClose: () => void;
 	}
@@ -39,7 +39,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(campusWithRelationsItemSchema),
+			validators: zod4(campusItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,

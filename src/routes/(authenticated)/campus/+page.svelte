@@ -15,17 +15,16 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import { getCampus, getInstitucionRef } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import type { CampusWithRelationsItem } from '$lib/schemas/campus.schema';
+	import type { CampusItem } from '$lib/schemas/campus.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let campusItems = getCampus();
 
-	let instituciones = getInstitucionRef();
+	let institucionRef = getInstitucionRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
-	
 	/* LOGOUT */
 	async function onClickLogout() {
 		auth.logout();
@@ -38,10 +37,23 @@
 		}
 	}
 
+	
+
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let modal = createModalManager<CampusWithRelationsItem>();
+	let modal = createModalManager<CampusItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
+
+	/* DETALLE */
+	function onClickDetalle(item: CampusItem) {
+		goto(resolve(`/campus/${item.code}`));
+	}
+
+	function onKeydownDetalle(e: KeyboardEvent, item: CampusItem) {
+		if (e.key === 'Enter') {
+			onClickDetalle(item);
+		}
+	}
 
 </script>
 
@@ -79,15 +91,17 @@
 		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
+		onClickDetalle={(item: CampusItem) => onClickDetalle(item)}
+		onKeydownDetalle={(e: KeyboardEvent, item: CampusItem) => onKeydownDetalle(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearCampusForm open={modal.isOpen('create')} {instituciones} onClose={modal.close} />
+	<CrearCampusForm open={modal.isOpen('create')} {institucionRef} onClose={modal.close} />
 
 	{#if modal.selectedItem}
 		<!-- MODAL EDITAR -->
 		<EditarCampusForm
-			{instituciones}
+			{institucionRef}
 			open={modal.isOpen('edit')}
 			selectedItem={modal.selectedItem}
 			onClose={modal.close}

@@ -10,12 +10,12 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 	import type { PuestoRef } from '$lib/schemas/puesto.schema';
-	import { regionWithRelationItemSchema, type RegionWithRelationItem } from '$lib/schemas/region.schema';
+	import { regionWithRelationsItemSchema, type RegionWithRelationsItem } from '$lib/schemas/region.schema';
 	
 
 	interface Props {
 		open: boolean;
-		selectedItem: RegionWithRelationItem;
+		selectedItem: RegionWithRelationsItem;
 		refs: PuestoRef[];
 		onClose: () => void;
 	}
@@ -37,7 +37,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(regionWithRelationItemSchema),
+			validators: zod4(regionWithRelationsItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,

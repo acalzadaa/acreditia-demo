@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { TOOLTIP_DISMISS_EVENT } from '$lib/actions/tooltip';
 	import type { Snippet } from 'svelte';
 
 	interface Props {
@@ -23,6 +24,7 @@
 		if (!dialogElement) return;
 
 		if (open) {
+			window.dispatchEvent(new Event(TOOLTIP_DISMISS_EVENT));
 			dialogElement.showModal();
 		} else {
 			dialogElement.close();

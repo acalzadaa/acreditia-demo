@@ -15,7 +15,7 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import { getPuestoRef, getRegion } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import type { RegionWithRelationItem } from '$lib/schemas/region.schema';
+	import type { RegionWithRelationsItem } from '$lib/schemas/region.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 
@@ -39,18 +39,18 @@
 	}
 
 	/* DETALLE */
-	function onClickDetalle(item: RegionWithRelationItem) {
+	function onClickDetalle(item: RegionWithRelationsItem) {
 		goto(resolve(`/region/${item.code}`));
 	}
 
-	function onKeydownDetalle(e: KeyboardEvent, item: RegionWithRelationItem) {
+	function onKeydownDetalle(e: KeyboardEvent, item: RegionWithRelationsItem) {
 		if (e.key === 'Enter') {
 			onClickDetalle(item);
 		}
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR + MODALS =====
-	let modal = createModalManager<RegionWithRelationItem>();
+	let modal = createModalManager<RegionWithRelationsItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
@@ -87,8 +87,8 @@
 		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
-		onClickDetalle={(item: RegionWithRelationItem) => onClickDetalle(item)}
-		onKeydownDetalle={(e: KeyboardEvent, item: RegionWithRelationItem) => onKeydownDetalle(e, item)}
+		onClickDetalle={(item: RegionWithRelationsItem) => onClickDetalle(item)}
+		onKeydownDetalle={(e: KeyboardEvent, item: RegionWithRelationsItem) => onKeydownDetalle(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->

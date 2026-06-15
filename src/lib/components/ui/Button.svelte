@@ -18,7 +18,6 @@
 		onClick?: (e: MouseEvent) => void;
 		onKeyDown?: (e: KeyboardEvent) => void;
 
-		tooltipActive?: boolean;
 		tooltipLabel?: string;
 		tooltipDirection?: TooltipPosition;
 

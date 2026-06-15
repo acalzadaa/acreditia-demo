@@ -6,7 +6,7 @@
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 
-	import type { UnidadAcademicaWithRelationsItem } from '$lib/schemas/unidadAcademica.schema';
+	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import BorrarUnidadAcademicaForm from '$lib/components/unidad-academica/BorrarUnidadAcademicaForm.svelte';
@@ -15,17 +15,17 @@
 	import CrearUnidadAcademicaForm from '$lib/components/unidad-academica/CrearUnidadAcademicaForm.svelte';
 	import EditarUnidadAcademicaForm from '$lib/components/unidad-academica/EditarUnidadAcademicaForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getCampusRef, getUnidadAcademica } from '$lib/stores/data.svelte';
+	import { getUnidadAcademica } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	
+	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createToggle } from '$lib/utils/toggle.svelte';
+
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
 	let unidadAcademicaItems = getUnidadAcademica();
 
-	let campus = getCampusRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let itemSeleccionado: UnidadAcademicaWithRelationsItem | null = $state(null);
 
 	/* LOGOUT */
 	async function onClickLogout() {
@@ -40,93 +40,9 @@
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let showNotificationBar = $state(false);
-	let showNavigationBar = $state(true);
-
-	function onClickNavigationBar() {
-		showNavigationBar = !showNavigationBar;
-	}
-
-	function onKeydownNavigationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNavigationBar();
-		}
-	}
-
-	function onClickNotificationBar() {
-		showNotificationBar = !showNotificationBar;
-	}
-
-	function onKeydownNotificationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNotificationBar();
-		}
-	}
-
-	// ===== ESTADOS DE MODALES =====
-	let showCrearModal = $state(false);
-	let showEditarModal = $state(false);
-	let showBorrarModal = $state(false);
-	let showRestaurarModal = $state(false);
-
-	// ===== HANDLERS =====
-
-	/* CREAR */
-
-	function onClickCrear() {
-		showCrearModal = true;
-	}
-
-	function onKeydownCrear(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickCrear();
-		}
-	}
-
-	/* EDITAR */
-
-	function onClickEditar(item: UnidadAcademicaWithRelationsItem) {
-		itemSeleccionado = item;
-		showEditarModal = true;
-	}
-
-	function onKeydownEditar(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickEditar(item);
-		}
-	}
-
-	/* BORRAR */
-
-	function onClickBorrar(item: UnidadAcademicaWithRelationsItem) {
-		itemSeleccionado = item;
-		showBorrarModal = true;
-	}
-
-	function onKeydownBorrar(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	/* RESTAURAR */
-	function onClickRestaurar(item: UnidadAcademicaWithRelationsItem) {
-		itemSeleccionado = item;
-		showRestaurarModal = true;
-	}
-
-	function onKeydownRestaurar(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-	function handleCerrar() {
-		showCrearModal = false;
-		showEditarModal = false;
-		showBorrarModal = false;
-		showRestaurarModal = false;
-		itemSeleccionado = null;
-	}
+	let modal = createModalManager<UnidadAcademicaItem>();
+	let navigationToggle = createToggle(true);
+	let notificationToggle = createToggle(false);
 </script>
 
 <div class="app-grid">
@@ -136,68 +52,58 @@
 		{onClickLogout}
 		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
+
 	<Subheader
-		{onClickNavigationBar}
-		onKeydownNavigationBar={(e) => onKeydownNavigationBar(e)}
-		{onClickNotificationBar}
-		onKeydownNotificationBar={(e) => onKeydownNotificationBar(e)}
-		{showNavigationBar}
-		{showNotificationBar}
+		onClickNavigationBar={navigationToggle.onclick}
+		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
+		onClickNotificationBar={navigationToggle.onclick}
+		onKeydownNotificationBar={(e) => navigationToggle.onkeydown(e)}
+		showNavigationBar={navigationToggle.value}
+		showNotificationBar={notificationToggle.value}
 	/>
-	<NavigationBar {showNavigationBar} {navigationItems} />
-	<NotificationBar {showNotificationBar} />
+	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
+	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
-		{onClickCrear}
-		onKeydownCrear={(e) => onKeydownCrear(e)}
+		crearTitle="Nueva unidad academica"
+		onClickCrear={modal.handlers('create').onclick}
+		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}
 		showFilter={true}
 	/>
 
 	<UnidadAcademica
 		{unidadAcademicaItems}
-		onClickEditar={(item: UnidadAcademicaWithRelationsItem) => onClickEditar(item)}
-		onKeydownEditar={(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) =>
-			onKeydownEditar(e, item)}
-		onClickBorrar={(item: UnidadAcademicaWithRelationsItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) =>
-			onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: UnidadAcademicaWithRelationsItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: UnidadAcademicaWithRelationsItem) =>
-			onKeydownRestaurar(e, item)}
+		onClickEditar={modal.handlers('edit').onClickItem}
+		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
+		onClickBorrar={modal.handlers('delete').onClickItem}
+		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
+		onClickRestaurar={modal.handlers('restore').onClickItem}
+		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearUnidadAcademicaForm
-		bind:open={showCrearModal}
-		refs={campus}
-		onClose={handleCerrar}
-	/>
+	<CrearUnidadAcademicaForm open={modal.isOpen('create')} onClose={modal.close} />
 
-	<!-- MODAL EDITAR -->
-	{#if showEditarModal && itemSeleccionado}
+	{#if modal.selectedItem}
+		<!-- MODAL EDITAR -->
 		<EditarUnidadAcademicaForm
-			{campus}
-			bind:open={showEditarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
+			open={modal.isOpen('edit')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
 		/>
-	{/if}
 
-	<!-- MODAL BORRAR -->
-	{#if showBorrarModal && itemSeleccionado}
+		<!-- MODAL BORRAR -->
 		<BorrarUnidadAcademicaForm
-			bind:open={showBorrarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
+			open={modal.isOpen('delete')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
 		/>
-	{/if}
 
-	<!-- MODAL RESTAURAR -->
-	{#if showRestaurarModal && itemSeleccionado}
+		<!-- MODAL RESTAURAR -->
 		<RestaurarUnidadAcademicaForm
-			bind:open={showRestaurarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
+			open={modal.isOpen('restore')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
 		/>
 	{/if}
 
