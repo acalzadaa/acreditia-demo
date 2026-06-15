@@ -6,6 +6,9 @@ interface TooltipOptions {
     position?: TooltipPosition;
 }
 
+// Evento global que el Modal (u otros) puede disparar para limpiar todos los tooltips activos
+export const TOOLTIP_DISMISS_EVENT = 'tooltip:dismiss-all';
+
 export function tooltip(node: HTMLElement, options: TooltipOptions) {
     let tooltipEl: HTMLElement | null = null;
     let showTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -62,18 +65,55 @@ export function tooltip(node: HTMLElement, options: TooltipOptions) {
         tooltipEl = null;
     }
 
-    function handleClick() {
-        // Solo cerrar si el tooltip está visible (existe en el DOM)
-        if (tooltipEl) {
+    // Limpia el tooltip cuando el documento recibe un click fuera del nodo
+    function handleDocumentClick(e: MouseEvent) {
+        if (!tooltipEl) return;
+        if (!node.contains(e.target as Node)) {
             removeTooltip();
         }
+    }
+
+    // Limpia el tooltip con Escape o cualquier tecla (opcional: solo Escape)
+    function handleKeyDown(e: KeyboardEvent) {
+        if (e.key === 'Escape' || e.type === 'keydown') {
+            removeTooltip();
+        }
+    }
+
+    // Limpia el tooltip cuando el scroll mueve la página
+    function handleScroll() {
+        removeTooltip();
+    }
+
+    // Limpia el tooltip cuando otro componente (ej. Modal) lo solicita globalmente
+    function handleDismissAll() {
+        removeTooltip();
+    }
+
+    // Limpia cuando el nodo pierde visibilidad (modal que tapa el elemento)
+    let visibilityObserver: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== 'undefined') {
+        visibilityObserver = new IntersectionObserver(
+            (entries) => {
+                if (entries[0] && !entries[0].isIntersecting) {
+                    removeTooltip();
+                }
+            },
+            { threshold: 0 }
+        );
+        visibilityObserver.observe(node);
     }
 
     node.addEventListener('mouseenter', createTooltip);
     node.addEventListener('mouseleave', removeTooltip);
     node.addEventListener('focus', createTooltip);
     node.addEventListener('blur', removeTooltip);
-    node.addEventListener('click', handleClick);
+
+    // Listeners globales de seguridad
+    document.addEventListener('click', handleDocumentClick, true);
+    document.addEventListener('keydown', handleKeyDown, true);
+    document.addEventListener('scroll', handleScroll, true);
+    window.addEventListener(TOOLTIP_DISMISS_EVENT, handleDismissAll);
 
     return {
         update(newOptions: TooltipOptions) {
@@ -86,11 +126,17 @@ export function tooltip(node: HTMLElement, options: TooltipOptions) {
         },
         destroy() {
             removeTooltip();
+            visibilityObserver?.disconnect();
+
             node.removeEventListener('mouseenter', createTooltip);
             node.removeEventListener('mouseleave', removeTooltip);
             node.removeEventListener('focus', createTooltip);
             node.removeEventListener('blur', removeTooltip);
-            node.removeEventListener('click', handleClick);
+
+            document.removeEventListener('click', handleDocumentClick, true);
+            document.removeEventListener('keydown', handleKeyDown, true);
+            document.removeEventListener('scroll', handleScroll, true);
+            window.removeEventListener(TOOLTIP_DISMISS_EVENT, handleDismissAll);
         }
     };
 }
