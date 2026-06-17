@@ -3,23 +3,24 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import {  frequencyUnitOptions } from '$lib/types/common.types';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import InputNumber from '../ui/input/InputNumber.svelte';
-	import { type IndicadorEstrategicoWithObjetivoItem } from '$lib/schemas/indicadorEstrategico.schema';
-	import {
-		objetivoEstrategicoItemSchema,
-		type ObjetivoEstrategicoRefSchema
-	} from '$lib/schemas/objetivoEstrategico.schema';
+
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
+	import { type ObjetivoEstrategicoRef } from '$lib/schemas/objetivoEstrategico.schema';
+	import {
+	frequencyUnitOptions,
+		indicadorEstrategicoFormSchema,
+		type IndicadorEstrategicoItem
+	} from '$lib/schemas/indicadorEstrategico.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: IndicadorEstrategicoWithObjetivoItem;
-		refs: ObjetivoEstrategicoRefSchema[];
+		selectedItem: IndicadorEstrategicoItem;
+		refs: ObjetivoEstrategicoRef[];
 		onClose: () => void;
 	}
 
@@ -36,26 +37,41 @@
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, tainted, isTainted, message } = superForm(props.selectedItem, {
-		dataType: 'json',
-		validators: zod4(objetivoEstrategicoItemSchema),
-		validationMethod: 'onblur',
-		customValidity: false,
-		resetForm: false,
-		taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
-		onSubmit: ({ cancel }) => {
-			if (!isTainted($tainted)) {
-				cancel();
-				handleClose();
-				console.log('No hay cambios para guardar');
-			}
+	const { form, errors, enhance, tainted, isTainted, message } = superForm(
+		{
+			id: props.selectedItem.id,
+			objetivoId: props.selectedItem.objetivo?.id,
+			code: props.selectedItem.code,
+			name: props.selectedItem.name,
+			description: props.selectedItem.description,
+			target: props.selectedItem.target,
+			targetUnit: props.selectedItem.targetUnit,
+			dataOrigin: props.selectedItem.dataOrigin,
+			dataFormula: props.selectedItem.dataFormula,
+			frequencyValue: props.selectedItem.frequencyValue,
+			frequencyUnit: props.selectedItem.frequencyUnit
 		},
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
-				handleClose();
+		{
+			dataType: 'json',
+			validators: zod4(indicadorEstrategicoFormSchema),
+			validationMethod: 'onblur',
+			customValidity: false,
+			resetForm: false,
+			taintedMessage: 'Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?',
+			onSubmit: ({ cancel }) => {
+				if (!isTainted($tainted)) {
+					cancel();
+					handleClose();
+					console.log('No hay cambios para guardar');
+				}
+			},
+			onUpdated: async ({ form }) => {
+				if (form.valid) {
+					handleClose();
+				}
 			}
 		}
-	});
+	);
 
 	function handleClose() {
 		onClose();
@@ -71,7 +87,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar Indicador Estrategico</h2>
+			<h2 class="modal-title text-h4">Editar indicador estrategico</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -83,7 +99,7 @@
 
 		<form method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
-			<input type="hidden" name="id" value={$form.id} />
+			<input type="hidden" name="code" value={$form.code} />
 
 			<div class="modal-body">
 				{#if $message}
@@ -100,17 +116,6 @@
 						required={true}
 						bind:value={$form.objetivoId}
 						errors={$errors.objetivoId}
-					/>
-
-					<InputText
-						label="Código"
-						name="code"
-						required={true}
-						placeholder="PE-001"
-						status={$errors.code ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
 					/>
 
 					<InputText

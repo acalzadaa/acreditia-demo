@@ -1,0 +1,12 @@
+{
+    "indicadorItem": [
+        {
+            "id": "4673101b-18f6-471c-8388-4c46ad0368f5",
+            "code": "IND-I-0101",
+            "description": "",
+            "target": 100,
+            "targetUnit": "alumnos",
+            "indicadorType": "especifico"
+        }
+    ]
+}

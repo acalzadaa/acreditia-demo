@@ -4,9 +4,9 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
-	import { jobTypeOptions } from '$lib/types/common.types';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
+	import { jobTypeOptions } from '$lib/schemas/puesto.schema';
 
 	interface Props {
 		open: boolean;

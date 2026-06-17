@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { capituloRefSchema, modeloRefSchema, seccionRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -76,3 +77,15 @@ export const modeloWithCapitulosSchema = modeloItemSchema.extend({
 		.optional()
 });
 export type ModeloWithCapitulos = z.infer<typeof modeloWithCapitulosSchema>;
+
+export const modeloFullRefSchema = modeloRefSchema.extend({
+	capitulos: z
+		.array(
+			capituloRefSchema.extend({
+				secciones: z.array(seccionRefSchema.optional())
+			})
+		)
+		.optional()
+});
+
+export type ModeloFullRef = z.infer<typeof modeloFullRefSchema>;

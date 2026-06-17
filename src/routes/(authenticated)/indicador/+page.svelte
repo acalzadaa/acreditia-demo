@@ -1,40 +1,34 @@
 <script lang="ts">
+	import type { PageProps } from './$types';
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
 	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
-	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
-	import AreaResponsable from '$lib/components/area-responsable/AreaResponsable.svelte';
-	import CrearAreaResponsableForm from '$lib/components/area-responsable/CrearAreaResponsableForm.svelte';
-	import EditarAreaResponsableForm from '$lib/components/area-responsable/EditarAreaResponsableForm.svelte';
-	import BorrarAreaResponsableForm from '$lib/components/area-responsable/BorrarAreaResponsableForm.svelte';
-	import RestaurarAreaResponsableForm from '$lib/components/area-responsable/RestaurarAreaResponsableForm.svelte';
-	import { auth } from '$lib/stores/auth.svelte';
-	import {
-		getAreaResponsable,
-		getAreaResponsableRef,
-		getInstitucionRef,
-		getPuestoRef
-	} from '$lib/stores/data.svelte';
-	import { page } from '$app/state';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
+	import { authClient } from '$lib/auth-client';
+	import { resolve } from '$app/paths';
+	import { goto } from '$app/navigation';
+	import Indicador from '$lib/components/indicador/Indicador.svelte';
+	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
+	import BorrarIndicadorForm from '$lib/components/indicador/BorrarIndicadorForm.svelte';
+	import RestaurarIndicadorForm from '$lib/components/indicador/RestaurarIndicadorForm.svelte';
+	import CrearIndicadorForm from '$lib/components/indicador/CrearIndicadorForm.svelte';
+	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
 
-	let username = auth.user?.email?.split('@')[0] || 'Usuario';
+	let { data }: PageProps = $props();
+	let username = $derived(data.user?.name || data.user?.email?.split('@')[0] || 'Usuario');
 
-	let areaResponsableItems = getAreaResponsable();
-	let areaResponsableRef = getAreaResponsableRef();
-	let navigationItems = $derived(page.data.navigationItems);
-	let puestoRef = getPuestoRef('responsable');
-	let institucionRef = getInstitucionRef();
+	let indicadorItems = $derived(data.indicadorItems);
+	let navigationItems = $derived(data.navigationItems);
+	let objetivos = $derived(data.objetivos);
+	let form = $derived(data.form);
 
 	/* LOGOUT */
 	async function onClickLogout() {
-		auth.logout();
+		await authClient.signOut();
 		goto(resolve('/login'), { replaceState: true });
 	}
 
@@ -45,14 +39,14 @@
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let modal = createModalManager<AreaResponsableItem>();
+	let modal = createModalManager<IndicadorItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
 
 <div class="app-grid">
 	<Header
-		isLoggedIn={!!auth.user}
+		isLoggedIn={!!data.user}
 		{username}
 		{onClickLogout}
 		onKeydownLogout={(e) => onKeydownLogout(e)}
@@ -69,57 +63,47 @@
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 
 	<Toolbar
-		crearTitle="Nueva area responsable"
+		crearTitle="Crear indicador"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}
 		showFilter={true}
 	/>
 
-	<AreaResponsable
-		{areaResponsableItems}
+	<Indicador
+		{indicadorItems}
+		showDetailIcon={true}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
 		onClickBorrar={modal.handlers('delete').onClickItem}
 		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
-	/>
+	></Indicador>
 
 	<!-- MODAL CREAR -->
-	<CrearAreaResponsableForm
-		open={modal.isOpen('create')}
-		{puestoRef}
-		{areaResponsableRef}
-		{institucionRef}
-		onClose={modal.close}
-	/>
+	<CrearIndicadorForm open={modal.isOpen('create')} {form} refs={objetivos} onClose={modal.close} />
 
 	{#if modal.selectedItem}
-		<!-- MODAL EDITAR -->
-		<EditarAreaResponsableForm
-			open={modal.isOpen('edit')}
-			selectedItem={modal.selectedItem}
-			{puestoRef}
-			{areaResponsableRef}
-			{institucionRef}
-			onClose={modal.close}
-		/>
-
-		<!-- MODAL BORRAR -->
-		<BorrarAreaResponsableForm
+		<EditarIndicadorForm
 			open={modal.isOpen('delete')}
 			selectedItem={modal.selectedItem}
 			onClose={modal.close}
 		/>
 
-		<!-- MODAL RESTAURAR -->
-		<RestaurarAreaResponsableForm
+		<BorrarIndicadorForm
+			open={modal.isOpen('delete')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
+		/>
+
+		<RestaurarIndicadorForm
 			open={modal.isOpen('restore')}
 			selectedItem={modal.selectedItem}
 			onClose={modal.close}
 		/>
 	{/if}
+
 	<Footer />
 </div>
 

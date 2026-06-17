@@ -6,64 +6,29 @@
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
+	import InputNumber from '../ui/input/InputNumber.svelte';
+
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
-	import {
-		areaResponsableFormSchema,
-		type AreaResponsableItem
-	} from '$lib/schemas/areaResponsable.schema';
-	import type { AreaResponsableRef, InstitucionRef, PuestoRef } from '$lib/schemas/shared.schema';
+	import { indicadorItemSchema, indicadorTypeOptions, type IndicadorItem } from '$lib/schemas/indicador.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: AreaResponsableItem;
-		puestoRef: PuestoRef[];
-		institucionRef: InstitucionRef[];
-		areaResponsableRef: AreaResponsableRef[];
+		selectedItem: IndicadorItem;
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	const puestoOptions = $derived(
-		props.puestoRef?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
-
-	let institucionOptions = $derived(
-		props.institucionRef?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
-
-	const areaResponsableOptions = $derived(
-		props.areaResponsableRef?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
-
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
-		{
-			id: props.selectedItem.id,
-			puestoId: props.selectedItem.puesto.id,
-			code: props.selectedItem.code,
-			name: props.selectedItem.name,
-			description: props.selectedItem.description,
-			institucionId: props.selectedItem.institucion.id,
-			parentId: props.selectedItem.parent?.id ?? '',
-			createdBy: props.selectedItem.createdBy
-		},
+	const { form, errors, enhance, tainted, isTainted, message, constraints } = superForm(
+		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(areaResponsableFormSchema),
+			validators: zod4(indicadorItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -97,14 +62,13 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar area responsable</h2>
+			<h2 class="modal-title text-h4">Editar indicador</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
 				size="lg"
 				onClick={handleClose}
 				onKeydown={(e) => onKeydownClose(e)}
-				isDisabled={false}
 			/>
 		</header>
 
@@ -119,27 +83,17 @@
 						{$message}
 					</div>
 				{/if}
-
 				<div class="form-fields">
-					<InputSelect
-						label="Institucion"
-						name="institucionId"
-						optionsData={institucionOptions}
+					<InputText
+						label="Código"
+						name="code"
 						required={true}
-						bind:value={$form.institucionId}
-						errors={$errors.institucionId}
-						{...$constraints.institucionId}
+						placeholder="PE-001"
+						status={$errors.code ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.code}
+						errors={$errors.code}
 					/>
-
-					<InputSelect
-						label="Puesto"
-						name="puestoId"
-						optionsData={puestoOptions}
-						required={true}
-						bind:value={$form.puestoId}
-						errors={$errors.puestoId}
-						{...$constraints.puestoId}
-					></InputSelect>
 
 					<InputText
 						label="Nombre"
@@ -160,23 +114,43 @@
 						rows={4}
 					/>
 
-					<InputSelect
-						label="Reporta a"
-						name="parentId"
-						optionsData={areaResponsableOptions}
+					<InputNumber
+						label="Meta"
+						name="target"
 						required={true}
-						bind:value={$form.parentId}
-						errors={$errors.parentId}
-						{...$constraints.parentId}
+						placeholder="20"
+						status={$errors.target ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.target}
+						errors={$errors.target}
+					/>
+
+					<InputText
+						label="Unidades de Meta"
+						name="targetUnit"
+						required={true}
+						placeholder="20"
+						status={$errors.targetUnit ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.targetUnit}
+						errors={$errors.targetUnit}
+					/>
+
+					<InputSelect
+						label="Tipo"
+						name="type"
+						optionsData={indicadorTypeOptions}
+						required={true}
+						bind:value={$form.indicadorType}
+						errors={$errors.indicadorType}
+						{...$constraints.indicadorType}
 					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
-				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
-					Cancelar
-				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar area</Button>
+				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
+				<Button type="submit" variant="primary">Editar indicador</Button>
 			</footer>
 		</form>
 	</div>

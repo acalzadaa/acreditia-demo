@@ -1,17 +1,17 @@
 <script lang="ts">
-	import type { IndicadorEstrategicoWithObjetivoItem } from '$lib/schemas/indicadorEstrategico.schema';
+	import type { IndicadorEstrategicoItem } from '$lib/schemas/indicadorEstrategico.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		indicadorEstrategicoItems: IndicadorEstrategicoWithObjetivoItem[];
-		onClickEditar: (item: IndicadorEstrategicoWithObjetivoItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: IndicadorEstrategicoWithObjetivoItem) => void;
-		onClickBorrar: (item: IndicadorEstrategicoWithObjetivoItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: IndicadorEstrategicoWithObjetivoItem) => void;
-		onClickRestaurar: (item: IndicadorEstrategicoWithObjetivoItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: IndicadorEstrategicoWithObjetivoItem) => void;
+		indicadorEstrategicoItems: IndicadorEstrategicoItem[];
+		onClickEditar: (item: IndicadorEstrategicoItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: IndicadorEstrategicoItem) => void;
+		onClickBorrar: (item: IndicadorEstrategicoItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: IndicadorEstrategicoItem) => void;
+		onClickRestaurar: (item: IndicadorEstrategicoItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: IndicadorEstrategicoItem) => void;
 	}
 
 	const {
