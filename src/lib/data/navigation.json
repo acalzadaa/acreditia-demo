@@ -195,18 +195,18 @@
         {
           "id": 502,
           "order": 52,
-          "label": "Indicadores",
-          "href": "/indicador",
-          "description": "Define los indicadores de calidad para cada sección, basados en la normativa",
+          "label": "Evidencias",
+          "href": "/evidencia",
+          "description": "Define las evidencias válidas para utilizar en un indicador",
           "itemType": "link",
           "status": "active"
         },
         {
           "id": 503,
           "order": 53,
-          "label": "Evidencias",
-          "href": "/evidencia",
-          "description": "Define las evidencias válidas para utilizar en un indicador",
+          "label": "Indicadores",
+          "href": "/indicador",
+          "description": "Define los indicadores de calidad para cada sección, basados en la normativa",
           "itemType": "link",
           "status": "active"
         }

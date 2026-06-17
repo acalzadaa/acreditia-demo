@@ -15,11 +15,11 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import Normativa from '$lib/components/normativa/Normativa.svelte';
 	import { page } from '$app/state';
-	import { getNormativas } from '$lib/stores/data.svelte';
+	import { getNormativa } from '$lib/stores/data.svelte';
 
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let normativaItems = getNormativas();
+	let normativaItems = getNormativa();
 
 	let navigationItems = $derived(page.data.navigationItems);
 

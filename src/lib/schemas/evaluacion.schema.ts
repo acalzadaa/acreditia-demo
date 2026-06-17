@@ -23,7 +23,14 @@ export const evaluacionFormSchema = z.object({
 			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
 			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
 		),
-	modeloId: z.uuid('Modelo de calidad requerido'),
+	modeloCode: z
+		.string()
+		.min(3, 'Code debe tener al menos 3 caracteres')
+		.max(100, 'Code no puede exceder 100 caracteres')
+		.regex(
+			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
+		),
 	institucionId: z.uuid('Institución requerida'),
 	name: z.string().min(1, 'Nombre requerido').max(255),
 	year: z.number().int().min(2000).max(2100),
@@ -66,11 +73,10 @@ export type EvaluacionItem = z.infer<typeof evaluacionItemSchema>;
 // Datos completos incluyendo relaciones anidadas
 // ============================================
 
-export const evaluacionWithRelationsItemSchema = evaluacionItemSchema
-	.extend({
-		modelo: modeloRefSchema,
-		institucion: institucionRefSchema
-	});
+export const evaluacionWithRelationsItemSchema = evaluacionItemSchema.extend({
+	modelo: modeloRefSchema,
+	institucion: institucionRefSchema
+});
 export type EvaluacionWithRelationsItem = z.infer<typeof evaluacionWithRelationsItemSchema>;
 
 // Versión con relaciones completas (incluye etapas)

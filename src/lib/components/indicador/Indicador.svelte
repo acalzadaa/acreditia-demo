@@ -49,6 +49,7 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
+						<th class="col-code">Seccion</th>
 						<th class="col-code">Código</th>
 						<th class="col-name">Nombre</th>
 						<th class="col-description">Descripción</th>
@@ -60,6 +61,7 @@
 				<tbody class="text-body">
 					{#each indicadorItems as item (item.id)}
 						<tr class="table-row tr-expandable">
+							<td class="col-code">{item.section.name}</td>
 							<td class="col-code">{item.code}</td>
 							<td class="col-name">{item.name}</td>
 							<td class="col-description">{item.description}</td>

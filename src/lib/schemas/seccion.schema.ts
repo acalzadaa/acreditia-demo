@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { capituloRefSchema } from './shared.schema';
+import { capituloItemSchema } from './capitulo.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -8,11 +9,22 @@ import { capituloRefSchema } from './shared.schema';
 
 export const seccionFormSchema = z.object({
 	id: z.uuid().optional(),
-	capituloId: z.uuid('El ID del capítulo debe ser un UUID válido'),
+	capituloCode: z
+		.string()
+		.min(3, 'Code debe tener al menos 3 caracteres')
+		.max(100, 'Code no puede exceder 100 caracteres')
+		.regex(
+			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
+		),
 	code: z
 		.string()
-		.min(1, 'El código debe tener al menos 1 caracter')
-		.max(50, 'El código debe tener máximo 50 caracteres'),
+		.min(3, 'Code debe tener al menos 3 caracteres')
+		.max(100, 'Code no puede exceder 100 caracteres')
+		.regex(
+			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
+		),
 	name: z
 		.string()
 		.min(1, 'El nombre es obligatorio')
@@ -31,12 +43,12 @@ export type SeccionForm = z.infer<typeof seccionFormSchema>;
 
 export const seccionItemSchema = z.object({
 	id: z.uuid(),
-	capituloId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
 	content: z.string(),
 	order: z.number(),
+	capitulo: capituloRefSchema,
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -63,10 +75,10 @@ export type SeccionConfig = z.infer<typeof seccionConfigSchema>;
 // ============================================
 
 // Sección con su capítulo padre
-export const seccionWithCapituloItemSchema = seccionItemSchema.extend({
-	capitulo: capituloRefSchema.nullable()
+export const seccionWithRelationsItemSchema = seccionItemSchema.extend({
+	capitulo: capituloItemSchema.nullable()
 });
-export type SeccionWithCapituloItem = z.infer<typeof seccionWithCapituloItemSchema>;
+export type SeccionWithRelationsItem = z.infer<typeof seccionWithRelationsItemSchema>;
 
 // Sección con capítulo y modelo (jerarquía completa)
 export const seccionFullSchema = seccionItemSchema.extend({

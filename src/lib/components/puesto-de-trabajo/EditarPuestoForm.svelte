@@ -3,11 +3,10 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { jobTypeOptions } from '$lib/types/common.types';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
+	import { jobTypeOptions, puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
 	import { hasFormErrors } from '$lib/helpers/superform';

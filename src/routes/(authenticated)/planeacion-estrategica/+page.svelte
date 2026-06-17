@@ -8,7 +8,7 @@
 	import type { PlaneacionEstrategicaWithFilosofiaItem } from '$lib/schemas/planeacionEstrategica.schema';
 	
 	import { goto } from '$app/navigation';
-	import { getFilosofias, getPlaneaciones } from '$lib/stores/data.svelte';
+	import { getFilosofia, getPlaneacion } from '$lib/stores/data.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
@@ -19,10 +19,10 @@
 	import RestaurarPlaneacionEstrategicaForm from '$lib/components/planeacion-estrategica/RestaurarPlaneacionEstrategicaForm.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let planeacionEstrategicaItems = getPlaneaciones().filter((item) => item.isCurrent);
+	let planeacionEstrategicaItems = getPlaneacion().filter((item) => item.isCurrent);
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let filosofias = getFilosofias().filter((item) => item.isCurrent && !item.isDeleted);
+	let filosofias = getFilosofia().filter((item) => item.isCurrent && !item.isDeleted);
 	
 	let itemSeleccionado: PlaneacionEstrategicaWithFilosofiaItem | null = $state(null);
 

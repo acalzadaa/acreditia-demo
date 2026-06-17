@@ -15,10 +15,10 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { getFilosofias } from '$lib/stores/data.svelte';
+	import { getFilosofia } from '$lib/stores/data.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let filosofiaInstitucionalItems = getFilosofias().filter((item) => item.isCurrent);
+	let filosofiaInstitucionalItems = getFilosofia().filter((item) => item.isCurrent);
 	let navigationItems = $derived(page.data.navigationItems);
 
 	let itemSeleccionado: FilosofiaInstitucionalItem | null = $state(null);

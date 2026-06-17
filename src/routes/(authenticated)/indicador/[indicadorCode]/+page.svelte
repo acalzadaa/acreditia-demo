@@ -7,7 +7,6 @@
 	import Footer from '$lib/components/common/Footer.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
-	import { authClient } from '$lib/auth-client';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import Indicador from '$lib/components/indicador/Indicador.svelte';

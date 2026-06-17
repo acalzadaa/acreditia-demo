@@ -1,51 +1,98 @@
 <script lang="ts">
-	import { superForm, type SuperValidated } from 'sveltekit-superforms';
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import { zod4 } from 'sveltekit-superforms/adapters';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import InputNumber from '../ui/input/InputNumber.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { ObjetivoEstrategicoRef } from '$lib/schemas/objetivoEstrategico.schema';
-	import {
-		indicadorFormSchema,
-		indicadorTypeOptions,
-		type IndicadorForm
-	} from '$lib/schemas/indicador.schema';
+	import { indicadorTypeOptions } from '$lib/schemas/indicador.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;
-		form: SuperValidated<IndicadorForm>;
-		refs: ObjetivoEstrategicoRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, ...props }: Props = $props();
+	let { open = $bindable(false), onClose }: Props = $props();
 
-	// NOTE: The form prop is replaced via server response and page re-render,
-	// not through reactive updates within this component instance.
-	// Therefore ignoring the state_referenced_locally warning is safe.
-	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, message, constraints } = superForm(props.form, {
-		resetForm: false,
-		validators: zod4(indicadorFormSchema),
-		onUpdated: async ({ form }) => {
-			if (form.valid) {
-				handleClose();
-			}
-		}
+	// Estado local del formulario
+	let formData = $state({
+		code: '',
+		name: '',
+		description: '',
+		target: 0,
+		targetUnit: '',
+		indicadorType: ''
 	});
 
+	let errorMessage = $state('');
+
+	function handleSubmit() {
+		// Validación básica
+		if (!formData.code) {
+			errorMessage = 'El código es requerido';
+			return;
+		}
+		if (!formData.name) {
+			errorMessage = 'El nombre es requerido';
+			return;
+		}
+		if (!formData.target && formData.target !== 0) {
+			errorMessage = 'La meta es requerida';
+			return;
+		}
+		if (!formData.targetUnit) {
+			errorMessage = 'Las unidades de meta son requeridas';
+			return;
+		}
+		if (!formData.indicadorType) {
+			errorMessage = 'El tipo es requerido';
+			return;
+		}
+
+		// Aquí podrías console.log o guardar los datos si quieres
+		console.log('Datos enviados (demo):', formData);
+		
+		// Limpiar formulario
+		formData = {
+			code: '',
+			name: '',
+			description: '',
+			target: 0,
+			targetUnit: '',
+			indicadorType: ''
+		};
+		
+		// Limpiar mensaje de error
+		errorMessage = '';
+		
+		// Cerrar modal
+		handleClose();
+	}
+
 	function handleClose() {
+		// Limpiar estado al cerrar
+		formData = {
+			code: '',
+			name: '',
+			description: '',
+			target: 0,
+			targetUnit: '',
+			indicadorType: ''
+		};
+		errorMessage = '';
 		onClose();
 	}
 
+	function handleCancel() {
+		handleClose();
+	}
+
 	function onKeydownClose(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			handleClose();
+		if (e.key === 'Enter' && !e.shiftKey) {
+			e.preventDefault();
+			handleSubmit();
 		}
 	}
 </script>
@@ -58,47 +105,51 @@
 				name="close"
 				variant="ghost"
 				size="lg"
-				onClick={handleClose}
+				onClick={handleCancel}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
 		</header>
 
-		<form method="POST" action="?/create" use:enhance>
+		<form onsubmit={(e) => {
+			e.preventDefault();
+			handleSubmit();
+		}}>
 			<div class="modal-body">
-				{#if $message}
+				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name="warning"></Icon>
-						{$message}
+						<Icon name="warning" />
+						{errorMessage}
 					</div>
 				{/if}
+				
 				<div class="form-fields">
 					<InputText
 						label="Código"
 						name="code"
 						required={true}
-						placeholder="PE-001"
-						status={$errors.code ? 'error' : 'normal'}
+						placeholder="IND-001"
+						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
+						bind:value={formData.code}
+						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
 					/>
 
 					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
-						placeholder="Excelencia educativa"
-						status={$errors.name ? 'error' : 'normal'}
+						placeholder="Tasa de graduación"
+						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.name}
-						errors={$errors.name}
+						bind:value={formData.name}
+						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
 					/>
 
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
-						placeholder="Descripcion..."
-						bind:value={$form.description}
+						placeholder="Descripción..."
+						bind:value={formData.description}
 						rows={4}
 					/>
 
@@ -107,38 +158,37 @@
 						name="target"
 						required={true}
 						placeholder="20"
-						status={$errors.target ? 'error' : 'normal'}
+						status={errorMessage && !formData.target ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.target}
-						errors={$errors.target}
+						bind:value={formData.target}
+						errors={errorMessage && !formData.target ? [errorMessage] : undefined}
 					/>
 
 					<InputText
 						label="Unidades de Meta"
 						name="targetUnit"
 						required={true}
-						placeholder="20"
-						status={$errors.targetUnit ? 'error' : 'normal'}
+						placeholder="%"
+						status={errorMessage && !formData.targetUnit ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.targetUnit}
-						errors={$errors.targetUnit}
+						bind:value={formData.targetUnit}
+						errors={errorMessage && !formData.targetUnit ? [errorMessage] : undefined}
 					/>
 
 					<InputSelect
 						label="Tipo"
-						name="type"
+						name="indicadorType"
 						optionsData={indicadorTypeOptions}
 						required={true}
-						bind:value={$form.indicadorType}
-						errors={$errors.indicadorType}
-						{...$constraints.indicadorType}
+						bind:value={formData.indicadorType}
+						errors={errorMessage && !formData.indicadorType ? [errorMessage] : undefined}
 					/>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
-				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
+				<Button type="submit" variant="primary">Crear indicador</Button>
 			</footer>
 		</form>
 	</div>

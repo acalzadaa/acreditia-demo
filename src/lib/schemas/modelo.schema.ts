@@ -30,7 +30,7 @@ export type ModeloForm = z.infer<typeof modeloFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
-// Datos completos desde la base de datos, incluyendo timestamps y relaciones
+// Datos completos, padres con datos simples REF
 // ============================================
 
 export const modeloItemSchema = z.object({
@@ -61,22 +61,8 @@ export type CalidadModeloConfig = z.infer<typeof modeloConfigSchema>;
 
 // ============================================
 // 5. WITH RELATIONS SCHEMA (Servidor → Cliente)
-// Cuando necesitas incluir las relaciones
+// Agrega datos completos de padres
 // ============================================
-
-export const modeloWithCapitulosSchema = modeloItemSchema.extend({
-	capitulos: z
-		.array(
-			z.object({
-				id: z.uuid(),
-				code: z.string(),
-				name: z.string(),
-				orden: z.number()
-			})
-		)
-		.optional()
-});
-export type ModeloWithCapitulos = z.infer<typeof modeloWithCapitulosSchema>;
 
 export const modeloFullRefSchema = modeloRefSchema.extend({
 	capitulos: z

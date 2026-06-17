@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { PageProps } from './$types';
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
@@ -8,7 +7,6 @@
 	import Footer from '$lib/components/common/Footer.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
-	import { authClient } from '$lib/auth-client';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import Indicador from '$lib/components/indicador/Indicador.svelte';
@@ -17,18 +15,18 @@
 	import RestaurarIndicadorForm from '$lib/components/indicador/RestaurarIndicadorForm.svelte';
 	import CrearIndicadorForm from '$lib/components/indicador/CrearIndicadorForm.svelte';
 	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
+	import { auth } from '$lib/stores/auth.svelte';
+	import { getIndicador } from '$lib/stores/data.svelte';
+	import { page } from '$app/state';
 
-	let { data }: PageProps = $props();
-	let username = $derived(data.user?.name || data.user?.email?.split('@')[0] || 'Usuario');
+	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
-	let indicadorItems = $derived(data.indicadorItems);
-	let navigationItems = $derived(data.navigationItems);
-	let objetivos = $derived(data.objetivos);
-	let form = $derived(data.form);
+	let indicadorItems = getIndicador();
+	let navigationItems = $derived(page.data.navigationItems);
 
 	/* LOGOUT */
 	async function onClickLogout() {
-		await authClient.signOut();
+		auth.logout();
 		goto(resolve('/login'), { replaceState: true });
 	}
 
@@ -42,11 +40,22 @@
 	let modal = createModalManager<IndicadorItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
+
+	/* DETALLE */
+	function onClickDetalle(item: IndicadorItem) {
+		goto(resolve(`/indicador/${item.code}`));
+	}
+
+	function onKeydownDetalle(e: KeyboardEvent, item: IndicadorItem) {
+		if (e.key === 'Enter') {
+			onClickDetalle(item);
+		}
+	}
 </script>
 
 <div class="app-grid">
 	<Header
-		isLoggedIn={!!data.user}
+		isLoggedIn={!!auth.user}
 		{username}
 		{onClickLogout}
 		onKeydownLogout={(e) => onKeydownLogout(e)}
@@ -79,10 +88,12 @@
 		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
+		onClickDetalle={(item: IndicadorItem) => onClickDetalle(item)}
+		onKeydownDetalle={(e: KeyboardEvent, item: IndicadorItem) => onKeydownDetalle(e, item)}
 	></Indicador>
 
 	<!-- MODAL CREAR -->
-	<CrearIndicadorForm open={modal.isOpen('create')} {form} refs={objetivos} onClose={modal.close} />
+	<CrearIndicadorForm open={modal.isOpen('create')} onClose={modal.close} />
 
 	{#if modal.selectedItem}
 		<EditarIndicadorForm

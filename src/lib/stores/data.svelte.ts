@@ -72,12 +72,12 @@ import {
 	modeloItemSchema
 } from '$lib/schemas/modelo.schema';
 import {
-	capituloWithModeloItemSchema,
-	type CapituloWithModeloItem
+	capituloItemSchema,
+	type CapituloItem,
 } from '$lib/schemas/capitulo.schema';
 import {
-	seccionWithCapituloItemSchema,
-	type SeccionWithCapituloItem
+	seccionItemSchema,
+	type SeccionItem,
 } from '$lib/schemas/seccion.schema';
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
 import {
@@ -137,8 +137,8 @@ let areaResponsable = $state<AreaResponsableItem[]>([]);
 let areaFuncional = $state<AreaFuncionalWithRelationsItem[]>([]);
 
 let modelo = $state<ModeloItem[]>([]);
-let capitulo = $state<CapituloWithModeloItem[]>([]);
-let seccion = $state<SeccionWithCapituloItem[]>([]);
+let capitulo = $state<CapituloItem[]>([]);
+let seccion = $state<SeccionItem[]>([]);
 let modeloFullRef = $state<ModeloFullRef[]>([]);
 
 let evidencia = $state<EvidenciaItem[]>([]);
@@ -215,10 +215,10 @@ const modeloFullRefRawData = modeloFullRefJsonData.modeloFullRefItems;
 modeloFullRef = modeloFullRefRawData.map((item) => modeloFullRefSchema.parse(item));
 
 const capituloRawData = capituloJsonData.capituloItems;
-capitulo = capituloRawData.map((item) => capituloWithModeloItemSchema.parse(item));
+capitulo = capituloRawData.map((item) => capituloItemSchema.parse(item));
 
 const seccionRawData = seccionJsonData.seccionItems;
-seccion = seccionRawData.map((item) => seccionWithCapituloItemSchema.parse(item));
+seccion = seccionRawData.map((item) => seccionItemSchema.parse(item));
 
 const evidenciaRawData = evidenciaJsonData.evidenciaItems;
 evidencia = evidenciaRawData.map((item) => evidenciaItemSchema.parse(item));
