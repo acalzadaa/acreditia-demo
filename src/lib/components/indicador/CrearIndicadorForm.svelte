@@ -8,13 +8,15 @@
 	import Icon from '../ui/Icon.svelte';
 	import { indicadorTypeOptions } from '$lib/schemas/indicador.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
+	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
 
 	interface Props {
 		open: boolean;
+		modeloFullRef: ModeloFullRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose }: Props = $props();
+	let { open = $bindable(false), onClose, modeloFullRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
@@ -23,15 +25,86 @@
 		description: '',
 		target: 0,
 		targetUnit: '',
-		indicadorType: ''
+		indicadorType: '',
+		seccionCode: ''
 	});
 
 	let errorMessage = $state('');
+
+	// Estados para los selects anidados
+	// Estados para los selects
+	let selectedModeloCode = $state<string>('');
+	let selectedCapituloCode = $state<string>('');
+	let selectedSeccionCode = $state<string>('');
+
+	// Opciones de modelo (todos los modelos)
+	let modeloOptions = $derived(
+		modeloFullRef.map((item) => ({
+			id: item.code,
+			option: `${item.code} - ${item.name}`
+		}))
+	);
+
+	let capituloOptions = $derived(
+		!selectedModeloCode
+			? []
+			: (modeloFullRef
+					.find((m) => m.code === selectedModeloCode)
+					?.capitulos?.map((c) => ({
+						id: c.code,
+						option: `${c.code} - ${c.name || `Capítulo ${c.code}`}`
+					})) ?? [])
+	);
+
+	let seccionOptions = $derived(
+		!selectedModeloCode || !selectedCapituloCode
+			? []
+			: (modeloFullRef
+					.find((m) => m.code === selectedModeloCode)
+					?.capitulos?.find((c) => c.code === selectedCapituloCode)
+					?.secciones?.map((s) => ({
+						id: s?.code,
+						option: `${s?.code} - ${s?.name || `Sección ${s?.code}`}`
+					})) ?? [])
+	);
+
+	// Resetear selecciones cuando cambia el modelo
+	function onModeloChange(value: string) {
+		selectedModeloCode = value;
+		selectedCapituloCode = '';
+		selectedSeccionCode = '';
+		formData.seccionCode = '';
+	}
+
+	// Resetear selección de sección cuando cambia el capítulo
+	function onCapituloChange(value: string) {
+		selectedCapituloCode = value;
+		selectedSeccionCode = '';
+		formData.seccionCode = '';
+	}
+
+	// Actualizar el valor del formulario cuando se selecciona una sección
+	function onSeccionChange(value: string) {
+		selectedSeccionCode = value;
+		formData.seccionCode = value;
+	}
 
 	function handleSubmit() {
 		// Validación básica
 		if (!formData.code) {
 			errorMessage = 'El código es requerido';
+			return;
+		}
+		if (!selectedModeloCode) {
+			errorMessage = 'Debes seleccionar un modelo';
+			return;
+		}
+		if (!selectedCapituloCode) {
+			errorMessage = 'Debes seleccionar un capítulo';
+			return;
+		}
+		if (!selectedSeccionCode) {
+			errorMessage = 'Debes seleccionar una sección';
 			return;
 		}
 		if (!formData.name) {
@@ -52,8 +125,13 @@
 		}
 
 		// Aquí podrías console.log o guardar los datos si quieres
-		console.log('Datos enviados (demo):', formData);
-		
+		console.log('Datos enviados (demo):', {
+			...formData,
+			modeloId: selectedModeloCode,
+			capituloId: selectedCapituloCode,
+			seccionId: selectedSeccionCode
+		});
+
 		// Limpiar formulario
 		formData = {
 			code: '',
@@ -61,12 +139,16 @@
 			description: '',
 			target: 0,
 			targetUnit: '',
-			indicadorType: ''
+			indicadorType: '',
+			seccionCode: ''
 		};
-		
+		selectedModeloCode = '';
+		selectedCapituloCode = '';
+		selectedSeccionCode = '';
+
 		// Limpiar mensaje de error
 		errorMessage = '';
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -79,8 +161,12 @@
 			description: '',
 			target: 0,
 			targetUnit: '',
-			indicadorType: ''
+			indicadorType: '',
+			seccionCode: ''
 		};
+		selectedModeloCode = '';
+		selectedCapituloCode = '';
+		selectedSeccionCode = '';
 		errorMessage = '';
 		onClose();
 	}
@@ -110,10 +196,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -121,7 +209,7 @@
 						{errorMessage}
 					</div>
 				{/if}
-				
+
 				<div class="form-fields">
 					<InputText
 						label="Código"
@@ -132,6 +220,36 @@
 						disabled={false}
 						bind:value={formData.code}
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
+					/>
+
+					<InputSelect
+						label="Modelo"
+						name="modelo"
+						optionsData={modeloOptions}
+						required={true}
+						bind:value={selectedModeloCode}
+						onChange={onModeloChange}
+					/>
+
+					<InputSelect
+						label="Capítulo"
+						name="capitulo"
+						optionsData={capituloOptions}
+						required={true}
+						bind:value={selectedCapituloCode}
+						onChange={onCapituloChange}
+						disabled={!selectedModeloCode}
+					/>
+
+					<InputSelect
+						label="Sección"
+						name="seccion"
+						optionsData={seccionOptions}
+						required={true}
+						bind:value={selectedSeccionCode}
+						onChange={onSeccionChange}
+						disabled={!selectedCapituloCode}
+						errors={errorMessage && !formData.seccionCode ? [errorMessage] : undefined}
 					/>
 
 					<InputText

@@ -11,14 +11,16 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 	import {
-		indicadorItemSchema,
+		indicadorFormSchema,
 		indicadorTypeOptions,
 		type IndicadorItem
 	} from '$lib/schemas/indicador.schema';
+	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
 
 	interface Props {
 		open: boolean;
 		selectedItem: IndicadorItem;
+		modeloFullRef: ModeloFullRef[];
 		onClose: () => void;
 	}
 
@@ -29,10 +31,19 @@
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
 	const { form, errors, enhance, tainted, isTainted, message, constraints } = superForm(
-		props.selectedItem,
+		{
+			id: props.selectedItem.id,
+			code: props.selectedItem.code,
+			name: props.selectedItem.name,
+			description: props.selectedItem.description,
+			seccionCode: props.selectedItem.section.code,
+			target: props.selectedItem.target,
+			targetUnit: props.selectedItem.targetUnit,
+			indicadorType: props.selectedItem.indicadorType
+		},
 		{
 			dataType: 'json',
-			validators: zod4(indicadorItemSchema),
+			validators: zod4(indicadorFormSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -61,6 +72,65 @@
 			handleClose();
 		}
 	}
+
+	// Estados para los selects
+	let selectedModeloCode = $state<string>('');
+	let selectedCapituloCode = $state<string>('');
+	let selectedSeccionCode = $state<string>('');
+
+	// Opciones de modelo (todos los modelos)
+	let modeloOptions = $derived(
+		props.modeloFullRef.map((item) => ({
+			id: item.code,
+			option: `${item.code} - ${item.name}`
+		}))
+	);
+
+	let capituloOptions = $derived(
+		!selectedModeloCode
+			? []
+			: (props.modeloFullRef
+					.find((m) => m.code === selectedModeloCode)
+					?.capitulos?.map((c) => ({
+						id: c.code,
+						option: `${c.code} - ${c.name || `Capítulo ${c.code}`}`
+					})) ?? [])
+	);
+
+	let seccionOptions = $derived(
+		!selectedModeloCode || !selectedCapituloCode
+			? []
+			: (props.modeloFullRef
+					.find((m) => m.code === selectedModeloCode)
+					?.capitulos?.find((c) => c.code === selectedCapituloCode)
+					?.secciones?.map((s) => ({
+						id: s?.code,
+						option: `${s?.code} - ${s?.name || `Sección ${s?.code}`}`
+					})) ?? [])
+	);
+
+	// Resetear selecciones cuando cambia el modelo
+	function onModeloChange(value: string) {
+		console.log("modelo changed!!");
+		selectedModeloCode = value;
+		console.log(selectedModeloCode, value);
+		selectedCapituloCode = '';
+		selectedSeccionCode = '';
+		$form.seccionCode = '';
+	}
+
+	// Resetear selección de sección cuando cambia el capítulo
+	function onCapituloChange(value: string) {
+		selectedCapituloCode = value;
+		selectedSeccionCode = '';
+		$form.seccionCode = '';
+	}
+
+	// Actualizar el valor del formulario cuando se selecciona una sección
+	function onSeccionChange(value: string) {
+		selectedSeccionCode = value;
+		$form.seccionCode = value;
+	}
 </script>
 
 <Modal bind:open closeOnEscape closeOnBackdropClick>
@@ -88,6 +158,37 @@
 					</div>
 				{/if}
 				<div class="form-fields">
+					<InputSelect
+						label="Modelo"
+						name="modelo"
+						optionsData={modeloOptions}
+						required={true}
+						bind:value={selectedModeloCode}
+						onChange={onModeloChange}
+					/>
+
+					<InputSelect
+						label="Capítulo"
+						name="capitulo"
+						optionsData={capituloOptions}
+						required={true}
+						bind:value={selectedCapituloCode}
+						onChange={onCapituloChange}
+						disabled={!selectedModeloCode}
+					/>
+
+					<InputSelect
+						label="Sección"
+						name="seccion"
+						optionsData={seccionOptions}
+						required={true}
+						bind:value={selectedSeccionCode}
+						onChange={onSeccionChange}
+						disabled={!selectedCapituloCode}
+						errors={$errors.seccionCode}
+						{...$constraints.seccionCode}
+					/>
+
 					<InputText
 						label="Nombre"
 						name="name"

@@ -16,12 +16,13 @@
 	import CrearIndicadorForm from '$lib/components/indicador/CrearIndicadorForm.svelte';
 	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getIndicador } from '$lib/stores/data.svelte';
+	import { getIndicador, getModeloFullRef } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
 	let indicadorItems = getIndicador();
+	let modeloFullRef = getModeloFullRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
 	/* LOGOUT */
@@ -93,12 +94,13 @@
 	></Indicador>
 
 	<!-- MODAL CREAR -->
-	<CrearIndicadorForm open={modal.isOpen('create')} onClose={modal.close} />
+	<CrearIndicadorForm open={modal.isOpen('create')} {modeloFullRef} onClose={modal.close} />
 
 	{#if modal.selectedItem}
 		<EditarIndicadorForm
-			open={modal.isOpen('delete')}
+			open={modal.isOpen('edit')}
 			selectedItem={modal.selectedItem}
+			{modeloFullRef}
 			onClose={modal.close}
 		/>
 

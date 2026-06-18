@@ -68,10 +68,9 @@ export const modeloFullRefSchema = modeloRefSchema.extend({
 	capitulos: z
 		.array(
 			capituloRefSchema.extend({
-				secciones: z.array(seccionRefSchema.optional())
+				secciones: z.array(seccionRefSchema)
 			})
 		)
-		.optional()
 });
 
 export type ModeloFullRef = z.infer<typeof modeloFullRefSchema>;
