@@ -15,13 +15,15 @@
 	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
-	import { getIndicador } from '$lib/stores/data.svelte';
-	import type { IndicadorRubricaItem, RubricaCriterioItem } from '$lib/schemas/rubrica.schema';
+	import { getIndicador, getModeloFullRef, getRubrica } from '$lib/stores/data.svelte';
+	import IndicadorRubricaManager from '$lib/components/indicador/rubrica/IndicadorRubricaManager.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let indicadorCode = page.params.indicadorCode;
 
-	let indicadorItems = getIndicador().filter(item => item.code === indicadorCode);
+	let indicadorItems = getIndicador().filter((item) => item.code === indicadorCode);
+	let rubricaItems = getRubrica().filter((item) => item.indicador.code === indicadorCode);
+	let modeloFullRef = getModeloFullRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
 	/* LOGOUT */
@@ -38,8 +40,6 @@
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<IndicadorItem>();
-		let modalRubrica = createModalManager<IndicadorRubricaItem>();
-	let modalRubricaCriterio = createModalManager<RubricaCriterioItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
@@ -62,24 +62,30 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 
-	<Indicador
-		gridArea="indicador"
-		showHeader={true}
-		title="Indicador"
-		subtitle={indicadorCode}
-		showDetailIcon={true}
-		{indicadorItems}
-		onClickEditar={modal.handlers('edit').onClickItem}
-		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
-		onClickRestaurar={modal.handlers('restore').onClickItem}
-		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
-	></Indicador>
+	<div class="main-panel">
+		<Indicador
+			gridArea="indicador"
+			showHeader={true}
+			title="Indicador"
+			subtitle={indicadorCode}
+			showDetailIcon={true}
+			{indicadorItems}
+			onClickEditar={modal.handlers('edit').onClickItem}
+			onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
+			onClickBorrar={modal.handlers('delete').onClickItem}
+			onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
+			onClickRestaurar={modal.handlers('restore').onClickItem}
+			onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
+		></Indicador>
 
+		<main class="detail-content">
+			<IndicadorRubricaManager gridArea="rubrica" items={rubricaItems} />
+		</main>
+	</div>
 	{#if modal.selectedItem}
 		<EditarIndicadorForm
 			open={modal.isOpen('edit')}
+			{modeloFullRef}
 			selectedItem={modal.selectedItem}
 			onClose={modal.close}
 		/>
@@ -106,11 +112,30 @@
 		grid-template-areas:
 			'header header'
 			'subheader subheader'
-			'navbar indicador'
+			'navbar main' /* ← solo un área "main", que ocupa las 2 filas */
 			'footer footer';
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
+	}
+
+	/* Este div ocupa el grid-area "main" del layout global */
+	.main-panel {
+		grid-area: main;
+		display: flex;
+		flex-direction: column;
+		min-height: 0; /* ← crítico: permite que flex respete el límite del grid */
+		overflow: auto; /* el panel en sí no scrollea */
+	}
+
+	.detail-content {
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1rem;
 	}
 </style>

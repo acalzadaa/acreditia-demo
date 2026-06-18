@@ -31,6 +31,7 @@ import campusAreaResponsableJsonData from '$lib/data/campus-area-responsable.jso
 import campusUnidadAcademicaJsonData from '$lib/data/campus-unidad-academica.json';
 
 import indicadorJsonData from '$lib/data/indicador.json';
+import rubricaJsonData from '$lib/data/rubrica.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -71,14 +72,8 @@ import {
 	type ModeloItem,
 	modeloItemSchema
 } from '$lib/schemas/modelo.schema';
-import {
-	capituloItemSchema,
-	type CapituloItem,
-} from '$lib/schemas/capitulo.schema';
-import {
-	seccionItemSchema,
-	type SeccionItem,
-} from '$lib/schemas/seccion.schema';
+import { capituloItemSchema, type CapituloItem } from '$lib/schemas/capitulo.schema';
+import { seccionItemSchema, type SeccionItem } from '$lib/schemas/seccion.schema';
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
 import {
 	evaluacionWithRelationsItemSchema,
@@ -110,6 +105,7 @@ import {
 	type AreaResponsableItem
 } from '$lib/schemas/areaResponsable.schema';
 import { indicadorItemSchema, type IndicadorItem } from '$lib/schemas/indicador.schema';
+import { rubricaItemSchema, type RubricaItem } from '$lib/schemas/rubrica.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -147,6 +143,7 @@ let evaluacion = $state<EvaluacionWithRelationsItem[]>([]);
 let etapa = $state<EtapaWithRelationsItem[]>([]);
 
 let indicador = $state<IndicadorItem[]>([]);
+let rubrica = $state<RubricaItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -226,8 +223,11 @@ evidencia = evidenciaRawData.map((item) => evidenciaItemSchema.parse(item));
 const evaluacionRawData = evaluacionJsonData.evaluacionItems;
 evaluacion = evaluacionRawData.map((item) => evaluacionWithRelationsItemSchema.parse(item));
 
-const indicadorRawData = indicadorJsonData.indicadorItem;
+const indicadorRawData = indicadorJsonData.indicadorItems;
 indicador = indicadorRawData.map((item) => indicadorItemSchema.parse(item));
+
+const rubricaRawData = rubricaJsonData.rubricaItems;
+rubrica = rubricaRawData.map((item) => rubricaItemSchema.parse(item));
 
 const etapaRawData = etapaJsonData.etapaItems;
 etapa = etapaRawData.map((item) => etapaWithRelationsItemSchema.parse(item));
@@ -416,4 +416,8 @@ export function getEtapa() {
 
 export function getIndicador() {
 	return indicador;
+}
+
+export function getRubrica() {
+	return rubrica;
 }
