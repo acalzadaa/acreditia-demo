@@ -11,17 +11,17 @@
 	import EditarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/EditarObjetivoEstrategicoForm.svelte';
 	import { goto } from '$app/navigation';
 	import { auth } from '$lib/stores/auth.svelte';
-	import { getObjetivos, getPlaneaciones } from '$lib/stores/data.svelte';
+	import { getObjetivoEstrategico, getPlaneacion } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import BorrarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/BorrarObjetivoEstrategicoForm.svelte';
 	import RestaurarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/RestaurarObjetivoEstrategicoForm.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let objetivoEstrategicoItems = getObjetivos().filter((item) => item.isCurrent);
+	let objetivoEstrategicoItems = getObjetivoEstrategico().filter((item) => item.isCurrent);
 	let navigationItems = $derived(page.data.navigationItems);
 
-	let planeaciones = getPlaneaciones().filter((item) => item.isCurrent && !item.isDeleted);
+	let planeaciones = getPlaneacion().filter((item) => item.isCurrent && !item.isDeleted);
 
 	let itemSeleccionado: ObjetivoEstrategicoWithPlaneacionItem | null = $state(null);
 

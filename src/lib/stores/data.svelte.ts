@@ -1,7 +1,7 @@
 import filosofiaJsonData from '$lib/data/filosofia-institucional.json';
 import planeacionJsonData from '$lib/data/planeacion-estrategica.json';
-import objetivoJsonData from '$lib/data/objetivo-estrategico.json';
-import indicadorJsonData from '$lib/data/indicador-estrategico.json';
+import objetivoEstrategicoJsonData from '$lib/data/objetivo-estrategico.json';
+import indicadorEstrategicoJsonData from '$lib/data/indicador-estrategico.json';
 
 import normativaJsonData from '$lib/data/normativa.json';
 
@@ -21,6 +21,7 @@ import areaResponsableJsonData from '$lib/data/area-responsable.json';
 import modeloJsonData from '$lib/data/modelo.json';
 import capituloJsonData from '$lib/data/capitulo.json';
 import seccionJsonData from '$lib/data/seccion.json';
+import modeloFullRefJsonData from '$lib/data/modelo-full-ref.json';
 
 import evidenciaJsonData from '$lib/data/evidencia.json';
 import evaluacionJsonData from '$lib/data/evaluacion.json';
@@ -29,21 +30,23 @@ import etapaJsonData from '$lib/data/etapa.json';
 import campusAreaResponsableJsonData from '$lib/data/campus-area-responsable.json';
 import campusUnidadAcademicaJsonData from '$lib/data/campus-unidad-academica.json';
 
+import indicadorJsonData from '$lib/data/indicador.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
 } from '$lib/schemas/filosofiaInstitucional.schema';
 import {
-	objetivoEstrategicoWithPlaneacionItemSchema,
-	type ObjetivoEstrategicoWithPlaneacionItem
+	objetivoEstrategicoItemSchema,
+	type ObjetivoEstrategicoItem
 } from '$lib/schemas/objetivoEstrategico.schema';
 import {
 	planeacionEstrategicaWithFilosofiaItemSchema,
 	type PlaneacionEstrategicaWithFilosofiaItem
 } from '$lib/schemas/planeacionEstrategica.schema';
 import {
-	indicadorEstrategicoWithObjetivoItemSchema,
-	type IndicadorEstrategicoWithObjetivoItem
+	indicadorEstrategicoItemSchema,
+	type IndicadorEstrategicoItem
 } from '$lib/schemas/indicadorEstrategico.schema';
 import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 import { entidadLegalItemSchema, type EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
@@ -62,14 +65,19 @@ import {
 	type AreaFuncionalWithRelationsItem
 } from '$lib/schemas/areaFuncional.schema';
 
-import { type ModeloItem, modeloItemSchema } from '$lib/schemas/modelo.schema';
 import {
-	capituloWithModeloItemSchema,
-	type CapituloWithModeloItem
+	type ModeloFullRef,
+	modeloFullRefSchema,
+	type ModeloItem,
+	modeloItemSchema
+} from '$lib/schemas/modelo.schema';
+import {
+	capituloItemSchema,
+	type CapituloItem,
 } from '$lib/schemas/capitulo.schema';
 import {
-	seccionWithCapituloItemSchema,
-	type SeccionWithCapituloItem
+	seccionItemSchema,
+	type SeccionItem,
 } from '$lib/schemas/seccion.schema';
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
 import {
@@ -98,15 +106,16 @@ import {
 } from '$lib/schemas/regionCampus.schema';
 import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
 import {
-	areaResponsableWithRelationsItemSchema,
-	type AreaResponsableWithRelationsItem
+	areaResponsableItemSchema,
+	type AreaResponsableItem
 } from '$lib/schemas/areaResponsable.schema';
+import { indicadorItemSchema, type IndicadorItem } from '$lib/schemas/indicador.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
 let planeaciones = $state<PlaneacionEstrategicaWithFilosofiaItem[]>([]);
-let objetivos = $state<ObjetivoEstrategicoWithPlaneacionItem[]>([]);
-let indicadores = $state<IndicadorEstrategicoWithObjetivoItem[]>([]);
+let objetivoEstrategico = $state<ObjetivoEstrategicoItem[]>([]);
+let indicadorEstrategico = $state<IndicadorEstrategicoItem[]>([]);
 
 let normativas = $state<NormativaItem[]>([]);
 
@@ -124,19 +133,22 @@ let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
 
 let puesto = $state<PuestoItem[]>([]);
 
-let areaResponsable = $state<AreaResponsableWithRelationsItem[]>([]);
+let areaResponsable = $state<AreaResponsableItem[]>([]);
 let areaFuncional = $state<AreaFuncionalWithRelationsItem[]>([]);
 
 let modelo = $state<ModeloItem[]>([]);
-let capitulo = $state<CapituloWithModeloItem[]>([]);
-let seccion = $state<SeccionWithCapituloItem[]>([]);
+let capitulo = $state<CapituloItem[]>([]);
+let seccion = $state<SeccionItem[]>([]);
+let modeloFullRef = $state<ModeloFullRef[]>([]);
 
 let evidencia = $state<EvidenciaItem[]>([]);
 
 let evaluacion = $state<EvaluacionWithRelationsItem[]>([]);
 let etapa = $state<EtapaWithRelationsItem[]>([]);
 
-const filosofiaRawData = filosofiaJsonData['filosofia-institucional'];
+let indicador = $state<IndicadorItem[]>([]);
+
+const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
 
 const planeacionesRawData = planeacionJsonData['planeacion-estrategica'];
@@ -144,12 +156,14 @@ planeaciones = planeacionesRawData.map((item) =>
 	planeacionEstrategicaWithFilosofiaItemSchema.parse(item)
 );
 
-const objetivosRawData = objetivoJsonData['objetivos-estrategicos'];
-objetivos = objetivosRawData.map((item) => objetivoEstrategicoWithPlaneacionItemSchema.parse(item));
+const objetivoEstrategicoRawData = objetivoEstrategicoJsonData.objetivoEstrategicosItem;
+objetivoEstrategico = objetivoEstrategicoRawData.map((item) =>
+	objetivoEstrategicoItemSchema.parse(item)
+);
 
-const indicadoresRawData = indicadorJsonData['indicadores-estrategicos'];
-indicadores = indicadoresRawData.map((item) =>
-	indicadorEstrategicoWithObjetivoItemSchema.parse(item)
+const indicadorEstrategicoRawData = indicadorEstrategicoJsonData.indicadorEstrategicoItem;
+indicadorEstrategico = indicadorEstrategicoRawData.map((item) =>
+	indicadorEstrategicoItemSchema.parse(item)
 );
 
 const normativasRawData = normativaJsonData['normativas'];
@@ -192,18 +206,19 @@ areaFuncional = areaFuncionalRawData.map((item) =>
 );
 
 const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;
-areaResponsable = areaResponsableRawData.map((item) =>
-	areaResponsableWithRelationsItemSchema.parse(item)
-);
+areaResponsable = areaResponsableRawData.map((item) => areaResponsableItemSchema.parse(item));
 
 const modeloRawData = modeloJsonData.modeloItems;
 modelo = modeloRawData.map((item) => modeloItemSchema.parse(item));
 
+const modeloFullRefRawData = modeloFullRefJsonData.modeloFullRefItems;
+modeloFullRef = modeloFullRefRawData.map((item) => modeloFullRefSchema.parse(item));
+
 const capituloRawData = capituloJsonData.capituloItems;
-capitulo = capituloRawData.map((item) => capituloWithModeloItemSchema.parse(item));
+capitulo = capituloRawData.map((item) => capituloItemSchema.parse(item));
 
 const seccionRawData = seccionJsonData.seccionItems;
-seccion = seccionRawData.map((item) => seccionWithCapituloItemSchema.parse(item));
+seccion = seccionRawData.map((item) => seccionItemSchema.parse(item));
 
 const evidenciaRawData = evidenciaJsonData.evidenciaItems;
 evidencia = evidenciaRawData.map((item) => evidenciaItemSchema.parse(item));
@@ -211,27 +226,30 @@ evidencia = evidenciaRawData.map((item) => evidenciaItemSchema.parse(item));
 const evaluacionRawData = evaluacionJsonData.evaluacionItems;
 evaluacion = evaluacionRawData.map((item) => evaluacionWithRelationsItemSchema.parse(item));
 
+const indicadorRawData = indicadorJsonData.indicadorItem;
+indicador = indicadorRawData.map((item) => indicadorItemSchema.parse(item));
+
 const etapaRawData = etapaJsonData.etapaItems;
 etapa = etapaRawData.map((item) => etapaWithRelationsItemSchema.parse(item));
 
 // Helpers
-export function getFilosofias() {
+export function getFilosofia() {
 	return filosofias;
 }
 
-export function getPlaneaciones() {
+export function getPlaneacion() {
 	return planeaciones;
 }
 
-export function getObjetivos() {
-	return objetivos;
+export function getObjetivoEstrategico() {
+	return objetivoEstrategico;
 }
 
-export function getIndicadores() {
-	return indicadores;
+export function getIndicadorEstrategico() {
+	return indicadorEstrategico;
 }
 
-export function getNormativas() {
+export function getNormativa() {
 	return normativas;
 }
 
@@ -299,14 +317,6 @@ export function getUnidadAcademica() {
 	return unidadAcademica;
 }
 
-export function getUnidadAcademicaRef() {
-	return unidadAcademica.map((item) => ({
-		id: item.id,
-		code: item.code,
-		name: item.name
-	}));
-}
-
 export function getPuesto() {
 	return puesto;
 }
@@ -356,6 +366,10 @@ export function getModeloRef() {
 	}));
 }
 
+export function getModeloFullRef() {
+	return modeloFullRef;
+}
+
 export function getCapitulo() {
 	return capitulo;
 }
@@ -398,4 +412,8 @@ export function getEvaluacion() {
 
 export function getEtapa() {
 	return etapa;
+}
+
+export function getIndicador() {
+	return indicador;
 }

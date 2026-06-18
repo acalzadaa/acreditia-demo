@@ -6,12 +6,12 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
 		areaResponsableFormSchema,
-		type AreaResponsableWithRelationsItem
+		type AreaResponsableItem
 	} from '$lib/schemas/areaResponsable.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: AreaResponsableWithRelationsItem;
+		selectedItem: AreaResponsableItem;
 		onClose: () => void;
 	}
 
@@ -24,11 +24,12 @@
 	const { form, enhance } = superForm(
 		{
 			id: props.selectedItem.id,
-			puestoId: props.selectedItem.puestoId,
+			puestoId: props.selectedItem.puesto.id,
 			code: props.selectedItem.code,
 			name: props.selectedItem.name,
 			description: props.selectedItem.description,
-			parentId: props.selectedItem.parentId ?? '',
+			institucionId: props.selectedItem.institucion.id,
+			parentId: props.selectedItem.parent?.id ?? '',
 			createdBy: props.selectedItem.createdBy
 		},
 		{

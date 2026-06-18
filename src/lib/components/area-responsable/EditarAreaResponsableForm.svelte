@@ -10,14 +10,15 @@
 	import Icon from '../ui/Icon.svelte';
 	import {
 		areaResponsableFormSchema,
-		type AreaResponsableWithRelationsItem
+		type AreaResponsableItem
 	} from '$lib/schemas/areaResponsable.schema';
-	import type { AreaResponsableRef, PuestoRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, InstitucionRef, PuestoRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: AreaResponsableWithRelationsItem;
+		selectedItem: AreaResponsableItem;
 		puestoRef: PuestoRef[];
+		institucionRef: InstitucionRef[];
 		areaResponsableRef: AreaResponsableRef[];
 		onClose: () => void;
 	}
@@ -26,6 +27,13 @@
 
 	const puestoOptions = $derived(
 		props.puestoRef?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
+	);
+
+	let institucionOptions = $derived(
+		props.institucionRef?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		})) ?? []
@@ -45,11 +53,12 @@
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
 		{
 			id: props.selectedItem.id,
-			puestoId: props.selectedItem.puestoId,
+			puestoId: props.selectedItem.puesto.id,
 			code: props.selectedItem.code,
 			name: props.selectedItem.name,
 			description: props.selectedItem.description,
-			parentId: props.selectedItem.parentId ?? '',
+			institucionId: props.selectedItem.institucion.id,
+			parentId: props.selectedItem.parent?.id ?? '',
 			createdBy: props.selectedItem.createdBy
 		},
 		{
@@ -113,6 +122,16 @@
 
 				<div class="form-fields">
 					<InputSelect
+						label="Institucion"
+						name="institucionId"
+						optionsData={institucionOptions}
+						required={true}
+						bind:value={$form.institucionId}
+						errors={$errors.institucionId}
+						{...$constraints.institucionId}
+					/>
+
+					<InputSelect
 						label="Puesto"
 						name="puestoId"
 						optionsData={puestoOptions}
@@ -147,7 +166,6 @@
 						optionsData={areaResponsableOptions}
 						required={true}
 						bind:value={$form.parentId}
-						nullOption="Ninguno (es un elemento raiz)"
 						errors={$errors.parentId}
 						{...$constraints.parentId}
 					/>

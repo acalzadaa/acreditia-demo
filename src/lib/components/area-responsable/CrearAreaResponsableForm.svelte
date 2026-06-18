@@ -6,12 +6,13 @@
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { AreaResponsableRef, PuestoRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, InstitucionRef, PuestoRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
 		puestoRef: PuestoRef[];
 		areaResponsableRef: AreaResponsableRef[];
+		institucionRef: InstitucionRef[];
 		onClose: () => void;
 	}
 
@@ -20,6 +21,7 @@
 	// Estado local del formulario
 	let formData = $state({
 		puestoId: '',
+		institucionId: '',
 		code: '',
 		name: '',
 		description: '',
@@ -34,6 +36,13 @@
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		}))
+	);
+
+	let institucionOptions = $derived(
+		props.institucionRef?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
 	);
 
 	const areaResponsableOptions = $derived(
@@ -74,6 +83,7 @@
 		// Limpiar formulario
 		formData = {
 			puestoId: '',
+			institucionId: '',
 			code: '',
 			name: '',
 			description: '',
@@ -91,6 +101,7 @@
 		// Limpiar estado al cerrar
 		formData = {
 			puestoId: '',
+			institucionId: '',
 			code: '',
 			name: '',
 			description: '',
@@ -139,6 +150,15 @@
 							{errorMessage}
 						</div>
 					{/if}
+
+					<InputSelect
+						label="Institucion"
+						name="institucionId"
+						optionsData={institucionOptions}
+						required={true}
+						bind:value={formData.institucionId}
+						errors={errorMessage && !formData.institucionId ? [errorMessage] : undefined}
+					/>
 
 					<InputSelect
 						label="Puesto"

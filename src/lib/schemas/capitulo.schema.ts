@@ -9,11 +9,22 @@ import { modeloItemSchema } from './modelo.schema';
 
 export const capituloFormSchema = z.object({
 	id: z.uuid().optional(),
-	modeloId: z.uuid('El ID del modelo debe ser un UUID válido'),
+	modeloCode: z
+		.string()
+		.min(3, 'Code debe tener al menos 3 caracteres')
+		.max(100, 'Code no puede exceder 100 caracteres')
+		.regex(
+			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
+		),
 	code: z
 		.string()
-		.min(1, 'El código debe tener al menos 1 caracter')
-		.max(50, 'El código debe tener máximo 50 caracteres'),
+		.min(3, 'Code debe tener al menos 3 caracteres')
+		.max(100, 'Code no puede exceder 100 caracteres')
+		.regex(
+			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
+		),
 	name: z
 		.string()
 		.min(1, 'El nombre es obligatorio')
@@ -32,12 +43,12 @@ export type CapituloForm = z.infer<typeof capituloFormSchema>;
 
 export const capituloItemSchema = z.object({
 	id: z.uuid(),
-	modeloId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
 	content: z.string(),
 	order: z.number(),
+	modelo: modeloRefSchema,
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -63,22 +74,10 @@ export type CalidadCapituloConfig = z.infer<typeof capituloConfigSchema>;
 // Cuando necesitas incluir las relaciones
 // ============================================
 
-// Capítulo con su modelo padre
-export const capituloWithModeloItemSchema = capituloItemSchema.extend({
-	modelo: modeloRefSchema.nullable()
+export const capituloWithRelationsItemSchema = capituloItemSchema.extend({
+	modelo: modeloItemSchema
 });
-export type CapituloWithModeloItem = z.infer<typeof capituloWithModeloItemSchema>;
-
-// Capítulo con sus secciones
-export const capituloWithSeccionesSchema = capituloItemSchema.extend({
-	secciones: z.array(z.object({
-		id: z.uuid(),
-		code: z.string(),
-		name: z.string(),
-		orden: z.number()
-	})).optional()
-});
-export type CapituloWithSecciones = z.infer<typeof capituloWithSeccionesSchema>;
+export type CapituloWithRelationsItem = z.infer<typeof capituloWithRelationsItemSchema>;
 
 // Capítulo completo (modelo + secciones)
 export const capituloFullSchema = capituloItemSchema.extend({
