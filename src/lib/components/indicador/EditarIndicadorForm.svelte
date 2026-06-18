@@ -10,7 +10,11 @@
 
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
-	import { indicadorItemSchema, indicadorTypeOptions, type IndicadorItem } from '$lib/schemas/indicador.schema';
+	import {
+		indicadorItemSchema,
+		indicadorTypeOptions,
+		type IndicadorItem
+	} from '$lib/schemas/indicador.schema';
 
 	interface Props {
 		open: boolean;
@@ -84,17 +88,6 @@
 					</div>
 				{/if}
 				<div class="form-fields">
-					<InputText
-						label="Código"
-						name="code"
-						required={true}
-						placeholder="PE-001"
-						status={$errors.code ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.code}
-						errors={$errors.code}
-					/>
-
 					<InputText
 						label="Nombre"
 						name="name"

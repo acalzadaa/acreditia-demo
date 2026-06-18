@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { PageProps } from './$types';
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
@@ -14,17 +13,20 @@
 	import BorrarIndicadorForm from '$lib/components/indicador/BorrarIndicadorForm.svelte';
 	import RestaurarIndicadorForm from '$lib/components/indicador/RestaurarIndicadorForm.svelte';
 	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
+	import { auth } from '$lib/stores/auth.svelte';
+	import { page } from '$app/state';
+	import { getIndicador } from '$lib/stores/data.svelte';
+	import type { IndicadorRubricaItem, RubricaCriterioItem } from '$lib/schemas/rubrica.schema';
 
-	let { data }: PageProps = $props();
-	let username = $derived(data.user?.name || data.user?.email?.split('@')[0] || 'Usuario');
+	let username = auth.user?.email?.split('@')[0] || 'Usuario';
+	let indicadorCode = page.params.indicadorCode;
 
-	let indicadorItems = $derived(data.indicadorItems);
-	let indicadorCode = $derived(data.indicadorCode);
-	let navigationItems = $derived(data.navigationItems);
+	let indicadorItems = getIndicador().filter(item => item.code === indicadorCode);
+	let navigationItems = $derived(page.data.navigationItems);
 
 	/* LOGOUT */
 	async function onClickLogout() {
-		await authClient.signOut();
+		await auth.logout();
 		goto(resolve('/login'), { replaceState: true });
 	}
 
@@ -36,13 +38,15 @@
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<IndicadorItem>();
+		let modalRubrica = createModalManager<IndicadorRubricaItem>();
+	let modalRubricaCriterio = createModalManager<RubricaCriterioItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
 
 <div class="app-grid">
 	<Header
-		isLoggedIn={!!data.user}
+		isLoggedIn={!!auth.user}
 		{username}
 		{onClickLogout}
 		onKeydownLogout={(e) => onKeydownLogout(e)}
@@ -75,7 +79,7 @@
 
 	{#if modal.selectedItem}
 		<EditarIndicadorForm
-			open={modal.isOpen('delete')}
+			open={modal.isOpen('edit')}
 			selectedItem={modal.selectedItem}
 			onClose={modal.close}
 		/>
@@ -102,11 +106,10 @@
 		grid-template-areas:
 			'header header'
 			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
+			'navbar indicador'
 			'footer footer';
 		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
+		grid-template-rows: auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
 	}
