@@ -9,6 +9,7 @@
 		| 'chevron-right'
 		| 'home'
 		| 'add'
+		| 'add-list'
 		| 'filter'
 		| 'export'
 		| 'edit'
