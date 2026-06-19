@@ -19,6 +19,7 @@
 		getIndicador,
 		getIndicadorAreaFuncional,
 		getIndicadorAreaResponsable,
+		getIndicadorIndicadorEstrategico,
 		getIndicadorNormativa,
 		getModeloFullRef,
 		getRubrica
@@ -27,6 +28,7 @@
 	import IndicadorAreaResponsableManager from '$lib/components/indicador/area-responsable/IndicadorAreaResponsableManager.svelte';
 	import IndicadorAreaFuncionalManager from '$lib/components/indicador/area-funcional/IndicadorAreaFuncionalManager.svelte';
 	import IndicadorNormativaManager from '$lib/components/indicador/normativa/IndicadorNormativaManager.svelte';
+	import IndicadorIndicadorEstrategicoManager from '$lib/components/indicador/indicador-estrategico/IndicadorIndicadorEstrategicoManager.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let indicadorCode = page.params.indicadorCode;
@@ -36,8 +38,10 @@
 	let indicadorAreaResponsableItems = getIndicadorAreaResponsable().filter(
 		(item) => item.indicador.code === indicadorCode
 	);
-	let indicadorAreaFuncionalItems = getIndicadorAreaFuncional();
-	let indicadorNormativaItems = getIndicadorNormativa();
+
+	let indicadorAreaFuncionalItems = getIndicadorAreaFuncional().filter(item=> item.indicador.code === indicadorCode);
+	let indicadorNormativaItems = getIndicadorNormativa().filter(item => item.indicador.code === indicadorCode);
+	let indicadorIndicadorEstrategicoItems = getIndicadorIndicadorEstrategico().filter(item => item.indicador.code === indicadorCode);
 	let modeloFullRef = getModeloFullRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
@@ -98,6 +102,7 @@
 			<IndicadorAreaResponsableManager items={indicadorAreaResponsableItems} />
 			<IndicadorAreaFuncionalManager items={indicadorAreaFuncionalItems} />
 			<IndicadorNormativaManager items={indicadorNormativaItems} />
+			<IndicadorIndicadorEstrategicoManager items={indicadorIndicadorEstrategicoItems} />
 		</main>
 	</div>
 	{#if modal.selectedItem}

@@ -1,0 +1,46 @@
+{
+    "indicadorIndicadorEstrategicoItems": [
+        {
+            "id": "55bbcf82-8cf4-4081-ae48-45bb4949efd3",
+            "code": "ind-001-NOR-AC-001",
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "indicadorEstrategico": {
+                "id": "1800bfb3-ce76-467f-b983-c282cef417da",
+                "code": "IE-001",
+                "name": "Porcentaje de avance en implementación del sistema de acreditación"
+            },
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-15T10:30:00Z",
+            "createdBy": "planeacion@universidad.edu"
+        },
+        {
+            "id": "3b25f44a-1419-472f-86d6-3e34338a1d94",
+            "code": "ind-001-NOR-DOC-002",
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "indicadorEstrategico": {
+                "id": "00290c8e-2ca9-4f83-97d9-a935f333db66",
+                "code": "IE-002",
+                "name": "Porcentaje de docentes capacitados en evaluación por competencias"
+            },
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-15T10:30:00Z",
+            "createdBy": "planeacion@universidad.edu"
+        }
+    ]
+}
