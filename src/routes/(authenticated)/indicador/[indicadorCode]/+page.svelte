@@ -19,12 +19,14 @@
 		getIndicador,
 		getIndicadorAreaFuncional,
 		getIndicadorAreaResponsable,
+		getIndicadorNormativa,
 		getModeloFullRef,
 		getRubrica
 	} from '$lib/stores/data.svelte';
 	import IndicadorRubricaManager from '$lib/components/indicador/rubrica/IndicadorRubricaManager.svelte';
 	import IndicadorAreaResponsableManager from '$lib/components/indicador/area-responsable/IndicadorAreaResponsableManager.svelte';
 	import IndicadorAreaFuncionalManager from '$lib/components/indicador/area-funcional/IndicadorAreaFuncionalManager.svelte';
+	import IndicadorNormativaManager from '$lib/components/indicador/normativa/IndicadorNormativaManager.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let indicadorCode = page.params.indicadorCode;
@@ -35,7 +37,7 @@
 		(item) => item.indicador.code === indicadorCode
 	);
 	let indicadorAreaFuncionalItems = getIndicadorAreaFuncional();
-
+	let indicadorNormativaItems = getIndicadorNormativa();
 	let modeloFullRef = getModeloFullRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
@@ -95,6 +97,7 @@
 			<IndicadorRubricaManager gridArea="rubrica" items={rubricaItems} />
 			<IndicadorAreaResponsableManager items={indicadorAreaResponsableItems} />
 			<IndicadorAreaFuncionalManager items={indicadorAreaFuncionalItems} />
+			<IndicadorNormativaManager items={indicadorNormativaItems} />
 		</main>
 	</div>
 	{#if modal.selectedItem}

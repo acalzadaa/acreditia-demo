@@ -103,3 +103,11 @@ export const evaluacionRefSchema = z.object({
 	name: z.string()
 });
 export type EvaluacionRef = z.infer<typeof evaluacionRefSchema>;
+
+export const normativaRefSchema = z.object({
+	id: z.uuid(),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido')
+});
+
+export type NormativaRef = z.infer<typeof normativaRefSchema>;
