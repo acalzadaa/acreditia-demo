@@ -1,0 +1,46 @@
+{
+    "indicadorNormativaItems": [
+        {
+            "id": "55bbcf82-8cf4-4081-ae48-45bb4949efd3",
+            "code": "ind-001-NOR-AC-001",
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "normativa": {
+                "id": "f7281376-c375-43cc-89b7-9dfdda229a5b",
+                "code": "NOR-AC-001",
+                "name": "Reglamento General del Sistema de Autoevaluación y Aseguramiento de la Calidad"
+            },
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-15T10:30:00Z",
+            "createdBy": "planeacion@universidad.edu"
+        },
+        {
+            "id": "3b25f44a-1419-472f-86d6-3e34338a1d94",
+            "code": "ind-001-NOR-DOC-002",
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "normativa": {
+                "id": "72066273-e838-4a9f-9780-f6a7dbffc79d",
+                "code": "NOR-DOC-002",
+                "name": "Política Institucional de Formación y Evaluación Docente por Competencias"
+            },
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-15T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-15T10:30:00Z",
+            "createdBy": "planeacion@universidad.edu"
+        }
+    ]
+}

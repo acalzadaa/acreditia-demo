@@ -35,6 +35,7 @@ import rubricaJsonData from '$lib/data/rubrica.json';
 
 import indicadorAreaResponsableJsonData from '$lib/data/indicador-area-responsable.json';
 import indicadorAreaFuncionalJsonData from '$lib/data/indicador-area-funcional.json';
+import indicadorNormativaJsonData from '$lib/data/indicador-normativa.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -113,7 +114,11 @@ import {
 	indicadorAreaResponsableItemSchema,
 	type IndicadorAreaResponsableItem
 } from '$lib/schemas/indicadorAreaResponsable';
-import { indicadorAreaFuncionalItemSchema, type IndicadorAreaFuncionalItem } from '$lib/schemas/indicadorAreaFuncional';
+import {
+	indicadorAreaFuncionalItemSchema,
+	type IndicadorAreaFuncionalItem
+} from '$lib/schemas/indicadorAreaFuncional';
+import { indicadorNormativaItemSchema, type IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -154,6 +159,7 @@ let indicador = $state<IndicadorItem[]>([]);
 let rubrica = $state<RubricaItem[]>([]);
 let indicadorAreaResponsable = $state<IndicadorAreaResponsableItem[]>([]);
 let indicadorAreaFuncional = $state<IndicadorAreaFuncionalItem[]>([]);
+let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -248,10 +254,14 @@ indicadorAreaResponsable = indicadorAreaResponsableRawData.map((item) =>
 	indicadorAreaResponsableItemSchema.parse(item)
 );
 
-const indicadorAreaFuncionalRawData =
-	indicadorAreaFuncionalJsonData.indicadorAreaFuncionalItems;
+const indicadorAreaFuncionalRawData = indicadorAreaFuncionalJsonData.indicadorAreaFuncionalItems;
 indicadorAreaFuncional = indicadorAreaFuncionalRawData.map((item) =>
 	indicadorAreaFuncionalItemSchema.parse(item)
+);
+
+const indicadorNormativaRawData = indicadorNormativaJsonData.indicadorNormativaItems;
+indicadorNormativa = indicadorNormativaRawData.map((item) =>
+	indicadorNormativaItemSchema.parse(item)
 );
 
 // Helpers
@@ -450,4 +460,8 @@ export function getIndicadorAreaResponsable() {
 
 export function getIndicadorAreaFuncional() {
 	return indicadorAreaFuncional;
+}
+
+export function getIndicadorNormativa() {
+	return indicadorNormativa;
 }
