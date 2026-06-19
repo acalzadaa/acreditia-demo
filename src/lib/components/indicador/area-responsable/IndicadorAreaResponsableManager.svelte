@@ -32,7 +32,7 @@
 			/>
 			<h3 class="text-h6">Area responsable</h3>
 			{#if items && items.length > 0}
-				<Badge variant="info">{items.length} {items.length === 1 ? 'grupo' : 'grupos'}</Badge>
+				<Badge variant="info">{items.length} {items.length === 1 ? 'elemento' : 'elementos'}</Badge>
 			{/if}
 		</div>
 		{#if cardExpand.value}
@@ -41,7 +41,7 @@
 				size="md"
 				shape="round"
 				variant="outline"
-				tooltipLabel="Agregar grupo"
+				tooltipLabel="Agregar area responsable"
 				onClick={modalAreaResponsable.handlers('add').onclick}
 				onKeydown={(e) => modalAreaResponsable.handlers('add').onkeydown(e)}
 			/>

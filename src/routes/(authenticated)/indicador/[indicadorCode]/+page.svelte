@@ -15,16 +15,27 @@
 	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
-	import { getIndicador, getIndicadorAreaResponsable, getModeloFullRef, getRubrica } from '$lib/stores/data.svelte';
+	import {
+		getIndicador,
+		getIndicadorAreaFuncional,
+		getIndicadorAreaResponsable,
+		getModeloFullRef,
+		getRubrica
+	} from '$lib/stores/data.svelte';
 	import IndicadorRubricaManager from '$lib/components/indicador/rubrica/IndicadorRubricaManager.svelte';
 	import IndicadorAreaResponsableManager from '$lib/components/indicador/area-responsable/IndicadorAreaResponsableManager.svelte';
+	import IndicadorAreaFuncionalManager from '$lib/components/indicador/area-funcional/IndicadorAreaFuncionalManager.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let indicadorCode = page.params.indicadorCode;
 
 	let indicadorItems = getIndicador().filter((item) => item.code === indicadorCode);
 	let rubricaItems = getRubrica().filter((item) => item.indicador.code === indicadorCode);
-	let indicadorAreaResponsableItems = getIndicadorAreaResponsable().filter(item=> item.indicador.code === indicadorCode);
+	let indicadorAreaResponsableItems = getIndicadorAreaResponsable().filter(
+		(item) => item.indicador.code === indicadorCode
+	);
+	let indicadorAreaFuncionalItems = getIndicadorAreaFuncional();
+
 	let modeloFullRef = getModeloFullRef();
 	let navigationItems = $derived(page.data.navigationItems);
 
@@ -82,9 +93,9 @@
 
 		<main class="detail-content">
 			<IndicadorRubricaManager gridArea="rubrica" items={rubricaItems} />
-			<IndicadorAreaResponsableManager items={indicadorAreaResponsableItems}/>
+			<IndicadorAreaResponsableManager items={indicadorAreaResponsableItems} />
+			<IndicadorAreaFuncionalManager items={indicadorAreaFuncionalItems} />
 		</main>
-
 	</div>
 	{#if modal.selectedItem}
 		<EditarIndicadorForm
