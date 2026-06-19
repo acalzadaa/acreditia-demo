@@ -56,21 +56,21 @@
 	{#if cardExpand.value}
 		<div class="card-body">
 			{#if sortedItems && sortedItems.length > 0}
-				<div class="rubrica-grid">
+				<div class="element-grid">
 					{#each sortedItems as item, index (item.id)}
 						<article
-							class="rubrica-item"
-							class:rubrica-item--bordered={index < sortedItems.length - 1}
+							class="element-item"
+							class:element-item--bordered={index < sortedItems.length - 1}
 						>
-							<header class="rubrica-item__header">
-								<div class="rubrica-item__heading">
+							<header class="element-item__header">
+								<div class="element-item__heading">
 									<Badge variant={rangoBadgeVariant(item)}>
 										{item.rangeStart} – {item.rangeEnd}
 									</Badge>
-									<span class="rubrica-item__code text-caption-small">{item.code}</span>
+									<span class="element-item__code text-caption-small">{item.code}</span>
 								</div>
 
-								<div class="rubrica-item__actions">
+								<div class="element-item__actions">
 									<IconButton
 										name="add"
 										size="sm"
@@ -102,17 +102,17 @@
 							</header>
 
 							{#if item.criterios.length > 0}
-								<ul class="rubrica-item__criterios text-body-small">
+								<ul class="element-item__childs text-body-small">
 									{#each item.criterios as criterio (criterio.id ?? criterio.descripcion)}
-										<li class="rubrica-item__criterio">
-											<span class="rubrica-item__criterio-dot" aria-hidden="true"></span>
-											<span class="rubrica-item__criterio-text">{criterio.descripcion}</span>
+										<li class="element-item__child">
+											<span class="element-item__child-dot" aria-hidden="true"></span>
+											<span class="element-item__child-text">{criterio.descripcion}</span>
 											<IconButton
 												name="delete"
 												size="sm"
 												shape="square"
 												variant="ghost"
-												class="rubrica-item__criterio-delete"
+												class="element-item__child-delete"
 												tooltipLabel="Eliminar criterio"
 												onClick={() => modalCriterio.handlers('delete').onClickItem(item)}
 												onKeydown={(e) => modalCriterio.handlers('delete').onKeydownItem(e, item)}
@@ -121,7 +121,7 @@
 									{/each}
 								</ul>
 							{:else}
-								<p class="rubrica-item__empty text-body-small">Sin criterios definidos</p>
+								<p class="element-item__empty text-body-small">Sin criterios definidos</p>
 							{/if}
 						</article>
 					{/each}
@@ -145,6 +145,7 @@
 		border: var(--border-card);
 		border-radius: var(--border-radius-card);
 		box-shadow: var(--shadow-card);
+		flex-shrink: 0;
 	}
 
 	.card-header {
@@ -174,52 +175,52 @@
 
 	/*
 	 * Lista vertical de grupos. Cada grupo se separa del siguiente
-	 * con un divisor sutil (rubrica-item--bordered), no con cajas
+	 * con un divisor sutil (element-item--bordered), no con cajas
 	 * anidadas: la card ya delimita el conjunto completo, así que
 	 * los grupos solo necesitan un separador entre ellos.
 	 */
-	.rubrica-grid {
+	.element-grid {
 		display: flex;
 		flex-direction: column;
 	}
 
-	.rubrica-item {
+	.element-item {
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-2);
 		padding-bottom: var(--space-4);
 	}
 
-	.rubrica-item:not(:first-child) {
+	.element-item:not(:first-child) {
 		padding-top: var(--space-4);
 	}
 
-	.rubrica-item--bordered {
+	.element-item--bordered {
 		border-bottom: var(--divider);
 	}
 
-	.rubrica-item__header {
+	.element-item__header {
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-between;
 		gap: var(--space-2);
 	}
 
-	.rubrica-item__heading {
+	.element-item__heading {
 		display: flex;
 		align-items: center;
 		gap: var(--space-2);
 		min-width: 0;
 	}
 
-	.rubrica-item__code {
+	.element-item__code {
 		color: var(--text-secondary);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 
-	.rubrica-item__actions {
+	.element-item__actions {
 		display: flex;
 		gap: var(--space-2);
 		flex-shrink: 0;
@@ -232,7 +233,7 @@
 	 * aparece en hover, para no competir visualmente con el texto
 	 * cuando el usuario solo está leyendo.
 	 */
-	.rubrica-item__criterios {
+	.element-item__childs {
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -240,7 +241,7 @@
 		flex-direction: column;
 	}
 
-	.rubrica-item__criterio {
+	.element-item__child {
 		display: flex;
 		align-items: center;
 		gap: var(--space-2);
@@ -249,15 +250,15 @@
 		transition: background-color 0.15s ease;
 	}
 
-	.rubrica-item__criterio:hover {
+	.element-item__child:hover {
 		background-color: var(--bg-raised-hover);
 	}
 
-	.rubrica-item__criterio:hover :global(.rubrica-item__criterio-delete) {
+	.element-item__child:hover :global(.element-item__child-delete) {
 		opacity: 1;
 	}
 
-	.rubrica-item__criterio-dot {
+	.element-item__child-dot {
 		width: 4px;
 		height: 4px;
 		border-radius: 50%;
@@ -265,7 +266,7 @@
 		flex-shrink: 0;
 	}
 
-	.rubrica-item__criterio-text {
+	.element-item__child-text {
 		flex: 1;
 		min-width: 0;
 		color: var(--text-primary);
@@ -273,13 +274,13 @@
 		word-break: break-word;
 	}
 
-	.rubrica-item__criterio :global(.rubrica-item__criterio-delete) {
+	.element-item__child :global(.element-item__child-delete) {
 		opacity: 0;
 		transition: opacity 0.1s ease;
 		flex-shrink: 0;
 	}
 
-	.rubrica-item__empty {
+	.element-item__empty {
 		margin: 0;
 		color: var(--text-placeholder);
 		font-style: italic;

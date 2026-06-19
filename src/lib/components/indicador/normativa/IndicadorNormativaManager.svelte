@@ -91,7 +91,8 @@
 		border: var(--border-card);
 		border-radius: var(--border-radius-card);
 		box-shadow: var(--shadow-card);
-		overflow: auto;
+		overflow: hidden;
+		flex-shrink: 0;
 	}
 
 	.card-header {

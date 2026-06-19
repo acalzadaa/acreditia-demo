@@ -129,6 +129,7 @@
 		border-radius: var(--border-radius-card);
 		box-shadow: var(--shadow-card);
 		overflow: hidden;
+		flex-shrink: 0;
 	}
 
 	.card-header {

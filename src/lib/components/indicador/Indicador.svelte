@@ -122,6 +122,12 @@
 </main>
 
 <style>
+	.main-panel {
+		flex-shrink: 0;
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	}
 	/*
  * table-layout: fixed permite que las columnas respeten
  * los anchos declarados en thead th.
