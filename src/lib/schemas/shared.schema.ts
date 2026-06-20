@@ -125,7 +125,7 @@ export const rubricaRefSchema = z.object({
 	code: z.string().min(1, 'El código es requerido'),
 	rangeStart: z.number().int().min(1, 'El inicio debe ser al menos 1'),
 	rangeEnd: z.number().int().max(10, 'El fin no puede exceder 10'),
-	order: z.number().int().min(1).max(5, 'Solo se permiten 5 rúbricas') // ✅ Validación
+	order: z.number().int().min(1).max(5, 'Solo se permiten 5 rúbricas')
 });
 
 export type RubricaRef = z.infer<typeof rubricaRefSchema>;

@@ -7,7 +7,7 @@
         "code": "ind-001",
         "name": "Tasa de Retención Estudiantil"
       },
-      "code": "rub-ind-001",
+      "code": "rub-001-ind-001",
       "rangeStart": 1,
       "rangeEnd": 2,
       "order": 1,
@@ -33,7 +33,7 @@
         "code": "ind-001",
         "name": "Tasa de Retención Estudiantil"
       },
-      "code": "rub-ind-001",
+      "code": "rub-002-ind-001",
       "rangeStart": 3,
       "rangeEnd": 4,
       "order": 2,
@@ -69,7 +69,7 @@
         "code": "ind-001",
         "name": "Tasa de Retención Estudiantil"
       },
-      "code": "rub-ind-001",
+      "code": "rub-003-ind-001",
       "rangeStart": 5,
       "rangeEnd": 7,
       "order": 3,
@@ -116,7 +116,7 @@
         "code": "ind-001",
         "name": "Tasa de Retención Estudiantil"
       },
-      "code": "rub-ind-001",
+      "code": "rub-004-ind-001",
       "rangeStart": 8,
       "rangeEnd": 10,
       "order": 4,

@@ -17,7 +17,7 @@
 		ariaControls?: string;
 		class?: string;
 		onClick: (e: MouseEvent) => void;
-		onKeydown: (e: KeyboardEvent) => void;
+		onKeydown?: (e: KeyboardEvent) => void;
 		[key: string]: unknown;
 	}
 
@@ -41,6 +41,12 @@
 	}: Props = $props();
 
 	let tooltipActive = $derived(tooltipLabel.length > 0 ? true : false);
+
+	function handleKeyDown(e: KeyboardEvent) {
+		if (onKeydown && (e.key === 'Enter' || e.key === ' ')) {
+			onKeydown(e);
+		}
+	}
 </script>
 
 <button
@@ -64,7 +70,7 @@
 	disabled={isDisabled}
 	{type}
 	onclick={onClick}
-	onkeydown={onKeydown}
+	onkeydown={handleKeyDown}
 	aria-label={ariaLabel || name}
 	aria-expanded={ariaExpanded}
 	aria-controls={ariaControls}
