@@ -33,12 +33,14 @@
 		getCampusUnidadAcademica,
 		getInstitucionRef,
 		getUnidadAcademica,
+
 		getUnidadAcademicaRef
+
 	} from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 	import AddCampusAreaResponsableForm from '$lib/components/campus/area-responsable/AddCampusAreaResponsableForm.svelte';
 	import AddCampusUnidadAcademicaForm from '$lib/components/campus/unidad-academica/AddCampusUnidadAcademicaForm.svelte';
-	
+
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let campusCode = page.params.campusCode;
 
