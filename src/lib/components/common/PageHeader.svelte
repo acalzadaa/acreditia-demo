@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Badge from '../ui/Badge.svelte';
+
 	interface Props {
 		title: string;
 		subtitle?: string;
@@ -9,9 +11,9 @@
 
 <header class="page-header">
 	<div class="page-header-content">
-		<span class="page-header-title text-body-strong">{title}</span>
+		<h2 class="page-header-title text-h5">{title}</h2>
 		{#if subtitle}
-			<span class="page-header-subtitle text-body">{subtitle}</span>
+			<Badge variant="info">{subtitle}</Badge>
 		{/if}
 	</div>
 </header>
@@ -20,34 +22,39 @@
 	.page-header {
 		display: flex;
 		align-items: center;
-		padding: 0.5rem 1.5rem;
-		background-color: var(--bg-ground);
+		padding: 0 var(--space-3);
+		background-color: var(--bg-raised);
 		box-shadow: var(--shadow-xs);
-		border-bottom: 1px solid var(--border-light);
+		border-bottom: var(--border-width-thin) solid var(--border-regular);
 		flex-shrink: 0;
-		height: 60px;
+		height: var(--subheader-height);
 	}
 
 	.page-header-content {
 		display: flex;
 		flex-direction: row;
-		gap: 0.125rem;
+		align-items: center;
+		gap: var(--space-3);
 	}
 
 	.page-header-title {
-		line-height: 1.2;
+		color: var(--text-primary);
+		margin: 0;
+		line-height: var(--text-h5-height);
 	}
 
 	.page-header-subtitle {
-		color: var(--text-subtle);
-		line-height: 1.2;
-        padding-left: 20px;
+		color: var(--text-on-brand-secondary);
+		background-color: var(--bg-overlay-brand);
+		border-radius: var(--border-radius-button);
+		padding: var(--space-1) var(--space-2);
+		line-height: 1;
 	}
 
 	/* Responsive */
 	@media (max-width: 768px) {
 		.page-header {
-			padding: 1rem;
+			padding: 0 var(--space-4);
 		}
 	}
 </style>

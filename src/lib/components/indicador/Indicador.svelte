@@ -7,8 +7,6 @@
 
 	interface Props {
 		gridArea?: string;
-		showDetailIcon?: boolean;
-		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
 		indicadorItems: IndicadorItem[];
@@ -24,8 +22,6 @@
 
 	const {
 		gridArea = 'main',
-		showDetailIcon = true,
-		showHeader = false,
 		title = 'Add',
 		subtitle = '',
 		indicadorItems,
@@ -38,6 +34,9 @@
 		onClickDetalle,
 		onKeydownDetalle
 	}: Props = $props();
+
+	let showHeader = $derived(indicadorItems.length == 1);
+	let showDetailIcon = $derived(indicadorItems.length > 1);
 </script>
 
 <main class="main-panel" style="grid-area: {gridArea}">
