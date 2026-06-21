@@ -17,8 +17,14 @@
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
-    /* ajustar min-width en cada componente */
-    min-width: 50rem;
+    /*
+     * No se declara min-width aquí.
+     * Con table-layout: fixed, el min-width de cada .col-* (abajo)
+     * ya actúa como un piso que el navegador respeta por columna;
+     * la suma total es implícita. El .table-container (overflow: auto)
+     * es quien decide cuándo aparece el scroll horizontal.
+     * No hay que recalcular nada a mano al agregar o quitar columnas.
+     */
 }
 
 /* =============================================
@@ -81,6 +87,130 @@
     white-space: normal;
     overflow: visible;
     text-overflow: unset;
+}
+
+/* =============================================
+   SISTEMA DE COLUMNAS (col-<tipo>)
+   Clases por TIPO DE DATO, no por nombre de campo.
+   Úsalas en <th> y <td> según el tipo de contenido
+   de esa columna, sin importar cómo se llame el campo
+   en cada tabla. Cualquier número de columnas funciona;
+   table-layout: fixed + min-width por columna evitan que
+   la tabla se vuelva ilegible sin tener que sumar nada
+   a mano en .data-table.
+   ============================================= */
+
+/* --- col-code ---------------------------------
+   Códigos, claves, folios. Texto corto fijo,
+   máx. ~15 caracteres. Casi nunca necesita wrap. */
+.data-table .col-code {
+    width: 8rem;
+    min-width: 6rem;
+    white-space: nowrap;
+}
+
+/* --- col-metric ---------------------------------
+   Valores cortos tipo "85%" o "120 unidades"
+   (número + unidad). Mismo comportamiento que
+   col-code, pero nombrado por lo que representa:
+   úsala en metas, montos, conteos, no en claves. */
+.data-table .col-metric {
+    width: 8rem;
+    min-width: 6rem;
+    white-space: nowrap;
+}
+
+/* --- col-label ---------------------------------
+   Nombres cortos a medianos: "Vicerrectoría del
+   Área Académica", "Área de Recursos Humanos".
+   Wrap controlado si hay presión de espacio. */
+.data-table .col-label {
+    width: 16rem;
+    min-width: 11rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* --- col-text -----------------------------------
+   Descripciones, criterios, fórmulas: texto largo
+   que con certeza necesitará varias líneas. Es la
+   columna flexible: toma el espacio sobrante pero
+   nunca ocupa el renglón completo ni baja de su
+   mínimo legible. Usa varias col-text en la misma
+   tabla si hace falta (ej. descripción + fórmula);
+   el espacio extra se reparte entre todas. */
+.data-table .col-text {
+    width: 18rem;
+    min-width: 14rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* --- col-date -----------------------------------
+   Fechas DD/MM/YYYY. Ancho prácticamente fijo. */
+.data-table .col-date {
+    width: 7rem;
+    min-width: 6rem;
+    white-space: nowrap;
+}
+
+/* --- col-badge -----------------------------------
+   Badges de estatus tipo "success"/"error". El más
+   largo no necesita wrap. */
+.data-table .col-badge {
+    width: 6.5rem;
+    min-width: 5.5rem;
+    white-space: nowrap;
+}
+
+/* --- col-actions-* -------------------------------
+   Botones-ícono de 1rem c/u con gap entre ellos
+   (gap = var(--space-1), asumido 0.25rem; ajusta los
+   valores de abajo si tu token real es distinto).
+   Cálculo: n×1rem + (n-1)×gap, usando el máximo de
+   íconos que la celda puede mostrar a la vez:
+     xs  1 ícono     1.5rem (margen incluido)
+     sm  2–3 íconos  hasta 3.5rem
+     md  4–5 íconos  hasta 6rem
+     lg  6–7 íconos  hasta 8.5rem
+   El padding horizontal de la celda (var(--space-3) en
+   .data-table td) ya se suma aparte; no lo incluyas aquí.
+   El contenido de la celda debe ser un flex container
+   con gap (ver .actions-row más abajo) para que el
+   ancho calculado y el real coincidan. */
+.data-table .col-actions-xs {
+    width: 1.5rem;
+    min-width: 1.5rem;
+    white-space: nowrap;
+}
+
+.data-table .col-actions-sm {
+    width: 3.5rem;
+    min-width: 3.5rem;
+    white-space: nowrap;
+}
+
+.data-table .col-actions-md {
+    width: 6rem;
+    min-width: 6rem;
+    white-space: nowrap;
+}
+
+.data-table .col-actions-lg {
+    width: 8.5rem;
+    min-width: 8.5rem;
+    white-space: nowrap;
+}
+
+/* Contenedor flex para los IconButton dentro de
+   una celda col-actions-*. Mantiene el gap real
+   alineado con el cálculo de ancho de la columna. */
+.data-table .actions-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
 }
 
 /* =============================================
