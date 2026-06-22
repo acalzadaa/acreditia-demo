@@ -10,11 +10,6 @@ type ModalState<TItem = unknown> = {
 };
 
 /**
- * Identificadores predefinidos para los modales soportados
- */
-type ModalId = 'add' | 'create' | 'edit' | 'delete' | 'restore' | 'default';
-
-/**
  * Crea un administrador de modales reactivo para Svelte 5 (runes)
  *
  * @template TItem - Tipo del elemento que manejarán los modales (ej: Usuario, Producto)
@@ -48,7 +43,7 @@ export function createModalManager<TItem = unknown>() {
 	 * @param modalId - Identificador del modal a abrir
 	 * @param item - Elemento a asociar con el modal (útil para editar/eliminar)
 	 */
-	function open(modalId: ModalId, item?: TItem) {
+	function open(modalId: string, item?: TItem) {
 		state.activeModal = modalId;
 		state.selectedItem = item ?? null;
 	}
@@ -66,7 +61,7 @@ export function createModalManager<TItem = unknown>() {
 	 * @param modalId - Identificador del modal a verificar
 	 * @returns {boolean} true si el modal está abierto
 	 */
-	function isOpen(modalId: ModalId) {
+	function isOpen(modalId: string) {
 		return state.activeModal === modalId;
 	}
 
@@ -90,7 +85,7 @@ export function createModalManager<TItem = unknown>() {
 	 * </button>
 	 * ```
 	 */
-	function handlers(modalId: ModalId, item?: TItem) {
+	function handlers(modalId: string, item?: TItem) {
 		return {
 			/**
 			 * Manejador click para elementos sin item (ej: botón crear)

@@ -61,7 +61,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Borrar evaluacion</h2>
+			<h2 class="modal-title text-h4">Iniciar evaluacion</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -71,21 +71,21 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/delete" use:enhance>
+		<form method="POST" action="?/iniciarEvaluacion" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
 
 			<div class="modal-body">
 				<div class="confirm-content">
 					<p class="confirm-message text-body-large">
-						¿Estás seguro de que deseas aliminar el registro <strong>"{props.item?.name}"</strong>?
+						¿Estás seguro de que deseas iniciar la evaluacion<strong>"{props.item?.name}"</strong>?
 					</p>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Borrar</Button>
+				<Button type="submit" variant="primary">Iniciar</Button>
 			</footer>
 		</form>
 	</div>

@@ -6,12 +6,12 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
 		evaluacionFormSchema,
-		type EvaluacionWithRelationsItem
+		type EvaluacionItem
 	} from '$lib/schemas/evaluacion.schema';
 
 	interface Props {
 		open: boolean;
-		item: EvaluacionWithRelationsItem;
+		item: EvaluacionItem;
 		onClose: () => void;
 	}
 

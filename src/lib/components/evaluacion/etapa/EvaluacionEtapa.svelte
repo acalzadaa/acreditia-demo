@@ -1,20 +1,18 @@
 <script lang="ts">
-	import type { EtapaStatus, EtapaWithRelationsItem } from '$lib/schemas/etapa.schema';
-	import EmptySection from '../common/EmptySection.svelte';
-	import PageHeader from '../common/PageHeader.svelte';
-	import Badge, { type BadgeStatus } from '../ui/Badge.svelte';
-	import IconButton from '../ui/IconButton.svelte';
+	import EmptySection from '$lib/components/common/EmptySection.svelte';
+	import PageHeader from '$lib/components/common/PageHeader.svelte';
+	import Badge, { type BadgeStatus } from '$lib/components/ui/Badge.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import { navigateTo } from '$lib/helpers/navigation';
+	import type { EvaluacionEtapaItem, EvaluacionEtapaStatus } from '$lib/schemas/evaluacionEtapa.schema';
 
 	interface Props {
 		gridArea?: string;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		items?: EtapaWithRelationsItem[] | null;
-		onClickEditar: (item: EtapaWithRelationsItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: EtapaWithRelationsItem) => void;
-		onClickDetalle: (item: EtapaWithRelationsItem) => void;
-		onKeydownDetalle: (e: KeyboardEvent, item: EtapaWithRelationsItem) => void;
+		items?: EvaluacionEtapaItem[] | null;
+		onClickEditar: (item: EvaluacionEtapaItem) => void;
 	}
 
 	const {
@@ -23,22 +21,19 @@
 		title = '',
 		subtitle = '',
 		items,
-		onClickEditar,
-		onKeydownEditar,
-		onClickDetalle,
-		onKeydownDetalle
+		onClickEditar
 	}: Props = $props();
 
 	const STATUS_TO_BADGE_CONFIG: Record<
-		EtapaStatus,
-		{ etapaStatus: EtapaStatus; badgeStatus: BadgeStatus; label: string }
+		EvaluacionEtapaStatus,
+		{ etapaStatus: EvaluacionEtapaStatus; badgeStatus: BadgeStatus; label: string }
 	> = {
-		draft: { etapaStatus: 'draft', badgeStatus: 'success', label: 'Planeado' },
+		planning: { etapaStatus: 'planning', badgeStatus: 'success', label: 'Planeado' },
 		ready: { etapaStatus: 'ready', badgeStatus: 'success', label: 'Listo' }
 	};
 
-	export function convertStatusToBadgeVariant(status: EtapaStatus): {
-		etapaStatus: EtapaStatus;
+	export function convertStatusToBadgeVariant(status: EvaluacionEtapaStatus): {
+		etapaStatus: EvaluacionEtapaStatus;
 		badgeStatus: BadgeStatus;
 		label: string;
 	} {
@@ -70,8 +65,8 @@
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-small-number">{item.numeroEtapa}</td>
-							<td class="col-name">{item.name}</td>
+							<td class="col-small-number">{item.etapa.order}</td>
+							<td class="col-name">{item.etapa.name}</td>
 							<td class="col-code">{item.fechaInicio}</td>
 							<td class="col-code">{item.fechaFinal}</td>
 							<td class="col-name">{item.periodoExtraordinario ? 'Si' : 'No'}</td>
@@ -79,9 +74,9 @@
 							<td class="col-code">{item.periodoExtraordinarioFinal}</td>
 							<td class="col-status">
 								<Badge
-									variant={convertStatusToBadgeVariant(item.status as EtapaStatus).badgeStatus}
+									variant={convertStatusToBadgeVariant(item.status as EvaluacionEtapaStatus).badgeStatus}
 								>
-									{convertStatusToBadgeVariant(item.status as EtapaStatus).label}
+									{convertStatusToBadgeVariant(item.status as EvaluacionEtapaStatus).label}
 								</Badge>
 							</td>
 							<td class="col-actions">
@@ -92,18 +87,16 @@
 									size="md"
 									borderShape="square"
 									variant="ghost"
-									onClick={() => onClickDetalle(item)}
-									onKeydown={(e) => onKeydownDetalle(e, item)}
+									onClick={() => navigateTo(item.etapa.code)}
 								/>
 								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !== 'draft' ||
+									isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !== 'planning' ||
 										item.isDeleted}
 									name="calendar"
 									size="md"
 									borderShape="square"
 									variant="ghost"
 									onClick={() => onClickEditar(item)}
-									onKeydown={(e) => onKeydownEditar(e, item)}
 								/>
 							</td>
 						</tr>

@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { navigateTo } from '$lib/helpers/navigation';
 	import type {
-		EvaluacionStatus,
-		EvaluacionWithRelationsItem
+	EvaluacionItem,
+		EvaluacionStatus
 	} from '$lib/schemas/evaluacion.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
@@ -10,21 +11,15 @@
 
 	interface Props {
 		gridArea?: string;
-		items?: EvaluacionWithRelationsItem[] | null;
+		items?: EvaluacionItem[] | null;
 		showDetailIcon?: boolean;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		onClickEditar: (item: EvaluacionWithRelationsItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: EvaluacionWithRelationsItem) => void;
-		onClickBorrar: (item: EvaluacionWithRelationsItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: EvaluacionWithRelationsItem) => void;
-		onClickRestaurar: (item: EvaluacionWithRelationsItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: EvaluacionWithRelationsItem) => void;
-		onClickDetalle?: (item: EvaluacionWithRelationsItem) => void;
-		onKeydownDetalle?: (e: KeyboardEvent, item: EvaluacionWithRelationsItem) => void;
-		onClickIniciarEvaluacion: (item: EvaluacionWithRelationsItem) => void;
-		onKeydownIniciarEvaluacion: (e: KeyboardEvent, item: EvaluacionWithRelationsItem) => void;
+		onClickEditar: (item: EvaluacionItem) => void;
+		onClickBorrar: (item: EvaluacionItem) => void;
+		onClickRestaurar: (item: EvaluacionItem) => void;
+		onClickIniciarEvaluacion: (item: EvaluacionItem) => void;
 	}
 
 	const {
@@ -35,15 +30,9 @@
 		subtitle = '',
 		items,
 		onClickEditar,
-		onKeydownEditar,
 		onClickBorrar,
-		onKeydownBorrar,
 		onClickRestaurar,
-		onKeydownRestaurar,
-		onClickDetalle,
-		onKeydownDetalle,
-		onClickIniciarEvaluacion,
-		onKeydownIniciarEvaluacion
+		onClickIniciarEvaluacion
 	}: Props = $props();
 
 	const STATUS_TO_BADGE_CONFIG: Record<
@@ -100,56 +89,51 @@
 								</Badge>
 							</td>
 							<td class="col-actions">
-								{#if showDetailIcon && onClickDetalle && onKeydownDetalle}
+								{#if showDetailIcon}
 									<IconButton
 										isDisabled={item.isDeleted}
 										name="detail"
 										size="md"
 										borderShape="square"
 										variant="ghost"
-										onClick={() => onClickDetalle(item)}
-										onKeydown={(e) => onKeydownDetalle(e, item)}
+										onClick={() => navigateTo(item.code)}
 									/>
 								{/if}
 								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !== 'planned' ||
-										item.isDeleted}
+									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
+										'planned' || item.isDeleted}
 									name="play"
 									size="md"
 									borderShape="square"
 									variant="ghost"
 									onClick={() => onClickIniciarEvaluacion(item)}
-									onKeydown={(e) => onKeydownIniciarEvaluacion(e, item)}
 								/>
 								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !== 'planned' ||
-										item.isDeleted}
+									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
+										'planned' || item.isDeleted}
 									name="edit"
 									size="md"
 									borderShape="square"
 									variant="ghost"
 									onClick={() => onClickEditar(item)}
-									onKeydown={(e) => onKeydownEditar(e, item)}
 								/>
 								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !== 'planned' ||
-										item.isDeleted}
+									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
+										'planned' || item.isDeleted}
 									name="delete"
 									size="md"
 									borderShape="square"
 									variant="ghost"
 									onClick={() => onClickBorrar(item)}
-									onKeydown={(e) => onKeydownBorrar(e, item)}
 								/>
 								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !== 'planned' ||
-										!item.isDeleted}
+									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
+										'planned' || !item.isDeleted}
 									name="restore"
 									size="md"
 									borderShape="square"
 									variant="ghost"
 									onClick={() => onClickRestaurar(item)}
-									onKeydown={(e) => onKeydownRestaurar(e, item)}
 								/>
 							</td>
 						</tr>

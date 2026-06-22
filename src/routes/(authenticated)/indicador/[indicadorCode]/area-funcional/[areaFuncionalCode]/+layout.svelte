@@ -13,7 +13,10 @@
 </script>
 
 <main class="detail">
-	<IndicadorAreaFuncional showDetailIcon={false} items={indicadorAreaFuncional} />
+	<IndicadorAreaFuncional
+		showDetailIcon={false}
+		onClickBorrar={() => {}}
+		items={indicadorAreaFuncional}
+	/>
 	{@render children()}
 </main>
-
