@@ -5,9 +5,9 @@
 	interface Props {
 		gridArea?: string;
 
-		onClickCrear: (e: MouseEvent) => void;
 		crearTitle?: string;
-		onKeydownCrear: (e: KeyboardEvent) => void;
+		onClickCrear: (e: MouseEvent) => void;
+		onKeydownCrear?: (e: KeyboardEvent) => void;
 		onClickExport?: (e: MouseEvent) => void;
 		onKeydownExport?: (e: KeyboardEvent) => void;
 		showExport?: boolean;

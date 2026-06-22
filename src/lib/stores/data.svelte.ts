@@ -32,11 +32,14 @@ import campusUnidadAcademicaJsonData from '$lib/data/campus-unidad-academica.jso
 
 import indicadorJsonData from '$lib/data/indicador.json';
 import rubricaJsonData from '$lib/data/rubrica.json';
+import rubricaCriterioJsonData from '$lib/data/rubrica-criterio.json';
 
 import indicadorAreaResponsableJsonData from '$lib/data/indicador-area-responsable.json';
 import indicadorAreaFuncionalJsonData from '$lib/data/indicador-area-funcional.json';
 import indicadorNormativaJsonData from '$lib/data/indicador-normativa.json';
 import indicadorIndicadorEstrategicoJsonData from '$lib/data/indicador-indicador-estrategico.json';
+
+import indicadorDetailJsonData from '$lib/data/indicador-detail.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -127,6 +130,14 @@ import {
 	indicadorIndicadorEstrategicoItemSchema,
 	type IndicadorIndicadorEstrategicoItem
 } from '$lib/schemas/indicadorIndicadorEstrategico';
+import {
+	indicadorDetailItemSchema,
+	type IndicadorDetailItem
+} from '$lib/schemas/indicadorDetail.schema';
+import {
+	rubricaCriterioItemSchema,
+	type RubricaCriterioItem
+} from '$lib/schemas/rubricaCriterio.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -165,10 +176,12 @@ let etapa = $state<EtapaWithRelationsItem[]>([]);
 
 let indicador = $state<IndicadorItem[]>([]);
 let rubrica = $state<RubricaItem[]>([]);
+let rubricaCriterio = $state<RubricaCriterioItem[]>([]);
 let indicadorAreaResponsable = $state<IndicadorAreaResponsableItem[]>([]);
 let indicadorAreaFuncional = $state<IndicadorAreaFuncionalItem[]>([]);
 let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
+let indicadorDetail = $state<IndicadorDetailItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -254,6 +267,9 @@ indicador = indicadorRawData.map((item) => indicadorItemSchema.parse(item));
 const rubricaRawData = rubricaJsonData.rubricaItems;
 rubrica = rubricaRawData.map((item) => rubricaItemSchema.parse(item));
 
+const rubricaCriterioRawData = rubricaCriterioJsonData.rubricaCriterioItems;
+rubricaCriterio = rubricaCriterioRawData.map((item) => rubricaCriterioItemSchema.parse(item));
+
 const etapaRawData = etapaJsonData.etapaItems;
 etapa = etapaRawData.map((item) => etapaWithRelationsItemSchema.parse(item));
 
@@ -279,6 +295,9 @@ indicadorIndicadorEstrategico = indicadorIndicadorEstrategicoRawData.map((item) 
 	indicadorIndicadorEstrategicoItemSchema.parse(item)
 );
 
+const indicadorDetailRawData = indicadorDetailJsonData.indicadorDetailItem;
+indicadorDetail = indicadorDetailRawData.map((item) => indicadorDetailItemSchema.parse(item));
+
 // Helpers
 export function getFilosofia() {
 	return filosofias;
@@ -296,8 +315,24 @@ export function getIndicadorEstrategico() {
 	return indicadorEstrategico;
 }
 
+export function getIndicadorEstrategicoRef() {
+	return indicadorEstrategico.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
+}
+
 export function getNormativa() {
 	return normativas;
+}
+
+export function getNormativaRef() {
+	return normativas.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
 }
 
 export function getEntidadLegal() {
@@ -362,6 +397,14 @@ export function getCampusAreaResponsable() {
 
 export function getUnidadAcademica() {
 	return unidadAcademica;
+}
+
+export function getUnidadAcademicaRef() {
+	return unidadAcademica.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
 }
 
 export function getPuesto() {
@@ -469,6 +512,10 @@ export function getRubrica() {
 	return rubrica;
 }
 
+export function getRubricaCriterio() {
+	return rubricaCriterio;
+}
+
 export function getIndicadorAreaResponsable() {
 	return indicadorAreaResponsable;
 }
@@ -483,4 +530,8 @@ export function getIndicadorNormativa() {
 
 export function getIndicadorIndicadorEstrategico() {
 	return indicadorIndicadorEstrategico;
+}
+
+export function getIndicadorDetail() {
+	return indicadorDetail;
 }

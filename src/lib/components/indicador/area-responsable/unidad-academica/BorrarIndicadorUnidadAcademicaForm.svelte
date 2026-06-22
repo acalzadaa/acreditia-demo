@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
+	
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { unidadAcademicaItemSchema } from '$lib/schemas/unidadAcademica.schema';
-	import type { UnidadAcademicaRef } from '$lib/schemas/shared.schema';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import { unidadAcademicaItemSchema, type UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: UnidadAcademicaRef;
+		selectedItem: UnidadAcademicaItem;
 		onClose: () => void;
 	}
 
@@ -48,7 +48,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Borrar unidad academica</h2>
+			<h2 class="modal-title text-h4">Borrar institucion</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -58,19 +58,19 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/delete" use:enhance>
+		<form method="POST" action="?/deleteCriterio" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.name}"</strong>?
+					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.code}"</strong>?
 				</p>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Borrar unidad</Button>
+				<Button type="submit" variant="critical">Borrar</Button>
 			</footer>
 		</form>
 	</div>

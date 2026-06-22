@@ -7,7 +7,7 @@
         "code": "ind-001",
         "name": "Tasa de Retención Estudiantil"
       },
-      "code": "rub-ind-001",
+      "code": "rub-001-ind-001",
       "rangeStart": 1,
       "rangeEnd": 2,
       "order": 1,
@@ -15,8 +15,7 @@
         {
           "id": "fa1c495d-ae96-47f9-a2da-1d1c32d1da5b",
           "code": "crit-001-01",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
+          "criterio": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
         }
       ],
       "version": 1,
@@ -34,7 +33,7 @@
         "code": "ind-001",
         "name": "Tasa de Retención Estudiantil"
       },
-      "code": "rub-ind-001",
+      "code": "rub-002-ind-001",
       "rangeStart": 3,
       "rangeEnd": 4,
       "order": 2,
@@ -42,20 +41,17 @@
         {
           "id": "b7acbb51-4eee-43a2-9204-b678fa0d9489",
           "code": "crit-001-02",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
+          "criterio": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
         },
         {
           "id": "bdd42817-05d6-47ac-8d60-e6eeeda463a6",
           "code": "crit-001-03",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se han identificado las causas de deserción pero no se han implementado acciones correctivas."
+          "criterio": "Se han identificado las causas de deserción pero no se han implementado acciones correctivas."
         },
         {
           "id": "926bd942-6707-4b63-bf73-7fd4b14a7a6e",
           "code": "crit-001-04",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se cuenta con un diagnóstico inicial de las causas de deserción estudiantil."
+          "criterio": "Se cuenta con un diagnóstico inicial de las causas de deserción estudiantil."
         }
       ],
       "version": 1,
@@ -73,7 +69,7 @@
         "code": "ind-001",
         "name": "Tasa de Retención Estudiantil"
       },
-      "code": "rub-ind-001",
+      "code": "rub-003-ind-001",
       "rangeStart": 5,
       "rangeEnd": 7,
       "order": 3,
@@ -81,32 +77,28 @@
         {
           "id": "e12e5bd7-5be1-45e8-9d3b-68113b1a31c2",
           "code": "crit-001-05",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
+          "criterio": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
         },
         {
           "id": "bd0b971c-d4d1-4339-85e8-126352c427df",
           "code": "crit-001-06",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se han identificado las causas de deserción pero no se han implementado acciones correctivas."
+          "criterio": "Se han identificado las causas de deserción pero no se han implementado acciones correctivas."
         },
         {
           "id": "46ce2ddc-9ab9-4fa3-af14-a5ca45b8f903",
           "code": "crit-001-07",
           "rubricaCode": "rub-ind-001",
-          "descripcion": "Se cuenta con un diagnóstico inicial de las causas de deserción estudiantil."
+          "criterio": "Se cuenta con un diagnóstico inicial de las causas de deserción estudiantil."
         },
         {
           "id": "1a916d8d-6cb3-4d35-b957-6e18d5fe070b",
           "code": "crit-001-08",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se han implementado programas de tutoría y acompañamiento estudiantil."
+          "criterio": "Se han implementado programas de tutoría y acompañamiento estudiantil."
         },
         {
           "id": "9315bc46-149e-4449-b4a3-07a80fe40289",
           "code": "crit-001-09",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se cuenta con un sistema de seguimiento académico para estudiantes en riesgo."
+          "criterio": "Se cuenta con un sistema de seguimiento académico para estudiantes en riesgo."
         }
       ],
       "version": 1,
@@ -124,7 +116,7 @@
         "code": "ind-001",
         "name": "Tasa de Retención Estudiantil"
       },
-      "code": "rub-ind-001",
+      "code": "rub-004-ind-001",
       "rangeStart": 8,
       "rangeEnd": 10,
       "order": 4,
@@ -132,44 +124,37 @@
         {
           "id": "3d1f5d29-cc01-4e13-9aa4-5dfd564ffeae",
           "code": "crit-001-10",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
+          "criterio": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
         },
         {
           "id": "4c64348f-6f0c-48be-8e02-109cca60b4e3",
           "code": "crit-001-11",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se han identificado las causas de deserción pero no se han implementado acciones correctivas."
+          "criterio": "Se han identificado las causas de deserción pero no se han implementado acciones correctivas."
         },
         {
           "id": "27d1c701-a0da-45eb-a0cd-10e5891d6825",
           "code": "crit-001-12",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se cuenta con un diagnóstico inicial de las causas de deserción estudiantil."
+          "criterio": "Se cuenta con un diagnóstico inicial de las causas de deserción estudiantil."
         },
         {
           "id": "133383a9-c128-418e-b288-a18be1887732",
           "code": "crit-001-13",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se han implementado programas de tutoría y acompañamiento estudiantil."
+          "criterio": "Se han implementado programas de tutoría y acompañamiento estudiantil."
         },
         {
           "id": "b75590eb-3713-4ed1-9bf9-06560d7c5ea6",
           "code": "crit-001-14",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se cuenta con un sistema de seguimiento académico para estudiantes en riesgo."
+          "criterio": "Se cuenta con un sistema de seguimiento académico para estudiantes en riesgo."
         },
         {
           "id": "5d3ab617-736e-4df9-8d8c-415d8ba50e15",
           "code": "crit-001-15",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Los programas de retención han demostrado efectividad medible en la reducción de la deserción."
+          "criterio": "Los programas de retención han demostrado efectividad medible en la reducción de la deserción."
         },
         {
           "id": "64b3f27c-132d-4611-a444-fc6bc2af9aee",
           "code": "crit-001-16",
-          "rubricaCode": "rub-ind-001",
-          "descripcion": "Se realizan evaluaciones periódicas de las estrategias de retención."
+          "criterio": "Se realizan evaluaciones periódicas de las estrategias de retención."
         }
       ],
       "version": 1,
@@ -195,8 +180,7 @@
         {
           "id": "3c587ce8-78b2-40d1-aa9b-9dd4bdc6a732",
           "code": "crit-002-01",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
+          "criterio": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
         }
       ],
       "version": 1,
@@ -222,20 +206,17 @@
         {
           "id": "92c6d217-db9c-442f-9473-bcb84f255416",
           "code": "crit-002-02",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
+          "criterio": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
         },
         {
           "id": "4dfbd5ff-6fdf-4ed4-a794-c0b746902c3c",
           "code": "crit-002-03",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Se aplican encuestas de satisfacción pero no se analizan sistemáticamente."
+          "criterio": "Se aplican encuestas de satisfacción pero no se analizan sistemáticamente."
         },
         {
           "id": "3f21c22a-1cfb-46d5-93a9-2c9130966e84",
           "code": "crit-002-04",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Existe un instrumento para medir la satisfacción estudiantil."
+          "criterio": "Existe un instrumento para medir la satisfacción estudiantil."
         }
       ],
       "version": 1,
@@ -261,32 +242,27 @@
         {
           "id": "83017d4f-c3c0-4389-9f2f-ca7cc603343c",
           "code": "crit-002-05",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
+          "criterio": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
         },
         {
           "id": "216d9629-c1d0-4bb5-abe8-b9679a0820a5",
           "code": "crit-002-06",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Se aplican encuestas de satisfacción pero no se analizan sistemáticamente."
+          "criterio": "Se aplican encuestas de satisfacción pero no se analizan sistemáticamente."
         },
         {
           "id": "ac6b178e-39cc-4bdc-b92a-51b45560371e",
           "code": "crit-002-07",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Existe un instrumento para medir la satisfacción estudiantil."
+          "criterio": "Existe un instrumento para medir la satisfacción estudiantil."
         },
         {
           "id": "e852d830-fcd0-4fc5-886f-373657cdbd51",
           "code": "crit-002-08",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Los resultados de las encuestas se analizan y se generan informes."
+          "criterio": "Los resultados de las encuestas se analizan y se generan informes."
         },
         {
           "id": "3e084dd9-96ba-48b4-aea2-5646d07b374c",
           "code": "crit-002-09",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Se han definido planes de mejora basados en los resultados de satisfacción."
+          "criterio": "Se han definido planes de mejora basados en los resultados de satisfacción."
         }
       ],
       "version": 1,
@@ -312,44 +288,37 @@
         {
           "id": "d7cb110e-88ea-469b-a090-c3cfb7b3aa2a",
           "code": "crit-002-10",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
+          "criterio": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
         },
         {
           "id": "897df85b-67bf-470f-93b3-8d9438176445",
           "code": "crit-002-11",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Se aplican encuestas de satisfacción pero no se analizan sistemáticamente."
+          "criterio": "Se aplican encuestas de satisfacción pero no se analizan sistemáticamente."
         },
         {
           "id": "4ab18128-a5ce-4078-9a8b-69e62b167352",
           "code": "crit-002-12",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Existe un instrumento para medir la satisfacción estudiantil."
+          "criterio": "Existe un instrumento para medir la satisfacción estudiantil."
         },
         {
           "id": "1261bd72-0a81-4a19-96ba-9d6dfe7193fe",
           "code": "crit-002-13",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Los resultados de las encuestas se analizan y se generan informes."
+          "criterio": "Los resultados de las encuestas se analizan y se generan informes."
         },
         {
           "id": "b3d4d5f3-a511-42f4-94bc-777408b47175",
           "code": "crit-002-14",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Se han definido planes de mejora basados en los resultados de satisfacción."
+          "criterio": "Se han definido planes de mejora basados en los resultados de satisfacción."
         },
         {
           "id": "40562181-ab07-48a0-9452-eef55038435f",
           "code": "crit-002-15",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "Los planes de mejora se han implementado y monitoreado."
+          "criterio": "Los planes de mejora se han implementado y monitoreado."
         },
         {
           "id": "726a73e4-11a5-40bf-b854-c29e03a8dff1",
           "code": "crit-002-16",
-          "rubricaCode": "rub-ind-002",
-          "descripcion": "La satisfacción estudiantil ha mostrado una tendencia positiva sostenida."
+          "criterio": "La satisfacción estudiantil ha mostrado una tendencia positiva sostenida."
         }
       ],
       "version": 1,
@@ -375,8 +344,7 @@
         {
           "id": "e9211cfd-1cc0-4c12-bbff-c29c1b39f67f",
           "code": "crit-003-01",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Los programas académicos no están acreditados o no se ha iniciado el proceso."
+          "criterio": "Los programas académicos no están acreditados o no se ha iniciado el proceso."
         }
       ],
       "version": 1,
@@ -402,20 +370,17 @@
         {
           "id": "23585bc3-c1e1-4dcc-ba96-de18e7b8b096",
           "code": "crit-003-02",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Los programas académicos no están acreditados o no se ha iniciado el proceso."
+          "criterio": "Los programas académicos no están acreditados o no se ha iniciado el proceso."
         },
         {
           "id": "3a098b43-9160-48af-9add-ee89958bba8f",
           "code": "crit-003-03",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se ha iniciado el proceso de autoevaluación para la acreditación."
+          "criterio": "Se ha iniciado el proceso de autoevaluación para la acreditación."
         },
         {
           "id": "bc1ad800-fea6-42cb-9bac-06c936018ece",
           "code": "crit-003-04",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se cuenta con un plan de mejora para la acreditación."
+          "criterio": "Se cuenta con un plan de mejora para la acreditación."
         }
       ],
       "version": 1,
@@ -441,32 +406,27 @@
         {
           "id": "399d3212-5615-413c-9747-1d61fb223ddb",
           "code": "crit-003-05",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Los programas académicos no están acreditados o no se ha iniciado el proceso."
+          "criterio": "Los programas académicos no están acreditados o no se ha iniciado el proceso."
         },
         {
           "id": "2538040a-85b5-4852-a929-35b8f5eed5d2",
           "code": "crit-003-06",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se ha iniciado el proceso de autoevaluación para la acreditación."
+          "criterio": "Se ha iniciado el proceso de autoevaluación para la acreditación."
         },
         {
           "id": "1e52cd9f-a855-4c8b-ac2d-7bee35c74172",
           "code": "crit-003-07",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se cuenta con un plan de mejora para la acreditación."
+          "criterio": "Se cuenta con un plan de mejora para la acreditación."
         },
         {
           "id": "6ca4e88f-f3ae-4f0a-b1bc-90b3ca2ca756",
           "code": "crit-003-08",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se han presentado solicitudes de acreditación a organismos reconocidos."
+          "criterio": "Se han presentado solicitudes de acreditación a organismos reconocidos."
         },
         {
           "id": "39666ea8-a79d-491f-a93e-f9a4ba816827",
           "code": "crit-003-09",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Algunos programas están en proceso de evaluación externa."
+          "criterio": "Algunos programas están en proceso de evaluación externa."
         }
       ],
       "version": 1,
@@ -492,44 +452,37 @@
         {
           "id": "b34df6bf-be79-4c7a-8696-2650099ca4bd",
           "code": "crit-003-10",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Los programas académicos no están acreditados o no se ha iniciado el proceso."
+          "criterio": "Los programas académicos no están acreditados o no se ha iniciado el proceso."
         },
         {
           "id": "cb8cb774-a547-45a7-9cdb-40a5eaf72ad4",
           "code": "crit-003-11",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se ha iniciado el proceso de autoevaluación para la acreditación."
+          "criterio": "Se ha iniciado el proceso de autoevaluación para la acreditación."
         },
         {
           "id": "9d7f8153-10f7-431e-ae1c-541be6cdf962",
           "code": "crit-003-12",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se cuenta con un plan de mejora para la acreditación."
+          "criterio": "Se cuenta con un plan de mejora para la acreditación."
         },
         {
           "id": "c749396e-b9e1-4faf-a256-1c537abcb1c1",
           "code": "crit-003-13",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se han presentado solicitudes de acreditación a organismos reconocidos."
+          "criterio": "Se han presentado solicitudes de acreditación a organismos reconocidos."
         },
         {
           "id": "f3b70e21-07cf-45f6-b0a6-49b969157860",
           "code": "crit-003-14",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Algunos programas están en proceso de evaluación externa."
+          "criterio": "Algunos programas están en proceso de evaluación externa."
         },
         {
           "id": "a01c33bc-f740-4ae3-bf72-a3b414d1e515",
           "code": "crit-003-15",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se han obtenido acreditaciones para programas académicos."
+          "criterio": "Se han obtenido acreditaciones para programas académicos."
         },
         {
           "id": "5901b060-96d4-4680-9b99-543b983f1779",
           "code": "crit-003-16",
-          "rubricaCode": "rub-ind-003",
-          "descripcion": "Se mantienen las acreditaciones vigentes con procesos de renovación."
+          "criterio": "Se mantienen las acreditaciones vigentes con procesos de renovación."
         }
       ],
       "version": 1,
@@ -555,8 +508,7 @@
         {
           "id": "bc91e01b-2695-4e33-af99-7c97bf9e55fb",
           "code": "crit-004-01",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "No se cuenta con datos de graduación o no se analizan."
+          "criterio": "No se cuenta con datos de graduación o no se analizan."
         }
       ],
       "version": 1,
@@ -582,20 +534,17 @@
         {
           "id": "8fa940e1-64f1-42b6-8ac3-000bd5168dfb",
           "code": "crit-004-02",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "No se cuenta con datos de graduación o no se analizan."
+          "criterio": "No se cuenta con datos de graduación o no se analizan."
         },
         {
           "id": "7df4af79-36a9-4e8a-a577-4997cacf1283",
           "code": "crit-004-03",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se cuenta con datos de graduación pero no se analizan."
+          "criterio": "Se cuenta con datos de graduación pero no se analizan."
         },
         {
           "id": "c1a60df9-dbba-43a0-9f60-c8cf2f73311e",
           "code": "crit-004-04",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se han identificado las tasas de graduación por programa."
+          "criterio": "Se han identificado las tasas de graduación por programa."
         }
       ],
       "version": 1,
@@ -621,32 +570,27 @@
         {
           "id": "511619f3-36cf-4946-abe1-ea30c8807b5a",
           "code": "crit-004-05",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "No se cuenta con datos de graduación o no se analizan."
+          "criterio": "No se cuenta con datos de graduación o no se analizan."
         },
         {
           "id": "9fd5a96c-b869-4b73-800b-2b99f99c4fb3",
           "code": "crit-004-06",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se cuenta con datos de graduación pero no se analizan."
+          "criterio": "Se cuenta con datos de graduación pero no se analizan."
         },
         {
           "id": "ae73ba83-9af8-465c-8386-8a092ead7daf",
           "code": "crit-004-07",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se han identificado las tasas de graduación por programa."
+          "criterio": "Se han identificado las tasas de graduación por programa."
         },
         {
           "id": "8683b140-6219-4dc4-955c-dbb99c4c1cf4",
           "code": "crit-004-08",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se han implementado estrategias para mejorar la graduación."
+          "criterio": "Se han implementado estrategias para mejorar la graduación."
         },
         {
           "id": "9a0a1933-2494-4dea-822f-2e1676244819",
           "code": "crit-004-09",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Existe un sistema de seguimiento de estudiantes en riesgo de no graduarse."
+          "criterio": "Existe un sistema de seguimiento de estudiantes en riesgo de no graduarse."
         }
       ],
       "version": 1,
@@ -672,44 +616,37 @@
         {
           "id": "96000230-5424-499b-a086-829275f9dcba",
           "code": "crit-004-10",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "No se cuenta con datos de graduación o no se analizan."
+          "criterio": "No se cuenta con datos de graduación o no se analizan."
         },
         {
           "id": "c00ea697-409d-4a82-a382-c6182f1eabfa",
           "code": "crit-004-11",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se cuenta con datos de graduación pero no se analizan."
+          "criterio": "Se cuenta con datos de graduación pero no se analizan."
         },
         {
           "id": "aeb9c73e-2519-4d18-8a31-7b827b4be5d9",
           "code": "crit-004-12",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se han identificado las tasas de graduación por programa."
+          "criterio": "Se han identificado las tasas de graduación por programa."
         },
         {
           "id": "818c9ffc-7751-4cd7-90cf-d7d3758442b2",
           "code": "crit-004-13",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se han implementado estrategias para mejorar la graduación."
+          "criterio": "Se han implementado estrategias para mejorar la graduación."
         },
         {
           "id": "23aca32c-4f40-4720-86a9-56e887a902d4",
           "code": "crit-004-14",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Existe un sistema de seguimiento de estudiantes en riesgo de no graduarse."
+          "criterio": "Existe un sistema de seguimiento de estudiantes en riesgo de no graduarse."
         },
         {
           "id": "5b5860e3-4a9a-4bed-bf65-a4c29525f6df",
           "code": "crit-004-15",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se han logrado mejoras significativas en las tasas de graduación."
+          "criterio": "Se han logrado mejoras significativas en las tasas de graduación."
         },
         {
           "id": "c123f188-91db-4998-8ad1-fee3d183bc21",
           "code": "crit-004-16",
-          "rubricaCode": "rub-ind-004",
-          "descripcion": "Se realizan evaluaciones periódicas de las estrategias de graduación."
+          "criterio": "Se realizan evaluaciones periódicas de las estrategias de graduación."
         }
       ],
       "version": 1,
@@ -735,8 +672,7 @@
         {
           "id": "45b6deb8-463d-44a4-a3c8-4ab40b97994b",
           "code": "crit-005-01",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "No se cuenta con datos de formación de los profesores."
+          "criterio": "No se cuenta con datos de formación de los profesores."
         }
       ],
       "version": 1,
@@ -762,20 +698,18 @@
         {
           "id": "59499634-236c-46e8-82a5-65bbc11ae589",
           "code": "crit-005-02",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "No se cuenta con datos de formación de los profesores."
+          "criterio": "No se cuenta con datos de formación de los profesores."
         },
         {
           "id": "8dae7410-8b82-469a-9df2-07e31786a759",
           "code": "crit-005-03",
           "rubricaCode": "rub-ind-005",
-          "descripcion": "Se han identificado los niveles de formación de los profesores."
+          "criterio": "Se han identificado los niveles de formación de los profesores."
         },
         {
           "id": "a08fcd53-6da7-4a64-9294-1606ebefd9ad",
           "code": "crit-005-04",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se cuenta con un diagnóstico de necesidades de formación."
+          "criterio": "Se cuenta con un diagnóstico de necesidades de formación."
         }
       ],
       "version": 1,
@@ -801,32 +735,27 @@
         {
           "id": "1c984f93-aec1-4d74-89ee-cb49058fe8fc",
           "code": "crit-005-05",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "No se cuenta con datos de formación de los profesores."
+          "criterio": "No se cuenta con datos de formación de los profesores."
         },
         {
           "id": "93f4f417-2001-48e9-93e6-1031f40f7131",
           "code": "crit-005-06",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se han identificado los niveles de formación de los profesores."
+          "criterio": "Se han identificado los niveles de formación de los profesores."
         },
         {
           "id": "5df200ef-e407-4859-8a26-44d34da6998c",
           "code": "crit-005-07",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se cuenta con un diagnóstico de necesidades de formación."
+          "criterio": "Se cuenta con un diagnóstico de necesidades de formación."
         },
         {
           "id": "f72e54df-4eee-4bc5-ac6c-5d870aec0196",
           "code": "crit-005-08",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se han implementado programas de formación de posgrado para profesores."
+          "criterio": "Se han implementado programas de formación de posgrado para profesores."
         },
         {
           "id": "f47ef17d-c20b-46bc-981c-20215e4af34f",
           "code": "crit-005-09",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se cuenta con políticas de contratación que priorizan profesores con posgrado."
+          "criterio": "Se cuenta con políticas de contratación que priorizan profesores con posgrado."
         }
       ],
       "version": 1,
@@ -852,44 +781,37 @@
         {
           "id": "72edcfb9-b829-4d8b-ba62-07c1fbcdb416",
           "code": "crit-005-10",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "No se cuenta con datos de formación de los profesores."
+          "criterio": "No se cuenta con datos de formación de los profesores."
         },
         {
           "id": "992eebf0-f58e-4eb6-b2c2-740f80812736",
           "code": "crit-005-11",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se han identificado los niveles de formación de los profesores."
+          "criterio": "Se han identificado los niveles de formación de los profesores."
         },
         {
           "id": "0853ebce-d8fe-418f-b346-acba1a547d1f",
           "code": "crit-005-12",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se cuenta con un diagnóstico de necesidades de formación."
+          "criterio": "Se cuenta con un diagnóstico de necesidades de formación."
         },
         {
           "id": "dddfdbe3-e4ad-4ef4-a619-97d6e4c34e88",
           "code": "crit-005-13",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se han implementado programas de formación de posgrado para profesores."
+          "criterio": "Se han implementado programas de formación de posgrado para profesores."
         },
         {
           "id": "93080e2c-2d90-4efa-8269-3bfe5a883d6c",
           "code": "crit-005-14",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se cuenta con políticas de contratación que priorizan profesores con posgrado."
+          "criterio": "Se cuenta con políticas de contratación que priorizan profesores con posgrado."
         },
         {
           "id": "69e91e9d-a85c-4e55-b9a2-2ba878a8ee48",
           "code": "crit-005-15",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se ha alcanzado un alto porcentaje de profesores con posgrado."
+          "criterio": "Se ha alcanzado un alto porcentaje de profesores con posgrado."
         },
         {
           "id": "3819056b-aabc-4dc3-928b-19002d73ec9c",
           "code": "crit-005-16",
-          "rubricaCode": "rub-ind-005",
-          "descripcion": "Se mantiene un programa de formación continua para el profesorado."
+          "criterio": "Se mantiene un programa de formación continua para el profesorado."
         }
       ],
       "version": 1,

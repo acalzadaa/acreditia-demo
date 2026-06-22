@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { RubricaItem, RubricaCriterioItem } from '$lib/schemas/rubrica.schema';
+	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
+	import type { RubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import EmptySection from '../../common/EmptySection.svelte';
@@ -103,10 +104,10 @@
 
 							{#if item.criterios.length > 0}
 								<ul class="element-item__childs text-body-small">
-									{#each item.criterios as criterio (criterio.id ?? criterio.descripcion)}
+									{#each item.criterios as criterio (criterio.id ?? criterio.criterio)}
 										<li class="element-item__child">
 											<span class="element-item__child-dot" aria-hidden="true"></span>
-											<span class="element-item__child-text">{criterio.descripcion}</span>
+											<span class="element-item__child-text">{criterio.criterio}</span>
 											<IconButton
 												name="delete"
 												size="sm"

@@ -1,73 +1,63 @@
+// rubrica.schema.ts
 import { z } from 'zod';
 import { indicadorRefSchema } from './indicador.schema';
+import { rubricaCriterioItemSchema } from './rubricaCriterio.schema';
+import { rubricaCriterioRefSchema } from './shared.schema';
 
 // ============================================
-// 1. REFERENCE SCHEMA (Para relaciones)
-// ============================================
-export const rubricaRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string().min(1, 'El código es requerido'),
-	rangeStart: z.number().int(),
-	rangeEnd: z.number().int(),
-	order: z.number().int()
-});
-
-export type RubricaRef = z.infer<typeof rubricaRefSchema>;
-
-export const rubricaCriterioItemSchema = z.object({
-	id: z.uuid(),
-    rubricaCode: z.string(),
-	descripcion: z.string()
-});
-
-export type RubricaCriterioItem = z.infer<typeof rubricaCriterioItemSchema>;
-
-// ============================================
-// 2. FORM SCHEMA (Cliente ↔ Servidor)
-// Para operaciones CRUD: crear y actualizar
+// 1. REFERENCE SCHEMA
 // ============================================
 
+// ============================================
+// 2. FORM SCHEMA
+// ============================================
 export const rubricaFormSchema = z
 	.object({
 		id: z.uuid().optional(),
-		indicadorId: z.uuid().optional(),
+		indicadorCode: z.string().optional(),
 		code: z
 			.string()
 			.min(1, 'El código es requerido')
 			.max(255, 'El código no puede exceder 255 caracteres')
 			.regex(
 				/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
-				'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
+				'Code solo puede contener letras minúsculas, números y guiones'
 			),
 		rangeStart: z.coerce
 			.number()
 			.int()
-			.nonnegative('El inicio del rango debe ser mayor o igual a 0'),
-		rangeEnd: z.coerce.number().int().nonnegative('El fin del rango debe ser mayor o igual a 0'),
-		order: z.coerce.number().int().nonnegative().default(0),
-		criterios: z.array(rubricaCriterioItemSchema).default([]),
+			.min(1, 'El inicio del rango debe ser al menos 1')
+			.max(10, 'El inicio no puede exceder 10'),
+		rangeEnd: z.coerce
+			.number()
+			.int()
+			.min(1, 'El fin del rango debe ser al menos 1')
+			.max(10, 'El fin no puede exceder 10'),
+		order: z.coerce.number().int().min(1).max(5).default(1),
 		createdBy: z.string().min(1, 'El creador es requerido')
 	})
 	.refine((data) => data.rangeStart <= data.rangeEnd, {
 		message: 'El inicio del rango debe ser menor o igual al fin del rango',
 		path: ['rangeEnd']
+	})
+	.refine((data) => data.rangeStart >= 1 && data.rangeEnd <= 10, {
+		message: 'Los rangos deben estar entre 1 y 10',
+		path: ['rangeStart']
 	});
 
 export type RubricaForm = z.infer<typeof rubricaFormSchema>;
 
 // ============================================
-// 3. ITEM SCHEMA (Servidor → Cliente)
-// Datos completos desde la base de datos, incluyendo timestamps
+// 3. ITEM SCHEMA (Con criterios incluidos)
 // ============================================
-
 export const rubricaItemSchema = z.object({
 	id: z.uuid(),
 	indicador: indicadorRefSchema,
 	code: z.string(),
 	rangeStart: z.number().int(),
 	rangeEnd: z.number().int(),
-	order: z.number().int(),
-	criterios: z.array(rubricaCriterioItemSchema).default([]),
+	order: z.number().int().min(1).max(5),
+	criterios: z.array(rubricaCriterioRefSchema),
 	version: z.number().int().nonnegative(),
 	isCurrent: z.boolean(),
 	validFrom: z.coerce.date(),
@@ -80,11 +70,19 @@ export const rubricaItemSchema = z.object({
 export type RubricaItem = z.infer<typeof rubricaItemSchema>;
 
 // ============================================
-// 6. CONFIG SCHEMA (Para configuraciones completas)
+// 4. WITH RELATIONS SCHEMA (Con criterios)
 // ============================================
+export const rubricaWithRelationsItemSchema = rubricaItemSchema.extend({
+	criterios: z.array(rubricaCriterioItemSchema)
+});
 
+export type RubricaWithRelationsItem = z.infer<typeof rubricaWithRelationsItemSchema>;
+
+// ============================================
+// 5. CONFIG SCHEMA
+// ============================================
 export const rubricaConfigSchema = z.object({
-	rubricaItems: z.array(rubricaItemSchema)
+	rubricaItems: z.array(rubricaWithRelationsItemSchema)
 });
 
 export type RubricaConfig = z.infer<typeof rubricaConfigSchema>;

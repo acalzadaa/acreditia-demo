@@ -111,3 +111,21 @@ export const normativaRefSchema = z.object({
 });
 
 export type NormativaRef = z.infer<typeof normativaRefSchema>;
+
+export const rubricaCriterioRefSchema = z.object({
+	id: z.uuid(),
+	code: z.string(),
+	criterio: z.string()
+});
+
+export type RubricaCriterioRef = z.infer<typeof rubricaCriterioRefSchema>;
+
+export const rubricaRefSchema = z.object({
+	id: z.uuid(),
+	code: z.string().min(1, 'El código es requerido'),
+	rangeStart: z.number().int().min(1, 'El inicio debe ser al menos 1'),
+	rangeEnd: z.number().int().max(10, 'El fin no puede exceder 10'),
+	order: z.number().int().min(1).max(5, 'Solo se permiten 5 rúbricas')
+});
+
+export type RubricaRef = z.infer<typeof rubricaRefSchema>;
