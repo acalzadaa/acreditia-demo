@@ -134,7 +134,10 @@ import {
 	indicadorDetailItemSchema,
 	type IndicadorDetailItem
 } from '$lib/schemas/indicadorDetail.schema';
-import { rubricaCriterioItemSchema, type RubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
+import {
+	rubricaCriterioItemSchema,
+	type RubricaCriterioItem
+} from '$lib/schemas/rubricaCriterio.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -312,8 +315,24 @@ export function getIndicadorEstrategico() {
 	return indicadorEstrategico;
 }
 
+export function getIndicadorEstrategicoRef() {
+	return indicadorEstrategico.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
+}
+
 export function getNormativa() {
 	return normativas;
+}
+
+export function getNormativaRef() {
+	return normativas.map((item) => ({
+		id: item.id,
+		code: item.code,
+		name: item.name
+	}));
 }
 
 export function getEntidadLegal() {

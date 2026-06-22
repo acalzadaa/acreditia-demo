@@ -42,7 +42,6 @@
 	<Indicador
 		gridArea="indicador"
 		{indicadorItems}
-		showDetailIcon={true}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
 		onClickBorrar={modal.handlers('delete').onClickItem}
@@ -80,13 +79,8 @@
 
 <style>
 	.main-grid {
-		display: grid;
-		grid-template-areas:
-			'toolbar'
-			'indicador';
-		grid-template-columns: 1fr;
-		grid-template-rows: auto 1fr;
-		height: 100vh;
-		position: relative;
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
 	}
 </style>

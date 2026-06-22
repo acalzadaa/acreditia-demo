@@ -1,30 +1,25 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import { navigateTo } from '$lib/helpers/navigation';
-	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
+	import type { AreaFuncionalRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		gridArea?: string;
 		showHeader?: boolean;
-		showDetailIcon?: boolean;
-
 		title?: string;
 		subtitle?: string;
-		items: IndicadorAreaResponsableItem[];
-		onClickBorrar: (item: IndicadorAreaResponsableItem) => void;
+		items: AreaFuncionalRef[];
+		onClickBorrar: (item: AreaFuncionalRef) => void;
 	}
 
 	const {
 		gridArea = 'main',
 		showHeader = false,
-		showDetailIcon = false,
 		title = 'Add',
 		subtitle = '',
 		items,
-		onClickBorrar
+		onClickBorrar,
 	}: Props = $props();
 </script>
 
@@ -37,36 +32,23 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-code">Codigo</th>
-						<th class="col-code">Area responsable</th>
-						<th class="col-description">Descripcion</th>
+						<th class="col-code">Code</th>
+						<th class="col-description">Subarea funcional</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.code}</td>
 							<td class="col-code">
-								<Badge variant="info">{item.areaResponsable.code}</Badge>
+								{item.code}
 							</td>
 							<td class="col-descripcion">
-								{item.areaResponsable.name}
+								{item.name}
 							</td>
 
 							<td class="col-actions">
-								{#if showDetailIcon}
-									<IconButton
-										isDisabled={item.isDeleted}
-										name="detail"
-										size="md"
-										borderShape="square"
-										variant="ghost"
-										onClick={() => navigateTo(item.code)}
-									/>
-								{/if}
 								<IconButton
-									isDisabled={item.isDeleted}
 									name="delete"
 									size="md"
 									borderShape="square"
@@ -79,7 +61,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de area responsable"></EmptySection>
+			<EmptySection message="No hay elementos de subarea funcional"></EmptySection>
 		{/if}
 	</section>
 </main>

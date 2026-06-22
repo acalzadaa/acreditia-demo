@@ -4,7 +4,7 @@
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
-	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
+	import type { IndicadorAreaFuncionalItem } from '$lib/schemas/indicadorAreaFuncional';
 
 	interface Props {
 		gridArea?: string;
@@ -13,8 +13,8 @@
 
 		title?: string;
 		subtitle?: string;
-		items: IndicadorAreaResponsableItem[];
-		onClickBorrar: (item: IndicadorAreaResponsableItem) => void;
+		items: IndicadorAreaFuncionalItem[];
+		onClickBorrar: (item: IndicadorAreaFuncionalItem) => void;
 	}
 
 	const {
@@ -38,7 +38,7 @@
 				<thead class="text-body-strong">
 					<tr>
 						<th class="col-code">Codigo</th>
-						<th class="col-code">Area responsable</th>
+						<th class="col-code">Area funcional</th>
 						<th class="col-description">Descripcion</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
@@ -48,10 +48,10 @@
 						<tr class="table-row tr-expandable">
 							<td class="col-code">{item.code}</td>
 							<td class="col-code">
-								<Badge variant="info">{item.areaResponsable.code}</Badge>
+								<Badge variant="info">{item.areaFuncional.code}</Badge>
 							</td>
 							<td class="col-descripcion">
-								{item.areaResponsable.name}
+								{item.areaFuncional.name}
 							</td>
 
 							<td class="col-actions">
@@ -79,7 +79,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de area responsable"></EmptySection>
+			<EmptySection message="No hay elementos de area funcional"></EmptySection>
 		{/if}
 	</section>
 </main>

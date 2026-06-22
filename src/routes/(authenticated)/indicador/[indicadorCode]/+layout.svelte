@@ -20,13 +20,10 @@
 	let modal = createModalManager<IndicadorItem>();
 </script>
 
-<div class="main-panel">
+<div class="indicador-detail-panel">
 	<Indicador
-		gridArea="indicador"
-		showHeader={true}
 		title="Indicador"
 		subtitle={indicadorCode}
-		showDetailIcon={true}
 		{indicadorItems}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
@@ -62,8 +59,7 @@
 {/if}
 
 <style>
-	.main-panel {
-		grid-area: main;
+	.indicador-detail-panel {
 		display: flex;
 		flex-direction: column;
 		min-height: 0;
@@ -76,7 +72,5 @@
 		overflow-y: scroll;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
-		padding: 1rem;
 	}
 </style>

@@ -23,7 +23,6 @@
      * ya actúa como un piso que el navegador respeta por columna;
      * la suma total es implícita. El .table-container (overflow: auto)
      * es quien decide cuándo aparece el scroll horizontal.
-     * No hay que recalcular nada a mano al agregar o quitar columnas.
      */
 }
 
@@ -96,8 +95,7 @@
    de esa columna, sin importar cómo se llame el campo
    en cada tabla. Cualquier número de columnas funciona;
    table-layout: fixed + min-width por columna evitan que
-   la tabla se vuelva ilegible sin tener que sumar nada
-   a mano en .data-table.
+   la tabla se vuelva ilegible
    ============================================= */
 
 /* --- col-code ---------------------------------
@@ -167,8 +165,7 @@
 
 /* --- col-actions-* -------------------------------
    Botones-ícono de 1rem c/u con gap entre ellos
-   (gap = var(--space-1), asumido 0.25rem; ajusta los
-   valores de abajo si tu token real es distinto).
+   (gap = var(--space-1).
    Cálculo: n×1rem + (n-1)×gap, usando el máximo de
    íconos que la celda puede mostrar a la vez:
      xs  1 ícono     1.5rem (margen incluido)
@@ -176,7 +173,7 @@
      md  4–5 íconos  hasta 6rem
      lg  6–7 íconos  hasta 8.5rem
    El padding horizontal de la celda (var(--space-3) en
-   .data-table td) ya se suma aparte; no lo incluyas aquí.
+   .data-table td) ya se suma aparte.
    El contenido de la celda debe ser un flex container
    con gap (ver .actions-row más abajo) para que el
    ancho calculado y el real coincidan. */

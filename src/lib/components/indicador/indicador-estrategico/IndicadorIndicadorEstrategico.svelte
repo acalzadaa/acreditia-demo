@@ -4,7 +4,7 @@
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
-	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
+	import type { IndicadorIndicadorEstrategicoItem } from '$lib/schemas/indicadorIndicadorEstrategico';
 
 	interface Props {
 		gridArea?: string;
@@ -13,8 +13,8 @@
 
 		title?: string;
 		subtitle?: string;
-		items: IndicadorAreaResponsableItem[];
-		onClickBorrar: (item: IndicadorAreaResponsableItem) => void;
+		items: IndicadorIndicadorEstrategicoItem[];
+		onClickBorrar: (item: IndicadorIndicadorEstrategicoItem) => void;
 	}
 
 	const {
@@ -38,7 +38,7 @@
 				<thead class="text-body-strong">
 					<tr>
 						<th class="col-code">Codigo</th>
-						<th class="col-code">Area responsable</th>
+						<th class="col-code">Indicador estrategico</th>
 						<th class="col-description">Descripcion</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
@@ -46,12 +46,12 @@
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.code}</td>
+							<td class="col-code">{item.indicador.code}</td>
 							<td class="col-code">
-								<Badge variant="info">{item.areaResponsable.code}</Badge>
+								<Badge variant="info">{item.indicadorEstrategico.code}</Badge>
 							</td>
 							<td class="col-descripcion">
-								{item.areaResponsable.name}
+								{item.indicadorEstrategico.name}
 							</td>
 
 							<td class="col-actions">
@@ -62,7 +62,7 @@
 										size="md"
 										borderShape="square"
 										variant="ghost"
-										onClick={() => navigateTo(item.code)}
+										onClick={() => navigateTo(item.indicador.code)}
 									/>
 								{/if}
 								<IconButton
@@ -79,7 +79,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de area responsable"></EmptySection>
+			<EmptySection message="No hay elementos de indicador estrategico"></EmptySection>
 		{/if}
 	</section>
 </main>

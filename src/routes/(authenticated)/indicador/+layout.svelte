@@ -50,7 +50,7 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 
-	<main class="gridArea:main">
+	<main style="grid-area: main;">
 		{@render children()}
 	</main>
 	<Footer />

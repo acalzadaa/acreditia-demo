@@ -2,14 +2,14 @@
 	import { superForm } from 'sveltekit-superforms';
 	
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {  rubricaCriterioItemSchema, type RubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import { indicadorIndicadorEstrategicoItemSchema, type IndicadorIndicadorEstrategicoItem } from '$lib/schemas/indicadorIndicadorEstrategico';
 	
 	interface Props {
 		open: boolean;
-		selectedItem: RubricaCriterioItem;
+		selectedItem: IndicadorIndicadorEstrategicoItem;
 		onClose: () => void;
 	}
 
@@ -21,7 +21,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(rubricaCriterioItemSchema),
+		validators: zod4(indicadorIndicadorEstrategicoItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
@@ -48,7 +48,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Borrar institucion</h2>
+			<h2 class="modal-title text-h4">Borrar indicador estrategico</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -70,7 +70,7 @@
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Borrar</Button>
+				<Button type="submit" variant="critical">Borrar indicador</Button>
 			</footer>
 		</form>
 	</div>
