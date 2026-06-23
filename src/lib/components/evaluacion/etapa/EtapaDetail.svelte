@@ -2,17 +2,15 @@
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import type { RubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
+	import { navigateTo } from '$lib/helpers/navigation';
+	import type { EtapaDetailItem } from '$lib/schemas/etapaDetail.schema';
 
 	interface Props {
 		gridArea?: string;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		items: RubricaCriterioItem[];
-		onClickEditar: (item: RubricaCriterioItem) => void;
-		onClickBorrar: (item: RubricaCriterioItem) => void;
-		onClickRestaurar: (item: RubricaCriterioItem) => void;
+		items: EtapaDetailItem[];
 	}
 
 	const {
@@ -20,10 +18,7 @@
 		showHeader = false,
 		title = 'Add',
 		subtitle = '',
-		items,
-		onClickEditar,
-		onClickBorrar,
-		onClickRestaurar
+		items
 	}: Props = $props();
 </script>
 
@@ -36,45 +31,22 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-code">Code</th>
-						<th class="col-description">Criterio</th>
+						<th class="col-code">Seccion</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">
-								{item.code}
-							</td>
-							<td class="col-descripcion">
-								{item.criterio}
-							</td>
+							<td class="col-code">{item.url}</td>
 
 							<td class="col-actions">
 								<IconButton
-									isDisabled={item.isDeleted}
-									name="edit"
+									name="detail"
 									size="md"
 									borderShape="square"
 									variant="ghost"
-									onClick={() => onClickEditar(item)}
-								/>
-								<IconButton
-									isDisabled={item.isDeleted}
-									name="delete"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickBorrar(item)}
-								/>
-								<IconButton
-									isDisabled={!item.isDeleted}
-									name="restore"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickRestaurar(item)}
+									onClick={() => navigateTo(item.url)}
 								/>
 							</td>
 						</tr>
@@ -82,12 +54,18 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de indicador"></EmptySection>
+			<EmptySection message="No hay elementos de evaluacion"></EmptySection>
 		{/if}
 	</section>
 </main>
 
 <style>
+	.main-panel {
+		flex-shrink: 0;
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	}
 	/*
  * table-layout: fixed permite que las columnas respeten
  * los anchos declarados en thead th.

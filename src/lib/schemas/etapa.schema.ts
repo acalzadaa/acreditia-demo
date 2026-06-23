@@ -1,10 +1,10 @@
 import z from "zod";
 
 
-export const etapaItemSchema = z.object({
+export const etapaRefSchema = z.object({
     order: z.number(),
     code: z.string(),
     name: z.string(),
 });
 
-export type EtapaItem = z.infer<typeof etapaItemSchema>;
+export type EtapaRef = z.infer<typeof etapaRefSchema>;

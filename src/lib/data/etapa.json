@@ -1,10 +1,44 @@
 {
     "etapa": [
         {
-            "id": "z.uuid()",
             "orden": 1,
             "code": "meta",
             "name": "Agregar metas"
+        },
+        {
+            "orden": 2,
+            "code": "evidencia",
+            "name": "Capturar evidencia"
+        },
+        {
+            "orden": 3,
+            "code": "resultados",
+            "name": "Captura de resultados"
+        },
+        {
+            "orden": 4,
+            "code": "autoevaluacion",
+            "name": "Captura de autoevaluacion"
+        },
+        {
+            "orden": 5,
+            "code": "revision-autoevaluacion",
+            "name": "Revision de autoevaluacion"
+        },
+        {
+            "orden": 6,
+            "code": "captura-plan-mejora",
+            "name": "Captura de plan de mejora"
+        },
+        {
+            "orden": 7,
+            "code": "autorizacion-plan-mejora",
+            "name": "Autorizacion de plan de mejora"
+        },
+        {
+            "orden": 8,
+            "code": "ejecucion-plan-mejora",
+            "name": "Ejecucion de plan de mejora"
         }
     ]
 }

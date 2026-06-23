@@ -1,0 +1,74 @@
+{
+    "evaluacionEtapaIndicadorCampus": [
+        {
+            "id": "bdec5dfc-e6ef-45a6-8861-14092073e623",
+            "code": "2025-3-meta-ind-001-CAMPUS-MTY-001",
+            "evaluacion": {
+                "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+                "code": "2025-3",
+                "name": "Invierno 2025"
+            },
+            "etapa": {
+                "order": 1,
+                "code": "meta",
+                "name": "Agregar metas"
+            },
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "campus": {
+                "id": "99be4241-389d-430a-83f2-b1c612c029ac",
+                "code": "CAMPUS-MTY-001",
+                "name": "Campus Monterrey"
+            },
+            "metadata": {
+                "code": "meta"
+            },
+            "status": "working",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:00:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "659bc4e4-30f9-42cc-b7bb-0c2ae5c824ba",
+            "code": "2025-3-meta-ind-001-CAMPUS-SALT-002",
+            "evaluacion": {
+                "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+                "code": "2025-3",
+                "name": "Invierno 2025"
+            },
+            "etapa": {
+                "order": 1,
+                "code": "meta",
+                "name": "Agregar metas"
+            },
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "campus": {
+                "id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+                "code": "CAMPUS-SALT-002",
+                "name": "Campus Saltillo"
+            },
+            "metadata": {
+                "code": "meta"
+            },
+            "status": "ready",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:00:00Z",
+            "createdBy": "admin@system.com"
+        }
+    ]
+}

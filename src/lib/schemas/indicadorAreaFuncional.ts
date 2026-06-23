@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { indicadorRefSchema } from './indicador.schema';
-import { areaFuncionalRefSchema } from './shared.schema';
+import { areaFuncionalRefSchema, indicadorRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA (Para relaciones)

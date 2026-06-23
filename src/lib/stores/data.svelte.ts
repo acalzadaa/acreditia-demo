@@ -41,6 +41,8 @@ import indicadorIndicadorEstrategicoJsonData from '$lib/data/indicador-indicador
 
 import indicadorDetailJsonData from '$lib/data/indicador-detail.json';
 import evaluacionDetailJsonData from '$lib/data/evaluacion-detail.json';
+import etapaDetailJsonData from '$lib/data/etapa-detail.json';
+import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-indicador-campus.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -133,8 +135,19 @@ import {
 	rubricaCriterioItemSchema,
 	type RubricaCriterioItem
 } from '$lib/schemas/rubricaCriterio.schema';
-import { evaluacionDetailItemSchema, type EvaluacionDetailItem } from '$lib/schemas/evaluacionDetail.schema';
-import { evaluacionEtapaItemSchema, type EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
+import {
+	evaluacionDetailItemSchema,
+	type EvaluacionDetailItem
+} from '$lib/schemas/evaluacionDetail.schema';
+import {
+	evaluacionEtapaItemSchema,
+	type EvaluacionEtapaItem
+} from '$lib/schemas/evaluacionEtapa.schema';
+import { etapaDetailItemSchema, type EtapaDetailItem } from '$lib/schemas/etapaDetail.schema';
+import {
+	evaluacionEtapaIndicadorCampusItemSchema,
+	type EvaluacionEtapaIndicadorCampusItem
+} from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -180,6 +193,8 @@ let indicadorAreaFuncional = $state<IndicadorAreaFuncionalItem[]>([]);
 let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
 let indicadorDetail = $state<IndicadorDetailItem[]>([]);
+let etapaDetail = $state<EtapaDetailItem[]>([]);
+let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -271,6 +286,12 @@ rubricaCriterio = rubricaCriterioRawData.map((item) => rubricaCriterioItemSchema
 const evaluacionEtapaRawData = evaluacionEtapaJsonData.evaluacionEtapaItems;
 evaluacionEtapa = evaluacionEtapaRawData.map((item) => evaluacionEtapaItemSchema.parse(item));
 
+const evaluacionEtapaIndicadorCampusRawData =
+	evaluacionEtapaIndicadorCampusJsonData.evaluacionEtapaIndicadorCampus;
+evaluacionEtapaIndicadorCampus = evaluacionEtapaIndicadorCampusRawData.map((item) =>
+	evaluacionEtapaIndicadorCampusItemSchema.parse(item)
+);
+
 const indicadorAreaResponsableRawData =
 	indicadorAreaResponsableJsonData.indicadorAreaResponsableItems;
 indicadorAreaResponsable = indicadorAreaResponsableRawData.map((item) =>
@@ -299,6 +320,8 @@ indicadorDetail = indicadorDetailRawData.map((item) => indicadorDetailItemSchema
 const evaluacionDetailRawData = evaluacionDetailJsonData.evaluacionDetailItem;
 evaluacionDetail = evaluacionDetailRawData.map((item) => evaluacionDetailItemSchema.parse(item));
 
+const etapaDetailRawData = etapaDetailJsonData.etapaDetailItem;
+etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));
 
 // Helpers
 export function getFilosofia() {
@@ -540,4 +563,12 @@ export function getIndicadorIndicadorEstrategico() {
 
 export function getIndicadorDetail() {
 	return indicadorDetail;
+}
+
+export function getEtapaDetail() {
+	return etapaDetail;
+}
+
+export function getEvaluacionEtapaIndicadorCampus() {
+	return evaluacionEtapaIndicadorCampus;
 }

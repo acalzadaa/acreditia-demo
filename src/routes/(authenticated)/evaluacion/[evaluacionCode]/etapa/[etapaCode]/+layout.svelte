@@ -24,5 +24,13 @@
 		items={etapaItems}
 		onClickEditar={modalEtapa.handlers('edit').onClickItem}
 	/>
-	{@render children()}
+	<div class="detail">
+		{@render children()}
+	</div>
 </main>
+
+<style>
+	.detail {
+		padding-top: 10px;
+	}
+</style>

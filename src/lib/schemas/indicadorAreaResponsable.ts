@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { indicadorRefSchema } from './indicador.schema';
+import { indicadorRefSchema } from './shared.schema';
 import { areaResponsableRefSchema, unidadAcademicaRefSchema } from './shared.schema';
 
 // ============================================

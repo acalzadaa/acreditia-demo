@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { evaluacionRefSchema } from './shared.schema';
 import { evaluacionItemSchema } from './evaluacion.schema';
-import { etapaItemSchema } from './etapa.schema';
+import { etapaRefSchema } from './etapa.schema';
 
 // ============================================
 // ENUMS
@@ -9,18 +9,6 @@ import { etapaItemSchema } from './etapa.schema';
 
 export const EvaluacionEtapaStatusEnum = z.enum(['planning', 'ready']);
 export type EvaluacionEtapaStatus = z.infer<typeof EvaluacionEtapaStatusEnum>;
-
-// ============================================
-// 1. REFERENCE SCHEMAS (Para relaciones)
-// ============================================
-
-export const etapaRefSchema = z.object({
-	id: z.uuid(),
-	numeroEtapa: z.number(),
-	status: EvaluacionEtapaStatusEnum,
-	evaluacionId: z.uuid()
-});
-export type EtapaRef = z.infer<typeof etapaRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -57,7 +45,7 @@ export const evaluacionEtapaItemSchema = z.object({
 	id: z.uuid(),
 	evaluacionId: z.uuid(),
 	evaluacion: evaluacionRefSchema,
-	etapa: etapaItemSchema,
+	etapa: etapaRefSchema,
 	fechaInicio: z.coerce.date().optional().nullable(),
 	fechaFinal: z.coerce.date().optional().nullable(),
 	periodoExtraordinario: z.boolean().default(false),
