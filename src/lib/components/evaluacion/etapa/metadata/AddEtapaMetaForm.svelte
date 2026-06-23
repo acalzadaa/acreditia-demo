@@ -3,19 +3,17 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { EtapaMetaForm } from '$lib/schemas/etapaMetadata.schema';
 
 	interface Props {
-		item: EtapaMetaForm;
 		onSave?: () => void;
 	}
 
-	let { item, onSave }: Props = $props();
+	let { onSave }: Props = $props();
 
 	// Estado local del formulario
-	let formData = $derived({
-		target: item.target || 0,
-		targetUnit: item.targetUnit || ''
+	let formData = $state({
+		target: 0,
+		targetUnit: ''
 	});
 
 	let errorMessage = $state('');
