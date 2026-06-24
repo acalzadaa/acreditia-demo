@@ -50,13 +50,18 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 
-	<main style="grid-area: main;">
+	<main class="main-children">
 		{@render children()}
 	</main>
 	<Footer />
 </div>
 
 <style>
+	.main-children {
+		grid-area: 'main';
+		background-color: var(--bg-ground);
+	}
+	
 	.app-grid {
 		display: grid;
 		grid-template-areas:

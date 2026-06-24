@@ -9,8 +9,9 @@
 	let evaluacionEtapaIndicadorCampusItems = getEvaluacionEtapaIndicadorCampus().filter(
 		(item) => item.evaluacion.code === evaluacionCode && item.etapa.code === etapaCode
 	);
+	$inspect(evaluacionCode, etapaCode, evaluacionEtapaIndicadorCampusItems);
 </script>
 
 <main>
-	<IndicadorCampus items={evaluacionEtapaIndicadorCampusItems} />
+	<IndicadorCampus showHeader={true} title='Lista de indicadores por campus' items={evaluacionEtapaIndicadorCampusItems} />
 </main>

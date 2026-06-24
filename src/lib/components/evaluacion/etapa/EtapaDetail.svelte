@@ -38,7 +38,7 @@
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.url}</td>
+							<td class="col-code">{item.name}</td>
 
 							<td class="col-actions">
 								<IconButton

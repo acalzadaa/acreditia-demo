@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
 	import type { EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 	import Evaluacion from '$lib/components/evaluacion/Evaluacion.svelte';
 	import CrearEvaluacionForm from '$lib/components/evaluacion/CrearEvaluacionForm.svelte';
@@ -35,8 +34,6 @@
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onClickIniciarEvaluacion={modal.handlers('iniciar').onClickItem}
 	/>
-
-	<Footer />
 </div>
 
 <CrearEvaluacionForm

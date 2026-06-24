@@ -1,42 +1,42 @@
 {
     "etapa": [
         {
-            "orden": 1,
+            "order": 1,
             "code": "meta",
             "name": "Agregar metas"
         },
         {
-            "orden": 2,
+            "order": 2,
             "code": "evidencia",
             "name": "Capturar evidencia"
         },
         {
-            "orden": 3,
+            "order": 3,
             "code": "resultados",
             "name": "Captura de resultados"
         },
         {
-            "orden": 4,
+            "order": 4,
             "code": "autoevaluacion",
             "name": "Captura de autoevaluacion"
         },
         {
-            "orden": 5,
+            "order": 5,
             "code": "revision-autoevaluacion",
             "name": "Revision de autoevaluacion"
         },
         {
-            "orden": 6,
+            "order": 6,
             "code": "captura-plan-mejora",
             "name": "Captura de plan de mejora"
         },
         {
-            "orden": 7,
+            "order": 7,
             "code": "autorizacion-plan-mejora",
             "name": "Autorizacion de plan de mejora"
         },
         {
-            "orden": 8,
+            "order": 8,
             "code": "ejecucion-plan-mejora",
             "name": "Ejecucion de plan de mejora"
         }
