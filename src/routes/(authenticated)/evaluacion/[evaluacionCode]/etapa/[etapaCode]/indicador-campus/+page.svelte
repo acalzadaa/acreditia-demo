@@ -9,7 +9,6 @@
 	let evaluacionEtapaIndicadorCampusItems = getEvaluacionEtapaIndicadorCampus().filter(
 		(item) => item.evaluacion.code === evaluacionCode && item.etapa.code === etapaCode
 	);
-	$inspect(evaluacionCode, etapaCode, evaluacionEtapaIndicadorCampusItems);
 </script>
 
 <main>

@@ -1,17 +1,15 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
+	
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		evaluacionFormSchema,
-		type EvaluacionItem
-	} from '$lib/schemas/evaluacion.schema';
+	import { evidenciaFileRefSchema, type EvidenciaFileRef } from '$lib/schemas/etapaMetadata.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
-		item: EvaluacionItem;
+		item: EvidenciaFileRef;
 		onClose: () => void;
 	}
 
@@ -21,31 +19,20 @@
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, enhance } = superForm(
-		{
-			id: props.item.id,
-			code: props.item.code,
-			modeloId: props.item.modelo.id,
-			institucionId: props.item.institucion.id,
-			name: props.item.name,
-			year: props.item.year,
-			cycle: props.item.cycle
+	const { form, enhance } = superForm(props.item, {
+		dataType: 'json',
+		validators: zod4(evidenciaFileRefSchema),
+		customValidity: false,
+		resetForm: false,
+		onSubmit: () => {
+			handleClose();
 		},
-		{
-			dataType: 'json',
-			validators: zod4(evaluacionFormSchema),
-			customValidity: false,
-			resetForm: false,
-			onSubmit: () => {
+		onUpdated: async ({ form }) => {
+			if (form.valid) {
 				handleClose();
-			},
-			onUpdated: async ({ form }) => {
-				if (form.valid) {
-					handleClose();
-				}
 			}
 		}
-	);
+	});
 
 	function handleClose() {
 		onClose();
@@ -58,10 +45,10 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Iniciar evaluacion</h2>
+			<h2 class="modal-title text-h4">Borrar archivo</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -71,21 +58,22 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/iniciarEvaluacion" use:enhance>
+		<form method="POST" action="?/deleteFile" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
 
 			<div class="modal-body">
 				<div class="confirm-content">
 					<p class="confirm-message text-body-large">
-						¿Estás seguro de que deseas iniciar la evaluacion<strong>"{props.item?.name}"</strong>?
+						¿Estás seguro de que deseas aliminar el registro <strong>"{props.item?.filename}"</strong
+						>?
 					</p>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Iniciar</Button>
+				<Button type="submit" variant="critical">Borrar</Button>
 			</footer>
 		</form>
 	</div>

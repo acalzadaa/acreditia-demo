@@ -61,7 +61,9 @@
             "metadata": {
                 "code": "meta",
                 "target": 95,
-                "targetUnit": "porcentaje de egresados"
+                "targetUnit": "porcentaje de egresados",
+                "doesNotApply": true,
+                "doesNotApplyReason": "Este es el primer año del campus, por lo que estes indicador no se podra evaluar sino hasta las inscripciones del proximo semestre"
             },
             "status": "working",
             "version": 1,
@@ -96,7 +98,25 @@
                 "name": "Campus Monterrey"
             },
             "metadata": {
-                "code": "evidencia"
+                "code": "evidencia",
+                "file": [
+                    {
+                        "id": "3a975947-46df-445d-bd0e-d43fd9912771",
+                        "filename": "reporte de graduados.xlsx",
+                        "status": "ready"
+                    },
+                    {
+                        "id": "6a2073cc-6c13-4d88-943e-faba16472237",
+                        "filename": "reporte de alumnos de nuevo ingreso.xlsx",
+                        "status": "ready"
+                    }
+                ],
+                "url": [
+                    {
+                        "id": "8d874146-85fb-4f11-889f-5edf540967ab",
+                        "url": "https://drive.google.com/2c7d3298-71e7-4ec9-b8ed-0c486459c56b/share"
+                    }
+                ]
             },
             "status": "working",
             "version": 1,
@@ -132,11 +152,24 @@
             },
             "metadata": {
                 "code": "evidencia",
-                "files": [
-                    "reporte_anual_egresados.xlsx",
-                    "reporte_alumnos_nuevo_ingreso.docx"
+                "file": [
+                    {
+                        "id": "519d098a-6106-45f3-862b-3a1627f13169",
+                        "filename": "reporte de graduados COAHUILA.xlsx",
+                        "status": "ready"
+                    },
+                    {
+                        "id": "169670d1-0fba-4fd1-b034-b11ac5a73a90",
+                        "filename": "reporte de alumnos de nuevo ingreso SALTILLO.xlsx",
+                        "status": "ready"
+                    }
                 ],
-                "url": "https://docs.google.com/LKDJFSLFJKLAKLDFAF/shared/AJAJ)DF=S)DFJSDF"
+                "url": [
+                    {
+                        "id": "d479055a-c06f-4701-91b9-5e3bfac7874d",
+                        "url": "https://drive.google.com/b96ef0ba-cdcc-45d4-9fb2-eb31bff7ea7b/share"
+                    }
+                ]
             },
             "status": "working",
             "version": 1,
@@ -171,7 +204,11 @@
                 "name": "Campus Monterrey"
             },
             "metadata": {
-                "code": "resultados"
+                "code": "resultados",
+                "target": 95,
+                "result": 90,
+                "isGoalReached": false,
+                "reason": "Hubo una alta migracion de estudiantes al campus Saltillo"
             },
             "status": "working",
             "version": 1,
@@ -182,6 +219,7 @@
             "createdAt": "2024-01-01T10:00:00Z",
             "createdBy": "admin@system.com"
         },
+        
         {
             "id": "1c53d952-ebe6-4b82-9d27-7feecdf99a2a",
             "code": "2025-3-resultados-ind-001-CAMPUS-SALT-002",
@@ -207,9 +245,7 @@
             },
             "metadata": {
                 "code": "resultados",
-                "resultado": 90,
-                "cumplioMeta": false,
-                "justificacion": "Migracion de estudiantes fuera del estado"
+                "target": 95
             },
             "status": "working",
             "version": 1,

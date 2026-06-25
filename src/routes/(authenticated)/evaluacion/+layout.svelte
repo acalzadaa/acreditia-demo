@@ -58,8 +58,10 @@
 
 <style>
 	.main-children {
-		grid-area: 'main';
+		grid-area: main;
 		background-color: var(--bg-ground);
+		min-height: 0;
+		overflow: hidden;
 	}
 	
 	.app-grid {

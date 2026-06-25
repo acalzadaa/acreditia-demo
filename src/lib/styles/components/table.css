@@ -4,13 +4,50 @@
     --table-bg-hover: var(--neutral-tinted-100);
 }
 
-/* Contenedor de la tabla con scroll */
+/* =============================================
+   .table-container TIENE DOS VARIANTES.
+   Elige una explícitamente; NO mezcles overrides sueltos
+   en componentes hijos, porque CSS no resetea lo que no
+   se menciona y vuelves a heredar flex/height/position
+   sin darte cuenta (bug ya vivido, no lo repitas).
+
+   VARIANTE A (default, abajo) — "vista completa":
+   la tabla ES el contenido principal del área y debe
+   ocupar el 100% del alto disponible, con su PROPIO
+   scroll vertical interno. Úsala cuando .table-container
+   es hijo directo de un contenedor flex/grid que le da
+   una altura explícita (ej. un .main-children de layout
+   con grid-template-rows: ...1fr..., o un panel que es el
+   único elemento de su área).
+
+   VARIANTE B (.table-container--inline) — "contenido que
+   crece": la tabla es UNO DE VARIOS elementos dentro de
+   un contenedor con su propio scroll (ej. .content-area
+   flex-column con overflow-y: auto). Aquí la tabla NO debe
+   tener altura propia ni position: relative; debe crecer
+   según sus filas y dejar que el contenedor padre maneje
+   el scroll vertical del grupo completo. Solo necesita
+   overflow-x: auto para su propio scroll horizontal.
+   ============================================= */
+
+/* Contenedor de la tabla con scroll — VARIANTE A: vista completa */
 .table-container {
     flex: 1;
-    overflow: auto;
+    overflow-x: auto;
     padding: 0 var(--space-2);
     position: relative;
     height: 100%;
+}
+
+/* VARIANTE B: contenido que crece dentro de un grupo con scroll
+   propio (ej. .content-area). Sobreescribe explícitamente las
+   4 propiedades de la variante A que NO aplican aquí — no basta
+   con tocar overflow, las demás quedan vigentes en cascada. */
+.table-container--inline {
+    flex: none;
+    height: auto;
+    position: static;
+    overflow-y: visible;
 }
 
 .data-table {

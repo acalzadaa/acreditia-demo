@@ -6,6 +6,7 @@
 		open?: boolean;
 		closeOnEscape?: boolean;
 		closeOnBackdropClick?: boolean;
+		onClickClose?: () => void;
 		children?: Snippet;
 		[key: string]: unknown;
 	}
@@ -14,6 +15,7 @@
 		open = $bindable(false),
 		closeOnEscape = true,
 		closeOnBackdropClick = true,
+		onClickClose,
 		children,
 		...props
 	}: Props = $props();
@@ -32,6 +34,9 @@
 	});
 
 	function handleClose() {
+		if (onClickClose) {
+			onClickClose();
+		}
 		open = false;
 	}
 

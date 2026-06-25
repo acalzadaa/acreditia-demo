@@ -22,8 +22,8 @@ export type EtapaCode = z.infer<typeof EtapaCodeEnum>;
 // ============================================
 
 export const etapaNotAppliableItemSchema = z.object({
-	notAppliable: z.boolean(),
-	notAppliableExplain: z.string()
+	doesNotApply: z.boolean(),
+	doesNotApplyReason: z.string()
 });
 
 // ============================================
@@ -35,36 +35,101 @@ export const etapaNotAppliableItemSchema = z.object({
 export const etapaMetaItemSchema = z.object({
 	code: z.literal('meta'),
 	target: z.coerce.number().default(0),
-	targetUnit: z.string().default('')
+	targetUnit: z.string().default(''),
+	doesNotApply: z.boolean().default(false),
+	doesNotApplyReason: z.string().default('')
 });
 
 export type EtapaMetaItem = z.infer<typeof etapaMetaItemSchema>;
 
 export const etapaMetaFormSchema = z.object({
 	target: z.coerce.number().default(0),
-	targetUnit: z.string().optional()
+	targetUnit: z.string().optional(),
+	doesNotApply: z.boolean().default(false),
+	doesNotApplyReason: z.string().default('')
 });
 
 export type EtapaMetaForm = z.infer<typeof etapaMetaFormSchema>;
 
 //etapa 2
+
+/**
+ * Status del archivo dentro del ciclo de subida async a S3.
+ * - sending: el server action ya registró el archivo y aceptó el form,
+ *   pero el PUT a S3 todavía no se confirma. Es la ÚNICA transición que
+ *   se actualiza in-place sobre la fila vigente (no genera nueva versión
+ *   SCD2) — ver nota en evidenciaFileRefSchema.
+ * - ready: la subida a S3 se confirmó, el archivo ya existe físicamente.
+ */
+export const evidenciaFileStatusEnum = z.enum(['sending', 'ready']);
+export type EvidenciaFileStatus = z.infer<typeof evidenciaFileStatusEnum>;
+
+/**
+ * Referencia a un archivo dentro del jsonb. NO es el archivo binario ni
+ * la URL de S3 — esas viven en la tabla `evidencia_archivos` (s3_key,
+ * mime_type, size_bytes, etc). Aquí solo lo mínimo para renderizar la
+ * lista en UI y para resolver el archivo real vía join por `id` cuando
+ * se necesite (ej. generar una signed URL).
+ *
+ * `id` es el mismo UUID usado como nombre del objeto en S3
+ * (evidencia/{registroId}/{id}.{ext}), no se genera un id aparte.
+ */
+export const evidenciaFileRefSchema = z.object({
+	id: z.uuid(),
+	filename: z.string(),
+	status: evidenciaFileStatusEnum
+});
+
+export type EvidenciaFileRef = z.infer<typeof evidenciaFileRefSchema>;
+
+export const evidenciaUrlRefSchema = z.object({
+	id: z.uuid(),
+	url: z.url()
+});
+
+export type EvidenciaUrlRef = z.infer<typeof evidenciaUrlRefSchema>;
+
 export const etapaEvidenciaItemSchema = z.object({
 	code: z.literal('evidencia'),
-	file: z.array(z.string()).optional(),
-	url: z.url().optional()
+	file: z.array(evidenciaFileRefSchema).optional(),
+	url: z.array(evidenciaUrlRefSchema).optional()
 });
 
 export type EtapaEvidenciaItem = z.infer<typeof etapaEvidenciaItemSchema>;
 
-//etapa 3
-export const etapaCapturaResultadosItemSchema = z.object({
-	code: z.literal('resultados'),
-	resultado: z.number().optional(),
-	cumplioMeta: z.boolean().optional(),
-	justificacion: z.string().optional()
+/**
+ * Schema del mini-form de "Agregar" (sube UN archivo y/o cambia la url
+ * en la misma interacción). Esto NO es lo que se guarda en el jsonb —
+ * es el input crudo que llega al server action. El action decide qué
+ * actualizar según qué venga lleno/cambiado.
+ *
+ * `file` es opcional porque el usuario puede mandar solo url, solo
+ * archivo, o ambos en la misma sumisión.
+ */
+export const etapaEvidenciaFormSchema = z.object({
+	file: z.instanceof(File).refine((f) => f.size > 0, 'El archivo está vacío'),
+	url: z.url().default('')
 });
 
-export type EtapaCapturaResultadosItem = z.infer<typeof etapaCapturaResultadosItemSchema>;
+export type EtapaEvidenciaForm = z.infer<typeof etapaEvidenciaFormSchema>;
+
+//etapa 3
+export const etapaResultadosItemSchema = z.object({
+	code: z.literal('resultados'),
+	target: z.number().optional(),
+	result: z.number().optional(),
+	isGoalReached: z.boolean().optional(),
+	reason: z.string().default('')
+});
+
+export type EtapaResultadosItem = z.infer<typeof etapaResultadosItemSchema>;
+
+export const etapaResultadosFormSchema = z.object({
+	result: z.number().optional(),
+	reason: z.string().optional()
+});
+
+export type EtapaResultadosForm = z.infer<typeof etapaResultadosFormSchema>;
 
 //etapa 4
 export const etapaCapturaAutoevaluacionItemSchema = z.object({
@@ -119,7 +184,7 @@ export type EtapaEjecucionPlanMejoraItem = z.infer<typeof etapaEjecucionPlanMejo
 export const etapaMetadataSchema = z.discriminatedUnion('code', [
 	etapaMetaItemSchema,
 	etapaEvidenciaItemSchema,
-	etapaCapturaResultadosItemSchema,
+	etapaResultadosItemSchema,
 	etapaCapturaAutoevaluacionItemSchema,
 	etapaRevisionAutoevaluacionItemSchema,
 	etapaCapturaPlanMejoraItemSchema,
