@@ -4,6 +4,9 @@
 	import IndicadorCampus from '$lib/components/evaluacion/etapa/indicador-campus/IndicadorCampus.svelte';
 	import {
 		type EtapaAutoevaluacionItem,
+		type EtapaAutorizacionPlanMejoraItem,
+		type EtapaCapturaPlanMejoraItem,
+		type EtapaEjecucionPlanMejoraItem,
 		type EtapaEvidenciaItem,
 		type EtapaMetadata,
 		type EtapaMetaItem,
@@ -31,7 +34,17 @@
 	import AddEtapaRevisionAutoevaluacionScoreForm from '$lib/components/evaluacion/etapa/metadata/revision/AddEtapaRevisionAutoevaluacionScoreForm.svelte';
 	import FinishEtapaRevisionAutoevaluacionForm from '$lib/components/evaluacion/etapa/metadata/revision/FinishEtapaRevisionAutoevaluacionForm.svelte';
 	import FinishEtapaAutoevaluacionForm from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/FinishEtapaAutoevaluacionForm.svelte';
+	import AddEtapaCapturaPlanMejoraAcuerdosForm from '$lib/components/evaluacion/etapa/metadata/captura-plan-mejora/AddEtapaCapturaPlanMejoraAcuerdosForm.svelte';
+	import FinishEtapaCapturaPlanMejoraForm from '$lib/components/evaluacion/etapa/metadata/captura-plan-mejora/FinishEtapaCapturaPlanMejoraForm.svelte';
+	import CapturaPlanMejoraList from '$lib/components/evaluacion/etapa/metadata/captura-plan-mejora/CapturaPlanMejoraList.svelte';
+	import AutorizarPlanMejoraList from '$lib/components/evaluacion/etapa/metadata/autorizacion-plan-mejora/AutorizacionPlanMejoraList.svelte';
+	import FinishEtapaAutorizarPlanMejoraForm from '$lib/components/evaluacion/etapa/metadata/autorizacion-plan-mejora/FinishEtapaAutorizacionPlanMejoraForm.svelte';
+	import EditAutorizacionPlanMejoraForm from '$lib/components/evaluacion/etapa/metadata/autorizacion-plan-mejora/EditAutorizacionPlanMejoraForm.svelte';
+	import EjecucionPlanMejoraList from '$lib/components/evaluacion/etapa/metadata/ejecucion-plan-mejora/EjecucionPlanMejoraList.svelte';
+	import EditEjecucionPlanMejoraForm from '$lib/components/evaluacion/etapa/metadata/ejecucion-plan-mejora/EditEjecucionPlanMejoraForm.svelte';
+	import FinishEtapaEjecucionPlanMejoraForm from '$lib/components/evaluacion/etapa/metadata/ejecucion-plan-mejora/FinishEtapaEjecucionPlanMejoraForm.svelte';
 
+	//elementos que en comun
 	let etapaCode = page.params.etapaCode;
 	let indicadorCampusCode = page.params.indicadorCampusCode;
 
@@ -43,29 +56,39 @@
 		.filter((item) => item.code === indicadorCampusCode)
 		.flatMap((item) => item.metadata)[0];
 
-	let indicadorCodes = [
-		...new Set(evaluacionEtapaIndicadorCampusItems.map((item) => item.indicador.code))
-	];
-
-	let rubricaItems = getRubrica().filter((item) => indicadorCodes.includes(item.indicador.code));
-
+	//elementos que necesita evidencia
 	let modalFile = createModalManager<EvidenciaFileRef>();
 	let modalUrl = createModalManager<EvidenciaUrlRef>();
 
+	//elementos que necesitan autoevaluacion y revision autoevaluacion
+	let indicadorCodes = [
+		...new Set(evaluacionEtapaIndicadorCampusItems.map((item) => item.indicador.code))
+	];
+	let rubricaItems = getRubrica().filter((item) => indicadorCodes.includes(item.indicador.code));
+
+	//elementos que necesita autoevaluacion
 	let modalRubricaAutoevaluacion = createModalManager<RubricaItem>();
 	let modalAutoevaluacion = createModalManager<EtapaAutoevaluacionItem>();
 
+	//elementos que necesita revision autoevaluacion
 	let modalRubricaRevisionAutoevaluacion = createModalManager<RubricaItem>();
 	let modalRevisionAutoevaluacion = createModalManager<EtapaRevisionAutoevaluacionItem>();
-
 	function getOriginalScore(item: EtapaMetadata): number | null {
-		if (item.code === 'revision-autoevaluacion') {
+		if (item.code === 'revision') {
 			return item.originalScore ?? null;
 		}
 		return null;
 	}
-
 	let originalScore = $state(getOriginalScore(etapaMetadataItem) || 0);
+
+	//elementos que necesita captura plan mejora
+	let modalCapturaPlanMejora = createModalManager<EtapaCapturaPlanMejoraItem>();
+
+	//elementos que necesita autorizacion plan mejora
+	let modalAutorizacionPlanMejora = createModalManager<EtapaAutorizacionPlanMejoraItem>();
+
+	//elementos que necesita ejecucion de plan mejora
+	let modalEjecucionPlanMejora = createModalManager<EtapaEjecucionPlanMejoraItem>();
 </script>
 
 <main class="page-grid">
@@ -145,11 +168,9 @@
 					selectedItem={modalAutoevaluacion.selectedItem}
 				/>
 			{/if}
-		{:else if etapaCode === 'revision-autoevaluacion'}
+		{:else if etapaCode === 'revision'}
 			<RevisionAutoevaluacionList
-				evaluacionItems={etapaMetadataItem
-					? [etapaMetadataItem as EtapaRevisionAutoevaluacionItem]
-					: []}
+				items={etapaMetadataItem ? [etapaMetadataItem as EtapaRevisionAutoevaluacionItem] : []}
 				onClickEditar={(item) => modalRevisionAutoevaluacion.handlers('edit').onClickItem(item)}
 				onClickFinish={(item) => modalRevisionAutoevaluacion.handlers('finish').onClickItem(item)}
 			/>
@@ -183,19 +204,68 @@
 					selectedItem={modalRevisionAutoevaluacion.selectedItem}
 				/>
 			{/if}
+		{:else if etapaCode === 'captura'}
+			<CapturaPlanMejoraList
+				items={etapaMetadataItem ? [etapaMetadataItem as EtapaCapturaPlanMejoraItem] : []}
+				onClickEditar={(item) => modalCapturaPlanMejora.handlers('edit').onClickItem(item)}
+				onClickFinish={(item) => modalCapturaPlanMejora.handlers('finish').onClickItem(item)}
+			/>
+			{#if modalCapturaPlanMejora.selectedItem}
+				<AddEtapaCapturaPlanMejoraAcuerdosForm
+					open={modalCapturaPlanMejora.isOpen('edit')}
+					onClose={modalCapturaPlanMejora.close}
+					selectedItem={modalCapturaPlanMejora.selectedItem}
+				/>
+
+				<FinishEtapaCapturaPlanMejoraForm
+					open={modalCapturaPlanMejora.isOpen('finish')}
+					onClose={modalCapturaPlanMejora.close}
+					selectedItem={modalCapturaPlanMejora.selectedItem}
+				/>
+			{/if}
+		{:else if etapaCode === 'autorizacion'}
+			<AutorizarPlanMejoraList
+				items={etapaMetadataItem ? [etapaMetadataItem as EtapaAutorizacionPlanMejoraItem] : []}
+				onClickEditar={(item) => modalAutorizacionPlanMejora.handlers('edit').onClickItem(item)}
+				onClickFinish={(item) => modalAutorizacionPlanMejora.handlers('finish').onClickItem(item)}
+			/>
+			{#if modalAutorizacionPlanMejora.selectedItem}
+				<EditAutorizacionPlanMejoraForm
+					open={modalAutorizacionPlanMejora.isOpen('edit')}
+					onClose={modalAutorizacionPlanMejora.close}
+					selectedItem={modalAutorizacionPlanMejora.selectedItem}
+				/>
+
+				<FinishEtapaAutorizarPlanMejoraForm
+					open={modalAutorizacionPlanMejora.isOpen('finish')}
+					onClose={modalAutorizacionPlanMejora.close}
+					selectedItem={modalAutorizacionPlanMejora.selectedItem}
+				/>
+			{/if}
+		{:else if etapaCode === 'ejecucion'}
+			<EjecucionPlanMejoraList
+				items={etapaMetadataItem ? [etapaMetadataItem as EtapaEjecucionPlanMejoraItem] : []}
+				onClickEditar={(item) => modalEjecucionPlanMejora.handlers('edit').onClickItem(item)}
+				onClickFinish={(item) => modalEjecucionPlanMejora.handlers('finish').onClickItem(item)}
+			/>
+			{#if modalEjecucionPlanMejora.selectedItem}
+				<EditEjecucionPlanMejoraForm
+					open={modalEjecucionPlanMejora.isOpen('edit')}
+					onClose={modalEjecucionPlanMejora.close}
+					selectedItem={modalEjecucionPlanMejora.selectedItem}
+				/>
+
+				<FinishEtapaEjecucionPlanMejoraForm
+					open={modalEjecucionPlanMejora.isOpen('finish')}
+					onClose={modalEjecucionPlanMejora.close}
+					selectedItem={modalEjecucionPlanMejora.selectedItem}
+				/>
+			{/if}
 		{:else}
 			<h1>Etapa aun no implementada</h1>
 		{/if}
 	</div>
 </main>
-
-{#if modalFile.isOpen('delete')}
-	<h1>add delete file {modalFile.selectedItem?.filename}</h1>
-{/if}
-
-{#if modalUrl.isOpen('delete')}
-	<h1>delete url {modalUrl.selectedItem?.url}</h1>
-{/if}
 
 <style>
 	.page-grid {

@@ -3,6 +3,7 @@
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
+	import Button from '../ui/Button.svelte';
 	import CriterioList from './CriterioList.svelte';
 
 	interface Props {
@@ -36,9 +37,9 @@
 	class:rubrica-card--highlight={highlight}
 >
 	<div class="rubrica-card__header">
-		<div class="rubrica-card__main">
+		<div class="rubrica-card__main text-body">
 			{#if showSelectIcon && onClickSelect}
-				<IconButton onClick={() => onClickSelect(item)} name="check" />
+				<Button variant='outline' onClick={() => onClickSelect(item)} name="check">Elegir</Button>
 			{/if}
 			<span class="rubrica-card__code text-body-strong">{item.code}</span>
 			<Badge variant="info">de {item.rangeStart} a {item.rangeEnd}</Badge>
@@ -50,8 +51,8 @@
 			{/if}
 		</div>
 
-		<div class="rubrica-card__actions">
-			<IconButton name="chevron-down" ariaExpanded={isOpen} onClick={toggleOpen} />
+		<div class="rubrica-card__actions text-body">
+			<Button variant='outline' name="chevron-down" ariaExpanded={isOpen} onClick={toggleOpen}>Ver criterios</Button>
 
 			{#if showDetailIcon}
 				<IconButton

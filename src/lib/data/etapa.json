@@ -22,22 +22,22 @@
         },
         {
             "order": 5,
-            "code": "revision-autoevaluacion",
+            "code": "revision",
             "name": "Revision de autoevaluacion"
         },
         {
             "order": 6,
-            "code": "captura-plan-mejora",
+            "code": "captura",
             "name": "Captura de plan de mejora"
         },
         {
             "order": 7,
-            "code": "autorizacion-plan-mejora",
+            "code": "autorizacion",
             "name": "Autorizacion de plan de mejora"
         },
         {
             "order": 8,
-            "code": "ejecucion-plan-mejora",
+            "code": "ejecucion",
             "name": "Ejecucion de plan de mejora"
         }
     ]

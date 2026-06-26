@@ -142,7 +142,7 @@ export type EtapaAutoevaluacionItem = z.infer<typeof etapaAutoevaluacionItemSche
 
 //etapa 5
 export const etapaRevisionAutoevaluacionItemSchema = z.object({
-	code: z.literal('revision-autoevaluacion'),
+	code: z.literal('revision'),
 	originalScore: z.number().optional(),
 	score: z.number().optional(),
 	comment: z.string().optional()
@@ -152,24 +152,26 @@ export type EtapaRevisionAutoevaluacionItem = z.infer<typeof etapaRevisionAutoev
 
 //etapa 6
 export const etapaCapturaPlanMejoraItemSchema = z.object({
-	code: z.literal('captura-plan-mejora'),
-	acuerdos: z.string().optional()
+	code: z.literal('captura'),
+	agreements: z.string().default('')
 });
 
 export type EtapaCapturaPlanMejoraItem = z.infer<typeof etapaCapturaPlanMejoraItemSchema>;
 
 //etapa 7
 export const etapaAutorizacionPlanMejoraItemSchema = z.object({
-	code: z.literal('autorizacion-plan-mejora'),
-	autorizado: z.boolean().optional()
+	code: z.literal('autorizacion'),
+	agreements: z.string().default(''),
+	authorized: z.boolean().default(false),
+	comments: z.string().default('')
 });
 
 export type EtapaAutorizacionPlanMejoraItem = z.infer<typeof etapaAutorizacionPlanMejoraItemSchema>;
 
 //etapa 8
 export const etapaEjecucionPlanMejoraItemSchema = z.object({
-	code: z.literal('ejecucion-plan-mejora'),
-	enEjecucion: z.boolean().optional()
+	code: z.literal('ejecucion'),
+	processing: z.boolean().optional()
 });
 
 export type EtapaEjecucionPlanMejoraItem = z.infer<typeof etapaEjecucionPlanMejoraItemSchema>;

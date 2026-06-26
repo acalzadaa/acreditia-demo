@@ -337,7 +337,7 @@
             },
             "etapa": {
                 "order": 5,
-                "code": "revision-autoevaluacion",
+                "code": "revision",
                 "name": "Revision de autoevaluacion"
             },
             "indicador": {
@@ -351,7 +351,7 @@
                 "name": "Campus Monterrey"
             },
             "metadata": {
-                "code": "revision-autoevaluacion",
+                "code": "revision",
                 "originalScore": 8,
                 "score": 9,
                 "comment": "Cumplio con los criterios del nivel"
@@ -375,7 +375,7 @@
             },
             "etapa": {
                 "order": 5,
-                "code": "revision-autoevaluacion",
+                "code": "revision",
                 "name": "Revision de autoevaluacion"
             },
             "indicador": {
@@ -389,9 +389,225 @@
                 "name": "Campus Saltillo"
             },
             "metadata": {
-                "code": "revision-autoevaluacion",
+                "code": "revision",
                 "originalScore": 8,
                 "score": 8
+            },
+            "status": "working",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:00:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "8f646000-3118-4ad5-8453-2e06516ef24a",
+            "code": "2025-3-captura-ind-001-CAMPUS-MTY-001",
+            "evaluacion": {
+                "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+                "code": "2025-3",
+                "name": "Invierno 2025"
+            },
+            "etapa": {
+                "order": 6,
+                "code": "captura",
+                "name": "Captura de plan de mejora"
+            },
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "campus": {
+                "id": "99be4241-389d-430a-83f2-b1c612c029ac",
+                "code": "CAMPUS-MTY-001",
+                "name": "Campus Monterrey"
+            },
+            "metadata": {
+                "code": "captura",
+                "acuerdos": "Se va a realizar un proceso de entrevista al alumnado para entender sus inquietudes"
+            },
+            "status": "working",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:00:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "d6935afb-7235-4545-b1d8-b72e8b0f4b54",
+            "code": "2025-3-captura-ind-001-CAMPUS-SALT-002",
+            "evaluacion": {
+                "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+                "code": "2025-3",
+                "name": "Invierno 2025"
+            },
+            "etapa": {
+                "order": 6,
+                "code": "captura",
+                "name": "Captura de plan de mejora"
+            },
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "campus": {
+                "id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+                "code": "CAMPUS-SALT-002",
+                "name": "Campus Saltillo"
+            },
+            "metadata": {
+                "code": "captura",
+                "acuerdos": "Se va a crear un proceso para mejorar el contacto con los alumnos y poder determinar con mas velocidad sus necesidades"
+            },
+            "status": "working",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:00:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "f5d84b52-1b67-4da6-8355-af211be86348",
+            "code": "2025-3-autorizacion-ind-001-CAMPUS-MTY-001",
+            "evaluacion": {
+                "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+                "code": "2025-3",
+                "name": "Invierno 2025"
+            },
+            "etapa": {
+                "order": 7,
+                "code": "autorizacion",
+                "name": "Autorizacion de plan de mejora"
+            },
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "campus": {
+                "id": "99be4241-389d-430a-83f2-b1c612c029ac",
+                "code": "CAMPUS-MTY-001",
+                "name": "Campus Monterrey"
+            },
+            "metadata": {
+                "code": "autorizacion",
+                "agreements": "Se va a realizar un proceso de entrevista al alumnado para entender sus inquietudes"
+            },
+            "status": "working",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:00:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "76708e99-8383-43de-88c7-aaf3b843934f",
+            "code": "2025-3-autorizacion-ind-001-CAMPUS-SALT-002",
+            "evaluacion": {
+                "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+                "code": "2025-3",
+                "name": "Invierno 2025"
+            },
+            "etapa": {
+                "order": 7,
+                "code": "autorizacion",
+                "name": "Autorizacion de plan de mejora"
+            },
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "campus": {
+                "id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+                "code": "CAMPUS-SALT-002",
+                "name": "Campus Saltillo"
+            },
+            "metadata": {
+                "code": "autorizacion",
+                "agreements": "Se va a crear un proceso para mejorar el contacto con los alumnos y poder determinar con mas velocidad sus necesidades",
+                "authorized": true
+            },
+            "status": "working",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:00:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "75da2749-b65d-4ddc-a7ff-e89ca93786b9",
+            "code": "2025-3-ejecucion-ind-001-CAMPUS-MTY-001",
+            "evaluacion": {
+                "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+                "code": "2025-3",
+                "name": "Invierno 2025"
+            },
+            "etapa": {
+                "order": 8,
+                "code": "ejecucion",
+                "name": "Ejecucion de plan de mejora"
+            },
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "campus": {
+                "id": "99be4241-389d-430a-83f2-b1c612c029ac",
+                "code": "CAMPUS-MTY-001",
+                "name": "Campus Monterrey"
+            },
+            "metadata": {
+                "code": "ejecucion"
+            },
+            "status": "working",
+            "version": 1,
+            "isCurrent": true,
+            "validFrom": "2024-01-01T00:00:00Z",
+            "validTo": null,
+            "isDeleted": false,
+            "createdAt": "2024-01-01T10:00:00Z",
+            "createdBy": "admin@system.com"
+        },
+        {
+            "id": "eec793fc-b877-4d7f-afb4-2d62b35140a2",
+            "code": "2025-3-ejecucion-ind-001-CAMPUS-SALT-002",
+            "evaluacion": {
+                "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+                "code": "2025-3",
+                "name": "Invierno 2025"
+            },
+            "etapa": {
+                "order": 8,
+                "code": "ejecucion",
+                "name": "Ejecucion de plan de mejora"
+            },
+            "indicador": {
+                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+                "code": "ind-001",
+                "name": "Tasa de Retención Estudiantil"
+            },
+            "campus": {
+                "id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+                "code": "CAMPUS-SALT-002",
+                "name": "Campus Saltillo"
+            },
+            "metadata": {
+                "code": "ejecucion",
+                "processing": true
             },
             "status": "working",
             "version": 1,
