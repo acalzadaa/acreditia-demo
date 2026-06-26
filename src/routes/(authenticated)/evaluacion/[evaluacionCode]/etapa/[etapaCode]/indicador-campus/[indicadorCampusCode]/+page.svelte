@@ -30,6 +30,7 @@
 	import AddEtapaRevisionAutoevaluacionCommentForm from '$lib/components/evaluacion/etapa/metadata/revision/AddEtapaRevisionAutoevaluacionCommentForm.svelte';
 	import AddEtapaRevisionAutoevaluacionScoreForm from '$lib/components/evaluacion/etapa/metadata/revision/AddEtapaRevisionAutoevaluacionScoreForm.svelte';
 	import FinishEtapaRevisionAutoevaluacionForm from '$lib/components/evaluacion/etapa/metadata/revision/FinishEtapaRevisionAutoevaluacionForm.svelte';
+	import FinishEtapaAutoevaluacionForm from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/FinishEtapaAutoevaluacionForm.svelte';
 
 	let etapaCode = page.params.etapaCode;
 	let indicadorCampusCode = page.params.indicadorCampusCode;
@@ -115,6 +116,7 @@
 			<AutoevaluacionList
 				evaluacionItems={etapaMetadataItem ? [etapaMetadataItem as EtapaAutoevaluacionItem] : []}
 				onClickEditar={(item) => modalAutoevaluacion.handlers('edit').onClickItem(item)}
+				onClickFinish={(item) => modalAutoevaluacion.handlers('finish').onClickItem(item)}
 			/>
 			<RubricaListViewSelect
 				showHeader={true}
@@ -133,6 +135,12 @@
 			{#if modalAutoevaluacion.selectedItem}
 				<AddEtapaAutoevaluacionCommentForm
 					open={modalAutoevaluacion.isOpen('edit')}
+					onClose={modalAutoevaluacion.close}
+					selectedItem={modalAutoevaluacion.selectedItem}
+				/>
+
+				<FinishEtapaAutoevaluacionForm
+					open={modalAutoevaluacion.isOpen('finish')}
 					onClose={modalAutoevaluacion.close}
 					selectedItem={modalAutoevaluacion.selectedItem}
 				/>

@@ -2,10 +2,10 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Modal from '$lib/components/modal/Modal.svelte';
-	import type { EtapaRevisionAutoevaluacionItem } from '$lib/schemas/etapaMetadata.schema';
+	import type { EtapaAutoevaluacionItem } from '$lib/schemas/etapaMetadata.schema';
 
 	interface Props {
-		selectedItem: EtapaRevisionAutoevaluacionItem;
+		selectedItem: EtapaAutoevaluacionItem;
 		open: boolean;
 		onClose: () => void;
 	}

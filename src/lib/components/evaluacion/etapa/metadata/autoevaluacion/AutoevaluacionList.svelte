@@ -6,9 +6,10 @@
 	interface Props {
 		evaluacionItems: EtapaAutoevaluacionItem[];
 		onClickEditar: (item: EtapaAutoevaluacionItem) => void;
+		onClickFinish: (item: EtapaAutoevaluacionItem) => void;
 	}
 
-	const { evaluacionItems, onClickEditar }: Props = $props();
+	const { evaluacionItems, onClickEditar, onClickFinish }: Props = $props();
 </script>
 
 <main class="main-panel">
@@ -31,8 +32,11 @@
 							<td class="col-text">{item.comment}</td>
 							<td class="col-actions-lg">
 								<div class="col-actions-row">
-									<Button name="edit" onClick={() => onClickEditar(item)}
+									<Button name="edit" variant="ghost" onClick={() => onClickEditar(item)}
 										>Editar comentario
+									</Button>
+									<Button name="upload" variant="ghost" onClick={() => onClickFinish(item)}
+										>Terminar etapa
 									</Button>
 								</div>
 							</td>
