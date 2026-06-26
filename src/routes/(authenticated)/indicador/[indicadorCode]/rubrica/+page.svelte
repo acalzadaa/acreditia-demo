@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Rubrica from '$lib/components/indicador/rubrica/Rubrica.svelte';
+	import RubricaListViewDetail from '$lib/components/rubrica/RubricaListViewDetail.svelte';
 	import { getRubrica } from '$lib/stores/data.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
@@ -8,5 +8,5 @@
 </script>
 
 <main>
-	<Rubrica showDetailIcon={true} items={rubricaItems} />
+	<RubricaListViewDetail items={rubricaItems} />
 </main>

@@ -78,15 +78,12 @@
 	.app-grid {
 		display: grid;
 		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
+			'toolbar'
+			'main';
+		grid-template-columns: 1fr;
+		grid-template-rows: auto 1fr;
 		height: 100vh;
 		position: relative;
-		min-width: 1277px;
+		min-width: 600px;
 	}
 </style>

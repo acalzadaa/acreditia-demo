@@ -3,7 +3,7 @@
 	 * Agregar el nombre del id de los iconos configurados en sprites.svg
 	 */
 	export type IconName =
-		| 'hamburger'
+		| 'menu'
 		| 'bell'
 		| 'chevron-down'
 		| 'chevron-right'
@@ -23,7 +23,8 @@
 		| 'restore'
 		| 'detail'
 		| 'play'
-		| 'calendar';
+		| 'calendar'
+		| 'check';
 
 	interface Props {
 		name: IconName;

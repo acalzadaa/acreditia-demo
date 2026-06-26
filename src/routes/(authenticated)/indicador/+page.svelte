@@ -10,7 +10,7 @@
 	import CrearIndicadorForm from '$lib/components/indicador/CrearIndicadorForm.svelte';
 	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
 	import { getIndicador, getModeloFullRef } from '$lib/stores/data.svelte';
-	
+
 	let indicadorItems = getIndicador();
 	let modeloFullRef = getModeloFullRef();
 
@@ -29,7 +29,7 @@
 	}
 </script>
 
-<main class="main-grid">
+<main class="app-grid">
 	<Toolbar
 		gridArea="toolbar"
 		crearTitle="Crear indicador"
@@ -78,9 +78,15 @@
 {/if}
 
 <style>
-	.main-grid {
-		display: flex;
-		flex-direction: column;
-		min-height: 0;
+	.app-grid {
+		display: grid;
+		grid-template-areas:
+			'toolbar'
+			'indicador';
+		grid-template-columns: 1fr;
+		grid-template-rows: auto 1fr;
+		height: 100vh;
+		position: relative;
+		min-width: 600px;
 	}
 </style>

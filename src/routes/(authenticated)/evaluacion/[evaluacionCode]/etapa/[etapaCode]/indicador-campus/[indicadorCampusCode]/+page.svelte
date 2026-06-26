@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { getEvaluacionEtapaIndicadorCampus } from '$lib/stores/data.svelte';
+	import { getEvaluacionEtapaIndicadorCampus, getRubrica } from '$lib/stores/data.svelte';
 	import IndicadorCampus from '$lib/components/evaluacion/etapa/indicador-campus/IndicadorCampus.svelte';
 	import type {
+		EtapaAutoevaluacionItem,
 		EtapaEvidenciaItem,
 		EtapaMetaItem,
 		EtapaResultadosItem,
@@ -10,13 +11,18 @@
 		EvidenciaUrlRef
 	} from '$lib/schemas/etapaMetadata.schema';
 	import AddEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/AddEtapaMetaForm.svelte';
-	import AddEtapaEvidenciaForm from '$lib/components/evaluacion/etapa/metadata/AddEtapaEvidenciaForm.svelte';
+	import AddEtapaEvidenciaForm from '$lib/components/evaluacion/etapa/metadata/evidencia/AddEtapaEvidenciaForm.svelte';
 	import EvidenciaFile from '$lib/components/evaluacion/etapa/metadata/evidencia/EvidenciaFile.svelte';
 	import EvidenciaUrl from '$lib/components/evaluacion/etapa/metadata/evidencia/EvidenciaUrl.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import BorrarEvidenciaFileForm from '$lib/components/evaluacion/etapa/metadata/evidencia/BorrarEvidenciaFileForm.svelte';
 	import BorrarEvidenciaUrlForm from '$lib/components/evaluacion/etapa/metadata/evidencia/BorrarEvidenciaUrlForm.svelte';
 	import AddEtapaResultadosForm from '$lib/components/evaluacion/etapa/metadata/AddEtapaResultadosForm.svelte';
+	import RubricaListViewSelect from '$lib/components/rubrica/RubricaListViewSelect.svelte';
+	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
+	import AddEtapaAutoevaluacionScoreForm from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/AddEtapaAutoevaluacionScoreForm.svelte';
+	import Autoevaluacion from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/AutoevaluacionList.svelte';
+	import AddEtapaAutoevaluacionCommentForm from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/AddEtapaAutoevaluacionCommentForm.svelte';
 
 	let etapaCode = page.params.etapaCode;
 	let indicadorCampusCode = page.params.indicadorCampusCode;
@@ -29,10 +35,17 @@
 		.filter((item) => item.code === indicadorCampusCode)
 		.flatMap((item) => item.metadata)[0];
 
+	let indicadorCodes = [
+		...new Set(evaluacionEtapaIndicadorCampusItems.map((item) => item.indicador.code))
+	];
+
+	let rubricaItems = getRubrica().filter((item) => indicadorCodes.includes(item.indicador.code));
+
 	let modalFile = createModalManager<EvidenciaFileRef>();
 	let modalUrl = createModalManager<EvidenciaUrlRef>();
 
-	$inspect(etapaMetadataItem, etapaCode, indicadorCampusCode);
+	let modalRubrica = createModalManager<RubricaItem>();
+	let modalAutoevaluacion = createModalManager<EtapaAutoevaluacionItem>();
 </script>
 
 <main class="page-grid">
@@ -77,8 +90,32 @@
 				/>
 			{/if}
 		{:else if etapaCode === 'resultados'}
-			{@const resultadosItems = etapaMetadataItem as EtapaResultadosItem}
-			<AddEtapaResultadosForm selectedItem={resultadosItems} />
+			{@const resultadosItem = etapaMetadataItem as EtapaResultadosItem}
+			<AddEtapaResultadosForm selectedItem={resultadosItem} />
+		{:else if etapaCode === 'autoevaluacion'}
+			<Autoevaluacion
+				evaluacionItems={etapaMetadataItem ? [etapaMetadataItem as EtapaAutoevaluacionItem] : []}
+				onClickEditar={(item) => modalAutoevaluacion.handlers('edit').onClickItem(item)}
+			/>
+			<RubricaListViewSelect
+				onClickSelect={(item) => modalRubrica.handlers('edit').onClickItem(item)}
+				items={rubricaItems}
+			/>
+			{#if modalRubrica.selectedItem}
+				<AddEtapaAutoevaluacionScoreForm
+					open={modalRubrica.isOpen('edit')}
+					onClose={modalRubrica.close}
+					selectedItem={modalRubrica.selectedItem}
+				/>
+			{/if}
+
+			{#if modalAutoevaluacion.selectedItem}
+				<AddEtapaAutoevaluacionCommentForm
+					open={modalAutoevaluacion.isOpen('edit')}
+					onClose={modalAutoevaluacion.close}
+					selectedItem={modalAutoevaluacion.selectedItem}
+				/>
+			{/if}
 		{:else}
 			<h1>Etapa aun no implementada</h1>
 		{/if}

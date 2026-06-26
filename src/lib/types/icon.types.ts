@@ -1,5 +1,5 @@
 export type IconName =
-  | 'hamburger'
+  | 'menu'
   | 'bell'
   | 'chevron-down'
   | 'chevron-right'

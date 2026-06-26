@@ -132,13 +132,13 @@ export const etapaResultadosFormSchema = z.object({
 export type EtapaResultadosForm = z.infer<typeof etapaResultadosFormSchema>;
 
 //etapa 4
-export const etapaCapturaAutoevaluacionItemSchema = z.object({
+export const etapaAutoevaluacionItemSchema = z.object({
 	code: z.literal('autoevaluacion'),
 	puntaje: z.number().optional(),
 	comentario: z.string().optional()
 });
 
-export type EtapaCapturaAutoevaluacionItem = z.infer<typeof etapaCapturaAutoevaluacionItemSchema>;
+export type EtapaAutoevaluacionItem = z.infer<typeof etapaAutoevaluacionItemSchema>;
 
 //etapa 5
 export const etapaRevisionAutoevaluacionItemSchema = z.object({
@@ -185,7 +185,7 @@ export const etapaMetadataSchema = z.discriminatedUnion('code', [
 	etapaMetaItemSchema,
 	etapaEvidenciaItemSchema,
 	etapaResultadosItemSchema,
-	etapaCapturaAutoevaluacionItemSchema,
+	etapaAutoevaluacionItemSchema,
 	etapaRevisionAutoevaluacionItemSchema,
 	etapaCapturaPlanMejoraItemSchema,
 	etapaAutorizacionPlanMejoraItemSchema,
