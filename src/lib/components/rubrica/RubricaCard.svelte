@@ -39,7 +39,7 @@
 	<div class="rubrica-card__header">
 		<div class="rubrica-card__main text-body">
 			{#if showSelectIcon && onClickSelect}
-				<Button variant='outline' onClick={() => onClickSelect(item)} name="check">Elegir</Button>
+				<Button variant='outline' onClick={() => onClickSelect(item)} name="check">Seleccionar</Button>
 			{/if}
 			<span class="rubrica-card__code text-body-strong">{item.code}</span>
 			<Badge variant="info">de {item.rangeStart} a {item.rangeEnd}</Badge>
@@ -47,7 +47,7 @@
 				{item.criterios.length} criterios
 			</Badge>
 			{#if currentScore && currentScore >= item.rangeStart && currentScore <= item.rangeEnd}
-				<p class="text-body">Este elemento fue seleccionado en la etapa de autoevaluacion</p>
+				<p class="text-body-strong">Este elemento fue seleccionado en la etapa de autoevaluacion</p>
 			{/if}
 		</div>
 
