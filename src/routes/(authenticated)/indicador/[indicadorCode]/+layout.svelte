@@ -20,7 +20,7 @@
 	let modal = createModalManager<IndicadorItem>();
 </script>
 
-<div class="indicador-detail-panel">
+<div class="detail-panel">
 	<Indicador
 		title="Indicador"
 		subtitle={indicadorCode}
@@ -59,7 +59,7 @@
 {/if}
 
 <style>
-	.indicador-detail-panel {
+	.detail-panel {
 		display: flex;
 		flex-direction: column;
 		min-height: 0;

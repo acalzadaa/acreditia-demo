@@ -813,20 +813,4 @@
     }
   }
 
-  /* ── Dark mode support ────────────────────────────────────────────────── */
-  @media (prefers-color-scheme: dark) {
-    .drp-root {
-      --drp-bg: #1e293b;
-      --drp-border: #334155;
-      --drp-range-bg: #4c1d95;
-      --drp-text: #f1f5f9;
-      --drp-muted: #94a3b8;
-      --drp-hover: #334155;
-      --drp-disabled: #475569;
-    }
-
-    .drp-summary {
-      background: #0f172a;
-    }
-  }
 </style>

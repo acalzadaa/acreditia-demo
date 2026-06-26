@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { modeloItemSchema } from './modelo.schema';
 import { institucionItemSchema } from './institucion.schema';
 import { institucionRefSchema, modeloRefSchema } from './shared.schema';
-import { etapaWithRelationsItemSchema } from './etapa.schema';
 
 export const EvaluacionStatusEnum = z.enum(['planned', 'active', 'completed', 'cancelled']);
 
@@ -48,7 +47,11 @@ export const evaluacionItemSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	modeloId: z.uuid(),
+	modelo: modeloRefSchema,
+
 	institucionId: z.uuid(),
+	institucion: institucionRefSchema,
+
 	name: z.string(),
 	year: z.number(),
 	cycle: z.number(),
@@ -68,26 +71,14 @@ export const evaluacionItemSchema = z.object({
 });
 export type EvaluacionItem = z.infer<typeof evaluacionItemSchema>;
 
-// ============================================
-// 4. ITEM WITH RELATIONS SCHEMA (Servidor → Cliente)
-// Datos completos incluyendo relaciones anidadas
-// ============================================
-
-export const evaluacionWithRelationsItemSchema = evaluacionItemSchema.extend({
-	modelo: modeloRefSchema,
-	institucion: institucionRefSchema
-});
-export type EvaluacionWithRelationsItem = z.infer<typeof evaluacionWithRelationsItemSchema>;
-
 // Versión con relaciones completas (incluye etapas)
-export const evaluacionWithFullRelationsItemSchema = evaluacionItemSchema
+export const evaluacionWithRelationsItemSchema = evaluacionItemSchema
 	.omit({ modeloId: true, institucionId: true })
 	.extend({
 		modelo: modeloItemSchema.nullable(),
-		institucion: institucionItemSchema.nullable(),
-		etapas: z.array(etapaWithRelationsItemSchema).optional()
+		institucion: institucionItemSchema.nullable()
 	});
-export type EvaluacionWithFullRelationsItem = z.infer<typeof evaluacionWithFullRelationsItemSchema>;
+export type EvaluacionWithRelationsItem = z.infer<typeof evaluacionWithRelationsItemSchema>;
 
 // ============================================
 // 5. CONFIG SCHEMA (Servidor → Cliente)

@@ -44,24 +44,64 @@
 
 /* ==========================================================================
    FORM CONTAINERS
-   Úsalos cuando el form vive en una página o card, no en un modal.
-   En modal el scroll y padding los maneja .modal-body.
+   Úsalos cuando el form vive en una página, card o sidebar — NO en un modal.
+   Dentro de un modal, el ancho y el alto los maneja .modal / .modal-body,
+   así que estas clases de tamaño no se usan ahí.
+
+   El centrado en la página (vertical + horizontal) es responsabilidad
+   de quien use el form, no de estas clases. Esto solo define el ancho
+   "natural" de la tarjeta del form. Ejemplo típico:
+
+     .page-center {
+       min-height: 100vh;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
    ========================================================================== */
 
 .form-container {
-  max-width: 600px;
+  width: 100%;
   margin: 0 auto;
   padding: var(--space-6);
   background-color: var(--bg-ground);
   border-radius: var(--border-radius-lg);
 }
 
+/* Tamaños — controlan el ancho de la tarjeta según cuánto contenido tenga */
+.form-container--sm {
+  max-width: 400px;
+}
+
+.form-container--md {
+  max-width: 600px;
+}
+
+.form-container--lg {
+  max-width: 840px;
+}
+
+/* Padding — independiente del tamaño, por si necesitás combinarlos
+   (ej. un form--lg pero con padding compacto) */
 .form-container--compact {
   padding: var(--space-4);
 }
 
 .form-container--spacious {
   padding: var(--space-8);
+}
+
+/* Responsive: en pantallas chicas, toda tarjeta respeta el viewport */
+@media (max-width: 640px) {
+  .form-container {
+    max-width: 100%;
+    margin: var(--space-2);
+    width: auto;
+  }
+}
+
+.form-header {
+  padding: var(--space-4);
 }
 
 /* ==========================================================================
@@ -76,10 +116,14 @@
   gap: var(--form-spacing-vertical);
 }
 
-/* Variante scrolleable: úsala cuando el contenedor padre tiene altura fija */
+/* Variante scrolleable: dentro de un modal, el padre (.modal-body)
+   ya tiene altura fija y flex:1 alcanza. Fuera de modal no hay padre
+   con altura fija, así que se define un max-height propio para que
+   el scroll tenga algo a partir de qué activarse. */
 .form-fields--scrollable {
   flex: 1;
   min-height: 0;
+  max-height: 60vh;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--border-regular) var(--bg-ground);

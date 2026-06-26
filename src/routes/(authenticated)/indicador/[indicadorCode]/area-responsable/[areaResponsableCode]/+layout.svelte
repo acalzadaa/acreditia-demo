@@ -12,8 +12,11 @@
 	let { children }: LayoutProps = $props();
 </script>
 
-<main class="detail">
-	<IndicadorAreaResponsable showDetailIcon={false} items={indicadorAreaResponsable} />
+<main>
+	<IndicadorAreaResponsable
+		onClickBorrar={() => {}}
+		showDetailIcon={false}
+		items={indicadorAreaResponsable}
+	/>
 	{@render children()}
 </main>
-

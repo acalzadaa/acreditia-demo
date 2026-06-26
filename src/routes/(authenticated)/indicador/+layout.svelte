@@ -50,7 +50,7 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 
-	<main style="grid-area: main;">
+	<main class="main-children">
 		{@render children()}
 	</main>
 	<Footer />
@@ -68,5 +68,12 @@
 		grid-template-rows: auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
+	}
+
+	.main-children {
+		grid-area: main;
+		background-color: var(--bg-ground);
+		min-height: 0;
+		overflow: hidden;
 	}
 </style>

@@ -1,0 +1,10 @@
+{
+    "etapaDetailItem": [
+        {
+            "id": "b95d6ff5-e6d0-46af-81a0-068156f87ae4",
+            "name": "Indicadores por Campus",
+            "url": "/indicador-campus",
+            "order": 1
+        }
+    ]
+}

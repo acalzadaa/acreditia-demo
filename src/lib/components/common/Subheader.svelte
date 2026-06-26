@@ -24,7 +24,7 @@
 <nav class="subheader subheader-panel" aria-label="Control de navegacion y notificaciones">
 	<section class="navigation-control">
 		<IconButton
-			name="hamburger"
+			name="menu"
 			variant="ghost"
 			size="md"
 			shape="round"
@@ -83,7 +83,7 @@
 		gap: var(--space-2);
 	}
 
-	/* Separador visual entre hamburger y breadcrumb */
+	/* Separador visual entre menu y breadcrumb */
 	.breadcrumb-wrapper {
 		border-left: var(--border-width-regular) solid var(--border-regular);
 		padding-left: var(--space-4);

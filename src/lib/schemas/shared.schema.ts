@@ -129,3 +129,11 @@ export const rubricaRefSchema = z.object({
 });
 
 export type RubricaRef = z.infer<typeof rubricaRefSchema>;
+
+export const indicadorRefSchema = z.object({
+	id: z.uuid(),
+	code: z.string().min(1, 'El código es requerido'),
+	name: z.string().min(1, 'El nombre es requerido')
+});
+
+export type IndicadorRef = z.infer<typeof indicadorRefSchema>;

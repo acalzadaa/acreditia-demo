@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
 
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import Icon from '../ui/Icon.svelte';
-	import { etapaFormSchema, type EtapaWithRelationsItem } from '$lib/schemas/etapa.schema';
-	import DatePickerInput from '../ui/input/DatePickerInput.svelte';
+	import { etapaFormSchema, type EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import DatePickerInput from '$lib/components/ui/input/DatePickerInput.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
-		item: EtapaWithRelationsItem;
+		item: EvaluacionEtapaItem;
 		onClose: () => void;
 	}
 
@@ -24,14 +24,11 @@
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
 		{
 			id: props.item.id,
-			evaluacionId: props.item.evaluacion.id,
-			numeroEtapa: props.item.numeroEtapa,
 			fechaInicio: props.item.fechaInicio,
 			fechaFinal: props.item.fechaFinal,
 			periodoExtraordinario: props.item.periodoExtraordinario,
 			periodoExtraordinarioInicio: props.item.periodoExtraordinarioInicio,
 			periodoExtraordinarioFinal: props.item.periodoExtraordinarioFinal,
-			status: props.item.status
 		},
 		{
 			dataType: 'json',

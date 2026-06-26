@@ -12,17 +12,6 @@ export const indicadorTypeOptions: OptionData[] =
 	})) ?? [];
 
 // ============================================
-// 1. REFERENCE SCHEMAS (Para relaciones)
-// ============================================
-export const indicadorRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string().min(1, 'El código es requerido'),
-	name: z.string().min(1, 'El nombre es requerido')
-});
-
-export type IndicadorRef = z.infer<typeof indicadorRefSchema>;
-
-// ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // Para operaciones CRUD: crear y actualizar
 // ============================================

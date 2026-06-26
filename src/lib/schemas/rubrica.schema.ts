@@ -1,8 +1,7 @@
 // rubrica.schema.ts
 import { z } from 'zod';
-import { indicadorRefSchema } from './indicador.schema';
 import { rubricaCriterioItemSchema } from './rubricaCriterio.schema';
-import { rubricaCriterioRefSchema } from './shared.schema';
+import { indicadorRefSchema, rubricaCriterioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA

@@ -11,13 +11,13 @@
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import {
 		evaluacionFormSchema,
-		type EvaluacionWithRelationsItem
+		type EvaluacionItem
 	} from '$lib/schemas/evaluacion.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
 
 	interface Props {
 		open: boolean;
-		item: EvaluacionWithRelationsItem;
+		item: EvaluacionItem;
 		modeloRef: ModeloRef[];
 		institucionRef: InstitucionRef[];
 		onClose: () => void;

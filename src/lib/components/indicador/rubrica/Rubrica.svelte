@@ -46,7 +46,7 @@
 						<tr class="table-row tr-expandable">
 							<td class="col-code">{item.code}</td>
 							<td class="col-code">
-								<Badge variant="info">{item.rangeStart}-{item.rangeEnd}</Badge>
+								<Badge variant="info">de {item.rangeStart} a {item.rangeEnd}</Badge>
 							</td>
 							<td class="col-code">
 								<Badge variant={item.criterios.length === 0 ? 'warning' : 'success'}

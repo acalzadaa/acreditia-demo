@@ -5,8 +5,6 @@
 	import IconButton from "$lib/components/ui/IconButton.svelte";
 	import TextArea from "$lib/components/ui/input/TextArea.svelte";
 
-	
-
 	interface Props {
 		open: boolean;
 		onClose: () => void;

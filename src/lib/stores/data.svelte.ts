@@ -25,7 +25,7 @@ import modeloFullRefJsonData from '$lib/data/modelo-full-ref.json';
 
 import evidenciaJsonData from '$lib/data/evidencia.json';
 import evaluacionJsonData from '$lib/data/evaluacion.json';
-import etapaJsonData from '$lib/data/etapa.json';
+import evaluacionEtapaJsonData from '$lib/data/evaluacion-etapa.json';
 
 import campusAreaResponsableJsonData from '$lib/data/campus-area-responsable.json';
 import campusUnidadAcademicaJsonData from '$lib/data/campus-unidad-academica.json';
@@ -40,6 +40,9 @@ import indicadorNormativaJsonData from '$lib/data/indicador-normativa.json';
 import indicadorIndicadorEstrategicoJsonData from '$lib/data/indicador-indicador-estrategico.json';
 
 import indicadorDetailJsonData from '$lib/data/indicador-detail.json';
+import evaluacionDetailJsonData from '$lib/data/evaluacion-detail.json';
+import etapaDetailJsonData from '$lib/data/etapa-detail.json';
+import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-indicador-campus.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -83,14 +86,8 @@ import {
 import { capituloItemSchema, type CapituloItem } from '$lib/schemas/capitulo.schema';
 import { seccionItemSchema, type SeccionItem } from '$lib/schemas/seccion.schema';
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
-import {
-	evaluacionWithRelationsItemSchema,
-	type EvaluacionWithRelationsItem
-} from '$lib/schemas/evaluacion.schema';
-import {
-	etapaWithRelationsItemSchema,
-	type EtapaWithRelationsItem
-} from '$lib/schemas/etapa.schema';
+import { evaluacionItemSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
+
 import {
 	regionWithRelationsItemSchema,
 	type RegionWithRelationsItem
@@ -138,6 +135,19 @@ import {
 	rubricaCriterioItemSchema,
 	type RubricaCriterioItem
 } from '$lib/schemas/rubricaCriterio.schema';
+import {
+	evaluacionDetailItemSchema,
+	type EvaluacionDetailItem
+} from '$lib/schemas/evaluacionDetail.schema';
+import {
+	evaluacionEtapaItemSchema,
+	type EvaluacionEtapaItem
+} from '$lib/schemas/evaluacionEtapa.schema';
+import { etapaDetailItemSchema, type EtapaDetailItem } from '$lib/schemas/etapaDetail.schema';
+import {
+	evaluacionEtapaIndicadorCampusItemSchema,
+	type EvaluacionEtapaIndicadorCampusItem
+} from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -171,8 +181,9 @@ let modeloFullRef = $state<ModeloFullRef[]>([]);
 
 let evidencia = $state<EvidenciaItem[]>([]);
 
-let evaluacion = $state<EvaluacionWithRelationsItem[]>([]);
-let etapa = $state<EtapaWithRelationsItem[]>([]);
+let evaluacion = $state<EvaluacionItem[]>([]);
+let evaluacionDetail = $state<EvaluacionDetailItem[]>([]);
+let evaluacionEtapa = $state<EvaluacionEtapaItem[]>([]);
 
 let indicador = $state<IndicadorItem[]>([]);
 let rubrica = $state<RubricaItem[]>([]);
@@ -182,6 +193,8 @@ let indicadorAreaFuncional = $state<IndicadorAreaFuncionalItem[]>([]);
 let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
 let indicadorDetail = $state<IndicadorDetailItem[]>([]);
+let etapaDetail = $state<EtapaDetailItem[]>([]);
+let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -259,7 +272,7 @@ const evidenciaRawData = evidenciaJsonData.evidenciaItems;
 evidencia = evidenciaRawData.map((item) => evidenciaItemSchema.parse(item));
 
 const evaluacionRawData = evaluacionJsonData.evaluacionItems;
-evaluacion = evaluacionRawData.map((item) => evaluacionWithRelationsItemSchema.parse(item));
+evaluacion = evaluacionRawData.map((item) => evaluacionItemSchema.parse(item));
 
 const indicadorRawData = indicadorJsonData.indicadorItems;
 indicador = indicadorRawData.map((item) => indicadorItemSchema.parse(item));
@@ -270,8 +283,14 @@ rubrica = rubricaRawData.map((item) => rubricaItemSchema.parse(item));
 const rubricaCriterioRawData = rubricaCriterioJsonData.rubricaCriterioItems;
 rubricaCriterio = rubricaCriterioRawData.map((item) => rubricaCriterioItemSchema.parse(item));
 
-const etapaRawData = etapaJsonData.etapaItems;
-etapa = etapaRawData.map((item) => etapaWithRelationsItemSchema.parse(item));
+const evaluacionEtapaRawData = evaluacionEtapaJsonData.evaluacionEtapaItems;
+evaluacionEtapa = evaluacionEtapaRawData.map((item) => evaluacionEtapaItemSchema.parse(item));
+
+const evaluacionEtapaIndicadorCampusRawData =
+	evaluacionEtapaIndicadorCampusJsonData.evaluacionEtapaIndicadorCampus;
+evaluacionEtapaIndicadorCampus = evaluacionEtapaIndicadorCampusRawData.map((item) =>
+	evaluacionEtapaIndicadorCampusItemSchema.parse(item)
+);
 
 const indicadorAreaResponsableRawData =
 	indicadorAreaResponsableJsonData.indicadorAreaResponsableItems;
@@ -297,6 +316,12 @@ indicadorIndicadorEstrategico = indicadorIndicadorEstrategicoRawData.map((item) 
 
 const indicadorDetailRawData = indicadorDetailJsonData.indicadorDetailItem;
 indicadorDetail = indicadorDetailRawData.map((item) => indicadorDetailItemSchema.parse(item));
+
+const evaluacionDetailRawData = evaluacionDetailJsonData.evaluacionDetailItem;
+evaluacionDetail = evaluacionDetailRawData.map((item) => evaluacionDetailItemSchema.parse(item));
+
+const etapaDetailRawData = etapaDetailJsonData.etapaDetailItem;
+etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));
 
 // Helpers
 export function getFilosofia() {
@@ -500,8 +525,12 @@ export function getEvaluacion() {
 	return evaluacion;
 }
 
-export function getEtapa() {
-	return etapa;
+export function getEvaluacionDetail() {
+	return evaluacionDetail;
+}
+
+export function getEvaluacionEtapa() {
+	return evaluacionEtapa;
 }
 
 export function getIndicador() {
@@ -534,4 +563,12 @@ export function getIndicadorIndicadorEstrategico() {
 
 export function getIndicadorDetail() {
 	return indicadorDetail;
+}
+
+export function getEtapaDetail() {
+	return etapaDetail;
+}
+
+export function getEvaluacionEtapaIndicadorCampus() {
+	return evaluacionEtapaIndicadorCampus;
 }

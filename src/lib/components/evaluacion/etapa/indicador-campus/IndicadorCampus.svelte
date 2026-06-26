@@ -1,20 +1,23 @@
 <script lang="ts">
-	import type { EtapaStatus, EtapaWithRelationsItem } from '$lib/schemas/etapa.schema';
-	import EmptySection from '../common/EmptySection.svelte';
-	import PageHeader from '../common/PageHeader.svelte';
-	import Badge, { type BadgeStatus } from '../ui/Badge.svelte';
-	import IconButton from '../ui/IconButton.svelte';
+	import EmptySection from '$lib/components/common/EmptySection.svelte';
+	import PageHeader from '$lib/components/common/PageHeader.svelte';
+	import Badge, { type BadgeStatus } from '$lib/components/ui/Badge.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import { navigateTo } from '$lib/helpers/navigation';
+	import type {
+		EvaluacionEtapaIndicadorCampusItem,
+		EvaluacionEtapaIndicadorCampusStatus
+	} from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
 
 	interface Props {
 		gridArea?: string;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		items?: EtapaWithRelationsItem[] | null;
-		onClickEditar: (item: EtapaWithRelationsItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: EtapaWithRelationsItem) => void;
-		onClickDetalle: (item: EtapaWithRelationsItem) => void;
-		onKeydownDetalle: (e: KeyboardEvent, item: EtapaWithRelationsItem) => void;
+		showDetails?: boolean;
+		showEdit?: boolean;
+		onClickEdit?: (item: EvaluacionEtapaIndicadorCampusItem) => void;
+		items?: EvaluacionEtapaIndicadorCampusItem[] | null;
 	}
 
 	const {
@@ -22,23 +25,27 @@
 		showHeader = false,
 		title = '',
 		subtitle = '',
-		items,
-		onClickEditar,
-		onKeydownEditar,
-		onClickDetalle,
-		onKeydownDetalle
+		showDetails = true,
+		showEdit = false,
+		onClickEdit,
+		items
 	}: Props = $props();
 
 	const STATUS_TO_BADGE_CONFIG: Record<
-		EtapaStatus,
-		{ etapaStatus: EtapaStatus; badgeStatus: BadgeStatus; label: string }
+		EvaluacionEtapaIndicadorCampusStatus,
+		{
+			indicadorCampusStatus: EvaluacionEtapaIndicadorCampusStatus;
+			badgeStatus: BadgeStatus;
+			label: string;
+		}
 	> = {
-		draft: { etapaStatus: 'draft', badgeStatus: 'success', label: 'Planeado' },
-		ready: { etapaStatus: 'ready', badgeStatus: 'success', label: 'Listo' }
+		new: { indicadorCampusStatus: 'new', badgeStatus: 'info', label: 'Nuevo' },
+		working: { indicadorCampusStatus: 'working', badgeStatus: 'warning', label: 'En proceso' },
+		ready: { indicadorCampusStatus: 'ready', badgeStatus: 'success', label: 'Enviado' }
 	};
 
-	export function convertStatusToBadgeVariant(status: EtapaStatus): {
-		etapaStatus: EtapaStatus;
+	export function convertStatusToBadgeVariant(status: EvaluacionEtapaIndicadorCampusStatus): {
+		indicadorCampusStatus: EvaluacionEtapaIndicadorCampusStatus;
 		badgeStatus: BadgeStatus;
 		label: string;
 	} {
@@ -55,13 +62,10 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
+						<th class="col-code">Evaluacion</th>
 						<th class="col-code">Etapa</th>
-						<th class="col-code">Nombre</th>
-						<th class="col-code">Fecha inicio</th>
-						<th class="col-code">Fecha final</th>
-						<th class="col-name">Periodo extraordinario</th>
-						<th class="col-code">Periodo inicio</th>
-						<th class="col-code">Periodo final</th>
+						<th class="col-code">Indicador</th>
+						<th class="col-code">Campus</th>
 						<th class="col-status">Estatus</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
@@ -70,48 +74,51 @@
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-small-number">{item.numeroEtapa}</td>
-							<td class="col-name">{item.name}</td>
-							<td class="col-code">{item.fechaInicio}</td>
-							<td class="col-code">{item.fechaFinal}</td>
-							<td class="col-name">{item.periodoExtraordinario ? 'Si' : 'No'}</td>
-							<td class="col-code">{item.periodoExtraordinarioInicio}</td>
-							<td class="col-code">{item.periodoExtraordinarioFinal}</td>
+							<td class="col-small-number">{item.evaluacion.name}</td>
+							<td class="col-name">{item.etapa.name}</td>
+							<td class="col-code">{item.indicador.name}</td>
+							<td class="col-code">{item.campus.name}</td>
 							<td class="col-status">
 								<Badge
-									variant={convertStatusToBadgeVariant(item.status as EtapaStatus).badgeStatus}
+									variant={convertStatusToBadgeVariant(
+										item.status as EvaluacionEtapaIndicadorCampusStatus
+									).badgeStatus}
 								>
-									{convertStatusToBadgeVariant(item.status as EtapaStatus).label}
+									{convertStatusToBadgeVariant(item.status as EvaluacionEtapaIndicadorCampusStatus)
+										.label}
 								</Badge>
 							</td>
 							<td class="col-actions">
-								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !== 'ready' ||
-										item.isDeleted}
-									name="detail"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickDetalle(item)}
-									onKeydown={(e) => onKeydownDetalle(e, item)}
-								/>
-								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !== 'draft' ||
-										item.isDeleted}
-									name="calendar"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickEditar(item)}
-									onKeydown={(e) => onKeydownEditar(e, item)}
-								/>
+								{#if showDetails}
+									<IconButton
+										isDisabled={convertStatusToBadgeVariant(item.status).indicadorCampusStatus ===
+											'ready' || item.isDeleted}
+										name="detail"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => navigateTo(item.code)}
+									/>
+								{/if}
+
+								{#if showEdit && onClickEdit}
+									<IconButton
+										isDisabled={convertStatusToBadgeVariant(item.status).indicadorCampusStatus ===
+											'ready' || item.isDeleted}
+										name="edit"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => navigateTo("edit")}
+									/>
+								{/if}
 							</td>
 						</tr>
 					{/each}
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de etapa"></EmptySection>
+			<EmptySection message="No hay elementos de indicador-campus"></EmptySection>
 		{/if}
 	</section>
 </main>
