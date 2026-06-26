@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { EtapaAutoevaluacionItem } from '$lib/schemas/etapaMetadata.schema';
+	import type { EtapaRevisionAutoevaluacionItem } from '$lib/schemas/etapaMetadata.schema';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Modal from '$lib/components/modal/Modal.svelte';
 
 	interface Props {
-		selectedItem: EtapaAutoevaluacionItem;
+		selectedItem: EtapaRevisionAutoevaluacionItem;
 		open: boolean;
 		onClose: () => void;
 	}
@@ -78,6 +78,7 @@
 			</div>
 
 			<footer class="modal-footer text-body">
+				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
 				<Button type="submit" variant="primary" isDisabled={isSubmitting}>
 					{isSubmitting ? 'Guardando...' : 'Editar'}
 				</Button>

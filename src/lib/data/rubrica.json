@@ -71,7 +71,7 @@
       },
       "code": "rub-003-ind-001",
       "rangeStart": 5,
-      "rangeEnd": 7,
+      "rangeEnd": 6,
       "order": 3,
       "criterios": [
         {
@@ -117,9 +117,65 @@
         "name": "Tasa de Retención Estudiantil"
       },
       "code": "rub-004-ind-001",
-      "rangeStart": 8,
-      "rangeEnd": 10,
+      "rangeStart": 7,
+      "rangeEnd": 8,
       "order": 4,
+      "criterios": [
+        {
+          "id": "3d1f5d29-cc01-4e13-9aa4-5dfd564ffeae",
+          "code": "crit-001-10",
+          "criterio": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes."
+        },
+        {
+          "id": "4c64348f-6f0c-48be-8e02-109cca60b4e3",
+          "code": "crit-001-11",
+          "criterio": "Se han identificado las causas de deserción pero no se han implementado acciones correctivas."
+        },
+        {
+          "id": "27d1c701-a0da-45eb-a0cd-10e5891d6825",
+          "code": "crit-001-12",
+          "criterio": "Se cuenta con un diagnóstico inicial de las causas de deserción estudiantil."
+        },
+        {
+          "id": "133383a9-c128-418e-b288-a18be1887732",
+          "code": "crit-001-13",
+          "criterio": "Se han implementado programas de tutoría y acompañamiento estudiantil."
+        },
+        {
+          "id": "b75590eb-3713-4ed1-9bf9-06560d7c5ea6",
+          "code": "crit-001-14",
+          "criterio": "Se cuenta con un sistema de seguimiento académico para estudiantes en riesgo."
+        },
+        {
+          "id": "5d3ab617-736e-4df9-8d8c-415d8ba50e15",
+          "code": "crit-001-15",
+          "criterio": "Los programas de retención han demostrado efectividad medible en la reducción de la deserción."
+        },
+        {
+          "id": "64b3f27c-132d-4611-a444-fc6bc2af9aee",
+          "code": "crit-001-16",
+          "criterio": "Se realizan evaluaciones periódicas de las estrategias de retención."
+        }
+      ],
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2024-01-01T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2024-01-01T10:00:00Z",
+      "createdBy": "sistema"
+    },
+    {
+      "id": "99353367-8d41-4deb-bf36-316d4db2d802",
+      "indicador": {
+        "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+        "code": "ind-001",
+        "name": "Tasa de Retención Estudiantil"
+      },
+      "code": "rub-005-ind-001",
+      "rangeStart": 9,
+      "rangeEnd": 10,
+      "order": 5,
       "criterios": [
         {
           "id": "3d1f5d29-cc01-4e13-9aa4-5dfd564ffeae",
@@ -236,7 +292,7 @@
       },
       "code": "rub-ind-002",
       "rangeStart": 5,
-      "rangeEnd": 7,
+      "rangeEnd": 6,
       "order": 3,
       "criterios": [
         {
@@ -281,9 +337,65 @@
         "name": "Índice de Satisfacción Estudiantil"
       },
       "code": "rub-ind-002",
-      "rangeStart": 8,
-      "rangeEnd": 10,
+      "rangeStart": 7,
+      "rangeEnd": 8,
       "order": 4,
+      "criterios": [
+        {
+          "id": "d7cb110e-88ea-469b-a090-c3cfb7b3aa2a",
+          "code": "crit-002-10",
+          "criterio": "No se realizan evaluaciones de satisfacción estudiantil o no se consideran los resultados."
+        },
+        {
+          "id": "897df85b-67bf-470f-93b3-8d9438176445",
+          "code": "crit-002-11",
+          "criterio": "Se aplican encuestas de satisfacción pero no se analizan sistemáticamente."
+        },
+        {
+          "id": "4ab18128-a5ce-4078-9a8b-69e62b167352",
+          "code": "crit-002-12",
+          "criterio": "Existe un instrumento para medir la satisfacción estudiantil."
+        },
+        {
+          "id": "1261bd72-0a81-4a19-96ba-9d6dfe7193fe",
+          "code": "crit-002-13",
+          "criterio": "Los resultados de las encuestas se analizan y se generan informes."
+        },
+        {
+          "id": "b3d4d5f3-a511-42f4-94bc-777408b47175",
+          "code": "crit-002-14",
+          "criterio": "Se han definido planes de mejora basados en los resultados de satisfacción."
+        },
+        {
+          "id": "40562181-ab07-48a0-9452-eef55038435f",
+          "code": "crit-002-15",
+          "criterio": "Los planes de mejora se han implementado y monitoreado."
+        },
+        {
+          "id": "726a73e4-11a5-40bf-b854-c29e03a8dff1",
+          "code": "crit-002-16",
+          "criterio": "La satisfacción estudiantil ha mostrado una tendencia positiva sostenida."
+        }
+      ],
+      "version": 1,
+      "isCurrent": true,
+      "validFrom": "2024-01-01T00:00:00Z",
+      "validTo": null,
+      "isDeleted": false,
+      "createdAt": "2024-01-01T10:00:00Z",
+      "createdBy": "sistema"
+    },
+     {
+      "id": "07de5de6-b65e-4ce3-9d97-fa17081df9d3",
+      "indicador": {
+        "id": "8cec38ea-1b46-49a8-b4dc-13081a5334ae",
+        "code": "ind-002",
+        "name": "Índice de Satisfacción Estudiantil"
+      },
+      "code": "rub-ind-002",
+      "rangeStart": 9,
+      "rangeEnd": 10,
+      "order": 5,
       "criterios": [
         {
           "id": "d7cb110e-88ea-469b-a090-c3cfb7b3aa2a",

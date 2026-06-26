@@ -1,28 +1,33 @@
 <script lang="ts">
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { EtapaAutoevaluacionItem } from '$lib/schemas/etapaMetadata.schema';
-	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import Modal from '$lib/components/modal/Modal.svelte';
 
 	interface Props {
-		selectedItem: EtapaAutoevaluacionItem;
+		selectedItem: RubricaItem;
 		open: boolean;
 		onClose: () => void;
+		currentScore: number;
 	}
 
-	let { selectedItem, open, onClose }: Props = $props();
+	let { selectedItem, open, onClose, currentScore }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $derived({
-		comment: selectedItem.comment || ''
+		score: selectedItem.rangeEnd
 	});
 
 	let errorMessage = $state('');
 	let isSubmitting = $state(false);
 
 	function handleSubmit() {
-		// Aquí podrías console.log o guardar los datos si quieres
+		// Validación básica
+		if (!formData.score && formData.score !== 0) {
+			errorMessage = 'El score es requerido';
+			return;
+		}
+
 		console.log('Datos enviados (demo):', formData);
 
 		// Simular envío
@@ -34,6 +39,7 @@
 		// Notificar al padre si es necesario
 
 		// Resetear estado de envío
+		isSubmitting = false;
 		handleClose();
 	}
 
@@ -45,7 +51,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="text-h4">Editar comentario</h2>
+			<h2 class="text-h4">Capturar autoevaluacion</h2>
 		</header>
 
 		<form
@@ -63,25 +69,37 @@
 
 			<div class="form-fields">
 				<div class="modal-body">
-					<TextArea
-						label="Agregue un comentario"
-						name="comment"
-						placeholder="La rubrica..."
-						required={false}
-						status={errorMessage && !formData.comment ? 'error' : 'normal'}
-						disabled={isSubmitting}
-						bind:value={formData.comment}
-						errors={errorMessage && !formData.comment ? [errorMessage] : undefined}
-						rows={4}
-					/>
+					<div class="confirm-content">
+						{#if currentScore !== selectedItem.rangeEnd}
+							<p class="confirm-message text-body-large">
+								¿Desea modificar la calificacion de la autoevaluacion por <strong
+									>"{formData.score}"</strong
+								>?
+							</p>
+						{:else}
+							<p class="confirm-message text-body-large">
+								¿Desea confirmar la calificacion de la autoevaluacion de <strong
+									>"{formData.score}"</strong
+								>?
+							</p>
+						{/if}
+					</div>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
+				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
 				<Button type="submit" variant="primary" isDisabled={isSubmitting}>
-					{isSubmitting ? 'Guardando...' : 'Editar'}
+					{isSubmitting ? 'Guardando...' : 'Capturar'}
 				</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
+
+<style>
+	.confirm-content {
+		padding: var(--space-3) var(--space-6);
+		text-align: left;
+	}
+</style>

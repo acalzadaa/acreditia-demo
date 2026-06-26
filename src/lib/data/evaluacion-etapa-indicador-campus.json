@@ -219,7 +219,6 @@
             "createdAt": "2024-01-01T10:00:00Z",
             "createdBy": "admin@system.com"
         },
-        
         {
             "id": "1c53d952-ebe6-4b82-9d27-7feecdf99a2a",
             "code": "2025-3-resultados-ind-001-CAMPUS-SALT-002",
@@ -281,8 +280,8 @@
             },
             "metadata": {
                 "code": "autoevaluacion",
-                "puntaje": 8,
-                "comentario": "El documento de retencion no representa la realidad"
+                "score": 8,
+                "comment": "El documento de retencion no representa la realidad"
             },
             "status": "working",
             "version": 1,
@@ -352,7 +351,10 @@
                 "name": "Campus Monterrey"
             },
             "metadata": {
-                "code": "revision-autoevaluacion"
+                "code": "revision-autoevaluacion",
+                "originalScore": 8,
+                "score": 9,
+                "comment": "Cumplio con los criterios del nivel"
             },
             "status": "working",
             "version": 1,
@@ -387,7 +389,9 @@
                 "name": "Campus Saltillo"
             },
             "metadata": {
-                "code": "revision-autoevaluacion"
+                "code": "revision-autoevaluacion",
+                "originalScore": 8,
+                "score": 8
             },
             "status": "working",
             "version": 1,

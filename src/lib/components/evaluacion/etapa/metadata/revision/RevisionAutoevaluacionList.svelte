@@ -1,14 +1,15 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { EtapaAutoevaluacionItem } from '$lib/schemas/etapaMetadata.schema';
+	import type { EtapaRevisionAutoevaluacionItem } from '$lib/schemas/etapaMetadata.schema';
 
 	interface Props {
-		evaluacionItems: EtapaAutoevaluacionItem[];
-		onClickEditar: (item: EtapaAutoevaluacionItem) => void;
+		evaluacionItems: EtapaRevisionAutoevaluacionItem[];
+		onClickEditar: (item: EtapaRevisionAutoevaluacionItem) => void;
+		onClickFinish: (item: EtapaRevisionAutoevaluacionItem) => void;
 	}
 
-	const { evaluacionItems, onClickEditar }: Props = $props();
+	const { evaluacionItems, onClickEditar, onClickFinish }: Props = $props();
 </script>
 
 <main class="main-panel">
@@ -19,6 +20,7 @@
 					<tr>
 						<th class="col-label">Código</th>
 						<th class="col-metric">Puntuacion</th>
+						<th class="col-metric">Revision</th>
 						<th class="col-text">Comentario</th>
 						<th class="col-actions">Acciones</th>
 					</tr>
@@ -27,13 +29,17 @@
 					{#each evaluacionItems as item (item)}
 						<tr>
 							<td class="col-label">{item.code}</td>
+							<td class="col-metric">{item.originalScore}</td>
 							<td class="col-metric">{item.score}</td>
 							<td class="col-text">{item.comment}</td>
 							<td class="col-actions-lg">
 								<div class="col-actions-row">
-									<Button name="edit" onClick={() => onClickEditar(item)}
-										>Editar comentario
-									</Button>
+									<Button name="edit" variant="ghost" onClick={() => onClickEditar(item)}
+										>Editar comentario</Button
+									>
+									<Button name="upload" variant="ghost" onClick={() => onClickFinish(item)}
+										>Terminar etapa</Button
+									>
 								</div>
 							</td>
 						</tr>
@@ -41,7 +47,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de autoevaluacion"></EmptySection>
+			<EmptySection message="No hay elementos de revision de autoevaluacion"></EmptySection>
 		{/if}
 	</section>
 </main>

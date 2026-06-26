@@ -6,20 +6,20 @@
 
 	interface Props {
 		showHeader?: boolean;
-
 		showSelectIcon?: boolean;
 		onClickSelect?: (item: RubricaItem) => void;
 		items: RubricaItem[];
+		currentScore: number;
 		title?: string;
 		subtitle?: string;
 	}
 
 	const {
 		showHeader = false,
-
 		showSelectIcon = true,
 		onClickSelect,
 		items,
+		currentScore,
 		title = '',
 		subtitle = ''
 	}: Props = $props();
@@ -33,7 +33,13 @@
 		{#if items && items.length > 0}
 			<div class="rubrica-list">
 				{#each items as item (item.id)}
-					<RubricaCard {showSelectIcon} {onClickSelect} {item} />
+					<RubricaCard
+						highlight={currentScore >= item.rangeStart && currentScore <= item.rangeEnd}
+						{showSelectIcon}
+						{onClickSelect}
+						{item}
+						{currentScore}
+					/>
 				{/each}
 			</div>
 		{:else}

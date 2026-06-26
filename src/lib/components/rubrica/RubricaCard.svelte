@@ -10,7 +10,8 @@
 		showDetailIcon?: boolean;
 		showSelectIcon?: boolean;
 		onClickSelect?: (item: RubricaItem) => void;
-		selectedValue?: number;
+		currentScore?: number;
+		highlight?: boolean;
 	}
 
 	const {
@@ -18,7 +19,8 @@
 		showDetailIcon = false,
 		onClickSelect,
 		showSelectIcon,
-		selectedValue
+		currentScore,
+		highlight = false
 	}: Props = $props();
 
 	let isOpen = $state(false);
@@ -28,7 +30,11 @@
 	}
 </script>
 
-<article class="rubrica-card" class:rubrica-card--open={isOpen}>
+<article
+	class="rubrica-card"
+	class:rubrica-card--open={isOpen}
+	class:rubrica-card--highlight={highlight}
+>
 	<div class="rubrica-card__header">
 		<div class="rubrica-card__main">
 			{#if showSelectIcon && onClickSelect}
@@ -39,8 +45,8 @@
 			<Badge variant={item.criterios.length === 0 ? 'warning' : 'success'}>
 				{item.criterios.length} criterios
 			</Badge>
-			{#if selectedValue && selectedValue >= item.rangeStart && selectedValue <= item.rangeEnd}
-				<Badge variant="success">Selected</Badge>
+			{#if currentScore && currentScore >= item.rangeStart && currentScore <= item.rangeEnd}
+				<p class="text-body">Este elemento fue seleccionado en la etapa de autoevaluacion</p>
 			{/if}
 		</div>
 
@@ -80,6 +86,10 @@
 
 	.rubrica-card--open {
 		box-shadow: var(--shadow-md);
+	}
+
+	.rubrica-card--highlight {
+		background-color: var(--bg-raised-active);
 	}
 
 	.rubrica-card__header {

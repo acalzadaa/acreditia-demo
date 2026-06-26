@@ -134,8 +134,8 @@ export type EtapaResultadosForm = z.infer<typeof etapaResultadosFormSchema>;
 //etapa 4
 export const etapaAutoevaluacionItemSchema = z.object({
 	code: z.literal('autoevaluacion'),
-	puntaje: z.number().optional(),
-	comentario: z.string().optional()
+	score: z.number().optional(),
+	comment: z.string().optional()
 });
 
 export type EtapaAutoevaluacionItem = z.infer<typeof etapaAutoevaluacionItemSchema>;
@@ -143,10 +143,9 @@ export type EtapaAutoevaluacionItem = z.infer<typeof etapaAutoevaluacionItemSche
 //etapa 5
 export const etapaRevisionAutoevaluacionItemSchema = z.object({
 	code: z.literal('revision-autoevaluacion'),
-	acuerdos: z.string().optional(),
-	aceptado: z.boolean().optional(),
-	puntaje: z.number().optional(),
-	comentario: z.string().optional()
+	originalScore: z.number().optional(),
+	score: z.number().optional(),
+	comment: z.string().optional()
 });
 
 export type EtapaRevisionAutoevaluacionItem = z.infer<typeof etapaRevisionAutoevaluacionItemSchema>;

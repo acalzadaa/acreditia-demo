@@ -2,27 +2,34 @@
 	import { page } from '$app/state';
 	import { getEvaluacionEtapaIndicadorCampus, getRubrica } from '$lib/stores/data.svelte';
 	import IndicadorCampus from '$lib/components/evaluacion/etapa/indicador-campus/IndicadorCampus.svelte';
-	import type {
-		EtapaAutoevaluacionItem,
-		EtapaEvidenciaItem,
-		EtapaMetaItem,
-		EtapaResultadosItem,
-		EvidenciaFileRef,
-		EvidenciaUrlRef
+	import {
+		type EtapaAutoevaluacionItem,
+		type EtapaEvidenciaItem,
+		type EtapaMetadata,
+		type EtapaMetaItem,
+		type EtapaResultadosItem,
+		type EtapaRevisionAutoevaluacionItem,
+		type EvidenciaFileRef,
+		type EvidenciaUrlRef
 	} from '$lib/schemas/etapaMetadata.schema';
-	import AddEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/AddEtapaMetaForm.svelte';
+	import AddEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/meta/AddEtapaMetaForm.svelte';
 	import AddEtapaEvidenciaForm from '$lib/components/evaluacion/etapa/metadata/evidencia/AddEtapaEvidenciaForm.svelte';
 	import EvidenciaFile from '$lib/components/evaluacion/etapa/metadata/evidencia/EvidenciaFile.svelte';
 	import EvidenciaUrl from '$lib/components/evaluacion/etapa/metadata/evidencia/EvidenciaUrl.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import BorrarEvidenciaFileForm from '$lib/components/evaluacion/etapa/metadata/evidencia/BorrarEvidenciaFileForm.svelte';
 	import BorrarEvidenciaUrlForm from '$lib/components/evaluacion/etapa/metadata/evidencia/BorrarEvidenciaUrlForm.svelte';
-	import AddEtapaResultadosForm from '$lib/components/evaluacion/etapa/metadata/AddEtapaResultadosForm.svelte';
+	import AddEtapaResultadosForm from '$lib/components/evaluacion/etapa/metadata/resultados/AddEtapaResultadosForm.svelte';
 	import RubricaListViewSelect from '$lib/components/rubrica/RubricaListViewSelect.svelte';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import AddEtapaAutoevaluacionScoreForm from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/AddEtapaAutoevaluacionScoreForm.svelte';
-	import Autoevaluacion from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/AutoevaluacionList.svelte';
+	import AutoevaluacionList from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/AutoevaluacionList.svelte';
 	import AddEtapaAutoevaluacionCommentForm from '$lib/components/evaluacion/etapa/metadata/autoevaluacion/AddEtapaAutoevaluacionCommentForm.svelte';
+	import RevisionAutoevaluacionList from '$lib/components/evaluacion/etapa/metadata/revision/RevisionAutoevaluacionList.svelte';
+	import RubricaListViewSelectReview from '$lib/components/rubrica/RubricaListViewSelectReview.svelte';
+	import AddEtapaRevisionAutoevaluacionCommentForm from '$lib/components/evaluacion/etapa/metadata/revision/AddEtapaRevisionAutoevaluacionCommentForm.svelte';
+	import AddEtapaRevisionAutoevaluacionScoreForm from '$lib/components/evaluacion/etapa/metadata/revision/AddEtapaRevisionAutoevaluacionScoreForm.svelte';
+	import FinishEtapaRevisionAutoevaluacionForm from '$lib/components/evaluacion/etapa/metadata/revision/FinishEtapaRevisionAutoevaluacionForm.svelte';
 
 	let etapaCode = page.params.etapaCode;
 	let indicadorCampusCode = page.params.indicadorCampusCode;
@@ -44,8 +51,20 @@
 	let modalFile = createModalManager<EvidenciaFileRef>();
 	let modalUrl = createModalManager<EvidenciaUrlRef>();
 
-	let modalRubrica = createModalManager<RubricaItem>();
+	let modalRubricaAutoevaluacion = createModalManager<RubricaItem>();
 	let modalAutoevaluacion = createModalManager<EtapaAutoevaluacionItem>();
+
+	let modalRubricaRevisionAutoevaluacion = createModalManager<RubricaItem>();
+	let modalRevisionAutoevaluacion = createModalManager<EtapaRevisionAutoevaluacionItem>();
+
+	function getOriginalScore(item: EtapaMetadata): number | null {
+		if (item.code === 'revision-autoevaluacion') {
+			return item.originalScore ?? null;
+		}
+		return null;
+	}
+
+	let originalScore = $state(getOriginalScore(etapaMetadataItem) || 0);
 </script>
 
 <main class="page-grid">
@@ -93,19 +112,21 @@
 			{@const resultadosItem = etapaMetadataItem as EtapaResultadosItem}
 			<AddEtapaResultadosForm selectedItem={resultadosItem} />
 		{:else if etapaCode === 'autoevaluacion'}
-			<Autoevaluacion
+			<AutoevaluacionList
 				evaluacionItems={etapaMetadataItem ? [etapaMetadataItem as EtapaAutoevaluacionItem] : []}
 				onClickEditar={(item) => modalAutoevaluacion.handlers('edit').onClickItem(item)}
 			/>
 			<RubricaListViewSelect
-				onClickSelect={(item) => modalRubrica.handlers('edit').onClickItem(item)}
+				showHeader={true}
+				title="Seleccione un elemento de la rubrica"
+				onClickSelect={(item) => modalRubricaAutoevaluacion.handlers('edit').onClickItem(item)}
 				items={rubricaItems}
 			/>
-			{#if modalRubrica.selectedItem}
+			{#if modalRubricaAutoevaluacion.selectedItem}
 				<AddEtapaAutoevaluacionScoreForm
-					open={modalRubrica.isOpen('edit')}
-					onClose={modalRubrica.close}
-					selectedItem={modalRubrica.selectedItem}
+					open={modalRubricaAutoevaluacion.isOpen('edit')}
+					onClose={modalRubricaAutoevaluacion.close}
+					selectedItem={modalRubricaAutoevaluacion.selectedItem}
 				/>
 			{/if}
 
@@ -114,6 +135,44 @@
 					open={modalAutoevaluacion.isOpen('edit')}
 					onClose={modalAutoevaluacion.close}
 					selectedItem={modalAutoevaluacion.selectedItem}
+				/>
+			{/if}
+		{:else if etapaCode === 'revision-autoevaluacion'}
+			<RevisionAutoevaluacionList
+				evaluacionItems={etapaMetadataItem
+					? [etapaMetadataItem as EtapaRevisionAutoevaluacionItem]
+					: []}
+				onClickEditar={(item) => modalRevisionAutoevaluacion.handlers('edit').onClickItem(item)}
+				onClickFinish={(item) => modalRevisionAutoevaluacion.handlers('finish').onClickItem(item)}
+			/>
+			<RubricaListViewSelectReview
+				showHeader={true}
+				title="Seleccione un elemento de la rubrica"
+				onClickSelect={(item) =>
+					modalRubricaRevisionAutoevaluacion.handlers('edit').onClickItem(item)}
+				items={rubricaItems}
+				currentScore={originalScore}
+			/>
+			{#if modalRubricaRevisionAutoevaluacion.selectedItem}
+				<AddEtapaRevisionAutoevaluacionScoreForm
+					currentScore={originalScore}
+					open={modalRubricaRevisionAutoevaluacion.isOpen('edit')}
+					onClose={modalRubricaRevisionAutoevaluacion.close}
+					selectedItem={modalRubricaRevisionAutoevaluacion.selectedItem}
+				/>
+			{/if}
+
+			{#if modalRevisionAutoevaluacion.selectedItem}
+				<AddEtapaRevisionAutoevaluacionCommentForm
+					open={modalRevisionAutoevaluacion.isOpen('edit')}
+					onClose={modalRevisionAutoevaluacion.close}
+					selectedItem={modalRevisionAutoevaluacion.selectedItem}
+				/>
+
+				<FinishEtapaRevisionAutoevaluacionForm
+					open={modalRevisionAutoevaluacion.isOpen('finish')}
+					onClose={modalRevisionAutoevaluacion.close}
+					selectedItem={modalRevisionAutoevaluacion.selectedItem}
 				/>
 			{/if}
 		{:else}
