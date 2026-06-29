@@ -1,10 +1,5 @@
 <script lang="ts">
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
-	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import Campus from '$lib/components/campus/Campus.svelte';
@@ -12,37 +7,19 @@
 	import EditarCampusForm from '$lib/components/campus/EditarCampusForm.svelte';
 	import BorrarCampusForm from '$lib/components/campus/BorrarCampusForm.svelte';
 	import RestaurarCampusForm from '$lib/components/campus/RestaurarCampusForm.svelte';
-	import { auth } from '$lib/stores/auth.svelte';
 	import { getCampus, getInstitucionRef } from '$lib/stores/data.svelte';
-	import { page } from '$app/state';
 	import type { CampusItem } from '$lib/schemas/campus.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
-
-	let username = auth.user?.email?.split('@')[0] || 'Usuario';
+	
 	let campusItems = getCampus();
 
 	let institucionRef = getInstitucionRef();
-	let navigationItems = $derived(page.data.navigationItems);
 
 	/* LOGOUT */
-	async function onClickLogout() {
-		auth.logout();
-		goto(resolve('/login'), { replaceState: true });
-	}
 
-	function onKeydownLogout(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickLogout();
-		}
-	}
-
-	
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<CampusItem>();
-	let navigationToggle = createToggle(true);
-	let notificationToggle = createToggle(false);
 
 	/* DETALLE */
 	function onClickDetalle(item: CampusItem) {
@@ -54,27 +31,9 @@
 			onClickDetalle(item);
 		}
 	}
-
 </script>
 
 <div class="app-grid">
-	<Header
-		isLoggedIn={!!auth.user}
-		{username}
-		{onClickLogout}
-		onKeydownLogout={(e) => onKeydownLogout(e)}
-	/>
-	<Subheader
-		onClickNavigationBar={navigationToggle.onclick}
-		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
-		onClickNotificationBar={navigationToggle.onclick}
-		onKeydownNotificationBar={(e) => navigationToggle.onkeydown(e)}
-		showNavigationBar={navigationToggle.value}
-		showNotificationBar={notificationToggle.value}
-	/>
-	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBar showNotificationBar={notificationToggle.value} />
-
 	<Toolbar
 		crearTitle="Nuevo campus"
 		onClickCrear={modal.handlers('create').onclick}
@@ -121,22 +80,18 @@
 			onClose={modal.close}
 		/>
 	{/if}
-
-	<Footer />
 </div>
 
 <style>
 	.app-grid {
 		display: grid;
 		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
+			'toolbar'
+			'main';
+		grid-template-columns: 1fr;
+		grid-template-rows: auto 1fr;
 		height: 100vh;
 		position: relative;
+		min-width: 600px;
 	}
 </style>

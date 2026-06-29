@@ -1,19 +1,11 @@
 <script lang="ts">
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
-	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
 	import type { CampusItem } from '$lib/schemas/campus.schema';
-	import { resolve } from '$app/paths';
-	import { goto } from '$app/navigation';
 	import Campus from '$lib/components/campus/Campus.svelte';
 	import EditarCampusForm from '$lib/components/campus/EditarCampusForm.svelte';
 	import BorrarCampusForm from '$lib/components/campus/BorrarCampusForm.svelte';
 	import RestaurarCampusForm from '$lib/components/campus/RestaurarCampusForm.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
 	import UnidadAcademica from '$lib/components/unidad-academica/UnidadAcademica.svelte';
 	import AreaResponsable from '$lib/components/area-responsable/AreaResponsable.svelte';
 	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
@@ -24,7 +16,6 @@
 	import EditarCampusAreaResponsableForm from '$lib/components/campus/area-responsable/EditarCampusAreaResponsableForm.svelte';
 	import BorrarCampusAreaResponsableForm from '$lib/components/campus/area-responsable/BorrarCampusAreaResponsableForm.svelte';
 	import RestaurarCampusAreaResponsableForm from '$lib/components/campus/area-responsable/RestaurarCampusAreaResponsableForm.svelte';
-	import { auth } from '$lib/stores/auth.svelte';
 	import {
 		getAreaResponsable,
 		getAreaResponsableRef,
@@ -33,15 +24,12 @@
 		getCampusUnidadAcademica,
 		getInstitucionRef,
 		getUnidadAcademica,
-
 		getUnidadAcademicaRef
-
 	} from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 	import AddCampusAreaResponsableForm from '$lib/components/campus/area-responsable/AddCampusAreaResponsableForm.svelte';
 	import AddCampusUnidadAcademicaForm from '$lib/components/campus/unidad-academica/AddCampusUnidadAcademicaForm.svelte';
 
-	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let campusCode = page.params.campusCode;
 
 	let campusItems = getCampus().filter((item) => item.code === campusCode);
@@ -62,46 +50,16 @@
 	let unidadAcademicaRef = getUnidadAcademicaRef();
 	let areaResponsableRef = getAreaResponsableRef();
 	let institucionRef = getInstitucionRef();
-	let navigationItems = $derived(page.data.navigationItems);
 
 	/* LOGOUT */
-	async function onClickLogout() {
-		auth.logout();
-		goto(resolve('/login'), { replaceState: true });
-	}
-
-	function onKeydownLogout(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickLogout();
-		}
-	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let navigationToggle = createToggle(true);
-	let notificationToggle = createToggle(false);
 	let modal = createModalManager<CampusItem>();
 	let modalUnidadAcademica = createModalManager<UnidadAcademicaItem>();
 	let modalAreaResponsable = createModalManager<AreaResponsableItem>();
 </script>
 
-<div class="app-grid">
-	<Header
-		isLoggedIn={!!auth.user}
-		{username}
-		{onClickLogout}
-		onKeydownLogout={(e) => onKeydownLogout(e)}
-	/>
-	<Subheader
-		onClickNavigationBar={navigationToggle.onclick}
-		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
-		onClickNotificationBar={navigationToggle.onclick}
-		onKeydownNotificationBar={(e) => navigationToggle.onkeydown(e)}
-		showNavigationBar={navigationToggle.value}
-		showNotificationBar={notificationToggle.value}
-	/>
-	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBar showNotificationBar={notificationToggle.value} />
-
+<div class="detail-panel">
 	<Campus
 		gridArea="campus"
 		{campusItems}
@@ -113,50 +71,52 @@
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
 	/>
 
-	<Toolbar
-		gridArea="unidadAcademicaToolbar"
-		crearTitle="Agregar unidad academica"
-		onClickCrear={modalUnidadAcademica.handlers('add').onclick}
-		onKeydownCrear={(e) => modalUnidadAcademica.handlers('add').onkeydown(e)}
-		showExport={true}
-		showFilter={true}
-	/>
+	<main class="detail-content">
+		<Toolbar
+			gridArea="unidadAcademicaToolbar"
+			crearTitle="Agregar unidad academica"
+			onClickCrear={modalUnidadAcademica.handlers('add').onclick}
+			onKeydownCrear={(e) => modalUnidadAcademica.handlers('add').onkeydown(e)}
+			showExport={true}
+			showFilter={true}
+		/>
 
-	<UnidadAcademica
-		gridArea="unidadAcademica"
-		showHeader={true}
-		title="Unidades academicas asignadas"
-		{unidadAcademicaItems}
-		onClickEditar={modalUnidadAcademica.handlers('edit').onClickItem}
-		onKeydownEditar={(e, item) => modalUnidadAcademica.handlers('edit').onKeydownItem(e, item)}
-		onClickBorrar={modalUnidadAcademica.handlers('delete').onClickItem}
-		onKeydownBorrar={(e, item) => modalUnidadAcademica.handlers('delete').onKeydownItem(e, item)}
-		onClickRestaurar={modalUnidadAcademica.handlers('restore').onClickItem}
-		onKeydownRestaurar={(e, item) =>
-			modalUnidadAcademica.handlers('restore').onKeydownItem(e, item)}
-	/>
-	<Toolbar
-		gridArea="areaResponsableToolbar"
-		crearTitle="Agregar area responsable"
-		onClickCrear={modalAreaResponsable.handlers('add').onclick}
-		onKeydownCrear={(e) => modalAreaResponsable.handlers('add').onkeydown(e)}
-		showExport={true}
-		showFilter={true}
-	/>
+		<UnidadAcademica
+			gridArea="unidadAcademica"
+			showHeader={true}
+			title="Unidades academicas asignadas"
+			{unidadAcademicaItems}
+			onClickEditar={modalUnidadAcademica.handlers('edit').onClickItem}
+			onKeydownEditar={(e, item) => modalUnidadAcademica.handlers('edit').onKeydownItem(e, item)}
+			onClickBorrar={modalUnidadAcademica.handlers('delete').onClickItem}
+			onKeydownBorrar={(e, item) => modalUnidadAcademica.handlers('delete').onKeydownItem(e, item)}
+			onClickRestaurar={modalUnidadAcademica.handlers('restore').onClickItem}
+			onKeydownRestaurar={(e, item) =>
+				modalUnidadAcademica.handlers('restore').onKeydownItem(e, item)}
+		/>
+		<Toolbar
+			gridArea="areaResponsableToolbar"
+			crearTitle="Agregar area responsable"
+			onClickCrear={modalAreaResponsable.handlers('add').onclick}
+			onKeydownCrear={(e) => modalAreaResponsable.handlers('add').onkeydown(e)}
+			showExport={true}
+			showFilter={true}
+		/>
 
-	<AreaResponsable
-		showHeader={true}
-		title="Areas reponsables asignadas"
-		gridArea="areaResponsable"
-		{areaResponsableItems}
-		onClickEditar={modalAreaResponsable.handlers('edit').onClickItem}
-		onKeydownEditar={(e, item) => modalAreaResponsable.handlers('edit').onKeydownItem(e, item)}
-		onClickBorrar={modalAreaResponsable.handlers('delete').onClickItem}
-		onKeydownBorrar={(e, item) => modalAreaResponsable.handlers('delete').onKeydownItem(e, item)}
-		onClickRestaurar={modalAreaResponsable.handlers('restore').onClickItem}
-		onKeydownRestaurar={(e, item) =>
-			modalAreaResponsable.handlers('restore').onKeydownItem(e, item)}
-	/>
+		<AreaResponsable
+			showHeader={true}
+			title="Areas reponsables asignadas"
+			gridArea="areaResponsable"
+			{areaResponsableItems}
+			onClickEditar={modalAreaResponsable.handlers('edit').onClickItem}
+			onKeydownEditar={(e, item) => modalAreaResponsable.handlers('edit').onKeydownItem(e, item)}
+			onClickBorrar={modalAreaResponsable.handlers('delete').onClickItem}
+			onKeydownBorrar={(e, item) => modalAreaResponsable.handlers('delete').onKeydownItem(e, item)}
+			onClickRestaurar={modalAreaResponsable.handlers('restore').onClickItem}
+			onKeydownRestaurar={(e, item) =>
+				modalAreaResponsable.handlers('restore').onKeydownItem(e, item)}
+		/>
+	</main>
 
 	{#if modal.selectedItem}
 		<EditarCampusForm
@@ -232,25 +192,22 @@
 			onClose={modalAreaResponsable.close}
 		/>
 	{/if}
-
-	<Footer />
 </div>
 
 <style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar campus'
-			'navbar unidadAcademicaToolbar'
-			'navbar unidadAcademica'
-			'navbar areaResponsableToolbar'
-			'navbar areaResponsable'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto auto 1fr auto 1fr auto;
-		height: 100vh;
-		position: relative;
+	.detail-panel {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-height: 0;
+		overflow-y: auto;
+		position: sticky;
+		top: 0;
+	}
+
+	.detail-content {
+		display: flex;
+		flex-direction: column;
+		flex-shrink: 0;
 	}
 </style>
