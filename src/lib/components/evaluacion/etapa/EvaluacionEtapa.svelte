@@ -2,9 +2,14 @@
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import Badge, { type BadgeStatus } from '$lib/components/ui/Badge.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import { formatDate } from '$lib/helpers/dates';
 	import { navigateTo } from '$lib/helpers/navigation';
-	import type { EvaluacionEtapaItem, EvaluacionEtapaStatus } from '$lib/schemas/evaluacionEtapa.schema';
+	import type {
+		EvaluacionEtapaItem,
+		EvaluacionEtapaStatus
+	} from '$lib/schemas/evaluacionEtapa.schema';
 
 	interface Props {
 		gridArea?: string;
@@ -51,53 +56,59 @@
 				<thead class="text-body-strong">
 					<tr>
 						<th class="col-code">Etapa</th>
-						<th class="col-code">Nombre</th>
-						<th class="col-code">Fecha inicio</th>
-						<th class="col-code">Fecha final</th>
-						<th class="col-name">Periodo extraordinario</th>
-						<th class="col-code">Periodo inicio</th>
-						<th class="col-code">Periodo final</th>
-						<th class="col-status">Estatus</th>
-						<th class="col-actions">Acciones</th>
+						<th class="col-label">Nombre</th>
+						<th class="col-date">Fecha inicio</th>
+						<th class="col-date">Fecha final</th>
+						<th class="col-code">Periodo extraordinario</th>
+						<th class="col-date">Periodo inicio</th>
+						<th class="col-date">Periodo final</th>
+						<th class="col-badge">Estatus</th>
+						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>
-
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-small-number">{item.etapa.order}</td>
-							<td class="col-name">{item.etapa.name}</td>
-							<td class="col-code">{item.fechaInicio}</td>
-							<td class="col-code">{item.fechaFinal}</td>
-							<td class="col-name">{item.periodoExtraordinario ? 'Si' : 'No'}</td>
-							<td class="col-code">{item.periodoExtraordinarioInicio}</td>
-							<td class="col-code">{item.periodoExtraordinarioFinal}</td>
-							<td class="col-status">
+							<td class="col-code">{item.etapa.order}</td>
+							<td class="col-label">{item.etapa.name}</td>
+							<td class="col-date">{formatDate(item.fechaInicio)}</td>
+							<td class="col-date">{formatDate(item.fechaFinal)}</td>
+							<td class="col-code">
+								{#if item.periodoExtraordinario}
+									<Icon name="check" />
+								{/if}
+							</td>
+							<td class="col-date">{formatDate(item.periodoExtraordinarioInicio)}</td>
+							<td class="col-date">{formatDate(item.periodoExtraordinarioFinal)}</td>
+							<td class="col-badge">
 								<Badge
-									variant={convertStatusToBadgeVariant(item.status as EvaluacionEtapaStatus).badgeStatus}
+									variant={convertStatusToBadgeVariant(item.status as EvaluacionEtapaStatus)
+										.badgeStatus}
 								>
 									{convertStatusToBadgeVariant(item.status as EvaluacionEtapaStatus).label}
 								</Badge>
 							</td>
-							<td class="col-actions">
-								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !== 'ready' ||
-										item.isDeleted}
-									name="detail"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => navigateTo(item.etapa.code)}
-								/>
-								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !== 'planning' ||
-										item.isDeleted}
-									name="calendar"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickEditar(item)}
-								/>
+							<td class="col-actions-md">
+								<div class="col-actions-row">
+									<IconButton
+										isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !== 'ready' ||
+											item.isDeleted}
+										name="detail"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => navigateTo(item.etapa.code)}
+									/>
+									<IconButton
+										isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !==
+											'planning' || item.isDeleted}
+										name="calendar"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickEditar(item)}
+									/>
+								</div>
 							</td>
 						</tr>
 					{/each}
