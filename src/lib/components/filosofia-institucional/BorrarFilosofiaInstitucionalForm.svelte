@@ -47,7 +47,7 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Borrar filosofia institucional</h2>

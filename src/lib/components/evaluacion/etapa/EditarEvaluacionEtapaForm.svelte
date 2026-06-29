@@ -28,7 +28,7 @@
 			fechaFinal: props.item.fechaFinal,
 			periodoExtraordinario: props.item.periodoExtraordinario,
 			periodoExtraordinarioInicio: props.item.periodoExtraordinarioInicio,
-			periodoExtraordinarioFinal: props.item.periodoExtraordinarioFinal,
+			periodoExtraordinarioFinal: props.item.periodoExtraordinarioFinal
 		},
 		{
 			dataType: 'json',
@@ -63,7 +63,7 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar etapa</h2>

@@ -19,7 +19,7 @@
 		title = 'Add',
 		subtitle = '',
 		items,
-		onClickBorrar,
+		onClickBorrar
 	}: Props = $props();
 </script>
 
@@ -33,8 +33,8 @@
 				<thead class="text-body-strong">
 					<tr>
 						<th class="col-code">Code</th>
-						<th class="col-description">Unidad academica</th>
-						<th class="col-actions">Acciones</th>
+						<th class="col-label">Unidad academica</th>
+						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">
@@ -43,18 +43,20 @@
 							<td class="col-code">
 								{item.code}
 							</td>
-							<td class="col-descripcion">
+							<td class="col-label">
 								{item.name}
 							</td>
 
-							<td class="col-actions">
-								<IconButton
-									name="delete"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickBorrar(item)}
-								/>
+							<td class="col-actions-md">
+								<div class="col-actions-row">
+									<IconButton
+										name="delete"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickBorrar(item)}
+									/>
+								</div>
 							</td>
 						</tr>
 					{/each}
@@ -65,85 +67,3 @@
 		{/if}
 	</section>
 </main>
-
-<style>
-	/*
- * table-layout: fixed permite que las columnas respeten
- * los anchos declarados en thead th.
- * min-width en la tabla = suma de los min-width de columnas,
- * así la tabla no encoge más allá de donde todo quepa justo.
- *
- * Columnas y sus límites:
- *
- *   código      ~20 chars ~10rem  (min: 7rem)
- *   parent   ~20 chars ~10rem  (min: 7rem)
- *   nombre      ~50 chars ~18rem  (min: 12rem)
- *   descripción ~255 chars flex   (min: 14rem, max: auto)
- *   meta ~20 chars ~10rem  (min: 7rem)
- *   origen de datos ~50 chars ~18rem  (min: 12rem)
- *   formula de datos  ~100 chars flex   (min: 14rem, max: auto)
- *   frecuencia ~20 chars ~10rem  (min: 7rem)
- *   badge       ~20 chars ~8rem   (min: 6rem)
- *   acciones      4 iconos  ~9rem   (min: 9rem, fijo)
- *
- * Total mínimo: 7 + 7 + 12 + 14 + 7 + 12 + 14 + 7 +  6 + 9 = 95rem
- */
-	.data-table {
-		min-width: 95rem;
-	}
-
-	/* =============================================
-   COLUMN WIDTHS
-   Declara los anchos en thead th para que
-   table-layout: fixed los respete en todo el body.
-   ============================================= */
-
-	/* Código — corto, no hace wrap */
-	.data-table .col-code {
-		width: 10rem;
-		min-width: 7rem;
-		white-space: nowrap;
-	}
-
-	/* Nombre — mediano, puede hacer wrap si hay presión */
-	.data-table .col-name {
-		width: 18rem;
-		min-width: 12rem;
-		/* wrap controlado */
-		overflow-wrap: break-word;
-		word-break: break-word;
-		hyphens: auto;
-	}
-
-	/* Descripción — columna flexible; toma el espacio sobrante.
-   Hace wrap y tiene un mínimo para no volverse ilegible.     */
-	.data-table .col-description {
-		width: 18rem;
-		min-width: 14rem;
-		/* wrap controlado */
-		overflow-wrap: break-word;
-		word-break: break-word;
-		hyphens: auto;
-	}
-
-	/* Meta — corto, no hace wrap */
-	.data-table .col-meta {
-		width: 10rem;
-		min-width: 7rem;
-		white-space: nowrap;
-	}
-
-	/* Badge de estatus — ancho fijo chico */
-	.data-table .col-status {
-		width: 8rem;
-		min-width: 6rem;
-		white-space: nowrap;
-	}
-
-	/* Acciones — completamente fijo, los 4 iconos siempre caben */
-	.data-table .col-actions {
-		width: 9rem;
-		min-width: 9rem;
-		white-space: nowrap;
-	}
-</style>

@@ -4,10 +4,7 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		evaluacionFormSchema,
-		type EvaluacionItem
-	} from '$lib/schemas/evaluacion.schema';
+	import { evaluacionFormSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 
 	interface Props {
 		open: boolean;
@@ -58,7 +55,7 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Borrar evaluacion</h2>

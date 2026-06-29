@@ -60,7 +60,7 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar filosofía institucional</h2>
@@ -116,8 +116,7 @@
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar filosofia</Button
-				>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar filosofia</Button>
 			</footer>
 		</form>
 	</div>
