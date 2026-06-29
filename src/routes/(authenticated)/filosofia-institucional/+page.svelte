@@ -7,7 +7,7 @@
 	import FilosofiaInstitucional from '$lib/components/filosofia-institucional/FilosofiaInstitucional.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import CrearFilosofiaInstitucional from '$lib/components/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';
-	import {  type FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
+	import { type FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
 	import BorrarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/BorrarFilosofiaInstitucionalForm.svelte';
 	import EditarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/EditarFilosofiaInstitucionalForm.svelte';
 	import RestaurarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/RestaurarFilosofiaInstitucionalForm.svelte';
@@ -143,6 +143,7 @@
 	<NavigationBar {showNavigationBar} {navigationItems} />
 	<NotificationBar {showNotificationBar} />
 	<Toolbar
+		crearTitle="Nueva filosofia"
 		{onClickCrear}
 		onKeydownCrear={(e) => onKeydownCrear(e)}
 		showExport={true}

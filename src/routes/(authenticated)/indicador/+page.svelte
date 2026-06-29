@@ -32,7 +32,7 @@
 <main class="app-grid">
 	<Toolbar
 		gridArea="toolbar"
-		crearTitle="Crear indicador"
+		crearTitle="Nuevo indicador"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}

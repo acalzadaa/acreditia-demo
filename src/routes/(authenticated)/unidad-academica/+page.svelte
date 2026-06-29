@@ -64,7 +64,7 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
-		crearTitle="Nueva unidad academica"
+		crearTitle="Nueva unidad"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}

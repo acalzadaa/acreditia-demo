@@ -150,6 +150,7 @@
 	<NavigationBar {showNavigationBar} {navigationItems} />
 	<NotificationBar {showNotificationBar} />
 	<Toolbar
+		crearTitle="Nueva area"
 		{onClickCrear}
 		onKeydownCrear={(e) => onKeydownCrear(e)}
 		showExport={true}

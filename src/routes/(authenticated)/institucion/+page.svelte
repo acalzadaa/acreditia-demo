@@ -13,10 +13,9 @@
 	import BorrarInstitucionForm from '$lib/components/institucion/BorrarInstitucionForm.svelte';
 	import RestaurarInstitucionForm from '$lib/components/institucion/RestaurarInstitucionForm.svelte';
 	import Institucion from '$lib/components/institucion/Institucion.svelte';
-	import {  getInstitucion, getRegionRef } from '$lib/stores/data.svelte';
+	import { getInstitucion, getRegionRef } from '$lib/stores/data.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
-
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let institucionItems = getInstitucion();
@@ -145,6 +144,7 @@
 	<NavigationBar {showNavigationBar} {navigationItems} />
 	<NotificationBar {showNotificationBar} />
 	<Toolbar
+		crearTitle="Nueva institucion"
 		{onClickCrear}
 		onKeydownCrear={(e) => onKeydownCrear(e)}
 		showExport={true}
@@ -165,11 +165,7 @@
 	/>
 
 	<!-- MODAL CREAR -->
-	<CrearInstitucionForm
-		bind:open={showCrearModal}
-		{regiones}
-		onClose={handleCerrar}
-	/>
+	<CrearInstitucionForm bind:open={showCrearModal} {regiones} onClose={handleCerrar} />
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}

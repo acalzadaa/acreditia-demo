@@ -10,7 +10,7 @@
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	
+
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
 	import { getEvidencia } from '$lib/stores/data.svelte';
@@ -63,6 +63,7 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
+		crearTitle="Nueva evidencia"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}

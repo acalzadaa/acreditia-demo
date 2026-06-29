@@ -7,7 +7,6 @@
 	import Footer from '$lib/components/common/Footer.svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import type { CapituloWithModeloItem } from '$lib/schemas/capitulo.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import RestaurarCapituloForm from '$lib/components/capitulo/RestaurarCapituloForm.svelte';
@@ -18,6 +17,7 @@
 	import { getCapitulo, getModeloRef } from '$lib/stores/data.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
+	import type { CapituloItem } from '$lib/schemas/capitulo.schema';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
@@ -40,7 +40,7 @@
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let modal = createModalManager<CapituloWithModeloItem>();
+	let modal = createModalManager<CapituloItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
@@ -63,6 +63,7 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
+		crearTitle="Nuevo capitulo"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}
