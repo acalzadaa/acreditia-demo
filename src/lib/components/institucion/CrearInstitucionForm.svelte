@@ -5,50 +5,50 @@
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { RegionRef } from '$lib/schemas/region.schema';
+	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
 
 	interface Props {
 		open: boolean;
-		regiones: RegionRef[];
+		entidadLegalRef: EntidadLegalRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, regiones = [] }: Props = $props();
+	let { open = $bindable(false), onClose, entidadLegalRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
-		regionId: '',
+		entidadLegalId: '',
 		code: '',
 		name: ''
 	});
 
 	let errorMessage = $state('');
 
-	const regionesOptions = $derived(
-		regiones.map((ref) => ({
+	let entidadLegalOptions = $derived(
+		entidadLegalRef?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
-		}))
+		})) ?? []
 	);
 
 	// Auto-seleccionar entidad legal si solo hay una opción
 	$effect(() => {
-		if (regionesOptions.length === 1 && !formData.regionId) {
-			formData.regionId = regionesOptions[0].id;
+		if (entidadLegalOptions.length === 1 && !formData.entidadLegalId) {
+			formData.entidadLegalId = entidadLegalOptions[0].id;
 		}
 	});
 
 	// Auto-seleccionar región si solo hay una opción
 	$effect(() => {
-		if (regionesOptions.length === 1 && !formData.regionId) {
-			formData.regionId = regionesOptions[0].id;
+		if (entidadLegalOptions.length === 1 && !formData.entidadLegalId) {
+			formData.entidadLegalId = entidadLegalOptions[0].id;
 		}
 	});
 
 	function handleSubmit() {
 		// Validación básica
 
-		if (!formData.regionId) {
+		if (!formData.entidadLegalId) {
 			errorMessage = 'Debes seleccionar una región';
 			return;
 		}
@@ -66,7 +66,7 @@
 
 		// Limpiar formulario
 		formData = {
-			regionId: '',
+			entidadLegalId: '',
 			code: '',
 			name: ''
 		};
@@ -81,7 +81,7 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			regionId: '',
+			entidadLegalId: '',
 			code: '',
 			name: ''
 		};
@@ -130,12 +130,12 @@
 					{/if}
 
 					<InputSelect
-						label="Región"
-						name="regionId"
-						optionsData={regionesOptions}
+						label="Entidad Legal"
+						name="entidadLegalId"
+						optionsData={entidadLegalOptions}
 						required={true}
-						bind:value={formData.regionId}
-						errors={errorMessage && !formData.regionId ? [errorMessage] : undefined}
+						bind:value={formData.entidadLegalId}
+						errors={errorMessage && !formData.entidadLegalId ? [errorMessage] : undefined}
 					/>
 
 					<InputText
