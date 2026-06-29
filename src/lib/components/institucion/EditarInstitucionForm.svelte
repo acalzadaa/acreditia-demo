@@ -12,19 +12,19 @@
 		institucionWithRelationsItemSchema,
 		type InstitucionWithRelationsItem
 	} from '$lib/schemas/institucion.schema';
-	import type { RegionRef } from '$lib/schemas/region.schema';
+	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
 
 	interface Props {
 		open: boolean;
 		selectedItem: InstitucionWithRelationsItem;
-		regiones: RegionRef[];
+		entidadLegalRef: EntidadLegalRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	let regionesOptions = $derived(
-		props.regiones?.map((ref) => ({
+	let entidadLegalOptions = $derived(
+		props.entidadLegalRef?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		})) ?? []
@@ -72,7 +72,7 @@
 <Modal bind:open closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar region</h2>
+			<h2 class="modal-title text-h4">Editar institucion</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -97,13 +97,13 @@
 
 				<div class="form-fields">
 					<InputSelect
-						label="Region"
-						name="regionId"
-						optionsData={regionesOptions}
+						label="Entidad Legal"
+						name="entidadLegalId"
+						optionsData={entidadLegalOptions}
 						required={true}
-						bind:value={$form.regionId}
-						errors={$errors.regionId}
-						{...$constraints.regionId}
+						bind:value={$form.entidadLegalId}
+						errors={$errors.entidadLegalId}
+						{...$constraints.entidadLegalId}
 					></InputSelect>
 
 					<InputText
