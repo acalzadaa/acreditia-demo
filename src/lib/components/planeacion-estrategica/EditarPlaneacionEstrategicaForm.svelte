@@ -11,13 +11,13 @@
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import type { FilosofiaInstitucionalRefSchema } from '$lib/schemas/filosofiaInstitucional.schema';
 	import Icon from '../ui/Icon.svelte';
+	import type { FilosofiaInstitucionalRef } from '$lib/schemas/filosofiaInstitucional.schema';
 
 	interface Props {
 		open: boolean;
 		selectedItem: PlaneacionEstrategicaWithFilosofiaItem;
-		refs: FilosofiaInstitucionalRefSchema[];
+		refs: FilosofiaInstitucionalRef[];
 		onClose: () => void;
 	}
 
@@ -69,7 +69,7 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar planeacion estrategica</h2>

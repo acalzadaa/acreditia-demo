@@ -44,7 +44,7 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Borrar evidencia</h2>
@@ -64,8 +64,7 @@
 			<div class="modal-body">
 				<div class="confirm-content">
 					<p class="confirm-message text-body-large">
-						¿Estás seguro de que deseas aliminar el registro <strong>"{props.item?.name}"</strong
-						>?
+						¿Estás seguro de que deseas aliminar el registro <strong>"{props.item?.name}"</strong>?
 					</p>
 				</div>
 			</div>

@@ -9,10 +9,7 @@
 	import Icon from '../ui/Icon.svelte';
 	import { type InstitucionRef, type ModeloRef } from '$lib/schemas/shared.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
-	import {
-		evaluacionFormSchema,
-		type EvaluacionItem
-	} from '$lib/schemas/evaluacion.schema';
+	import { evaluacionFormSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
 
 	interface Props {
@@ -95,7 +92,7 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar evaluacion</h2>

@@ -35,7 +35,7 @@
 						<th class="col-code">Código</th>
 						<th class="col-label">Nombre</th>
 						<th class="col-badge">Estatus</th>
-						<th class="col-actions">Acciones</th>
+						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">

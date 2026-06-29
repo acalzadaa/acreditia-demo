@@ -29,17 +29,17 @@
 			errorMessage = 'Código y nombre son requeridos';
 			return;
 		}
-		
+
 		// Limpiar el formulario
 		formData = {
 			code: '',
 			name: '',
 			description: ''
 		};
-		
+
 		// Limpiar mensaje de error
 		errorMessage = '';
-		
+
 		// Cerrar el modal
 		handleClose();
 	}
@@ -67,47 +67,49 @@
 	}
 </script>
 
-<Modal bind:open closeOnEscape closeOnBackdropClick>
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Crear filosofía institucional</h2>
 			<IconButton
-				name='close'
-				variant='ghost'
-				size='lg'
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={handleCancel}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name='warning'></Icon>
+						<Icon name="warning"></Icon>
 						{errorMessage}
 					</div>
 				{/if}
 
 				<div class="form-fields">
 					<Input
-						label='Código'
-						name='code'
+						label="Código"
+						name="code"
 						required={true}
-						placeholder='PE-001'
+						placeholder="PE-001"
 						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.code}
 					/>
 
 					<Input
-						label='Nombre'
-						name='name'
+						label="Nombre"
+						name="name"
 						required={true}
-						placeholder='Excelencia educativa'
+						placeholder="Excelencia educativa"
 						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.name}
@@ -117,7 +119,7 @@
 						label="Descripcion"
 						name="description"
 						placeholder="Descripcion..."
-						status='normal'
+						status="normal"
 						disabled={false}
 						bind:value={formData.description}
 						rows={4}
