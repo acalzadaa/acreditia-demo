@@ -8,6 +8,7 @@
 		crearTitle?: string;
 		onClickCrear: (e: MouseEvent) => void;
 		onKeydownCrear?: (e: KeyboardEvent) => void;
+
 		onClickExport?: (e: MouseEvent) => void;
 		onKeydownExport?: (e: KeyboardEvent) => void;
 		showExport?: boolean;
@@ -20,7 +21,7 @@
 	const {
 		gridArea = 'toolbar',
 		onClickCrear,
-		crearTitle = 'Nuevo',
+		crearTitle = 'Crear',
 		onKeydownCrear,
 		onClickExport,
 		onKeydownExport,

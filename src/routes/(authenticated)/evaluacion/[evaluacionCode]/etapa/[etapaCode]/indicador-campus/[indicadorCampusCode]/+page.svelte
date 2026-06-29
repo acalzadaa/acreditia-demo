@@ -15,7 +15,6 @@
 		type EvidenciaFileRef,
 		type EvidenciaUrlRef
 	} from '$lib/schemas/etapaMetadata.schema';
-	import AddEtapaEvidenciaForm from '$lib/components/evaluacion/etapa/metadata/evidencia/AddEtapaEvidenciaForm.svelte';
 	import EvidenciaFile from '$lib/components/evaluacion/etapa/metadata/evidencia/EvidenciaFile.svelte';
 	import EvidenciaUrl from '$lib/components/evaluacion/etapa/metadata/evidencia/EvidenciaUrl.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
@@ -45,6 +44,12 @@
 	import MetaList from '$lib/components/evaluacion/etapa/metadata/meta/MetaList.svelte';
 	import AddEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/meta/AddEtapaMetaForm.svelte';
 	import FinishEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/meta/FinishEtapaMetaForm.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
+	import AddEtapaEvidenciaFileForm from '$lib/components/evaluacion/etapa/metadata/evidencia/AddEtapaEvidenciaFileForm.svelte';
+	import AddEtapaEvidenciaUrlForm from '$lib/components/evaluacion/etapa/metadata/evidencia/AddEtapaEvidenciaUrlForm.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import FinishEtapaEvidenciaForm from '$lib/components/evaluacion/etapa/metadata/evidencia/FinishEtapaEvidenciaForm.svelte';
+	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
 
 	//elementos que en comun
 	let etapaCode = page.params.etapaCode;
@@ -63,6 +68,7 @@
 	//elementos que necesita evidencia
 	let modalFile = createModalManager<EvidenciaFileRef>();
 	let modalUrl = createModalManager<EvidenciaUrlRef>();
+	let modalEvidencia = createModalManager<EvidenciaItem>();
 
 	//elementos que necesitan autoevaluacion y revision autoevaluacion
 	let indicadorCodes = [
@@ -129,16 +135,32 @@
 			{@const evidenciaItem = etapaMetadataItem as EtapaEvidenciaItem}
 			{@const fileRefs = evidenciaItem.file ?? []}
 			{@const urlRefs = evidenciaItem.url ?? []}
+			<div class="text-body" style="display:flex; justify-content: left;">
+				<Button variant="ghost" name="upload" onClick={modalEvidencia.handlers('finish').onclick}
+					>Cerrar etapa</Button
+				>
+			</div>
 
-			<AddEtapaEvidenciaForm />
+			<Toolbar crearTitle="Agregar archivo" onClickCrear={modalFile.handlers('create').onclick} />
 			<EvidenciaFile
 				items={fileRefs}
 				onClickBorrar={(item) => modalFile.handlers('delete').onClickItem(item)}
 			/>
+			<Toolbar crearTitle="Agregar url" onClickCrear={modalUrl.handlers('create').onclick} />
+
 			<EvidenciaUrl
 				items={urlRefs}
 				onClickBorrar={(item) => modalUrl.handlers('delete').onClickItem(item)}
 			/>
+
+			<AddEtapaEvidenciaFileForm open={modalFile.isOpen('create')} onClose={modalFile.close} />
+
+			{#if modalEvidencia.isOpen}
+				<FinishEtapaEvidenciaForm
+					open={modalEvidencia.isOpen('finish')}
+					onClose={modalEvidencia.close}
+				/>
+			{/if}
 
 			{#if modalFile.selectedItem}
 				<BorrarEvidenciaFileForm
@@ -147,6 +169,8 @@
 					onClose={modalFile.close}
 				/>
 			{/if}
+
+			<AddEtapaEvidenciaUrlForm open={modalUrl.isOpen('create')} onClose={modalUrl.close} />
 
 			{#if modalUrl.selectedItem}
 				<BorrarEvidenciaUrlForm
