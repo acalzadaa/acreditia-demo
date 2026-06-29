@@ -1,10 +1,8 @@
 <script lang="ts">
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { EtapaResultadosItem } from '$lib/schemas/etapaMetadata.schema';
 	import Modal from '$lib/components/modal/Modal.svelte';
-	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import type { EtapaResultadosItem } from '$lib/schemas/etapaMetadata.schema';
 
 	interface Props {
 		selectedItem: EtapaResultadosItem;
@@ -16,10 +14,7 @@
 
 	// Estado local del formulario
 	let formData = $derived({
-		target: selectedItem.target,
-		result: selectedItem.result || 0,
-		isGoalReached: selectedItem.isGoalReached || false,
-		reason: selectedItem.reason
+		score: selectedItem.code
 	});
 
 	let errorMessage = $state('');
@@ -27,8 +22,8 @@
 
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.target && formData.target !== 0) {
-			errorMessage = 'La meta es requerida';
+		if (!formData.score && formData.score !== 0) {
+			errorMessage = 'El score es requerido';
 			return;
 		}
 
@@ -55,7 +50,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Capturar resultados</h2>
+			<h2 class="modal-title text-h4">Terminar etapa</h2>
 		</header>
 
 		<form
@@ -73,37 +68,27 @@
 
 			<div class="modal-body">
 				<div class="form-fields">
-					<InputNumber
-						label="Resultado"
-						name="result"
-						required={true}
-						placeholder="1"
-						status={errorMessage && !formData.result ? 'error' : 'normal'}
-						disabled={isSubmitting}
-						bind:value={formData.result}
-						errors={errorMessage && !formData.result ? [errorMessage] : undefined}
-					/>
-
-					<TextArea
-						label="Describa la razon"
-						name="reason"
-						placeholder="El indicador..."
-						required={false}
-						status={errorMessage && !formData.reason ? 'error' : 'normal'}
-						disabled={isSubmitting}
-						bind:value={formData.reason}
-						errors={errorMessage && !formData.reason ? [errorMessage] : undefined}
-						rows={4}
-					/>
+					<div class="confirm-content">
+						<p class="confirm-message text-body-large">
+							¿Desea terminar esta etapa? Ya no podra hacer mas cambios.
+						</p>
+					</div>
 				</div>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary" isDisabled={isSubmitting}>
-					{isSubmitting ? 'Guardando...' : 'Capturar'}
+				<Button type="submit" variant="critical" isDisabled={isSubmitting}>
+					{isSubmitting ? 'Guardando...' : 'Terminar'}
 				</Button>
 			</footer>
 		</form>
 	</div>
 </Modal>
+
+<style>
+	.confirm-content {
+		padding: var(--space-3) var(--space-6);
+		text-align: left;
+	}
+</style>

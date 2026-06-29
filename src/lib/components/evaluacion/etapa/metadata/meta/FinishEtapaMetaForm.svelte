@@ -50,7 +50,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="text-h4">Terminar etapa</h2>
+			<h2 class="modal-title text-h4">Terminar etapa</h2>
 		</header>
 
 		<form
@@ -66,8 +66,8 @@
 				</div>
 			{/if}
 
-			<div class="form-fields">
-				<div class="modal-body">
+			<div class="modal-body">
+				<div class="form-fields">
 					<div class="confirm-content">
 						<p class="confirm-message text-body-large">
 							¿Desea terminar esta etapa? Ya no podra hacer mas cambios.
