@@ -6,7 +6,6 @@
 	import BorrarCampusForm from '$lib/components/campus/BorrarCampusForm.svelte';
 	import RestaurarCampusForm from '$lib/components/campus/RestaurarCampusForm.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import UnidadAcademica from '$lib/components/unidad-academica/UnidadAcademica.svelte';
 	import AreaResponsable from '$lib/components/area-responsable/AreaResponsable.svelte';
 	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
@@ -29,6 +28,8 @@
 	import { page } from '$app/state';
 	import AddCampusAreaResponsableForm from '$lib/components/campus/area-responsable/AddCampusAreaResponsableForm.svelte';
 	import AddCampusUnidadAcademicaForm from '$lib/components/campus/unidad-academica/AddCampusUnidadAcademicaForm.svelte';
+	import CampusUnidadAcademica from '$lib/components/campus/unidad-academica/CampusUnidadAcademica.svelte';
+	import CampusAreaResponsable from '$lib/components/campus/area-responsable/CampusAreaResponsable.svelte';
 
 	let campusCode = page.params.campusCode;
 
@@ -81,7 +82,7 @@
 			showFilter={true}
 		/>
 
-		<UnidadAcademica
+		<CampusUnidadAcademica
 			gridArea="unidadAcademica"
 			showHeader={true}
 			title="Unidades academicas asignadas"
@@ -103,7 +104,7 @@
 			showFilter={true}
 		/>
 
-		<AreaResponsable
+		<CampusAreaResponsable
 			showHeader={true}
 			title="Areas reponsables asignadas"
 			gridArea="areaResponsable"

@@ -1,27 +1,28 @@
 <script lang="ts">
-	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
-	import EmptySection from '../common/EmptySection.svelte';
-	import PageHeader from '../common/PageHeader.svelte';
-	import Badge from '../ui/Badge.svelte';
-	import IconButton from '../ui/IconButton.svelte';
+	import EmptySection from '$lib/components/common/EmptySection.svelte';
+	import PageHeader from '$lib/components/common/PageHeader.svelte';
+	import Badge from '$lib/components/ui/Badge.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
+	
 
 	interface Props {
 		gridArea?: string;
-		unidadAcademicaItems: UnidadAcademicaItem[];
+		areaResponsableItems: AreaResponsableItem[];
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		onClickEditar: (item: UnidadAcademicaItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
-		onClickBorrar: (item: UnidadAcademicaItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
-		onClickRestaurar: (item: UnidadAcademicaItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
+		onClickEditar: (item: AreaResponsableItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: AreaResponsableItem) => void;
+		onClickBorrar: (item: AreaResponsableItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: AreaResponsableItem) => void;
+		onClickRestaurar: (item: AreaResponsableItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: AreaResponsableItem) => void;
 	}
 
 	const {
 		gridArea = 'main',
-		unidadAcademicaItems,
+		areaResponsableItems,
 		showHeader = false,
 		title = '',
 		subtitle = '',
@@ -39,21 +40,29 @@
 		<PageHeader {title} {subtitle} />
 	{/if}
 	<section class="table-container">
-		{#if unidadAcademicaItems.length > 0}
+		{#if areaResponsableItems.length > 0}
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
+						<th class="col-code">Puesto</th>
 						<th class="col-code">Código</th>
 						<th class="col-label">Nombre</th>
+						<th class="col-text">Descripción</th>
+						<th class="col-label">Reporta a</th>
 						<th class="col-badge">Estatus</th>
 						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">
-					{#each unidadAcademicaItems as item (item.id)}
+					{#each areaResponsableItems as item (item.id)}
 						<tr class="table-row tr-expandable">
+							<td class="col-code">
+								{item.puesto?.code}
+							</td>
 							<td class="col-code">{item.code}</td>
 							<td class="col-label">{item.name}</td>
+							<td class="col-text">{item.description}</td>
+							<td class="col-label">{item.parent?.name}</td>
 							<td class="col-badge">
 								<Badge variant={item.isDeleted ? 'error' : 'success'}>
 									{item.isDeleted ? 'borrado' : 'activo'}
@@ -95,7 +104,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de unidad academica"></EmptySection>
+			<EmptySection message="No hay elementos de area responsable"></EmptySection>
 		{/if}
 	</section>
 </main>

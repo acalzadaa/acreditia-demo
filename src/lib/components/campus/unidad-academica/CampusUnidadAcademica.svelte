@@ -1,9 +1,9 @@
 <script lang="ts">
+	import EmptySection from '$lib/components/common/EmptySection.svelte';
+	import PageHeader from '$lib/components/common/PageHeader.svelte';
+	import Badge from '$lib/components/ui/Badge.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
-	import EmptySection from '../common/EmptySection.svelte';
-	import PageHeader from '../common/PageHeader.svelte';
-	import Badge from '../ui/Badge.svelte';
-	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
 		gridArea?: string;
