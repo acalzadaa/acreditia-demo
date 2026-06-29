@@ -63,7 +63,7 @@
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 
 	<Toolbar
-		crearTitle="Crear indicador estrategico"
+		crearTitle="Nuevo indicador"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}

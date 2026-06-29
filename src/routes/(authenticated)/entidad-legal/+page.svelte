@@ -17,7 +17,6 @@
 	import { page } from '$app/state';
 	import { getEntidadLegal } from '$lib/stores/data.svelte';
 
-
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let entidadLegalItems = getEntidadLegal();
 	let navigationItems = $derived(page.data.navigationItems);
@@ -144,6 +143,7 @@
 	<NavigationBar {showNavigationBar} {navigationItems} />
 	<NotificationBar {showNotificationBar} />
 	<Toolbar
+		crearTitle="Nueva entidad"
 		{onClickCrear}
 		onKeydownCrear={(e) => onKeydownCrear(e)}
 		showExport={true}

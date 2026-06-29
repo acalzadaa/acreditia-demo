@@ -17,12 +17,10 @@
 	import { page } from '$app/state';
 	import { getNormativa } from '$lib/stores/data.svelte';
 
-
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let normativaItems = getNormativa();
 
 	let navigationItems = $derived(page.data.navigationItems);
-
 
 	let itemSeleccionado: NormativaItem | null = $state(null);
 
@@ -145,6 +143,7 @@
 	<NavigationBar {showNavigationBar} {navigationItems} />
 	<NotificationBar {showNotificationBar} />
 	<Toolbar
+		crearTitle="Nueva normativa"
 		{onClickCrear}
 		onKeydownCrear={(e) => onKeydownCrear(e)}
 		showExport={true}

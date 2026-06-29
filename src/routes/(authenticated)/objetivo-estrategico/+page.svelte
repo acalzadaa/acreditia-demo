@@ -148,6 +148,7 @@
 	<NavigationBar {showNavigationBar} {navigationItems} />
 	<NotificationBar {showNotificationBar} />
 	<Toolbar
+		crearTitle="Nuevo objetivo"
 		{onClickCrear}
 		onKeydownCrear={(e) => onKeydownCrear(e)}
 		showExport={true}
@@ -168,7 +169,11 @@
 	></ObjetivoEstrategico>
 
 	<!-- MODAL CREAR -->
-	<CrearObjetivoEstrategicoForm bind:open={showCrearModal} refs={planeaciones} onClose={handleCerrar} />
+	<CrearObjetivoEstrategicoForm
+		bind:open={showCrearModal}
+		refs={planeaciones}
+		onClose={handleCerrar}
+	/>
 
 	<!-- MODAL EDITAR -->
 	{#if showEditarModal && itemSeleccionado}

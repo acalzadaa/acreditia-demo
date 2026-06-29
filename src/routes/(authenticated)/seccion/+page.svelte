@@ -14,10 +14,10 @@
 	import CrearSeccionForm from '$lib/components/seccion/CrearSeccionForm.svelte';
 	import EditarSeccionForm from '$lib/components/seccion/EditarSeccionForm.svelte';
 	import Seccion from '$lib/components/seccion/Seccion.svelte';
-	import type { SeccionWithCapituloItem } from '$lib/schemas/seccion.schema';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { getCapituloRef, getSeccion } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
+	import type { SeccionItem } from '$lib/schemas/seccion.schema';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
@@ -40,7 +40,7 @@
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let modal = createModalManager<SeccionWithCapituloItem>();
+	let modal = createModalManager<SeccionItem>();
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
@@ -63,6 +63,7 @@
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
+		crearTitle="Nueva seccion"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}

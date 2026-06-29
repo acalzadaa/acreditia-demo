@@ -8,12 +8,12 @@
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	
+
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { getModelo } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	
+
 	import Modelo from '$lib/components/modelo/Modelo.svelte';
 	import type { ModeloItem } from '$lib/schemas/modelo.schema';
 	import EditarModeloForm from '$lib/components/modelo/EditarModeloForm.svelte';
@@ -53,7 +53,7 @@
 		{onClickLogout}
 		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
-<Subheader
+	<Subheader
 		onClickNavigationBar={navigationToggle.onclick}
 		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
 		onClickNotificationBar={navigationToggle.onclick}
@@ -61,9 +61,10 @@
 		showNavigationBar={navigationToggle.value}
 		showNotificationBar={notificationToggle.value}
 	/>
-	<NavigationBar showNavigationBar={navigationToggle.value} navigationItems={navigationItems} />
+	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
+		crearTitle="Nuevo modelo"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}
@@ -83,11 +84,7 @@
 	<CrearModeloForm open={modal.isOpen('create')} onClose={modal.close} />
 	{#if modal.selectedItem}
 		<!-- MODAL EDITAR -->
-		<EditarModeloForm
-			open={modal.isOpen('edit')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
+		<EditarModeloForm open={modal.isOpen('edit')} item={modal.selectedItem} onClose={modal.close} />
 
 		<!-- MODAL BORRAR -->
 		<BorrarModeloForm

@@ -69,7 +69,7 @@
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 
 	<Toolbar
-		crearTitle="Nueva area responsable"
+		crearTitle="Nueva area"
 		onClickCrear={modal.handlers('create').onclick}
 		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
 		showExport={true}

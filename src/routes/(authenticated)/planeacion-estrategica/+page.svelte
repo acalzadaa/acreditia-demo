@@ -6,7 +6,7 @@
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import type { PlaneacionEstrategicaWithFilosofiaItem } from '$lib/schemas/planeacionEstrategica.schema';
-	
+
 	import { goto } from '$app/navigation';
 	import { getFilosofia, getPlaneacion } from '$lib/stores/data.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
@@ -23,7 +23,7 @@
 	let navigationItems = $derived(page.data.navigationItems);
 
 	let filosofias = getFilosofia().filter((item) => item.isCurrent && !item.isDeleted);
-	
+
 	let itemSeleccionado: PlaneacionEstrategicaWithFilosofiaItem | null = $state(null);
 
 	// ===== HEADER =====
@@ -146,6 +146,7 @@
 	<NavigationBar {showNavigationBar} {navigationItems} />
 	<NotificationBar {showNotificationBar} />
 	<Toolbar
+		crearTitle="Nueva planeacion"
 		{onClickCrear}
 		onKeydownCrear={(e) => onKeydownCrear(e)}
 		showExport={true}
@@ -154,11 +155,14 @@
 	<PlaneacionEstrategica
 		{planeacionEstrategicaItems}
 		onClickEditar={(item: PlaneacionEstrategicaWithFilosofiaItem) => onClickEditar(item)}
-		onKeydownEditar={(e: KeyboardEvent, item : PlaneacionEstrategicaWithFilosofiaItem) => onKeydownEditar(e, item)}
-		onClickBorrar={(item : PlaneacionEstrategicaWithFilosofiaItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) => onKeydownBorrar(e, item)}
+		onKeydownEditar={(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) =>
+			onKeydownEditar(e, item)}
+		onClickBorrar={(item: PlaneacionEstrategicaWithFilosofiaItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) =>
+			onKeydownBorrar(e, item)}
 		onClickRestaurar={(item: PlaneacionEstrategicaWithFilosofiaItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) => onKeydownRestaurar(e, item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: PlaneacionEstrategicaWithFilosofiaItem) =>
+			onKeydownRestaurar(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->
