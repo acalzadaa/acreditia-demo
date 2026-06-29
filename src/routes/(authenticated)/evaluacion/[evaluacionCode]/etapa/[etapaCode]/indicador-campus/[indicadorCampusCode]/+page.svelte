@@ -50,6 +50,8 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import FinishEtapaEvidenciaForm from '$lib/components/evaluacion/etapa/metadata/evidencia/FinishEtapaEvidenciaForm.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
+	import ResultadosList from '$lib/components/evaluacion/etapa/metadata/resultados/ResultadosList.svelte';
+	import FinishEtapaResultadosForm from '$lib/components/evaluacion/etapa/metadata/resultados/FinishEtapaResultadosForm.svelte';
 
 	//elementos que en comun
 	let etapaCode = page.params.etapaCode;
@@ -63,12 +65,16 @@
 		.filter((item) => item.code === indicadorCampusCode)
 		.flatMap((item) => item.metadata)[0];
 
+	//elementos que necesita meta
 	let modalMeta = createModalManager<EtapaMetaItem>();
 
 	//elementos que necesita evidencia
 	let modalFile = createModalManager<EvidenciaFileRef>();
 	let modalUrl = createModalManager<EvidenciaUrlRef>();
 	let modalEvidencia = createModalManager<EvidenciaItem>();
+
+	//elementos que necesita resultados
+	let modalResultados = createModalManager<EtapaResultadosItem>();
 
 	//elementos que necesitan autoevaluacion y revision autoevaluacion
 	let indicadorCodes = [
@@ -181,7 +187,24 @@
 			{/if}
 		{:else if etapaCode === 'resultados'}
 			{@const resultadosItem = etapaMetadataItem as EtapaResultadosItem}
-			<AddEtapaResultadosForm selectedItem={resultadosItem} />
+			<ResultadosList
+				items={resultadosItem ? [resultadosItem as EtapaResultadosItem] : []}
+				onClickEditar={(item) => modalResultados.handlers('edit').onClickItem(item)}
+				onClickFinish={(item) => modalResultados.handlers('finish').onClickItem(item)}
+			/>
+			{#if modalResultados.selectedItem}
+				<AddEtapaResultadosForm
+					open={modalResultados.isOpen('edit')}
+					selectedItem={modalResultados.selectedItem}
+					onClose={modalResultados.close}
+				/>
+
+				<FinishEtapaResultadosForm
+					open={modalResultados.isOpen('finish')}
+					selectedItem={modalResultados.selectedItem}
+					onClose={modalResultados.close}
+				/>
+			{/if}
 		{:else if etapaCode === 'autoevaluacion'}
 			<AutoevaluacionList
 				evaluacionItems={etapaMetadataItem ? [etapaMetadataItem as EtapaAutoevaluacionItem] : []}

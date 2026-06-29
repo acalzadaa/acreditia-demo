@@ -62,7 +62,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="text-h4">Capturar archivo de evidencia</h2>
+			<h2 class="modal-title text-h4">Capturar archivo de evidencia</h2>
 		</header>
 
 		<form
@@ -78,8 +78,8 @@
 				</div>
 			{/if}
 
-			<div class="form-fields">
-				<div class="modal-body">
+			<div class="modal-body">
+				<div class="form-fields">
 					<InputFile
 						label="Archivo de evidencia"
 						name="evidencia"

@@ -8,18 +8,16 @@
 		onClose: () => void;
 	}
 
-	let {  open, onClose }: Props = $props();
+	let { open, onClose }: Props = $props();
 
 	// Estado local del formulario
-	let formData = $derived({
-	});
+	let formData = $derived({});
 
 	let errorMessage = $state('');
 	let isSubmitting = $state(false);
 
 	function handleSubmit() {
 		// Validación básica
-	
 
 		console.log('Datos enviados (demo):', formData);
 
@@ -44,7 +42,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="text-h4">Terminar etapa</h2>
+			<h2 class="modal-title text-h4">Terminar etapa</h2>
 		</header>
 
 		<form
@@ -60,8 +58,8 @@
 				</div>
 			{/if}
 
-			<div class="form-fields">
-				<div class="modal-body">
+			<div class="modal-body">
+				<div class="form-fields">
 					<div class="confirm-content">
 						<p class="confirm-message text-body-large">
 							¿Desea terminar esta etapa? Ya no podra hacer mas cambios.
