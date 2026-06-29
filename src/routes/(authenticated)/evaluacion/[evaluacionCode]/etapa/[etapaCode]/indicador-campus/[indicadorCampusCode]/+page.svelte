@@ -15,7 +15,6 @@
 		type EvidenciaFileRef,
 		type EvidenciaUrlRef
 	} from '$lib/schemas/etapaMetadata.schema';
-	import AddEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/meta/AddEtapaMetaForm.svelte';
 	import AddEtapaEvidenciaForm from '$lib/components/evaluacion/etapa/metadata/evidencia/AddEtapaEvidenciaForm.svelte';
 	import EvidenciaFile from '$lib/components/evaluacion/etapa/metadata/evidencia/EvidenciaFile.svelte';
 	import EvidenciaUrl from '$lib/components/evaluacion/etapa/metadata/evidencia/EvidenciaUrl.svelte';
@@ -43,6 +42,9 @@
 	import EjecucionPlanMejoraList from '$lib/components/evaluacion/etapa/metadata/ejecucion-plan-mejora/EjecucionPlanMejoraList.svelte';
 	import EditEjecucionPlanMejoraForm from '$lib/components/evaluacion/etapa/metadata/ejecucion-plan-mejora/EditEjecucionPlanMejoraForm.svelte';
 	import FinishEtapaEjecucionPlanMejoraForm from '$lib/components/evaluacion/etapa/metadata/ejecucion-plan-mejora/FinishEtapaEjecucionPlanMejoraForm.svelte';
+	import MetaList from '$lib/components/evaluacion/etapa/metadata/meta/MetaList.svelte';
+	import AddEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/meta/AddEtapaMetaForm.svelte';
+	import FinishEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/meta/FinishEtapaMetaForm.svelte';
 
 	//elementos que en comun
 	let etapaCode = page.params.etapaCode;
@@ -55,6 +57,8 @@
 	let etapaMetadataItem = getEvaluacionEtapaIndicadorCampus()
 		.filter((item) => item.code === indicadorCampusCode)
 		.flatMap((item) => item.metadata)[0];
+
+	let modalMeta = createModalManager<EtapaMetaItem>();
 
 	//elementos que necesita evidencia
 	let modalFile = createModalManager<EvidenciaFileRef>();
@@ -101,7 +105,26 @@
 	</div>
 	<div class="content-area">
 		{#if etapaCode === 'meta'}
-			<AddEtapaMetaForm selectedItem={etapaMetadataItem as EtapaMetaItem} />
+			{@const metaItems = etapaMetadataItem as EtapaMetaItem}
+
+			<MetaList
+				items={metaItems ? [metaItems as EtapaMetaItem] : []}
+				onClickEditar={(item) => modalMeta.handlers('edit').onClickItem(item)}
+				onClickFinish={(item) => modalMeta.handlers('finish').onClickItem(item)}
+			/>
+			{#if modalMeta.selectedItem}
+				<AddEtapaMetaForm
+					open={modalMeta.isOpen('edit')}
+					selectedItem={modalMeta.selectedItem}
+					onClose={modalMeta.close}
+				/>
+
+				<FinishEtapaMetaForm
+					open={modalMeta.isOpen('finish')}
+					selectedItem={modalMeta.selectedItem}
+					onClose={modalMeta.close}
+				/>
+			{/if}
 		{:else if etapaCode === 'evidencia'}
 			{@const evidenciaItem = etapaMetadataItem as EtapaEvidenciaItem}
 			{@const fileRefs = evidenciaItem.file ?? []}

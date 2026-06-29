@@ -17,7 +17,7 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-text">url</th>
+						<th class="col-text">Url</th>
 						<th class="col-actions-sm">Acciones</th>
 					</tr>
 				</thead>
