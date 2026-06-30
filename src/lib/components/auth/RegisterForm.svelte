@@ -2,7 +2,7 @@
 	import { superForm, type SuperValidated } from 'sveltekit-superforms';
 	import Button from '../ui/Button.svelte';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import Input from '../ui/input/InputText.svelte';
+	import InputText from '../ui/input/InputText.svelte';
 	import { registerFormSchema, type RegisterForm } from '$lib/schemas/register.schema';
 	import Icon from '../ui/Icon.svelte';
 
@@ -50,7 +50,9 @@
 					</div>
 				{/if}
 
-				<Input
+				<InputText
+					iconName="email"
+					iconPosition="left"
 					label="Email"
 					name="email"
 					type="email"
@@ -63,7 +65,9 @@
 					{...$constraints.email}
 				/>
 
-				<Input
+				<InputText
+					iconName="password"
+					iconPosition="left"
 					label="Password"
 					name="password"
 					type="password"

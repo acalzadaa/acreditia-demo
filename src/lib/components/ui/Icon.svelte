@@ -26,7 +26,9 @@
 		| 'calendar'
 		| 'check'
 		| 'eye-open'
-		| 'eye-closed';
+		| 'eye-closed'
+		| 'email'
+		| 'password';
 
 	interface Props {
 		name: IconName;
