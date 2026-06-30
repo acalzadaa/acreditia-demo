@@ -82,13 +82,17 @@ export type CapituloWithRelationsItem = z.infer<typeof capituloWithRelationsItem
 // Capítulo completo (modelo + secciones)
 export const capituloFullSchema = capituloItemSchema.extend({
 	modelo: modeloItemSchema.nullable(),
-	secciones: z.array(z.object({
-		id: z.uuid(),
-		code: z.string(),
-		name: z.string(),
-		description: z.string(),
-		contenido: z.string(),
-		orden: z.number()
-	})).optional()
+	secciones: z
+		.array(
+			z.object({
+				id: z.uuid(),
+				code: z.string(),
+				name: z.string(),
+				description: z.string(),
+				contenido: z.string(),
+				orden: z.number()
+			})
+		)
+		.optional()
 });
 export type CapituloFull = z.infer<typeof capituloFullSchema>;

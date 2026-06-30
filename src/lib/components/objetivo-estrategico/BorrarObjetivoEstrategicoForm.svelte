@@ -4,10 +4,9 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		planeacionEstrategicaWithFilosofiaItemSchema} from '$lib/schemas/planeacionEstrategica.schema';
+	import { planeacionEstrategicaWithFilosofiaItemSchema } from '$lib/schemas/planeacionEstrategica.schema';
 	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
-	
+
 	interface Props {
 		open: boolean;
 		selectedItem: ObjetivoEstrategicoWithPlaneacionItem;
@@ -51,9 +50,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Borrar objetivo estrategico</h2>
 			<IconButton
-				name='close'
-				variant='ghost'
-				size='lg'
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>

@@ -73,6 +73,7 @@
 									/>
 									<IconButton
 										name="delete"
+tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
@@ -91,6 +92,7 @@
 											<span class="element-item__child-text">{subareaFuncional.name}</span>
 											<IconButton
 												name="delete"
+tooltipLabel="Borrar registro"
 												size="sm"
 												shape="square"
 												variant="ghost"

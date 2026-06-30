@@ -94,6 +94,7 @@
 										isDisabled={convertStatusToBadgeVariant(item.status).indicadorCampusStatus ===
 											'ready' || item.isDeleted}
 										name="detail"
+										tooltipLabel="Ver detalle"
 										size="md"
 										borderShape="square"
 										variant="ghost"
@@ -106,10 +107,11 @@
 										isDisabled={convertStatusToBadgeVariant(item.status).indicadorCampusStatus ===
 											'ready' || item.isDeleted}
 										name="edit"
+tooltipLabel="Editar registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"
-										onClick={() => navigateTo("edit")}
+										onClick={() => navigateTo('edit')}
 									/>
 								{/if}
 							</td>

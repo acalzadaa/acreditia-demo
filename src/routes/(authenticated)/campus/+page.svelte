@@ -10,13 +10,12 @@
 	import { getCampus, getInstitucionRef } from '$lib/stores/data.svelte';
 	import type { CampusItem } from '$lib/schemas/campus.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	
+
 	let campusItems = getCampus();
 
 	let institucionRef = getInstitucionRef();
 
 	/* LOGOUT */
-
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<CampusItem>();

@@ -1,106 +1,105 @@
 :root {
-  /* ===== SURFACE LAYERS ===== */
+	/* ===== SURFACE LAYERS ===== */
 
-  /* Layer -2: Background/Sunken (lowest) */
-  --bg-sunken: var(--neutral-tinted-200);
-  --bg-sunken-hover: var(--neutral-tinted-225);
+	/* Layer -2: Background/Sunken (lowest) */
+	--bg-sunken: var(--neutral-tinted-200);
+	--bg-sunken-hover: var(--neutral-tinted-225);
 
-  /* Layer -1: Ground (base layer) */
-  --bg-ground: var(--neutral-tinted-25);
-  --bg-ground-hover: var(--neutral-tinted-50);
-  --bg-ground-active: var(--neutral-tinted-75);
+	/* Layer -1: Ground (base layer) */
+	--bg-ground: var(--neutral-tinted-25);
+	--bg-ground-hover: var(--neutral-tinted-50);
+	--bg-ground-active: var(--neutral-tinted-75);
 
-  /* Layer 0: Elementos elevados (raised cards, botones elevados) shadow md*/
-  --bg-raised: var(--neutral-tinted-50);
-  --bg-raised-hover: var(--neutral-tinted-75);
-  --bg-raised-active: var(--neutral-tinted-100);
+	/* Layer 0: Elementos elevados (raised cards, botones elevados) shadow md*/
+	--bg-raised: var(--neutral-tinted-50);
+	--bg-raised-hover: var(--neutral-tinted-75);
+	--bg-raised-active: var(--neutral-tinted-100);
 
-  /* Layer 1: Overlay (dropdowns, popovers, buttons, icon-buttons) - with shadow-md */
-  --bg-overlay: var(--neutral-tinted-75);
-  --bg-overlay-hover: var(--neutral-tinted-100);
-  --bg-overlay-active: var(--neutral-tinted-125);
+	/* Layer 1: Overlay (dropdowns, popovers, buttons, icon-buttons) - with shadow-md */
+	--bg-overlay: var(--neutral-tinted-75);
+	--bg-overlay-hover: var(--neutral-tinted-100);
+	--bg-overlay-active: var(--neutral-tinted-125);
 
-  /* Variantes brand para overlay */
-  --bg-overlay-brand: var(--primary-100);
-  --bg-overlay-brand-hover: var(--primary-200);
-  --bg-overlay-brand-active: var(--primary-300);
+	/* Variantes brand para overlay */
+	--bg-overlay-brand: var(--primary-100);
+	--bg-overlay-brand-hover: var(--primary-200);
+	--bg-overlay-brand-active: var(--primary-300);
 
-  /* Layer 2: Drawer (side panels) - with shadow-lg */
-  --bg-drawer: var(--neutral-tinted-75);
+	/* Layer 2: Drawer (side panels) - with shadow-lg */
+	--bg-drawer: var(--neutral-tinted-75);
 
-  /* Layer 3: Modal (highest) - with shadow-md */
-  --bg-modal: var(--neutral-tinted-37);
-  --bg-modal-header: var(--neutral-tinted-50);
-  --bg-modal-footer: var(--neutral-tinted-50);
+	/* Layer 3: Modal (highest) - with shadow-md */
+	--bg-modal: var(--neutral-tinted-37);
+	--bg-modal-header: var(--neutral-tinted-50);
+	--bg-modal-footer: var(--neutral-tinted-50);
 
-  /* ===== BRAND SURFACES ===== */
-  --bg-brand-primary: var(--primary-400);
-  --bg-brand-primary-hover: var(--primary-300);
-  --bg-brand-primary-active: var(--primary-500);
+	/* ===== BRAND SURFACES ===== */
+	--bg-brand-primary: var(--primary-400);
+	--bg-brand-primary-hover: var(--primary-300);
+	--bg-brand-primary-active: var(--primary-500);
 
-  --bg-brand-secondary: var(--secondary-600);
-  --bg-brand-secondary-hover: var(--secondary-500);
-  --bg-brand-secondary-active: var(--secondary-700);
+	--bg-brand-secondary: var(--secondary-600);
+	--bg-brand-secondary-hover: var(--secondary-500);
+	--bg-brand-secondary-active: var(--secondary-700);
 
-  /* ===== STATUS SURFACES ===== */
-  --bg-success-subtle: var(--success-50);
-  --bg-success-bold: var(--success-500);
-  --bg-warning-subtle: var(--warning-50);
-  --bg-warning-bold: var(--warning-500);
-  --bg-error-subtle: var(--error-50);
-  --bg-error-bold: var(--error-500);
-  --bg-info-subtle: var(--info-50);
-  --bg-info-bold: var(--info-500);
+	/* ===== STATUS SURFACES ===== */
+	--bg-success-subtle: var(--success-50);
+	--bg-success-bold: var(--success-500);
+	--bg-warning-subtle: var(--warning-50);
+	--bg-warning-bold: var(--warning-500);
+	--bg-error-subtle: var(--error-50);
+	--bg-error-bold: var(--error-500);
+	--bg-info-subtle: var(--info-50);
+	--bg-info-bold: var(--info-500);
 
-  /* ===== TEXT COLORS ===== */
-  /* On surfaces */
-  --text-primary: var(--neutral-800);
-  --text-primary-hover: var(--neutral-700);
-  --text-secondary: var(--neutral-600);
-  --text-disabled: var(--neutral-400);
-  --text-placeholder: var(--neutral-500);
+	/* ===== TEXT COLORS ===== */
+	/* On surfaces */
+	--text-primary: var(--neutral-800);
+	--text-primary-hover: var(--neutral-700);
+	--text-secondary: var(--neutral-600);
+	--text-disabled: var(--neutral-400);
+	--text-placeholder: var(--neutral-500);
 
+	/* On surfaces */
+	--text-on-surface-subtle: var(--neutral-600);
+	--text-on-surface-disabled: var(--neutral-400);
 
-  /* On surfaces */
-  --text-on-surface-subtle: var(--neutral-600);
-  --text-on-surface-disabled: var(--neutral-400);
+	/* On brand */
+	--text-on-brand-primary: var(--primary-50);
+	--text-on-brand-primary-hover: var(--primary-100);
+	--text-on-brand-secondary: var(--secondary-50);
+	--text-on-brand-secondary-hover: var(--secondary-100);
 
-  /* On brand */
-  --text-on-brand-primary: var(--primary-50);
-  --text-on-brand-primary-hover: var(--primary-100);
-  --text-on-brand-secondary: var(--secondary-50);
-  --text-on-brand-secondary-hover: var(--secondary-100);
+	/* On status */
+	--text-on-success: var(--success-700);
+	--text-on-warning: var(--warning-700);
+	--text-on-error: var(--error-700);
+	--text-on-info: var(--info-700);
 
-  /* On status */
-  --text-on-success: var(--success-700);
-  --text-on-warning: var(--warning-700);
-  --text-on-error: var(--error-700);
-  --text-on-info: var(--info-700);
+	/* On bold status (for buttons/badges with bold backgrounds) */
+	--text-on-success-bold: var(--success-50);
+	--text-on-warning-bold: var(--warning-50);
+	--text-on-error-bold: var(--error-50);
+	--text-on-info-bold: var(--info-50);
 
-  /* On bold status (for buttons/badges with bold backgrounds) */
-  --text-on-success-bold: var(--success-50);
-  --text-on-warning-bold: var(--warning-50);
-  --text-on-error-bold: var(--error-50);
-  --text-on-info-bold: var(--info-50);
+	/* Aliases */
+	--text-muted: var(--text-secondary);
+	--text-on-surface: var(--text-primary);
 
-  /* Aliases */
-  --text-muted: var(--text-secondary);
-  --text-on-surface: var(--text-primary);
+	/* ===== BORDER COLORS ===== */
+	--border-light: var(--neutral-tinted-100);
+	--border-regular: var(--neutral-tinted-200);
+	--border-strong: var(--neutral-tinted-400);
+	--border-brand: var(--primary-400);
+	--border-brand-strong: var(--primary-600);
 
-  /* ===== BORDER COLORS ===== */
-  --border-light: var(--neutral-tinted-100);
-  --border-regular: var(--neutral-tinted-200);
-  --border-strong: var(--neutral-tinted-400);
-  --border-brand: var(--primary-400);
-  --border-brand-strong: var(--primary-600);
-
-  /* Status borders */
-  --border-success: var(--success-300);
-  --border-success-strong: var(--success-600);
-  --border-warning: var(--warning-300);
-  --border-warning-strong: var(--warning-600);
-  --border-error: var(--error-300);
-  --border-error-strong: var(--error-600);
-  --border-info: var(--info-300);
-  --border-info-strong: var(--info-600);
+	/* Status borders */
+	--border-success: var(--success-300);
+	--border-success-strong: var(--success-600);
+	--border-warning: var(--warning-300);
+	--border-warning-strong: var(--warning-600);
+	--border-error: var(--error-300);
+	--border-error-strong: var(--error-600);
+	--border-info: var(--info-300);
+	--border-info-strong: var(--info-600);
 }

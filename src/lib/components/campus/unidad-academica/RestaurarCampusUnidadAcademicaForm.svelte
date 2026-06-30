@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	
+
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { campusItemSchema } from '$lib/schemas/campus.schema';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
-	
+
 	interface Props {
 		open: boolean;
 		selectedItem: UnidadAcademicaItem;
@@ -15,7 +15,7 @@
 	}
 
 	let { open = $bindable(false), onClose, selectedItem }: Props = $props();
-	
+
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.

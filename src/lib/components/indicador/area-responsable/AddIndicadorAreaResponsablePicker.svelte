@@ -4,7 +4,7 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type {  AreaResponsableRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
@@ -38,15 +38,15 @@
 
 		// Aquí podrías console.log o guardar los datos si quieres
 		console.log('Datos enviados (demo):', formData);
-		
+
 		// Limpiar formulario
 		formData = {
 			code: ''
 		};
-		
+
 		// Limpiar mensaje de error
 		errorMessage = '';
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -85,10 +85,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				<div class="form-fields">
 					{#if errorMessage}

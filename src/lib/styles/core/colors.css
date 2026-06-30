@@ -4,145 +4,145 @@
  */
 
 :root {
-  /* ===== ESCALA DE LIGHTNESS PERCEPTUAL (compartida por todos) ===== */
-  /* Basada en la curva de sensibilidad del ojo humano */
-  --L-50:  0.98;
-  --L-100: 0.95;
-  --L-200: 0.90;
-  --L-300: 0.83;
-  --L-400: 0.74;
-  --L-500: 0.63;
-  --L-600: 0.52;
-  --L-700: 0.41;
-  --L-800: 0.31;
-  --L-900: 0.22;
-  --L-950: 0.14;
+	/* ===== ESCALA DE LIGHTNESS PERCEPTUAL (compartida por todos) ===== */
+	/* Basada en la curva de sensibilidad del ojo humano */
+	--L-50: 0.98;
+	--L-100: 0.95;
+	--L-200: 0.9;
+	--L-300: 0.83;
+	--L-400: 0.74;
+	--L-500: 0.63;
+	--L-600: 0.52;
+	--L-700: 0.41;
+	--L-800: 0.31;
+	--L-900: 0.22;
+	--L-950: 0.14;
 
-  /* ===== CHROMA PICO POR FAMILIA (ajustados para igual intensidad en 500) ===== */
-  /* Valores determinados por testing visual cruzado */
-  --primary-pico:   0.20;  /* Azul - necesita más saturación */
-  --secondary-pico: 0.14;  /* Verde-amarillo - muy sensible */
-  --accent-pico:    0.18;  /* Teal - punto medio */
-  --info-pico:      0.19;  /* Azul frío - similar a primary */
-  --success-pico:   0.15;  /* Verde - menos saturación */
-  --warning-pico:   0.22;  /* Ámbar - alta saturación natural */
-  --error-pico:     0.19;  /* Rojo - medio-alto */
-  --neutral-pico:   0.00;  /* Neutro - sin croma */
+	/* ===== CHROMA PICO POR FAMILIA (ajustados para igual intensidad en 500) ===== */
+	/* Valores determinados por testing visual cruzado */
+	--primary-pico: 0.2; /* Azul - necesita más saturación */
+	--secondary-pico: 0.14; /* Verde-amarillo - muy sensible */
+	--accent-pico: 0.18; /* Teal - punto medio */
+	--info-pico: 0.19; /* Azul frío - similar a primary */
+	--success-pico: 0.15; /* Verde - menos saturación */
+	--warning-pico: 0.22; /* Ámbar - alta saturación natural */
+	--error-pico: 0.19; /* Rojo - medio-alto */
+	--neutral-pico: 0; /* Neutro - sin croma */
 
-  /* ===== FUNCIÓN DE COMPRESIÓN CROMÁTICA ===== */
-  /* Fórmula: chroma_en_X = pico * (1 - ((X-500)/500)²) */
-  
-  /* PRIMARY (Hue 259) */
-  --primary-50:  oklch(var(--L-50)  calc(var(--primary-pico) * 0.10) 259);
-  --primary-100: oklch(var(--L-100) calc(var(--primary-pico) * 0.25) 259);
-  --primary-200: oklch(var(--L-200) calc(var(--primary-pico) * 0.45) 259);
-  --primary-300: oklch(var(--L-300) calc(var(--primary-pico) * 0.65) 259);
-  --primary-400: oklch(var(--L-400) calc(var(--primary-pico) * 0.85) 259);
-  --primary-500: oklch(var(--L-500) var(--primary-pico) 259);
-  --primary-600: oklch(var(--L-600) calc(var(--primary-pico) * 0.85) 259);
-  --primary-700: oklch(var(--L-700) calc(var(--primary-pico) * 0.65) 259);
-  --primary-800: oklch(var(--L-800) calc(var(--primary-pico) * 0.45) 259);
-  --primary-900: oklch(var(--L-900) calc(var(--primary-pico) * 0.25) 259);
-  --primary-950: oklch(var(--L-950) calc(var(--primary-pico) * 0.10) 259);
+	/* ===== FUNCIÓN DE COMPRESIÓN CROMÁTICA ===== */
+	/* Fórmula: chroma_en_X = pico * (1 - ((X-500)/500)²) */
 
-  /* SECONDARY (Hue 120) */
-  --secondary-50:  oklch(var(--L-50)  calc(var(--secondary-pico) * 0.10) 120);
-  --secondary-100: oklch(var(--L-100) calc(var(--secondary-pico) * 0.25) 120);
-  --secondary-200: oklch(var(--L-200) calc(var(--secondary-pico) * 0.45) 120);
-  --secondary-300: oklch(var(--L-300) calc(var(--secondary-pico) * 0.65) 120);
-  --secondary-400: oklch(var(--L-400) calc(var(--secondary-pico) * 0.85) 120);
-  --secondary-500: oklch(var(--L-500) var(--secondary-pico) 120);
-  --secondary-600: oklch(var(--L-600) calc(var(--secondary-pico) * 0.85) 120);
-  --secondary-700: oklch(var(--L-700) calc(var(--secondary-pico) * 0.65) 120);
-  --secondary-800: oklch(var(--L-800) calc(var(--secondary-pico) * 0.45) 120);
-  --secondary-900: oklch(var(--L-900) calc(var(--secondary-pico) * 0.25) 120);
-  --secondary-950: oklch(var(--L-950) calc(var(--secondary-pico) * 0.10) 120);
+	/* PRIMARY (Hue 259) */
+	--primary-50: oklch(var(--L-50) calc(var(--primary-pico) * 0.1) 259);
+	--primary-100: oklch(var(--L-100) calc(var(--primary-pico) * 0.25) 259);
+	--primary-200: oklch(var(--L-200) calc(var(--primary-pico) * 0.45) 259);
+	--primary-300: oklch(var(--L-300) calc(var(--primary-pico) * 0.65) 259);
+	--primary-400: oklch(var(--L-400) calc(var(--primary-pico) * 0.85) 259);
+	--primary-500: oklch(var(--L-500) var(--primary-pico) 259);
+	--primary-600: oklch(var(--L-600) calc(var(--primary-pico) * 0.85) 259);
+	--primary-700: oklch(var(--L-700) calc(var(--primary-pico) * 0.65) 259);
+	--primary-800: oklch(var(--L-800) calc(var(--primary-pico) * 0.45) 259);
+	--primary-900: oklch(var(--L-900) calc(var(--primary-pico) * 0.25) 259);
+	--primary-950: oklch(var(--L-950) calc(var(--primary-pico) * 0.1) 259);
 
-  /* ACCENT (Hue 170 - Teal) */
-  --accent-50:  oklch(var(--L-50)  calc(var(--accent-pico) * 0.10) 170);
-  --accent-100: oklch(var(--L-100) calc(var(--accent-pico) * 0.25) 170);
-  --accent-200: oklch(var(--L-200) calc(var(--accent-pico) * 0.45) 170);
-  --accent-300: oklch(var(--L-300) calc(var(--accent-pico) * 0.65) 170);
-  --accent-400: oklch(var(--L-400) calc(var(--accent-pico) * 0.85) 170);
-  --accent-500: oklch(var(--L-500) var(--accent-pico) 170);
-  --accent-600: oklch(var(--L-600) calc(var(--accent-pico) * 0.85) 170);
-  --accent-700: oklch(var(--L-700) calc(var(--accent-pico) * 0.65) 170);
-  --accent-800: oklch(var(--L-800) calc(var(--accent-pico) * 0.45) 170);
-  --accent-900: oklch(var(--L-900) calc(var(--accent-pico) * 0.25) 170);
-  --accent-950: oklch(var(--L-950) calc(var(--accent-pico) * 0.10) 170);
+	/* SECONDARY (Hue 120) */
+	--secondary-50: oklch(var(--L-50) calc(var(--secondary-pico) * 0.1) 120);
+	--secondary-100: oklch(var(--L-100) calc(var(--secondary-pico) * 0.25) 120);
+	--secondary-200: oklch(var(--L-200) calc(var(--secondary-pico) * 0.45) 120);
+	--secondary-300: oklch(var(--L-300) calc(var(--secondary-pico) * 0.65) 120);
+	--secondary-400: oklch(var(--L-400) calc(var(--secondary-pico) * 0.85) 120);
+	--secondary-500: oklch(var(--L-500) var(--secondary-pico) 120);
+	--secondary-600: oklch(var(--L-600) calc(var(--secondary-pico) * 0.85) 120);
+	--secondary-700: oklch(var(--L-700) calc(var(--secondary-pico) * 0.65) 120);
+	--secondary-800: oklch(var(--L-800) calc(var(--secondary-pico) * 0.45) 120);
+	--secondary-900: oklch(var(--L-900) calc(var(--secondary-pico) * 0.25) 120);
+	--secondary-950: oklch(var(--L-950) calc(var(--secondary-pico) * 0.1) 120);
 
-  /* INFO (Hue 235) */
-  --info-50:  oklch(var(--L-50)  calc(var(--info-pico) * 0.10) 235);
-  --info-100: oklch(var(--L-100) calc(var(--info-pico) * 0.25) 235);
-  --info-200: oklch(var(--L-200) calc(var(--info-pico) * 0.45) 235);
-  --info-300: oklch(var(--L-300) calc(var(--info-pico) * 0.65) 235);
-  --info-400: oklch(var(--L-400) calc(var(--info-pico) * 0.85) 235);
-  --info-500: oklch(var(--L-500) var(--info-pico) 235);
-  --info-600: oklch(var(--L-600) calc(var(--info-pico) * 0.85) 235);
-  --info-700: oklch(var(--L-700) calc(var(--info-pico) * 0.65) 235);
-  --info-800: oklch(var(--L-800) calc(var(--info-pico) * 0.45) 235);
-  --info-900: oklch(var(--L-900) calc(var(--info-pico) * 0.25) 235);
-  --info-950: oklch(var(--L-950) calc(var(--info-pico) * 0.10) 235);
+	/* ACCENT (Hue 170 - Teal) */
+	--accent-50: oklch(var(--L-50) calc(var(--accent-pico) * 0.1) 170);
+	--accent-100: oklch(var(--L-100) calc(var(--accent-pico) * 0.25) 170);
+	--accent-200: oklch(var(--L-200) calc(var(--accent-pico) * 0.45) 170);
+	--accent-300: oklch(var(--L-300) calc(var(--accent-pico) * 0.65) 170);
+	--accent-400: oklch(var(--L-400) calc(var(--accent-pico) * 0.85) 170);
+	--accent-500: oklch(var(--L-500) var(--accent-pico) 170);
+	--accent-600: oklch(var(--L-600) calc(var(--accent-pico) * 0.85) 170);
+	--accent-700: oklch(var(--L-700) calc(var(--accent-pico) * 0.65) 170);
+	--accent-800: oklch(var(--L-800) calc(var(--accent-pico) * 0.45) 170);
+	--accent-900: oklch(var(--L-900) calc(var(--accent-pico) * 0.25) 170);
+	--accent-950: oklch(var(--L-950) calc(var(--accent-pico) * 0.1) 170);
 
-  /* SUCCESS (Hue 145) */
-  --success-50:  oklch(var(--L-50)  calc(var(--success-pico) * 0.10) 145);
-  --success-100: oklch(var(--L-100) calc(var(--success-pico) * 0.25) 145);
-  --success-200: oklch(var(--L-200) calc(var(--success-pico) * 0.45) 145);
-  --success-300: oklch(var(--L-300) calc(var(--success-pico) * 0.65) 145);
-  --success-400: oklch(var(--L-400) calc(var(--success-pico) * 0.85) 145);
-  --success-500: oklch(var(--L-500) var(--success-pico) 145);
-  --success-600: oklch(var(--L-600) calc(var(--success-pico) * 0.85) 145);
-  --success-700: oklch(var(--L-700) calc(var(--success-pico) * 0.65) 145);
-  --success-800: oklch(var(--L-800) calc(var(--success-pico) * 0.45) 145);
-  --success-900: oklch(var(--L-900) calc(var(--success-pico) * 0.25) 145);
-  --success-950: oklch(var(--L-950) calc(var(--success-pico) * 0.10) 145);
+	/* INFO (Hue 235) */
+	--info-50: oklch(var(--L-50) calc(var(--info-pico) * 0.1) 235);
+	--info-100: oklch(var(--L-100) calc(var(--info-pico) * 0.25) 235);
+	--info-200: oklch(var(--L-200) calc(var(--info-pico) * 0.45) 235);
+	--info-300: oklch(var(--L-300) calc(var(--info-pico) * 0.65) 235);
+	--info-400: oklch(var(--L-400) calc(var(--info-pico) * 0.85) 235);
+	--info-500: oklch(var(--L-500) var(--info-pico) 235);
+	--info-600: oklch(var(--L-600) calc(var(--info-pico) * 0.85) 235);
+	--info-700: oklch(var(--L-700) calc(var(--info-pico) * 0.65) 235);
+	--info-800: oklch(var(--L-800) calc(var(--info-pico) * 0.45) 235);
+	--info-900: oklch(var(--L-900) calc(var(--info-pico) * 0.25) 235);
+	--info-950: oklch(var(--L-950) calc(var(--info-pico) * 0.1) 235);
 
-  /* WARNING (Hue 60 - Ámbar) */
-  --warning-50:  oklch(var(--L-50)  calc(var(--warning-pico) * 0.10) 60);
-  --warning-100: oklch(var(--L-100) calc(var(--warning-pico) * 0.25) 60);
-  --warning-200: oklch(var(--L-200) calc(var(--warning-pico) * 0.45) 60);
-  --warning-300: oklch(var(--L-300) calc(var(--warning-pico) * 0.65) 60);
-  --warning-400: oklch(var(--L-400) calc(var(--warning-pico) * 0.85) 60);
-  --warning-500: oklch(var(--L-500) var(--warning-pico) 60);
-  --warning-600: oklch(var(--L-600) calc(var(--warning-pico) * 0.85) 60);
-  --warning-700: oklch(var(--L-700) calc(var(--warning-pico) * 0.65) 60);
-  --warning-800: oklch(var(--L-800) calc(var(--warning-pico) * 0.45) 60);
-  --warning-900: oklch(var(--L-900) calc(var(--warning-pico) * 0.25) 60);
-  --warning-950: oklch(var(--L-950) calc(var(--warning-pico) * 0.10) 60);
+	/* SUCCESS (Hue 145) */
+	--success-50: oklch(var(--L-50) calc(var(--success-pico) * 0.1) 145);
+	--success-100: oklch(var(--L-100) calc(var(--success-pico) * 0.25) 145);
+	--success-200: oklch(var(--L-200) calc(var(--success-pico) * 0.45) 145);
+	--success-300: oklch(var(--L-300) calc(var(--success-pico) * 0.65) 145);
+	--success-400: oklch(var(--L-400) calc(var(--success-pico) * 0.85) 145);
+	--success-500: oklch(var(--L-500) var(--success-pico) 145);
+	--success-600: oklch(var(--L-600) calc(var(--success-pico) * 0.85) 145);
+	--success-700: oklch(var(--L-700) calc(var(--success-pico) * 0.65) 145);
+	--success-800: oklch(var(--L-800) calc(var(--success-pico) * 0.45) 145);
+	--success-900: oklch(var(--L-900) calc(var(--success-pico) * 0.25) 145);
+	--success-950: oklch(var(--L-950) calc(var(--success-pico) * 0.1) 145);
 
-  /* ERROR (Hue 30) */
-  --error-50:  oklch(var(--L-50)  calc(var(--error-pico) * 0.10) 30);
-  --error-100: oklch(var(--L-100) calc(var(--error-pico) * 0.25) 30);
-  --error-200: oklch(var(--L-200) calc(var(--error-pico) * 0.45) 30);
-  --error-300: oklch(var(--L-300) calc(var(--error-pico) * 0.65) 30);
-  --error-400: oklch(var(--L-400) calc(var(--error-pico) * 0.85) 30);
-  --error-500: oklch(var(--L-500) var(--error-pico) 30);
-  --error-600: oklch(var(--L-600) calc(var(--error-pico) * 0.85) 30);
-  --error-700: oklch(var(--L-700) calc(var(--error-pico) * 0.65) 30);
-  --error-800: oklch(var(--L-800) calc(var(--error-pico) * 0.45) 30);
-  --error-900: oklch(var(--L-900) calc(var(--error-pico) * 0.25) 30);
-  --error-950: oklch(var(--L-950) calc(var(--error-pico) * 0.10) 30);
+	/* WARNING (Hue 60 - Ámbar) */
+	--warning-50: oklch(var(--L-50) calc(var(--warning-pico) * 0.1) 60);
+	--warning-100: oklch(var(--L-100) calc(var(--warning-pico) * 0.25) 60);
+	--warning-200: oklch(var(--L-200) calc(var(--warning-pico) * 0.45) 60);
+	--warning-300: oklch(var(--L-300) calc(var(--warning-pico) * 0.65) 60);
+	--warning-400: oklch(var(--L-400) calc(var(--warning-pico) * 0.85) 60);
+	--warning-500: oklch(var(--L-500) var(--warning-pico) 60);
+	--warning-600: oklch(var(--L-600) calc(var(--warning-pico) * 0.85) 60);
+	--warning-700: oklch(var(--L-700) calc(var(--warning-pico) * 0.65) 60);
+	--warning-800: oklch(var(--L-800) calc(var(--warning-pico) * 0.45) 60);
+	--warning-900: oklch(var(--L-900) calc(var(--warning-pico) * 0.25) 60);
+	--warning-950: oklch(var(--L-950) calc(var(--warning-pico) * 0.1) 60);
 
-  /* NEUTRAL (sin croma) */
-  --neutral-50:  oklch(var(--L-50)  0 0);
-  --neutral-100: oklch(var(--L-100) 0 0);
-  --neutral-200: oklch(var(--L-200) 0 0);
-  --neutral-300: oklch(var(--L-300) 0 0);
-  --neutral-400: oklch(var(--L-400) 0 0);
-  --neutral-500: oklch(var(--L-500) 0 0);
-  --neutral-600: oklch(var(--L-600) 0 0);
-  --neutral-700: oklch(var(--L-700) 0 0);
-  --neutral-800: oklch(var(--L-800) 0 0);
-  --neutral-900: oklch(var(--L-900) 0 0);
-  --neutral-950: oklch(var(--L-950) 0 0);
+	/* ERROR (Hue 30) */
+	--error-50: oklch(var(--L-50) calc(var(--error-pico) * 0.1) 30);
+	--error-100: oklch(var(--L-100) calc(var(--error-pico) * 0.25) 30);
+	--error-200: oklch(var(--L-200) calc(var(--error-pico) * 0.45) 30);
+	--error-300: oklch(var(--L-300) calc(var(--error-pico) * 0.65) 30);
+	--error-400: oklch(var(--L-400) calc(var(--error-pico) * 0.85) 30);
+	--error-500: oklch(var(--L-500) var(--error-pico) 30);
+	--error-600: oklch(var(--L-600) calc(var(--error-pico) * 0.85) 30);
+	--error-700: oklch(var(--L-700) calc(var(--error-pico) * 0.65) 30);
+	--error-800: oklch(var(--L-800) calc(var(--error-pico) * 0.45) 30);
+	--error-900: oklch(var(--L-900) calc(var(--error-pico) * 0.25) 30);
+	--error-950: oklch(var(--L-950) calc(var(--error-pico) * 0.1) 30);
 
-  /* OPACITY VERSIONS */
-  --primary-500-10:  oklch(var(--L-500) var(--primary-pico) 259 / 0.1);
-  --primary-500-50:  oklch(var(--L-500) var(--primary-pico) 259 / 0.5);
-  --secondary-500-10: oklch(var(--L-500) var(--secondary-pico) 120 / 0.1);
-  --secondary-500-50: oklch(var(--L-500) var(--secondary-pico) 120 / 0.5);
-  --accent-500-10:   oklch(var(--L-500) var(--accent-pico) 170 / 0.1);
-  --accent-500-50:   oklch(var(--L-500) var(--accent-pico) 170 / 0.5);
-  --neutral-900-10:  oklch(var(--L-900) 0 0 / 0.1);
-  --neutral-900-20:  oklch(var(--L-900) 0 0 / 0.2);
+	/* NEUTRAL (sin croma) */
+	--neutral-50: oklch(var(--L-50) 0 0);
+	--neutral-100: oklch(var(--L-100) 0 0);
+	--neutral-200: oklch(var(--L-200) 0 0);
+	--neutral-300: oklch(var(--L-300) 0 0);
+	--neutral-400: oklch(var(--L-400) 0 0);
+	--neutral-500: oklch(var(--L-500) 0 0);
+	--neutral-600: oklch(var(--L-600) 0 0);
+	--neutral-700: oklch(var(--L-700) 0 0);
+	--neutral-800: oklch(var(--L-800) 0 0);
+	--neutral-900: oklch(var(--L-900) 0 0);
+	--neutral-950: oklch(var(--L-950) 0 0);
+
+	/* OPACITY VERSIONS */
+	--primary-500-10: oklch(var(--L-500) var(--primary-pico) 259 / 0.1);
+	--primary-500-50: oklch(var(--L-500) var(--primary-pico) 259 / 0.5);
+	--secondary-500-10: oklch(var(--L-500) var(--secondary-pico) 120 / 0.1);
+	--secondary-500-50: oklch(var(--L-500) var(--secondary-pico) 120 / 0.5);
+	--accent-500-10: oklch(var(--L-500) var(--accent-pico) 170 / 0.1);
+	--accent-500-50: oklch(var(--L-500) var(--accent-pico) 170 / 0.5);
+	--neutral-900-10: oklch(var(--L-900) 0 0 / 0.1);
+	--neutral-900-20: oklch(var(--L-900) 0 0 / 0.2);
 }

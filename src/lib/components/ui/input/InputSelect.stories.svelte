@@ -135,16 +135,19 @@
 </Story>
 
 <!-- Different Data Sets -->
-<Story name="Countries" args={{ 
-	label: 'Country',
-	optionsData: [
-		{ id: 'mx', option: 'México' },
-		{ id: 'us', option: 'United States' },
-		{ id: 'ca', option: 'Canada' },
-		{ id: 'br', option: 'Brazil' },
-		{ id: 'ar', option: 'Argentina' }
-	]
-}}>
+<Story
+	name="Countries"
+	args={{
+		label: 'Country',
+		optionsData: [
+			{ id: 'mx', option: 'México' },
+			{ id: 'us', option: 'United States' },
+			{ id: 'ca', option: 'Canada' },
+			{ id: 'br', option: 'Brazil' },
+			{ id: 'ar', option: 'Argentina' }
+		]
+	}}
+>
 	{#snippet template(args)}
 		<InputSelect
 			name={args.name}
@@ -162,16 +165,19 @@
 	{/snippet}
 </Story>
 
-<Story name="Numbers" args={{ 
-	label: 'Quantity',
-	optionsData: [
-		{ id: '1', option: '1 item' },
-		{ id: '2', option: '2 items' },
-		{ id: '3', option: '3 items' },
-		{ id: '4', option: '4 items' },
-		{ id: '5', option: '5 items' }
-	]
-}}>
+<Story
+	name="Numbers"
+	args={{
+		label: 'Quantity',
+		optionsData: [
+			{ id: '1', option: '1 item' },
+			{ id: '2', option: '2 items' },
+			{ id: '3', option: '3 items' },
+			{ id: '4', option: '4 items' },
+			{ id: '5', option: '5 items' }
+		]
+	}}
+>
 	{#snippet template(args)}
 		<InputSelect
 			name={args.name}
@@ -190,11 +196,14 @@
 </Story>
 
 <!-- Error States -->
-<Story name="With Single Error" args={{ 
-	label: 'Priority',
-	errors: ['This field is required'],
-	required: true
-}}>
+<Story
+	name="With Single Error"
+	args={{
+		label: 'Priority',
+		errors: ['This field is required'],
+		required: true
+	}}
+>
 	{#snippet template(args)}
 		<InputSelect
 			name={args.name}
@@ -212,11 +221,14 @@
 	{/snippet}
 </Story>
 
-<Story name="With Multiple Errors" args={{ 
-	label: 'Department',
-	errors: ['Please select a department', 'This selection requires manager approval'],
-	required: true
-}}>
+<Story
+	name="With Multiple Errors"
+	args={{
+		label: 'Department',
+		errors: ['Please select a department', 'This selection requires manager approval'],
+		required: true
+	}}
+>
 	{#snippet template(args)}
 		<InputSelect
 			name={args.name}
@@ -235,11 +247,14 @@
 </Story>
 
 <!-- Disabled State -->
-<Story name="Disabled" args={{ 
-	label: 'Role',
-	disabled: true,
-	value: 'option2'
-}}>
+<Story
+	name="Disabled"
+	args={{
+		label: 'Role',
+		disabled: true,
+		value: 'option2'
+	}}
+>
 	{#snippet template(args)}
 		<InputSelect
 			name={args.name}
@@ -277,13 +292,16 @@
 </Story>
 
 <!-- Large Options List -->
-<Story name="Large Options List" args={{ 
-	label: 'Select a product',
-	optionsData: Array.from({ length: 20 }, (_, i) => ({
-		id: `product-${i + 1}`,
-		option: `Product ${i + 1} - ${['Electronics', 'Clothing', 'Books', 'Food'][i % 4]}`
-	}))
-}}>
+<Story
+	name="Large Options List"
+	args={{
+		label: 'Select a product',
+		optionsData: Array.from({ length: 20 }, (_, i) => ({
+			id: `product-${i + 1}`,
+			option: `Product ${i + 1} - ${['Electronics', 'Clothing', 'Books', 'Food'][i % 4]}`
+		}))
+	}}
+>
 	{#snippet template(args)}
 		<InputSelect
 			name={args.name}

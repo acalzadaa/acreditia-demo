@@ -32,11 +32,7 @@
 <!-- Variantes -->
 <Story name="Primary" args={{ variant: 'primary' }}>
 	{#snippet template(args)}
-		<Button
-			variant={args.variant}
-			onClick={args['onClick']}
-			onKeyDown={args['onKeyboardHandler']}
-		>
+		<Button variant={args.variant} onClick={args['onClick']} onKeyDown={args['onKeyboardHandler']}>
 			{args.children}
 		</Button>
 	{/snippet}
@@ -44,11 +40,7 @@
 
 <Story name="Secondary" args={{ variant: 'secondary' }}>
 	{#snippet template(args)}
-		<Button
-			variant={args.variant}
-			onClick={args['onClick']}
-			onKeyDown={args['onKeyboardHandler']}
-		>
+		<Button variant={args.variant} onClick={args['onClick']} onKeyDown={args['onKeyboardHandler']}>
 			{args.children}
 		</Button>
 	{/snippet}
@@ -56,11 +48,7 @@
 
 <Story name="Outline" args={{ variant: 'outline' }}>
 	{#snippet template(args)}
-		<Button
-			variant={args.variant}
-			onClick={args['onClick']}
-			onKeyDown={args['onKeyboardHandler']}
-		>
+		<Button variant={args.variant} onClick={args['onClick']} onKeyDown={args['onKeyboardHandler']}>
 			{args.children}
 		</Button>
 	{/snippet}
@@ -68,11 +56,7 @@
 
 <Story name="Ghost" args={{ variant: 'ghost' }}>
 	{#snippet template(args)}
-		<Button
-			variant={args.variant}
-			onClick={args['onClick']}
-			onKeyDown={args['onKeyboardHandler']}
-		>
+		<Button variant={args.variant} onClick={args['onClick']} onKeyDown={args['onKeyboardHandler']}>
 			{args.children}
 		</Button>
 	{/snippet}
@@ -80,11 +64,7 @@
 
 <Story name="Critical" args={{ variant: 'critical' }}>
 	{#snippet template(args)}
-		<Button
-			variant={args.variant}
-			onClick={args['onClick']}
-			onKeyDown={args['onKeyboardHandler']}
-		>
+		<Button variant={args.variant} onClick={args['onClick']} onKeyDown={args['onKeyboardHandler']}>
 			{args.children}
 		</Button>
 	{/snippet}
@@ -92,13 +72,8 @@
 
 <Story name="Link" args={{ variant: 'link' }}>
 	{#snippet template(args)}
-		<Button
-			variant={args.variant}
-			onClick={args['onClick']}
-			onKeyDown={args['onKeyboardHandler']}
-		>
+		<Button variant={args.variant} onClick={args['onClick']} onKeyDown={args['onKeyboardHandler']}>
 			{args.children}
 		</Button>
 	{/snippet}
 </Story>
-

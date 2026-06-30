@@ -1,34 +1,31 @@
 @font-face {
-    font-family: 'Inter';
-    src: url('/fonts/Inter.woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Inter';
+	src: url('/fonts/Inter.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
 }
 
-
 @font-face {
-    font-family: 'Inter';
-    src: url('/fonts/Inter-Italic.woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-style: italic;
-    font-display: swap;
+	font-family: 'Inter';
+	src: url('/fonts/Inter-Italic.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
 }
 
-
 @font-face {
-    font-family: 'Montserrat';
-    src: url('/fonts/Montserrat.woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Montserrat';
+	src: url('/fonts/Montserrat.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
 }
 
-
 @font-face {
-    font-family: 'Roboto';
-    src: url('/fonts/Roboto.woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
+	font-family: 'Roboto';
+	src: url('/fonts/Roboto.woff2') format('woff2-variations');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
 }

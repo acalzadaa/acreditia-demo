@@ -10,8 +10,10 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 	import type { PuestoRef } from '$lib/schemas/puesto.schema';
-	import { regionWithRelationsItemSchema, type RegionWithRelationsItem } from '$lib/schemas/region.schema';
-	
+	import {
+		regionWithRelationsItemSchema,
+		type RegionWithRelationsItem
+	} from '$lib/schemas/region.schema';
 
 	interface Props {
 		open: boolean;

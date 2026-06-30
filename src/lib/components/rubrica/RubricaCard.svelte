@@ -39,7 +39,9 @@
 	<div class="rubrica-card__header">
 		<div class="rubrica-card__main text-body">
 			{#if showSelectIcon && onClickSelect}
-				<Button variant='outline' onClick={() => onClickSelect(item)} name="check">Seleccionar</Button>
+				<Button variant="outline" onClick={() => onClickSelect(item)} name="check"
+					>Seleccionar</Button
+				>
 			{/if}
 			<span class="rubrica-card__code text-body-strong">{item.code}</span>
 			<Badge variant="info">de {item.rangeStart} a {item.rangeEnd}</Badge>
@@ -52,12 +54,15 @@
 		</div>
 
 		<div class="rubrica-card__actions text-body">
-			<Button variant='outline' name="chevron-down" ariaExpanded={isOpen} onClick={toggleOpen}>Ver criterios</Button>
+			<Button variant="outline" name="chevron-down" ariaExpanded={isOpen} onClick={toggleOpen}
+				>Ver criterios</Button
+			>
 
 			{#if showDetailIcon}
 				<IconButton
 					isDisabled={item.isDeleted}
 					name="detail"
+					tooltipLabel="Ver detalle"
 					size="md"
 					borderShape="square"
 					variant="ghost"

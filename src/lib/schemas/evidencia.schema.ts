@@ -36,17 +36,17 @@ export type EvidenciaForm = z.infer<typeof evidenciaFormSchema>;
 // ============================================
 
 export const evidenciaItemSchema = z.object({
-    id: z.uuid(),
-    code: z.string(),
-    name: z.string(),
-    description: z.string(),
-    version: z.number().default(0),
-    isCurrent: z.boolean().default(false),
-    validFrom: z.coerce.date().optional(),
-    validTo: z.coerce.date().optional(),
-    isDeleted: z.boolean().default(false),
-    createdAt: z.iso.datetime().optional(),
-    createdBy: z.string()
+	id: z.uuid(),
+	code: z.string(),
+	name: z.string(),
+	description: z.string(),
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(false),
+	validFrom: z.coerce.date().optional(),
+	validTo: z.coerce.date().optional(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
 });
 export type EvidenciaItem = z.infer<typeof evidenciaItemSchema>;
 

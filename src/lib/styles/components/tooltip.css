@@ -1,39 +1,39 @@
 .tooltip {
-    /* Posicionamiento */
-    position: absolute;
-    z-index: var(--z-tooltip);
-    pointer-events: none;
+	/* Posicionamiento */
+	position: absolute;
+	z-index: var(--z-tooltip);
+	pointer-events: none;
 
-    /* Superficie */
-    background-color: var(--bg-overlay);
-    border: var(--border-card);
-    border-radius: var(--border-radius-button);
-    box-shadow: var(--shadow-tooltip);
+	/* Superficie */
+	background-color: var(--bg-overlay);
+	border: var(--border-card);
+	border-radius: var(--border-radius-button);
+	box-shadow: var(--shadow-tooltip);
 
-    /* Tipografía */
-    color: var(--text-on-surface);
-    font-family: var(--text-body-small-font);
-    font-size: var(--text-body-small-size);
-    font-weight: var(--text-body-small-weight);
-    line-height: var(--text-body-small-height);
+	/* Tipografía */
+	color: var(--text-on-surface);
+	font-family: var(--text-body-small-font);
+	font-size: var(--text-body-small-size);
+	font-weight: var(--text-body-small-weight);
+	line-height: var(--text-body-small-height);
 
-    /* Espaciado */
-    padding: var(--inset-sm) var(--inset-md);
-    max-width: 280px;
-    white-space: normal;        /* permite wrap dentro del tooltip */
-    word-break: break-word;
+	/* Espaciado */
+	padding: var(--inset-sm) var(--inset-md);
+	max-width: 280px;
+	white-space: normal; /* permite wrap dentro del tooltip */
+	word-break: break-word;
 
-    /* Entrada suave */
-    animation: tooltip-in 120ms ease-out;
+	/* Entrada suave */
+	animation: tooltip-in 120ms ease-out;
 }
 
 @keyframes tooltip-in {
-    from {
-        opacity: 0;
-        translate: 0 4px;
-    }
-    to {
-        opacity: 1;
-        translate: 0 0;
-    }
+	from {
+		opacity: 0;
+		translate: 0 4px;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+	}
 }

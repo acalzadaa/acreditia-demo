@@ -40,8 +40,9 @@
 				¿Estás seguro de que deseas eliminar el registro <strong>"{selectedItem?.name}"</strong>?
 			</p>
 			<span class="confirm-warning text-body">
-			<Icon name="warning" color="var(--bg-warning-bold)"></Icon>
-				Esta acción no se puede deshacer.</span>
+				<Icon name="warning" color="var(--bg-warning-bold)"></Icon>
+				Esta acción no se puede deshacer.</span
+			>
 		</div>
 
 		<footer class="modal-footer form-actions text-body">

@@ -1,17 +1,17 @@
 {
-    "entidadLegalItems": [
-        {
-            "id": "105aa8ed-a5e0-4d9c-9371-6ffd25bab058",
-            "code": "EL-001",
-            "name": "Instituto Educativo del Noreste A.C",
-            "description": "Organización educativa sin fines de lucro",
-            "version": 1,
-            "isCurrent": true,
-            "validFrom": "2024-01-01T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-01T10:00:00Z",
-            "createdBy": "admin@system.com"
-        }
-    ]
+	"entidadLegalItems": [
+		{
+			"id": "105aa8ed-a5e0-4d9c-9371-6ffd25bab058",
+			"code": "EL-001",
+			"name": "Instituto Educativo del Noreste A.C",
+			"description": "Organización educativa sin fines de lucro",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
 }

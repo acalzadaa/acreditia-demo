@@ -73,6 +73,7 @@
 									/>
 									<IconButton
 										name="delete"
+tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
@@ -92,6 +93,7 @@
 											<span class="rubrica-item__criterio-text">{unidadAcademica.name}</span>
 											<IconButton
 												name="delete"
+tooltipLabel="Borrar registro"
 												size="sm"
 												shape="square"
 												variant="ghost"

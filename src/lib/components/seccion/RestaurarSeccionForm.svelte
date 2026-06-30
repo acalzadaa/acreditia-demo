@@ -5,7 +5,7 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { seccionFormSchema, type SeccionWithCapituloItem } from '$lib/schemas/seccion.schema';
-	
+
 	interface Props {
 		open: boolean;
 		item: SeccionWithCapituloItem;

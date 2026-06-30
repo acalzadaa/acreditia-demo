@@ -83,6 +83,7 @@
 									/>
 									<IconButton
 										name="edit"
+tooltipLabel="Editar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
@@ -92,6 +93,7 @@
 									/>
 									<IconButton
 										name="delete"
+tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
@@ -110,6 +112,7 @@
 											<span class="element-item__child-text">{criterio.criterio}</span>
 											<IconButton
 												name="delete"
+tooltipLabel="Borrar registro"
 												size="sm"
 												shape="square"
 												variant="ghost"
@@ -133,8 +136,6 @@
 		</div>
 	{/if}
 </section>
-
-
 
 <style>
 	/*

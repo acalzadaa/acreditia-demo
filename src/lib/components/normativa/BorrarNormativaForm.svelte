@@ -5,7 +5,7 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
-	
+
 	interface Props {
 		open: boolean;
 		selectedItem: NormativaItem;

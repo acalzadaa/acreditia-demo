@@ -34,7 +34,11 @@ export type UnidadAcademicaItem = z.infer<typeof unidadAcademicaItemSchema>;
 // 3. ITEM WITH RELATIONS SCHEMA
 // ============================================
 export const unidadAcademicaWithRelationsItemSchema = unidadAcademicaItemSchema.extend({
-	campusAsignados: z.array(z.object({ id: z.uuid(), code: z.string(), name: z.string() })).optional()
+	campusAsignados: z
+		.array(z.object({ id: z.uuid(), code: z.string(), name: z.string() }))
+		.optional()
 });
 
-export type UnidadAcademicaWithRelationsItem = z.infer<typeof unidadAcademicaWithRelationsItemSchema>;
+export type UnidadAcademicaWithRelationsItem = z.infer<
+	typeof unidadAcademicaWithRelationsItemSchema
+>;

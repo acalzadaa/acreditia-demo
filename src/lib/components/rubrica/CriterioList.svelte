@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { RubricaCriterioRef } from "$lib/schemas/shared.schema";
-
+	import type { RubricaCriterioRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		criterios: RubricaCriterioRef[];

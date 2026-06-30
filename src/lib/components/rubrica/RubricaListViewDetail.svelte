@@ -8,10 +8,7 @@
 		items: RubricaItem[];
 	}
 
-	const {
-		showDetailIcon = true,
-		items
-	}: Props = $props();
+	const { showDetailIcon = true, items }: Props = $props();
 </script>
 
 <main class="main-panel">

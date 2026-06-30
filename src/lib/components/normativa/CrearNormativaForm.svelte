@@ -35,10 +35,10 @@
 
 		// Demo: solo mostrar en consola
 		console.log('Demo - Crear normativa:', formData);
-		
+
 		// Limpiar formulario
 		clearForm();
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -83,10 +83,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">

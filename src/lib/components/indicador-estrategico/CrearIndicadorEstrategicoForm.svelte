@@ -83,10 +83,10 @@
 
 		// Demo: solo mostrar en consola
 		console.log('Demo - Crear indicador estratégico:', formData);
-		
+
 		// Limpiar formulario
 		clearForm();
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -138,10 +138,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				{#if errorMessage}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -149,7 +151,7 @@
 						{errorMessage}
 					</div>
 				{/if}
-				
+
 				<div class="form-fields">
 					<InputSelect
 						label="Objetivo Estratégico"
@@ -220,7 +222,9 @@
 						status={errorMessage && (!formData.target || formData.target <= 0) ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.target}
-						errors={errorMessage && (!formData.target || formData.target <= 0) ? [errorMessage] : undefined}
+						errors={errorMessage && (!formData.target || formData.target <= 0)
+							? [errorMessage]
+							: undefined}
 					/>
 
 					<InputText
@@ -239,10 +243,14 @@
 						name="frequencyValue"
 						required={true}
 						placeholder="1"
-						status={errorMessage && (!formData.frequencyValue || formData.frequencyValue <= 0) ? 'error' : 'normal'}
+						status={errorMessage && (!formData.frequencyValue || formData.frequencyValue <= 0)
+							? 'error'
+							: 'normal'}
 						disabled={false}
 						bind:value={formData.frequencyValue}
-						errors={errorMessage && (!formData.frequencyValue || formData.frequencyValue <= 0) ? [errorMessage] : undefined}
+						errors={errorMessage && (!formData.frequencyValue || formData.frequencyValue <= 0)
+							? [errorMessage]
+							: undefined}
 					/>
 
 					<InputSelect

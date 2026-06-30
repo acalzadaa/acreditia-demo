@@ -1,9 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type {
-		EtapaCapturaPlanMejoraItem
-	} from '$lib/schemas/etapaMetadata.schema';
+	import type { EtapaCapturaPlanMejoraItem } from '$lib/schemas/etapaMetadata.schema';
 
 	interface Props {
 		items: EtapaCapturaPlanMejoraItem[];
@@ -32,7 +30,8 @@
 							<td class="col-text">{item.agreements}</td>
 							<td class="col-actions-lg">
 								<div class="col-actions-row">
-									<Button name="edit" variant="ghost" onClick={() => onClickEditar(item)}
+									<Button name="edit"
+tooltipLabel="Editar registro" variant="ghost" onClick={() => onClickEditar(item)}
 										>Editar acuerdos</Button
 									>
 									<Button name="upload" variant="ghost" onClick={() => onClickFinish(item)}

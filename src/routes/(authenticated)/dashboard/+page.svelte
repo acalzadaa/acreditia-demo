@@ -10,8 +10,7 @@
 	import { page } from '$app/state';
 	import { auth } from '$lib/stores/auth.svelte';
 
-
-    let username = auth.user?.email?.split('@')[0] || 'Usuario';
+	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 
 	let navigationItems = $derived(page.data.navigationItems);
 	let showNotificationBar = $state(false);
@@ -55,7 +54,7 @@
 <div class="app-grid">
 	<Header
 		isLoggedIn={!!auth.user}
-		username={username}
+		{username}
 		{onClickLogout}
 		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>

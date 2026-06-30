@@ -1,108 +1,108 @@
 {
-    "evaluacionItems": [
-        {
-            "id": "b9e8b5eb-dd82-49ad-8173-538926c0fb53",
-            "code": "2026-1",
-            "name": "Primavera 2026",
-            "modeloId": "316051c7-7d34-484e-ac44-3590370d7a1a",
-            "institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
-            "year": 2026,
-            "cycle": 1,
-            "status": "planned",
-            "modelo": {
-                "id": "316051c7-7d34-484e-ac44-3590370d7a1a",
-                "code": "SADFI",
-                "name": "SADFI FIMPES"
-            },
-            "institucion": {
-                "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
-                "code": "IA-001",
-                "name": "Universidad Tecnológica del Norte"
-            },
-            "isCurrent": true,
-            "validFrom": "2024-01-01T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-01T10:30:00Z",
-            "createdBy": "admin@system.com"
-        },
-        {
-            "id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
-            "code": "2025-3",
-            "name": "Invierno 2025",
-            "modeloId": "316051c7-7d34-484e-ac44-3590370d7a1a",
-            "institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
-            "year": 2025,
-            "cycle": 3,
-            "status": "active",
-            "modelo": {
-                "id": "316051c7-7d34-484e-ac44-3590370d7a1a",
-                "code": "SADFI",
-                "name": "SADFI FIMPES"
-            },
-            "institucion": {
-                "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
-                "code": "IA-001",
-                "name": "Universidad Tecnológica del Norte"
-            },
-            "isCurrent": true,
-            "validFrom": "2024-01-01T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-01T10:30:00Z",
-            "createdBy": "admin@system.com"
-        },
-        {
-            "id": "fda91ef4-4fc3-4c24-ab22-99f2d90aeef0",
-            "code": "2025-2",
-            "name": "Verano 2025",
-            "modeloId": "316051c7-7d34-484e-ac44-3590370d7a1a",
-            "institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
-            "year": 2025,
-            "cycle": 2,
-            "status": "completed",
-            "modelo": {
-                "id": "316051c7-7d34-484e-ac44-3590370d7a1a",
-                "code": "SADFI",
-                "name": "SADFI FIMPES"
-            },
-            "institucion": {
-                "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
-                "code": "IA-001",
-                "name": "Universidad Tecnológica del Norte"
-            },
-            "isCurrent": true,
-            "validFrom": "2024-01-01T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-01T10:30:00Z",
-            "createdBy": "admin@system.com"
-        },
-        {
-            "id": "a95ecd86-ad5c-43c2-8762-18001e661069",
-            "code": "2025-1",
-            "name": "Primavera 2025",
-            "modeloId": "316051c7-7d34-484e-ac44-3590370d7a1a",
-            "institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
-            "year": 2025,
-            "cycle": 1,
-            "status": "completed",
-            "modelo": {
-                "id": "316051c7-7d34-484e-ac44-3590370d7a1a",
-                "code": "SADFI",
-                "name": "SADFI FIMPES"
-            },
-            "institucion": {
-                "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
-                "code": "IA-001",
-                "name": "Universidad Tecnológica del Norte"
-            },
-            "isCurrent": true,
-            "validFrom": "2024-01-01T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-01T10:30:00Z",
-            "createdBy": "admin@system.com"
-        }
-    ]
+	"evaluacionItems": [
+		{
+			"id": "b9e8b5eb-dd82-49ad-8173-538926c0fb53",
+			"code": "2026-1",
+			"name": "Primavera 2026",
+			"modeloId": "316051c7-7d34-484e-ac44-3590370d7a1a",
+			"institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
+			"year": 2026,
+			"cycle": 1,
+			"status": "planned",
+			"modelo": {
+				"id": "316051c7-7d34-484e-ac44-3590370d7a1a",
+				"code": "SADFI",
+				"name": "SADFI FIMPES"
+			},
+			"institucion": {
+				"id": "d647cf88-bf43-4963-97d3-06e4eb496745",
+				"code": "IA-001",
+				"name": "Universidad Tecnológica del Norte"
+			},
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+			"code": "2025-3",
+			"name": "Invierno 2025",
+			"modeloId": "316051c7-7d34-484e-ac44-3590370d7a1a",
+			"institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
+			"year": 2025,
+			"cycle": 3,
+			"status": "active",
+			"modelo": {
+				"id": "316051c7-7d34-484e-ac44-3590370d7a1a",
+				"code": "SADFI",
+				"name": "SADFI FIMPES"
+			},
+			"institucion": {
+				"id": "d647cf88-bf43-4963-97d3-06e4eb496745",
+				"code": "IA-001",
+				"name": "Universidad Tecnológica del Norte"
+			},
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "fda91ef4-4fc3-4c24-ab22-99f2d90aeef0",
+			"code": "2025-2",
+			"name": "Verano 2025",
+			"modeloId": "316051c7-7d34-484e-ac44-3590370d7a1a",
+			"institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
+			"year": 2025,
+			"cycle": 2,
+			"status": "completed",
+			"modelo": {
+				"id": "316051c7-7d34-484e-ac44-3590370d7a1a",
+				"code": "SADFI",
+				"name": "SADFI FIMPES"
+			},
+			"institucion": {
+				"id": "d647cf88-bf43-4963-97d3-06e4eb496745",
+				"code": "IA-001",
+				"name": "Universidad Tecnológica del Norte"
+			},
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "a95ecd86-ad5c-43c2-8762-18001e661069",
+			"code": "2025-1",
+			"name": "Primavera 2025",
+			"modeloId": "316051c7-7d34-484e-ac44-3590370d7a1a",
+			"institucionId": "d647cf88-bf43-4963-97d3-06e4eb496745",
+			"year": 2025,
+			"cycle": 1,
+			"status": "completed",
+			"modelo": {
+				"id": "316051c7-7d34-484e-ac44-3590370d7a1a",
+				"code": "SADFI",
+				"name": "SADFI FIMPES"
+			},
+			"institucion": {
+				"id": "d647cf88-bf43-4963-97d3-06e4eb496745",
+				"code": "IA-001",
+				"name": "Universidad Tecnológica del Norte"
+			},
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
 }

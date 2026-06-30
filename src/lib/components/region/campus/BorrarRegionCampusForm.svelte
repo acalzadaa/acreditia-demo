@@ -5,7 +5,7 @@
 	import IconButton from '../../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
-	
+
 	interface Props {
 		open: boolean;
 		selectedItem: CampusItem;

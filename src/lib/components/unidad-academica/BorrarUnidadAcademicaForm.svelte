@@ -6,7 +6,7 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { unidadAcademicaItemSchema } from '$lib/schemas/unidadAcademica.schema';
 	import type { UnidadAcademicaRef } from '$lib/schemas/shared.schema';
-	
+
 	interface Props {
 		open: boolean;
 		selectedItem: UnidadAcademicaRef;

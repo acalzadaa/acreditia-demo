@@ -6,7 +6,7 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { campusItemSchema } from '$lib/schemas/campus.schema';
 	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
-	
+
 	interface Props {
 		open: boolean;
 		selectedItem: AreaResponsableItem;

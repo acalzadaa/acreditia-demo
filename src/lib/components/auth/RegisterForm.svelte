@@ -32,7 +32,7 @@
 		<div class="modal-body">
 			{#if $message}
 				<div class="form-feedback form-feedback--error" role="alert">
-					<Icon name='warning'></Icon>
+					<Icon name="warning"></Icon>
 					{$message}
 				</div>
 			{/if}

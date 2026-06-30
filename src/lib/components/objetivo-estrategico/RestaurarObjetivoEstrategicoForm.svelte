@@ -4,9 +4,7 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		planeacionEstrategicaWithFilosofiaItemSchema
-	} from '$lib/schemas/planeacionEstrategica.schema';
+	import { planeacionEstrategicaWithFilosofiaItemSchema } from '$lib/schemas/planeacionEstrategica.schema';
 	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
 
 	interface Props {

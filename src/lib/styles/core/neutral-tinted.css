@@ -1,39 +1,39 @@
 /* neutral-tinted.css */
 :root {
-  /* ===== NEUTRAL TINTED - BLUE (Hue 259) ===== */
-  /* Curva especial para UI components */
+	/* ===== NEUTRAL TINTED - BLUE (Hue 259) ===== */
+	/* Curva especial para UI components */
 
-  /* Parámetros de la curva */
-  --tinted-pico: 0.035;
-  /* Chroma máximo en niveles medios-claros */
-  --tinted-pico-position: 200;
-  /* Donde ocurre el chroma máximo */
+	/* Parámetros de la curva */
+	--tinted-pico: 0.035;
+	/* Chroma máximo en niveles medios-claros */
+	--tinted-pico-position: 200;
+	/* Donde ocurre el chroma máximo */
 
-  /* Escala extendida (más granular en claros) */
-  --neutral-tinted-25: oklch(0.99 calc(var(--tinted-pico) * 0.25) 259);
-  --neutral-tinted-37: oklch(0.98 calc(var(--tinted-pico) * 0.48) 259);
-  --neutral-tinted-50: oklch(0.97 calc(var(--tinted-pico) * 0.40) 259);
-  --neutral-tinted-75: oklch(0.95 calc(var(--tinted-pico) * 0.55) 259);
-  --neutral-tinted-100: oklch(0.93 calc(var(--tinted-pico) * 0.70) 259);
-  --neutral-tinted-125: oklch(0.91 calc(var(--tinted-pico) * 0.85) 259);
-  --neutral-tinted-150: oklch(0.90 calc(var(--tinted-pico) * 0.95) 259);
-  --neutral-tinted-175: oklch(0.88 calc(var(--tinted-pico) * 1.00) 259);
-  --neutral-tinted-200: oklch(0.86 calc(var(--tinted-pico) * 1.00) 259);
-  --neutral-tinted-225: oklch(0.83 calc(var(--tinted-pico) * 0.95) 259);
-  --neutral-tinted-250: oklch(0.81 calc(var(--tinted-pico) * 0.90) 259);
-  --neutral-tinted-275: oklch(0.78 calc(var(--tinted-pico) * 0.80) 259);
-  --neutral-tinted-300: oklch(0.76 calc(var(--tinted-pico) * 0.70) 259);
-  --neutral-tinted-350: oklch(0.70 calc(var(--tinted-pico) * 0.55) 259);
-  --neutral-tinted-400: oklch(0.63 calc(var(--tinted-pico) * 0.45) 259);
-  --neutral-tinted-450: oklch(0.56 calc(var(--tinted-pico) * 0.35) 259);
-  --neutral-tinted-500: oklch(0.50 calc(var(--tinted-pico) * 0.15) 259);
-  --neutral-tinted-550: oklch(0.44 calc(var(--tinted-pico) * 0.10) 259);
-  --neutral-tinted-600: oklch(0.38 calc(var(--tinted-pico) * 0.06) 259);
-  --neutral-tinted-650: oklch(0.32 calc(var(--tinted-pico) * 0.04) 259);
-  --neutral-tinted-700: oklch(0.27 calc(var(--tinted-pico) * 0.02) 259);
-  --neutral-tinted-750: oklch(0.22 calc(var(--tinted-pico) * 0.01) 259);
-  --neutral-tinted-800: oklch(0.17 0 259);
-  --neutral-tinted-850: oklch(0.13 0 259);
-  --neutral-tinted-900: oklch(0.10 0 259);
-  --neutral-tinted-950: oklch(0.06 0 259);
+	/* Escala extendida (más granular en claros) */
+	--neutral-tinted-25: oklch(0.99 calc(var(--tinted-pico) * 0.25) 259);
+	--neutral-tinted-37: oklch(0.98 calc(var(--tinted-pico) * 0.48) 259);
+	--neutral-tinted-50: oklch(0.97 calc(var(--tinted-pico) * 0.4) 259);
+	--neutral-tinted-75: oklch(0.95 calc(var(--tinted-pico) * 0.55) 259);
+	--neutral-tinted-100: oklch(0.93 calc(var(--tinted-pico) * 0.7) 259);
+	--neutral-tinted-125: oklch(0.91 calc(var(--tinted-pico) * 0.85) 259);
+	--neutral-tinted-150: oklch(0.9 calc(var(--tinted-pico) * 0.95) 259);
+	--neutral-tinted-175: oklch(0.88 calc(var(--tinted-pico) * 1) 259);
+	--neutral-tinted-200: oklch(0.86 calc(var(--tinted-pico) * 1) 259);
+	--neutral-tinted-225: oklch(0.83 calc(var(--tinted-pico) * 0.95) 259);
+	--neutral-tinted-250: oklch(0.81 calc(var(--tinted-pico) * 0.9) 259);
+	--neutral-tinted-275: oklch(0.78 calc(var(--tinted-pico) * 0.8) 259);
+	--neutral-tinted-300: oklch(0.76 calc(var(--tinted-pico) * 0.7) 259);
+	--neutral-tinted-350: oklch(0.7 calc(var(--tinted-pico) * 0.55) 259);
+	--neutral-tinted-400: oklch(0.63 calc(var(--tinted-pico) * 0.45) 259);
+	--neutral-tinted-450: oklch(0.56 calc(var(--tinted-pico) * 0.35) 259);
+	--neutral-tinted-500: oklch(0.5 calc(var(--tinted-pico) * 0.15) 259);
+	--neutral-tinted-550: oklch(0.44 calc(var(--tinted-pico) * 0.1) 259);
+	--neutral-tinted-600: oklch(0.38 calc(var(--tinted-pico) * 0.06) 259);
+	--neutral-tinted-650: oklch(0.32 calc(var(--tinted-pico) * 0.04) 259);
+	--neutral-tinted-700: oklch(0.27 calc(var(--tinted-pico) * 0.02) 259);
+	--neutral-tinted-750: oklch(0.22 calc(var(--tinted-pico) * 0.01) 259);
+	--neutral-tinted-800: oklch(0.17 0 259);
+	--neutral-tinted-850: oklch(0.13 0 259);
+	--neutral-tinted-900: oklch(0.1 0 259);
+	--neutral-tinted-950: oklch(0.06 0 259);
 }

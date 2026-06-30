@@ -12,7 +12,7 @@
 	import Icon from '../ui/Icon.svelte';
 	import { type ObjetivoEstrategicoRef } from '$lib/schemas/objetivoEstrategico.schema';
 	import {
-	frequencyUnitOptions,
+		frequencyUnitOptions,
 		indicadorEstrategicoFormSchema,
 		type IndicadorEstrategicoItem
 	} from '$lib/schemas/indicadorEstrategico.schema';

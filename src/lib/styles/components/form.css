@@ -5,41 +5,41 @@
    ========================================================================== */
 
 :root {
-  /* Tokens propios del form */
-  --form-spacing-vertical: var(--space-5);
-  --form-label-margin-bottom: var(--space-2);
-  --form-input-height: 40px;
-  --form-input-padding: var(--space-2) var(--space-3);
-  --form-input-border-radius: var(--border-radius-md);
-  --form-input-border-width: var(--border-width-thin);
+	/* Tokens propios del form */
+	--form-spacing-vertical: var(--space-5);
+	--form-label-margin-bottom: var(--space-2);
+	--form-input-height: 40px;
+	--form-input-padding: var(--space-2) var(--space-3);
+	--form-input-border-radius: var(--border-radius-md);
+	--form-input-border-width: var(--border-width-thin);
 
-  /* Colores */
-  --form-label-color: var(--text-primary);
-  --form-label-required-color: var(--error-500);
+	/* Colores */
+	--form-label-color: var(--text-primary);
+	--form-label-required-color: var(--error-500);
 
-  --form-input-bg: var(--neutral-tinted-25);
-  --form-input-bg-hover: var(--neutral-tinted-50);
-  --form-input-bg-focus: var(--bg-raised);
-  --form-input-bg-disabled: var(--neutral-tinted-200);
+	--form-input-bg: var(--neutral-tinted-25);
+	--form-input-bg-hover: var(--neutral-tinted-50);
+	--form-input-bg-focus: var(--bg-raised);
+	--form-input-bg-disabled: var(--neutral-tinted-200);
 
-  --form-input-border: var(--border-regular);
-  --form-input-border-hover: var(--border-strong);
-  --form-input-border-focus: var(--border-brand);
-  --form-input-border-error: var(--border-error);
-  --form-input-border-success: var(--border-success);
-  --form-input-border-warning: var(--border-warning);
-  --form-input-border-info: var(--border-info);
+	--form-input-border: var(--border-regular);
+	--form-input-border-hover: var(--border-strong);
+	--form-input-border-focus: var(--border-brand);
+	--form-input-border-error: var(--border-error);
+	--form-input-border-success: var(--border-success);
+	--form-input-border-warning: var(--border-warning);
+	--form-input-border-info: var(--border-info);
 
-  --form-input-text: var(--text-on-surface);
-  --form-input-text-disabled: var(--text-disabled);
-  --form-input-placeholder: var(--text-muted);
+	--form-input-text: var(--text-on-surface);
+	--form-input-text-disabled: var(--text-disabled);
+	--form-input-placeholder: var(--text-muted);
 
-  /* Feedback */
-  --form-feedback-success: var(--success-600);
-  --form-feedback-error: var(--error-600);
-  --form-feedback-warning: var(--warning-600);
-  --form-feedback-info: var(--info-600);
-  --form-feedback-margin-top: var(--space-2);
+	/* Feedback */
+	--form-feedback-success: var(--success-600);
+	--form-feedback-error: var(--error-600);
+	--form-feedback-warning: var(--warning-600);
+	--form-feedback-info: var(--info-600);
+	--form-feedback-margin-top: var(--space-2);
 }
 
 /* ==========================================================================
@@ -61,47 +61,47 @@
    ========================================================================== */
 
 .form-container {
-  width: 100%;
-  margin: 0 auto;
-  padding: var(--space-6);
-  background-color: var(--bg-ground);
-  border-radius: var(--border-radius-lg);
+	width: 100%;
+	margin: 0 auto;
+	padding: var(--space-6);
+	background-color: var(--bg-ground);
+	border-radius: var(--border-radius-lg);
 }
 
 /* Tamaños — controlan el ancho de la tarjeta según cuánto contenido tenga */
 .form-container--sm {
-  max-width: 400px;
+	max-width: 400px;
 }
 
 .form-container--md {
-  max-width: 600px;
+	max-width: 600px;
 }
 
 .form-container--lg {
-  max-width: 840px;
+	max-width: 840px;
 }
 
 /* Padding — independiente del tamaño, por si necesitás combinarlos
    (ej. un form--lg pero con padding compacto) */
 .form-container--compact {
-  padding: var(--space-4);
+	padding: var(--space-4);
 }
 
 .form-container--spacious {
-  padding: var(--space-8);
+	padding: var(--space-8);
 }
 
 /* Responsive: en pantallas chicas, toda tarjeta respeta el viewport */
 @media (max-width: 640px) {
-  .form-container {
-    max-width: 100%;
-    margin: var(--space-2);
-    width: auto;
-  }
+	.form-container {
+		max-width: 100%;
+		margin: var(--space-2);
+		width: auto;
+	}
 }
 
 .form-header {
-  padding: var(--space-4);
+	padding: var(--space-4);
 }
 
 /* ==========================================================================
@@ -111,9 +111,9 @@
    ========================================================================== */
 
 .form-fields {
-  display: flex;
-  flex-direction: column;
-  gap: var(--form-spacing-vertical);
+	display: flex;
+	flex-direction: column;
+	gap: var(--form-spacing-vertical);
 }
 
 /* Variante scrolleable: dentro de un modal, el padre (.modal-body)
@@ -121,31 +121,31 @@
    con altura fija, así que se define un max-height propio para que
    el scroll tenga algo a partir de qué activarse. */
 .form-fields--scrollable {
-  flex: 1;
-  min-height: 0;
-  max-height: 60vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-regular) var(--bg-ground);
+	flex: 1;
+	min-height: 0;
+	max-height: 60vh;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--border-regular) var(--bg-ground);
 }
 
 .form-fields--scrollable::-webkit-scrollbar {
-  width: 8px;
+	width: 8px;
 }
 
 .form-fields--scrollable::-webkit-scrollbar-track {
-  background: var(--bg-ground);
-  border-radius: 4px;
+	background: var(--bg-ground);
+	border-radius: 4px;
 }
 
 .form-fields--scrollable::-webkit-scrollbar-thumb {
-  background-color: var(--border-regular);
-  border-radius: 4px;
-  border: 2px solid var(--bg-ground);
+	background-color: var(--border-regular);
+	border-radius: 4px;
+	border: 2px solid var(--bg-ground);
 }
 
 .form-fields--scrollable::-webkit-scrollbar-thumb:hover {
-  background-color: var(--border-brand);
+	background-color: var(--border-brand);
 }
 
 /* ==========================================================================
@@ -153,19 +153,19 @@
    ========================================================================== */
 
 .form-field {
-  position: relative;
+	position: relative;
 }
 
 /* Layout horizontal: label a la izquierda, input a la derecha */
 .form-field--horizontal {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
+	display: flex;
+	align-items: center;
+	gap: var(--space-4);
 }
 
 .form-field--horizontal .form-label {
-  flex: 0 0 120px;
-  margin-bottom: 0;
+	flex: 0 0 120px;
+	margin-bottom: 0;
 }
 
 /* ==========================================================================
@@ -173,16 +173,16 @@
    ========================================================================== */
 
 .form-label {
-  display: block;
-  margin-bottom: var(--form-label-margin-bottom);
-  color: var(--form-label-color);
-  letter-spacing: var(--spacing-wider);
-  text-transform: capitalize;
+	display: block;
+	margin-bottom: var(--form-label-margin-bottom);
+	color: var(--form-label-color);
+	letter-spacing: var(--spacing-wider);
+	text-transform: capitalize;
 }
 
 .form-label .required {
-  color: var(--form-label-required-color);
-  margin-left: var(--space-1);
+	color: var(--form-label-required-color);
+	margin-left: var(--space-1);
 }
 
 /* ==========================================================================
@@ -192,54 +192,57 @@
 .form-input,
 .form-textarea,
 .form-select {
-  width: 100%;
-  height: var(--form-input-height);
-  padding: var(--form-input-padding);
-  border: var(--form-input-border-width) solid var(--form-input-border);
-  border-radius: var(--form-input-border-radius);
-  background-color: var(--form-input-bg);
-  color: var(--form-input-text);
-  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+	width: 100%;
+	height: var(--form-input-height);
+	padding: var(--form-input-padding);
+	border: var(--form-input-border-width) solid var(--form-input-border);
+	border-radius: var(--form-input-border-radius);
+	background-color: var(--form-input-bg);
+	color: var(--form-input-text);
+	transition:
+		border-color 0.2s ease,
+		background-color 0.2s ease,
+		box-shadow 0.2s ease;
 }
 
 .form-textarea {
-  height: auto;
-  min-height: 100px;
-  resize: vertical;
+	height: auto;
+	min-height: 100px;
+	resize: vertical;
 }
 
 /* Hover */
 .form-input:hover:not(:disabled),
 .form-textarea:hover:not(:disabled),
 .form-select:hover:not(:disabled) {
-  border-color: var(--form-input-border-hover);
-  background-color: var(--form-input-bg-hover);
+	border-color: var(--form-input-border-hover);
+	background-color: var(--form-input-bg-hover);
 }
 
 /* Focus */
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
-  outline: none;
-  border-color: var(--form-input-border-focus);
-  background-color: var(--form-input-bg-focus);
-  box-shadow: 0 0 0 3px var(--primary-100);
+	outline: none;
+	border-color: var(--form-input-border-focus);
+	background-color: var(--form-input-bg-focus);
+	box-shadow: 0 0 0 3px var(--primary-100);
 }
 
 /* Disabled */
 .form-input:disabled,
 .form-textarea:disabled,
 .form-select:disabled {
-  background-color: var(--form-input-bg-disabled);
-  color: var(--form-input-text-disabled);
-  cursor: not-allowed;
-  opacity: 0.7;
+	background-color: var(--form-input-bg-disabled);
+	color: var(--form-input-text-disabled);
+	cursor: not-allowed;
+	opacity: 0.7;
 }
 
 /* Placeholder */
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: var(--form-input-placeholder);
+	color: var(--form-input-placeholder);
 }
 
 /* ==========================================================================
@@ -247,47 +250,47 @@
    ========================================================================== */
 
 .form-check {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-2);
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+	margin-bottom: var(--space-2);
+	cursor: pointer;
 }
 
 .form-check--disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
+	cursor: not-allowed;
+	opacity: 0.6;
 }
 
 .form-check-input {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--bg-brand-primary);
-  cursor: pointer;
+	width: 18px;
+	height: 18px;
+	accent-color: var(--bg-brand-primary);
+	cursor: pointer;
 }
 
 .form-check-input:disabled {
-  cursor: not-allowed;
+	cursor: not-allowed;
 }
 
 .form-check-label {
-  color: var(--text-on-surface);
-  cursor: pointer;
+	color: var(--text-on-surface);
+	cursor: pointer;
 }
 
 .form-check-label--disabled {
-  cursor: not-allowed;
+	cursor: not-allowed;
 }
 
 .form-check-group {
-  border: none;
-  padding: 0;
-  margin: 0;
+	border: none;
+	padding: 0;
+	margin: 0;
 }
 
 .form-check-group legend {
-  color: var(--form-label-color);
-  margin-bottom: var(--space-2);
+	color: var(--form-label-color);
+	margin-bottom: var(--space-2);
 }
 
 /* ==========================================================================
@@ -298,28 +301,28 @@
 .form-field--error .form-input,
 .form-field--error .form-textarea,
 .form-field--error .form-select {
-  border-color: var(--form-input-border-error);
+	border-color: var(--form-input-border-error);
 }
 
 .form-field--error .form-input:focus,
 .form-field--error .form-textarea:focus,
 .form-field--error .form-select:focus {
-  border-color: var(--form-input-border-error);
-  box-shadow: 0 0 0 3px var(--error-100);
+	border-color: var(--form-input-border-error);
+	box-shadow: 0 0 0 3px var(--error-100);
 }
 
 /* Success */
 .form-field--success .form-input,
 .form-field--success .form-textarea,
 .form-field--success .form-select {
-  border-color: var(--form-input-border-success);
+	border-color: var(--form-input-border-success);
 }
 
 /* Warning */
 .form-field--warning .form-input,
 .form-field--warning .form-textarea,
 .form-field--warning .form-select {
-  border-color: var(--form-input-border-warning);
+	border-color: var(--form-input-border-warning);
 }
 
 /* ==========================================================================
@@ -327,16 +330,24 @@
    ========================================================================== */
 
 .form-feedback {
-  margin-top: var(--form-feedback-margin-top);
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
+	margin-top: var(--form-feedback-margin-top);
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
 }
 
-.form-feedback--error   { color: var(--form-feedback-error); }
-.form-feedback--success { color: var(--form-feedback-success); }
-.form-feedback--warning { color: var(--form-feedback-warning); }
-.form-feedback--info    { color: var(--form-feedback-info); }
+.form-feedback--error {
+	color: var(--form-feedback-error);
+}
+.form-feedback--success {
+	color: var(--form-feedback-success);
+}
+.form-feedback--warning {
+	color: var(--form-feedback-warning);
+}
+.form-feedback--info {
+	color: var(--form-feedback-info);
+}
 
 /* ==========================================================================
    FORM ACTIONS
@@ -345,22 +356,26 @@
    ========================================================================== */
 
 .form-actions {
-  margin-top: var(--space-6);
-  display: flex;
-  gap: var(--space-3);
-  justify-content: flex-end;
+	margin-top: var(--space-6);
+	display: flex;
+	gap: var(--space-3);
+	justify-content: flex-end;
 }
 
-.form-actions--centered { justify-content: center; }
-.form-actions--between  { justify-content: space-between; }
+.form-actions--centered {
+	justify-content: center;
+}
+.form-actions--between {
+	justify-content: space-between;
+}
 
 /* ==========================================================================
    HELPER TEXT
    ========================================================================== */
 
 .form-helper {
-  margin-top: var(--space-1);
-  color: var(--text-muted);
+	margin-top: var(--space-1);
+	color: var(--text-muted);
 }
 
 /* ==========================================================================
@@ -368,62 +383,70 @@
    ========================================================================== */
 
 .form-input-group {
-  display: flex;
-  position: relative;
+	display: flex;
+	position: relative;
 }
 
 .form-input-group .form-input {
-  flex: 1;
+	flex: 1;
 }
 
 .form-input-group__addon {
-  display: flex;
-  align-items: center;
-  padding: 0 var(--space-3);
-  background-color: var(--bg-ground);
-  border: var(--form-input-border-width) solid var(--form-input-border);
-  border-radius: var(--form-input-border-radius);
-  color: var(--text-muted);
+	display: flex;
+	align-items: center;
+	padding: 0 var(--space-3);
+	background-color: var(--bg-ground);
+	border: var(--form-input-border-width) solid var(--form-input-border);
+	border-radius: var(--form-input-border-radius);
+	color: var(--text-muted);
 }
 
 .form-input-group__addon--left {
-  border-right: none;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+	border-right: none;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 .form-input-group__addon--left + .form-input {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 .form-input-group__addon--right {
-  border-left: none;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+	border-left: none;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 .form-input-group .form-input:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 
 .form-input-group .form-input:not(:last-child) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 /* Input con ícono */
-.form-input--with-icon-left  { padding-left: var(--space-8); }
-.form-input--with-icon-right { padding-right: var(--space-8); }
-
-.form-input-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-muted);
-  pointer-events: none;
+.form-input--with-icon-left {
+	padding-left: var(--space-8);
+}
+.form-input--with-icon-right {
+	padding-right: var(--space-8);
 }
 
-.form-input-icon--left  { left: var(--space-3); }
-.form-input-icon--right { right: var(--space-3); }
+.form-input-icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--text-muted);
+	pointer-events: none;
+}
+
+.form-input-icon--left {
+	left: var(--space-3);
+}
+.form-input-icon--right {
+	right: var(--space-3);
+}

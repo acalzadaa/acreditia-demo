@@ -64,8 +64,7 @@
 			<div class="modal-body">
 				<div class="confirm-content">
 					<p class="confirm-message text-body-large">
-						¿Estás seguro de que deseas borrar el registro <strong>"{selectedItem?.name}"</strong
-						>?
+						¿Estás seguro de que deseas borrar el registro <strong>"{selectedItem?.name}"</strong>?
 					</p>
 				</div>
 			</div>

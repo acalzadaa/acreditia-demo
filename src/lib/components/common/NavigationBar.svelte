@@ -4,7 +4,7 @@
 	import { slide } from 'svelte/transition';
 	import Icon from '../ui/Icon.svelte';
 	import { findParentIdByUrl } from '$lib/helpers/navigation';
-	
+
 	interface Props {
 		showNavigationBar: boolean;
 		navigationItems: NavigationItem[];
@@ -32,7 +32,7 @@
 	>
 		<div class="navbar-panel--content text-body">
 			<ul class="navbar-list">
-				{#each navigationItems as item}
+				{#each navigationItems as item (item)}
 					{#if item.status === 'active'}
 						<li class="navbar-item" role="none">
 							{#if item.children && item.children.length > 0}

@@ -1,18 +1,18 @@
 {
-    "modeloItems": [
-        {
-            "id": "316051c7-7d34-484e-ac44-3590370d7a1a",
-            "code": "SADFI",
-            "name": "SADFI FIMPES",
-            "description": "Modelo de calidad Sadfi 4.0 de Fimpes",
-            "entidadAcreditadora": "fimpes",
-            "version": 1,
-            "isCurrent": true,
-            "validFrom": "2024-01-01T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-01T10:30:00Z",
-            "createdBy": "admin@system.com"
-        }
-    ]
+	"modeloItems": [
+		{
+			"id": "316051c7-7d34-484e-ac44-3590370d7a1a",
+			"code": "SADFI",
+			"name": "SADFI FIMPES",
+			"description": "Modelo de calidad Sadfi 4.0 de Fimpes",
+			"entidadAcreditadora": "fimpes",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
 }

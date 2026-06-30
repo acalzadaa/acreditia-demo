@@ -1,37 +1,37 @@
 {
-    "indicadorAreaResponsableItems": [
-        {
-            "id": "e35a9afd-2a67-4d63-bf3c-15ea3eb6d6e4",
-            "code": "ar-001-ind-001",
-            "indicador": {
-                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
-                "code": "ind-001",
-                "name": "Tasa de Retención Estudiantil"
-            },
-            "areaResponsable": {
-                "id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
-                "code": "AR_DIR_CAMPUS",
-                "name": "Dirección del Campus"
-            },
-            "unidadesAcademicas": [
-                {
-                    "id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
-                    "code": "FIC-001",
-                    "name": "Facultad de Ingeniería y Ciencias Aplicadas"
-                },
-                {
-                    "id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
-                    "code": "ECO-002",
-                    "name": "Escuela de Economía y Negocios Internacionales"
-                }
-            ],
-            "version": 1,
-            "isCurrent": true,
-            "validFrom": "2024-01-15T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-15T10:30:00Z",
-            "createdBy": "planeacion@universidad.edu"
-        }
-    ]
+	"indicadorAreaResponsableItems": [
+		{
+			"id": "e35a9afd-2a67-4d63-bf3c-15ea3eb6d6e4",
+			"code": "ar-001-ind-001",
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"areaResponsable": {
+				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+				"code": "AR_DIR_CAMPUS",
+				"name": "Dirección del Campus"
+			},
+			"unidadesAcademicas": [
+				{
+					"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+					"code": "FIC-001",
+					"name": "Facultad de Ingeniería y Ciencias Aplicadas"
+				},
+				{
+					"id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+					"code": "ECO-002",
+					"name": "Escuela de Economía y Negocios Internacionales"
+				}
+			],
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-15T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-15T10:30:00Z",
+			"createdBy": "planeacion@universidad.edu"
+		}
+	]
 }

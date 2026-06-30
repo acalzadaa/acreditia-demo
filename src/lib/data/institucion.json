@@ -1,30 +1,30 @@
 {
-    "institucionItems": [
-        {
-            "id": "d647cf88-bf43-4963-97d3-06e4eb496745",
-            "entidadLegalId": "105aa8ed-a5e0-4d9c-9371-6ffd25bab058",
-            "code": "IA-001",
-            "name": "Universidad Tecnológica del Norte",
-            "version": 1,
-            "isCurrent": true,
-            "validFrom": "2024-01-15T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-15T09:00:00Z",
-            "createdBy": "admin@system.com",
-            "entidadLegal": {
-                "id": "105aa8ed-a5e0-4d9c-9371-6ffd25bab058",
-                "code": "EL-001",
-                "name": "Instituto Educativo del Noreste A.C",
-                "description": "Organización educativa sin fines de lucro",
-                "version": 1,
-                "isCurrent": true,
-                "validFrom": "2024-01-01T00:00:00Z",
-                "validTo": null,
-                "isDeleted": false,
-                "createdAt": "2024-01-01T10:00:00Z",
-                "createdBy": "admin@system.com"
-            }
-        }
-    ]
+	"institucionItems": [
+		{
+			"id": "d647cf88-bf43-4963-97d3-06e4eb496745",
+			"entidadLegalId": "105aa8ed-a5e0-4d9c-9371-6ffd25bab058",
+			"code": "IA-001",
+			"name": "Universidad Tecnológica del Norte",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-15T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-15T09:00:00Z",
+			"createdBy": "admin@system.com",
+			"entidadLegal": {
+				"id": "105aa8ed-a5e0-4d9c-9371-6ffd25bab058",
+				"code": "EL-001",
+				"name": "Instituto Educativo del Noreste A.C",
+				"description": "Organización educativa sin fines de lucro",
+				"version": 1,
+				"isCurrent": true,
+				"validFrom": "2024-01-01T00:00:00Z",
+				"validTo": null,
+				"isDeleted": false,
+				"createdAt": "2024-01-01T10:00:00Z",
+				"createdBy": "admin@system.com"
+			}
+		}
+	]
 }

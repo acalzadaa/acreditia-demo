@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Modal from "$lib/components/modal/Modal.svelte";
-	import Button from "$lib/components/ui/Button.svelte";
-	import Icon from "$lib/components/ui/Icon.svelte";
-	import IconButton from "$lib/components/ui/IconButton.svelte";
-	import TextArea from "$lib/components/ui/input/TextArea.svelte";
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 
 	interface Props {
 		open: boolean;
@@ -19,14 +19,14 @@
 
 	let errorMessage = $state('');
 
-		function handleSubmit() {
+	function handleSubmit() {
 		// Validación básica
 
 		if (!formData.criterio) {
 			errorMessage = 'Debes escribir un criterio';
 			return;
 		}
-		
+
 		// Aquí podrías console.log o guardar los datos si quieres
 		console.log('Datos enviados (demo):', formData);
 
@@ -91,7 +91,6 @@
 						</div>
 					{/if}
 
-
 					<TextArea
 						label="Criterio"
 						name="criterio"
@@ -102,7 +101,6 @@
 						bind:value={formData.criterio}
 						errors={errorMessage && !formData.criterio ? [errorMessage] : undefined}
 					/>
-
 				</div>
 			</div>
 

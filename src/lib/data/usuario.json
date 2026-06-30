@@ -1,17 +1,17 @@
 {
-    "users": [
-        {
-            "id": "061dfb45-1261-49ea-9374-4e9b3610d533",
-            "firstName": "Martin",
-            "lastName": "Martinez",
-            "email": "martin.martinez@system.com",
-            "version": 1,
-            "isCurrent": true,
-            "validFrom": "2024-01-01T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-01T10:30:00Z",
-            "createdBy": "admin@system.com"
-        }
-    ]
+	"users": [
+		{
+			"id": "061dfb45-1261-49ea-9374-4e9b3610d533",
+			"firstName": "Martin",
+			"lastName": "Martinez",
+			"email": "martin.martinez@system.com",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
 }

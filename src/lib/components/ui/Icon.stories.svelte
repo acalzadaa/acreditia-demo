@@ -5,7 +5,7 @@
 	const { Story } = defineMeta({
 		title: 'ui/Icon',
 		component: Icon,
-		tags: ['autodocs'],
+		tags: ['autodocs']
 	});
 </script>
 

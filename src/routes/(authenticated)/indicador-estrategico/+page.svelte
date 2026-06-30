@@ -12,9 +12,7 @@
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import type {
-		IndicadorEstrategicoItem
-	} from '$lib/schemas/indicadorEstrategico.schema';
+	import type { IndicadorEstrategicoItem } from '$lib/schemas/indicadorEstrategico.schema';
 	import CrearIndicadorEstrategicoForm from '$lib/components/indicador-estrategico/CrearIndicadorEstrategicoForm.svelte';
 	import EditarIndicadorEstrategicoForm from '$lib/components/indicador-estrategico/EditarIndicadorEstrategicoForm.svelte';
 	import { getIndicadorEstrategico, getObjetivoEstrategico } from '$lib/stores/data.svelte';

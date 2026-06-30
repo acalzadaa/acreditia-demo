@@ -1,281 +1,281 @@
 {
-    "modeloFullRefItems": [
-        {
-            "id": "316051c7-7d34-484e-ac44-3590370d7a1a",
-            "code": "SADFI",
-            "name": "SADFI FIMPES",
-            "capitulos": [
-                {
-                    "id": "85d38b1f-acaa-49b8-9938-87324900bce2",
-                    "code": "I",
-                    "name": "Filosofía Institucional",
-                    "secciones": [
-                        {
-                            "id": "95c7ddf6-66de-4438-9832-a5549d463976",
-                            "code": "1.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "4239a45b-27fe-49f3-a920-ed5328167039",
-                            "code": "1.2",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "c7f99160-a47e-4759-b975-c0b385e392f0",
-                    "code": "II",
-                    "name": "Planeacion",
-                    "secciones": [
-                        {
-                            "id": "b70dcad4-2826-4997-8a04-cd0a11f5592c",
-                            "code": "2.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "e450c17d-b317-48b3-9235-414f9aedd32d",
-                            "code": "2.2",
-                            "name": ""
-                        },
-                        {
-                            "id": "f89ae849-2b17-419c-941d-c76f518e9f99",
-                            "code": "2.3",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "6179451e-16e9-4dd1-bbc1-61b2e7dc2096",
-                    "code": "III",
-                    "name": "Normatividad",
-                    "secciones": [
-                        {
-                            "id": "e1792f40-cb2c-4ff8-b26f-b23ca23fb46a",
-                            "code": "3.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "1431e5fb-4640-4bb6-8616-0256552b9e23",
-                            "code": "3.2",
-                            "name": ""
-                        },
-                        {
-                            "id": "5e738980-7867-4fad-9224-0bfdf49cc54a",
-                            "code": "3.3",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "6a4b05c4-4888-4229-b917-970a708aff0e",
-                    "code": "IV",
-                    "name": "Programas Académicos",
-                    "secciones": [
-                        {
-                            "id": "a5c4324c-ce55-4a9c-b917-92220d556eb5",
-                            "code": "4.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "884b0606-3663-47fb-8f93-790144d9192e",
-                            "code": "4.2",
-                            "name": ""
-                        },
-                        {
-                            "id": "8e95cb32-ae19-4d1b-ad40-f4039a0ec264",
-                            "code": "4.3",
-                            "name": ""
-                        },
-                        {
-                            "id": "59697610-ecc3-4f78-9e23-f4092402bc31",
-                            "code": "4.4",
-                            "name": ""
-                        },
-                        {
-                            "id": "0bfa11ff-bce9-4db6-9f71-43d584642504",
-                            "code": "4.5",
-                            "name": ""
-                        },
-                        {
-                            "id": "9b2286ab-9740-45b1-8e81-8fd8e4c97c1e",
-                            "code": "4.6",
-                            "name": ""
-                        },
-                        {
-                            "id": "8b1ffb89-c95e-4870-b7dd-14bdeb8e8e15",
-                            "code": "4.7",
-                            "name": ""
-                        },
-                        {
-                            "id": "b4772c6d-6048-43e8-978a-80fbf1745104",
-                            "code": "4.8",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "109e7b16-3076-4e01-8359-7f1540d9ed0b",
-                    "code": "V",
-                    "name": "Personal Académico",
-                    "secciones": [
-                        {
-                            "id": "2507273e-3154-48be-99de-7ba1d572586f",
-                            "code": "5.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "9c2bf1bd-aa42-4bcb-a7f4-4675ecf20aa8",
-                            "code": "5.2",
-                            "name": ""
-                        },
-                        {
-                            "id": "a999089a-3633-4609-81f6-6c29ceb3e7e6",
-                            "code": "5.3",
-                            "name": ""
-                        },
-                        {
-                            "id": "a346b666-7479-4237-9647-af990447777f",
-                            "code": "5.4",
-                            "name": ""
-                        },
-                        {
-                            "id": "accb0148-7cd0-4770-9c05-d2c962472f7e",
-                            "code": "5.5",
-                            "name": ""
-                        },
-                        {
-                            "id": "ca2cd6e3-873e-48a8-8954-1b1f599f7a18",
-                            "code": "5.6",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "f05f48b5-a964-4274-954c-fb8be159c646",
-                    "code": "VI",
-                    "name": "Estudiantes",
-                    "secciones": [
-                        {
-                            "id": "ea33027a-ac77-4bd1-8791-a2c2f649e48b",
-                            "code": "6.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "b185cd98-b459-432b-a72a-c4f595766fad",
-                            "code": "6.2",
-                            "name": ""
-                        },
-                        {
-                            "id": "2e5268c0-25b3-4633-9352-cbd6ef41b166",
-                            "code": "6.3",
-                            "name": ""
-                        },
-                        {
-                            "id": "3254fa52-05a3-4de9-804c-7029c6c427c6",
-                            "code": "6.4",
-                            "name": ""
-                        },
-                        {
-                            "id": "c6698292-1411-460a-b2ce-9f86eb47d1a5",
-                            "code": "6.5",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "0548c9d6-45d5-4e1d-a3ad-62c3cedadc10",
-                    "code": "VII",
-                    "name": "Personal Administrativo",
-                    "secciones": [
-                        {
-                            "id": "f7d703a8-41af-4448-8a9c-cc1f0b16ba06",
-                            "code": "7.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "4315003a-a752-47d2-af5e-13b1d675a1a3",
-                            "code": "7.2",
-                            "name": ""
-                        },
-                        {
-                            "id": "aef1599f-92d7-413f-ad46-df6eca88eeb2",
-                            "code": "7.3",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "70a2b3b8-758e-4b88-9daf-3b58d21efb82",
-                    "code": "VIII",
-                    "name": "Apoyos Académicos",
-                    "secciones": [
-                        {
-                            "id": "7cf25155-24c4-48e2-8626-427d04067c9a",
-                            "code": "8.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "7936a1db-0f5c-412b-99d1-b69b680463a5",
-                            "code": "8.2",
-                            "name": ""
-                        },
-                        {
-                            "id": "d1f9585c-ba71-4395-9792-2d47cbf920c9",
-                            "code": "8.3",
-                            "name": ""
-                        },
-                        {
-                            "id": "5c74f44e-68b7-4386-bf7f-335a63fc8909",
-                            "code": "8.4",
-                            "name": ""
-                        },
-                        {
-                            "id": "f0e3b612-888b-4988-9eca-9f9fae383825",
-                            "code": "8.5",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "086a9d02-4619-437e-99e3-4d98b570ccb5",
-                    "code": "IX",
-                    "name": "Recursos Físicos",
-                    "secciones": [
-                        {
-                            "id": "de9034c0-c789-4595-8ff3-f8a23fcdd4cd",
-                            "code": "9.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "c0e5cc45-f024-400e-b25f-f9849351544b",
-                            "code": "9.2",
-                            "name": ""
-                        },
-                        {
-                            "id": "bea611c2-f812-4cdb-a083-154374d1caee",
-                            "code": "9.3",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "id": "d37b974b-5dc4-4bea-b614-fd22c6e526c5",
-                    "code": "X",
-                    "name": "Recursos Financieros",
-                    "secciones": [
-                        {
-                            "id": "ce4070bb-b8e0-4514-8119-6b475cf8828f",
-                            "code": "10.1",
-                            "name": ""
-                        },
-                        {
-                            "id": "1f8e39e2-cc7a-4b27-b935-76cbcb07ada4",
-                            "code": "10.2",
-                            "name": ""
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+	"modeloFullRefItems": [
+		{
+			"id": "316051c7-7d34-484e-ac44-3590370d7a1a",
+			"code": "SADFI",
+			"name": "SADFI FIMPES",
+			"capitulos": [
+				{
+					"id": "85d38b1f-acaa-49b8-9938-87324900bce2",
+					"code": "I",
+					"name": "Filosofía Institucional",
+					"secciones": [
+						{
+							"id": "95c7ddf6-66de-4438-9832-a5549d463976",
+							"code": "1.1",
+							"name": ""
+						},
+						{
+							"id": "4239a45b-27fe-49f3-a920-ed5328167039",
+							"code": "1.2",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "c7f99160-a47e-4759-b975-c0b385e392f0",
+					"code": "II",
+					"name": "Planeacion",
+					"secciones": [
+						{
+							"id": "b70dcad4-2826-4997-8a04-cd0a11f5592c",
+							"code": "2.1",
+							"name": ""
+						},
+						{
+							"id": "e450c17d-b317-48b3-9235-414f9aedd32d",
+							"code": "2.2",
+							"name": ""
+						},
+						{
+							"id": "f89ae849-2b17-419c-941d-c76f518e9f99",
+							"code": "2.3",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "6179451e-16e9-4dd1-bbc1-61b2e7dc2096",
+					"code": "III",
+					"name": "Normatividad",
+					"secciones": [
+						{
+							"id": "e1792f40-cb2c-4ff8-b26f-b23ca23fb46a",
+							"code": "3.1",
+							"name": ""
+						},
+						{
+							"id": "1431e5fb-4640-4bb6-8616-0256552b9e23",
+							"code": "3.2",
+							"name": ""
+						},
+						{
+							"id": "5e738980-7867-4fad-9224-0bfdf49cc54a",
+							"code": "3.3",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "6a4b05c4-4888-4229-b917-970a708aff0e",
+					"code": "IV",
+					"name": "Programas Académicos",
+					"secciones": [
+						{
+							"id": "a5c4324c-ce55-4a9c-b917-92220d556eb5",
+							"code": "4.1",
+							"name": ""
+						},
+						{
+							"id": "884b0606-3663-47fb-8f93-790144d9192e",
+							"code": "4.2",
+							"name": ""
+						},
+						{
+							"id": "8e95cb32-ae19-4d1b-ad40-f4039a0ec264",
+							"code": "4.3",
+							"name": ""
+						},
+						{
+							"id": "59697610-ecc3-4f78-9e23-f4092402bc31",
+							"code": "4.4",
+							"name": ""
+						},
+						{
+							"id": "0bfa11ff-bce9-4db6-9f71-43d584642504",
+							"code": "4.5",
+							"name": ""
+						},
+						{
+							"id": "9b2286ab-9740-45b1-8e81-8fd8e4c97c1e",
+							"code": "4.6",
+							"name": ""
+						},
+						{
+							"id": "8b1ffb89-c95e-4870-b7dd-14bdeb8e8e15",
+							"code": "4.7",
+							"name": ""
+						},
+						{
+							"id": "b4772c6d-6048-43e8-978a-80fbf1745104",
+							"code": "4.8",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "109e7b16-3076-4e01-8359-7f1540d9ed0b",
+					"code": "V",
+					"name": "Personal Académico",
+					"secciones": [
+						{
+							"id": "2507273e-3154-48be-99de-7ba1d572586f",
+							"code": "5.1",
+							"name": ""
+						},
+						{
+							"id": "9c2bf1bd-aa42-4bcb-a7f4-4675ecf20aa8",
+							"code": "5.2",
+							"name": ""
+						},
+						{
+							"id": "a999089a-3633-4609-81f6-6c29ceb3e7e6",
+							"code": "5.3",
+							"name": ""
+						},
+						{
+							"id": "a346b666-7479-4237-9647-af990447777f",
+							"code": "5.4",
+							"name": ""
+						},
+						{
+							"id": "accb0148-7cd0-4770-9c05-d2c962472f7e",
+							"code": "5.5",
+							"name": ""
+						},
+						{
+							"id": "ca2cd6e3-873e-48a8-8954-1b1f599f7a18",
+							"code": "5.6",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "f05f48b5-a964-4274-954c-fb8be159c646",
+					"code": "VI",
+					"name": "Estudiantes",
+					"secciones": [
+						{
+							"id": "ea33027a-ac77-4bd1-8791-a2c2f649e48b",
+							"code": "6.1",
+							"name": ""
+						},
+						{
+							"id": "b185cd98-b459-432b-a72a-c4f595766fad",
+							"code": "6.2",
+							"name": ""
+						},
+						{
+							"id": "2e5268c0-25b3-4633-9352-cbd6ef41b166",
+							"code": "6.3",
+							"name": ""
+						},
+						{
+							"id": "3254fa52-05a3-4de9-804c-7029c6c427c6",
+							"code": "6.4",
+							"name": ""
+						},
+						{
+							"id": "c6698292-1411-460a-b2ce-9f86eb47d1a5",
+							"code": "6.5",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "0548c9d6-45d5-4e1d-a3ad-62c3cedadc10",
+					"code": "VII",
+					"name": "Personal Administrativo",
+					"secciones": [
+						{
+							"id": "f7d703a8-41af-4448-8a9c-cc1f0b16ba06",
+							"code": "7.1",
+							"name": ""
+						},
+						{
+							"id": "4315003a-a752-47d2-af5e-13b1d675a1a3",
+							"code": "7.2",
+							"name": ""
+						},
+						{
+							"id": "aef1599f-92d7-413f-ad46-df6eca88eeb2",
+							"code": "7.3",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "70a2b3b8-758e-4b88-9daf-3b58d21efb82",
+					"code": "VIII",
+					"name": "Apoyos Académicos",
+					"secciones": [
+						{
+							"id": "7cf25155-24c4-48e2-8626-427d04067c9a",
+							"code": "8.1",
+							"name": ""
+						},
+						{
+							"id": "7936a1db-0f5c-412b-99d1-b69b680463a5",
+							"code": "8.2",
+							"name": ""
+						},
+						{
+							"id": "d1f9585c-ba71-4395-9792-2d47cbf920c9",
+							"code": "8.3",
+							"name": ""
+						},
+						{
+							"id": "5c74f44e-68b7-4386-bf7f-335a63fc8909",
+							"code": "8.4",
+							"name": ""
+						},
+						{
+							"id": "f0e3b612-888b-4988-9eca-9f9fae383825",
+							"code": "8.5",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "086a9d02-4619-437e-99e3-4d98b570ccb5",
+					"code": "IX",
+					"name": "Recursos Físicos",
+					"secciones": [
+						{
+							"id": "de9034c0-c789-4595-8ff3-f8a23fcdd4cd",
+							"code": "9.1",
+							"name": ""
+						},
+						{
+							"id": "c0e5cc45-f024-400e-b25f-f9849351544b",
+							"code": "9.2",
+							"name": ""
+						},
+						{
+							"id": "bea611c2-f812-4cdb-a083-154374d1caee",
+							"code": "9.3",
+							"name": ""
+						}
+					]
+				},
+				{
+					"id": "d37b974b-5dc4-4bea-b614-fd22c6e526c5",
+					"code": "X",
+					"name": "Recursos Financieros",
+					"secciones": [
+						{
+							"id": "ce4070bb-b8e0-4514-8119-6b475cf8828f",
+							"code": "10.1",
+							"name": ""
+						},
+						{
+							"id": "1f8e39e2-cc7a-4b27-b935-76cbcb07ada4",
+							"code": "10.2",
+							"name": ""
+						}
+					]
+				}
+			]
+		}
+	]
 }

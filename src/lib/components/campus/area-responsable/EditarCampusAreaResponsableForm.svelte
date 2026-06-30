@@ -8,7 +8,10 @@
 	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import { areaResponsableItemSchema, type AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
+	import {
+		areaResponsableItemSchema,
+		type AreaResponsableItem
+	} from '$lib/schemas/areaResponsable.schema';
 
 	interface Props {
 		open: boolean;
@@ -82,7 +85,6 @@
 		</header>
 
 		<form method="POST" action="?/editCampusAreaResponsable" use:enhance>
-
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">

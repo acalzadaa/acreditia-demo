@@ -94,6 +94,7 @@
 										isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !== 'ready' ||
 											item.isDeleted}
 										name="detail"
+										tooltipLabel="Ver detalle"
 										size="md"
 										borderShape="square"
 										variant="ghost"
@@ -103,6 +104,7 @@
 										isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !==
 											'planning' || item.isDeleted}
 										name="calendar"
+tooltipLabel="Modificar fechas"
 										size="md"
 										borderShape="square"
 										variant="ghost"

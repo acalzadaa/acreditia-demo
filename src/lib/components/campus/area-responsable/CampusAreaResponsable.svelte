@@ -4,7 +4,6 @@
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
-	
 
 	interface Props {
 		gridArea?: string;
@@ -73,6 +72,7 @@
 									<IconButton
 										isDisabled={item.isDeleted}
 										name="edit"
+tooltipLabel="Editar registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"
@@ -82,6 +82,7 @@
 									<IconButton
 										isDisabled={item.isDeleted}
 										name="delete"
+tooltipLabel="Borrar registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"
@@ -91,6 +92,7 @@
 									<IconButton
 										isDisabled={!item.isDeleted}
 										name="restore"
+tooltipLabel="Restaurar registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"

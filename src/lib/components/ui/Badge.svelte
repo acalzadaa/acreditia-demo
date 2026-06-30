@@ -1,11 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	export type BadgeStatus =
-		| 'info'
-		| 'warning'
-		| 'error'
-		| 'success';
+	export type BadgeStatus = 'info' | 'warning' | 'error' | 'success';
 
 	interface Props {
 		variant: BadgeStatus;
