@@ -1,7 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import { fn } from 'storybook/test';
-    import TextArea from './TextArea.svelte';
+	import TextArea from './TextArea.svelte';
 
 	const { Story } = defineMeta({
 		title: 'ui/TextArea',
@@ -139,7 +139,10 @@
 	{/snippet}
 </Story>
 
-<Story name="With Preselected Value" args={{ value: 'Este es un texto de ejemplo que ya viene precargado en el textarea.' }}>
+<Story
+	name="With Preselected Value"
+	args={{ value: 'Este es un texto de ejemplo que ya viene precargado en el textarea.' }}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -203,7 +206,10 @@
 	{/snippet}
 </Story>
 
-<Story name="No Max Limit" args={{ maxLength: null, showCounter: false, label: 'Sin límite de caracteres' }}>
+<Story
+	name="No Max Limit"
+	args={{ maxLength: null, showCounter: false, label: 'Sin límite de caracteres' }}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -268,7 +274,10 @@
 </Story>
 
 <!-- Status Variants -->
-<Story name="Success Status" args={{ status: 'success', label: 'Campo válido', value: 'Texto correcto' }}>
+<Story
+	name="Success Status"
+	args={{ status: 'success', label: 'Campo válido', value: 'Texto correcto' }}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -289,7 +298,10 @@
 	{/snippet}
 </Story>
 
-<Story name="Warning Status" args={{ status: 'warning', label: 'Advertencia', value: 'Texto con advertencia' }}>
+<Story
+	name="Warning Status"
+	args={{ status: 'warning', label: 'Advertencia', value: 'Texto con advertencia' }}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -310,7 +322,10 @@
 	{/snippet}
 </Story>
 
-<Story name="Info Status" args={{ status: 'info', label: 'Información', value: 'Texto informativo' }}>
+<Story
+	name="Info Status"
+	args={{ status: 'info', label: 'Información', value: 'Texto informativo' }}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -332,12 +347,15 @@
 </Story>
 
 <!-- Error States -->
-<Story name="With Single Error" args={{ 
-	label: 'Descripción',
-	errors: ['La descripción es requerida'],
-	required: true,
-	status: 'error'
-}}>
+<Story
+	name="With Single Error"
+	args={{
+		label: 'Descripción',
+		errors: ['La descripción es requerida'],
+		required: true,
+		status: 'error'
+	}}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -358,12 +376,19 @@
 	{/snippet}
 </Story>
 
-<Story name="With Multiple Errors" args={{ 
-	label: 'Comentarios',
-	errors: ['El comentario es muy corto', 'Debe tener al menos 10 caracteres', 'No se permiten caracteres especiales'],
-	value: 'Hola',
-	status: 'error'
-}}>
+<Story
+	name="With Multiple Errors"
+	args={{
+		label: 'Comentarios',
+		errors: [
+			'El comentario es muy corto',
+			'Debe tener al menos 10 caracteres',
+			'No se permiten caracteres especiales'
+		],
+		value: 'Hola',
+		status: 'error'
+	}}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -384,13 +409,17 @@
 	{/snippet}
 </Story>
 
-<Story name="Error with Counter Warning" args={{ 
-	label: 'Mensaje',
-	errors: ['El mensaje excede el límite de caracteres'],
-	value: 'Este es un texto muy largo que excede el límite de caracteres permitidos para demostrar el comportamiento de error combinado con el contador.',
-	maxLength: 50,
-	status: 'error'
-}}>
+<Story
+	name="Error with Counter Warning"
+	args={{
+		label: 'Mensaje',
+		errors: ['El mensaje excede el límite de caracteres'],
+		value:
+			'Este es un texto muy largo que excede el límite de caracteres permitidos para demostrar el comportamiento de error combinado con el contador.',
+		maxLength: 50,
+		status: 'error'
+	}}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -412,11 +441,14 @@
 </Story>
 
 <!-- Disabled State -->
-<Story name="Disabled" args={{ 
-	label: 'Campo deshabilitado',
-	disabled: true,
-	value: 'Este texto no se puede editar'
-}}>
+<Story
+	name="Disabled"
+	args={{
+		label: 'Campo deshabilitado',
+		disabled: true,
+		value: 'Este texto no se puede editar'
+	}}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -437,13 +469,16 @@
 	{/snippet}
 </Story>
 
-<Story name="Disabled with Error" args={{ 
-	label: 'Campo deshabilitado con error',
-	disabled: true,
-	errors: ['Error persistente'],
-	value: 'Texto con error',
-	status: 'error'
-}}>
+<Story
+	name="Disabled with Error"
+	args={{
+		label: 'Campo deshabilitado con error',
+		disabled: true,
+		errors: ['Error persistente'],
+		value: 'Texto con error',
+		status: 'error'
+	}}
+>
 	{#snippet template(args)}
 		<TextArea
 			name={args.name}
@@ -487,14 +522,17 @@
 </Story>
 
 <!-- Real World Examples -->
-<Story name="Contact Form Example" args={{ 
-	label: 'Mensaje',
-	name: 'message',
-	placeholder: 'Escribe tu mensaje aquí...',
-	rows: 6,
-	maxLength: 500,
-	required: true
-}}>
+<Story
+	name="Contact Form Example"
+	args={{
+		label: 'Mensaje',
+		name: 'message',
+		placeholder: 'Escribe tu mensaje aquí...',
+		rows: 6,
+		maxLength: 500,
+		required: true
+	}}
+>
 	{#snippet template(args)}
 		<div style="max-width: 600px; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
 			<h3 style="margin-bottom: 20px;">Contacto</h3>
@@ -518,14 +556,17 @@
 	{/snippet}
 </Story>
 
-<Story name="Review Form Example" args={{ 
-	label: 'Tu reseña',
-	name: 'review',
-	placeholder: 'Comparte tu experiencia con el producto...',
-	rows: 5,
-	maxLength: 300,
-	showCounter: true
-}}>
+<Story
+	name="Review Form Example"
+	args={{
+		label: 'Tu reseña',
+		name: 'review',
+		placeholder: 'Comparte tu experiencia con el producto...',
+		rows: 5,
+		maxLength: 300,
+		showCounter: true
+	}}
+>
 	{#snippet template(args)}
 		<div style="max-width: 500px; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
 			<h3 style="margin-bottom: 20px;">Escribe una reseña</h3>

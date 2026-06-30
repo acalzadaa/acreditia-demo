@@ -56,7 +56,9 @@
 									<Badge variant="info">
 										{item.indicadorEstrategico.code}
 									</Badge>
-									<span class="element-item__code text-caption-small">{item.indicadorEstrategico.name}</span>
+									<span class="element-item__code text-caption-small"
+										>{item.indicadorEstrategico.name}</span
+									>
 								</div>
 
 								<div class="element-item__actions">
@@ -67,7 +69,8 @@
 										variant="ghost"
 										tooltipLabel="Eliminar indicador estrategico"
 										onClick={() => modalIndicadorEstrategico.handlers('delete').onClickItem(item)}
-										onKeydown={(e) => modalIndicadorEstrategico.handlers('delete').onKeydownItem(e, item)}
+										onKeydown={(e) =>
+											modalIndicadorEstrategico.handlers('delete').onKeydownItem(e, item)}
 									/>
 								</div>
 							</header>

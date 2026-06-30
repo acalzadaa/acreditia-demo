@@ -31,7 +31,6 @@
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
-
 </script>
 
 <div class="app-grid">

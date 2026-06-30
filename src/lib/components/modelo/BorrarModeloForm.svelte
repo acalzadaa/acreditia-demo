@@ -4,10 +4,7 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		modeloFormSchema,
-		type ModeloItem
-	} from '$lib/schemas/modelo.schema';
+	import { modeloFormSchema, type ModeloItem } from '$lib/schemas/modelo.schema';
 
 	interface Props {
 		open: boolean;

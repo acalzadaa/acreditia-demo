@@ -7,7 +7,7 @@
 	import Icon from '../ui/Icon.svelte';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import type { ModeloRef } from '$lib/schemas/shared.schema';
-	
+
 	interface Props {
 		open: boolean;
 		refs: ModeloRef[];

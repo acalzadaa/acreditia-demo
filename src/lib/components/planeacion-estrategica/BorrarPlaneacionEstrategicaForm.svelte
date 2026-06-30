@@ -5,9 +5,10 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
-		planeacionEstrategicaWithFilosofiaItemSchema,	
-		type PlaneacionEstrategicaWithFilosofiaItem} from '$lib/schemas/planeacionEstrategica.schema';
-	
+		planeacionEstrategicaWithFilosofiaItemSchema,
+		type PlaneacionEstrategicaWithFilosofiaItem
+	} from '$lib/schemas/planeacionEstrategica.schema';
+
 	interface Props {
 		open: boolean;
 		selectedItem: PlaneacionEstrategicaWithFilosofiaItem;
@@ -51,9 +52,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Confirmar eliminación</h2>
 			<IconButton
-				name='close'
-				variant='ghost'
-				size='lg'
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>

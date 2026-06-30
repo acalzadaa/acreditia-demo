@@ -78,7 +78,9 @@
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas aliminar el registro <strong>"{props.selectedItem?.name}"</strong>?
+					¿Estás seguro de que deseas aliminar el registro <strong
+						>"{props.selectedItem?.name}"</strong
+					>?
 				</p>
 			</div>
 

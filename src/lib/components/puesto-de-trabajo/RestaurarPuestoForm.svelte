@@ -65,8 +65,7 @@
 			<div class="modal-body">
 				<div class="confirm-content">
 					<p class="confirm-message text-body-large">
-						¿Estás seguro que deseas restaurar el registro <strong>"{selectedItem?.name}"</strong
-						>?
+						¿Estás seguro que deseas restaurar el registro <strong>"{selectedItem?.name}"</strong>?
 					</p>
 				</div>
 			</div>

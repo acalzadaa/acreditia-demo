@@ -4,8 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { institucionWithRelationsItemSchema, type InstitucionWithRelationsItem } from '$lib/schemas/institucion.schema';
-	
+	import {
+		institucionWithRelationsItemSchema,
+		type InstitucionWithRelationsItem
+	} from '$lib/schemas/institucion.schema';
+
 	interface Props {
 		open: boolean;
 		selectedItem: InstitucionWithRelationsItem;
@@ -13,7 +16,7 @@
 	}
 
 	let { open = $bindable(false), onClose, selectedItem }: Props = $props();
-	
+
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.

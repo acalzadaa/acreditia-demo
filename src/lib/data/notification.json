@@ -1,152 +1,152 @@
 {
-  "notifications": [
-    {
-      "id": "notif_001",
-      "title": "Mantenimiento programado",
-      "text": "El sistema estará en mantenimiento el domingo 25 de mayo de 02:00 a 04:00 AM",
-      "from": {
-        "type": "system",
-        "name": "Sistema"
-      },
-      "to": {
-        "type": "global",
-        "users": []
-      },
-      "when": "2024-05-20T09:00:00Z",
-      "readAt": null,
-      "link": "/estado-del-sistema"
-    },
-    {
-      "id": "notif_002",
-      "title": "Te mencionaron en un comentario",
-      "text": "María González te mencionó en el proyecto 'Dashboard'",
-      "from": {
-        "type": "user",
-        "user": {
-            "userId" : "asdf",
-            "firstName" :"Maria",
-            "lastName" :"Gonzalez"
-        }
-      },
-      "to": {
-        "type": "user",
-        "users": ["ana_perez"]
-      },
-      "when": "2024-05-20T10:30:00Z",
-      "readAt": "2024-05-20T11:45:00Z",
-      "link": "/proyectos/dashboard/comentarios/123"
-    },
-    {
-      "id": "notif_003",
-      "title": "Archivo subido",
-      "text": "El archivo 'presentacion_final.pdf' se ha subido correctamente",
-      "from": {
-        "type": "system",
-        "name": null
-      },
-      "to": {
-        "type": "user",
-        "users": ["carlos_ruiz"]
-      },
-      "when": "2024-05-20T08:15:00Z",
-      "readAt": null,
-      "link": "/archivos/987"
-    },
-    {
-      "id": "notif_004",
-      "title": "Almacenamiento casi lleno",
-      "text": "Te queda menos del 10% de espacio en tu cuenta",
-      "from": {
-        "type": "system",
-        "name": "Sistema"
-      },
-      "to": {
-        "type": "global",
-        "users": []
-      },
-      "when": "2024-05-19T14:45:00Z",
-      "readAt": "2024-05-19T15:30:00Z",
-      "link": "/ajustes/almacenamiento"
-    },
-    {
-      "id": "notif_005",
-      "title": "Invitación a colaborar",
-      "text": "Carlos Ruiz te ha invitado a colaborar en el documento 'Informe Q2'",
-      "from": {
-        "type": "user",
-        "name": "Carlos Ruiz"
-      },
-      "to": {
-        "type": "user",
-        "users": ["ana_perez"]
-      },
-      "when": "2024-05-19T11:20:00Z",
-      "readAt": "2024-05-19T16:30:00Z",
-      "link": "/documentos/informe-q2"
-    },
-    {
-      "id": "notif_006",
-      "title": "Nueva funcionalidad",
-      "text": "Ya puedes programar mensajes para enviar más tarde",
-      "from": {
-        "type": "system",
-        "name": "Equipo de Producto"
-      },
-      "to": {
-        "type": "global",
-        "users": []
-      },
-      "when": "2024-05-18T09:00:00Z",
-      "readAt": null,
-      "link": "/novedades"
-    },
-    {
-      "id": "notif_007",
-      "title": "Tarea completada",
-      "text": "Ana Martínez completó la tarea 'Revisar propuesta' que le asignaste",
-      "from": {
-        "type": "user",
-        "name": "Ana Martínez"
-      },
-      "to": {
-        "type": "user",
-        "users": ["carlos_ruiz"]
-      },
-      "when": "2024-05-18T15:10:00Z",
-      "readAt": "2024-05-18T17:45:00Z",
-      "link": "/tareas/789"
-    },
-    {
-      "id": "notif_008",
-      "title": "Bienvenido a la plataforma",
-      "text": "Gracias por unirte. Completa tu perfil para empezar",
-      "from": {
-        "type": "system",
-        "name": "Equipo de Onboarding"
-      },
-      "to": {
-        "type": "global",
-        "users": []
-      },
-      "when": "2024-05-15T10:00:00Z",
-      "readAt": "2024-05-15T10:05:00Z",
-      "link": "/perfil/completar"
-    },
-    {
-      "id": "notif_009",
-      "title": "Comentario en tu publicación",
-      "text": "Pedro Sánchez comentó en tu artículo sobre UI/UX",
-      "from": {
-        "type": "user",
-        "name": "Pedro Sánchez"
-      },
-      "to": {
-        "type": "user",
-        "users": ["ana_perez"]
-      },
-      "when": "2024-05-20T09:45:00Z",
-      "readAt": null,
-      "link": "/blog/ui-ux#comentario890"
-    }
-  ]
+	"notifications": [
+		{
+			"id": "notif_001",
+			"title": "Mantenimiento programado",
+			"text": "El sistema estará en mantenimiento el domingo 25 de mayo de 02:00 a 04:00 AM",
+			"from": {
+				"type": "system",
+				"name": "Sistema"
+			},
+			"to": {
+				"type": "global",
+				"users": []
+			},
+			"when": "2024-05-20T09:00:00Z",
+			"readAt": null,
+			"link": "/estado-del-sistema"
+		},
+		{
+			"id": "notif_002",
+			"title": "Te mencionaron en un comentario",
+			"text": "María González te mencionó en el proyecto 'Dashboard'",
+			"from": {
+				"type": "user",
+				"user": {
+					"userId": "asdf",
+					"firstName": "Maria",
+					"lastName": "Gonzalez"
+				}
+			},
+			"to": {
+				"type": "user",
+				"users": ["ana_perez"]
+			},
+			"when": "2024-05-20T10:30:00Z",
+			"readAt": "2024-05-20T11:45:00Z",
+			"link": "/proyectos/dashboard/comentarios/123"
+		},
+		{
+			"id": "notif_003",
+			"title": "Archivo subido",
+			"text": "El archivo 'presentacion_final.pdf' se ha subido correctamente",
+			"from": {
+				"type": "system",
+				"name": null
+			},
+			"to": {
+				"type": "user",
+				"users": ["carlos_ruiz"]
+			},
+			"when": "2024-05-20T08:15:00Z",
+			"readAt": null,
+			"link": "/archivos/987"
+		},
+		{
+			"id": "notif_004",
+			"title": "Almacenamiento casi lleno",
+			"text": "Te queda menos del 10% de espacio en tu cuenta",
+			"from": {
+				"type": "system",
+				"name": "Sistema"
+			},
+			"to": {
+				"type": "global",
+				"users": []
+			},
+			"when": "2024-05-19T14:45:00Z",
+			"readAt": "2024-05-19T15:30:00Z",
+			"link": "/ajustes/almacenamiento"
+		},
+		{
+			"id": "notif_005",
+			"title": "Invitación a colaborar",
+			"text": "Carlos Ruiz te ha invitado a colaborar en el documento 'Informe Q2'",
+			"from": {
+				"type": "user",
+				"name": "Carlos Ruiz"
+			},
+			"to": {
+				"type": "user",
+				"users": ["ana_perez"]
+			},
+			"when": "2024-05-19T11:20:00Z",
+			"readAt": "2024-05-19T16:30:00Z",
+			"link": "/documentos/informe-q2"
+		},
+		{
+			"id": "notif_006",
+			"title": "Nueva funcionalidad",
+			"text": "Ya puedes programar mensajes para enviar más tarde",
+			"from": {
+				"type": "system",
+				"name": "Equipo de Producto"
+			},
+			"to": {
+				"type": "global",
+				"users": []
+			},
+			"when": "2024-05-18T09:00:00Z",
+			"readAt": null,
+			"link": "/novedades"
+		},
+		{
+			"id": "notif_007",
+			"title": "Tarea completada",
+			"text": "Ana Martínez completó la tarea 'Revisar propuesta' que le asignaste",
+			"from": {
+				"type": "user",
+				"name": "Ana Martínez"
+			},
+			"to": {
+				"type": "user",
+				"users": ["carlos_ruiz"]
+			},
+			"when": "2024-05-18T15:10:00Z",
+			"readAt": "2024-05-18T17:45:00Z",
+			"link": "/tareas/789"
+		},
+		{
+			"id": "notif_008",
+			"title": "Bienvenido a la plataforma",
+			"text": "Gracias por unirte. Completa tu perfil para empezar",
+			"from": {
+				"type": "system",
+				"name": "Equipo de Onboarding"
+			},
+			"to": {
+				"type": "global",
+				"users": []
+			},
+			"when": "2024-05-15T10:00:00Z",
+			"readAt": "2024-05-15T10:05:00Z",
+			"link": "/perfil/completar"
+		},
+		{
+			"id": "notif_009",
+			"title": "Comentario en tu publicación",
+			"text": "Pedro Sánchez comentó en tu artículo sobre UI/UX",
+			"from": {
+				"type": "user",
+				"name": "Pedro Sánchez"
+			},
+			"to": {
+				"type": "user",
+				"users": ["ana_perez"]
+			},
+			"when": "2024-05-20T09:45:00Z",
+			"readAt": null,
+			"link": "/blog/ui-ux#comentario890"
+		}
+	]
 }

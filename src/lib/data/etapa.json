@@ -1,44 +1,44 @@
 {
-    "etapa": [
-        {
-            "order": 1,
-            "code": "meta",
-            "name": "Agregar metas"
-        },
-        {
-            "order": 2,
-            "code": "evidencia",
-            "name": "Capturar evidencia"
-        },
-        {
-            "order": 3,
-            "code": "resultados",
-            "name": "Captura de resultados"
-        },
-        {
-            "order": 4,
-            "code": "autoevaluacion",
-            "name": "Captura de autoevaluacion"
-        },
-        {
-            "order": 5,
-            "code": "revision",
-            "name": "Revision de autoevaluacion"
-        },
-        {
-            "order": 6,
-            "code": "captura",
-            "name": "Captura de plan de mejora"
-        },
-        {
-            "order": 7,
-            "code": "autorizacion",
-            "name": "Autorizacion de plan de mejora"
-        },
-        {
-            "order": 8,
-            "code": "ejecucion",
-            "name": "Ejecucion de plan de mejora"
-        }
-    ]
+	"etapa": [
+		{
+			"order": 1,
+			"code": "meta",
+			"name": "Agregar metas"
+		},
+		{
+			"order": 2,
+			"code": "evidencia",
+			"name": "Capturar evidencia"
+		},
+		{
+			"order": 3,
+			"code": "resultados",
+			"name": "Captura de resultados"
+		},
+		{
+			"order": 4,
+			"code": "autoevaluacion",
+			"name": "Captura de autoevaluacion"
+		},
+		{
+			"order": 5,
+			"code": "revision",
+			"name": "Revision de autoevaluacion"
+		},
+		{
+			"order": 6,
+			"code": "captura",
+			"name": "Captura de plan de mejora"
+		},
+		{
+			"order": 7,
+			"code": "autorizacion",
+			"name": "Autorizacion de plan de mejora"
+		},
+		{
+			"order": 8,
+			"code": "ejecucion",
+			"name": "Ejecucion de plan de mejora"
+		}
+	]
 }

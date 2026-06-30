@@ -56,6 +56,5 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-3);
-
 	}
 </style>

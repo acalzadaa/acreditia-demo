@@ -1,19 +1,19 @@
 :root {
-    --z-base: var(--z-0);
-    --z-dropdown: var(--z-10);
-    --z-sticky: var(--z-20);
+	--z-base: var(--z-0);
+	--z-dropdown: var(--z-10);
+	--z-sticky: var(--z-20);
 
-    --z-header: var(--z-30);
-    --z-subheader: var(--z-35);
-    --z-footer: var(--z-30);
-    --z-main: var(--z-30);
-    --z-navbar: var(--z-35);
+	--z-header: var(--z-30);
+	--z-subheader: var(--z-35);
+	--z-footer: var(--z-30);
+	--z-main: var(--z-30);
+	--z-navbar: var(--z-35);
 
-    --z-modal-backdrop: var(--z-50);
-    --z-modal: var(--z-60);
+	--z-modal-backdrop: var(--z-50);
+	--z-modal: var(--z-60);
 
-    --z-drawer: var(--z-90);
-    --z-tooltip: var(--z-100);
-    --z-popover: var(--z-110);
-    --z-toast: var(--z-120);
+	--z-drawer: var(--z-90);
+	--z-tooltip: var(--z-100);
+	--z-popover: var(--z-110);
+	--z-toast: var(--z-120);
 }

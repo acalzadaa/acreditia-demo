@@ -4,12 +4,11 @@ import { z } from 'zod';
 export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
 export const ESTATUS = ['activo', 'inactivo', 'borrado'] as const;
 
-
 export const jobTypeOptions: OptionData[] =
-  JOB_TYPE.map((v) => ({
-    id: v,
-    option: v.toUpperCase()
-  })) ?? [];  
+	JOB_TYPE.map((v) => ({
+		id: v,
+		option: v.toUpperCase()
+	})) ?? [];
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)

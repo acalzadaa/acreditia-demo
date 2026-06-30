@@ -76,6 +76,7 @@
 										<IconButton
 											isDisabled={item.isDeleted}
 											name="detail"
+											tooltipLabel="Ver detalle"
 											size="md"
 											borderShape="square"
 											variant="ghost"

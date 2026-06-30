@@ -12,5 +12,9 @@
 </script>
 
 <main>
-	<IndicadorCampus showHeader={true} title='Lista de indicadores por campus' items={evaluacionEtapaIndicadorCampusItems} />
+	<IndicadorCampus
+		showHeader={true}
+		title="Lista de indicadores por campus"
+		items={evaluacionEtapaIndicadorCampusItems}
+	/>
 </main>

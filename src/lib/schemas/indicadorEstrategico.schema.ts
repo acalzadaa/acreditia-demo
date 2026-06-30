@@ -8,10 +8,10 @@ import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 export const FREQUENCY_UNIT = ['dia', 'semana', 'mes', 'año'] as const;
 
 export const frequencyUnitOptions: OptionData[] =
-  FREQUENCY_UNIT.map((v) => ({
-    id: v,
-    option: v.toUpperCase()
-  })) ?? [];
+	FREQUENCY_UNIT.map((v) => ({
+		id: v,
+		option: v.toUpperCase()
+	})) ?? [];
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)

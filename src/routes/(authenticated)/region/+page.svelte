@@ -88,7 +88,8 @@
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
 		onClickDetalle={(item: RegionWithRelationsItem) => onClickDetalle(item)}
-		onKeydownDetalle={(e: KeyboardEvent, item: RegionWithRelationsItem) => onKeydownDetalle(e, item)}
+		onKeydownDetalle={(e: KeyboardEvent, item: RegionWithRelationsItem) =>
+			onKeydownDetalle(e, item)}
 	/>
 
 	<!-- MODAL CREAR -->

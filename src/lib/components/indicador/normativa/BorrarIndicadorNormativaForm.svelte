@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	
+
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import { indicadorNormativaItemSchema, type IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
-	
+	import {
+		indicadorNormativaItemSchema,
+		type IndicadorNormativaItem
+	} from '$lib/schemas/indicadorNormativa';
+
 	interface Props {
 		open: boolean;
 		selectedItem: IndicadorNormativaItem;

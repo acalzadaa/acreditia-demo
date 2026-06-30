@@ -1,9 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type {
-		EtapaCapturaPlanMejoraItem
-	} from '$lib/schemas/etapaMetadata.schema';
+	import type { EtapaCapturaPlanMejoraItem } from '$lib/schemas/etapaMetadata.schema';
 
 	interface Props {
 		items: EtapaCapturaPlanMejoraItem[];

@@ -1,94 +1,94 @@
 /* components/icon-button.css - VERSIÓN SIMPLIFICADA */
 
 :root {
-    /* ===== ICON BUTTON TOKENS ===== */
-    --icon-button-border-radius: var(--border-radius-full);
-    --icon-button-transition: all 0.15s ease;
+	/* ===== ICON BUTTON TOKENS ===== */
+	--icon-button-border-radius: var(--border-radius-full);
+	--icon-button-transition: all 0.15s ease;
 
-    /* ===== SIZES ===== */
-    --icon-button-padding-sm: var(--space-1);
-    --icon-button-padding-md: var(--space-2);
-    --icon-button-padding-lg: var(--space-2);
+	/* ===== SIZES ===== */
+	--icon-button-padding-sm: var(--space-1);
+	--icon-button-padding-md: var(--space-2);
+	--icon-button-padding-lg: var(--space-2);
 
-    /* Icon sizes (em based, relative to font-size) */
-    --icon-button-size-sm: 1.25em;
-    --icon-button-size-md: 1.5em;
-    --icon-button-size-lg: 1.75em;
+	/* Icon sizes (em based, relative to font-size) */
+	--icon-button-size-sm: 1.25em;
+	--icon-button-size-md: 1.5em;
+	--icon-button-size-lg: 1.75em;
 
-    /* ===== STATES (reusing button patterns) ===== */
-    --icon-button-disabled-opacity: 0.5;
-    --icon-button-scale-active: 0.96;
+	/* ===== STATES (reusing button patterns) ===== */
+	--icon-button-disabled-opacity: 0.5;
+	--icon-button-scale-active: 0.96;
 }
 
 /* ==========================================
    BASE ICON BUTTON
    ========================================== */
 .icon-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 
-    border: var(--border-width-thin) solid transparent;
-    border-radius: var(--icon-button-border-radius);
+	border: var(--border-width-thin) solid transparent;
+	border-radius: var(--icon-button-border-radius);
 
-    background: transparent;
-    color: var(--text-secondary);
+	background: transparent;
+	color: var(--text-secondary);
 
-    transition: var(--icon-button-transition);
-    cursor: pointer;
+	transition: var(--icon-button-transition);
+	cursor: pointer;
 
-    font-family: inherit;
-    line-height: 1;
+	font-family: inherit;
+	line-height: 1;
 
-    /* Flex container for SVG */
-    svg {
-        display: block;
-        flex-shrink: 0;
-    }
+	/* Flex container for SVG */
+	svg {
+		display: block;
+		flex-shrink: 0;
+	}
 }
 
 /* ==========================================
    SIZES
    ========================================== */
 .icon-button--size-sm {
-    padding: var(--icon-button-padding-sm);
+	padding: var(--icon-button-padding-sm);
 
-    svg {
-        width: var(--icon-button-size-sm);
-        height: var(--icon-button-size-sm);
-    }
+	svg {
+		width: var(--icon-button-size-sm);
+		height: var(--icon-button-size-sm);
+	}
 }
 
 .icon-button--size-md {
-    padding: var(--icon-button-padding-md);
-    padding: var(--icon-button-padding-md);
-    min-width: 2.25rem;
-    min-height: 2.25rem;
+	padding: var(--icon-button-padding-md);
+	padding: var(--icon-button-padding-md);
+	min-width: 2.25rem;
+	min-height: 2.25rem;
 
-    svg {
-        width: var(--icon-button-size-md);
-        height: var(--icon-button-size-md);
-    }
+	svg {
+		width: var(--icon-button-size-md);
+		height: var(--icon-button-size-md);
+	}
 }
 
 .icon-button--size-lg {
-    padding: var(--icon-button-padding-lg);
+	padding: var(--icon-button-padding-lg);
 
-    svg {
-        width: var(--icon-button-size-lg);
-        height: var(--icon-button-size-lg);
-    }
+	svg {
+		width: var(--icon-button-size-lg);
+		height: var(--icon-button-size-lg);
+	}
 }
 
 /* ==========================================
    SHAPE VARIANTS
    ========================================== */
 .icon-button--shape-circle {
-    border-radius: var(--border-radius-full);
+	border-radius: var(--border-radius-full);
 }
 
 .icon-button--shape-square {
-    border-radius: var(--border-radius-md);
+	border-radius: var(--border-radius-md);
 }
 
 /* ==========================================
@@ -100,24 +100,24 @@
       (Equivalente a button--variant-ghost)
    ------------------------------------------- */
 .icon-button--variant-ghost {
-    background: transparent;
-    color: var(--text-secondary);
+	background: transparent;
+	color: var(--text-secondary);
 }
 
 .icon-button--variant-ghost:hover:not(:disabled) {
-    background: var(--neutral-900-10);
-    color: var(--text-primary);
+	background: var(--neutral-900-10);
+	color: var(--text-primary);
 }
 
 .icon-button--variant-ghost:active:not(:disabled) {
-    background: var(--neutral-900-20);
-    transform: scale(var(--icon-button-scale-active));
+	background: var(--neutral-900-20);
+	transform: scale(var(--icon-button-scale-active));
 }
 
 /* Active state (toggled) */
 .icon-button--variant-ghost.icon-button--active {
-    background: var(--neutral-900-20);
-    color: var(--text-primary);
+	background: var(--neutral-900-20);
+	color: var(--text-primary);
 }
 
 /* -------------------------------------------
@@ -125,27 +125,27 @@
       (Equivalente a button--variant-outline)
    ------------------------------------------- */
 .icon-button--variant-outline {
-    background: transparent;
-    color: var(--text-primary);
-    border: var(--border-width-thin) solid var(--border-regular);
+	background: transparent;
+	color: var(--text-primary);
+	border: var(--border-width-thin) solid var(--border-regular);
 }
 
 .icon-button--variant-outline:hover:not(:disabled) {
-    background: var(--neutral-900-10);
-    border-color: var(--border-brand);
+	background: var(--neutral-900-10);
+	border-color: var(--border-brand);
 }
 
 .icon-button--variant-outline:active:not(:disabled) {
-    background: var(--neutral-900-20);
-    border-color: var(--border-brand-strong);
-    transform: scale(var(--icon-button-scale-active));
+	background: var(--neutral-900-20);
+	border-color: var(--border-brand-strong);
+	transform: scale(var(--icon-button-scale-active));
 }
 
 /* Active state (toggled) */
 .icon-button--variant-outline.icon-button--active {
-    background: var(--neutral-900-10);
-    border-color: var(--border-brand);
-    color: var(--text-primary);
+	background: var(--neutral-900-10);
+	border-color: var(--border-brand);
+	color: var(--text-primary);
 }
 
 /* -------------------------------------------
@@ -153,24 +153,24 @@
       (Equivalente a button--variant-primary)
    ------------------------------------------- */
 .icon-button--variant-solid {
-    background: var(--bg-brand-primary);
-    color: var(--text-on-brand-primary);
+	background: var(--bg-brand-primary);
+	color: var(--text-on-brand-primary);
 }
 
 .icon-button--variant-solid:hover:not(:disabled) {
-    background: var(--bg-brand-primary-hover);
-    transform: scale(var(--icon-button-scale-active));
+	background: var(--bg-brand-primary-hover);
+	transform: scale(var(--icon-button-scale-active));
 }
 
 .icon-button--variant-solid:active:not(:disabled) {
-    background: var(--bg-brand-primary-active);
-    transform: scale(var(--icon-button-scale-active));
+	background: var(--bg-brand-primary-active);
+	transform: scale(var(--icon-button-scale-active));
 }
 
 /* Active state (toggled) */
 .icon-button--variant-solid.icon-button--active {
-    background: var(--bg-brand-primary-active);
-    box-shadow: var(--shadow-inset);
+	background: var(--bg-brand-primary-active);
+	box-shadow: var(--shadow-inset);
 }
 
 /* ==========================================
@@ -178,10 +178,10 @@
    ========================================== */
 .icon-button:disabled,
 .icon-button--disabled {
-    opacity: var(--icon-button-disabled-opacity);
-    cursor: not-allowed;
-    pointer-events: none;
-    transform: none !important;
+	opacity: var(--icon-button-disabled-opacity);
+	cursor: not-allowed;
+	pointer-events: none;
+	transform: none !important;
 }
 
 /* Variant-specific disabled overrides */
@@ -189,31 +189,31 @@
 .icon-button--variant-solid.icon-button--disabled,
 .icon-button--variant-solid-secondary:disabled,
 .icon-button--variant-solid-secondary.icon-button--disabled {
-    background: var(--neutral-tinted-300);
-    color: var(--neutral-tinted-500);
+	background: var(--neutral-tinted-300);
+	color: var(--neutral-tinted-500);
 }
 
 .icon-button--variant-outline:disabled,
 .icon-button--variant-outline.icon-button--disabled {
-    background: transparent;
-    color: var(--text-disabled);
-    border-color: var(--border-regular);
+	background: transparent;
+	color: var(--text-disabled);
+	border-color: var(--border-regular);
 }
 
 .icon-button--variant-ghost:disabled,
 .icon-button--variant-ghost.icon-button--disabled {
-    background: transparent;
-    color: var(--text-disabled);
+	background: transparent;
+	color: var(--text-disabled);
 }
 
 /* ==========================================
    FOCUS VISIBLE
    ========================================== */
 .icon-button:focus-visible {
-    outline: var(--focus-ring);
-    outline-offset: var(--focus-ring-offset);
+	outline: var(--focus-ring);
+	outline-offset: var(--focus-ring-offset);
 }
 
 .icon-button:focus:not(:focus-visible) {
-    outline: none;
+	outline: none;
 }

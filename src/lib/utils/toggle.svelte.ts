@@ -1,23 +1,23 @@
 /**
  * Crea un estado de toggle/interruptor reactivo para Svelte 5 (runes)
- * 
+ *
  * @param initialValue - Valor inicial del toggle (por defecto: false)
  * @returns {Object} Objeto con estado y manejadores para el toggle
- * 
+ *
  * @example
  * ```svelte
  * <script>
  *   const darkMode = createToggle(false);
  * </script>
- * 
+ *
  * <!-- Uso simple con bind -->
  * <input type="checkbox" bind:checked={darkMode.value} />
- * 
+ *
  * <!-- Uso con manejadores predefinidos para accesibilidad -->
  * <button {...darkMode}>
  *   {darkMode.value ? 'Dark' : 'Light'}
  * </button>
- * 
+ *
  * <!-- Uso manual -->
  * <button onclick={darkMode.toggle}>
  *   Toggle
@@ -45,10 +45,10 @@ export function createToggle(initialValue: boolean = false) {
 		get value() {
 			return value;
 		},
-		
+
 		/** Función para invertir manualmente el estado */
 		toggle,
-		
+
 		/**
 		 * Manejador click para usar directamente en elementos
 		 * @example
@@ -57,7 +57,7 @@ export function createToggle(initialValue: boolean = false) {
 		 * ```
 		 */
 		onclick: () => toggle(),
-		
+
 		/**
 		 * Manejador de teclado para accesibilidad (Enter/Espacio)
 		 * Útil para elementos que no son botones nativos

@@ -1,24 +1,24 @@
 {
-  "rubricaCriterioItems": [
-    {
-      "id": "2a26aa01-11a4-48fc-9433-b0422806a9f8",
-      "code": "crit-001-01",
-      "rubrica": {
-        "id": "11935fea-37be-44a6-9545-e62f28bf60bc",
-        "code": "rub-001-ind-001",
-        "rangeStart": 1,
-        "rangeEnd": 2,
-        "order": 1
-      },
-      "criterio": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes.",
-      "order": 1,
-      "version": 1,
-      "isCurrent": true,
-      "validFrom": "2024-01-01T00:00:00Z",
-      "validTo": null,
-      "isDeleted": false,
-      "createdAt": "2024-01-01T10:00:00Z",
-      "createdBy": "sistema"
-    }
-  ]
+	"rubricaCriterioItems": [
+		{
+			"id": "2a26aa01-11a4-48fc-9433-b0422806a9f8",
+			"code": "crit-001-01",
+			"rubrica": {
+				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
+				"code": "rub-001-ind-001",
+				"rangeStart": 1,
+				"rangeEnd": 2,
+				"order": 1
+			},
+			"criterio": "No se han implementado acciones específicas para la retención estudiantil o las acciones existentes son insuficientes.",
+			"order": 1,
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "sistema"
+		}
+	]
 }

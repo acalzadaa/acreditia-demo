@@ -26,7 +26,6 @@
 
 	let navigationItems = $derived(page.data.navigationItems);
 
-
 	/* LOGOUT */
 	async function onClickLogout() {
 		auth.logout();

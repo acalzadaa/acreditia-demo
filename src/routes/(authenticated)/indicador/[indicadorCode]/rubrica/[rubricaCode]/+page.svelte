@@ -33,28 +33,26 @@
 		items={rubricaCriterioItems}
 	/>
 
+	<!-- MODAL CREAR -->
+	<CrearCriterioForm open={modal.isOpen('create')} onClose={modal.close} />
 
-<!-- MODAL CREAR -->
-<CrearCriterioForm open={modal.isOpen('create')} onClose={modal.close} />
+	{#if modal.selectedItem}
+		<EditarCriterioForm
+			open={modal.isOpen('edit')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
+		/>
 
-{#if modal.selectedItem}
-	<EditarCriterioForm
-		open={modal.isOpen('edit')}
-		selectedItem={modal.selectedItem}
-		onClose={modal.close}
-	/>
+		<BorrarCriterioForm
+			open={modal.isOpen('delete')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
+		/>
 
-	<BorrarCriterioForm
-		open={modal.isOpen('delete')}
-		selectedItem={modal.selectedItem}
-		onClose={modal.close}
-	/>
-
-	<RestaurarCriterioForm
-		open={modal.isOpen('restore')}
-		selectedItem={modal.selectedItem}
-		onClose={modal.close}
-	/>
-{/if}
-
+		<RestaurarCriterioForm
+			open={modal.isOpen('restore')}
+			selectedItem={modal.selectedItem}
+			onClose={modal.close}
+		/>
+	{/if}
 </main>

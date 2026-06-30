@@ -2,7 +2,6 @@
 	import LoginForm from '$lib/components/auth/LoginForm.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import Header from '$lib/components/common/Header.svelte';
-	
 </script>
 
 <div class="app-grid">
@@ -26,7 +25,7 @@
 	}
 
 	.main {
-        background-color: var(--bg-ground);
+		background-color: var(--bg-ground);
 		grid-area: main;
 		display: flex;
 		align-items: center;

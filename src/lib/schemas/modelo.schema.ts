@@ -65,12 +65,11 @@ export type CalidadModeloConfig = z.infer<typeof modeloConfigSchema>;
 // ============================================
 
 export const modeloFullRefSchema = modeloRefSchema.extend({
-	capitulos: z
-		.array(
-			capituloRefSchema.extend({
-				secciones: z.array(seccionRefSchema)
-			})
-		)
+	capitulos: z.array(
+		capituloRefSchema.extend({
+			secciones: z.array(seccionRefSchema)
+		})
+	)
 });
 
 export type ModeloFullRef = z.infer<typeof modeloFullRefSchema>;

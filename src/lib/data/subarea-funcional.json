@@ -1,34 +1,34 @@
 {
-    "subareaFuncionalItems": [
-        {
-            "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
-            "areaFuncionalId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
-            "code": "AF_001",
-            "name": "Direccion de Capital Humano",
-            "descripcion": "",
-            "status": "activo",
-            "areaFuncional": {
-                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
-                "code": "AF_001",
-                "name": "Direccion de Capital Humano"
-            },
-            "createdAt": "2024-01-01T00:00:00Z",
-            "updatedAt": "2024-01-01T00:00:00Z"
-        },
-        {
-            "id": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
-            "areaFuncionalId": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
-            "code": "AF_002",
-            "name": "Direccion de Operaciones",
-            "descripcion": "",
-            "status": "activo",
-            "areaFuncional": {
-                "id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
-                "code": "AF_001",
-                "name": "Direccion de Capital Humano"
-            },
-            "createdAt": "2024-01-01T00:00:00Z",
-            "updatedAt": "2024-01-01T00:00:00Z"
-        }
-    ]
+	"subareaFuncionalItems": [
+		{
+			"id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+			"areaFuncionalId": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+			"code": "AF_001",
+			"name": "Direccion de Capital Humano",
+			"descripcion": "",
+			"status": "activo",
+			"areaFuncional": {
+				"id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+				"code": "AF_001",
+				"name": "Direccion de Capital Humano"
+			},
+			"createdAt": "2024-01-01T00:00:00Z",
+			"updatedAt": "2024-01-01T00:00:00Z"
+		},
+		{
+			"id": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
+			"areaFuncionalId": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
+			"code": "AF_002",
+			"name": "Direccion de Operaciones",
+			"descripcion": "",
+			"status": "activo",
+			"areaFuncional": {
+				"id": "5f84bdd4-e859-4bca-a73b-3fc2ed3293b6",
+				"code": "AF_001",
+				"name": "Direccion de Capital Humano"
+			},
+			"createdAt": "2024-01-01T00:00:00Z",
+			"updatedAt": "2024-01-01T00:00:00Z"
+		}
+	]
 }

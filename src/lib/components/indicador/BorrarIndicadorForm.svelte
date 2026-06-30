@@ -5,7 +5,7 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { indicadorItemSchema, type IndicadorItem } from '$lib/schemas/indicador.schema';
-		
+
 	interface Props {
 		open: boolean;
 		selectedItem: IndicadorItem;
@@ -49,9 +49,9 @@
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Borrar indicador</h2>
 			<IconButton
-				name='close'
-				variant='ghost'
-				size='lg'
+				name="close"
+				variant="ghost"
+				size="lg"
 				onClick={onClose}
 				onKeydown={(e) => onKeydownClose(e)}
 			/>

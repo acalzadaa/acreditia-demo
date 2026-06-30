@@ -24,15 +24,15 @@
 		showExport={false}
 		showFilter={false}
 	/>
-	<IndicadorNormativa onClickBorrar={modal.handlers('delete').onClickItem} showDetailIcon={false} items={indicadorNormativaItems} />
+	<IndicadorNormativa
+		onClickBorrar={modal.handlers('delete').onClickItem}
+		showDetailIcon={false}
+		items={indicadorNormativaItems}
+	/>
 </main>
 
 <!-- MODAL CREAR -->
-<AddIndicadorNormativaPicker
-	open={modal.isOpen('create')}
-	{normativaRef}
-	onClose={modal.close}
-/>
+<AddIndicadorNormativaPicker open={modal.isOpen('create')} {normativaRef} onClose={modal.close} />
 
 {#if modal.selectedItem}
 	<BorrarIndicadorNormativaForm

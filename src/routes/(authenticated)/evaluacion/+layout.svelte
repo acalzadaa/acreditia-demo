@@ -63,7 +63,7 @@
 		min-height: 0;
 		overflow: hidden;
 	}
-	
+
 	.app-grid {
 		display: grid;
 		grid-template-areas:

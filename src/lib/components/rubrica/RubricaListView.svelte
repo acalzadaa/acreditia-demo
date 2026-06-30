@@ -4,17 +4,13 @@
 	import RubricaCard from './RubricaCard.svelte';
 
 	interface Props {
-			items: RubricaItem[];
+		items: RubricaItem[];
 	}
 
-	const {
-	
-		items
-	}: Props = $props();
+	const { items }: Props = $props();
 </script>
 
 <main class="main-panel">
-
 	<section class="rubrica-list-container">
 		{#if items && items.length > 0}
 			<div class="rubrica-list">

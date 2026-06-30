@@ -18,7 +18,6 @@
 			goto(resolve('/dashboard'));
 		}
 	});
-
 </script>
 
-<Header isLoggedIn={!!auth.user}  onClickLogout={handleLogout} onClickLogin={handleLogin} />
+<Header isLoggedIn={!!auth.user} onClickLogout={handleLogout} onClickLogin={handleLogin} />

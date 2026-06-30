@@ -29,8 +29,8 @@
 		formData.append('url', url);
 		formData.append('file', file);
 
-		console.log('Datos enviados (demo):', { 
-			url, 
+		console.log('Datos enviados (demo):', {
+			url,
 			fileName: file.name,
 			fileSize: file.size,
 			fileType: file.type
@@ -44,7 +44,7 @@
 		setTimeout(() => {
 			isSubmitting = false;
 			console.log('Envío completado (demo)');
-			
+
 			// Opcional: resetear el formulario después del envío
 			// file = null;
 			// url = '';

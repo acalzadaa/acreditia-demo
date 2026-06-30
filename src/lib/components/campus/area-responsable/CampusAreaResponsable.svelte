@@ -4,7 +4,6 @@
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
-	
 
 	interface Props {
 		gridArea?: string;

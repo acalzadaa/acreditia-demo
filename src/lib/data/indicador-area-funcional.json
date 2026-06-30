@@ -1,42 +1,42 @@
 {
-    "indicadorAreaFuncionalItems": [
-        {
-            "id": "55bbcf82-8cf4-4081-ae48-45bb4949efd3",
-            "code": "af-ind-001",
-            "indicador": {
-                "id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
-                "code": "ind-001",
-                "name": "Tasa de Retención Estudiantil"
-            },
-            "areaFuncional": {
-                "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-                "code": "VPA",
-                "name": "VP Académica"
-            },
-            "subareasFuncionales": [
-                {
-                    "id": "7bf3c6a3-fe6d-4cb4-b304-f60fab8c7e8a",
-                    "code": "ACPA",
-                    "name": "Aseguramiento de la Calidad y Planeación Académica"
-                },
-                {
-                    "id": "333cdb19-e282-49db-be20-f28eb2189eb2",
-                    "code": "DIES",
-                    "name": "Dirección Institucional de Educación Superior"
-                },
-                {
-                    "id": "b8c9d0e1-f2a3-4567-8901-23456789abcd",
-                    "code": "STYCN",
-                    "name": "Secretaría Técnica y Cumplimiento Normativo"
-                }
-            ],
-            "version": 1,
-            "isCurrent": true,
-            "validFrom": "2024-01-15T00:00:00Z",
-            "validTo": null,
-            "isDeleted": false,
-            "createdAt": "2024-01-15T10:30:00Z",
-            "createdBy": "planeacion@universidad.edu"
-        }
-    ]
+	"indicadorAreaFuncionalItems": [
+		{
+			"id": "55bbcf82-8cf4-4081-ae48-45bb4949efd3",
+			"code": "af-ind-001",
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"areaFuncional": {
+				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+				"code": "VPA",
+				"name": "VP Académica"
+			},
+			"subareasFuncionales": [
+				{
+					"id": "7bf3c6a3-fe6d-4cb4-b304-f60fab8c7e8a",
+					"code": "ACPA",
+					"name": "Aseguramiento de la Calidad y Planeación Académica"
+				},
+				{
+					"id": "333cdb19-e282-49db-be20-f28eb2189eb2",
+					"code": "DIES",
+					"name": "Dirección Institucional de Educación Superior"
+				},
+				{
+					"id": "b8c9d0e1-f2a3-4567-8901-23456789abcd",
+					"code": "STYCN",
+					"name": "Secretaría Técnica y Cumplimiento Normativo"
+				}
+			],
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-15T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-15T10:30:00Z",
+			"createdBy": "planeacion@universidad.edu"
+		}
+	]
 }

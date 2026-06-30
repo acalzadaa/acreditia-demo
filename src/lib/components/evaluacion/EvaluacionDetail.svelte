@@ -43,6 +43,7 @@
 							<td class="col-actions">
 								<IconButton
 									name="detail"
+									tooltipLabel="Ver detalle"
 									size="md"
 									borderShape="square"
 									variant="ghost"

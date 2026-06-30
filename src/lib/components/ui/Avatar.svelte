@@ -15,7 +15,7 @@
 	function hashCode(str: string): number {
 		let hash = 0;
 		for (let i = 0; i < str.length; i++) {
-			hash = ((hash << 5) - hash) + str.charCodeAt(i);
+			hash = (hash << 5) - hash + str.charCodeAt(i);
 			hash |= 0;
 		}
 		return Math.abs(hash);
@@ -23,9 +23,11 @@
 
 	// Generar patrón simétrico 5x5
 	function generatePattern(hash: number): boolean[][] {
-		const pattern: boolean[][] = Array(5).fill(null).map(() => Array(5).fill(false));
+		const pattern: boolean[][] = Array(5)
+			.fill(null)
+			.map(() => Array(5).fill(false));
 		let hashValue = hash;
-		
+
 		for (let y = 0; y < 5; y++) {
 			for (let x = 0; x < 3; x++) {
 				const bit = hashValue & 1;
@@ -35,7 +37,7 @@
 				if (hashValue === 0) hashValue = hash;
 			}
 		}
-		
+
 		return pattern;
 	}
 
@@ -43,18 +45,18 @@
 	function getColors(hash: number): { primary: string; secondary: string } {
 		// OKLCH: lightness (0-1), chroma (0-0.4 typical), hue (0-360)
 		const hue = hash % 360;
-		
+
 		// Lightness: entre 0.55 y 0.75 (más brillante que HSL)
 		const lightness = 0.55 + (hash % 25) / 100;
-		
+
 		// Chroma: entre 0.12 y 0.28 (colores vibrantes pero naturales)
 		const chroma = 0.12 + (hash % 17) / 100;
-		
+
 		// Para el color secundario: hue + 40, chroma ligeramente reducido, lightness más oscuro
 		const secondaryHue = (hue + 40) % 360;
 		const secondaryLightness = lightness - 0.1;
 		const secondaryChroma = Math.max(0.08, chroma - 0.04);
-		
+
 		return {
 			primary: `oklch(${lightness} ${chroma} ${hue})`,
 			secondary: `oklch(${secondaryLightness} ${secondaryChroma} ${secondaryHue})`
@@ -85,20 +87,15 @@
 	/>
 {:else}
 	<div class="avatar-identicon" style:width="{size}px" style:height="{size}px">
-		<svg 
-			width={size} 
-			height={size} 
-			viewBox="0 0 {scale} {scale}"
-			style="border-radius: 20%;"
-		>
+		<svg width={size} height={size} viewBox="0 0 {scale} {scale}" style="border-radius: 20%;">
 			{#each pattern as row, y}
 				{#each row as active, x}
 					{#if active}
-						<rect 
-							x={x} 
-							y={y} 
-							width="1" 
-							height="1" 
+						<rect
+							{x}
+							{y}
+							width="1"
+							height="1"
 							fill={colors.primary}
 							stroke={colors.primary}
 							stroke-width="0.05"

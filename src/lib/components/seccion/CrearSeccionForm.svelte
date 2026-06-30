@@ -63,7 +63,7 @@
 
 		// Aquí podrías console.log o guardar los datos si quieres
 		console.log('Datos enviados (demo):', formData);
-		
+
 		// Limpiar formulario
 		formData = {
 			capituloId: '',
@@ -72,10 +72,10 @@
 			content: '',
 			description: ''
 		};
-		
+
 		// Limpiar mensaje de error
 		errorMessage = '';
-		
+
 		// Cerrar modal
 		handleClose();
 	}
@@ -118,10 +118,12 @@
 			/>
 		</header>
 
-		<form onsubmit={(e) => {
-			e.preventDefault();
-			handleSubmit();
-		}}>
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
 			<div class="modal-body">
 				<div class="form-fields">
 					{#if errorMessage}
@@ -178,7 +180,7 @@
 						label="Descripción"
 						name="description"
 						placeholder="Descripción..."
-						status='normal'
+						status="normal"
 						disabled={false}
 						bind:value={formData.description}
 						rows={4}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	
+
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { evidenciaFileRefSchema, type EvidenciaFileRef } from '$lib/schemas/etapaMetadata.schema';
 	import Modal from '$lib/components/modal/Modal.svelte';
@@ -65,7 +65,8 @@
 			<div class="modal-body">
 				<div class="confirm-content">
 					<p class="confirm-message text-body-large">
-						¿Estás seguro de que deseas aliminar el registro <strong>"{props.item?.filename}"</strong
+						¿Estás seguro de que deseas aliminar el registro <strong
+							>"{props.item?.filename}"</strong
 						>?
 					</p>
 				</div>

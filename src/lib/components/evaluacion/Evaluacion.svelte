@@ -1,9 +1,6 @@
 <script lang="ts">
 	import { navigateTo } from '$lib/helpers/navigation';
-	import type {
-	EvaluacionItem,
-		EvaluacionStatus
-	} from '$lib/schemas/evaluacion.schema';
+	import type { EvaluacionItem, EvaluacionStatus } from '$lib/schemas/evaluacion.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
 	import Badge, { type BadgeStatus } from '../ui/Badge.svelte';
@@ -93,6 +90,7 @@
 									<IconButton
 										isDisabled={item.isDeleted}
 										name="detail"
+										tooltipLabel="Ver detalle"
 										size="md"
 										borderShape="square"
 										variant="ghost"

@@ -1,244 +1,244 @@
 {
-  "navigationItems": [
-    {
-      "id": 1,
-      "order": 10,
-      "label": "Dirección Estratégica",
-      "description": "Base ideológica e inmaterial de la institución",
-      "itemType": "section",
-      "status": "active",
-      "children": [
-        {
-          "id": 101,
-          "order": 11,
-          "label": "Filosofía institucional",
-          "href": "/filosofia-institucional",
-          "description": "La filosofía institucional define su misión y valores",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 102,
-          "order": 12,
-          "label": "Planeación estratégica",
-          "href": "/planeacion-estrategica",
-          "description": "La planeación estratégica establece las metas que llevarán al cumplimiento de la misión y valores",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 103,
-          "order": 13,
-          "label": "Objetivo estratégico",
-          "href": "/objetivo-estrategico",
-          "description": "Los objetivos estratégicos son los resultados que se esperan alcanzar con la planeación estratégica",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 104,
-          "order": 14,
-          "label": "Indicador estratégico",
-          "href": "/indicador-estrategico",
-          "description": "Los indicadores estratégicos son las métricas que se utilizan para medir el cumplimiento de los objetivos estratégicos",
-          "itemType": "link",
-          "status": "active"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "order": 20,
-      "label": "Estructura Institucional",
-      "description": "Define la estructura física de la institución",
-      "itemType": "section",
-      "status": "active",
-      "children": [
-        {
-          "id": 201,
-          "order": 21,
-          "label": "Entidad legal",
-          "href": "/entidad-legal",
-          "description": "Define el nombre de la entidad legal de la institución",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 202,
-          "order": 22,
-          "label": "Institución",
-          "href": "/institucion",
-          "description": "Define la institución establecida en la región geográfica bajo una entidad legal",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 203,
-          "order": 23,
-          "label": "Campus",
-          "href": "/campus",
-          "description": "Define el campus perteneciente a la universidad",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 204,
-          "order": 24,
-          "label": "Unidad académica",
-          "href": "/unidad-academica",
-          "description": "Define la unidad académica que tiene disponible el campus",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 205,
-          "order": 25,
-          "label": "Región geográfica",
-          "href": "/region",
-          "description": "Define la región geográfica en la que se encuentra la institución",
-          "itemType": "link",
-          "status": "active"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "order": 30,
-      "label": "Estructura Organizacional",
-      "description": "Define la estructura funcional de la institución",
-      "itemType": "section",
-      "status": "active",
-      "children": [
-        {
-          "id": 301,
-          "order": 31,
-          "label": "Puesto de trabajo",
-          "href": "/puesto-de-trabajo",
-          "description": "Define los puestos, competencias y perfiles del talento humano",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 302,
-          "order": 32,
-          "label": "Área funcional",
-          "href": "/area-funcional",
-          "description": "Define las áreas funcionales de la institución",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 303,
-          "order": 33,
-          "label": "Área responsable",
-          "href": "/area-responsable",
-          "description": "Define las áreas responsables de la institución",
-          "itemType": "link",
-          "status": "active"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "order": 40,
-      "label": "Sistemas de Acreditación",
-      "description": "Estructura y estándares definidos por organismos acreditadores (FIMPES, COPAES, CIEES, etc.)",
-      "itemType": "section",
-      "status": "active",
-      "children": [
-        {
-          "id": 401,
-          "order": 41,
-          "label": "Modelos de calidad",
-          "href": "/modelo",
-          "description": "Define los modelos de gestión de calidad (FIMPES, ISO 9001, modelo propio, etc.)",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 402,
-          "order": 42,
-          "label": "Capítulos",
-          "href": "/capitulo",
-          "description": "Define los capítulos de un modelo de acreditación",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 403,
-          "order": 43,
-          "label": "Secciones",
-          "href": "/seccion",
-          "description": "Define las secciones de un capítulo",
-          "itemType": "link",
-          "status": "active"
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "order": 50,
-      "label": "Sistema de Evaluación",
-      "description": "Reglas, métricas y evidencias para medir el cumplimiento de los estándares de acreditación",
-      "itemType": "section",
-      "status": "active",
-      "children": [
-        {
-          "id": 501,
-          "order": 51,
-          "label": "Normativa",
-          "href": "/normativa",
-          "description": "Define las normativas internas y externas que rigen los indicadores",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 502,
-          "order": 52,
-          "label": "Evidencias",
-          "href": "/evidencia",
-          "description": "Define las evidencias válidas para utilizar en un indicador",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 503,
-          "order": 53,
-          "label": "Indicadores",
-          "href": "/indicador",
-          "description": "Define los indicadores de calidad para cada sección, basados en la normativa",
-          "itemType": "link",
-          "status": "active"
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "order": 60,
-      "label": "Proceso de Evaluación",
-      "description": "Configuración de ciclos, etapas y tiempos de ejecución",
-      "itemType": "section",
-      "status": "active",
-      "children": [
-        {
-          "id": 601,
-          "order": 61,
-          "label": "Evaluación",
-          "href": "/evaluacion",
-          "description": "Crea un nuevo ciclo de evaluación",
-          "itemType": "link",
-          "status": "active"
-        },
-        {
-          "id": 602,
-          "order": 62,
-          "label": "Criterios de evaluación",
-          "href": "/criterios-evaluacion",
-          "description": "Configura los criterios de evaluacion por etapa",
-          "itemType": "link",
-          "status": "active"
-        }
-      ]
-    }
-  ]
+	"navigationItems": [
+		{
+			"id": 1,
+			"order": 10,
+			"label": "Dirección Estratégica",
+			"description": "Base ideológica e inmaterial de la institución",
+			"itemType": "section",
+			"status": "active",
+			"children": [
+				{
+					"id": 101,
+					"order": 11,
+					"label": "Filosofía institucional",
+					"href": "/filosofia-institucional",
+					"description": "La filosofía institucional define su misión y valores",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 102,
+					"order": 12,
+					"label": "Planeación estratégica",
+					"href": "/planeacion-estrategica",
+					"description": "La planeación estratégica establece las metas que llevarán al cumplimiento de la misión y valores",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 103,
+					"order": 13,
+					"label": "Objetivo estratégico",
+					"href": "/objetivo-estrategico",
+					"description": "Los objetivos estratégicos son los resultados que se esperan alcanzar con la planeación estratégica",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 104,
+					"order": 14,
+					"label": "Indicador estratégico",
+					"href": "/indicador-estrategico",
+					"description": "Los indicadores estratégicos son las métricas que se utilizan para medir el cumplimiento de los objetivos estratégicos",
+					"itemType": "link",
+					"status": "active"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"order": 20,
+			"label": "Estructura Institucional",
+			"description": "Define la estructura física de la institución",
+			"itemType": "section",
+			"status": "active",
+			"children": [
+				{
+					"id": 201,
+					"order": 21,
+					"label": "Entidad legal",
+					"href": "/entidad-legal",
+					"description": "Define el nombre de la entidad legal de la institución",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 202,
+					"order": 22,
+					"label": "Institución",
+					"href": "/institucion",
+					"description": "Define la institución establecida en la región geográfica bajo una entidad legal",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 203,
+					"order": 23,
+					"label": "Campus",
+					"href": "/campus",
+					"description": "Define el campus perteneciente a la universidad",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 204,
+					"order": 24,
+					"label": "Unidad académica",
+					"href": "/unidad-academica",
+					"description": "Define la unidad académica que tiene disponible el campus",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 205,
+					"order": 25,
+					"label": "Región geográfica",
+					"href": "/region",
+					"description": "Define la región geográfica en la que se encuentra la institución",
+					"itemType": "link",
+					"status": "active"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"order": 30,
+			"label": "Estructura Organizacional",
+			"description": "Define la estructura funcional de la institución",
+			"itemType": "section",
+			"status": "active",
+			"children": [
+				{
+					"id": 301,
+					"order": 31,
+					"label": "Puesto de trabajo",
+					"href": "/puesto-de-trabajo",
+					"description": "Define los puestos, competencias y perfiles del talento humano",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 302,
+					"order": 32,
+					"label": "Área funcional",
+					"href": "/area-funcional",
+					"description": "Define las áreas funcionales de la institución",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 303,
+					"order": 33,
+					"label": "Área responsable",
+					"href": "/area-responsable",
+					"description": "Define las áreas responsables de la institución",
+					"itemType": "link",
+					"status": "active"
+				}
+			]
+		},
+		{
+			"id": 4,
+			"order": 40,
+			"label": "Sistemas de Acreditación",
+			"description": "Estructura y estándares definidos por organismos acreditadores (FIMPES, COPAES, CIEES, etc.)",
+			"itemType": "section",
+			"status": "active",
+			"children": [
+				{
+					"id": 401,
+					"order": 41,
+					"label": "Modelos de calidad",
+					"href": "/modelo",
+					"description": "Define los modelos de gestión de calidad (FIMPES, ISO 9001, modelo propio, etc.)",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 402,
+					"order": 42,
+					"label": "Capítulos",
+					"href": "/capitulo",
+					"description": "Define los capítulos de un modelo de acreditación",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 403,
+					"order": 43,
+					"label": "Secciones",
+					"href": "/seccion",
+					"description": "Define las secciones de un capítulo",
+					"itemType": "link",
+					"status": "active"
+				}
+			]
+		},
+		{
+			"id": 5,
+			"order": 50,
+			"label": "Sistema de Evaluación",
+			"description": "Reglas, métricas y evidencias para medir el cumplimiento de los estándares de acreditación",
+			"itemType": "section",
+			"status": "active",
+			"children": [
+				{
+					"id": 501,
+					"order": 51,
+					"label": "Normativa",
+					"href": "/normativa",
+					"description": "Define las normativas internas y externas que rigen los indicadores",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 502,
+					"order": 52,
+					"label": "Evidencias",
+					"href": "/evidencia",
+					"description": "Define las evidencias válidas para utilizar en un indicador",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 503,
+					"order": 53,
+					"label": "Indicadores",
+					"href": "/indicador",
+					"description": "Define los indicadores de calidad para cada sección, basados en la normativa",
+					"itemType": "link",
+					"status": "active"
+				}
+			]
+		},
+		{
+			"id": 6,
+			"order": 60,
+			"label": "Proceso de Evaluación",
+			"description": "Configuración de ciclos, etapas y tiempos de ejecución",
+			"itemType": "section",
+			"status": "active",
+			"children": [
+				{
+					"id": 601,
+					"order": 61,
+					"label": "Evaluación",
+					"href": "/evaluacion",
+					"description": "Crea un nuevo ciclo de evaluación",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 602,
+					"order": 62,
+					"label": "Criterios de evaluación",
+					"href": "/criterios-evaluacion",
+					"description": "Configura los criterios de evaluacion por etapa",
+					"itemType": "link",
+					"status": "active"
+				}
+			]
+		}
+	]
 }

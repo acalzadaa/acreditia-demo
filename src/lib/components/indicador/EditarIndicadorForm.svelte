@@ -111,7 +111,7 @@
 
 	// Resetear selecciones cuando cambia el modelo
 	function onModeloChange(value: string) {
-		console.log("modelo changed!!");
+		console.log('modelo changed!!');
 		selectedModeloCode = value;
 		console.log(selectedModeloCode, value);
 		selectedCapituloCode = '';

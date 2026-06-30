@@ -6,7 +6,7 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { modeloFormSchema } from '$lib/schemas/modelo.schema';
 	import type { CapituloWithModeloItem } from '$lib/schemas/capitulo.schema';
-	
+
 	interface Props {
 		open: boolean;
 		item: CapituloWithModeloItem;

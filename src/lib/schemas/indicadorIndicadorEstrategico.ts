@@ -10,7 +10,9 @@ export const indicadorIndicadorEstrategicoRefSchema = z.object({
 	name: z.string()
 });
 
-export type IndicadorIndicadorEstrategicoRef = z.infer<typeof indicadorIndicadorEstrategicoRefSchema>;
+export type IndicadorIndicadorEstrategicoRef = z.infer<
+	typeof indicadorIndicadorEstrategicoRefSchema
+>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -31,7 +33,9 @@ export const indicadorIndicadorEstrategicoFormSchema = z.object({
 	createdBy: z.string().min(1, 'El creador es requerido')
 });
 
-export type IndicadorIndicadorEstrategicoFormSchema = z.infer<typeof indicadorIndicadorEstrategicoFormSchema>;
+export type IndicadorIndicadorEstrategicoFormSchema = z.infer<
+	typeof indicadorIndicadorEstrategicoFormSchema
+>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
@@ -52,4 +56,6 @@ export const indicadorIndicadorEstrategicoItemSchema = z.object({
 	createdBy: z.string()
 });
 
-export type IndicadorIndicadorEstrategicoItem = z.infer<typeof indicadorIndicadorEstrategicoItemSchema>;
+export type IndicadorIndicadorEstrategicoItem = z.infer<
+	typeof indicadorIndicadorEstrategicoItemSchema
+>;

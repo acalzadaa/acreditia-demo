@@ -8,7 +8,7 @@
 		tags: ['autodocs'],
 		args: {
 			variant: 'success',
-			children: 'test' 
+			children: 'test'
 		},
 		argTypes: {
 			variant: {

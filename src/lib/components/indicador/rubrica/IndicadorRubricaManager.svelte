@@ -134,8 +134,6 @@
 	{/if}
 </section>
 
-
-
 <style>
 	/*
 	 * Card contenedora de la sección. Usa los tokens de superficie
