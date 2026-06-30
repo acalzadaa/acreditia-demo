@@ -24,7 +24,9 @@
 		| 'detail'
 		| 'play'
 		| 'calendar'
-		| 'check';
+		| 'check'
+		| 'eye-open'
+		| 'eye-closed';
 
 	interface Props {
 		name: IconName;

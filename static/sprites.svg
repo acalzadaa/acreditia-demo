@@ -71,6 +71,17 @@
   <symbol id="calendar" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" d="M7.5 6V1m10 5V1m4 16v4.5h-18v-3m17.863-10H3.352M.5 18.25v.25h17.9l.15-.25l.234-.491A28 28 0 0 0 21.5 5.729V3.5h-18v2.128A28 28 0 0 1 .743 17.744z" />
   </symbol>
+  <symbol id="eye-open" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+      <path d="M3 13c3.6-8 14.4-8 18 0" />
+      <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
+    </g>
+  </symbol>
+  <symbol id="eye-closed" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 16l-2.475-3.396M12 17.5V14m-7.5 2l2.469-3.388M3 8c3.6 8 14.4 8 18 0" />
+  </symbol>
+
+
 
   <!-- SEMANTIC -->
   <symbol id="warning" viewBox="0 0 24 24">
