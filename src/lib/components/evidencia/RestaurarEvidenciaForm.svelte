@@ -47,7 +47,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Confirmar restauracion</h2>
+			<h2 class="modal-title text-h4">Confirmar restauración</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
