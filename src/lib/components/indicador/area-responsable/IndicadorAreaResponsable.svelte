@@ -70,6 +70,7 @@
 									<IconButton
 										isDisabled={item.isDeleted}
 										name="delete"
+tooltipLabel="Borrar registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"

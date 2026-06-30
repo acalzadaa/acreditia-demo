@@ -104,6 +104,7 @@
 										isDisabled={convertStatusToBadgeVariant(item.status).etapaStatus !==
 											'planning' || item.isDeleted}
 										name="calendar"
+tooltipLabel="Modificar fechas"
 										size="md"
 										borderShape="square"
 										variant="ghost"

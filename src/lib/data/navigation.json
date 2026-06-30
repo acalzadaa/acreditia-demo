@@ -236,7 +236,7 @@
 					"href": "/criterios-evaluacion",
 					"description": "Configura los criterios de evaluacion por etapa",
 					"itemType": "link",
-					"status": "active"
+					"status": "inactive"
 				}
 			]
 		}

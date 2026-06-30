@@ -107,6 +107,7 @@
 										isDisabled={convertStatusToBadgeVariant(item.status).indicadorCampusStatus ===
 											'ready' || item.isDeleted}
 										name="edit"
+tooltipLabel="Editar registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"

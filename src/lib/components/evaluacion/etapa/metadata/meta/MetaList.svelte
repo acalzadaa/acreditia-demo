@@ -41,7 +41,8 @@
 							<td class="col-text">{item.doesNotApplyReason}</td>
 							<td class="col-actions-md">
 								<div class="col-actions-row">
-									<Button name="edit" variant="ghost" onClick={() => onClickEditar(item)}
+									<Button name="edit"
+tooltipLabel="Editar registro" variant="ghost" onClick={() => onClickEditar(item)}
 										>Editar meta</Button
 									>
 									<Button name="upload" variant="ghost" onClick={() => onClickFinish(item)}

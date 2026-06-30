@@ -64,6 +64,7 @@
 								<div class="element-item__actions">
 									<IconButton
 										name="delete"
+tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"

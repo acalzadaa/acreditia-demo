@@ -101,6 +101,7 @@
 									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
 										'planned' || item.isDeleted}
 									name="play"
+tooltipLabel="Ejecutar proceso"
 									size="md"
 									borderShape="square"
 									variant="ghost"
@@ -110,6 +111,7 @@
 									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
 										'planned' || item.isDeleted}
 									name="edit"
+tooltipLabel="Editar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"
@@ -119,6 +121,7 @@
 									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
 										'planned' || item.isDeleted}
 									name="delete"
+tooltipLabel="Borrar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"
@@ -128,6 +131,7 @@
 									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
 										'planned' || !item.isDeleted}
 									name="restore"
+tooltipLabel="Restaurar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"
