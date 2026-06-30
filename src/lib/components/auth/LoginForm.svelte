@@ -3,7 +3,7 @@
 	import { resolve } from '$app/paths';
 	import { auth } from '$lib/stores/auth.svelte';
 	import Button from '../ui/Button.svelte';
-	import Input from '../ui/input/InputText.svelte';
+	import InputText from '../ui/input/InputText.svelte';
 
 	let email = $state('');
 	let password = $state('');
@@ -32,7 +32,9 @@
 
 	<div class="modal-body">
 		<div class="form-fields">
-			<Input
+			<InputText
+				iconName="email"
+				iconPosition="left"
 				label="Email"
 				name="email"
 				type="email"
@@ -40,7 +42,9 @@
 				placeholder="usuario@dominio.com"
 				bind:value={email}
 			/>
-			<Input
+			<InputText
+				iconName="password"
+				iconPosition="left"
 				label="Password"
 				name="password"
 				type="password"

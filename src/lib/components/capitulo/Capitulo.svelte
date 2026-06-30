@@ -59,7 +59,7 @@
 								<IconButton
 									isDisabled={item.isDeleted}
 									name="edit"
-tooltipLabel="Editar registro"
+									tooltipLabel="Editar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"
@@ -69,7 +69,7 @@ tooltipLabel="Editar registro"
 								<IconButton
 									isDisabled={item.isDeleted}
 									name="delete"
-tooltipLabel="Borrar registro"
+									tooltipLabel="Borrar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"
@@ -79,7 +79,7 @@ tooltipLabel="Borrar registro"
 								<IconButton
 									isDisabled={!item.isDeleted}
 									name="restore"
-tooltipLabel="Restaurar registro"
+									tooltipLabel="Restaurar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"

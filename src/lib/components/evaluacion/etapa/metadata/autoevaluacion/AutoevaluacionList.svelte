@@ -32,8 +32,11 @@
 							<td class="col-text">{item.comment}</td>
 							<td class="col-actions-lg">
 								<div class="col-actions-row">
-									<Button name="edit"
-tooltipLabel="Editar registro" variant="ghost" onClick={() => onClickEditar(item)}
+									<Button
+										name="edit"
+										tooltipLabel="Editar registro"
+										variant="ghost"
+										onClick={() => onClickEditar(item)}
 										>Editar comentario
 									</Button>
 									<Button name="upload" variant="ghost" onClick={() => onClickFinish(item)}

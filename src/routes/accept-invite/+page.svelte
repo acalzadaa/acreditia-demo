@@ -10,19 +10,36 @@
 	import { auth } from '$lib/stores/auth.svelte';
 
 	let password = $state('');
+	let confirmPassword = $state('');
+
 	let loading = $state(false);
 	let errorMsg = $state<string | null>(null);
+	let touchedConfirm = $state(false);
 
 	const token = $derived(page.url.searchParams.get('token') ?? '');
 
+	const passwordsMismatch = $derived(
+		touchedConfirm && confirmPassword.length > 0 && password !== confirmPassword
+	);
+
+	const confirmError = $derived(passwordsMismatch ? 'Las contraseñas no coinciden' : '');
+
+	const canSubmit = $derived(
+		password.length > 0 && confirmPassword.length > 0 && password === confirmPassword && !loading
+	);
 	async function handleAccept() {
+		touchedConfirm = true;
+		if (password !== confirmPassword) {
+			errorMsg = 'Las contraseñas no coinciden';
+			return;
+		}
 		loading = true;
 		errorMsg = null;
 		try {
 			await auth.acceptInvite(token, password);
 			goto(resolve('/dashboard'));
 		} catch (err: unknown) {
-			errorMsg = err instanceof Error ? err.message : 'Error al recuperar la cuenta';
+			errorMsg = err instanceof Error ? err.message : 'Error al aceptar la invitacion';
 			loading = false;
 		}
 	}
@@ -31,12 +48,14 @@
 <div class="app-grid">
 	<Header showAuth={false} />
 	<main class="main">
-		<div class="form-container--spacious">
-			<header>
+		<div class="form-container form-container--spacious form-container--sm">
+			<header class="form-header">
 				<h2 class="text-h4">Crea tu contraseña</h2>
 			</header>
-			<div class="modal-body">
+			<div class="form-fields">
 				<InputText
+					iconName="password"
+					iconPosition="left"
 					label="Password"
 					name="password"
 					type="password"
@@ -45,9 +64,22 @@
 					bind:value={password}
 					errors={errorMsg ?? ''}
 				/>
+				<InputText
+					iconName="password"
+					iconPosition="left"
+					label="Confirmar password"
+					name="confirmPassword"
+					type="password"
+					required
+					placeholder="********"
+					bind:value={confirmPassword}
+					status={passwordsMismatch ? 'error' : 'normal'}
+					errors={confirmError}
+					onblur={() => (touchedConfirm = true)}
+				/>
 			</div>
 			<footer class="form-actions text-body">
-				<Button type="button" variant="primary" onClick={handleAccept} disabled={loading}>
+				<Button type="button" variant="primary" onClick={handleAccept} disabled={!canSubmit}>
 					{loading ? 'Iniciando...' : 'Iniciar Sesión'}
 				</Button>
 			</footer>

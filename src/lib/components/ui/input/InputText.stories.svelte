@@ -16,6 +16,8 @@
 			disabled: false,
 			status: 'normal',
 			errors: [],
+			iconName: undefined,
+			iconPosition: 'left',
 			onInput: fn(),
 			onChange: fn(),
 			onFocus: fn(),
@@ -34,6 +36,40 @@
 			},
 			disabled: {
 				control: { type: 'boolean' }
+			},
+			iconName: {
+				control: { type: 'select' },
+				options: [
+					undefined,
+					'menu',
+					'bell',
+					'chevron-down',
+					'chevron-right',
+					'home',
+					'add',
+					'add-list',
+					'filter',
+					'export',
+					'edit',
+					'close',
+					'delete',
+					'warning',
+					'success',
+					'info',
+					'upload',
+					'history',
+					'restore',
+					'detail',
+					'play',
+					'calendar',
+					'check',
+					'eye-open',
+					'eye-closed'
+				]
+			},
+			iconPosition: {
+				control: { type: 'select' },
+				options: ['left', 'right']
 			}
 		}
 	});
@@ -51,6 +87,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			oonChange={args['onChange']}
 			nFocus={args['onFocus']}
@@ -70,6 +108,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			oonChange={args['onChange']}
 			nFocus={args['onFocus']}
@@ -89,6 +129,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			onChange={args['onChange']}
 			onFocus={args['onFocus']}
@@ -108,6 +150,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			onChange={args['onChange']}
 			nFocus={args['onFocus']}
@@ -127,6 +171,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			oonChange={args['onChange']}
 			nFocus={args['onFocus']}
@@ -147,6 +193,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			oonChange={args['onChange']}
 			nFocus={args['onFocus']}
@@ -166,6 +214,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			oonChange={args['onChange']}
 			nFocus={args['onFocus']}
@@ -185,6 +235,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			onChange={args['onChange']}
 			onFocus={args['onFocus']}
@@ -204,6 +256,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			oonChange={args['onChange']}
 			nFocus={args['onFocus']}
@@ -231,6 +285,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			onChange={args['onChange']}
 			onFocus={args['onFocus']}
@@ -257,6 +313,8 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			onChange={args['onChange']}
 			onFocus={args['onFocus']}
@@ -277,6 +335,85 @@
 			disabled={args.disabled}
 			status={args.status}
 			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
+			onInput={args['onInput']}
+			onChange={args['onChange']}
+			onFocus={args['onFocus']}
+			onBlur={args['onBlur']}
+		/>
+	{/snippet}
+</Story>
+
+<!-- Icon Variants -->
+<Story name="With Icon Left" args={{ label: 'Search', iconName: 'home', iconPosition: 'left' }}>
+	{#snippet template(args)}
+		<Input
+			name={args.name}
+			label={args.label}
+			value={args.value}
+			placeholder={args.placeholder}
+			required={args.required}
+			disabled={args.disabled}
+			status={args.status}
+			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
+			onInput={args['onInput']}
+			onChange={args['onChange']}
+			onFocus={args['onFocus']}
+			onBlur={args['onBlur']}
+		/>
+	{/snippet}
+</Story>
+
+<Story
+	name="With Icon Right"
+	args={{ label: 'Date', iconName: 'calendar', iconPosition: 'right' }}
+>
+	{#snippet template(args)}
+		<Input
+			name={args.name}
+			label={args.label}
+			value={args.value}
+			placeholder={args.placeholder}
+			required={args.required}
+			disabled={args.disabled}
+			status={args.status}
+			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
+			onInput={args['onInput']}
+			onChange={args['onChange']}
+			onFocus={args['onFocus']}
+			onBlur={args['onBlur']}
+		/>
+	{/snippet}
+</Story>
+
+<Story
+	name="With Icon and Error"
+	args={{
+		label: 'Email',
+		iconName: 'warning',
+		iconPosition: 'left',
+		status: 'error',
+		errors: ['Email inválido'],
+		value: 'not-an-email'
+	}}
+>
+	{#snippet template(args)}
+		<Input
+			name={args.name}
+			label={args.label}
+			value={args.value}
+			placeholder={args.placeholder}
+			required={args.required}
+			disabled={args.disabled}
+			status={args.status}
+			errors={args.errors}
+			iconName={args.iconName}
+			iconPosition={args.iconPosition}
 			onInput={args['onInput']}
 			onChange={args['onChange']}
 			onFocus={args['onFocus']}
@@ -298,6 +435,8 @@
 				disabled={args.disabled}
 				status={args.status}
 				errors={args.errors}
+				iconName={args.iconName}
+				iconPosition={args.iconPosition}
 				onInput={args['onInput']}
 				onChange={args['onChange']}
 				onFocus={args['onFocus']}
