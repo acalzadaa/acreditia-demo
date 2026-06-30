@@ -35,9 +35,13 @@
 							<td class="col-label">{item.result}</td>
 							<td class="col-code"
 								>{#if item.result && item.target && item.result! > item.target!}
-									<Icon name="check" />
+									<div class="icon--color-success">
+										<Icon name="check" />
+									</div>
 								{:else if item.result && item.result && item.result < item.target!}
-									<Icon name="close" />
+									<div class="icon--color-error">
+										<Icon name="close" />
+									</div>
 								{/if}
 							</td>
 							<td class="col-text">{item.reason}</td>
