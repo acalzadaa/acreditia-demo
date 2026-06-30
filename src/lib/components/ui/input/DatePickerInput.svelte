@@ -191,7 +191,7 @@
 		<div class="dpi-icon-wrap">
 			<IconButton
 				name="calendar"
-tooltipLabel="Modificar fechas"
+				tooltipLabel="Modificar fechas"
 				size="sm"
 				variant="ghost"
 				isActive={isOpen}

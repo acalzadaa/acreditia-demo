@@ -37,9 +37,11 @@
 							</td>
 							<td class="col-actions-lg">
 								<div class="col-actions-row">
-									<Button name="edit"
-tooltipLabel="Editar registro" variant="ghost" onClick={() => onClickEditar(item)}
-										>Autorizar plan de mejora</Button
+									<Button
+										name="edit"
+										tooltipLabel="Editar registro"
+										variant="ghost"
+										onClick={() => onClickEditar(item)}>Autorizar plan de mejora</Button
 									>
 									<Button name="upload" variant="ghost" onClick={() => onClickFinish(item)}
 										>Terminar etapa</Button

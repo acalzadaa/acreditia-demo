@@ -101,7 +101,7 @@
 									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
 										'planned' || item.isDeleted}
 									name="play"
-tooltipLabel="Ejecutar proceso"
+									tooltipLabel="Ejecutar proceso"
 									size="md"
 									borderShape="square"
 									variant="ghost"
@@ -111,7 +111,7 @@ tooltipLabel="Ejecutar proceso"
 									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
 										'planned' || item.isDeleted}
 									name="edit"
-tooltipLabel="Editar registro"
+									tooltipLabel="Editar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"
@@ -121,7 +121,7 @@ tooltipLabel="Editar registro"
 									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
 										'planned' || item.isDeleted}
 									name="delete"
-tooltipLabel="Borrar registro"
+									tooltipLabel="Borrar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"
@@ -131,7 +131,7 @@ tooltipLabel="Borrar registro"
 									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
 										'planned' || !item.isDeleted}
 									name="restore"
-tooltipLabel="Restaurar registro"
+									tooltipLabel="Restaurar registro"
 									size="md"
 									borderShape="square"
 									variant="ghost"
