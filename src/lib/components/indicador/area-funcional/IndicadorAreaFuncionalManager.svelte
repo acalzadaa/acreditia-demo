@@ -42,8 +42,8 @@
 				shape="round"
 				variant="outline"
 				tooltipLabel="Agregar grupo"
-				onClick={modalAreaFuncional.handlers('add').onclick}
-				onKeydown={(e) => modalAreaFuncional.handlers('add').onkeydown(e)}
+				onClick={modalAreaFuncional.handlers('add').onClick}
+				onKeydown={(e) => modalAreaFuncional.handlers('add').onKeydown(e)}
 			/>
 		{/if}
 	</header>

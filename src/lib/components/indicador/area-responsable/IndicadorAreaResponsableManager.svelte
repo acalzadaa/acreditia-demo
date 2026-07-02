@@ -42,8 +42,8 @@
 				shape="round"
 				variant="outline"
 				tooltipLabel="Agregar area responsable"
-				onClick={modalAreaResponsable.handlers('add').onclick}
-				onKeydown={(e) => modalAreaResponsable.handlers('add').onkeydown(e)}
+				onClick={modalAreaResponsable.handlers('add').onClick}
+				onKeydown={(e) => modalAreaResponsable.handlers('add').onKeydown(e)}
 			/>
 		{/if}
 	</header>

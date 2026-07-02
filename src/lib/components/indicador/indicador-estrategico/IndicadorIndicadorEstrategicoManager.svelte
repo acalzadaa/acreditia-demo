@@ -40,8 +40,8 @@
 				shape="round"
 				variant="outline"
 				tooltipLabel="Agregar indicador estrategico"
-				onClick={modalIndicadorEstrategico.handlers('add').onclick}
-				onKeydown={(e) => modalIndicadorEstrategico.handlers('add').onkeydown(e)}
+				onClick={modalIndicadorEstrategico.handlers('add').onClick}
+				onKeydown={(e) => modalIndicadorEstrategico.handlers('add').onKeydown(e)}
 			/>
 		{/if}
 	</header>

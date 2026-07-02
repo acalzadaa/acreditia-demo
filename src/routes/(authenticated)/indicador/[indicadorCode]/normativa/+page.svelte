@@ -20,7 +20,7 @@
 	<Toolbar
 		gridArea="toolbar"
 		crearTitle="Agregar normativa"
-		onClickCrear={modal.handlers('create').onclick}
+		onClickCrear={modal.handlers('create').onClick}
 		showExport={false}
 		showFilter={false}
 	/>

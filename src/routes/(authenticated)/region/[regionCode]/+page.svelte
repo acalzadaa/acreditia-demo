@@ -92,8 +92,8 @@
 	<Toolbar
 		gridArea="campusToolbar"
 		crearTitle="Agregar campus"
-		onClickCrear={modalCampus.handlers('create').onclick}
-		onKeydownCrear={(e) => modalCampus.handlers('create').onkeydown(e)}
+		onClickCrear={modalCampus.handlers('create').onClick}
+		onKeydownCrear={(e) => modalCampus.handlers('create').onKeydown(e)}
 	/>
 
 	<Campus

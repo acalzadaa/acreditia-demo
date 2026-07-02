@@ -61,8 +61,8 @@
 	<NotificationBar showNotificationBar={notificationToggle.value} />
 	<Toolbar
 		crearTitle="Nuevo puesto"
-		onClickCrear={modal.handlers('create').onclick}
-		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
+		onClickCrear={modal.handlers('create').onClick}
+		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
 		showExport={true}
 		showFilter={true}
 	/>

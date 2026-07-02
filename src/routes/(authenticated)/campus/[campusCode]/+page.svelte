@@ -76,8 +76,8 @@
 		<Toolbar
 			gridArea="unidadAcademicaToolbar"
 			crearTitle="Agregar unidad academica"
-			onClickCrear={modalUnidadAcademica.handlers('add').onclick}
-			onKeydownCrear={(e) => modalUnidadAcademica.handlers('add').onkeydown(e)}
+			onClickCrear={modalUnidadAcademica.handlers('add').onClick}
+			onKeydownCrear={(e) => modalUnidadAcademica.handlers('add').onKeydown(e)}
 			showExport={true}
 			showFilter={true}
 		/>
@@ -98,8 +98,8 @@
 		<Toolbar
 			gridArea="areaResponsableToolbar"
 			crearTitle="Agregar area responsable"
-			onClickCrear={modalAreaResponsable.handlers('add').onclick}
-			onKeydownCrear={(e) => modalAreaResponsable.handlers('add').onkeydown(e)}
+			onClickCrear={modalAreaResponsable.handlers('add').onClick}
+			onKeydownCrear={(e) => modalAreaResponsable.handlers('add').onKeydown(e)}
 			showExport={true}
 			showFilter={true}
 		/>

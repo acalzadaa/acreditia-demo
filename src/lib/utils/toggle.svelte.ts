@@ -53,10 +53,10 @@ export function createToggle(initialValue: boolean = false) {
 		 * Manejador click para usar directamente en elementos
 		 * @example
 		 * ```svelte
-		 * <button onclick={toggle.onclick}>Click</button>
+		 * <button onclick={toggle.onClick}>Click</button>
 		 * ```
 		 */
-		onclick: () => toggle(),
+		onClick: () => toggle(),
 
 		/**
 		 * Manejador de teclado para accesibilidad (Enter/Espacio)
@@ -69,7 +69,7 @@ export function createToggle(initialValue: boolean = false) {
 		 * </div>
 		 * ```
 		 */
-		onkeydown: (e: KeyboardEvent) => {
+		onKeydown: (e: KeyboardEvent) => {
 			if (e.key === 'Enter' || e.key === ' ') {
 				e.preventDefault();
 				toggle();

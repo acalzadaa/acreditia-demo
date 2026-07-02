@@ -40,8 +40,8 @@
 				shape="round"
 				variant="outline"
 				tooltipLabel="Agregar grupo"
-				onClick={modalNormativa.handlers('add').onclick}
-				onKeydown={(e) => modalNormativa.handlers('add').onkeydown(e)}
+				onClick={modalNormativa.handlers('add').onClick}
+				onKeydown={(e) => modalNormativa.handlers('add').onKeydown(e)}
 			/>
 		{/if}
 	</header>
