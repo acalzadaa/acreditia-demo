@@ -42,8 +42,8 @@
 	<Subheader
 		onClickNavigationBar={navigationToggle.onClick}
 		onKeydownNavigationBar={(e) => navigationToggle.onKeydown(e)}
-		onClickNotificationBar={navigationToggle.onClick}
-		onKeydownNotificationBar={(e) => navigationToggle.onKeydown(e)}
+		onClickNotificationBar={notificationToggle.onClick}
+		onKeydownNotificationBar={(e) => notificationToggle.onKeydown(e)}
 		showNavigationBar={navigationToggle.value}
 		showNotificationBar={notificationToggle.value}
 	/>
