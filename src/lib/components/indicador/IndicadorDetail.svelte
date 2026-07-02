@@ -6,7 +6,6 @@
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		gridArea?: string;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
@@ -14,7 +13,6 @@
 	}
 
 	const {
-		gridArea = 'main',
 		showHeader = false,
 		title = 'Add',
 		subtitle = '',
@@ -22,7 +20,7 @@
 	}: Props = $props();
 </script>
 
-<main class="main-panel" style="grid-area: {gridArea}">
+<main class="main-panel">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
@@ -65,8 +63,5 @@
 <style>
 	.main-panel {
 		flex-shrink: 0;
-		position: sticky;
-		top: 0;
-		z-index: 1;
 	}
 </style>

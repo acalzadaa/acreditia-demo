@@ -62,14 +62,15 @@
 	.detail-panel {
 		display: flex;
 		flex-direction: column;
+		flex: 1;
 		min-height: 0;
-		overflow: auto;
+		overflow: hidden;
 	}
 
 	.detail-content {
 		flex: 1;
 		min-height: 0;
-		overflow-y: scroll;
+		overflow-y: hidden;
 		display: flex;
 		flex-direction: column;
 	}

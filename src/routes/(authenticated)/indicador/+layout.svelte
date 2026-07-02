@@ -75,5 +75,7 @@
 		background-color: var(--bg-ground);
 		min-height: 0;
 		overflow: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 </style>

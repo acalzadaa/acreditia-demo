@@ -29,7 +29,7 @@
 	}
 </script>
 
-<main class="app-grid">
+<div class="detail-panel">
 	<Toolbar
 		gridArea="toolbar"
 		crearTitle="Nuevo indicador"
@@ -38,20 +38,20 @@
 		showExport={true}
 		showFilter={true}
 	/>
-
-	<Indicador
-		gridArea="indicador"
-		{indicadorItems}
-		onClickEditar={modal.handlers('edit').onClickItem}
-		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
-		onClickRestaurar={modal.handlers('restore').onClickItem}
-		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
-		onClickDetalle={(item: IndicadorItem) => onClickDetalle(item)}
-		onKeydownDetalle={(e: KeyboardEvent, item: IndicadorItem) => onKeydownDetalle(e, item)}
-	></Indicador>
-</main>
+	<main class="detail-content">
+		<Indicador
+			{indicadorItems}
+			onClickEditar={modal.handlers('edit').onClickItem}
+			onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
+			onClickBorrar={modal.handlers('delete').onClickItem}
+			onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
+			onClickRestaurar={modal.handlers('restore').onClickItem}
+			onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
+			onClickDetalle={(item: IndicadorItem) => onClickDetalle(item)}
+			onKeydownDetalle={(e: KeyboardEvent, item: IndicadorItem) => onKeydownDetalle(e, item)}
+		/>
+	</main>
+</div>
 
 <!-- MODAL CREAR -->
 <CrearIndicadorForm open={modal.isOpen('create')} {modeloFullRef} onClose={modal.close} />
@@ -78,15 +78,19 @@
 {/if}
 
 <style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'toolbar'
-			'indicador';
-		grid-template-columns: 1fr;
-		grid-template-rows: auto 1fr;
-		height: 100vh;
-		position: relative;
-		min-width: 600px;
+	.detail-panel {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		overflow: hidden;
+	}
+
+	.detail-content {
+		flex: 1;
+		min-height: 0;
+		overflow-y: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 </style>
