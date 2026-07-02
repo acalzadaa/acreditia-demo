@@ -27,8 +27,8 @@
 				size="md"
 				shape="round"
 				variant="ghost"
-				onClick={cardExpand.onclick}
-				onKeydown={(e) => cardExpand.onkeydown(e)}
+				onClick={cardExpand.onClick}
+				onKeydown={(e) => cardExpand.onKeydown(e)}
 			/>
 			<h3 class="text-h6">Area funcional</h3>
 			{#if items && items.length > 0}
@@ -42,8 +42,8 @@
 				shape="round"
 				variant="outline"
 				tooltipLabel="Agregar grupo"
-				onClick={modalAreaFuncional.handlers('add').onclick}
-				onKeydown={(e) => modalAreaFuncional.handlers('add').onkeydown(e)}
+				onClick={modalAreaFuncional.handlers('add').onClick}
+				onKeydown={(e) => modalAreaFuncional.handlers('add').onKeydown(e)}
 			/>
 		{/if}
 	</header>
@@ -73,11 +73,10 @@
 									/>
 									<IconButton
 										name="delete"
-tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
-										tooltipLabel="Eliminar area funcional"
+										tooltipLabel="Desvincula el area funcional"
 										onClick={() => modalAreaFuncional.handlers('delete').onClickItem(item)}
 										onKeydown={(e) => modalAreaFuncional.handlers('delete').onKeydownItem(e, item)}
 									/>
@@ -92,7 +91,6 @@ tooltipLabel="Borrar registro"
 											<span class="element-item__child-text">{subareaFuncional.name}</span>
 											<IconButton
 												name="delete"
-tooltipLabel="Borrar registro"
 												size="sm"
 												shape="square"
 												variant="ghost"

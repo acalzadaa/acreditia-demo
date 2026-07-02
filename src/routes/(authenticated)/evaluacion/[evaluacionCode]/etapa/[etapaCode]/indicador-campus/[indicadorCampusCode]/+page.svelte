@@ -142,17 +142,17 @@
 			{@const fileRefs = evidenciaItem.file ?? []}
 			{@const urlRefs = evidenciaItem.url ?? []}
 			<div class="text-body" style="display:flex; justify-content: left;">
-				<Button variant="ghost" name="upload" onClick={modalEvidencia.handlers('finish').onclick}
+				<Button variant="ghost" name="upload" onClick={modalEvidencia.handlers('finish').onClick}
 					>Cerrar etapa</Button
 				>
 			</div>
 
-			<Toolbar crearTitle="Agregar archivo" onClickCrear={modalFile.handlers('create').onclick} />
+			<Toolbar crearTitle="Agregar archivo" onClickCrear={modalFile.handlers('create').onClick} />
 			<EvidenciaFile
 				items={fileRefs}
 				onClickBorrar={(item) => modalFile.handlers('delete').onClickItem(item)}
 			/>
-			<Toolbar crearTitle="Agregar url" onClickCrear={modalUrl.handlers('create').onclick} />
+			<Toolbar crearTitle="Agregar url" onClickCrear={modalUrl.handlers('create').onClick} />
 
 			<EvidenciaUrl
 				items={urlRefs}

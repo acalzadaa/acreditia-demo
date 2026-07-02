@@ -50,10 +50,10 @@
 		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
 	<Subheader
-		onClickNavigationBar={navigationToggle.onclick}
-		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
-		onClickNotificationBar={navigationToggle.onclick}
-		onKeydownNotificationBar={(e) => navigationToggle.onkeydown(e)}
+		onClickNavigationBar={navigationToggle.onClick}
+		onKeydownNavigationBar={(e) => navigationToggle.onKeydown(e)}
+		onClickNotificationBar={navigationToggle.onClick}
+		onKeydownNotificationBar={(e) => navigationToggle.onKeydown(e)}
 		showNavigationBar={navigationToggle.value}
 		showNotificationBar={notificationToggle.value}
 	/>
@@ -62,8 +62,8 @@
 
 	<Toolbar
 		crearTitle="Nuevo indicador"
-		onClickCrear={modal.handlers('create').onclick}
-		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
+		onClickCrear={modal.handlers('create').onClick}
+		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
 		showExport={true}
 		showFilter={true}
 	/>

@@ -39,6 +39,7 @@
 										onClick={() => onClickEditar(item)}
 										>Editar comentario
 									</Button>
+
 									<Button name="upload" variant="ghost" onClick={() => onClickFinish(item)}
 										>Terminar etapa
 									</Button>

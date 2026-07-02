@@ -26,9 +26,16 @@
 </main>
 
 <style>
+	.main-panel {
+		flex: 1;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+	}
 	.rubrica-list-container {
 		flex: 1;
 		overflow-y: auto;
+		min-height: 0;
 		padding: var(--space-2);
 	}
 

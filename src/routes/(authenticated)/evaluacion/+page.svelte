@@ -19,21 +19,24 @@
 	let modal = createModalManager<EvaluacionItem>();
 </script>
 
-<div class="app-grid">
+<div class="detail-panel">
 	<Toolbar
 		crearTitle="Nueva evaluacion"
-		onClickCrear={modal.handlers('create').onclick}
-		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
+		onClickCrear={modal.handlers('create').onClick}
+		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
 		showExport={true}
 		showFilter={true}
 	/>
-	<Evaluacion
-		items={evaluacionItems}
-		onClickEditar={modal.handlers('edit').onClickItem}
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		onClickRestaurar={modal.handlers('restore').onClickItem}
-		onClickIniciarEvaluacion={modal.handlers('iniciar').onClickItem}
-	/>
+
+	<main class="detail-content">
+		<Evaluacion
+			items={evaluacionItems}
+			onClickEditar={modal.handlers('edit').onClickItem}
+			onClickBorrar={modal.handlers('delete').onClickItem}
+			onClickRestaurar={modal.handlers('restore').onClickItem}
+			onClickIniciarEvaluacion={modal.handlers('iniciar').onClickItem}
+		/>
+	</main>
 </div>
 
 <CrearEvaluacionForm
@@ -75,15 +78,18 @@
 {/if}
 
 <style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'toolbar'
-			'main';
-		grid-template-columns: 1fr;
-		grid-template-rows: auto 1fr;
-		height: 100vh;
-		position: relative;
-		min-width: 600px;
+	.detail-panel {
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+		overflow: auto;
+	}
+
+	.detail-content {
+		flex: 1;
+		min-height: 0;
+		overflow-y: scroll;
+		display: flex;
+		flex-direction: column;
 	}
 </style>

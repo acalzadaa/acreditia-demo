@@ -21,8 +21,8 @@
 	<Toolbar
 		gridArea="toolbar"
 		crearTitle="Crear criterio"
-		onClickCrear={modal.handlers('create').onclick}
-		onKeydownCrear={(e) => modal.handlers('create').onkeydown(e)}
+		onClickCrear={modal.handlers('create').onClick}
+		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
 		showExport={false}
 		showFilter={false}
 	/>

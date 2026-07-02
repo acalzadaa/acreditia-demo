@@ -51,7 +51,7 @@
 								<div class="col-actions-row">
 									<IconButton
 										name="delete"
-										tooltipLabel="Borrar registro"
+										tooltipLabel="Desvincula registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"

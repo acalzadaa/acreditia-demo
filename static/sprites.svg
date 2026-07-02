@@ -63,7 +63,10 @@
     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m9.55 15.15l8.475-8.475q.3-.3.7-.3t.7.3t.3.713t-.3.712l-9.175 9.2q-.3.3-.7.3t-.7-.3L4.55 13q-.3-.3-.288-.712t.313-.713t.713-.3t.712.3z" />
   </symbol>
   <symbol id="detail" viewBox="0 0 24 24">
-    <path fill="currentColor" d="M6.38 6h11.25L12 16zM3 4l9 16l9-16z" />
+    <path d="M15.965 22.994 1 23V1h15l7 7v8" style="fill:none;stroke:currentColor;paint-order:stroke;stroke-linecap:round;stroke-linejoin:round"/>
+    <path d="M15.988 1.244 16 8h7" style="fill:none;stroke:currentColor;stroke-linejoin:round"/>
+    <circle cx="15.5" cy="15.5" r="5" style="stroke:currentColor;fill:none;stroke-linecap:round"/>
+    <path d="M19.006 19.084 23 23" style="fill:none;stroke:currentColor;stroke-linecap:round"/>
   </symbol>
   <symbol id="play" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 17.334V6.667c0-.88 0-1.32.185-1.58a1 1 0 0 1 .687-.412c.317-.04.705.166 1.48.58l10 5.333l.004.002c.857.457 1.286.686 1.427.99c.122.266.122.573 0 .839c-.141.305-.571.535-1.43.993l-10 5.333c-.777.414-1.164.62-1.48.58a1 1 0 0 1-.688-.412C5 18.653 5 18.213 5 17.333" />

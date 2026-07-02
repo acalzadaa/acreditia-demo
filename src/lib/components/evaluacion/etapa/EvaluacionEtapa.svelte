@@ -12,7 +12,6 @@
 	} from '$lib/schemas/evaluacionEtapa.schema';
 
 	interface Props {
-		gridArea?: string;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
@@ -20,14 +19,7 @@
 		onClickEditar: (item: EvaluacionEtapaItem) => void;
 	}
 
-	const {
-		gridArea = 'main',
-		showHeader = false,
-		title = '',
-		subtitle = '',
-		items,
-		onClickEditar
-	}: Props = $props();
+	const { showHeader = false, title = '', subtitle = '', items, onClickEditar }: Props = $props();
 
 	const STATUS_TO_BADGE_CONFIG: Record<
 		EvaluacionEtapaStatus,
@@ -46,7 +38,7 @@
 	}
 </script>
 
-<main class="main-panel" style="grid-area: {gridArea}">
+<main class="main-panel">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
@@ -59,7 +51,7 @@
 						<th class="col-label">Nombre</th>
 						<th class="col-date">Fecha inicio</th>
 						<th class="col-date">Fecha final</th>
-						<th class="col-code">Periodo extraordinario</th>
+						<th class="col-code">Periodo extra</th>
 						<th class="col-date">Periodo inicio</th>
 						<th class="col-date">Periodo final</th>
 						<th class="col-badge">Estatus</th>
@@ -123,68 +115,7 @@
 </main>
 
 <style>
-	/*
- * table-layout: fixed permite que las columnas respeten
- * los anchos declarados en thead th.
- * min-width en la tabla = suma de los min-width de columnas,
- * así la tabla no encoge más allá de donde todo quepa justo.
- *
- * Columnas y sus límites:
- *   parent      → ~20 chars → ~10rem (min: 7rem)
- *   parent      → ~20 chars → ~10rem (min: 7rem)
- *   código      → ~20 chars → ~10rem (min: 7rem)
- *   nombre      → ~50 chars → ~18rem (min: 12rem)
- *   number      → ~20 chars → ~10rem (min: 7rem)
- *   number      → ~20 chars → ~10rem (min: 7rem)
-  *   badge       → ~20 chars → ~8rem (min: 6rem)
- *   acciones    → 6 iconos → ~13rem (min: 13rem, fijo)
- *
- * Total mínimo: 7 + 7 + 7 + 12 + 7 + 7 + 6 + 13 = 66rem
- */
-	.data-table {
-		min-width: 66rem;
-	}
-
-	/* =============================================
-   COLUMN WIDTHS
-   Declara los anchos en thead th para que
-   table-layout: fixed los respete en todo el body.
-   ============================================= */
-
-	/* Código — corto, no hace wrap */
-	.data-table .col-code {
-		width: 6rem;
-		min-width: 4rem;
-		white-space: nowrap;
-	}
-
-	.data-table .col-small-number {
-		width: 4rem;
-		min-width: 2rem;
-		white-space: nowrap;
-	}
-
-	/* Nombre — mediano, puede hacer wrap si hay presión */
-	.data-table .col-name {
-		width: 18rem;
-		min-width: 12rem;
-		/* wrap controlado */
-		overflow-wrap: break-word;
-		word-break: break-word;
-		hyphens: auto;
-	}
-
-	/* Badge de estatus — ancho fijo chico */
-	.data-table .col-status {
-		width: 8rem;
-		min-width: 6rem;
-		white-space: nowrap;
-	}
-
-	/* Acciones — completamente fijo, los 4 iconos siempre caben */
-	.data-table .col-actions {
-		width: 9rem;
-		min-width: 9rem;
-		white-space: nowrap;
+	.main-panel {
+		flex-shrink: 0;
 	}
 </style>

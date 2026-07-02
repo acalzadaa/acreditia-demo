@@ -25,8 +25,8 @@
 				size="md"
 				shape="round"
 				variant="ghost"
-				onClick={cardExpand.onclick}
-				onKeydown={(e) => cardExpand.onkeydown(e)}
+				onClick={cardExpand.onClick}
+				onKeydown={(e) => cardExpand.onKeydown(e)}
 			/>
 			<h3 class="text-h6">Normativa</h3>
 			{#if items && items.length > 0}
@@ -40,8 +40,8 @@
 				shape="round"
 				variant="outline"
 				tooltipLabel="Agregar grupo"
-				onClick={modalNormativa.handlers('add').onclick}
-				onKeydown={(e) => modalNormativa.handlers('add').onkeydown(e)}
+				onClick={modalNormativa.handlers('add').onClick}
+				onKeydown={(e) => modalNormativa.handlers('add').onKeydown(e)}
 			/>
 		{/if}
 	</header>

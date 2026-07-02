@@ -27,8 +27,8 @@
 				size="md"
 				shape="round"
 				variant="ghost"
-				onClick={cardExpand.onclick}
-				onKeydown={(e) => cardExpand.onkeydown(e)}
+				onClick={cardExpand.onClick}
+				onKeydown={(e) => cardExpand.onKeydown(e)}
 			/>
 			<h3 class="text-h6">Area responsable</h3>
 			{#if items && items.length > 0}
@@ -42,8 +42,8 @@
 				shape="round"
 				variant="outline"
 				tooltipLabel="Agregar area responsable"
-				onClick={modalAreaResponsable.handlers('add').onclick}
-				onKeydown={(e) => modalAreaResponsable.handlers('add').onkeydown(e)}
+				onClick={modalAreaResponsable.handlers('add').onClick}
+				onKeydown={(e) => modalAreaResponsable.handlers('add').onKeydown(e)}
 			/>
 		{/if}
 	</header>

@@ -7,6 +7,15 @@
 	let rubricaItems = getRubrica().filter((item) => item.indicador.code === indicadorCode);
 </script>
 
-<main>
+<main class="rubrica-page">
 	<RubricaListViewDetail items={rubricaItems} />
 </main>
+
+<style>
+	.rubrica-page {
+		flex: 1;
+		min-height: 0;
+		display: flex;
+		flex-direction: column;
+	}
+</style>

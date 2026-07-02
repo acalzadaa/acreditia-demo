@@ -41,35 +41,35 @@
 	<main class="detail-content">
 		<EvaluacionDetail items={evaluacionDetail} />
 	</main>
-
-	{#if modal.selectedItem}
-		<IniciarEvaluacionForm
-			open={modal.isOpen('iniciar')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
-
-		<EditarEvaluacionForm
-			open={modal.isOpen('edit')}
-			item={modal.selectedItem}
-			{modeloRef}
-			{institucionRef}
-			onClose={modal.close}
-		/>
-
-		<BorrarEvaluacionForm
-			open={modal.isOpen('delete')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
-
-		<RestaurarEvaluacionForm
-			open={modal.isOpen('restore')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
-	{/if}
 </div>
+
+{#if modal.selectedItem}
+	<IniciarEvaluacionForm
+		open={modal.isOpen('iniciar')}
+		item={modal.selectedItem}
+		onClose={modal.close}
+	/>
+
+	<EditarEvaluacionForm
+		open={modal.isOpen('edit')}
+		item={modal.selectedItem}
+		{modeloRef}
+		{institucionRef}
+		onClose={modal.close}
+	/>
+
+	<BorrarEvaluacionForm
+		open={modal.isOpen('delete')}
+		item={modal.selectedItem}
+		onClose={modal.close}
+	/>
+
+	<RestaurarEvaluacionForm
+		open={modal.isOpen('restore')}
+		item={modal.selectedItem}
+		onClose={modal.close}
+	/>
+{/if}
 
 <style>
 	.detail-panel {

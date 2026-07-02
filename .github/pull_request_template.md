@@ -1,29 +1,19 @@
-# Pull Request Template
+# Formato de Pull Request
 
-## Tipo de cambio
+## Tipo
 
-- [ ] feat (nueva funcionalidad)
-- [ ] fix (corrección de bug)
-- [ ] perf (mejora de rendimiento)
-- [ ] refactor (no cambia funcionalidad externa)
-- [ ] style (CSS, Tailwind, UI sin lógica)
-- [ ] test (tests)
-- [ ] docs (documentación)
-- [ ] chore (configuración, dependencias)
+- [ ] Feature (algo nuevo)
+- [ ] Fix (arregla algo roto)
+- [ ] Otro (refactor, chore, docs, etc.)
 
 ## Qué hace este PR
 
-[Describe el cambio. Ej: "Agrega botón de eliminar al carrito"]
-
-## Por qué
-
-[Explica el problema o la razón. Ej: "Los usuarios no podían eliminar items individualmente"]
+[Ej: "Agrega botón de eliminar al carrito"]
 
 ## Cómo probarlo
 
-1. [paso 1]
-2. [paso 2]
+[Ej: "Ir al carrito, click en eliminar, verificar que el item desaparece"]
 
-## 📌 Issues relacionados
+## Issue relacionado
 
-Closes # [número de issue]
+Closes #

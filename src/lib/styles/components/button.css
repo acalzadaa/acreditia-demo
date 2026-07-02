@@ -112,7 +112,7 @@
 /* ==========================================
    ICON SUPPORT (simplificado)
    ========================================== */
-.button__icon {
+.button--icon {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -121,32 +121,32 @@
 }
 
 /* Icon-only buttons - tamaño cuadrado consistente */
-.button:has(.button__icon:only-child) {
+.button:has(.button--icon:only-child) {
 	padding: var(--button-padding-md);
 }
 
-.button--size-xs:has(.button__icon:only-child) {
+.button--size-xs:has(.button--icon:only-child) {
 	padding: var(--space-1);
 }
-.button--size-sm:has(.button__icon:only-child) {
+.button--size-sm:has(.button--icon:only-child) {
 	padding: var(--space-2);
 }
-.button--size-md:has(.button__icon:only-child) {
+.button--size-md:has(.button--icon:only-child) {
 	padding: var(--space-2);
 }
-.button--size-lg:has(.button__icon:only-child) {
+.button--size-lg:has(.button--icon:only-child) {
 	padding: var(--space-3);
 }
-.button--size-xl:has(.button__icon:only-child) {
+.button--size-xl:has(.button--icon:only-child) {
 	padding: var(--space-3);
 }
 
 /* Icon spacing when text is present */
-.button__icon:first-child {
+.button--icon:first-child {
 	margin-right: calc(var(--button-gap-md) * -0.5);
 }
 
-.button__icon:last-child {
+.button--icon:last-child {
 	margin-left: calc(var(--button-gap-md) * -0.5);
 }
 
