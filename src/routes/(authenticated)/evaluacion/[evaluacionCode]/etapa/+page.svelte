@@ -46,7 +46,6 @@
 
 	<main class="detail-content">
 		<EvaluacionEtapa
-			gridArea="etapa"
 			showHeader={true}
 			title="Etapas de la evaluacion"
 			items={evaluacionEtapaItems}
