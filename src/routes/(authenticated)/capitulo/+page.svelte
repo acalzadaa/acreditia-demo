@@ -53,9 +53,9 @@
 		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
 	<Subheader
-		onClickNavigationBar={navigationToggle.onclick}
+		onClickNavigationBar={navigationToggle.onClick}
 		onKeydownNavigationBar={(e) => navigationToggle.onkeydown(e)}
-		onClickNotificationBar={navigationToggle.onclick}
+		onClickNotificationBar={navigationToggle.onClick}
 		onKeydownNotificationBar={(e) => navigationToggle.onkeydown(e)}
 		showNavigationBar={navigationToggle.value}
 		showNotificationBar={notificationToggle.value}

@@ -33,7 +33,7 @@
 				size="md"
 				shape="round"
 				variant="ghost"
-				onClick={cardExpand.onclick}
+				onClick={cardExpand.onClick}
 				onKeydown={(e) => cardExpand.onkeydown(e)}
 			/>
 			<h3 class="text-h6">Rúbrica de evaluación</h3>

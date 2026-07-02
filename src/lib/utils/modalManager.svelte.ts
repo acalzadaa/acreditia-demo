@@ -22,7 +22,7 @@ type ModalState<TItem = unknown> = {
  * </script>
  *
  * <!-- Usar handlers para accesibilidad -->
- * <button {...modal.handlers('create').onclick}>
+ * <button {...modal.handlers('create').onClick}>
  *   Crear Usuario
  * </button>
  *
@@ -90,12 +90,12 @@ export function createModalManager<TItem = unknown>() {
 			/**
 			 * Manejador click para elementos sin item (ej: botón crear)
 			 */
-			onclick: () => open(modalId, item),
+			onClick: () => open(modalId, item),
 
 			/**
 			 * Manejador teclado para accesibilidad (Enter/Espacio)
 			 */
-			onkeydown: (e: KeyboardEvent) => {
+			onKeydown: (e: KeyboardEvent) => {
 				if (e.key === 'Enter' || e.key === ' ') {
 					e.preventDefault();
 					open(modalId, item);
