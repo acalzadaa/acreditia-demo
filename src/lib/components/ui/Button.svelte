@@ -96,17 +96,17 @@
 	{...restProps}
 >
 	{#if name && iconPosition === 'left'}
-		<span class="button__icon" style="padding-right: 5px;">
+		<span class="button--icon" style="padding-right: 5px;">
 			<Icon {name} size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} color="currentColor" />
 		</span>
 	{/if}
 
-	<span class="button__text">
+	<span>
 		{@render children?.()}
 	</span>
 
 	{#if name && iconPosition === 'right'}
-		<span class="button__icon" style="padding-left: 5px;">
+		<span class="button--icon" style="padding-left: 5px;">
 			<Icon {name} size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} color="currentColor" />
 		</span>
 	{/if}

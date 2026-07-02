@@ -34,7 +34,7 @@
 				shape="round"
 				variant="ghost"
 				onClick={cardExpand.onClick}
-				onKeydown={(e) => cardExpand.onkeydown(e)}
+				onKeydown={(e) => cardExpand.onKeydown(e)}
 			/>
 			<h3 class="text-h6">Rúbrica de evaluación</h3>
 			{#if items && items.length > 0}
