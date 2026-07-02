@@ -83,7 +83,6 @@
 									/>
 									<IconButton
 										name="edit"
-tooltipLabel="Editar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
@@ -93,11 +92,10 @@ tooltipLabel="Editar registro"
 									/>
 									<IconButton
 										name="delete"
-tooltipLabel="Borrar registro"
+										tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
-										tooltipLabel="Eliminar grupo"
 										onClick={() => modalGrupo.handlers('delete').onClickItem(item)}
 										onKeydown={(e) => modalGrupo.handlers('delete').onKeydownItem(e, item)}
 									/>
@@ -112,7 +110,6 @@ tooltipLabel="Borrar registro"
 											<span class="element-item__child-text">{criterio.criterio}</span>
 											<IconButton
 												name="delete"
-tooltipLabel="Borrar registro"
 												size="sm"
 												shape="square"
 												variant="ghost"

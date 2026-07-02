@@ -34,7 +34,7 @@
 					<tr>
 						<th class="col-code">Code</th>
 						<th class="col-label">Subarea funcional</th>
-						<th class="col-actions">Acciones</th>
+						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">

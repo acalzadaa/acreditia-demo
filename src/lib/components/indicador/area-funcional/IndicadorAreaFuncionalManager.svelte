@@ -73,11 +73,10 @@
 									/>
 									<IconButton
 										name="delete"
-tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
-										tooltipLabel="Eliminar area funcional"
+										tooltipLabel="Desvincula el area funcional"
 										onClick={() => modalAreaFuncional.handlers('delete').onClickItem(item)}
 										onKeydown={(e) => modalAreaFuncional.handlers('delete').onKeydownItem(e, item)}
 									/>
@@ -92,7 +91,6 @@ tooltipLabel="Borrar registro"
 											<span class="element-item__child-text">{subareaFuncional.name}</span>
 											<IconButton
 												name="delete"
-tooltipLabel="Borrar registro"
 												size="sm"
 												shape="square"
 												variant="ghost"

@@ -40,7 +40,7 @@
 						<th class="col-code">Codigo</th>
 						<th class="col-label">Area funcional</th>
 						<th class="col-text">Descripcion</th>
-						<th class="col-actions">Acciones</th>
+						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">
@@ -70,7 +70,7 @@
 									<IconButton
 										isDisabled={item.isDeleted}
 										name="delete"
-										tooltipLabel="Borrar registro"
+										tooltipLabel="Desvincula el area funcional"
 										size="md"
 										borderShape="square"
 										variant="ghost"
