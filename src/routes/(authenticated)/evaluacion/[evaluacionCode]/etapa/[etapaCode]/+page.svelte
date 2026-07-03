@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { page } from '$app/state';
 	import { getEtapaDetail, getEvaluacionEtapa } from '$lib/stores/data.svelte';
-	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
-	import EvaluacionEtapa from '$lib/components/evaluacion/etapa/EvaluacionEtapa.svelte';
 	import EtapaDetail from '$lib/components/evaluacion/etapa/EtapaDetail.svelte';
+	import EvaluacionEtapaDetail from '$lib/components/evaluacion/etapa/metadata/EvaluacionEtapaDetail.svelte';
 
 	let evaluacionCode = page.params.evaluacionCode;
 	let etapaCode = page.params.etapaCode;
@@ -12,17 +10,14 @@
 		(item) => item.evaluacion.code === evaluacionCode && item.etapa.code === etapaCode
 	);
 
-	let modalEtapa = createModalManager<EvaluacionEtapaItem>();
 	let etapaDetail = getEtapaDetail();
 </script>
 
 <main>
-	<EvaluacionEtapa
-		gridArea="etapa"
+	<EvaluacionEtapaDetail
 		showHeader={true}
 		title="Etapas asignadas a la evaluacion"
 		items={etapaItems}
-		onClickEditar={modalEtapa.handlers('edit').onClickItem}
 	/>
 	<div class="detail">
 		<EtapaDetail items={etapaDetail} />
