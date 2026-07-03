@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import Button from '../ui/Button.svelte';
@@ -25,10 +24,15 @@
 	}: Props = $props();
 
 	let isOpen = $state(false);
-
+	let rotate = $state(0);
 	function toggleOpen() {
 		isOpen = !isOpen;
+		rotate = rotate === 180 ? 0 : 180;
 	}
+
+	let seleccionado = $derived(
+		currentScore && currentScore >= item.rangeStart && currentScore <= item.rangeEnd
+	);
 </script>
 
 <article
@@ -39,39 +43,46 @@
 	<div class="rubrica-card__header">
 		<div class="rubrica-card__main text-body">
 			{#if showSelectIcon && onClickSelect}
-				<Button variant="outline" onClick={() => onClickSelect(item)} name="check">
-					Seleccionar
-				</Button>
+				{#if seleccionado}
+					<Button variant="primary" onClick={() => onClickSelect(item)} name="check">
+						Seleccionar
+					</Button>
+				{:else}
+					<Button variant="outline" onClick={() => onClickSelect(item)} name="check">
+						Seleccionar
+					</Button>
+				{/if}
 			{/if}
 			<span class="rubrica-card__code text-body-strong">{item.code}</span>
 			<Badge variant="info">de {item.rangeStart} a {item.rangeEnd}</Badge>
 			<Badge variant={item.criterios.length === 0 ? 'warning' : 'success'}>
 				{item.criterios.length} criterios
 			</Badge>
-			{#if currentScore && currentScore >= item.rangeStart && currentScore <= item.rangeEnd}
-				<p class="text-body-strong">Este elemento fue seleccionado en la etapa de autoevaluacion</p>
-			{/if}
 		</div>
 
 		<div class="rubrica-card__actions text-body">
-			<Button variant="outline" name="chevron-down" ariaExpanded={isOpen} onClick={toggleOpen}
-				>
-				Ver criterios
-				</Button
-			>
-
 			{#if showDetailIcon}
-				<IconButton
+				<Button
 					isDisabled={item.isDeleted}
 					name="detail"
 					tooltipLabel="Ver detalle"
 					size="md"
-					borderShape="square"
-					variant="ghost"
+					variant="outline"
 					onClick={() => navigateTo(item.code)}
-					class="rubrica-card__criterios-toggle"
-				/>
+					class="rubrica-card__criterios-toggle">Ver detalle</Button
+				>
 			{/if}
+			<div>
+				<Button
+					iconRotate={rotate}
+					variant="outline"
+					name="chevron-down"
+					ariaExpanded={isOpen}
+					onClick={toggleOpen}
+				>
+					Ver criterios
+				</Button>
+			</div>
 		</div>
 	</div>
 
@@ -108,6 +119,10 @@
 		padding: var(--space-4);
 	}
 
+	.rubrica-card__header:hover {
+		background-color: var(--bg-raised-active);
+	}
+
 	.rubrica-card__main {
 		display: flex;
 		align-items: center;
@@ -127,43 +142,6 @@
 		align-items: center;
 		gap: var(--space-2);
 		flex-shrink: 0;
-	}
-
-	.rubrica-card__criterios-toggle {
-		display: flex;
-		align-items: center;
-		gap: var(--space-2);
-		padding: var(--space-1) var(--space-2);
-		border: none;
-		background: transparent;
-		border-radius: var(--border-radius-md);
-		cursor: pointer;
-		transition: background-color 0.15s ease;
-	}
-
-	.rubrica-card__criterios-toggle:hover {
-		background-color: var(--neutral-900-10);
-	}
-
-	.rubrica-card__criterios-toggle:focus-visible {
-		outline: var(--focus-ring);
-		outline-offset: var(--focus-ring-offset);
-	}
-
-	.rubrica-card__chevron {
-		display: inline-flex;
-		width: var(--icon-size-sm);
-		height: var(--icon-size-sm);
-		transition: transform 0.2s ease;
-	}
-
-	.rubrica-card__chevron svg {
-		width: 100%;
-		height: 100%;
-	}
-
-	.rubrica-card__chevron--open {
-		transform: rotate(180deg);
 	}
 
 	.rubrica-card__criterios {

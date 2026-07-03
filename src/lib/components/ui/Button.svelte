@@ -10,6 +10,7 @@
 		size?: ButtonSize;
 		name?: IconName;
 		iconPosition?: 'left' | 'right';
+		iconRotate?: number;
 		fullWidth?: boolean;
 
 		isActive?: boolean;
@@ -36,6 +37,7 @@
 		size = 'md',
 		name,
 		iconPosition = 'left',
+		iconRotate = 0,
 		fullWidth = false,
 
 		isActive = false,
@@ -97,7 +99,7 @@
 >
 	{#if name && iconPosition === 'left'}
 		<span class="button--icon" style="padding-right: 5px;">
-			<Icon {name} size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} color="currentColor" />
+			<Icon rotate={iconRotate} {name} size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} color="currentColor" />
 		</span>
 	{/if}
 
@@ -107,7 +109,7 @@
 
 	{#if name && iconPosition === 'right'}
 		<span class="button--icon" style="padding-left: 5px;">
-			<Icon {name} size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} color="currentColor" />
+			<Icon rotate={iconRotate} {name} size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} color="currentColor" />
 		</span>
 	{/if}
 </button>

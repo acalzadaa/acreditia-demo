@@ -73,11 +73,10 @@
 									/>
 									<IconButton
 										name="delete"
-tooltipLabel="Borrar registro"
+										tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
-										tooltipLabel="Eliminar area responsable"
 										onClick={() => modalAreaResponsable.handlers('delete').onClickItem(item)}
 										onKeydown={(e) =>
 											modalAreaResponsable.handlers('delete').onKeydownItem(e, item)}
@@ -93,12 +92,11 @@ tooltipLabel="Borrar registro"
 											<span class="rubrica-item__criterio-text">{unidadAcademica.name}</span>
 											<IconButton
 												name="delete"
-tooltipLabel="Borrar registro"
+												tooltipLabel="Borrar registro"
 												size="sm"
 												shape="square"
 												variant="ghost"
 												class="rubrica-item__criterio-delete"
-												tooltipLabel="Eliminar criterio"
 												onClick={() =>
 													modalUnidadAcademica.handlers('delete').onClickItem(unidadAcademica)}
 												onKeydown={(e) =>

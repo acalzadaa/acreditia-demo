@@ -101,9 +101,8 @@ import {
 	type CampusAreaResponsableItem
 } from '$lib/schemas/campusAreaResponsable.schema';
 import {
-	regionCampusWithRelationsItemSchema,
-	type RegionCampusWithRelationsItem
-} from '$lib/schemas/regionCampus.schema';
+	regionCampusItemSchema,
+	type RegionCampusItem} from '$lib/schemas/regionCampus.schema';
 import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
 import {
 	areaResponsableItemSchema,
@@ -159,7 +158,7 @@ let normativas = $state<NormativaItem[]>([]);
 
 let entidadLegal = $state<EntidadLegalItem[]>([]);
 let region = $state<RegionWithRelationsItem[]>([]);
-let regionCampus = $state<RegionCampusWithRelationsItem[]>([]);
+let regionCampus = $state<RegionCampusItem[]>([]);
 
 let institucion = $state<InstitucionWithRelationsItem[]>([]);
 
@@ -224,7 +223,7 @@ const regionRawData = regionJsonData.regionItems;
 region = regionRawData.map((item) => regionWithRelationsItemSchema.parse(item));
 
 const regionCampusRawData = regionCampusJsonData.regionCampusItems;
-regionCampus = regionCampusRawData.map((item) => regionCampusWithRelationsItemSchema.parse(item));
+regionCampus = regionCampusRawData.map((item) => regionCampusItemSchema.parse(item));
 
 const institucionRawData = institucionJsonData.institucionItems;
 institucion = institucionRawData.map((item) => institucionWithRelationsItemSchema.parse(item));

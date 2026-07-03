@@ -64,11 +64,10 @@
 								<div class="element-item__actions">
 									<IconButton
 										name="delete"
-tooltipLabel="Borrar registro"
+										tooltipLabel="Borrar registro"
 										size="sm"
 										shape="square"
 										variant="ghost"
-										tooltipLabel="Eliminar indicador estrategico"
 										onClick={() => modalIndicadorEstrategico.handlers('delete').onClickItem(item)}
 										onKeydown={(e) =>
 											modalIndicadorEstrategico.handlers('delete').onKeydownItem(e, item)}

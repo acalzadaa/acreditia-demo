@@ -69,7 +69,7 @@
 									{/if}
 									<IconButton
 										isDisabled={item.isDeleted}
-										name="delete"
+										name="remove"
 										tooltipLabel="Desvincula el area funcional"
 										size="md"
 										borderShape="square"

@@ -2,14 +2,15 @@
 	import { superForm } from 'sveltekit-superforms';
 
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
+	import { campusItemSchema } from '$lib/schemas/campus.schema';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: CampusItem;
+		selectedItem: RegionCampusItem;
 		onClose: () => void;
 	}
 
@@ -61,11 +62,11 @@
 		<form method="POST" action="?/restoreRegionCampus" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
-			<input type="hidden" name="code" value={$form.code} />
+			<input type="hidden" name="code" value={$form.campus.code} />
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas restaurar el registro <strong>"{selectedItem?.name}"</strong>?
+					¿Estás seguro de que deseas restaurar el registro <strong>"{selectedItem?.campus.code}"</strong>?
 				</p>
 			</div>
 

@@ -51,7 +51,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Borrar institucion</h2>
+			<h2 class="modal-title text-h4">Remover unidad academica</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -61,19 +61,19 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/deleteCriterio" use:enhance>
+		<form method="POST" action="?/deleteUnidadAcademica" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.code}"</strong>?
+					¿Estás seguro de que deseas remover el registro <strong>"{selectedItem?.code}"</strong>?
 				</p>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Borrar</Button>
+				<Button type="submit" variant="critical">Remover</Button>
 			</footer>
 		</form>
 	</div>

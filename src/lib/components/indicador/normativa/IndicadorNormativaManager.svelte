@@ -60,16 +60,15 @@
 								</div>
 
 								<div class="element-item__actions">
-									<IconButton
-										name="delete"
-tooltipLabel="Borrar registro"
-										size="sm"
-										shape="square"
-										variant="ghost"
-										tooltipLabel="Eliminar normativa"
-										onClick={() => modalNormativa.handlers('delete').onClickItem(item)}
-										onKeydown={(e) => modalNormativa.handlers('delete').onKeydownItem(e, item)}
-									/>
+										<IconButton
+											name="delete"
+											tooltipLabel="Borrar registro"
+											size="sm"
+											shape="square"
+											variant="ghost"
+											onClick={() => modalNormativa.handlers('delete').onClickItem(item)}
+											onKeydown={(e) => modalNormativa.handlers('delete').onKeydownItem(e, item)}
+										/>
 								</div>
 							</header>
 						</article>

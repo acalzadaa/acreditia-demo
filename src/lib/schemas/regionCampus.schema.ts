@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { campusItemSchema } from './campus.schema';
+import { campusRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA
@@ -20,6 +21,7 @@ export const regionCampusItemSchema = z.object({
 	id: z.uuid(),
 	regionId: z.uuid(),
 	campusId: z.uuid(),
+	campus: campusRefSchema,
 	version: z.number().int().nonnegative().default(0),
 	isCurrent: z.boolean().default(true),
 	validFrom: z.coerce.date(),

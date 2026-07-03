@@ -69,8 +69,8 @@
 									{/if}
 									<IconButton
 										isDisabled={item.isDeleted}
-										name="delete"
-										tooltipLabel="Borrar registro"
+										name="remove"
+										tooltipLabel="Desvincular registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"
