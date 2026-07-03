@@ -50,7 +50,7 @@
 							<td class="col-actions-md">
 								<div class="col-actions-row">
 									<IconButton
-										name="delete"
+										name="remove"
 										tooltipLabel="Borrar registro"
 										size="md"
 										borderShape="square"

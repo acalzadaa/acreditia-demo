@@ -59,6 +59,12 @@
   <symbol id="close" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m7 7l10 10M7 17L17 7" />
   </symbol>
+  <symbol id="remove" viewBox="0 0 24 24">
+    <g>
+      <circle cx="12" cy="12.5" r="11" style="stroke:currentColor;fill:none" transform="matrix(1 0 .0009 1 -.01 -.5)"/>
+      <path d="M4 12.145 20 12" style="fill:none;stroke:currentColor;stroke-linecap:round"/>
+    </g>
+  </symbol>
   <symbol id="check" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m9.55 15.15l8.475-8.475q.3-.3.7-.3t.7.3t.3.713t-.3.712l-9.175 9.2q-.3.3-.7.3t-.7-.3L4.55 13q-.3-.3-.288-.712t.313-.713t.713-.3t.712.3z" />
   </symbol>

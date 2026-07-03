@@ -28,7 +28,8 @@
 		| 'eye-open'
 		| 'eye-closed'
 		| 'email'
-		| 'password';
+		| 'password'
+		| 'remove';
 
 	interface Props {
 		name: IconName;
