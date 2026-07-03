@@ -4,7 +4,6 @@
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
-	
 
 	interface Props {
 		showDetailIcon?: boolean;
@@ -13,13 +12,9 @@
 		subtitle?: string;
 		regionCampusItems: RegionCampusItem[];
 		onClickEditar: (item: RegionCampusItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: RegionCampusItem) => void;
 		onClickBorrar: (item: RegionCampusItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: RegionCampusItem) => void;
 		onClickRestaurar: (item: RegionCampusItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: RegionCampusItem) => void;
 		onClickDetalle?: (item: RegionCampusItem) => void;
-		onKeydownDetalle?: (e: KeyboardEvent, item: RegionCampusItem) => void;
 	}
 
 	const {
@@ -29,13 +24,9 @@
 		subtitle = '',
 		regionCampusItems,
 		onClickEditar,
-		onKeydownEditar,
 		onClickBorrar,
-		onKeydownBorrar,
 		onClickRestaurar,
-		onKeydownRestaurar,
-		onClickDetalle,
-		onKeydownDetalle
+		onClickDetalle
 	}: Props = $props();
 </script>
 
@@ -67,7 +58,7 @@
 							</td>
 							<td class="col-actions-md">
 								<div class="col-actions-row">
-									{#if showDetailIcon && onClickDetalle && onKeydownDetalle}
+									{#if showDetailIcon && onClickDetalle}
 										<IconButton
 											isDisabled={item.isDeleted}
 											name="detail"
@@ -76,7 +67,6 @@
 											borderShape="square"
 											variant="ghost"
 											onClick={() => onClickDetalle(item)}
-											onKeydown={(e) => onKeydownDetalle(e, item)}
 										/>
 									{/if}
 									<IconButton
@@ -87,17 +77,14 @@
 										borderShape="square"
 										variant="ghost"
 										onClick={() => onClickEditar(item)}
-										onKeydown={(e) => onKeydownEditar(e, item)}
 									/>
 									<IconButton
 										isDisabled={item.isDeleted}
-										name="delete"
-										tooltipLabel="Borrar registro"
+										name="remove"
+										tooltipLabel="Desvincular registro"
 										size="md"
-										borderShape="square"
 										variant="ghost"
 										onClick={() => onClickBorrar(item)}
-										onKeydown={(e) => onKeydownBorrar(e, item)}
 									/>
 									<IconButton
 										isDisabled={!item.isDeleted}
@@ -107,7 +94,6 @@
 										borderShape="square"
 										variant="ghost"
 										onClick={() => onClickRestaurar(item)}
-										onKeydown={(e) => onKeydownRestaurar(e, item)}
 									/>
 								</div>
 							</td>

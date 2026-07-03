@@ -50,7 +50,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Borrar unidad</h2>
+			<h2 class="modal-title text-h4">Remover unidad</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -65,13 +65,13 @@
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.name}"</strong>?
+					¿Estás seguro de que deseas remover el registro <strong>"{selectedItem?.name}"</strong>?
 				</p>
 			</div>
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="critical">Borrar unidad</Button>
+				<Button type="submit" variant="critical">Remover unidad</Button>
 			</footer>
 		</form>
 	</div>

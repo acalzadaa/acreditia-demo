@@ -29,7 +29,7 @@
 		isOpen = !isOpen;
 		rotate = rotate === 180 ? 0 : 180;
 	}
-	
+
 	let seleccionado = $derived(
 		currentScore && currentScore >= item.rangeStart && currentScore <= item.rangeEnd
 	);
@@ -73,7 +73,13 @@
 				>
 			{/if}
 			<div>
-				<Button iconRotate={rotate} variant="outline" name="chevron-down" ariaExpanded={isOpen} onClick={toggleOpen}>
+				<Button
+					iconRotate={rotate}
+					variant="outline"
+					name="chevron-down"
+					ariaExpanded={isOpen}
+					onClick={toggleOpen}
+				>
 					Ver criterios
 				</Button>
 			</div>
@@ -136,43 +142,6 @@
 		align-items: center;
 		gap: var(--space-2);
 		flex-shrink: 0;
-	}
-
-	.rubrica-card__criterios-toggle {
-		display: flex;
-		align-items: center;
-		gap: var(--space-2);
-		padding: var(--space-1) var(--space-2);
-		border: none;
-		background: transparent;
-		border-radius: var(--border-radius-md);
-		cursor: pointer;
-		transition: background-color 0.15s ease;
-	}
-
-	.rubrica-card__criterios-toggle:hover {
-		background-color: var(--neutral-900-10);
-	}
-
-	.rubrica-card__criterios-toggle:focus-visible {
-		outline: var(--focus-ring);
-		outline-offset: var(--focus-ring-offset);
-	}
-
-	.rubrica-card__chevron {
-		display: inline-flex;
-		width: var(--icon-size-sm);
-		height: var(--icon-size-sm);
-		transition: transform 0.2s ease;
-	}
-
-	.rubrica-card__chevron svg {
-		width: 100%;
-		height: 100%;
-	}
-
-	.rubrica-card__chevron--open {
-		transform: rotate(180deg);
 	}
 
 	.rubrica-card__criterios {

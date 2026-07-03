@@ -60,11 +60,8 @@
 			title="Lista de campus asignados"
 			{regionCampusItems}
 			onClickEditar={modalRegionCampus.handlers('edit').onClickItem}
-			onKeydownEditar={(e, item) => modalRegionCampus.handlers('edit').onKeydownItem(e, item)}
 			onClickBorrar={modalRegionCampus.handlers('delete').onClickItem}
-			onKeydownBorrar={(e, item) => modalRegionCampus.handlers('delete').onKeydownItem(e, item)}
 			onClickRestaurar={modalRegionCampus.handlers('restore').onClickItem}
-			onKeydownRestaurar={(e, item) => modalRegionCampus.handlers('restore').onKeydownItem(e, item)}
 		/>
 	</main>
 </div>
