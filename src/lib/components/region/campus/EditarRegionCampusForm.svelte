@@ -2,17 +2,18 @@
 	import { superForm } from 'sveltekit-superforms';
 
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
+	import { campusItemSchema } from '$lib/schemas/campus.schema';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import type { CampusRef } from '$lib/schemas/shared.schema';
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: CampusItem;
+		selectedItem: RegionCampusItem;
 		campusRef: CampusRef[];
 		onClose: () => void;
 	}

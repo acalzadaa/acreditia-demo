@@ -3,46 +3,52 @@
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
+	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
+	
 
 	interface Props {
-		gridArea?: string;
-		unidadAcademicaItems: UnidadAcademicaItem[];
+		showDetailIcon?: boolean;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		onClickEditar: (item: UnidadAcademicaItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
-		onClickBorrar: (item: UnidadAcademicaItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
-		onClickRestaurar: (item: UnidadAcademicaItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: UnidadAcademicaItem) => void;
+		regionCampusItems: RegionCampusItem[];
+		onClickEditar: (item: RegionCampusItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: RegionCampusItem) => void;
+		onClickBorrar: (item: RegionCampusItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: RegionCampusItem) => void;
+		onClickRestaurar: (item: RegionCampusItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: RegionCampusItem) => void;
+		onClickDetalle?: (item: RegionCampusItem) => void;
+		onKeydownDetalle?: (e: KeyboardEvent, item: RegionCampusItem) => void;
 	}
 
 	const {
-		gridArea = 'main',
-		unidadAcademicaItems,
+		showDetailIcon = true,
 		showHeader = false,
-		title = '',
+		title = 'Add',
 		subtitle = '',
+		regionCampusItems,
 		onClickEditar,
 		onKeydownEditar,
 		onClickBorrar,
 		onKeydownBorrar,
 		onClickRestaurar,
-		onKeydownRestaurar
+		onKeydownRestaurar,
+		onClickDetalle,
+		onKeydownDetalle
 	}: Props = $props();
 </script>
 
-<main class="main-panel" style="grid-area: {gridArea}">
+<main class="main-panel">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
 	<section class="table-container">
-		{#if unidadAcademicaItems.length > 0}
+		{#if regionCampusItems.length > 0}
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
+						<th class="col-label">Institucion</th>
 						<th class="col-code">Código</th>
 						<th class="col-label">Nombre</th>
 						<th class="col-badge">Estatus</th>
@@ -50,10 +56,10 @@
 					</tr>
 				</thead>
 				<tbody class="text-body">
-					{#each unidadAcademicaItems as item (item.id)}
+					{#each regionCampusItems as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.code}</td>
-							<td class="col-label">{item.name}</td>
+							<td class="col-code">{item.campus.code}</td>
+							<td class="col-label">{item.campus.name}</td>
 							<td class="col-badge">
 								<Badge variant={item.isDeleted ? 'error' : 'success'}>
 									{item.isDeleted ? 'borrado' : 'activo'}
@@ -61,6 +67,18 @@
 							</td>
 							<td class="col-actions-md">
 								<div class="col-actions-row">
+									{#if showDetailIcon && onClickDetalle && onKeydownDetalle}
+										<IconButton
+											isDisabled={item.isDeleted}
+											name="detail"
+											tooltipLabel="Ver detalle"
+											size="md"
+											borderShape="square"
+											variant="ghost"
+											onClick={() => onClickDetalle(item)}
+											onKeydown={(e) => onKeydownDetalle(e, item)}
+										/>
+									{/if}
 									<IconButton
 										isDisabled={item.isDeleted}
 										name="edit"
@@ -73,7 +91,7 @@
 									/>
 									<IconButton
 										isDisabled={item.isDeleted}
-										name="remove"
+										name="delete"
 										tooltipLabel="Borrar registro"
 										size="md"
 										borderShape="square"
@@ -98,13 +116,7 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de unidad academica"></EmptySection>
+			<EmptySection message="No hay elementos de campus"></EmptySection>
 		{/if}
 	</section>
 </main>
-
-<style>
-	.main-panel {
-		flex-shrink: 0;
-	}
-</style>

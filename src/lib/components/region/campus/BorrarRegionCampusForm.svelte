@@ -4,11 +4,12 @@
 	import Button from '../../ui/Button.svelte';
 	import IconButton from '../../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
+	import { campusItemSchema } from '$lib/schemas/campus.schema';
+	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: CampusItem;
+		selectedItem: RegionCampusItem;
 		onClose: () => void;
 	}
 
@@ -63,7 +64,7 @@
 
 			<div class="modal-form confirm-content">
 				<p class="confirm-message text-body-large">
-					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.name}"</strong>?
+					¿Estás seguro de que deseas aliminar el registro <strong>"{selectedItem?.campus.name}"</strong>?
 				</p>
 			</div>
 
