@@ -6,7 +6,7 @@
 </script>
 
 <main class="rubrica-page">
-	<IndicadorDetail showHeader={true} title='Lista de componentes del indicador' items={indicadorDetailItem} />
+	<IndicadorDetail items={indicadorDetailItem} />
 </main>
 
 <style>

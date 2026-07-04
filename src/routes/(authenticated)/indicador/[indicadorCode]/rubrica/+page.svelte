@@ -8,12 +8,11 @@
 </script>
 
 <main class="rubrica-page">
-	<RubricaListViewDetail showHeader={true} title='Lista de elementos a evaluar' items={rubricaItems} />
+	<RubricaListViewDetail items={rubricaItems} />
 </main>
 
 <style>
 	.rubrica-page {
-		margin-top: var(--space-4);
 		flex: 1;
 		min-height: 0;
 		display: flex;

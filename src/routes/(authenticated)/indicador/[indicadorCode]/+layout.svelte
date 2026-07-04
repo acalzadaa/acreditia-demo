@@ -33,7 +33,7 @@
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
 	/>
 
-	<main class="main-children">
+	<main class="detail-content">
 		{@render children()}
 	</main>
 </div>
@@ -60,15 +60,17 @@
 
 <style>
 	.detail-panel {
-		flex-shrink: 0;
-		min-height: 0;
-	}
-
-	.main-children {
-		gap: 10px;
-		background-color: var(--bg-ground);
+		display: flex;
+		flex-direction: column;
+		flex: 1;
 		min-height: 0;
 		overflow: hidden;
+	}
+
+	.detail-content {
+		flex: 1;
+		min-height: 0;
+		overflow-y: hidden;
 		display: flex;
 		flex-direction: column;
 	}

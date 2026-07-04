@@ -6,6 +6,7 @@
 
 	interface Props {
 		showHeader?: boolean;
+
 		showSelectIcon?: boolean;
 		onClickSelect?: (item: RubricaItem) => void;
 		items: RubricaItem[];

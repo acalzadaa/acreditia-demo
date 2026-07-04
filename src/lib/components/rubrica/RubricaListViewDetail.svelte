@@ -1,30 +1,17 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
-	import PageHeader from '../common/PageHeader.svelte';
 	import RubricaCard from './RubricaCard.svelte';
 
 	interface Props {
 		showDetailIcon?: boolean;
 		items: RubricaItem[];
-		showHeader?: boolean;
-		title?: string;
-		subtitle?: string;
 	}
 
-	const {
-		showDetailIcon = true,
-		items,
-		showHeader = false,
-		title = '',
-		subtitle = ''
-	}: Props = $props();
+	const { showDetailIcon = true, items }: Props = $props();
 </script>
 
 <main class="main-panel">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
 	<section class="rubrica-list-container">
 		{#if items && items.length > 0}
 			<div class="rubrica-list">
