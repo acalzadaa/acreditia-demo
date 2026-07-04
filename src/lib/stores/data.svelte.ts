@@ -191,7 +191,7 @@ let indicadorAreaResponsable = $state<IndicadorAreaResponsableItem[]>([]);
 let indicadorAreaFuncional = $state<IndicadorAreaFuncionalItem[]>([]);
 let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
-let indicadorDetail = $state<IndicadorDetailItem[]>([]);
+let indicadorNavList = $state<IndicadorDetailItem[]>([]);
 let etapaDetail = $state<EtapaDetailItem[]>([]);
 let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]>([]);
 
@@ -314,7 +314,7 @@ indicadorIndicadorEstrategico = indicadorIndicadorEstrategicoRawData.map((item) 
 );
 
 const indicadorDetailRawData = indicadorDetailJsonData.indicadorDetailItem;
-indicadorDetail = indicadorDetailRawData.map((item) => indicadorDetailItemSchema.parse(item));
+indicadorNavList = indicadorDetailRawData.map((item) => indicadorDetailItemSchema.parse(item));
 
 const evaluacionDetailRawData = evaluacionDetailJsonData.evaluacionDetailItem;
 evaluacionDetail = evaluacionDetailRawData.map((item) => evaluacionDetailItemSchema.parse(item));
@@ -560,8 +560,8 @@ export function getIndicadorIndicadorEstrategico() {
 	return indicadorIndicadorEstrategico;
 }
 
-export function getIndicadorDetail() {
-	return indicadorDetail;
+export function getIndicadorNavList() {
+	return indicadorNavList;
 }
 
 export function getEtapaDetail() {

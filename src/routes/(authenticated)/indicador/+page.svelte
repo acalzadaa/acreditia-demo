@@ -3,7 +3,7 @@
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import Indicador from '$lib/components/indicador/Indicador.svelte';
+	import IndicadorList from '$lib/components/indicador/IndicadorList.svelte';
 	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
 	import BorrarIndicadorForm from '$lib/components/indicador/BorrarIndicadorForm.svelte';
 	import RestaurarIndicadorForm from '$lib/components/indicador/RestaurarIndicadorForm.svelte';
@@ -39,7 +39,7 @@
 		showFilter={true}
 	/>
 	<main class="detail-content">
-		<Indicador
+		<IndicadorList
 			{indicadorItems}
 			onClickEditar={modal.handlers('edit').onClickItem}
 			onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}

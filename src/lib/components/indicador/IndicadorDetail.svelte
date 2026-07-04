@@ -1,23 +1,40 @@
 <script lang="ts">
-	import { navigateTo } from '$lib/helpers/navigation';
-	import type { IndicadorDetailItem } from '$lib/schemas/indicadorDetail.schema';
+	import type { IndicadorItem } from '$lib/schemas/indicador.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
+	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		items: IndicadorDetailItem[];
+		indicadorItems: IndicadorItem[];
+		onClickEditar: (item: IndicadorItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: IndicadorItem) => void;
+		onClickBorrar: (item: IndicadorItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: IndicadorItem) => void;
+		onClickRestaurar: (item: IndicadorItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: IndicadorItem) => void;
+		onClickDetalle?: (item: IndicadorItem) => void;
+		onKeydownDetalle?: (e: KeyboardEvent, item: IndicadorItem) => void;
 	}
 
 	const {
-		showHeader = false,
 		title = 'Add',
 		subtitle = '',
-		items
+		indicadorItems,
+		onClickEditar,
+		onKeydownEditar,
+		onClickBorrar,
+		onKeydownBorrar,
+		onClickRestaurar,
+		onKeydownRestaurar,
+		onClickDetalle,
+		onKeydownDetalle
 	}: Props = $props();
+
+	let showHeader = $derived(indicadorItems.length == 1);
+	let showDetailIcon = $derived(indicadorItems.length > 1);
 </script>
 
 <main class="main-panel">
@@ -25,28 +42,75 @@
 		<PageHeader {title} {subtitle} />
 	{/if}
 	<section class="table-container">
-		{#if items && items.length > 0}
+		{#if indicadorItems && indicadorItems.length > 0}
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
 						<th class="col-code">Seccion</th>
-						<th class="col-actions-sm">Acciones</th>
+						<th class="col-code">Código</th>
+						<th class="col-label">Nombre</th>
+						<th class="col-text">Descripción</th>
+						<th class="col-metric">Meta</th>
+						<th class="col-badge">Estatus</th>
+						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">
-					{#each items as item (item.id)}
+					{#each indicadorItems as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.name}</td>
-
-							<td class="col-actions-sm">
-								<div class="col-actions-row">
+							<td class="col-code">{item.section.name}</td>
+							<td class="col-code">{item.code}</td>
+							<td class="col-label">{item.name}</td>
+							<td class="col-text">{item.description}</td>
+							<td class="col-metric">{item.target} {item.targetUnit}</td>
+							<td class="col-badge">
+								<Badge variant={item.isDeleted ? 'error' : 'success'}>
+									{item.isDeleted ? 'borrado' : 'activo'}
+								</Badge>
+							</td>
+							<td class="col-actions-md">
+								<div class="actions-row">
+									{#if showDetailIcon && onClickDetalle && onKeydownDetalle}
+										<IconButton
+											isDisabled={item.isDeleted}
+											name="detail"
+											tooltipLabel="Ver detalle"
+											size="md"
+											borderShape="square"
+											variant="ghost"
+											onClick={() => onClickDetalle(item)}
+											onKeydown={(e) => onKeydownDetalle(e, item)}
+										/>
+									{/if}
 									<IconButton
-										name="detail"
-										tooltipLabel="Ver detalle"
+										isDisabled={item.isDeleted}
+										name="edit"
+										tooltipLabel="Editar registro"
 										size="md"
 										borderShape="square"
 										variant="ghost"
-										onClick={() => navigateTo(item.url)}
+										onClick={() => onClickEditar(item)}
+										onKeydown={(e) => onKeydownEditar(e, item)}
+									/>
+									<IconButton
+										isDisabled={item.isDeleted}
+										name="delete"
+										tooltipLabel="Borrar registro"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickBorrar(item)}
+										onKeydown={(e) => onKeydownBorrar(e, item)}
+									/>
+									<IconButton
+										isDisabled={!item.isDeleted}
+										name="restore"
+										tooltipLabel="Restaurar registro"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickRestaurar(item)}
+										onKeydown={(e) => onKeydownRestaurar(e, item)}
 									/>
 								</div>
 							</td>
@@ -63,5 +127,8 @@
 <style>
 	.main-panel {
 		flex-shrink: 0;
+		position: sticky;
+		top: 0;
+		z-index: 1;
 	}
 </style>
