@@ -26,7 +26,6 @@
 
 <div class="detail-panel">
 	<Evaluacion
-		gridArea="evaluacion"
 		showHeader={true}
 		title="Evaluacion"
 		subtitle={evaluacionCode}

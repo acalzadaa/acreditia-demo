@@ -87,10 +87,10 @@
 	}
 
 	.detail-content {
+		display: flex;
+		flex-direction: column;
 		flex: 1;
 		min-height: 0;
 		overflow-y: hidden;
-		display: flex;
-		flex-direction: column;
 	}
 </style>

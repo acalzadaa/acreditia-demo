@@ -63,5 +63,6 @@
 <style>
 	.main-panel {
 		flex-shrink: 0;
+		margin-top: var(--space-4);
 	}
 </style>
