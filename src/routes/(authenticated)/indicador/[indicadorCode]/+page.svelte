@@ -1,12 +1,12 @@
 <script lang="ts">
-	import IndicadorDetail from '$lib/components/indicador/IndicadorDetail.svelte';
-	import { getIndicadorDetail } from '$lib/stores/data.svelte';
+	import IndicadorNavList from '$lib/components/indicador/IndicadorSubList.svelte';
+	import { getIndicadorNavList } from '$lib/stores/data.svelte';
 
-	let indicadorDetailItem = getIndicadorDetail();
+	let indicadorNavItem = getIndicadorNavList();
 </script>
 
 <main class="rubrica-page">
-	<IndicadorDetail items={indicadorDetailItem} />
+	<IndicadorNavList items={indicadorNavItem} />
 </main>
 
 <style>

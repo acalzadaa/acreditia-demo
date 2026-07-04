@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import Indicador from '$lib/components/indicador/Indicador.svelte';
 	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
 	import BorrarIndicadorForm from '$lib/components/indicador/BorrarIndicadorForm.svelte';
 	import RestaurarIndicadorForm from '$lib/components/indicador/RestaurarIndicadorForm.svelte';
@@ -8,12 +7,13 @@
 	import { getIndicador, getModeloFullRef } from '$lib/stores/data.svelte';
 	import type { LayoutProps } from '../$types';
 	import { page } from '$app/state';
+	import IndicadorDetail from '$lib/components/indicador/IndicadorDetail.svelte';
 
 	let { children }: LayoutProps = $props();
 
 	let indicadorCode = page.params.indicadorCode;
 
-	let indicadorItems = getIndicador().filter((item) => item.code === indicadorCode);
+	let indicadorItems = getIndicador().filter((item) => item.code === indicadorCode) || [];
 	let modeloFullRef = getModeloFullRef();
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
@@ -21,10 +21,10 @@
 </script>
 
 <div class="detail-panel">
-	<Indicador
+	<IndicadorDetail
 		title="Indicador"
 		subtitle={indicadorCode}
-		{indicadorItems}
+		indicadorItems={indicadorItems}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
 		onClickBorrar={modal.handlers('delete').onClickItem}
