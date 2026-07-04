@@ -126,9 +126,7 @@
 
 <style>
 	.main-panel {
-		flex-shrink: 0;
-		position: sticky;
-		top: 0;
-		z-index: 1;
+		flex: 1;
+		min-height: 0;
 	}
 </style>

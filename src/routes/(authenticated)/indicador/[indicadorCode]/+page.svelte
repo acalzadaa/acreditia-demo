@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IndicadorNavList from '$lib/components/indicador/IndicadorSubList.svelte';
+	import IndicadorNavList from '$lib/components/indicador/IndicadorNavList.svelte';
 	import { getIndicadorNavList } from '$lib/stores/data.svelte';
 
 	let indicadorNavItem = getIndicadorNavList();
