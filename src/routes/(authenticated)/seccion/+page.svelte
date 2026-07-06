@@ -121,6 +121,5 @@
 		grid-template-rows: auto auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
-		min-width: 1277px;
 	}
 </style>

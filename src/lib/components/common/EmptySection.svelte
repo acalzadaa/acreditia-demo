@@ -20,7 +20,7 @@
 		align-items: center;
 		justify-content: center;
 		height: 100%;
-		min-height: 400px;
+		min-height: 0;
 		text-align: center;
 		gap: 1rem;
 		padding: 2rem;

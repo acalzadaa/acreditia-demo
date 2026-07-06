@@ -1,8 +1,11 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import Icon, { type IconName } from './Icon.svelte';
-	import type { ButtonSize, ButtonVariant } from '$lib/types/button.types';
 	import { tooltip, type TooltipPosition } from '$lib/actions/tooltip';
+
+	export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'critical' | 'ghost' | 'link';
+
+	export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 	interface Props {
 		type?: 'button' | 'submit' | 'reset';
@@ -99,7 +102,12 @@
 >
 	{#if name && iconPosition === 'left'}
 		<span class="button--icon" style="padding-right: 5px;">
-			<Icon rotate={iconRotate} {name} size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} color="currentColor" />
+			<Icon
+				rotate={iconRotate}
+				{name}
+				size={size === 'xs' || size === 'sm' ? 'sm' : 'md'}
+				color="currentColor"
+			/>
 		</span>
 	{/if}
 
@@ -109,7 +117,12 @@
 
 	{#if name && iconPosition === 'right'}
 		<span class="button--icon" style="padding-left: 5px;">
-			<Icon rotate={iconRotate} {name} size={size === 'xs' || size === 'sm' ? 'sm' : 'md'} color="currentColor" />
+			<Icon
+				rotate={iconRotate}
+				{name}
+				size={size === 'xs' || size === 'sm' ? 'sm' : 'md'}
+				color="currentColor"
+			/>
 		</span>
 	{/if}
 </button>

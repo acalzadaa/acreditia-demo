@@ -53,11 +53,7 @@
 		onClose();
 	}
 
-	function onKeydownClose(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			handleClose();
-		}
-	}
+
 </script>
 
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
@@ -69,7 +65,6 @@
 				variant="ghost"
 				size="lg"
 				onClick={handleClose}
-				onKeydown={(e) => onKeydownClose(e)}
 				isDisabled={false}
 			/>
 		</header>

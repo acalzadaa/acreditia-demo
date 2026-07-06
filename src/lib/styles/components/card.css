@@ -1,0 +1,179 @@
+/* components/card.css
+   Card usado como alterna de .data-table en viewports angostos.
+   Tres secciones fijas: header (código/nombre/estatus, en columna),
+   content (lista de items, cada uno clamped a 2 renglones con
+   "ver más"/"ver menos") y footer (acciones, iconos alineados a la
+   izquierda). */
+
+:root {
+	--card-gap: var(--space-4);
+	--card-min-width: 280px;
+	--card-column-min-width: 320px;
+	--card-column-max-width: 640px;
+
+	--card-bg: var(--bg-raised);
+	--card-border: var(--border-card);
+	--card-radius: var(--border-radius-card);
+	--card-shadow: var(--shadow-card);
+	--card-padding: var(--space-4);
+
+	--card-section-gap: var(--stack-xs);
+}
+
+/* ==========================================
+   CONTENEDORES — dos variantes de layout.
+   Ambos son intercambiables como reemplazo de .table-container
+   en viewports angostos; eligen uno según el caso de uso, no se
+   mezclan en el mismo listado.
+   ========================================== */
+
+/* GRID — tipo Zillow: N columnas, se auto-ajusta según el ancho
+   disponible. Úsala para listados de "elementos equivalentes"
+   donde escanear varias columnas a la vez tiene sentido
+   (departamentos, productos, items de catálogo). */
+.card-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
+	align-content: start;
+	gap: var(--card-gap);
+	padding: var(--space-2);
+	overflow-y: auto;
+	height: 100%;
+}
+
+/* COLUMN — tipo Facebook: siempre 1 card por renglón, sin importar
+   el ancho de pantalla. Úsala para feeds/timelines donde el orden
+   de lectura vertical importa más que la densidad. */
+.card-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--card-gap);
+	padding: var(--space-2);
+	overflow-y: auto;
+	overflow-x: auto;
+	height: 100%;
+}
+
+/* width:100% deja que el card se angoste junto con el contenedor;
+   min-width pone un piso a partir del cual deja de angostarse
+   (el contenedor scrollea horizontal si el viewport es aún más
+   angosto que ese piso), max-width evita que crezca de más en
+   pantallas anchas. */
+.card-column > .card {
+	width: 100%;
+	min-width: var(--card-column-min-width);
+	max-width: var(--card-column-max-width);
+}
+
+/* ==========================================
+   CARD
+   ========================================== */
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--card-section-gap);
+
+	background-color: var(--card-bg);
+	border: var(--card-border);
+	border-radius: var(--card-radius);
+	box-shadow: var(--card-shadow);
+	padding: var(--card-padding);
+
+	min-width: 0;
+}
+
+/* ==========================================
+   HEADER — código, nombre y estatus en columna
+   ========================================== */
+.card-header {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-1);
+
+	padding-bottom: var(--card-section-gap);
+	border-bottom: var(--divider);
+}
+
+.card-header__code {
+	color: var(--text-secondary);
+}
+
+.card-header__name {
+	color: var(--text-primary);
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+.card-header__status {
+	margin-top: var(--space-1);
+}
+
+/* ==========================================
+   CONTENT — items en columna, cada uno clamped a 2 renglones
+   ========================================== */
+.card-content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--stack-sm);
+	flex: 1;
+	min-width: 0;
+}
+
+.card-content-item {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+	min-width: 0;
+}
+
+.card-content-item__label {
+	color: var(--text-secondary);
+}
+
+.card-content-item__text {
+	margin: 0;
+	color: var(--text-primary);
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+/* Clamp a 2 renglones. Se retira cuando el item está expandido
+   o cuando no hubo overflow real (ver CardContentItem.svelte). */
+.card-content-item__text--clamped {
+	display: -webkit-box;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.card-content-item__toggle {
+	align-self: flex-start;
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	color: var(--border-brand);
+	font-weight: var(--weight-medium);
+}
+
+.card-content-item__toggle:hover {
+	color: var(--border-brand-strong);
+	text-decoration: underline;
+}
+
+/* ==========================================
+   FOOTER — solo iconos (actions), cargados a la izquierda
+   ========================================== */
+.card-footer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: var(--space-1);
+
+	padding-top: var(--card-section-gap);
+	border-top: var(--divider);
+}
