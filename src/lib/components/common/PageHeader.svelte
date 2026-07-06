@@ -13,7 +13,9 @@
 	<div class="page-header-content">
 		<h2 class="page-header-title text-h5">{title}</h2>
 		{#if subtitle}
-			<Badge variant="info">{subtitle}</Badge>
+			<div class="page-header-subtitle">
+				<Badge variant="info">{subtitle}</Badge>
+			</div>
 		{/if}
 	</div>
 </header>
@@ -28,6 +30,8 @@
 		border-bottom: var(--border-width-thin) solid var(--border-regular);
 		flex-shrink: 0;
 		height: var(--subheader-height);
+		margin-left: var(--space-2);
+		margin-right: var(--space-2);
 	}
 
 	.page-header-content {

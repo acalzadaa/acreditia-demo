@@ -10,11 +10,14 @@
 		isActive?: boolean;
 		isDisabled?: boolean;
 		type?: 'button' | 'submit' | 'reset';
+
 		tooltipLabel?: string;
 		tooltipDirection?: TooltipPosition;
+
 		ariaLabel?: string;
 		ariaExpanded?: boolean;
 		ariaControls?: string;
+		
 		class?: string;
 		onClick: (e: MouseEvent) => void;
 		onKeydown?: (e: KeyboardEvent) => void;
@@ -29,11 +32,14 @@
 		isActive = false,
 		isDisabled = false,
 		type = 'button',
+
 		tooltipLabel = '',
 		tooltipDirection = 'top',
+
 		ariaLabel,
 		ariaExpanded,
 		ariaControls,
+
 		class: className = '',
 		onClick,
 		onKeydown,

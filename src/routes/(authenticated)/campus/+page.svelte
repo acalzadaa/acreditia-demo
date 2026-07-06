@@ -91,6 +91,5 @@
 		grid-template-rows: auto 1fr;
 		height: 100vh;
 		position: relative;
-		min-width: 600px;
 	}
 </style>
