@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
-	import ListActions from '../common/actions/ListActions.svelte';
+	import ListActions from '../actions/ListActions.svelte';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
 	import ToolbarV2 from '../common/ToolbarV2.svelte';

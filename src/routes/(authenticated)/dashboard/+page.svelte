@@ -1,7 +1,7 @@
 <script lang="ts">
 	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
+	import NavigationBar from '$lib/components/navigation/NavigationBar.svelte';
 	import Header from '$lib/components/common/Header.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import Dashboard from '$lib/components/dashboard/Dashboard.svelte';
