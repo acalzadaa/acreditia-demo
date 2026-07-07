@@ -1,17 +1,17 @@
 <script lang="ts">
-	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
+	import type { ObjetivoEstrategicoItem } from '$lib/schemas/objetivoEstrategico.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import Badge from '../ui/Badge.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		objetivoEstrategicoItems: ObjetivoEstrategicoWithPlaneacionItem[];
-		onClickEditar: (item: ObjetivoEstrategicoWithPlaneacionItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) => void;
-		onClickBorrar: (item: ObjetivoEstrategicoWithPlaneacionItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) => void;
-		onClickRestaurar: (item: ObjetivoEstrategicoWithPlaneacionItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) => void;
+		objetivoEstrategicoItems: ObjetivoEstrategicoItem[];
+		onClickEditar: (item: ObjetivoEstrategicoItem) => void;
+		onKeydownEditar: (e: KeyboardEvent, item: ObjetivoEstrategicoItem) => void;
+		onClickBorrar: (item: ObjetivoEstrategicoItem) => void;
+		onKeydownBorrar: (e: KeyboardEvent, item: ObjetivoEstrategicoItem) => void;
+		onClickRestaurar: (item: ObjetivoEstrategicoItem) => void;
+		onKeydownRestaurar: (e: KeyboardEvent, item: ObjetivoEstrategicoItem) => void;
 	}
 
 	const {

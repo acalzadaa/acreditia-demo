@@ -4,8 +4,10 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import {
-		objetivoEstrategicoWithPlaneacionItemSchema,
-		type ObjetivoEstrategicoWithPlaneacionItem
+	objetivoEstrategicoItemSchema,
+
+		type ObjetivoEstrategicoItem
+
 	} from '$lib/schemas/objetivoEstrategico.schema';
 	import InputSelect, { type OptionData } from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
@@ -16,7 +18,7 @@
 
 	interface Props {
 		open: boolean;
-		selectedItem: ObjetivoEstrategicoWithPlaneacionItem;
+		selectedItem: ObjetivoEstrategicoItem;
 		refs: PlaneacionEstrategicaRef[];
 		onClose: () => void;
 	}
@@ -38,7 +40,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(objetivoEstrategicoWithPlaneacionItemSchema),
+			validators: zod4(objetivoEstrategicoItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,

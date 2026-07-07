@@ -24,23 +24,18 @@
 		goto(resolve('/login'), { replaceState: true });
 	}
 
-	function onKeydownLogout(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickLogout();
-		}
-	}
-
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
+	let userMenuToggle = createToggle(false);
 </script>
 
 <div class="app-grid">
 	<Header
-		isLoggedIn={!!auth.user}
 		{username}
 		{onClickLogout}
-		onKeydownLogout={(e) => onKeydownLogout(e)}
+		onClickAvatar={() => userMenuToggle.toggle()}
+		showUserMenu={userMenuToggle.value}
 	/>
 	<Subheader
 		onClickNavigationBar={navigationToggle.onClick}

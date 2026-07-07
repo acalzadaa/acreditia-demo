@@ -32,11 +32,7 @@
 		goto(resolve('/login'), { replaceState: true });
 	}
 
-	function onKeydownLogout(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickLogout();
-		}
-	}
+
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<UnidadAcademicaItem>();
@@ -46,10 +42,8 @@
 
 <div class="app-grid">
 	<Header
-		isLoggedIn={!!auth.user}
 		{username}
 		{onClickLogout}
-		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
 
 	<Subheader

@@ -44,19 +44,12 @@
 		goto(resolve('/login'), { replaceState: true });
 	}
 
-	function onKeydownLogout(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickLogout();
-		}
-	}
 </script>
 
 <div class="app-grid">
 	<Header
-		isLoggedIn={!!auth.user}
 		{username}
 		{onClickLogout}
-		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
 	<Subheader
 		{onClickNavigationBar}

@@ -4,12 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { planeacionEstrategicaWithFilosofiaItemSchema } from '$lib/schemas/planeacionEstrategica.schema';
-	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
+	import { objetivoEstrategicoItemSchema, type ObjetivoEstrategicoItem } from '$lib/schemas/objetivoEstrategico.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: ObjetivoEstrategicoWithPlaneacionItem;
+		selectedItem: ObjetivoEstrategicoItem;
 		onClose: () => void;
 	}
 
@@ -21,7 +20,7 @@
 	// svelte-ignore state_referenced_locally
 	const { form, enhance } = superForm(selectedItem, {
 		dataType: 'json',
-		validators: zod4(planeacionEstrategicaWithFilosofiaItemSchema),
+		validators: zod4(objetivoEstrategicoItemSchema),
 		customValidity: false,
 		resetForm: false,
 		onSubmit: () => {
