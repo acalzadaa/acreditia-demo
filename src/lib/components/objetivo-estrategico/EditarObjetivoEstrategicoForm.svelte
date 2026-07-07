@@ -12,12 +12,12 @@
 	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
-	import type { PlaneacionEstrategicaRefSchema } from '$lib/schemas/planeacionEstrategica.schema';
+	import type { PlaneacionEstrategicaRef } from '$lib/schemas/planeacionEstrategica.schema';
 
 	interface Props {
 		open: boolean;
 		selectedItem: ObjetivoEstrategicoWithPlaneacionItem;
-		refs: PlaneacionEstrategicaRefSchema[];
+		refs: PlaneacionEstrategicaRef[];
 		onClose: () => void;
 	}
 

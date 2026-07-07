@@ -80,15 +80,6 @@ export const puestoRefSchema = z.object({
 
 export type PuestoRef = z.infer<typeof puestoRefSchema>;
 
-export const usuarioRefSchema = z.object({
-	id: z.uuid(),
-	firstName: z.string().default(''),
-	lastName: z.string().default(''),
-	email: z.email()
-});
-
-export type UsuarioRef = z.infer<typeof usuarioRefSchema>;
-
 export const areaFuncionalRefSchema = z.object({
 	id: z.uuid(),
 	code: z.string().min(1, 'El código es requerido'),
@@ -137,3 +128,28 @@ export const indicadorRefSchema = z.object({
 });
 
 export type IndicadorRef = z.infer<typeof indicadorRefSchema>;
+
+export const usuarioCampusRefSchema = z.object({
+	id: z.uuid(),
+	usuarioId: z.uuid(),
+	campusId: z.uuid()
+});
+
+export type UsuarioCampusRef = z.infer<typeof usuarioCampusRefSchema>;
+
+export const usuarioPuestoRefSchema = z.object({
+	id: z.uuid(),
+	usuarioId: z.uuid(),
+	puestoId: z.uuid()
+});
+
+export type UsuarioPuestoRef = z.infer<typeof usuarioPuestoRefSchema>;
+
+export const usuarioRefSchema = z.object({
+	id: z.uuid(),
+	firstName: z.string().default(''),
+	lastName: z.string().default(''),
+	email: z.email()
+});
+
+export type UsuarioRef = z.infer<typeof usuarioRefSchema>;

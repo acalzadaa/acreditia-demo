@@ -5,23 +5,15 @@ import { campusRefSchema, puestoRefSchema } from './shared.schema';
 // ============================================
 // 1. REFERENCE SCHEMAS
 // ============================================
-export const usuarioRefSchema = z.object({
-	id: z.uuid(),
-	firstName: z.string().default(''),
-	lastName: z.string().default(''),
-	email: z.email()
-});
-
-export type UsuarioRef = z.infer<typeof usuarioRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
 export const usuarioFormSchema = z.object({
 	id: z.uuid().optional(),
-	authUserId: z.string().min(1, 'El ID de autenticación es requerido'),
-	firstName: z.string().min(1, 'El nombre es requerido'),
-	lastName: z.string().min(1, 'El apellido es requerido'),
+	authUserId: z.string().min(1, 'El Id de autenticación es requerido'),
+	firstName: z.string().optional(),
+	lastName: z.string().optional(),
 	status: z.enum(ESTATUS).default('activo'),
 	createdBy: z.string().optional()
 });

@@ -1,18 +1,10 @@
 // usuarioPuesto.schema.ts (NUEVO)
 import { z } from 'zod';
-import { usuarioRefSchema } from './usuario.schema';
-import { puestoRefSchema } from './puesto.schema';
+import { puestoRefSchema, usuarioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
 // ============================================
-export const usuarioPuestoRefSchema = z.object({
-	id: z.uuid(),
-	usuarioId: z.uuid(),
-	puestoId: z.uuid()
-});
-
-export type UsuarioPuestoRef = z.infer<typeof usuarioPuestoRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
