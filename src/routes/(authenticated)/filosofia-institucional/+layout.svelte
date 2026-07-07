@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
+	import NavigationBar from '$lib/components/navigation/NavigationBar.svelte';
 	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
@@ -51,7 +51,10 @@
 		showNotificationBar={notificationToggle.value}
 	/>
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBarContainer items={notificationItems} showNotificationBar={notificationToggle.value} />
+	<NotificationBarContainer
+		items={notificationItems}
+		showNotificationBar={notificationToggle.value}
+	/>
 
 	<main class="main-children">
 		{@render children()}
@@ -80,5 +83,15 @@
 		grid-template-rows: auto auto 1fr auto;
 		height: 100vh;
 		position: relative;
+	}
+
+	/* Por debajo de 640px, NavigationBarContainer cambia a la faceta Drawer
+	   (position: absolute, fuera del flujo del grid). Colapsamos la columna
+	   del navbar explícitamente para no depender de que el auto-sizing del
+	   grid la reduzca a 0 por sí solo. */
+	@media (max-width: 640px) {
+		.app-grid {
+			grid-template-columns: 0 1fr;
+		}
 	}
 </style>
