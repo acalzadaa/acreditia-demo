@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
+	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
 	import Header from '$lib/components/common/Header.svelte';
@@ -67,7 +67,7 @@
 		{showNotificationBar}
 	/>
 	<NavigationBar {showNavigationBar} {navigationItems} />
-	<NotificationBar {showNotificationBar} />
+	<NotificationBarContainer {showNotificationBar} />
 	<Dashboard />
 	<Footer />
 </div>
