@@ -44,6 +44,8 @@ import evaluacionDetailJsonData from '$lib/data/evaluacion-detail.json';
 import etapaDetailJsonData from '$lib/data/etapa-detail.json';
 import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-indicador-campus.json';
 
+import notificationJsonData from '$lib/data/notification.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
@@ -100,9 +102,7 @@ import {
 	campusAreaResponsableItemSchema,
 	type CampusAreaResponsableItem
 } from '$lib/schemas/campusAreaResponsable.schema';
-import {
-	regionCampusItemSchema,
-	type RegionCampusItem} from '$lib/schemas/regionCampus.schema';
+import { regionCampusItemSchema, type RegionCampusItem } from '$lib/schemas/regionCampus.schema';
 import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
 import {
 	areaResponsableItemSchema,
@@ -147,6 +147,7 @@ import {
 	evaluacionEtapaIndicadorCampusItemSchema,
 	type EvaluacionEtapaIndicadorCampusItem
 } from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
+import { notificationItemSchema, type NotificationItem } from '$lib/schemas/notificacion.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -194,6 +195,8 @@ let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>(
 let indicadorNavList = $state<IndicadorDetailItem[]>([]);
 let etapaDetail = $state<EtapaDetailItem[]>([]);
 let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]>([]);
+
+let notification = $state<NotificationItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -321,6 +324,9 @@ evaluacionDetail = evaluacionDetailRawData.map((item) => evaluacionDetailItemSch
 
 const etapaDetailRawData = etapaDetailJsonData.etapaDetailItem;
 etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));
+
+const notificationRawData = notificationJsonData.notificationItems;
+notification = notificationRawData.map((item) => notificationItemSchema.parse(item));
 
 // Helpers
 export function getFilosofia() {
@@ -570,4 +576,8 @@ export function getEtapaDetail() {
 
 export function getEvaluacionEtapaIndicadorCampus() {
 	return evaluacionEtapaIndicadorCampus;
+}
+
+export function getNotificacion() {
+	return notification;
 }

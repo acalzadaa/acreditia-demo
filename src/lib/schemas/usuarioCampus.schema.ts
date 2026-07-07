@@ -1,18 +1,10 @@
 // usuarioCampus.schema.ts (NUEVO)
 import { z } from 'zod';
-import { usuarioRefSchema } from './usuario.schema';
-import { campusRefSchema } from './campus.schema';
+import { campusRefSchema, usuarioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
 // ============================================
-export const usuarioCampusRefSchema = z.object({
-	id: z.uuid(),
-	usuarioId: z.uuid(),
-	campusId: z.uuid()
-});
-
-export type UsuarioCampusRef = z.infer<typeof usuarioCampusRefSchema>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)

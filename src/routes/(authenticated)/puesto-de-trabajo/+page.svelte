@@ -2,7 +2,7 @@
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
-	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
+	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import EditarPuestoForm from '$lib/components/puesto-de-trabajo/EditarPuestoForm.svelte';
@@ -58,7 +58,7 @@
 		showNotificationBar={notificationToggle.value}
 	/>
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBar showNotificationBar={notificationToggle.value} />
+	<NotificationBarContainer showNotificationBar={notificationToggle.value} />
 	<Toolbar
 		crearTitle="Nuevo puesto"
 		onClickCrear={modal.handlers('create').onClick}

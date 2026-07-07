@@ -2,7 +2,7 @@
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import NavigationBar from '$lib/components/common/NavigationBar.svelte';
-	import NotificationBar from '$lib/components/notification/NotificationBar.svelte';
+	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
@@ -49,7 +49,7 @@
 		showNotificationBar={notificationToggle.value}
 	/>
 	<NavigationBar showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBar showNotificationBar={notificationToggle.value} />
+	<NotificationBarContainer showNotificationBar={notificationToggle.value} />
 
 	<main class="main-children">
 		{@render children()}
