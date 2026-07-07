@@ -4,9 +4,9 @@
 
 	interface Props {
 		onClickNavigationBar: (e: MouseEvent) => void;
-		onKeydownNavigationBar: (e: KeyboardEvent) => void;
+		onKeydownNavigationBar?: (e: KeyboardEvent) => void;
 		onClickNotificationBar: (e: MouseEvent) => void;
-		onKeydownNotificationBar: (e: KeyboardEvent) => void;
+		onKeydownNotificationBar?: (e: KeyboardEvent) => void;
 		showNavigationBar: boolean;
 		showNotificationBar: boolean;
 	}
