@@ -5,6 +5,7 @@
 	import Input from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
+	import { toast } from '$lib/utils/toastManager.svelte';
 
 	interface Props {
 		open: boolean;
@@ -42,6 +43,9 @@
 
 		// Cerrar el modal
 		handleClose();
+
+		// Mostrar toast
+		toast.success('Filosofia creada exitosamente');
 	}
 
 	function handleClose() {

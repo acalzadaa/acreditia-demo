@@ -138,7 +138,6 @@ export function createModalManager<TItem = unknown>() {
 	 */
 	function onSuccess() {
 		close();
-		// TODO agregar toast o notificacion
 	}
 
 	return {
