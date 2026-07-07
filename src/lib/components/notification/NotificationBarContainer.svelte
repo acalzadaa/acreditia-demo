@@ -13,13 +13,13 @@
 		items = [
 			{
 				id: '4f0462be-5be3-4ed4-a226-62e962c26c3c',
-				header: 'prueba',
+				header: 'Evaluacion primavera 20253',
 				from: { type: 'system' },
 				to: { type: 'global' },
-				message: 'test',
+				message: 'Ya inicio la evaluacion primavera 2025/3, por lo que te sugerimos que acceses a la evaluacion para que realices las actividades',
 				createdAt: '2024-01-15T10:00:00Z',
 				createdBy: 'planeacion@universidad.edu',
-				link: ''
+				link: '/evaluacion/2025-3'
 			}
 		]
 	}: Props = $props();
@@ -33,7 +33,7 @@
 	ariaLabel="Panel de Notificaciones"
 >
 	{#snippet header()}
-		<h3 class="text-body">Notificaciones</h3>
+		<h3 class="text-body">Panel de notificaciones</h3>
 	{/snippet}
 	<NotificationBarDrawer {items} />
 </Drawer>
