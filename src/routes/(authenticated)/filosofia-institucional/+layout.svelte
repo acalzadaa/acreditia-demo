@@ -10,6 +10,7 @@
 	import type { LayoutProps } from '../$types';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
+	import ToastContainer from '$lib/components/common/ToastContainer.svelte';
 	let { children }: LayoutProps = $props();
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
@@ -55,6 +56,8 @@
 	</main>
 	<Footer />
 </div>
+
+<ToastContainer />
 
 <style>
 	.main-children {

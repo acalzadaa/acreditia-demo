@@ -24,7 +24,7 @@
 	}: Props = $props();
 
 	const iconMap: Record<ToastVariant, IconName> = {
-		success: 'success',
+		success: 'check',
 		critical: 'close',
 		warning: 'warning',
 		info: 'info'
@@ -43,7 +43,7 @@
 >
 	<Icon name={icon} size="sm" />
 
-	<span class="toast__label">{label}</span>
+	<span class="toast__label text-body">{label}</span>
 
 	{#if dismissible}
 		<IconButton

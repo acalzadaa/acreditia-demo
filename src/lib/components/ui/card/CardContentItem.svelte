@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createToggle } from '$lib/utils/toggle.svelte';
 	import Button from '../Button.svelte';
 
 	interface Props {
@@ -9,12 +10,12 @@
 
 	const { label, value, class: className = '' }: Props = $props();
 
-	let expanded = $state(false);
 	let isOverflowing = $state(false);
 	let textEl: HTMLParagraphElement;
+	let expandedToggle = createToggle();
 
 	function checkOverflow() {
-		if (!textEl || expanded) return;
+		if (!textEl || expandedToggle.value) return;
 		isOverflowing = textEl.scrollHeight - textEl.clientHeight > 1;
 	}
 
@@ -27,10 +28,6 @@
 
 		return () => ro.disconnect();
 	});
-
-	function toggle() {
-		expanded = !expanded;
-	}
 </script>
 
 <div class={['card-content-item', className]}>
@@ -40,14 +37,14 @@
 	<p
 		bind:this={textEl}
 		class="card-content-item__text text-body"
-		class:card-content-item__text--clamped={!expanded}
+		class:card-content-item__text--clamped={!expandedToggle.value}
 	>
 		{value}
 	</p>
-	{#if isOverflowing || expanded}
+	{#if isOverflowing || expandedToggle.value}
 		<div class="card-content-item__toggle text-body-small">
-			<Button type="button" variant="link" onClick={toggle}>
-				{expanded ? 'ver menos' : 'ver más'}
+			<Button type="button" variant="link" onClick={expandedToggle.toggle}>
+				{expandedToggle.value ? 'ver menos' : 'ver más'}
 			</Button>
 		</div>
 	{/if}
