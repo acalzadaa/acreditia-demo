@@ -1,32 +1,24 @@
 <script lang="ts">
 	import Avatar from '../ui/Avatar.svelte';
-	import Button from '../ui/Button.svelte';
 	import Logo from '../ui/Logo.svelte';
+	import UserMenuContainer from '../userMenu/UserMenuContainer.svelte';
 
 	interface Props {
 		showAuth?: boolean;
-		isLoggedIn?: boolean;
+		showUserMenu?: boolean;
 		username?: string;
 		avatarImage?: string;
-		onClickLogin?: (e: MouseEvent) => void;
-		onKeydownLogin?: (e: KeyboardEvent) => void;
-		onClickLogout?: (e: MouseEvent) => void;
-		onKeydownLogout?: (e: KeyboardEvent) => void;
-		onClickRegister?: (e: MouseEvent) => void;
-		onKeydownRegister?: (e: KeyboardEvent) => void;
+		onClickLogout?: () => void;
+		onClickAvatar?: () => void;
 	}
 
 	const {
 		showAuth = true,
-		isLoggedIn = false,
+		showUserMenu = false,
 		username = 'User',
 		avatarImage,
-		onClickLogin,
-		onKeydownLogin,
 		onClickLogout,
-		onKeydownLogout,
-		onClickRegister,
-		onKeydownRegister
+		onClickAvatar
 	}: Props = $props();
 </script>
 
@@ -37,20 +29,13 @@
 	</div>
 	{#if showAuth}
 		<div class="header-user">
-			{#if isLoggedIn}
-				<Button variant="ghost" onClick={onClickLogout} onKeydown={onKeydownLogout}>
-					Cerrar Sesion
-				</Button>
+			<div class="header-user">
 				<p class="text-body-strong">{username}</p>
-				<Avatar {username} src={avatarImage}></Avatar>
-			{:else}
-				<Button variant="ghost" onClick={onClickRegister} onKeydown={onKeydownRegister}>
-					Crear Cuenta
-				</Button>
-				<Button variant="primary" onClick={onClickLogin} onKeydown={onKeydownLogin}>
-					Iniciar Sesion
-				</Button>
-			{/if}
+				<Avatar {username} src={avatarImage} onClick={onClickAvatar}></Avatar>
+				{#if showUserMenu && onClickLogout}
+					<UserMenuContainer {showUserMenu} {onClickLogout} />
+				{/if}
+			</div>
 		</div>
 	{/if}
 </header>
