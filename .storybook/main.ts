@@ -9,9 +9,7 @@ const config: StorybookConfig = {
 		'@storybook/addon-a11y',
 		'@storybook/addon-docs'
 	],
-	staticDirs: [
-		{ from: '../static', to: '/static' }
-	],
+	staticDirs: ['../static'],
 	framework: '@storybook/sveltekit'
 };
 export default config;
