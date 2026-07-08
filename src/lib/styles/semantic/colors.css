@@ -29,8 +29,8 @@
 	--bg-drawer: var(--neutral-tinted-75);
 
 	/* Layer 3: Modal (highest) - with shadow-md */
-	--bg-modal: var(--neutral-tinted-37);
 	--bg-modal-header: var(--neutral-tinted-50);
+	--bg-modal: var(--neutral-tinted-37);
 	--bg-modal-footer: var(--neutral-tinted-50);
 
 	/* ===== BRAND SURFACES ===== */
