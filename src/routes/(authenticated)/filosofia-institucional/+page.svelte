@@ -1,12 +1,12 @@
 <script lang="ts">
 	import CrearFilosofiaInstitucional from '$lib/components/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';
 	import { type FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
-	import BorrarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/BorrarFilosofiaInstitucionalForm.svelte';
 	import EditarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/EditarFilosofiaInstitucionalForm.svelte';
-	import RestaurarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/RestaurarFilosofiaInstitucionalForm.svelte';
 	import { getFilosofia } from '$lib/stores/data.svelte';
 	import FilosofiaInstitucionalList from '$lib/components/filosofia-institucional/FilosofiaInstitucionalList.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 
 	let filosofiaInstitucionalItems = getFilosofia().filter((item) => item.isCurrent);
 
@@ -33,15 +33,17 @@
 		onClose={modal.close}
 	/>
 
-	<BorrarFilosofiaInstitucionalForm
+	<ConfirmDeleteModal
+		demo={true}
+		id={modal.selectedItem.id}
 		open={modal.isOpen('delete')}
-		selectedItem={modal.selectedItem}
 		onClose={modal.close}
 	/>
 
-	<RestaurarFilosofiaInstitucionalForm
+	<ConfirmRestoreModal
+		demo={true}
+		id={modal.selectedItem.id}
 		open={modal.isOpen('restore')}
-		selectedItem={modal.selectedItem}
 		onClose={modal.close}
 	/>
 {/if}
