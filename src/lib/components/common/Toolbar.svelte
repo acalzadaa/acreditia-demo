@@ -1,4 +1,9 @@
 <script lang="ts">
+/**
+ * DEPRECADO
+ * no usar este componente, se va a borrar al terminar la migracion a ToolbarV2
+ * 
+*/
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
