@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Actions from '../../ui/Actions.svelte';
+	import Actions from "../ui/Actions.svelte";
+
 
 	interface Props {
 		item: unknown;

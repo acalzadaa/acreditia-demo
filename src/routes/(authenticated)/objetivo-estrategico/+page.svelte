@@ -6,7 +6,7 @@
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
 	import ObjetivoEstrategico from '$lib/components/objetivo-estrategico/ObjetivoEstrategico.svelte';
-	import type { ObjetivoEstrategicoWithPlaneacionItem } from '$lib/schemas/objetivoEstrategico.schema';
+	import type { ObjetivoEstrategicoItem } from '$lib/schemas/objetivoEstrategico.schema';
 	import CrearObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/CrearObjetivoEstrategicoForm.svelte';
 	import EditarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/EditarObjetivoEstrategicoForm.svelte';
 	import { goto } from '$app/navigation';
@@ -23,7 +23,7 @@
 
 	let planeaciones = getPlaneacion().filter((item) => item.isCurrent && !item.isDeleted);
 
-	let itemSeleccionado: ObjetivoEstrategicoWithPlaneacionItem | null = $state(null);
+	let itemSeleccionado: ObjetivoEstrategicoItem | null = $state(null);
 
 	// ===== HEADER =====
 
@@ -31,12 +31,6 @@
 	async function onClickLogout() {
 		auth.logout();
 		goto(resolve('/login'), { replaceState: true });
-	}
-
-	function onKeydownLogout(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickLogout();
-		}
 	}
 
 	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
@@ -85,12 +79,12 @@
 
 	/* EDITAR */
 
-	function onClickEditar(item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onClickEditar(item: ObjetivoEstrategicoItem) {
 		itemSeleccionado = item;
 		showEditarModal = true;
 	}
 
-	function onKeydownEditar(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onKeydownEditar(e: KeyboardEvent, item: ObjetivoEstrategicoItem) {
 		if (e.key === 'Enter') {
 			onClickEditar(item);
 		}
@@ -98,24 +92,24 @@
 
 	/* BORRAR */
 
-	function onClickBorrar(item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onClickBorrar(item: ObjetivoEstrategicoItem) {
 		itemSeleccionado = item;
 		showBorrarModal = true;
 	}
 
-	function onKeydownBorrar(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onKeydownBorrar(e: KeyboardEvent, item: ObjetivoEstrategicoItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
 	}
 
 	/* RESTAURAR */
-	function onClickRestaurar(item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onClickRestaurar(item: ObjetivoEstrategicoItem) {
 		itemSeleccionado = item;
 		showRestaurarModal = true;
 	}
 
-	function onKeydownRestaurar(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) {
+	function onKeydownRestaurar(e: KeyboardEvent, item: ObjetivoEstrategicoItem) {
 		if (e.key === 'Enter') {
 			onClickBorrar(item);
 		}
@@ -132,10 +126,8 @@
 
 <div class="app-grid">
 	<Header
-		isLoggedIn={!!auth.user}
 		{username}
 		{onClickLogout}
-		onKeydownLogout={(e) => onKeydownLogout(e)}
 	/>
 	<Subheader
 		{onClickNavigationBar}
@@ -157,14 +149,14 @@
 
 	<ObjetivoEstrategico
 		{objetivoEstrategicoItems}
-		onClickEditar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickEditar(item)}
-		onKeydownEditar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
+		onClickEditar={(item: ObjetivoEstrategicoItem) => onClickEditar(item)}
+		onKeydownEditar={(e: KeyboardEvent, item: ObjetivoEstrategicoItem) =>
 			onKeydownEditar(e, item)}
-		onClickBorrar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
+		onClickBorrar={(item: ObjetivoEstrategicoItem) => onClickBorrar(item)}
+		onKeydownBorrar={(e: KeyboardEvent, item: ObjetivoEstrategicoItem) =>
 			onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: ObjetivoEstrategicoWithPlaneacionItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: ObjetivoEstrategicoWithPlaneacionItem) =>
+		onClickRestaurar={(item: ObjetivoEstrategicoItem) => onClickRestaurar(item)}
+		onKeydownRestaurar={(e: KeyboardEvent, item: ObjetivoEstrategicoItem) =>
 			onKeydownRestaurar(e, item)}
 	></ObjetivoEstrategico>
 

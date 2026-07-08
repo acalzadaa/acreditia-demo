@@ -1,11 +1,22 @@
 <script lang="ts">
+	/* eslint-disable svelte/require-each-key */
 	interface Props {
 		src?: string;
 		username?: string;
 		size?: number;
+		onClick?: () => void;
+		ariaLabel?: string;
+		isDisabled?: boolean;
 	}
 
-	let { src = '', username = '', size = 48 }: Props = $props();
+	let {
+		src = '',
+		username = '',
+		size = 48,
+		onClick,
+		ariaLabel,
+		isDisabled = false
+	}: Props = $props();
 
 	let imageError = $state(false);
 
@@ -75,36 +86,54 @@
 	});
 </script>
 
-{#if src && !imageError}
-	<img
-		{src}
-		alt="Avatar"
-		class="avatar-image"
+{#snippet avatarVisual()}
+	{#if src && !imageError}
+		<img
+			{src}
+			alt={onClick ? '' : username ? `Avatar de ${username}` : 'Avatar'}
+			class="avatar-image"
+			style:width="{size}px"
+			style:height="{size}px"
+			onerror={() => (imageError = true)}
+			loading="lazy"
+		/>
+	{:else}
+		<div class="avatar-identicon" style:width="{size}px" style:height="{size}px">
+			<svg width={size} height={size} viewBox="0 0 {scale} {scale}" style="border-radius: 20%;">
+				{#each pattern as row, y}
+					{#each row as active, x}
+						{#if active}
+							<rect
+								{x}
+								{y}
+								width="1"
+								height="1"
+								fill={colors.primary}
+								stroke={colors.primary}
+								stroke-width="0.05"
+							/>
+						{/if}
+					{/each}
+				{/each}
+			</svg>
+		</div>
+	{/if}
+{/snippet}
+
+{#if onClick}
+	<button
+		type="button"
+		class="avatar-button"
 		style:width="{size}px"
 		style:height="{size}px"
-		onerror={() => (imageError = true)}
-		loading="lazy"
-	/>
+		onclick={onClick}
+		disabled={isDisabled}
+		aria-label={ariaLabel || (username ? `Ver perfil de ${username}` : 'Ver perfil')}
+	>
+		{@render avatarVisual()}
+	</button>
 {:else}
-	<div class="avatar-identicon" style:width="{size}px" style:height="{size}px">
-		<svg width={size} height={size} viewBox="0 0 {scale} {scale}" style="border-radius: 20%;">
-			{#each pattern as row, y}
-				{#each row as active, x}
-					{#if active}
-						<rect
-							{x}
-							{y}
-							width="1"
-							height="1"
-							fill={colors.primary}
-							stroke={colors.primary}
-							stroke-width="0.05"
-						/>
-					{/if}
-				{/each}
-			{/each}
-		</svg>
-	</div>
+	{@render avatarVisual()}
 {/if}
 
 <style>
@@ -139,5 +168,36 @@
 		transform: scale(1.05);
 		box-shadow: var(--shadow-avatar);
 		border-color: var(--border-strong);
+	}
+
+	.avatar-button {
+		all: unset;
+		display: inline-flex;
+		flex-shrink: 0;
+		border-radius: var(--border-radius-full);
+		cursor: pointer;
+	}
+
+	.avatar-button:hover .avatar-image,
+	.avatar-button:hover .avatar-identicon {
+		transform: scale(1.05);
+		box-shadow: var(--shadow-avatar);
+		border-color: var(--border-strong);
+	}
+
+	.avatar-button:focus-visible {
+		outline: 2px solid var(--border-strong, currentColor);
+		outline-offset: 2px;
+	}
+
+	.avatar-button:disabled {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+
+	.avatar-button:disabled .avatar-image,
+	.avatar-button:disabled .avatar-identicon {
+		transform: none;
+		box-shadow: none;
 	}
 </style>
