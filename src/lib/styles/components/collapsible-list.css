@@ -1,0 +1,147 @@
+/* components/collapsible-list.css
+   Contenedor colapsable: header (chevron + título/subtítulo + iconos) +
+   contenido (tabla, cards, lo que sea). El contenido se renderiza dos
+   veces (desktop / mobile) y el media query decide cuál mostrar — mismo
+   patrón que ya estaba anotado en table.css para tabla -> cards. */
+
+:root {
+	--collapsible-radius: var(--border-radius-card);
+	--collapsible-border: var(--border-card);
+	--collapsible-bg: var(--bg-raised);
+	--collapsible-shadow: var(--shadow-card);
+
+	--collapsible-header-padding: var(--space-4);
+	--collapsible-header-gap: var(--space-3);
+	--collapsible-content-padding: var(--space-4);
+}
+
+/* ==========================================
+   CONTENEDOR
+   ========================================== */
+.collapsible-list {
+	display: flex;
+	flex-direction: column;
+
+	background-color: var(--collapsible-bg);
+	border: var(--collapsible-border);
+	border-radius: var(--collapsible-radius);
+	box-shadow: var(--collapsible-shadow);
+
+	/* recorta el contenido para que respete el radius del contenedor */
+	overflow: hidden;
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+.collapsible-list__header {
+	display: flex;
+	align-items: center;
+	gap: var(--collapsible-header-gap);
+
+	padding: var(--collapsible-header-padding);
+	cursor: pointer;
+	user-select: none;
+}
+
+.collapsible-list__header:hover {
+	background-color: var(--bg-raised-hover);
+}
+
+.collapsible-list__header:active {
+	background-color: var(--bg-raised-active);
+}
+
+.collapsible-list__chevron {
+	color: var(--text-secondary);
+	transition: transform 0.2s ease;
+	flex-shrink: 0;
+}
+
+/* Desktop: título y subtítulo en línea, separados por el gap del flex.
+   Ej: "Ventas Q3   12 registros" */
+.collapsible-list__titles {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	gap: var(--space-2);
+	flex: 1;
+	min-width: 0;
+}
+
+.collapsible-list__title {
+	color: var(--text-primary);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.collapsible-list__subtitle {
+	color: var(--text-secondary);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.collapsible-list__icons {
+	display: flex;
+	align-items: center;
+	gap: var(--space-1);
+	flex-shrink: 0;
+	margin-left: auto;
+}
+
+/* ==========================================
+   CONTENIDO
+   ========================================== */
+.collapsible-list__content {
+	overflow-y: auto;
+	border-top: var(--divider);
+	padding: var(--collapsible-content-padding);
+
+	scrollbar-width: thin;
+	scrollbar-color: var(--border-regular) var(--bg-ground);
+}
+
+.collapsible-list__content::-webkit-scrollbar {
+	width: 8px;
+}
+
+.collapsible-list__content::-webkit-scrollbar-track {
+	background: var(--bg-ground);
+	border-radius: 4px;
+}
+
+.collapsible-list__content::-webkit-scrollbar-thumb {
+	background-color: var(--border-regular);
+	border-radius: 4px;
+	border: 2px solid var(--bg-ground);
+}
+
+/* Por defecto (desktop): tabla/versión normal visible, versión mobile oculta */
+.collapsible-list__content-mobile {
+	display: none;
+}
+
+/* ==========================================
+   RESPONSIVE <= 640px
+   ========================================== */
+@media (max-width: 640px) {
+	/* título/subtítulo pasan de línea a columna para no competir
+	   por el ancho horizontal con el chevron y los iconos */
+	.collapsible-list__titles {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-1);
+	}
+
+	.collapsible-list__content-desktop {
+		display: none;
+	}
+
+	.collapsible-list__content-mobile {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+}
