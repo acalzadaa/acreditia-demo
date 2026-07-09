@@ -40,7 +40,7 @@ import indicadorNormativaJsonData from '$lib/data/indicador-normativa.json';
 import indicadorIndicadorEstrategicoJsonData from '$lib/data/indicador-indicador-estrategico.json';
 
 import indicadorDetailJsonData from '$lib/data/indicador-detail.json';
-import evaluacionDetailJsonData from '$lib/data/evaluacion-detail.json';
+import evaluacionNavigationJsonData from '$lib/data/evaluacion-navigation.json';
 import etapaDetailJsonData from '$lib/data/etapa-detail.json';
 import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-indicador-campus.json';
 
@@ -135,9 +135,9 @@ import {
 	type RubricaCriterioItem
 } from '$lib/schemas/rubricaCriterio.schema';
 import {
-	evaluacionDetailItemSchema,
-	type EvaluacionDetailItem
-} from '$lib/schemas/evaluacionDetail.schema';
+	evaluacionNavItemSchema,
+	type EvaluacionNavItem
+} from '$lib/schemas/evaluacionNavigation.schema';
 import {
 	evaluacionEtapaItemSchema,
 	type EvaluacionEtapaItem
@@ -182,7 +182,7 @@ let modeloFullRef = $state<ModeloFullRef[]>([]);
 let evidencia = $state<EvidenciaItem[]>([]);
 
 let evaluacion = $state<EvaluacionItem[]>([]);
-let evaluacionDetail = $state<EvaluacionDetailItem[]>([]);
+let evaluacionNavigation = $state<EvaluacionNavItem[]>([]);
 let evaluacionEtapa = $state<EvaluacionEtapaItem[]>([]);
 
 let indicador = $state<IndicadorItem[]>([]);
@@ -319,8 +319,8 @@ indicadorIndicadorEstrategico = indicadorIndicadorEstrategicoRawData.map((item) 
 const indicadorDetailRawData = indicadorDetailJsonData.indicadorDetailItem;
 indicadorNavList = indicadorDetailRawData.map((item) => indicadorDetailItemSchema.parse(item));
 
-const evaluacionDetailRawData = evaluacionDetailJsonData.evaluacionDetailItem;
-evaluacionDetail = evaluacionDetailRawData.map((item) => evaluacionDetailItemSchema.parse(item));
+const evaluacionNavigationRawData = evaluacionNavigationJsonData.evaluacionNavItem;
+evaluacionNavigation = evaluacionNavigationRawData.map((item) => evaluacionNavItemSchema.parse(item));
 
 const etapaDetailRawData = etapaDetailJsonData.etapaDetailItem;
 etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));
@@ -530,8 +530,8 @@ export function getEvaluacion() {
 	return evaluacion;
 }
 
-export function getEvaluacionDetail() {
-	return evaluacionDetail;
+export function getEvaluacionNavigation() {
+	return evaluacionNavigation;
 }
 
 export function getEvaluacionEtapa() {
