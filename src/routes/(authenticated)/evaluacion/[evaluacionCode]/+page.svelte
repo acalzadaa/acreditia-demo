@@ -72,18 +72,7 @@
 {/if}
 
 <style>
-	.detail-panel {
-		display: flex;
-		flex-direction: column;
-		min-height: 0;
-		overflow: auto;
-	}
-
 	.detail-content {
-		flex: 1;
-		min-height: 0;
-		overflow-y: scroll;
-		display: flex;
-		flex-direction: column;
+		padding-top: var(--space-2);
 	}
 </style>

@@ -63,11 +63,11 @@
 						<th class="col-code">Modelo</th>
 						<th class="col-code">Institucion</th>
 						<th class="col-code">Código</th>
-						<th class="col-name">Nombre</th>
+						<th class="col-label">Nombre</th>
 						<th class="col-code">Año</th>
 						<th class="col-code">Ciclo</th>
-						<th class="col-status">Estatus</th>
-						<th class="col-actions">Acciones</th>
+						<th class="col-badge">Estatus</th>
+						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>
 
@@ -77,66 +77,68 @@
 							<td class="col-code">{item.modelo?.code}</td>
 							<td class="col-code">{item.institucion?.code}</td>
 							<td class="col-code">{item.code}</td>
-							<td class="col-name">{item.name}</td>
+							<td class="col-label">{item.name}</td>
 							<td class="col-small-number">{item.year}</td>
 							<td class="col-small-number">{item.cycle}</td>
-							<td class="col-status">
+							<td class="col-badge">
 								<Badge variant={convertStatusToBadgeVariant(item.status).badgeStatus}>
 									{convertStatusToBadgeVariant(item.status).label}
 								</Badge>
 							</td>
-							<td class="col-actions">
-								{#if showDetailIcon}
+							<td class="col-actions-md">
+								<div class="col-actions-row">
+									{#if showDetailIcon}
+										<IconButton
+											isDisabled={item.isDeleted}
+											name="detail"
+											tooltipLabel="Ver detalle"
+											size="md"
+											borderShape="square"
+											variant="ghost"
+											onClick={() => navigateTo(item.code)}
+										/>
+									{/if}
 									<IconButton
-										isDisabled={item.isDeleted}
-										name="detail"
-										tooltipLabel="Ver detalle"
+										isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
+											'planned' || item.isDeleted}
+										name="play"
+										tooltipLabel="Ejecutar proceso"
 										size="md"
 										borderShape="square"
 										variant="ghost"
-										onClick={() => navigateTo(item.code)}
+										onClick={() => onClickIniciarEvaluacion(item)}
 									/>
-								{/if}
-								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
-										'planned' || item.isDeleted}
-									name="play"
-									tooltipLabel="Ejecutar proceso"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickIniciarEvaluacion(item)}
-								/>
-								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
-										'planned' || item.isDeleted}
-									name="edit"
-									tooltipLabel="Editar registro"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickEditar(item)}
-								/>
-								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
-										'planned' || item.isDeleted}
-									name="delete"
-									tooltipLabel="Borrar registro"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickBorrar(item)}
-								/>
-								<IconButton
-									isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
-										'planned' || !item.isDeleted}
-									name="restore"
-									tooltipLabel="Restaurar registro"
-									size="md"
-									borderShape="square"
-									variant="ghost"
-									onClick={() => onClickRestaurar(item)}
-								/>
+									<IconButton
+										isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
+											'planned' || item.isDeleted}
+										name="edit"
+										tooltipLabel="Editar registro"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickEditar(item)}
+									/>
+									<IconButton
+										isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
+											'planned' || item.isDeleted}
+										name="delete"
+										tooltipLabel="Borrar registro"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickBorrar(item)}
+									/>
+									<IconButton
+										isDisabled={convertStatusToBadgeVariant(item.status).evaluacionStatus !==
+											'planned' || !item.isDeleted}
+										name="restore"
+										tooltipLabel="Restaurar registro"
+										size="md"
+										borderShape="square"
+										variant="ghost"
+										onClick={() => onClickRestaurar(item)}
+									/>
+								</div>
 							</td>
 						</tr>
 					{/each}
@@ -147,70 +149,3 @@
 		{/if}
 	</section>
 </main>
-
-<style>
-	/*
- * table-layout: fixed permite que las columnas respeten
- * los anchos declarados en thead th.
- * min-width en la tabla = suma de los min-width de columnas,
- * así la tabla no encoge más allá de donde todo quepa justo.
- *
- * Columnas y sus límites:
- *   parent      → ~20 chars → ~10rem (min: 7rem)
- *   parent      → ~20 chars → ~10rem (min: 7rem)
- *   código      → ~20 chars → ~10rem (min: 7rem)
- *   nombre      → ~50 chars → ~18rem (min: 12rem)
- *   number      → ~20 chars → ~10rem (min: 7rem)
- *   number      → ~20 chars → ~10rem (min: 7rem)
-  *   badge       → ~20 chars → ~8rem (min: 6rem)
- *   acciones    → 6 iconos → ~13rem (min: 13rem, fijo)
- *
- * Total mínimo: 7 + 7 + 7 + 12 + 7 + 7 + 6 + 13 = 66rem
- */
-	.data-table {
-		min-width: 66rem;
-	}
-
-	/* =============================================
-   COLUMN WIDTHS
-   Declara los anchos en thead th para que
-   table-layout: fixed los respete en todo el body.
-   ============================================= */
-
-	/* Código — corto, no hace wrap */
-	.data-table .col-code {
-		width: 6rem;
-		min-width: 4rem;
-		white-space: nowrap;
-	}
-
-	.data-table .col-small-number {
-		width: 4rem;
-		min-width: 2rem;
-		white-space: nowrap;
-	}
-
-	/* Nombre — mediano, puede hacer wrap si hay presión */
-	.data-table .col-name {
-		width: 18rem;
-		min-width: 12rem;
-		/* wrap controlado */
-		overflow-wrap: break-word;
-		word-break: break-word;
-		hyphens: auto;
-	}
-
-	/* Badge de estatus — ancho fijo chico */
-	.data-table .col-status {
-		width: 8rem;
-		min-width: 6rem;
-		white-space: nowrap;
-	}
-
-	/* Acciones — completamente fijo, los 4 iconos siempre caben */
-	.data-table .col-actions {
-		width: 9rem;
-		min-width: 9rem;
-		white-space: nowrap;
-	}
-</style>

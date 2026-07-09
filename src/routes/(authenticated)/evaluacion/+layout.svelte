@@ -27,10 +27,7 @@
 </script>
 
 <div class="app-grid">
-	<Header
-		{username}
-		{onClickLogout}
-	/>
+	<Header {username} {onClickLogout} />
 	<Subheader
 		onClickNavigationBar={navigationToggle.onClick}
 		onKeydownNavigationBar={(e) => navigationToggle.onKeydown(e)}
@@ -47,25 +44,3 @@
 	</main>
 	<Footer />
 </div>
-
-<style>
-	.main-children {
-		grid-area: main;
-		background-color: var(--bg-ground);
-		min-height: 0;
-		overflow: hidden;
-	}
-
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto 1fr auto;
-		height: 100vh;
-		position: relative;
-	}
-</style>

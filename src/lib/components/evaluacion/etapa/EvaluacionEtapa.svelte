@@ -116,6 +116,10 @@
 
 <style>
 	.main-panel {
-		flex-shrink: 0;
+		min-height: 0;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
 	}
 </style>
