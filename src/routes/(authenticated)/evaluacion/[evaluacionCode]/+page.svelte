@@ -7,19 +7,19 @@
 	import RestaurarEvaluacionForm from '$lib/components/evaluacion/RestaurarEvaluacionForm.svelte';
 	import {
 		getEvaluacion,
-		getEvaluacionDetail,
+		getEvaluacionNavigation,
 		getInstitucionRef,
 		getModeloRef
 	} from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 	import IniciarEvaluacionForm from '$lib/components/evaluacion/IniciarEvaluacionForm.svelte';
-	import EvaluacionDetail from '$lib/components/evaluacion/EvaluacionDetail.svelte';
+	import EvaluacionNavList from '$lib/components/evaluacion/EvaluacionNavList.svelte';
 
 	let evaluacionCode = page.params.evaluacionCode;
 	let evaluacionItems = getEvaluacion().filter((item) => item.code === evaluacionCode);
 	let modeloRef = getModeloRef();
 	let institucionRef = getInstitucionRef();
-	let evaluacionDetail = getEvaluacionDetail();
+	let evaluacionNavigation = getEvaluacionNavigation();
 
 	let modal = createModalManager<EvaluacionItem>();
 </script>
@@ -39,7 +39,7 @@
 	/>
 
 	<main class="detail-content">
-		<EvaluacionDetail items={evaluacionDetail} />
+		<EvaluacionNavList items={evaluacionNavigation} />
 	</main>
 </div>
 
