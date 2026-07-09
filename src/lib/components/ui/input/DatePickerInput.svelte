@@ -70,7 +70,7 @@
 		class: className = '',
 		startDate = $bindable(null),
 		endDate = $bindable(null),
-		onchange = null,
+		onchange,
 		...restProps
 	}: Props = $props();
 
@@ -127,7 +127,11 @@
 
 	function togglePicker(mouseEvent: MouseEvent) {
 		mouseEvent.stopPropagation();
-		isOpen ? (isOpen = false) : openPicker();
+		if (isOpen) {
+			isOpen = false;
+		} else {
+			openPicker();
+		}
 	}
 
 	// ── Callback del DateRangePicker ─────────────────────────────────────────
