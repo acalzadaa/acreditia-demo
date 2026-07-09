@@ -6,7 +6,7 @@
 		name: IconName;
 		variant?: 'ghost' | 'solid' | 'outline';
 		size?: 'sm' | 'md' | 'lg';
-		shape?: 'round' | 'square';
+		shape?: 'circle' | 'square';
 		isActive?: boolean;
 		isDisabled?: boolean;
 		type?: 'button' | 'submit' | 'reset';
@@ -17,9 +17,16 @@
 		ariaLabel?: string;
 		ariaExpanded?: boolean;
 		ariaControls?: string;
-		
+
 		class?: string;
 		onClick: (e: MouseEvent) => void;
+		/**
+		 * Hook opcional para teclas adicionales (p. ej. Escape).
+		 * Enter/Space NO pasan por acá: al ser un <button> nativo, el navegador
+		 * ya dispara `click` automáticamente con esas teclas, así que `onClick`
+		 * se encarga solo. Si `onKeydown` reimplementara esa misma acción,
+		 * se ejecutaría dos veces (una por acá, otra por el click nativo).
+		 */
 		onKeydown?: (e: KeyboardEvent) => void;
 		[key: string]: unknown;
 	}
@@ -28,7 +35,7 @@
 		name,
 		variant = 'ghost',
 		size = 'md',
-		shape = 'round',
+		shape = 'circle',
 		isActive = false,
 		isDisabled = false,
 		type = 'button',
@@ -47,12 +54,6 @@
 	}: Props = $props();
 
 	let tooltipActive = $derived(tooltipLabel.length > 0 ? true : false);
-
-	function handleKeyDown(e: KeyboardEvent) {
-		if (onKeydown && (e.key === 'Enter' || e.key === ' ')) {
-			onKeydown(e);
-		}
-	}
 </script>
 
 <button
@@ -62,7 +63,6 @@
 		position: tooltipDirection
 	}}
 	class={[
-		'button',
 		'icon-button',
 		className,
 		{
@@ -76,7 +76,7 @@
 	disabled={isDisabled}
 	{type}
 	onclick={onClick}
-	onkeydown={handleKeyDown}
+	onkeydown={onKeydown}
 	aria-label={ariaLabel || name}
 	aria-expanded={ariaExpanded}
 	aria-controls={ariaControls}

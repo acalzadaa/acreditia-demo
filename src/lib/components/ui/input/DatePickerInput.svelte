@@ -26,7 +26,6 @@
 	 *   onchange({ startDate, endDate })
 	 */
 
-	import { tick } from 'svelte';
 	import IconButton from '../IconButton.svelte';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import DateRangePicker from '../DateRangePicker.svelte';
@@ -71,7 +70,7 @@
 		class: className = '',
 		startDate = $bindable(null),
 		endDate = $bindable(null),
-		onchange = null,
+		onchange,
 		...restProps
 	}: Props = $props();
 
@@ -83,11 +82,11 @@
 	let popoverStyle = $state('');
 
 	// ── Formato DD/MM/AAAA ───────────────────────────────────────────────────
-	function fmt(d: Date | null): string {
-		if (!d) return '';
-		const dd = String(d.getDate()).padStart(2, '0');
-		const mm = String(d.getMonth() + 1).padStart(2, '0');
-		return `${dd}/${mm}/${d.getFullYear()}`;
+	function fmt(date: Date | null): string {
+		if (!date) return '';
+		const day = String(date.getDate()).padStart(2, '0');
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		return `${day}/${month}/${date.getFullYear()}`;
 	}
 
 	const displayValue = $derived(
@@ -105,28 +104,29 @@
 		placeholder || (singleMode ? 'DD/MM/AAAA' : 'DD/MM/AAAA - DD/MM/AAAA')
 	);
 
-	// ── Abrir: calcular posición del anchor ──────────────────────────────────
-	async function openPicker() {
+	// ── Abrir: calcular posición del popover ─────────────────────────────────
+	// El popover usa `position: fixed`, así que getBoundingClientRect() ya nos
+	// da coordenadas relativas al viewport — no hace falta sumar scrollX/scrollY
+	// (eso solo aplicaría con `position: absolute`).
+	function openPicker() {
 		if (disabled) return;
 
 		if (anchorEl) {
 			const rect = anchorEl.getBoundingClientRect();
-			const scrollY = window.scrollY;
-			const scrollX = window.scrollX;
 			popoverStyle = [
-				`position: fixed`,
+				'position: fixed',
 				`top: ${rect.bottom + 6}px`,
 				`left: ${rect.left}px`,
 				`min-width: ${rect.width}px`,
-				`z-index: 9999`
+				'z-index: 9999'
 			].join('; ');
 		}
 
 		isOpen = true;
 	}
 
-	function togglePicker(e: MouseEvent) {
-		e.stopPropagation();
+	function togglePicker(mouseEvent: MouseEvent) {
+		mouseEvent.stopPropagation();
 		if (isOpen) {
 			isOpen = false;
 		} else {
@@ -135,20 +135,16 @@
 	}
 
 	// ── Callback del DateRangePicker ─────────────────────────────────────────
+	// startDate/endDate ya están sincronizados por bind:startDate/bind:endDate;
+	// este callback solo se encarga de notificar al padre y cerrar el popover
+	// cuando la selección está completa (no reasigna el estado, ya está hecho).
 	function handlePickerChange(payload: { startDate: Date | null; endDate: Date | null }) {
-		startDate = payload.startDate;
-		endDate = payload.endDate;
-
-		const complete = singleMode ? !!startDate : !!(startDate && endDate);
-		if (complete) {
-			setTimeout(() => {
-				isOpen = false;
-			}, 180);
+		const isComplete = singleMode ? !!payload.startDate : !!(payload.startDate && payload.endDate);
+		if (isComplete) {
+			setTimeout(() => (isOpen = false), 180);
 		}
 
-		if (typeof onchange === 'function') {
-			onchange({ startDate, endDate });
-		}
+		onchange?.(payload);
 	}
 </script>
 
@@ -195,14 +191,11 @@
 				size="sm"
 				variant="ghost"
 				isActive={isOpen}
-				{disabled}
+				isDisabled={disabled}
 				ariaLabel="Abrir calendario"
 				ariaExpanded={isOpen}
 				ariaControls="{name}-picker"
 				onClick={togglePicker}
-				onKeydown={(e: KeyboardEvent) => {
-					if (e.key === 'Enter' || e.key === ' ') togglePicker(e as unknown as MouseEvent);
-				}}
 			/>
 		</div>
 	</div>
@@ -253,12 +246,14 @@
 		position: relative;
 		display: flex;
 		align-items: center;
+		/* alto explícito: asegura que el icon-button quepa y quede centrado */
+		min-height: 2.5rem;
 	}
 
 	.dpi-input {
 		width: 100%;
 		cursor: pointer;
-		padding-right: 2.5rem !important;
+		padding-right: 2.25rem !important;
 	}
 
 	.dpi-input:read-only {
@@ -270,18 +265,19 @@
 	}
 
 	.dpi-input-wrap--open .dpi-input {
-		outline: 2px solid var(--color-primary, #4f46e5);
+		outline: 2px solid var(--border-brand);
 		outline-offset: -1px;
 	}
 
 	/* ── Icono ───────────────────────────────────────────────────────────── */
 	.dpi-icon-wrap {
 		position: absolute;
-		right: 4px;
+		right: var(--inset-sm);
 		top: 50%;
 		transform: translateY(-50%);
 		display: flex;
 		align-items: center;
+		justify-content: center;
 	}
 
 	/* ── Modal posicionado como popover ─────────────────────────────────── */
@@ -296,7 +292,7 @@
 
 	/* ── Misc ────────────────────────────────────────────────────────────── */
 	.dpi-required {
-		color: var(--color-error, #ef4444);
+		color: var(--text-on-error);
 		margin-left: 2px;
 	}
 </style>

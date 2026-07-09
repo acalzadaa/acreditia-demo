@@ -2,15 +2,17 @@
 	import type { Snippet } from 'svelte';
 
 	export type BadgeStatus = 'info' | 'warning' | 'error' | 'success';
+	export type BadgeShape = 'rectangle' | 'pill';
 
 	interface Props {
 		variant: BadgeStatus;
+		shape?: BadgeShape;
 		class?: string;
 		children: Snippet;
 		[key: string]: unknown;
 	}
 
-	const { variant, children, class: className = '', ...props }: Props = $props();
+	const { variant, shape = 'pill', children, class: className = '', ...props }: Props = $props();
 </script>
 
 <span
@@ -19,7 +21,8 @@
 		'text-caption',
 		className,
 		{
-			[`status-badge--variant-${variant}`]: true
+			[`status-badge--variant-${variant}`]: true,
+			[`status-badge--shape-${shape}`]: true
 		},
 		props
 	]}
@@ -33,6 +36,14 @@
 		padding: var(--space-1) var(--space-3);
 		border-radius: 9999px;
 		text-transform: capitalize;
+	}
+
+	.status-badge--shape-pill {
+		border-radius: 9999px;
+	}
+
+	.status-badge--shape-rectangle {
+		border-radius: 4px;
 	}
 
 	.status-badge--variant-success {

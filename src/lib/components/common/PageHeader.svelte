@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Badge from '../ui/Badge.svelte';
 
 	interface Props {
 		title: string;
@@ -13,8 +12,8 @@
 	<div class="page-header-content">
 		<h2 class="page-header-title text-h5">{title}</h2>
 		{#if subtitle}
-			<div class="page-header-subtitle">
-				<Badge variant="info">{subtitle}</Badge>
+			<div class="page-header-subtitle text-body">
+				{subtitle}
 			</div>
 		{/if}
 	</div>
@@ -48,7 +47,7 @@
 	}
 
 	.page-header-subtitle {
-		color: var(--text-on-brand-secondary);
+		color: var(--text-on-brand);
 		background-color: var(--bg-overlay-brand);
 		border-radius: var(--border-radius-button);
 		padding: var(--space-1) var(--space-2);
