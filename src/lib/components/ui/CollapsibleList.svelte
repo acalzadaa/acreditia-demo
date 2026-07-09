@@ -6,15 +6,46 @@
 	 * iconos — lo que sea) via el snippet `header`, y también es dueño
 	 * del estado abierto/cerrado: este componente NUNCA muta `open` por
 	 * su cuenta, solo avisa con `onToggle` cuando se hace click/Enter/
-	 * Espacio en el header.
+	 * Espacio en el header. El snippet recibe open para controlar
+     * elementos del header 
 	 *
-	 * `header` recibe `{ open }` como parámetro del snippet para que
-	 * puedas rotar tu propio chevron, cambiar el aria-label, etc.
-	 *
-	 * El contenido sigue el mismo patrón que antes: se renderizan
+	 * El contenido muestra doble contenido: se renderizan
 	 * `children` (desktop) y `mobileContent` (<=640px) y el CSS decide
 	 * cuál mostrar.
+	 *
 	 */
+
+	/* EJEMPLO DE USO DE COLLAPSIBLELIST
+    <CollapsibleList
+        open={onToggle.value}
+        onToggle={onToggle.toggle}
+        maxHeight="360px"
+    >
+    {#snippet header({ open })}
+        <Icon name="chevron-right" size="sm" class="collapsible-list__chevron" rotate={open ? 90 : 0} />
+        <div class="collapsible-list__titles">
+        <span class="collapsible-list__title text-body-strong">Titulo</span>
+        <span class="collapsible-list__subtitle text-body-small">Subtitulo</span>
+        </div>
+        <div class="collapsible-list__icons" onclick={(e) => e.stopPropagation()}>
+        <IconButton name="play" onClick={() => {}} tooltipLabel="Exportar" />
+        </div>
+    {/snippet}
+
+    {#snippet children()}
+        <div class="table-container table-container--inline">
+        <table class="data-table"><!-- aqui va la tabla --></table>
+        </div>
+    {/snippet}
+
+    {#snippet mobileContent()}
+        <div class="card-column">
+        <div class="card"><!-- aqui va el card --></div>
+        </div>
+    {/snippet}
+</CollapsibleList> 
+*/
+
 	import type { Snippet } from 'svelte';
 	import { slide } from 'svelte/transition';
 
@@ -61,10 +92,7 @@
 	}
 </script>
 
-<section
-	class={['collapsible-list', className, { 'collapsible-list--open': open }]}
-	{...restProps}
->
+<section class={['collapsible-list', className, { 'collapsible-list--open': open }]} {...restProps}>
 	<div
 		class="collapsible-list__header"
 		role="button"
