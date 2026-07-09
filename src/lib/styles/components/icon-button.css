@@ -27,6 +27,13 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	box-sizing: border-box;
+
+	/* Reset propio: ya no depende de una clase .button compartida (esa clase
+	   trae --button-padding-x / --button-padding-y, que son distintos entre sí
+	   y deformaban el botón en óvalo en vez de círculo). */
+	appearance: none;
+	margin: 0;
 
 	border: var(--border-width-thin) solid transparent;
 	border-radius: var(--icon-button-border-radius);
@@ -53,6 +60,8 @@
    ========================================== */
 .icon-button--size-sm {
 	padding: var(--icon-button-padding-sm);
+	min-width: 1.75rem;
+	min-height: 1.75rem;
 
 	svg {
 		width: var(--icon-button-size-sm);
@@ -61,7 +70,6 @@
 }
 
 .icon-button--size-md {
-	padding: var(--icon-button-padding-md);
 	padding: var(--icon-button-padding-md);
 	min-width: 2.25rem;
 	min-height: 2.25rem;
@@ -74,6 +82,8 @@
 
 .icon-button--size-lg {
 	padding: var(--icon-button-padding-lg);
+	min-width: 2.75rem;
+	min-height: 2.75rem;
 
 	svg {
 		width: var(--icon-button-size-lg);
