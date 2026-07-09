@@ -113,6 +113,6 @@
 
 <style>
 	.main-panel {
-		flex-shrink: 0;
+		min-height: 0;
 	}
 </style>

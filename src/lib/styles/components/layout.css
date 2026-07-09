@@ -22,10 +22,8 @@
 	grid-template-rows: auto auto 1fr auto;
 	height: 100vh;
 	position: relative;
-	overflow: hidden;
 }
-
-.main-panel {
+.main-children {
 	grid-area: main;
 	background-color: var(--bg-ground);
 	min-height: 0;
@@ -34,12 +32,22 @@
 	flex-direction: column;
 }
 
-.detail-content {
-	flex: 1;
-	min-height: 0;
-	overflow-y: auto;
+.detail-panel {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
-	padding: 1rem;
+	flex: 1;
+	min-height: 0;
+	overflow: hidden;
+}
+
+/* Si se usa .table-container
+	se debe cambiar "overflow-y: scroll"
+	por "overflow-y: hidden"
+	ya que .table-container ya tiene su propio scroll */
+.detail-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
+	overflow-y: scroll;
 }
