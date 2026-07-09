@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { onDestroy, tick } from 'svelte';
+	/* eslint-disable svelte/prefer-svelte-reactivity */
 	/**
-	 * DateRangePicker.svelte — Svelte 5 component
+	 * DateRangePicker. —  5 component
 	 *
 	 * Props:
 	 *   minDate         {Date|null}    — earliest selectable date (default: today)
@@ -18,13 +20,29 @@
 	 *
 	 * Events:
 	 *   onchange({ startDate, endDate })
+	 *
+	 * La lógica pura (matemática de fechas, grid, cache, formateo, validación)
+	 * vive en ./DateRangePicker..js — este archivo solo maneja estado y template.
 	 */
 
-	import { tick, onDestroy } from 'svelte';
-	import { SvelteDate } from 'svelte/reactivity';
+	import {
+		CalendarGridCache,
+		compareMonths,
+		formatDisplayDate,
+		getMonthLabel,
+		getWeekdayLabels,
+		isDateAfter,
+		isDateBefore,
+		isDateDisabled,
+		isSameDay,
+		normalizeToStartOfDay,
+		validateDateRangePickerProps,
+		type CalendarCell
+	} from './DateRangePicker.svelte.js';
+	import IconButton from './IconButton.svelte';
 
 	let {
-		minDate = new Date(new SvelteDate().setHours(0, 0, 0, 0)),
+		minDate = new Date(new Date().setHours(0, 0, 0, 0)),
 		maxDate = null,
 		disabledDates = null,
 		firstDayOfWeek = 0,
@@ -33,428 +51,230 @@
 		locale = 'en-US',
 		singleMode = false,
 		onchange = null,
-		startDate = $bindable(null),
-		endDate = $bindable(null)
+		startDate = $bindable<Date | null>(null),
+		endDate = $bindable<Date | null>(null)
 	} = $props();
 
-	// ── Validación de props ──────────────────────────────────────────────────────
-	if (!(minDate instanceof Date) || isNaN(minDate)) {
-		console.warn('DateRangePicker: minDate inválido, usando hoy');
-		minDate = new Date(new SvelteDate().setHours(0, 0, 0, 0));
-	}
+	// ── Prop validation ──────────────────────────────────────────────────────
+	// svelte-ignore state_referenced_locally
+	({ minDate, maxDate, disabledDates, firstDayOfWeek } = validateDateRangePickerProps({
+		minDate,
+		maxDate,
+		disabledDates,
+		firstDayOfWeek
+	}));
 
-	if (maxDate && (!(maxDate instanceof Date) || isNaN(maxDate))) {
-		console.warn('DateRangePicker: maxDate inválido, usando null');
-		maxDate = null;
-	}
+	// ── Calendar navigation state ────────────────────────────────────────────
+	// El calendario IZQUIERDO es la fuente de verdad; el DERECHO siempre muestra el mes siguiente.
+	const today = new Date();
+	let leftYear = $state(today.getFullYear());
+	let leftMonth = $state(today.getMonth()); // 0-indexed
 
-	if (disabledDates && !Array.isArray(disabledDates)) {
-		console.warn('DateRangePicker: disabledDates debe ser un array o null');
-		disabledDates = null;
-	}
+	let rightYear = $derived(leftMonth === 11 ? leftYear + 1 : leftYear);
+	let rightMonth = $derived(leftMonth === 11 ? 0 : leftMonth + 1);
 
-	if (typeof firstDayOfWeek !== 'number' || firstDayOfWeek < 0 || firstDayOfWeek > 6) {
-		console.warn('DateRangePicker: firstDayOfWeek debe ser 0-6, usando 0');
-		firstDayOfWeek = 0;
-	}
+	// ── Hover state (preview de rango) ───────────────────────────────────────
+	let hoveredDate = $state<Date | null>(null);
+	let hoveredCalendarIndex = $state<number | null>(null);
 
-	// ── State ────────────────────────────────────────────────────────────────────
-	// Which month/year is the LEFT calendar showing
-	const currentDate = new Date();
-	let leftCalendarYear = $state(currentDate.getFullYear());
-	let leftCalendarMonth = $state(currentDate.getMonth()); // 0-based
+	// ── Derived: grids + labels (reactivos a locale / firstDayOfWeek) ───────
+	const gridCache = new CalendarGridCache();
+	onDestroy(() => gridCache.clear());
 
-	// Hover state for range preview
-	let hoveredDate = $state(null);
-	let hoveredCalendarIndex = $state(null);
+	let weekdayLabels = $derived(getWeekdayLabels(locale, firstDayOfWeek));
 
-	// ── Derived ──────────────────────────────────────────────────────────────────
-	// Right calendar is always one month after left
-	let rightCalendarMonth = $derived(leftCalendarMonth === 11 ? 0 : leftCalendarMonth + 1);
-	let rightCalendarYear = $derived(
-		leftCalendarMonth === 11 ? leftCalendarYear + 1 : leftCalendarYear
-	);
-
-	// Formateadores internacionalizados
-	const monthFormatter = new Intl.DateTimeFormat(locale, { month: 'long' });
-	const weekdayFormatter = new Intl.DateTimeFormat(locale, { weekday: 'short' });
-
-	// Obtener días de semana en el locale correcto respetando firstDayOfWeek
-	const weekDays = (() => {
-		// Usar un domingo como referencia base
-		const baseSunday = new Date(2024, 0, 7);
-		const days = [];
-
-		for (let i = 0; i < 7; i++) {
-			const date = new SvelteDate(baseSunday);
-			date.setDate(baseSunday.getDate() + i);
-			days.push(weekdayFormatter.format(date));
+	let calendarPanels = $derived([
+		{
+			calendarIndex: 0,
+			year: leftYear,
+			month: leftMonth,
+			grid: gridCache.get(leftYear, leftMonth, firstDayOfWeek),
+			showPreviousControl: true,
+			showNextControl: false
+		},
+		{
+			calendarIndex: 1,
+			year: rightYear,
+			month: rightMonth,
+			grid: gridCache.get(rightYear, rightMonth, firstDayOfWeek),
+			showPreviousControl: false,
+			showNextControl: true
 		}
+	]);
 
-		// Rotar según firstDayOfWeek
-		if (firstDayOfWeek > 0) {
-			const rotatedDays = [...days];
-			for (let i = 0; i < 7; i++) {
-				rotatedDays[i] = days[(i + firstDayOfWeek) % 7];
-			}
-			return rotatedDays;
-		}
-		return days;
-	})();
-
-	// ── Helpers ──────────────────────────────────────────────────────────────────
-	function normalizeToStartOfDay(date: Date) {
-		const normalizedDate = new SvelteDate(date);
-		normalizedDate.setHours(0, 0, 0, 0);
-		return normalizedDate;
+	// ── Date bounds helpers ──────────────────────────────────────────────────
+	function isDisabled(date: CalendarCell) {
+		return isDateDisabled(date, { minDate, maxDate, disabledDates });
 	}
 
-	function isSameDay(dateA: Date, dateB: Date) {
-		if (!dateA || !dateB) return false;
-		return (
-			dateA.getFullYear() === dateB.getFullYear() &&
-			dateA.getMonth() === dateB.getMonth() &&
-			dateA.getDate() === dateB.getDate()
-		);
-	}
+	/** true si `date` está estrictamente entre startDate y el fin de rango (real o previsualizado por hover) */
+	function isInRange(date: CalendarCell, calendarIndex: number) {
+		if (!date || !startDate || singleMode) return false;
 
-	function isDateBefore(dateA: Date, dateB: Date) {
-		return dateA < dateB;
-	}
-
-	function isDateAfter(dateA: Date, dateB: Date) {
-		return dateA > dateB;
-	}
-
-	function compareMonths(year1, month1, year2, month2) {
-		if (year1 !== year2) return year1 < year2 ? -1 : 1;
-		if (month1 !== month2) return month1 < month2 ? -1 : 1;
-		return 0;
-	}
-
-	function isDateDisabled(dateToCheck) {
-		if (!dateToCheck) return true;
-		const normalizedDate = normalizeToStartOfDay(dateToCheck);
-
-		// Min/Max validation
-		if (isDateBefore(normalizedDate, normalizeToStartOfDay(minDate))) return true;
-		if (maxDate && isDateAfter(normalizedDate, normalizeToStartOfDay(maxDate))) return true;
-
-		// Disabled dates array validation
-		if (disabledDates && Array.isArray(disabledDates)) {
-			return disabledDates.some((disabledDate) => {
-				if (!disabledDate) return false;
-				return isSameDay(normalizedDate, normalizeToStartOfDay(disabledDate));
-			});
-		}
-
-		return false;
-	}
-
-	/** True if dateToCheck is strictly between startDate and endDate (exclusive) */
-	function isDateInRange(dateToCheck, calendarIndex = null) {
-		if (!startDate) return false;
-
-		// En singleMode, no hay rango
-		if (singleMode) return false;
-
-		const rangeStart = startDate;
-		// Solo mostrar preview hover si el cursor está en el mismo calendario
-		const activeHover =
-			hoveredCalendarIndex === null ||
-			calendarIndex === null ||
-			hoveredCalendarIndex === calendarIndex
-				? hoveredDate
-				: null;
-		const rangeEnd = endDate ?? activeHover;
-
+		const previewEnd =
+			hoveredCalendarIndex === null || hoveredCalendarIndex === calendarIndex ? hoveredDate : null;
+		const rangeEnd = endDate ?? previewEnd;
 		if (!rangeEnd) return false;
 
-		const lowerBound = isDateBefore(rangeStart, rangeEnd) ? rangeStart : rangeEnd;
-		const upperBound = isDateBefore(rangeStart, rangeEnd) ? rangeEnd : rangeStart;
-		return isDateAfter(dateToCheck, lowerBound) && isDateBefore(dateToCheck, upperBound);
+		const lowerBound = isDateBefore(startDate, rangeEnd) ? startDate : rangeEnd;
+		const upperBound = isDateBefore(startDate, rangeEnd) ? rangeEnd : startDate;
+		return isDateAfter(date, lowerBound) && isDateBefore(date, upperBound);
 	}
 
-	/** Build the grid of Date objects for a given month/year (6 rows × 7 cols) */
-	function buildCalendarGrid(year, month) {
-		// Ajustar el primer día del mes según firstDayOfWeek
-		const firstDayOfMonth = new Date(year, month, 1);
-		let leadingEmptyCells = firstDayOfMonth.getDay(); // 0=Sunday
+	function getCellClassNames(date: CalendarCell, calendarMonth: number, calendarIndex: number) {
+		if (!date) return 'drp-cell drp-empty';
 
-		// Ajuste por firstDayOfWeek
-		if (firstDayOfWeek > 0) {
-			leadingEmptyCells = (leadingEmptyCells - firstDayOfWeek + 7) % 7;
-		}
+		const classes = ['drp-cell'];
+		if (date.getMonth() !== calendarMonth) classes.push('drp-outside');
+		if (isDisabled(date)) classes.push('drp-disabled');
+		if (isSameDay(date, startDate)) classes.push('drp-start');
+		if (isSameDay(date, endDate)) classes.push('drp-end');
+		if (isInRange(date, calendarIndex)) classes.push('drp-in-range');
+		if (isSameDay(date, today)) classes.push('drp-today');
 
-		const calendarDays = [];
-
-		// Add empty cells for days before the 1st of the month
-		for (let i = 0; i < leadingEmptyCells; i++) {
-			calendarDays.push(null);
-		}
-
-		const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
-		for (let day = 1; day <= lastDayOfMonth; day++) {
-			calendarDays.push(new Date(year, month, day));
-		}
-
-		// Pad to full 6 rows (42 cells total)
-		while (calendarDays.length < 42) calendarDays.push(null);
-		return calendarDays;
+		return classes.join(' ');
 	}
 
-	// Cache para grids de calendario — límite de 24 entradas (2 años de meses)
-	const CALENDAR_GRID_CACHE_LIMIT = 24;
-	const calendarGridCache = new Map();
-
-	function getCachedCalendarGrid(year, month) {
-		const cacheKey = `${year}-${month}-${firstDayOfWeek}`;
-		if (calendarGridCache.has(cacheKey)) {
-			// Mover al final para mantener orden LRU
-			const value = calendarGridCache.get(cacheKey);
-			calendarGridCache.delete(cacheKey);
-			calendarGridCache.set(cacheKey, value);
-			return value;
-		}
-		const grid = buildCalendarGrid(year, month);
-		if (calendarGridCache.size >= CALENDAR_GRID_CACHE_LIMIT) {
-			// Eliminar la entrada más antigua (primera del Map)
-			const oldestKey = calendarGridCache.keys().next().value;
-			calendarGridCache.delete(oldestKey);
-		}
-		calendarGridCache.set(cacheKey, grid);
-		return grid;
+	// ── Selection ─────────────────────────────────────────────────────────────
+	function emitChange() {
+		onchange?.({ startDate, endDate });
 	}
 
-	let leftCalendarGrid = $derived(getCachedCalendarGrid(leftCalendarYear, leftCalendarMonth));
-	let rightCalendarGrid = $derived(getCachedCalendarGrid(rightCalendarYear, rightCalendarMonth));
+	function selectDate(date: CalendarCell) {
+		if (!date || isDisabled(date)) return;
+		const normalizedDate = normalizeToStartOfDay(date);
 
-	// Cleanup on destroy
-	onDestroy(() => {
-		calendarGridCache.clear();
-	});
-
-	// ── Event handlers ─────────────────────────────────────────────────────────────
-	function emitDateRangeChange() {
-		if (typeof onchange === 'function') {
-			onchange({ startDate, endDate });
-		}
-	}
-
-	function selectDate(dateToSelect) {
-		if (!dateToSelect || isDateDisabled(dateToSelect)) return;
-		const normalizedDate = normalizeToStartOfDay(dateToSelect);
-
-		// Single mode
 		if (singleMode) {
-			if (isSameDay(normalizedDate, startDate)) {
-				startDate = null;
-			} else {
-				startDate = normalizedDate;
-			}
+			startDate = isSameDay(normalizedDate, startDate) ? null : normalizedDate;
 			endDate = null;
-			emitDateRangeChange();
+			emitChange();
 			return;
 		}
 
-		// Range mode
-		if (!startDate || (startDate && endDate)) {
-			// Fresh pick - start new range
+		const isStartingFreshRange = !startDate || (startDate && endDate);
+		if (isStartingFreshRange) {
 			startDate = normalizedDate;
 			endDate = null;
-		} else {
-			// Second pick - complete the range
-			if (isSameDay(normalizedDate, startDate)) {
-				// Clicked same date - clear selection
-				startDate = null;
-				endDate = null;
-				emitDateRangeChange();
-			} else if (isDateBefore(normalizedDate, startDate)) {
-				// Selected date is before start date - swap them
-				endDate = startDate;
-				startDate = normalizedDate;
-				emitDateRangeChange();
-			} else {
-				// Selected date is after start date - normal range
-				endDate = normalizedDate;
-				emitDateRangeChange();
-			}
+			return;
 		}
+
+		if (isSameDay(normalizedDate, startDate)) {
+			// Mismo día que el inicio: limpiar selección
+			startDate = null;
+			endDate = null;
+		} else if (isDateBefore(normalizedDate, startDate)) {
+			// Fecha anterior al inicio: invertir inicio/fin
+			endDate = startDate;
+			startDate = normalizedDate;
+		} else {
+			endDate = normalizedDate;
+		}
+		emitChange();
 	}
 
-	// ── Calendar navigation ────────────────────────────────────────────────────────
+	// ── Month navigation ──────────────────────────────────────────────────────
 	function goToPreviousMonth() {
-		if (leftCalendarMonth === 0) {
-			leftCalendarMonth = 11;
-			leftCalendarYear--;
+		if (leftMonth === 0) {
+			leftMonth = 11;
+			leftYear--;
 		} else {
-			leftCalendarMonth--;
+			leftMonth--;
 		}
 	}
 
 	function goToNextMonth() {
-		if (leftCalendarMonth === 11) {
-			leftCalendarMonth = 0;
-			leftCalendarYear++;
+		if (leftMonth === 11) {
+			leftMonth = 0;
+			leftYear++;
 		} else {
-			leftCalendarMonth++;
+			leftMonth++;
 		}
 	}
 
-	// ── Keyboard navigation ──────────────────────────────────────────────────────
-	function handleCellKeyDown(keyboardEvent: KeyboardEvent, dateObject, cellIndex, calendarIndex) {
-		if (!dateObject || isDateDisabled(dateObject)) return;
+	// ── Keyboard navigation ───────────────────────────────────────────────────
+	async function focusCell(date: Date) {
+		await tick();
+		const targetCell = document.querySelector<HTMLElement>(`[data-date="${date.toISOString()}"]`);
+		targetCell?.focus();
+	}
+
+	async function moveFocusByDays(fromDate: Date, dayOffset: number, calendarIndex: number) {
+		const targetDate = new Date(fromDate);
+		targetDate.setDate(fromDate.getDate() + dayOffset);
+		if (isDisabled(targetDate)) return;
+
+		const targetMonth = targetDate.getMonth();
+		const targetYear = targetDate.getFullYear();
+		const referenceYear = calendarIndex === 0 ? leftYear : rightYear;
+		const referenceMonth = calendarIndex === 0 ? leftMonth : rightMonth;
+
+		if (compareMonths(targetYear, targetMonth, referenceYear, referenceMonth) !== 0) {
+			// El calendario derecho siempre muestra leftMonth + 1, así que ajustamos leftMonth/leftYear
+			const monthOffset = calendarIndex === 0 ? 0 : -1;
+			const anchor = new Date(targetYear, targetMonth + monthOffset, 1);
+			leftYear = anchor.getFullYear();
+			leftMonth = anchor.getMonth();
+		}
+
+		await focusCell(targetDate);
+	}
+
+	async function moveFocusToMonthEdge(fromDate: Date, edge: 'start' | 'end') {
+		const targetDate =
+			edge === 'start'
+				? new Date(fromDate.getFullYear(), fromDate.getMonth(), 1)
+				: new Date(fromDate.getFullYear(), fromDate.getMonth() + 1, 0);
+
+		if (isDisabled(targetDate)) return;
+		selectDate(targetDate);
+		await focusCell(targetDate);
+	}
+
+	function handleCellKeyDown(
+		keyboardEvent: KeyboardEvent,
+		date: CalendarCell,
+		calendarIndex: number
+	) {
+		if (!date || isDisabled(date)) return;
 
 		switch (keyboardEvent.key) {
 			case 'Enter':
 			case ' ':
 				keyboardEvent.preventDefault();
-				selectDate(dateObject);
+				selectDate(date);
 				break;
 			case 'ArrowLeft':
 				keyboardEvent.preventDefault();
-				navigateToAdjacentDate(dateObject, -1, cellIndex, calendarIndex);
+				moveFocusByDays(date, -1, calendarIndex);
 				break;
 			case 'ArrowRight':
 				keyboardEvent.preventDefault();
-				navigateToAdjacentDate(dateObject, 1, cellIndex, calendarIndex);
+				moveFocusByDays(date, 1, calendarIndex);
 				break;
 			case 'ArrowUp':
 				keyboardEvent.preventDefault();
-				navigateToAdjacentDate(dateObject, -7, cellIndex, calendarIndex);
+				moveFocusByDays(date, -7, calendarIndex);
 				break;
 			case 'ArrowDown':
 				keyboardEvent.preventDefault();
-				navigateToAdjacentDate(dateObject, 7, cellIndex, calendarIndex);
+				moveFocusByDays(date, 7, calendarIndex);
 				break;
 			case 'Home':
 				keyboardEvent.preventDefault();
-				navigateToFirstDayOfMonth(dateObject, calendarIndex);
+				moveFocusToMonthEdge(date, 'start');
 				break;
 			case 'End':
 				keyboardEvent.preventDefault();
-				navigateToLastDayOfMonth(dateObject, calendarIndex);
+				moveFocusToMonthEdge(date, 'end');
 				break;
 		}
 	}
 
-	async function navigateToAdjacentDate(currentDate, dayOffset, currentCellIndex, calendarIndex) {
-		const newDate = new SvelteDate(currentDate);
-		newDate.setDate(currentDate.getDate() + dayOffset);
-
-		if (isDateDisabled(newDate)) return;
-
-		const newMonth = newDate.getMonth();
-		const newYear = newDate.getFullYear();
-
-		if (calendarIndex === 0) {
-			// Left calendar: si el nuevo mes salió del mes actual del left, ajustar
-			if (compareMonths(newYear, newMonth, leftCalendarYear, leftCalendarMonth) !== 0) {
-				leftCalendarYear = newYear;
-				leftCalendarMonth = newMonth;
-			}
-		} else {
-			// Right calendar: si el nuevo mes salió del mes actual del right, ajustar
-			// (right es siempre leftMonth+1, así que movemos left en consecuencia)
-			if (compareMonths(newYear, newMonth, rightCalendarYear, rightCalendarMonth) !== 0) {
-				// El right debe mostrar newMonth, por tanto left = newMonth - 1
-				const targetLeft = new Date(newYear, newMonth - 1, 1);
-				leftCalendarYear = targetLeft.getFullYear();
-				leftCalendarMonth = targetLeft.getMonth();
-			}
-		}
-
-		// Focus the new date cell after Svelte updates the DOM
-		await tick();
-		const targetCell = document.querySelector(`[data-date="${newDate.toISOString()}"]`);
-		if (targetCell) targetCell.focus();
-	}
-
-	async function navigateToFirstDayOfMonth(currentDate, calendarIndex) {
-		const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-		if (!isDateDisabled(firstDayOfMonth)) {
-			selectDate(firstDayOfMonth);
-			await tick();
-			const targetCell = document.querySelector(`[data-date="${firstDayOfMonth.toISOString()}"]`);
-			if (targetCell) targetCell.focus();
-		}
-	}
-
-	async function navigateToLastDayOfMonth(currentDate, calendarIndex) {
-		const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-		if (!isDateDisabled(lastDayOfMonth)) {
-			selectDate(lastDayOfMonth);
-			await tick();
-			const targetCell = document.querySelector(`[data-date="${lastDayOfMonth.toISOString()}"]`);
-			if (targetCell) targetCell.focus();
-		}
-	}
-
-	// ── Cell styling logic ─────────────────────────────────────────────────────────
-	function getCellClassName(dateObject, calendarMonth, calendarIndex) {
-		if (!dateObject) return 'drp-cell drp-empty';
-
-		const cssClasses = ['drp-cell'];
-
-		if (dateObject.getMonth() !== calendarMonth) {
-			cssClasses.push('drp-outside');
-		}
-
-		if (isDateDisabled(dateObject)) {
-			cssClasses.push('drp-disabled');
-		}
-
-		if (isSameDay(dateObject, startDate)) {
-			cssClasses.push('drp-start');
-		}
-
-		if (isSameDay(dateObject, endDate)) {
-			cssClasses.push('drp-end');
-		}
-
-		if (isDateInRange(dateObject, calendarIndex)) {
-			cssClasses.push('drp-in-range');
-		}
-
-		if (isSameDay(dateObject, new Date())) {
-			cssClasses.push('drp-today');
-		}
-
-		if (
-			(isSameDay(dateObject, startDate) && endDate) ||
-			(isSameDay(dateObject, endDate) && startDate)
-		) {
-			cssClasses.push('drp-cap');
-		}
-
-		return cssClasses.join(' ');
-	}
-
-	// ── Date formatting ────────────────────────────────────────────────────────────────
-	function formatDate(dateToFormat) {
-		if (!dateToFormat) return '—';
-		if (!(dateToFormat instanceof Date) || isNaN(dateToFormat)) {
-			console.warn('DateRangePicker: fecha inválida para formatear');
-			return 'Invalid date';
-		}
-		return dateToFormat.toLocaleDateString(locale, {
-			month: 'short',
-			day: 'numeric',
-			year: 'numeric'
-		});
-	}
-
-	function getLocalizedMonthName(year, month) {
-		const date = new Date(year, month, 1);
-		return monthFormatter.format(date);
-	}
-
-	// ── Mouse hover handlers ──────────────────────────────────────────────────────────
-	function handleCellMouseEnter(dateObject, calendarIndex) {
-		if (!singleMode && dateObject && startDate && !endDate) {
-			hoveredDate = normalizeToStartOfDay(dateObject);
-			hoveredCalendarIndex = calendarIndex;
-		}
+	// ── Mouse hover (preview de rango) ────────────────────────────────────────
+	function handleCellMouseEnter(date: CalendarCell, calendarIndex: number) {
+		if (singleMode || !date || !startDate || endDate) return;
+		hoveredDate = normalizeToStartOfDay(date);
+		hoveredCalendarIndex = calendarIndex;
 	}
 
 	function handleCellMouseLeave() {
@@ -469,7 +289,7 @@
 		<div class="drp-summary-item">
 			<span class="drp-label">Start</span>
 			<span class="drp-value" class:drp-placeholder={!startDate}>
-				{formatDate(startDate)}
+				{formatDisplayDate(startDate, locale)}
 			</span>
 		</div>
 		{#if !singleMode}
@@ -477,7 +297,7 @@
 			<div class="drp-summary-item">
 				<span class="drp-label">End</span>
 				<span class="drp-value" class:drp-placeholder={!endDate}>
-					{formatDate(endDate)}
+					{formatDisplayDate(endDate, locale)}
 				</span>
 			</div>
 		{/if}
@@ -485,32 +305,35 @@
 
 	<!-- Calendars -->
 	<div class="drp-calendars">
-		{#each [{ grid: leftCalendarGrid, year: leftCalendarYear, month: leftCalendarMonth, calendarIndex: 0 }, { grid: rightCalendarGrid, year: rightCalendarYear, month: rightCalendarMonth, calendarIndex: 1 }] as calendar, calendarPosition}
+		{#each calendarPanels as panel (panel.calendarIndex)}
 			<div class="drp-calendar">
 				<!-- Header -->
 				<div class="drp-cal-header">
-					{#if calendarPosition === 0}
-						<button
-							class="drp-nav"
-							onclick={goToPreviousMonth}
-							aria-label="Previous month"
-							type="button"
-						>
-							‹
-						</button>
+					{#if panel.showPreviousControl}
+						<IconButton
+							name="chevron-right"
+							class="drp-nav drp-nav-prev"
+							size="sm"
+							onClick={goToPreviousMonth}
+							ariaLabel="Previous month"
+						/>
 					{:else}
 						<span class="drp-nav-spacer"></span>
 					{/if}
 
 					<span class="drp-month-label">
-						{getLocalizedMonthName(calendar.year, calendar.month)}
-						{calendar.year}
+						{getMonthLabel(locale, panel.year, panel.month)}
+						{panel.year}
 					</span>
 
-					{#if calendarPosition === 1}
-						<button class="drp-nav" onclick={goToNextMonth} aria-label="Next month" type="button">
-							›
-						</button>
+					{#if panel.showNextControl}
+						<IconButton
+							name="chevron-right"
+							class="drp-nav"
+							size="sm"
+							onClick={goToNextMonth}
+							ariaLabel="Next month"
+						/>
 					{:else}
 						<span class="drp-nav-spacer"></span>
 					{/if}
@@ -518,27 +341,26 @@
 
 				<!-- Day-of-week headers -->
 				<div class="drp-grid">
-					{#each weekDays as dayName}
+					{#each weekdayLabels as dayName, dayIndex (dayIndex)}
 						<div class="drp-dow">{dayName}</div>
 					{/each}
 
 					<!-- Date cells -->
-					{#each calendar.grid as dateObject, cellIndex}
+					{#each panel.grid as date, cellIndex (cellIndex)}
 						<button
-							class={getCellClassName(dateObject, calendar.month, calendar.calendarIndex)}
-							disabled={!dateObject || isDateDisabled(dateObject)}
-							onclick={() => selectDate(dateObject)}
-							onmouseenter={() => handleCellMouseEnter(dateObject, calendar.calendarIndex)}
+							class={getCellClassNames(date, panel.month, panel.calendarIndex)}
+							disabled={!date || isDisabled(date)}
+							onclick={() => selectDate(date)}
+							onmouseenter={() => handleCellMouseEnter(date, panel.calendarIndex)}
 							onmouseleave={handleCellMouseLeave}
-							onkeydown={(keyboardEvent) =>
-								handleCellKeyDown(keyboardEvent, dateObject, cellIndex, calendar.calendarIndex)}
-							aria-label={dateObject ? dateObject.toDateString() : ''}
-							data-date={dateObject ? dateObject.toISOString() : ''}
+							onkeydown={(keyboardEvent) => handleCellKeyDown(keyboardEvent, date, panel.calendarIndex)}
+							aria-label={date ? date.toDateString() : ''}
+							data-date={date ? date.toISOString() : ''}
 							type="button"
 						>
-							{#if dateObject}
-								<span class="drp-day-num">{dateObject.getDate()}</span>
-								{#if isDateInRange(dateObject, calendar.calendarIndex)}
+							{#if date}
+								<span class="drp-day-num">{date.getDate()}</span>
+								{#if isInRange(date, panel.calendarIndex)}
 									<span class="drp-range-bg"></span>
 								{/if}
 							{/if}
@@ -553,29 +375,14 @@
 <style>
 	/* ── Root ──────────────────────────────────────────────────────────────── */
 	.drp-root {
-		--drp-bg: #ffffff;
-		--drp-border: #e2e8f0;
-		--drp-radius: 12px;
-		--drp-accent: #4f46e5;
-		--drp-accent-fg: #ffffff;
-		--drp-range-bg: #ede9fe;
-		--drp-text: #1e293b;
-		--drp-muted: #94a3b8;
-		--drp-hover: #f1f5f9;
-		--drp-disabled: #cbd5e1;
-		--drp-today-ring: #4f46e5;
-		--drp-font: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-		--drp-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-
 		display: inline-flex;
 		flex-direction: column;
-		gap: 0;
-		background: var(--drp-bg);
-		border: 1px solid var(--drp-border);
-		border-radius: var(--drp-radius);
-		box-shadow: var(--drp-shadow);
-		font-family: var(--drp-font);
-		color: var(--drp-text);
+		background: var(--bg-overlay);
+		border: var(--border-card);
+		border-radius: var(--border-radius-card);
+		box-shadow: var(--shadow-dropdown);
+		font-family: var(--font-body);
+		color: var(--text-primary);
 		overflow: hidden;
 		user-select: none;
 	}
@@ -584,10 +391,10 @@
 	.drp-summary {
 		display: flex;
 		align-items: center;
-		gap: 12px;
-		padding: 14px 24px;
-		border-bottom: 1px solid var(--drp-border);
-		background: #fafafa;
+		gap: var(--stack-xs);
+		padding: var(--inset-sm) var(--inset-lg);
+		border-bottom: var(--divider);
+		background: var(--bg-raised);
 	}
 
 	.drp-summary-item {
@@ -598,27 +405,28 @@
 	}
 
 	.drp-label {
-		font-size: 10px;
-		font-weight: 600;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--drp-muted);
+		font-family: var(--text-label-font);
+		font-size: var(--text-label-size);
+		font-weight: var(--text-label-weight);
+		letter-spacing: var(--text-label-spacing);
+		text-transform: var(--text-label-transform);
+		color: var(--text-secondary);
 	}
 
 	.drp-value {
-		font-size: 14px;
-		font-weight: 500;
-		color: var(--drp-text);
+		font-family: var(--text-body-strong-font);
+		font-size: var(--text-body-strong-size);
+		font-weight: var(--text-body-strong-weight);
+		color: var(--text-primary);
 	}
 
 	.drp-value.drp-placeholder {
-		color: var(--drp-muted);
+		color: var(--text-placeholder);
 		font-style: italic;
 	}
 
 	.drp-arrow {
-		color: var(--drp-muted);
-		font-size: 16px;
+		color: var(--text-secondary);
 		flex: 1;
 		text-align: center;
 	}
@@ -626,16 +434,15 @@
 	/* ── Calendars wrapper ────────────────────────────────────────────────── */
 	.drp-calendars {
 		display: flex;
-		gap: 0;
 	}
 
 	.drp-calendar {
 		flex: 1;
-		padding: 16px 20px 20px;
+		padding: var(--inset-md) var(--inset-lg) var(--inset-lg);
 	}
 
 	.drp-calendar + .drp-calendar {
-		border-left: 1px solid var(--drp-border);
+		border-left: var(--divider);
 	}
 
 	/* ── Calendar header ──────────────────────────────────────────────────── */
@@ -643,41 +450,22 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		margin-bottom: 12px;
+		margin-bottom: var(--stack-xs);
 	}
 
 	.drp-month-label {
-		font-size: 14px;
-		font-weight: 600;
-		letter-spacing: 0.02em;
+		font-family: var(--text-body-strong-font);
+		font-size: var(--text-body-strong-size);
+		font-weight: var(--text-body-strong-weight);
 	}
 
-	.drp-nav {
-		background: none;
-		border: none;
-		cursor: pointer;
-		font-size: 18px;
-		color: var(--drp-muted);
-		line-height: 1;
-		padding: 2px 6px;
-		border-radius: 6px;
-		transition:
-			background 0.15s,
-			color 0.15s;
-	}
-
-	.drp-nav:hover {
-		background: var(--drp-hover);
-		color: var(--drp-text);
-	}
-
-	.drp-nav:focus-visible {
-		outline: 2px solid var(--drp-accent);
-		outline-offset: 2px;
+	/* El set de iconos no incluye "chevron-left": reutilizamos chevron-right rotado */
+	:global(.drp-nav-prev svg) {
+		transform: rotate(180deg);
 	}
 
 	.drp-nav-spacer {
-		width: 28px;
+		width: 2.25em;
 		display: inline-block;
 	}
 
@@ -690,11 +478,11 @@
 
 	.drp-dow {
 		text-align: center;
-		font-size: 11px;
-		font-weight: 600;
-		color: var(--drp-muted);
-		padding: 4px 0 6px;
-		letter-spacing: 0.06em;
+		font-family: var(--text-caption-small-font);
+		font-size: var(--text-caption-small-size);
+		font-weight: var(--text-label-weight);
+		color: var(--text-secondary);
+		padding: var(--inset-sm) 0 4px;
 	}
 
 	/* ── Cells ────────────────────────────────────────────────────────────── */
@@ -706,10 +494,11 @@
 		justify-content: center;
 		border: none;
 		background: transparent;
-		border-radius: 8px;
-		font-size: 13px;
+		border-radius: var(--border-radius-button);
+		font-family: var(--text-body-small-font);
+		font-size: var(--text-body-small-size);
 		cursor: pointer;
-		color: var(--drp-text);
+		color: var(--text-primary);
 		transition:
 			background 0.12s,
 			color 0.12s;
@@ -718,12 +507,10 @@
 	}
 
 	.drp-cell:hover:not(:disabled):not(.drp-start):not(.drp-end) {
-		background: var(--drp-hover);
+		background: var(--bg-overlay-hover);
 	}
 
 	.drp-cell:focus-visible {
-		outline: 2px solid var(--drp-accent);
-		outline-offset: 2px;
 		z-index: 1;
 	}
 
@@ -738,49 +525,49 @@
 	}
 
 	.drp-outside {
-		color: var(--drp-muted);
+		color: var(--text-on-surface-subtle);
 	}
 
 	.drp-disabled {
-		color: var(--drp-disabled);
+		color: var(--text-disabled);
 		cursor: not-allowed;
 		opacity: 0.5;
 	}
 
-	/* Today ring */
+	/* Anillo del día de hoy */
 	.drp-today .drp-day-num::after {
 		content: '';
 		position: absolute;
 		inset: -3px;
 		border-radius: 50%;
-		border: 2px solid var(--drp-today-ring);
+		border: var(--border-width-regular, 2px) solid var(--border-brand);
 		opacity: 0.35;
 	}
 
-	/* Range fill */
+	/* Relleno de rango */
 	.drp-in-range {
 		border-radius: 0;
-		background: var(--drp-range-bg);
+		background: var(--bg-overlay-brand);
 	}
 
 	.drp-range-bg {
 		position: absolute;
 		inset: 0;
-		background: var(--drp-range-bg);
+		background: var(--bg-overlay-brand);
 		z-index: 0;
 		border-radius: 0;
 	}
 
-	/* Start / End caps */
+	/* Extremos de inicio / fin */
 	.drp-start,
 	.drp-end {
-		background: var(--drp-accent) !important;
-		color: var(--drp-accent-fg) !important;
-		border-radius: 8px;
+		background: var(--bg-brand-primary) !important;
+		color: var(--text-on-brand-primary) !important;
+		border-radius: var(--border-radius-button);
 		z-index: 2;
 	}
 
-	/* ── Responsive design ────────────────────────────────────────────────── */
+	/* ── Responsive ───────────────────────────────────────────────────────── */
 	@media (max-width: 640px) {
 		.drp-root {
 			width: 100%;
@@ -792,11 +579,11 @@
 
 		.drp-calendar + .drp-calendar {
 			border-left: none;
-			border-top: 1px solid var(--drp-border);
+			border-top: var(--divider);
 		}
 
 		.drp-summary {
-			padding: 10px 16px;
+			padding: var(--inset-sm) var(--inset-md);
 		}
 
 		.drp-summary-item {
@@ -804,7 +591,7 @@
 		}
 
 		.drp-calendar {
-			padding: 12px;
+			padding: var(--inset-md);
 		}
 	}
 </style>
