@@ -9,11 +9,13 @@
 	background-color: var(--bg-modal);
 	border-radius: var(--border-radius-lg);
 	box-shadow: var(--shadow-modal);
-	width: 600px;
+	width: 500px;
 	max-width: calc(100% - var(--space-6));
 	max-height: 90vh;
 	display: flex;
 	flex-direction: column;
+	flex: 1;
+	min-height: 0;
 	margin: var(--space-4);
 }
 
@@ -37,11 +39,24 @@
 	color: var(--text-primary);
 }
 
+/* ==========================================================================
+   MODAL FLEX CHAIN
+   Clase puente para cualquier elemento entre .modal y .modal-body
+   que necesite transmitir la altura flex.
+   ========================================================================== */
+
+.modal-flex {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
+}
+
 /* Body del modal — área scrolleable de contenido genérico */
 .modal-body {
 	flex: 1;
 	min-height: 0;
-	overflow-y: auto;
+	overflow-y: scroll;
 	padding: var(--space-6);
 	scrollbar-width: thin;
 	scrollbar-color: var(--border-regular) var(--bg-ground);
@@ -73,10 +88,8 @@
 	justify-content: flex-end;
 	padding: var(--space-4) var(--space-6);
 	border-top: var(--border-width-thin) solid var(--border-regular);
-	flex-shrink: 0;
 	background-color: var(--bg-modal-footer);
-	position: sticky;
-	bottom: 0;
+	flex-shrink: 0; /* antes: min-height:0 + position:sticky */
 	z-index: var(--z-modal);
 	border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
 }

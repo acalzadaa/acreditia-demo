@@ -79,6 +79,8 @@
 
 	dialog[open] {
 		animation: fade-in 0.2s ease;
+		display: flex;
+		flex-direction: column;
 	}
 
 	@keyframes fade-in {

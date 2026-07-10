@@ -1,5 +1,4 @@
 <script lang="ts">
-	import CrearFilosofiaInstitucional from '$lib/components/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';
 	import { type FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
 	import EditarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/EditarFilosofiaInstitucionalForm.svelte';
 	import { getFilosofia } from '$lib/stores/data.svelte';
@@ -7,6 +6,7 @@
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import CrearFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';
 
 	let filosofiaInstitucionalItems = getFilosofia().filter((item) => item.isCurrent);
 
@@ -24,7 +24,7 @@
 	onClickFilter={modal.handlers('filter').onClick}
 />
 
-<CrearFilosofiaInstitucional open={modal.isOpen('create')} onClose={modal.close} />
+<CrearFilosofiaInstitucionalForm open={modal.isOpen('create')} onClose={modal.close} />
 
 {#if modal.selectedItem}
 	<EditarFilosofiaInstitucionalForm

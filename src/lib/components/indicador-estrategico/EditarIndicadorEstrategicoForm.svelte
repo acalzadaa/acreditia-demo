@@ -84,7 +84,7 @@
 	}
 </script>
 
-<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
+<Modal {open} onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar indicador estrategico</h2>
@@ -97,11 +97,11 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/edit" use:enhance>
+		<form class="modal-flex" method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
-			<input type="hidden" name="code" value={$form.code} />
 
 			<div class="modal-body">
+				<input type="hidden" name="code" value={$form.code} />
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
 						<Icon name="warning"></Icon>
