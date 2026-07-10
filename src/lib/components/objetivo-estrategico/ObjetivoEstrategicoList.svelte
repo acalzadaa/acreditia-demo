@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PlaneacionEstrategicaItem } from '$lib/schemas/planeacionEstrategica.schema';
+	import type { ObjetivoEstrategicoItem } from '$lib/schemas/objetivoEstrategico.schema';
 	import ListActions from '../actions/ListActions.svelte';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
@@ -13,10 +13,10 @@
 	import CardHeader from '../ui/card/CardHeader.svelte';
 
 	interface Props {
-		items: PlaneacionEstrategicaItem[];
-		onClickEditar: (item: PlaneacionEstrategicaItem) => void;
-		onClickBorrar: (item: PlaneacionEstrategicaItem) => void;
-		onClickRestaurar: (item: PlaneacionEstrategicaItem) => void;
+		items: ObjetivoEstrategicoItem[];
+		onClickEditar: (item: ObjetivoEstrategicoItem) => void;
+		onClickBorrar: (item: ObjetivoEstrategicoItem) => void;
+		onClickRestaurar: (item: ObjetivoEstrategicoItem) => void;
 
 		onClickCrear: () => void;
 		onClickExport: () => void;
@@ -37,7 +37,7 @@
 		onClickFilter,
 
 		showHeader = true,
-		title = 'Listado de planeaciones estrategicas',
+		title = 'Listado de objetivos estrategicos',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -49,7 +49,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva planeacion"
+			crearTitle="Nuevo objetivo"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -61,7 +61,7 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Filosofia</th>
+							<th class="col-code">Planeacion</th>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Descripción</th>
@@ -73,7 +73,7 @@
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
 								<td class="col-code">
-									{item.filosofia?.code}
+									{item?.planeacion?.code}
 								</td>
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
@@ -108,7 +108,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva planeacion"
+			crearTitle="Nuevo objetivo"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -116,7 +116,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1685px">
+			<CardColumn minWidth="360px" maxWidth="1499px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader code={item.code} name={item.name}>
@@ -126,7 +126,7 @@
 						</CardHeader>
 
 						<CardContent>
-							<CardContentItem label="Filosofia" value={item.filosofia?.code} />
+							<CardContentItem label="Planeacion" value={item.planeacion?.code} />
 							<CardContentItem label="Descripción" value={item.description} />
 						</CardContent>
 
@@ -162,7 +162,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1686px) {
+	@media (max-width: 1499px) {
 		.list-view--table {
 			display: none;
 		}

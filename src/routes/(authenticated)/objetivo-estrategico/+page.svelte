@@ -1,215 +1,49 @@
 <script lang="ts">
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NavigationBar from '$lib/components/navigation/NavigationBar.svelte';
-	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
-	import ObjetivoEstrategico from '$lib/components/objetivo-estrategico/ObjetivoEstrategico.svelte';
 	import type { ObjetivoEstrategicoItem } from '$lib/schemas/objetivoEstrategico.schema';
-	import CrearObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/CrearObjetivoEstrategicoForm.svelte';
 	import EditarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/EditarObjetivoEstrategicoForm.svelte';
-	import { goto } from '$app/navigation';
-	import { auth } from '$lib/stores/auth.svelte';
 	import { getObjetivoEstrategico, getPlaneacion } from '$lib/stores/data.svelte';
-	import { page } from '$app/state';
-	import { resolve } from '$app/paths';
-	import BorrarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/BorrarObjetivoEstrategicoForm.svelte';
-	import RestaurarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/RestaurarObjetivoEstrategicoForm.svelte';
+	import ObjetivoEstrategicoList from '$lib/components/objetivo-estrategico/ObjetivoEstrategicoList.svelte';
+	import CrearObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/CrearObjetivoEstrategicoForm.svelte';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import { createModalManager } from '$lib/utils/modalManager.svelte';
 
-	let username = auth.user?.email?.split('@')[0] || 'Usuario';
-	let objetivoEstrategicoItems = getObjetivoEstrategico().filter((item) => item.isCurrent);
-	let navigationItems = $derived(page.data.navigationItems);
-
-	let planeaciones = getPlaneacion().filter((item) => item.isCurrent && !item.isDeleted);
-
-	let itemSeleccionado: ObjetivoEstrategicoItem | null = $state(null);
-
-	// ===== HEADER =====
-
-	/* LOGOUT */
-	async function onClickLogout() {
-		auth.logout();
-		goto(resolve('/login'), { replaceState: true });
-	}
-
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let showNotificationBar = $state(false);
-	let showNavigationBar = $state(true);
-
-	function onClickNavigationBar() {
-		showNavigationBar = !showNavigationBar;
-	}
-
-	function onKeydownNavigationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNavigationBar();
-		}
-	}
-
-	function onClickNotificationBar() {
-		showNotificationBar = !showNotificationBar;
-	}
-
-	function onKeydownNotificationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNotificationBar();
-		}
-	}
-
-	// ===== ESTADOS DE MODALES =====
-	let showCrearModal = $state(false);
-	let showEditarModal = $state(false);
-	let showBorrarModal = $state(false);
-	let showRestaurarModal = $state(false);
-
-	// ===== HANDLERS =====
-
-	/* CREAR */
-
-	function onClickCrear() {
-		showCrearModal = true;
-	}
-
-	function onKeydownCrear(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickCrear();
-		}
-	}
-
-	/* EDITAR */
-
-	function onClickEditar(item: ObjetivoEstrategicoItem) {
-		itemSeleccionado = item;
-		showEditarModal = true;
-	}
-
-	function onKeydownEditar(e: KeyboardEvent, item: ObjetivoEstrategicoItem) {
-		if (e.key === 'Enter') {
-			onClickEditar(item);
-		}
-	}
-
-	/* BORRAR */
-
-	function onClickBorrar(item: ObjetivoEstrategicoItem) {
-		itemSeleccionado = item;
-		showBorrarModal = true;
-	}
-
-	function onKeydownBorrar(e: KeyboardEvent, item: ObjetivoEstrategicoItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	/* RESTAURAR */
-	function onClickRestaurar(item: ObjetivoEstrategicoItem) {
-		itemSeleccionado = item;
-		showRestaurarModal = true;
-	}
-
-	function onKeydownRestaurar(e: KeyboardEvent, item: ObjetivoEstrategicoItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	function handleCerrar() {
-		showCrearModal = false;
-		showEditarModal = false;
-		showBorrarModal = false;
-		showRestaurarModal = false;
-		itemSeleccionado = null;
-	}
+	let items = getObjetivoEstrategico().filter((item) => item.isCurrent);
+	let refs = getPlaneacion().filter((item) => item.isCurrent && !item.isDeleted);
+	let modal = createModalManager<ObjetivoEstrategicoItem>();
 </script>
 
-<div class="app-grid">
-	<Header
-		{username}
-		{onClickLogout}
-	/>
-	<Subheader
-		{onClickNavigationBar}
-		onKeydownNavigationBar={(e) => onKeydownNavigationBar(e)}
-		{onClickNotificationBar}
-		onKeydownNotificationBar={(e) => onKeydownNotificationBar(e)}
-		{showNavigationBar}
-		{showNotificationBar}
-	/>
-	<NavigationBar {showNavigationBar} {navigationItems} />
-	<NotificationBarContainer {showNotificationBar} />
-	<Toolbar
-		crearTitle="Nuevo objetivo"
-		{onClickCrear}
-		onKeydownCrear={(e) => onKeydownCrear(e)}
-		showExport={true}
-		showFilter={true}
+<ObjetivoEstrategicoList
+	{items}
+	onClickEditar={(item) => modal.handlers('edit').onClickItem(item)}
+	onClickBorrar={(item) => modal.handlers('delete').onClickItem(item)}
+	onClickRestaurar={(item) => modal.handlers('restore').onClickItem(item)}
+	onClickCrear={modal.handlers('create').onClick}
+	onClickExport={modal.handlers('export').onClick}
+	onClickFilter={modal.handlers('filter').onClick}
+/>
+
+<CrearObjetivoEstrategicoForm open={modal.isOpen('create')} {refs} onClose={modal.close} />
+
+{#if modal.selectedItem}
+	<EditarObjetivoEstrategicoForm
+		open={modal.isOpen('edit')}
+		{refs}
+		selectedItem={modal.selectedItem}
+		onClose={modal.close}
 	/>
 
-	<ObjetivoEstrategico
-		{objetivoEstrategicoItems}
-		onClickEditar={(item: ObjetivoEstrategicoItem) => onClickEditar(item)}
-		onKeydownEditar={(e: KeyboardEvent, item: ObjetivoEstrategicoItem) =>
-			onKeydownEditar(e, item)}
-		onClickBorrar={(item: ObjetivoEstrategicoItem) => onClickBorrar(item)}
-		onKeydownBorrar={(e: KeyboardEvent, item: ObjetivoEstrategicoItem) =>
-			onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: ObjetivoEstrategicoItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: ObjetivoEstrategicoItem) =>
-			onKeydownRestaurar(e, item)}
-	></ObjetivoEstrategico>
-
-	<!-- MODAL CREAR -->
-	<CrearObjetivoEstrategicoForm
-		bind:open={showCrearModal}
-		refs={planeaciones}
-		onClose={handleCerrar}
+	<ConfirmDeleteModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('delete')}
+		onClose={modal.close}
 	/>
 
-	<!-- MODAL EDITAR -->
-	{#if showEditarModal && itemSeleccionado}
-		<EditarObjetivoEstrategicoForm
-			bind:open={showEditarModal}
-			selectedItem={itemSeleccionado}
-			refs={planeaciones}
-			onClose={handleCerrar}
-		/>
-	{/if}
-
-	<!-- MODAL BORRAR -->
-	{#if showBorrarModal && itemSeleccionado}
-		<BorrarObjetivoEstrategicoForm
-			bind:open={showBorrarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
-		/>
-	{/if}
-
-	<!-- MODAL RESTAURAR -->
-	{#if showRestaurarModal && itemSeleccionado}
-		<RestaurarObjetivoEstrategicoForm
-			bind:open={showRestaurarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
-		/>
-	{/if}
-
-	<Footer />
-</div>
-
-<style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
-		height: 100vh;
-		position: relative;
-	}
-</style>
+	<ConfirmRestoreModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('restore')}
+		onClose={modal.close}
+	/>
+{/if}

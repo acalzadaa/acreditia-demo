@@ -4,11 +4,11 @@
 
 	interface Props {
 		label?: string;
-		value: string;
+		value?: string;
 		class?: string;
 	}
 
-	const { label, value, class: className = '' }: Props = $props();
+	const { label = '', value = '', class: className = '' }: Props = $props();
 
 	let isOverflowing = $state(false);
 	let textEl: HTMLParagraphElement;
