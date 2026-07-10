@@ -1,20 +1,19 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
 	import {
-	objetivoEstrategicoItemSchema,
-
+		objetivoEstrategicoItemSchema,
 		type ObjetivoEstrategicoItem
-
 	} from '$lib/schemas/objetivoEstrategico.schema';
-	import InputSelect, { type OptionData } from '../ui/input/InputSelect.svelte';
-	import InputText from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import Icon from '../ui/Icon.svelte';
 	import type { PlaneacionEstrategicaRef } from '$lib/schemas/planeacionEstrategica.schema';
+	import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
@@ -139,12 +138,12 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
 				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar objetivo</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>
