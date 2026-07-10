@@ -2,12 +2,12 @@
 	import type { PlaneacionEstrategicaItem } from '$lib/schemas/planeacionEstrategica.schema';
 
 	import { getFilosofia, getPlaneacion } from '$lib/stores/data.svelte';
-	import CrearPlaneacionEstrategicaForm from '$lib/components/planeacion-estrategica/CrearPlaneacionEstrategicaForm.svelte';
-	import EditarPlaneacionEstrategicaForm from '$lib/components/planeacion-estrategica/EditarPlaneacionEstrategicaForm.svelte';
+	import CrearPlaneacionEstrategicaForm from '$lib/components/features/planeacion-estrategica/CrearPlaneacionEstrategicaForm.svelte';
+	import EditarPlaneacionEstrategicaForm from '$lib/components/features/planeacion-estrategica/EditarPlaneacionEstrategicaForm.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import PlaneacionEstrategicaList from '$lib/components/planeacion-estrategica/PlaneacionEstrategicaList.svelte';
+	import PlaneacionEstrategicaList from '$lib/components/features/planeacion-estrategica/PlaneacionEstrategicaList.svelte';
 
 	let planeacionEstrategicaItems = getPlaneacion().filter((item) => item.isCurrent);
 	let filosofias = getFilosofia().filter((item) => item.isCurrent && !item.isDeleted);

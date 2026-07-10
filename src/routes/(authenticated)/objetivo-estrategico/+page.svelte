@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { ObjetivoEstrategicoItem } from '$lib/schemas/objetivoEstrategico.schema';
-	import EditarObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/EditarObjetivoEstrategicoForm.svelte';
+	import EditarObjetivoEstrategicoForm from '$lib/components/features/objetivo-estrategico/EditarObjetivoEstrategicoForm.svelte';
 	import { getObjetivoEstrategico, getPlaneacion } from '$lib/stores/data.svelte';
-	import ObjetivoEstrategicoList from '$lib/components/objetivo-estrategico/ObjetivoEstrategicoList.svelte';
-	import CrearObjetivoEstrategicoForm from '$lib/components/objetivo-estrategico/CrearObjetivoEstrategicoForm.svelte';
+	import ObjetivoEstrategicoList from '$lib/components/features/objetivo-estrategico/ObjetivoEstrategicoList.svelte';
+	import CrearObjetivoEstrategicoForm from '$lib/components/features/objetivo-estrategico/CrearObjetivoEstrategicoForm.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
