@@ -55,8 +55,8 @@ import {
 	type ObjetivoEstrategicoItem
 } from '$lib/schemas/objetivoEstrategico.schema';
 import {
-	planeacionEstrategicaWithFilosofiaItemSchema,
-	type PlaneacionEstrategicaWithFilosofiaItem
+	planeacionEstrategicaItemSchema,
+	type PlaneacionEstrategicaItem
 } from '$lib/schemas/planeacionEstrategica.schema';
 import {
 	indicadorEstrategicoItemSchema,
@@ -151,7 +151,7 @@ import { notificationItemSchema, type NotificationItem } from '$lib/schemas/noti
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
-let planeaciones = $state<PlaneacionEstrategicaWithFilosofiaItem[]>([]);
+let planeaciones = $state<PlaneacionEstrategicaItem[]>([]);
 let objetivoEstrategico = $state<ObjetivoEstrategicoItem[]>([]);
 let indicadorEstrategico = $state<IndicadorEstrategicoItem[]>([]);
 
@@ -201,10 +201,8 @@ let notification = $state<NotificationItem[]>([]);
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
 
-const planeacionesRawData = planeacionJsonData['planeacion-estrategica'];
-planeaciones = planeacionesRawData.map((item) =>
-	planeacionEstrategicaWithFilosofiaItemSchema.parse(item)
-);
+const planeacionesRawData = planeacionJsonData.planeacionEstrategicaItem;
+planeaciones = planeacionesRawData.map((item) => planeacionEstrategicaItemSchema.parse(item));
 
 const objetivoEstrategicoRawData = objetivoEstrategicoJsonData.objetivoEstrategicosItem;
 objetivoEstrategico = objetivoEstrategicoRawData.map((item) =>
@@ -320,7 +318,9 @@ const indicadorDetailRawData = indicadorDetailJsonData.indicadorDetailItem;
 indicadorNavList = indicadorDetailRawData.map((item) => indicadorDetailItemSchema.parse(item));
 
 const evaluacionNavigationRawData = evaluacionNavigationJsonData.evaluacionNavItem;
-evaluacionNavigation = evaluacionNavigationRawData.map((item) => evaluacionNavItemSchema.parse(item));
+evaluacionNavigation = evaluacionNavigationRawData.map((item) =>
+	evaluacionNavItemSchema.parse(item)
+);
 
 const etapaDetailRawData = etapaDetailJsonData.etapaDetailItem;
 etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));

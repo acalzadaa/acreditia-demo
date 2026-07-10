@@ -10,7 +10,7 @@
 .subheader {
 	height: var(--subheader-height);
 }
-
+/* .app-grid y .main-children siempre van en +layout.svelte */
 .app-grid {
 	display: grid;
 	grid-template-areas:
@@ -23,6 +23,7 @@
 	height: 100vh;
 	position: relative;
 }
+
 .main-children {
 	grid-area: main;
 	background-color: var(--bg-ground);
@@ -32,6 +33,7 @@
 	flex-direction: column;
 }
 
+/* detail-panel y detail-content van en los hijos de layout */
 .detail-panel {
 	display: flex;
 	flex-direction: column;
@@ -50,4 +52,14 @@
 	flex: 1;
 	min-height: 0;
 	overflow-y: scroll;
+}
+
+/* Por debajo de 640px, NavigationBarContainer cambia a la faceta Drawer
+	   (position: absolute, fuera del flujo del grid). 
+	   Colapsamos la columna del navbar y del footer explícitamente */
+@media (max-width: 640px) {
+	.app-grid {
+		grid-template-columns: 0 1fr;
+		grid-template-rows: auto auto 1fr 0;
+	}
 }

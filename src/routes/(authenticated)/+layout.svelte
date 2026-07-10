@@ -9,7 +9,6 @@
 	// y redirige si no hay usuario
 	$effect(() => {
 		if (auth.initialized && !auth.user) {
-			console.log(auth.initialized, auth.user, 'you shall not pass!');
 			goto(resolve('/'));
 		}
 	});
