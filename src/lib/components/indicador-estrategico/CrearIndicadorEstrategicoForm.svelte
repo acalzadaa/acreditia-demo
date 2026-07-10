@@ -125,7 +125,7 @@
 	}
 </script>
 
-<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
+<Modal {open} onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Nuevo Indicador Estratégico</h2>
@@ -139,6 +139,7 @@
 		</header>
 
 		<form
+			class="modal-flex"
 			onsubmit={(e) => {
 				e.preventDefault();
 				handleSubmit();

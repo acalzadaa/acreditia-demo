@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
+	import type { IndicadorEstrategicoItem } from '$lib/schemas/indicadorEstrategico.schema';
 	import ListActions from '../actions/ListActions.svelte';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
@@ -13,10 +13,10 @@
 	import CardHeader from '../ui/card/CardHeader.svelte';
 
 	interface Props {
-		items: FilosofiaInstitucionalItem[];
-		onClickEditar: (item: FilosofiaInstitucionalItem) => void;
-		onClickBorrar: (item: FilosofiaInstitucionalItem) => void;
-		onClickRestaurar: (item: FilosofiaInstitucionalItem) => void;
+		items: IndicadorEstrategicoItem[];
+		onClickEditar: (item: IndicadorEstrategicoItem) => void;
+		onClickBorrar: (item: IndicadorEstrategicoItem) => void;
+		onClickRestaurar: (item: IndicadorEstrategicoItem) => void;
 
 		onClickCrear: () => void;
 		onClickExport: () => void;
@@ -37,7 +37,7 @@
 		onClickFilter,
 
 		showHeader = true,
-		title = 'Listado de filosofias institucionales',
+		title = 'Listado de indicadores estrategicos',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -49,7 +49,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva filosofia"
+			crearTitle="Nuevo indicador"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -61,20 +61,31 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
+							<th class="col-code">Objetivo</th>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Descripción</th>
+							<th class="col-metric">Meta</th>
+							<th class="col-label">Origen de Datos</th>
+							<th class="col-text">Formula de Datos</th>
+							<th class="col-code">Frecuencia</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
 						</tr>
 					</thead>
-
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
+								<td class="col-code">
+									{item?.objetivo?.code}
+								</td>
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
 								<td class="col-text">{item.description}</td>
+								<td class="col-metric">{item.target} {item.targetUnit}</td>
+								<td class="col-label">{item.dataOrigin}</td>
+								<td class="col-text">{item.dataFormula}</td>
+								<td class="col-code">{item.frequencyValue} {item.frequencyUnit}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
@@ -105,7 +116,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva filosofia"
+			crearTitle="Nuevo indicador"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -113,7 +124,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1499px">
+			<CardColumn minWidth="360px" maxWidth="2699px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader code={item.code} name={item.name}>
@@ -123,7 +134,15 @@
 						</CardHeader>
 
 						<CardContent>
+							<CardContentItem label="Objetivo" value={item.objetivo.code} />
 							<CardContentItem label="Descripción" value={item.description} />
+							<CardContentItem label="Meta" value={item.target + ' ' + item.targetUnit} />
+							<CardContentItem label="Origen de Datos" value={item.dataOrigin} />
+							<CardContentItem label="Formula de Datos" value={item.dataFormula} />
+							<CardContentItem
+								label="Frecuencia"
+								value={item.frequencyValue + ' ' + item.frequencyUnit}
+							/>
 						</CardContent>
 
 						<CardFooter>
@@ -158,7 +177,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1500px) {
+	@media (max-width: 2700px) {
 		.list-view--table {
 			display: none;
 		}

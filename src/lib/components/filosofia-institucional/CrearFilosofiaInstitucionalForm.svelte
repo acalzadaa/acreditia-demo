@@ -131,10 +131,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
 				<Button type="submit" variant="primary">Crear filosofia</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>
