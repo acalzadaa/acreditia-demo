@@ -6,11 +6,11 @@
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { PlaneacionEstrategicaRefSchema } from '$lib/schemas/planeacionEstrategica.schema';
+	import type { PlaneacionEstrategicaRef } from '$lib/schemas/planeacionEstrategica.schema';
 
 	interface Props {
 		open: boolean;
-		refs: PlaneacionEstrategicaRefSchema[];
+		refs: PlaneacionEstrategicaRef[];
 		onClose: () => void;
 	}
 
