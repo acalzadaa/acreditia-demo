@@ -14,7 +14,7 @@
 		name?: IconName;
 		iconPosition?: 'left' | 'right';
 		iconRotate?: number;
-		fullWidth?: boolean;
+		mobileVersion?: boolean;
 
 		isActive?: boolean;
 		isDisabled?: boolean;
@@ -41,7 +41,7 @@
 		name,
 		iconPosition = 'left',
 		iconRotate = 0,
-		fullWidth = false,
+		mobileVersion = false,
 
 		isActive = false,
 		isDisabled = false,
@@ -85,7 +85,7 @@
 			[`button--variant-${variant}`]: true,
 			[`button--size-${size}`]: true,
 			[`button--icon-${iconPosition}`]: hasIcon,
-			'button--full-width': fullWidth,
+			'button--full-width': mobileVersion,
 			'button--with-icon': hasIcon,
 			'button--disabled': isDisabled,
 			'button--active': isActive

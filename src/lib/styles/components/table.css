@@ -4,6 +4,19 @@
 	--table-bg-hover: var(--neutral-tinted-100);
 }
 
+/* Si el un table-container tiene un hermano a manera de header, toolbar, etc
+se necesita ocultar el scrollbar 
+para que el table-container despliegue su propio scrollbar
+de lo contrario se van a tener 2 scrollbars uno para todo el grupo y otro para la tabla
+*/
+.main-panel {
+	min-height: 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
 /* =============================================
    .table-container TIENE DOS VARIANTES.
    Elige una explícitamente; NO mezcles overrides sueltos
@@ -34,6 +47,7 @@
 .table-container {
 	flex: 1;
 	overflow-x: auto;
+	overflow-y: auto;
 	padding: 0 var(--space-2);
 	position: relative;
 	height: 100%;

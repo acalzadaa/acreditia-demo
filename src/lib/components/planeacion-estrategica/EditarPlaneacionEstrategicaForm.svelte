@@ -4,8 +4,8 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import {
-		planeacionEstrategicaWithFilosofiaItemSchema,
-		type PlaneacionEstrategicaWithFilosofiaItem
+		planeacionEstrategicaItemSchema,
+		type PlaneacionEstrategicaItem
 	} from '$lib/schemas/planeacionEstrategica.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
@@ -16,7 +16,7 @@
 
 	interface Props {
 		open: boolean;
-		selectedItem: PlaneacionEstrategicaWithFilosofiaItem;
+		selectedItem: PlaneacionEstrategicaItem;
 		refs: FilosofiaInstitucionalRef[];
 		onClose: () => void;
 	}
@@ -38,7 +38,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(planeacionEstrategicaWithFilosofiaItemSchema),
+			validators: zod4(planeacionEstrategicaItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -136,47 +136,3 @@
 		</form>
 	</div>
 </Modal>
-
-<style>
-	.form-fields {
-		padding: var(--space-6);
-		flex: 1;
-		overflow-y: auto;
-		min-height: 0;
-		scrollbar-width: thin;
-		scrollbar-color: var(--border-regular) var(--bg-ground);
-	}
-
-	.form-fields::-webkit-scrollbar {
-		width: 8px;
-	}
-
-	.form-fields::-webkit-scrollbar-track {
-		background: var(--bg-ground);
-		border-radius: 4px;
-	}
-
-	.form-fields::-webkit-scrollbar-thumb {
-		background-color: var(--border-regular);
-		border-radius: 4px;
-		border: 2px solid var(--bg-ground);
-	}
-
-	.form-fields::-webkit-scrollbar-thumb:hover {
-		background-color: var(--border-brand);
-	}
-
-	/* Responsive */
-	@media (max-width: 640px) {
-		.modal {
-			margin: 0.5rem;
-			max-height: calc(100vh - 1rem);
-		}
-
-		.modal-header,
-		.form-fields,
-		.modal-footer {
-			padding: var(--space-4);
-		}
-	}
-</style>

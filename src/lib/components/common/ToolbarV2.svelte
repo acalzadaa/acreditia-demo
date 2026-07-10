@@ -4,6 +4,7 @@
 
 	interface Props {
 		crearTitle?: string;
+		mobileVersion?: boolean;
 		onClickCrear: (e: MouseEvent) => void;
 		onKeydownCrear?: (e: KeyboardEvent) => void;
 
@@ -18,6 +19,7 @@
 
 	const {
 		onClickCrear,
+		mobileVersion = false,
 		crearTitle = 'Crear',
 		onKeydownCrear,
 		onClickExport,
@@ -32,6 +34,7 @@
 <header class="toolbar">
 	<section class="toolbar-actions text-body">
 		<Button
+			{mobileVersion}
 			variant="outline"
 			iconPosition="left"
 			name="add"
@@ -90,7 +93,7 @@
 	}
 
 	/* Responsive */
-	@media (max-width: 768px) {
+	@media (max-width: 640px) {
 		.toolbar {
 			flex-direction: column;
 			align-items: stretch;
