@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { type FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
-	import EditarFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/EditarFilosofiaInstitucionalForm.svelte';
+	import EditarFilosofiaInstitucionalForm from '$lib/components/features/filosofia-institucional/EditarFilosofiaInstitucionalForm.svelte';
 	import { getFilosofia } from '$lib/stores/data.svelte';
-	import FilosofiaInstitucionalList from '$lib/components/filosofia-institucional/FilosofiaInstitucionalList.svelte';
+	import FilosofiaInstitucionalList from '$lib/components/features/filosofia-institucional/FilosofiaInstitucionalList.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
-	import CrearFilosofiaInstitucionalForm from '$lib/components/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';
+	import CrearFilosofiaInstitucionalForm from '$lib/components/features/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';
 
 	let filosofiaInstitucionalItems = getFilosofia().filter((item) => item.isCurrent);
 

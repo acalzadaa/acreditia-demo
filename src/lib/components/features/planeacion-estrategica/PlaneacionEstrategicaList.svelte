@@ -1,16 +1,17 @@
 <script lang="ts">
+	import ListActions from '$lib/components/actions/ListActions.svelte';
+	import EmptySection from '$lib/components/common/EmptySection.svelte';
+	import PageHeader from '$lib/components/common/PageHeader.svelte';
+	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Badge from '$lib/components/ui/Badge.svelte';
+	import Card from '$lib/components/ui/card/Card.svelte';
+	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
+	import CardContent from '$lib/components/ui/card/CardContent.svelte';
+	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
+	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
+	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
 	import type { PlaneacionEstrategicaItem } from '$lib/schemas/planeacionEstrategica.schema';
-	import ListActions from '../actions/ListActions.svelte';
-	import EmptySection from '../common/EmptySection.svelte';
-	import PageHeader from '../common/PageHeader.svelte';
-	import ToolbarV2 from '../common/ToolbarV2.svelte';
-	import Badge from '../ui/Badge.svelte';
-	import Card from '../ui/card/Card.svelte';
-	import CardColumn from '../ui/card/CardColumn.svelte';
-	import CardContent from '../ui/card/CardContent.svelte';
-	import CardContentItem from '../ui/card/CardContentItem.svelte';
-	import CardFooter from '../ui/card/CardFooter.svelte';
-	import CardHeader from '../ui/card/CardHeader.svelte';
+	
 
 	interface Props {
 		items: PlaneacionEstrategicaItem[];

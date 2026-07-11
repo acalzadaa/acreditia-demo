@@ -1,35 +1,45 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-
-	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import {
-		filosofiaInstitucionalItemSchema,
-		type FilosofiaInstitucionalItem
-	} from '$lib/schemas/filosofiaInstitucional.schema';
-	import Input from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
+		objetivoEstrategicoItemSchema,
+		type ObjetivoEstrategicoItem
+	} from '$lib/schemas/objetivoEstrategico.schema';
+	import { zod4 } from 'sveltekit-superforms/adapters';
+	import type { PlaneacionEstrategicaRef } from '$lib/schemas/planeacionEstrategica.schema';
+	import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
-		selectedItem: FilosofiaInstitucionalItem;
+		selectedItem: ObjetivoEstrategicoItem;
+		refs: PlaneacionEstrategicaRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, ...props }: Props = $props();
+	let { open = $bindable(false), refs, onClose, ...props }: Props = $props();
+
+	const planeacionesOptions: OptionData[] = $derived(
+		refs?.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		})) ?? []
+	);
 
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
-	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
+	const { form, errors, enhance, submitting, tainted, isTainted, message } = superForm(
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4Client(filosofiaInstitucionalItemSchema),
+			validators: zod4(objetivoEstrategicoItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -53,18 +63,24 @@
 		onClose();
 	}
 
-
+	function onKeydownClose(e: KeyboardEvent) {
+		if (e.key === 'Enter') {
+			handleClose();
+		}
+	}
 </script>
 
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar filosofía institucional</h2>
+			<h2 class="modal-title text-h4">Editar objetivo estrategico</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
-				size="lg"
+				size="md"
+				borderShape="square"
 				onClick={handleClose}
+				onKeydown={(e) => onKeydownClose(e)}
 				isDisabled={false}
 			/>
 		</header>
@@ -72,6 +88,7 @@
 		<form method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
+
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
@@ -79,9 +96,28 @@
 						{$message}
 					</div>
 				{/if}
-
 				<div class="form-fields">
-					<Input
+					<InputSelect
+						label="Planeacion Estrategica"
+						name="planeacionId"
+						optionsData={planeacionesOptions}
+						required={true}
+						bind:value={$form.planeacionId}
+						errors={$errors.planeacionId}
+					></InputSelect>
+
+					<InputText
+						label="Código"
+						name="code"
+						required={true}
+						placeholder="OE-001"
+						status={$errors.code ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.code}
+						errors={$errors.code}
+					/>
+
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -90,18 +126,13 @@
 						disabled={false}
 						bind:value={$form.name}
 						errors={$errors.name}
-						{...$constraints.name}
 					/>
 
 					<TextArea
 						label="Descripcion"
 						name="description"
 						placeholder="Descripcion..."
-						status={$errors.description ? 'error' : 'normal'}
-						disabled={false}
 						bind:value={$form.description}
-						errors={$errors.description}
-						{...$constraints.description}
 						rows={4}
 					/>
 				</div>
@@ -111,7 +142,7 @@
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar filosofia</Button>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar objetivo</Button>
 			</menu>
 		</form>
 	</div>

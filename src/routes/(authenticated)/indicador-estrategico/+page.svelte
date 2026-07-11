@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { IndicadorEstrategicoItem } from '$lib/schemas/indicadorEstrategico.schema';
-	import CrearIndicadorEstrategicoForm from '$lib/components/indicador-estrategico/CrearIndicadorEstrategicoForm.svelte';
-	import EditarIndicadorEstrategicoForm from '$lib/components/indicador-estrategico/EditarIndicadorEstrategicoForm.svelte';
+	import CrearIndicadorEstrategicoForm from '$lib/components/features/indicador-estrategico/CrearIndicadorEstrategicoForm.svelte';
+	import EditarIndicadorEstrategicoForm from '$lib/components/features/indicador-estrategico/EditarIndicadorEstrategicoForm.svelte';
 	import { getIndicadorEstrategico, getObjetivoEstrategico } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import IndicadorEstrategicoList from '$lib/components/indicador-estrategico/IndicadorEstrategicoList.svelte';
+	import IndicadorEstrategicoList from '$lib/components/features/indicador-estrategico/IndicadorEstrategicoList.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 

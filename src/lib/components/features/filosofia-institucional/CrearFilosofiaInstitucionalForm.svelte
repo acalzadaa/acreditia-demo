@@ -1,10 +1,12 @@
 <script lang="ts">
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import Input from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+
+	
 	import { toast } from '$lib/utils/toastManager.svelte';
 
 	interface Props {
@@ -99,7 +101,7 @@
 				{/if}
 
 				<div class="form-fields">
-					<Input
+					<InputText
 						label="Código"
 						name="code"
 						required={true}
@@ -109,7 +111,7 @@
 						bind:value={formData.code}
 					/>
 
-					<Input
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
