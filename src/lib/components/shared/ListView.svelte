@@ -1,7 +1,4 @@
 <!--
-	Ubicación sugerida: components/common/ListView.svelte
-	(mismo directorio que PageHeader.svelte, ToolbarV2.svelte y EmptySection.svelte)
-
 	Componente estructural y genérico. No conoce el shape de cada item más allá
 	de requerir un `id` (para el keying interno si en algún momento lo necesitara).
 	Todo el contenido visual (tabla o cards) lo definen los consumidores vía
@@ -12,7 +9,6 @@
 	import PageHeader from '../common/PageHeader.svelte';
 	import ToolbarV2 from '../common/ToolbarV2.svelte';
 	import EmptySection from '../common/EmptySection.svelte';
-	
 
 	interface Props {
 		items: T[];
@@ -66,8 +62,7 @@
 	}: Props = $props();
 
 	// Medición reactiva del contenedor — reemplaza los @media / @container
-	// fijos que antes vivían hardcodeados en cada *List.svelte.
-	// bind:clientWidth usa ResizeObserver internamente, sin código manual.
+	// bind:clientWidth usa ResizeObserver internamente.
 	let containerWidth = $state(0);
 	const showTable = $derived(containerWidth >= breakpoint);
 </script>
