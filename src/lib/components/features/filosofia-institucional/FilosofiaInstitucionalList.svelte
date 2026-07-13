@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
-	import FilosofiaTable from './FilosofiaTable.svelte';
-	import FilosofiaCard from './FilosofiaCard.svelte';
+	import FilosofiaInstitucionalTable from './FilosofiaInstitucionalTable.svelte';
+	import FilosofiaInstitucionalCard from './FilosofiaInstitucionalCard.svelte';
 	import ListView from '$lib/components/shared/ListView.svelte';
 
 	interface Props {
@@ -20,8 +20,13 @@
 	}
 
 	const {
-		items, onClickEditar, onClickBorrar, onClickRestaurar,
-		onClickCrear, onClickExport, onClickFilter,
+		items,
+		onClickEditar,
+		onClickBorrar,
+		onClickRestaurar,
+		onClickCrear,
+		onClickExport,
+		onClickFilter,
 		showHeader = true,
 		title = 'Listado de filosofias institucionales',
 		subtitle = ''
@@ -40,9 +45,9 @@
 	breakpoint={1500}
 >
 	{#snippet table()}
-		<FilosofiaTable {items} {onClickEditar} {onClickBorrar} {onClickRestaurar} />
+		<FilosofiaInstitucionalTable {items} {onClickEditar} {onClickBorrar} {onClickRestaurar} />
 	{/snippet}
 	{#snippet cards()}
-		<FilosofiaCard {items} {onClickEditar} {onClickBorrar} {onClickRestaurar} />
+		<FilosofiaInstitucionalCard {items} {onClickEditar} {onClickBorrar} {onClickRestaurar} />
 	{/snippet}
 </ListView>
