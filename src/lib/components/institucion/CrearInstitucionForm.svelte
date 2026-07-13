@@ -9,11 +9,11 @@
 
 	interface Props {
 		open: boolean;
-		entidadLegalRef: EntidadLegalRef[];
+		refs: EntidadLegalRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, entidadLegalRef = [] }: Props = $props();
+	let { open = $bindable(false), onClose, refs = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
@@ -25,7 +25,7 @@
 	let errorMessage = $state('');
 
 	let entidadLegalOptions = $derived(
-		entidadLegalRef?.map((ref) => ({
+		refs?.map((ref) => ({
 			id: ref.id,
 			option: `${ref.code} - ${ref.name}`
 		})) ?? []

@@ -9,14 +9,14 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
 	import {
-		institucionWithRelationsItemSchema,
-		type InstitucionWithRelationsItem
+	institucionItemSchema,
+		type InstitucionItem,
 	} from '$lib/schemas/institucion.schema';
 	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: InstitucionWithRelationsItem;
+		selectedItem: InstitucionItem;
 		entidadLegalRef: EntidadLegalRef[];
 		onClose: () => void;
 	}
@@ -38,7 +38,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(institucionWithRelationsItemSchema),
+			validators: zod4(institucionItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,

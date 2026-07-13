@@ -65,8 +65,8 @@ import {
 import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 import { entidadLegalItemSchema, type EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
 import {
-	institucionWithRelationsItemSchema,
-	type InstitucionWithRelationsItem
+	institucionItemSchema,
+	type InstitucionItem,
 } from '$lib/schemas/institucion.schema';
 
 import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
@@ -161,7 +161,7 @@ let entidadLegal = $state<EntidadLegalItem[]>([]);
 let region = $state<RegionWithRelationsItem[]>([]);
 let regionCampus = $state<RegionCampusItem[]>([]);
 
-let institucion = $state<InstitucionWithRelationsItem[]>([]);
+let institucion = $state<InstitucionItem[]>([]);
 
 let campus = $state<CampusItem[]>([]);
 let campusUnidadAcademica = $state<CampusUnidadAcademicaItem[]>([]);
@@ -227,7 +227,7 @@ const regionCampusRawData = regionCampusJsonData.regionCampusItems;
 regionCampus = regionCampusRawData.map((item) => regionCampusItemSchema.parse(item));
 
 const institucionRawData = institucionJsonData.institucionItems;
-institucion = institucionRawData.map((item) => institucionWithRelationsItemSchema.parse(item));
+institucion = institucionRawData.map((item) => institucionItemSchema.parse(item));
 
 const campusRawData = campusJsonData.campusItems;
 campus = campusRawData.map((item) => campusItemSchema.parse(item));
