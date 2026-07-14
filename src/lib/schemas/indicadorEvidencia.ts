@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { indicadorRefSchema } from './shared.schema';
+import { evidenciaItemSchema } from './evidencia.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA (Para relaciones)
@@ -42,7 +43,7 @@ export const indicadorEvidenciaItemSchema = z.object({
 	id: z.uuid(),
 	indicador: indicadorRefSchema,
 	code: z.string(),
-	evidencia: indicadorEvidenciaRefSchema,
+	evidencia: evidenciaItemSchema,
 	version: z.number().int().nonnegative(),
 	isCurrent: z.boolean(),
 	validFrom: z.coerce.date(),

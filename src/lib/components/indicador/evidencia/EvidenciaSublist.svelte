@@ -1,8 +1,6 @@
 <script lang="ts">
-	import type { FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ListActions from '$lib/components/actions/ListActions.svelte';
 	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
@@ -11,16 +9,14 @@
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
+	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
+	import Actions from '$lib/components/ui/Actions.svelte';
 
 	interface Props {
-		items: FilosofiaInstitucionalItem[];
-		onClickEditar: (item: FilosofiaInstitucionalItem) => void;
-		onClickBorrar: (item: FilosofiaInstitucionalItem) => void;
-		onClickRestaurar: (item: FilosofiaInstitucionalItem) => void;
+		items: EvidenciaItem[];
+		onClickRemover: (item: EvidenciaItem) => void;
 
-		onClickCrear: () => void;
-		onClickExport: () => void;
-		onClickFilter: () => void;
+		onClickAgregar: () => void;
 
 		showHeader?: boolean;
 		title?: string;
@@ -29,14 +25,11 @@
 
 	const {
 		items,
-		onClickEditar,
-		onClickBorrar,
-		onClickRestaurar,
-		onClickCrear,
-		onClickExport,
-		onClickFilter,
+		onClickRemover,
+		onClickAgregar,
+
 		showHeader = true,
-		title = 'Listado de filosofias institucionales',
+		title = 'Listado de evidencias',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -47,47 +40,33 @@
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2
-			crearTitle="Nueva planeacion"
-			{onClickCrear}
-			{onClickExport}
-			{onClickFilter}
-			showExport={false}
-			showFilter={false}
-		/>
+		<ToolbarV2 crearTitle="Agregar evidencia" onClickCrear={onClickAgregar} />
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Código</th>
+							<th class="col-code">Codigo</th>
 							<th class="col-label">Nombre</th>
-							<th class="col-text">Descripción</th>
-							<th class="col-badge">Estatus</th>
-							<th class="col-actions-md">Acciones</th>
+							<th class="col-text">Descripcion</th>
+							<th class="col-actions-sm">Acciones</th>
 						</tr>
 					</thead>
-
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
-								<td class="col-text">{item.description}</td>
-								<td class="col-badge">
-									<Badge variant={item.isDeleted ? 'error' : 'success'}>
-										{item.isDeleted ? 'borrado' : 'activo'}
-									</Badge>
+								<td class="col-text">
+									{item.description}
 								</td>
-								<td class="col-actions-md">
-									<ListActions
+
+								<td class="col-actions-sm">
+									<Actions
 										{item}
-										onClickEdit={() => onClickEditar(item)}
-										isEditDisabled={item.isDeleted}
-										onClickDelete={() => onClickBorrar(item)}
-										isDeleteDisabled={item.isDeleted}
-										onClickRestore={() => onClickRestaurar(item)}
-										isRestoreDisabled={!item.isDeleted}
+										showRemove={true}
+										isRemoveDisabled={false}
+										onClickRemove={() => onClickRemover}
 									/>
 								</td>
 							</tr>
@@ -103,10 +82,8 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva planeacion"
-			{onClickCrear}
-			{onClickExport}
-			{onClickFilter}
+			crearTitle="Agregar evidencia"
+			onClickCrear={onClickAgregar}
 			showExport={false}
 			showFilter={false}
 		/>
@@ -125,21 +102,13 @@
 						</CardContent>
 
 						<CardFooter>
-							<ListActions
-								{item}
-								onClickEdit={() => onClickEditar(item)}
-								isEditDisabled={item.isDeleted}
-								onClickDelete={() => onClickBorrar(item)}
-								isDeleteDisabled={item.isDeleted}
-								onClickRestore={() => onClickRestaurar(item)}
-								isRestoreDisabled={!item.isDeleted}
-							/>
+							<Actions {item} isRemoveDisabled={false} onClickRemove={() => onClickRemover} />
 						</CardFooter>
 					</Card>
 				{/each}
 			</CardColumn>
 		{:else}
-			<EmptySection message="No hay elementos"></EmptySection>
+			<EmptySection />
 		{/if}
 	</section>
 </main>
@@ -156,7 +125,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1686px) {
+	@media (max-width: 1500px) {
 		.list-view--table {
 			display: none;
 		}
