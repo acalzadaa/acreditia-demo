@@ -12,12 +12,7 @@
 		items: indicadorNavListItem[];
 	}
 
-	const {
-		showHeader = false,
-		title = 'Add',
-		subtitle = '',
-		items
-	}: Props = $props();
+	const { showHeader = false, title = 'Add', subtitle = '', items }: Props = $props();
 </script>
 
 <main class="main-panel">
@@ -55,13 +50,14 @@
 				</tbody>
 			</table>
 		{:else}
-			<EmptySection message="No hay elementos de indicador"></EmptySection>
+			<EmptySection />
 		{/if}
 	</section>
 </main>
 
 <style>
 	.main-panel {
-		flex-shrink: 0;
+		flex: 1;
+		min-height: 0;
 	}
 </style>
