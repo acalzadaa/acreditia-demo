@@ -2,22 +2,21 @@
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import type { IndicadorIndicadorEstrategicoItem } from '$lib/schemas/indicadorIndicadorEstrategico';
+	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 
 	interface Props {
-		gridArea?: string;
-		items?: IndicadorIndicadorEstrategicoItem[] | null;
+		items?: EvidenciaItem[] | null;
 	}
 
-	const { gridArea = 'main', items }: Props = $props();
+	const { items }: Props = $props();
 
-	let modalIndicadorEstrategico = createModalManager<IndicadorIndicadorEstrategicoItem>();
+	let modalEvidencia = createModalManager<EvidenciaItem>();
 	let cardExpand = createToggle(false);
 </script>
 
-<section class="card" style="grid-area: {gridArea}">
+<section class="card">
 	<header class="card-header">
 		<div class="card-header__title">
 			<IconButton
@@ -28,7 +27,7 @@
 				onClick={cardExpand.onClick}
 				onKeydown={(e) => cardExpand.onKeydown(e)}
 			/>
-			<h3 class="text-h6">Indicador estrategico</h3>
+			<h3 class="text-h6">Evidencia</h3>
 			{#if items && items.length > 0}
 				<Badge variant="info">{items.length} {items.length === 1 ? 'elemento' : 'elementos'}</Badge>
 			{/if}
@@ -39,9 +38,8 @@
 				size="md"
 				shape="circle"
 				variant="outline"
-				tooltipLabel="Agregar indicador estrategico"
-				onClick={modalIndicadorEstrategico.handlers('add').onClick}
-				onKeydown={(e) => modalIndicadorEstrategico.handlers('add').onKeydown(e)}
+				tooltipLabel="Agregar evidencia"
+				onClick={modalEvidencia.handlers('add').onClick}
 			/>
 		{/if}
 	</header>
@@ -54,11 +52,9 @@
 							<header class="element-item__header">
 								<div class="element-item__heading">
 									<Badge variant="info">
-										{item.indicadorEstrategico.code}
+										{item.code}
 									</Badge>
-									<span class="element-item__code text-caption-small"
-										>{item.indicadorEstrategico.name}</span
-									>
+									<span class="element-item__code text-caption-small">{item.name}</span>
 								</div>
 
 								<div class="element-item__actions">
@@ -68,9 +64,7 @@
 										size="sm"
 										shape="square"
 										variant="ghost"
-										onClick={() => modalIndicadorEstrategico.handlers('delete').onClickItem(item)}
-										onKeydown={(e) =>
-											modalIndicadorEstrategico.handlers('delete').onKeydownItem(e, item)}
+										onClick={() => modalEvidencia.handlers('delete').onClickItem(item)}
 									/>
 								</div>
 							</header>
@@ -78,7 +72,7 @@
 					{/each}
 				</div>
 			{:else}
-				<EmptySection message="No hay indicadores estrategicos"></EmptySection>
+				<EmptySection message="No elementos disponibles"></EmptySection>
 			{/if}
 		</div>
 	{/if}

@@ -5,7 +5,7 @@
 		message: string;
 	}
 
-	let { message }: Props = $props();
+	let { message = 'No hay elementos disponibles' }: Props = $props();
 </script>
 
 <div class="empty-state">

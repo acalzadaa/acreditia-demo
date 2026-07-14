@@ -31,7 +31,7 @@
 			<IconButton
 				name="chevron-down"
 				size="md"
-				shape="round"
+				shape="circle"
 				variant="ghost"
 				onClick={cardExpand.onClick}
 				onKeydown={(e) => cardExpand.onKeydown(e)}
@@ -45,7 +45,7 @@
 			<IconButton
 				name="add"
 				size="md"
-				shape="round"
+				shape="circle"
 				variant="outline"
 				tooltipLabel="Agregar grupo"
 				onClick={modalGrupo.handlers('create').onClick}

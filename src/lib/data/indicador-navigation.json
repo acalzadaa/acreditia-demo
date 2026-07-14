@@ -1,5 +1,5 @@
 {
-	"indicadorDetailItem": [
+	"indicadorNavListItem": [
 		{
 			"id": "b95d6ff5-e6d0-46af-81a0-068156f87ae4",
 			"name": "Rubrica",
@@ -25,10 +25,16 @@
 			"order": 4
 		},
 		{
+			"id": "189e61cd-88fd-458e-ac3f-695184664d5b",
+			"name": "Evidencia",
+			"url": "/evidencia",
+			"order": 5
+		},
+		{
 			"id": "6284c092-d7c9-4800-a295-3cf528f92a19",
 			"name": "Indicador Estrategico",
 			"url": "/indicador-estrategico",
-			"order": 5
+			"order": 6
 		}
 	]
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { navigateTo } from '$lib/helpers/navigation';
-	import type { IndicadorDetailItem } from '$lib/schemas/indicadorDetail.schema';
+	import type { indicadorNavListItem } from '$lib/schemas/indicadorNavigation.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
 	import IconButton from '../ui/IconButton.svelte';
@@ -9,7 +9,7 @@
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		items: IndicadorDetailItem[];
+		items: indicadorNavListItem[];
 	}
 
 	const {
