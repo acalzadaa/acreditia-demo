@@ -101,7 +101,7 @@
 					{/if}
 
 					<InputSelect
-						label="Area Funcional"
+						label="Normativa"
 						name="code"
 						optionsData={subareaFuncionalOptions}
 						required={true}
