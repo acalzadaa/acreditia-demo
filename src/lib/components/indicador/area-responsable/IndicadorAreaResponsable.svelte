@@ -7,7 +7,6 @@
 	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
 
 	interface Props {
-		gridArea?: string;
 		showHeader?: boolean;
 		showDetailIcon?: boolean;
 

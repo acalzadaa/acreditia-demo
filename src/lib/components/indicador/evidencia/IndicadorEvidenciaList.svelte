@@ -2,17 +2,17 @@
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
+	import type {  EvidenciaRef } from '$lib/schemas/evidencia.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 
 	interface Props {
-		items?: EvidenciaItem[] | null;
+		items?: EvidenciaRef[] | null;
 	}
 
 	const { items }: Props = $props();
 
-	let modalEvidencia = createModalManager<EvidenciaItem>();
+	let modalEvidencia = createModalManager<EvidenciaRef>();
 	let cardExpand = createToggle(false);
 </script>
 
@@ -72,7 +72,7 @@
 					{/each}
 				</div>
 			{:else}
-				<EmptySection message="No elementos disponibles"></EmptySection>
+				<EmptySection />
 			{/if}
 		</div>
 	{/if}

@@ -60,22 +60,22 @@
 								</div>
 
 								<div class="element-item__actions">
-										<IconButton
-											name="delete"
-											tooltipLabel="Borrar registro"
-											size="sm"
-											shape="square"
-											variant="ghost"
-											onClick={() => modalNormativa.handlers('delete').onClickItem(item)}
-											onKeydown={(e) => modalNormativa.handlers('delete').onKeydownItem(e, item)}
-										/>
+									<IconButton
+										name="delete"
+										tooltipLabel="Borrar registro"
+										size="sm"
+										shape="square"
+										variant="ghost"
+										onClick={() => modalNormativa.handlers('delete').onClickItem(item)}
+										onKeydown={(e) => modalNormativa.handlers('delete').onKeydownItem(e, item)}
+									/>
 								</div>
 							</header>
 						</article>
 					{/each}
 				</div>
 			{:else}
-				<EmptySection message="No hay areas responsables"></EmptySection>
+				<EmptySection />
 			{/if}
 		</div>
 	{/if}
