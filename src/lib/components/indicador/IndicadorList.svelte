@@ -51,11 +51,10 @@
 </script>
 
 <main class="main-panel">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-
 	<section class="list-view--table">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
 		<ToolbarV2
 			crearTitle="Nuevo indicador"
 			{onClickCrear}
@@ -122,6 +121,9 @@
 	</section>
 
 	<section class="list-view--cards">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
 		<ToolbarV2
 			mobileVersion={true}
 			crearTitle="Nuevo indicador"
@@ -174,8 +176,6 @@
 </main>
 
 <style>
-	/* Por default (>= 1500px) gana la tabla; las cards quedan ocultas
-	   y fuera del flujo para no pelear por el flex del panel. */
 	.list-view--table {
 		display: contents;
 	}

@@ -15,11 +15,11 @@
 	const { showHeader = false, title = 'Add', subtitle = '', items }: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel--inline">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
-	<section class="table-container">
+	<section class="table-container--inline">
 		{#if items && items.length > 0}
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
@@ -56,8 +56,9 @@
 </main>
 
 <style>
-	.main-panel {
-		flex: 1;
-		min-height: 0;
+	.main-panel--inline {
+		flex: none;
+		min-height: auto;
+		overflow: visible;
 	}
 </style>

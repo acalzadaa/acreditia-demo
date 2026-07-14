@@ -14,7 +14,7 @@
 	let modal = createModalManager<IndicadorItem>();
 </script>
 
-<main class="detail-content">
+<main class="detail-panel">
 	<IndicadorList
 		{items}
 		onClickEditar={modal.handlers('edit').onClickItem}
@@ -53,11 +53,11 @@
 {/if}
 
 <style>
-	.detail-content {
-		flex: 1;
-		min-height: 0;
-		overflow-y: hidden;
+	.detail-panel {
 		display: flex;
 		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
 	}
 </style>

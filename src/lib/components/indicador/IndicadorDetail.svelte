@@ -28,14 +28,13 @@
 	}
 </script>
 
-<main class="main-panel">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-
+<main class="main-panel--inline">
 	<section class="list-view--table">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
 		{#if items.length > 0}
-			<div class="table-container">
+			<div class="table-container--inline">
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
@@ -97,6 +96,12 @@
 </main>
 
 <style>
+	.main-panel--inline {
+		flex: none;
+		min-height: auto;
+		overflow: visible;
+	}
+
 	/* Por default (>= 1500px) gana la tabla; las cards quedan ocultas
 	   y fuera del flujo para no pelear por el flex del panel. */
 	.list-view--table {
@@ -115,8 +120,6 @@
 
 		.list-view--cards {
 			display: grid;
-			flex: 1;
-			min-height: 0;
 		}
 	}
 </style>

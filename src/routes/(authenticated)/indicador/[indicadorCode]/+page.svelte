@@ -15,17 +15,12 @@
 	let modeloFullRef = getModeloFullRef();
 	let indicadorNavItem = getIndicadorNavList();
 
-
 	let modal = createModalManager<IndicadorItem>();
-	$inspect(indicadorCode, indicadorItems);
 </script>
 
 <div class="detail-panel">
 	<IndicadorDetail title="Indicador" subtitle={indicadorCode} items={indicadorItems} />
-
-	<main class="detail-content">
-		<IndicadorNavList items={indicadorNavItem} />
-	</main>
+	<IndicadorNavList items={indicadorNavItem} />
 </div>
 {#if modal.selectedItem}
 	<EditarIndicadorForm
@@ -56,14 +51,6 @@
 		flex-direction: column;
 		flex: 1;
 		min-height: 0;
-		overflow: hidden;
-	}
-
-	.detail-content {
-		flex: 1;
-		min-height: 0;
-		overflow-y: hidden;
-		display: flex;
-		flex-direction: column;
+		overflow-y: auto;
 	}
 </style>
