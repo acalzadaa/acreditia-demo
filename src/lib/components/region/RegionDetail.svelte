@@ -24,7 +24,7 @@
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel main-panel--inline">
 	<section class="list-view--table">
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />

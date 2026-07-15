@@ -30,7 +30,7 @@
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel main-panel--inline">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}

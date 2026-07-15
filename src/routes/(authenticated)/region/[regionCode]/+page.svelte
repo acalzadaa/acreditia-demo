@@ -22,22 +22,15 @@
 </script>
 
 <div class="detail-panel">
-	<RegionDetail
-		items={regionItems}
-		showHeader={true}
-		title="Region"
-		subtitle={regionCode}
-	/>
+	<RegionDetail items={regionItems} showHeader={true} title="Region" subtitle={regionCode} />
 
-	<main class="detail-content">
-		<RegionCampusSublist
-			showHeader={true}
-			title="Lista de campus asignados"
-			items={regionCampusItems}
-			onClickRemover={modalRegionCampus.handlers('remove').onClickItem}
-			onClickAgregar={modalRegionCampus.handlers('add').onClick}
-		/>
-	</main>
+	<RegionCampusSublist
+		showHeader={true}
+		title="Lista de campus asignados"
+		items={regionCampusItems}
+		onClickRemover={modalRegionCampus.handlers('remove').onClickItem}
+		onClickAgregar={modalRegionCampus.handlers('add').onClick}
+	/>
 </div>
 
 <AddRegionCampusForm
@@ -58,3 +51,9 @@
 		actionButtonVariant="critical"
 	/>
 {/if}
+
+<style>
+	.detail-panel {
+		gap: 10px;
+	}
+</style>
