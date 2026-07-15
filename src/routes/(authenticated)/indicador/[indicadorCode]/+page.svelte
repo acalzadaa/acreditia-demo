@@ -22,6 +22,7 @@
 	<IndicadorDetail title="Indicador" subtitle={indicadorCode} items={indicadorItems} />
 	<IndicadorNavList items={indicadorNavItem} />
 </div>
+
 {#if modal.selectedItem}
 	<EditarIndicadorForm
 		open={modal.isOpen('edit')}

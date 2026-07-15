@@ -37,7 +37,6 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-code">Codigo</th>
 						<th class="col-code">Indicador estrategico</th>
 						<th class="col-text">Descripcion</th>
 						<th class="col-actions-md">Acciones</th>
@@ -46,7 +45,6 @@
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.indicador.code}</td>
 							<td class="col-code">
 								<Badge variant="info">{item.indicadorEstrategico.code}</Badge>
 							</td>

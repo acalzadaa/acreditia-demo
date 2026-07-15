@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { puestoRefSchema } from './shared.schema';
+import { puestoRefSchema, usuarioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA (Cliente ↔ Servidor)
@@ -32,6 +32,8 @@ export type RegionForm = z.infer<typeof regionFormSchema>;
 export const regionItemSchema = z.object({
 	id: z.uuid(),
 	puestoId: z.uuid(),
+	puesto: puestoRefSchema,
+	usuario: usuarioRefSchema,
 	code: z.string(),
 	name: z.string(),
 	description: z.string().default(''),
@@ -46,12 +48,3 @@ export const regionItemSchema = z.object({
 
 export type RegionItem = z.infer<typeof regionItemSchema>;
 
-// ============================================
-// 3. ITEM WITH RELATIONS SCHEMA
-// ============================================
-export const regionWithRelationsItemSchema = regionItemSchema.extend({
-	puesto: puestoRefSchema.nullable().optional(),
-	campusActuales: z.array(z.object({ id: z.uuid(), code: z.string(), name: z.string() })).optional()
-});
-
-export type RegionWithRelationsItem = z.infer<typeof regionWithRelationsItemSchema>;

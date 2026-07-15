@@ -12,6 +12,7 @@
 	import Actions from '../ui/Actions.svelte';
 	import type { IndicadorItem } from '$lib/schemas/indicador.schema';
 	import { navigateTo } from '$lib/helpers/navigation';
+	import ListDetailActions from '../actions/ListDetailActions.svelte';
 
 	interface Props {
 		items: IndicadorItem[];
@@ -94,18 +95,14 @@
 									</Badge>
 								</td>
 								<td class="col-actions-md">
-									<Actions
+									<ListDetailActions
 										{item}
-										showDetail={true}
 										onClickDetail={() => navigateTo(item.code)}
 										isDetailDisabled={item.isDeleted}
-										showEdit={true}
 										onClickEdit={() => onClickEditar(item)}
 										isEditDisabled={item.isDeleted}
-										showDelete={true}
 										onClickDelete={() => onClickBorrar(item)}
 										isDeleteDisabled={item.isDeleted}
-										showRestore={true}
 										onClickRestore={() => onClickRestaurar(item)}
 										isRestoreDisabled={!item.isDeleted}
 									/>

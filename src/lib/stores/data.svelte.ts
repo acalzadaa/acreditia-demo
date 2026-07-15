@@ -91,10 +91,7 @@ import { seccionItemSchema, type SeccionItem } from '$lib/schemas/seccion.schema
 import { type EvidenciaItem, evidenciaItemSchema } from '$lib/schemas/evidencia.schema';
 import { evaluacionItemSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 
-import {
-	regionWithRelationsItemSchema,
-	type RegionWithRelationsItem
-} from '$lib/schemas/region.schema';
+import { regionItemSchema, type RegionItem } from '$lib/schemas/region.schema';
 import {
 	type CampusUnidadAcademicaItem,
 	campusUnidadAcademicaItemSchema
@@ -160,7 +157,7 @@ let indicadorEstrategico = $state<IndicadorEstrategicoItem[]>([]);
 let normativas = $state<NormativaItem[]>([]);
 
 let entidadLegal = $state<EntidadLegalItem[]>([]);
-let region = $state<RegionWithRelationsItem[]>([]);
+let region = $state<RegionItem[]>([]);
 let regionCampus = $state<RegionCampusItem[]>([]);
 
 let institucion = $state<InstitucionWithRelationsItem[]>([]);
@@ -224,7 +221,7 @@ const entidadLegalRawData = entidadLegalJsonData.entidadLegalItems;
 entidadLegal = entidadLegalRawData.map((item) => entidadLegalItemSchema.parse(item));
 
 const regionRawData = regionJsonData.regionItems;
-region = regionRawData.map((item) => regionWithRelationsItemSchema.parse(item));
+region = regionRawData.map((item) => regionItemSchema.parse(item));
 
 const regionCampusRawData = regionCampusJsonData.regionCampusItems;
 regionCampus = regionCampusRawData.map((item) => regionCampusItemSchema.parse(item));

@@ -14,7 +14,7 @@
 	let modal = createModalManager<IndicadorItem>();
 </script>
 
-<main class="detail-panel">
+<div class="detail-panel">
 	<IndicadorList
 		{items}
 		onClickEditar={modal.handlers('edit').onClickItem}
@@ -24,7 +24,7 @@
 		onClickFilter={modal.handlers('filter').onClick}
 		onClickExport={modal.handlers('export').onClick}
 	/>
-</main>
+</div>
 
 <!-- MODAL CREAR -->
 <CrearIndicadorForm open={modal.isOpen('create')} {modeloFullRef} onClose={modal.close} />

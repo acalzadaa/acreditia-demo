@@ -9,15 +9,12 @@
 	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Icon from '../ui/Icon.svelte';
-	import type { PuestoRef } from '$lib/schemas/puesto.schema';
-	import {
-		regionWithRelationsItemSchema,
-		type RegionWithRelationsItem
-	} from '$lib/schemas/region.schema';
+		import type { PuestoRef } from '$lib/schemas/shared.schema';
+	import { regionItemSchema, type RegionItem } from '$lib/schemas/region.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: RegionWithRelationsItem;
+		selectedItem: RegionItem;
 		refs: PuestoRef[];
 		onClose: () => void;
 	}
@@ -39,7 +36,7 @@
 		props.selectedItem,
 		{
 			dataType: 'json',
-			validators: zod4(regionWithRelationsItemSchema),
+			validators: zod4(regionItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -130,12 +127,12 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
 				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

@@ -22,7 +22,7 @@
 	let errorMessage = $state('');
 
 	// Opciones para el select de área responsable
-	const subareaFuncionalOptions = $derived(
+	const indicadorEstrategicoOptions = $derived(
 		indicadorEstrategicoRef.map((ref) => ({
 			id: ref.code,
 			option: `${ref.code} - ${ref.name}`
@@ -101,9 +101,9 @@
 					{/if}
 
 					<InputSelect
-						label="Area Funcional"
+						label="Indicador Estrategico"
 						name="code"
-						optionsData={subareaFuncionalOptions}
+						optionsData={indicadorEstrategicoOptions}
 						required={true}
 						bind:value={formData.code}
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}

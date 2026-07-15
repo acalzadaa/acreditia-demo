@@ -6,16 +6,13 @@
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
-	import CardContent from '$lib/components/ui/card/CardContent.svelte';
-	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
-	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	import Actions from '$lib/components/ui/Actions.svelte';
 	import SublistActions from '$lib/components/actions/SublistActions.svelte';
+	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
 
 	interface Props {
-		items: EvidenciaItem[];
-		onClickRemover: (item: EvidenciaItem) => void;
+		items: RegionCampusItem[];
+		onClickRemover: (item: RegionCampusItem) => void;
 		onClickAgregar: () => void;
 		showHeader?: boolean;
 		title?: string;
@@ -28,18 +25,18 @@
 		onClickAgregar,
 
 		showHeader = true,
-		title = 'Listado de evidencias',
+		title = 'Listado de campus',
 		subtitle = ''
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel main-panel--inline">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2 crearTitle="Agregar evidencia" onClickCrear={onClickAgregar} />
+		<ToolbarV2 crearTitle="Agregar campus" onClickCrear={onClickAgregar} />
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
@@ -47,21 +44,17 @@
 						<tr>
 							<th class="col-code">Codigo</th>
 							<th class="col-label">Nombre</th>
-							<th class="col-text">Descripcion</th>
 							<th class="col-actions-sm">Acciones</th>
 						</tr>
 					</thead>
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
-								<td class="col-code">{item.code}</td>
-								<td class="col-label">{item.name}</td>
-								<td class="col-text">
-									{item.description}
-								</td>
+								<td class="col-code">{item.campus.code}</td>
+								<td class="col-label">{item.campus.name}</td>
 
 								<td class="col-actions-sm">
-									<Actions
+									<SublistActions
 										{item}
 										showRemove={true}
 										isRemoveDisabled={false}
@@ -81,7 +74,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Agregar evidencia"
+			crearTitle="Agregar campus"
 			onClickCrear={onClickAgregar}
 			showExport={false}
 			showFilter={false}
@@ -90,16 +83,12 @@
 			<CardColumn minWidth="360px" maxWidth="1500px">
 				{#each items as item (item.id)}
 					<Card>
-						<CardHeader code={item.code} name={item.name}>
+						<CardHeader code={item.campus.code} name={item.campus.name}>
 							<Badge variant={item.isDeleted ? 'error' : 'success'}>
 								{item.isDeleted ? 'borrado' : 'activo'}
 							</Badge>
 						</CardHeader>
-
-						<CardContent>
-							<CardContentItem label="Descripción" value={item.description} />
-						</CardContent>
-
+					
 						<CardFooter>
 							<SublistActions
 								{item}

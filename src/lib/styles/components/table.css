@@ -4,7 +4,7 @@
 	--table-bg-hover: var(--neutral-tinted-100);
 }
 
-/* Si el un table-container tiene un hermano a manera de header, toolbar, etc
+/* Si el un table-container tiene un auxiliar a manera de header, toolbar, etc
 se necesita ocultar el scrollbar 
 para que el table-container despliegue su propio scrollbar
 de lo contrario se van a tener 2 scrollbars uno para todo el grupo y otro para la tabla
@@ -15,6 +15,18 @@ de lo contrario se van a tener 2 scrollbars uno para todo el grupo y otro para l
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+}
+
+/* VARIANTE B de .main-panel — "grupo con scroll propio":
+   usar cuando .main-panel es UNO DE VARIOS paneles apilados dentro
+   de un contenedor que ya maneja su propio scroll (ej. .detail-panel
+   con overflow-y: auto). Aquí el panel NO debe crecer para llenar
+   el espacio disponible ni ocultar su overflow — debe medir lo que
+   su contenido necesita, y dejar que el padre decida cuándo scrollear.
+   Va siempre de la mano de .table-container--inline. */
+.main-panel--inline {
+	flex: none;
+	overflow: visible;
 }
 
 /* =============================================
