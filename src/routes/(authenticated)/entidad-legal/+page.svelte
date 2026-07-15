@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NavigationBar from '$lib/components/navigation/NavigationBar.svelte';
 	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
@@ -16,6 +15,7 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
 	import { getEntidadLegal } from '$lib/stores/data.svelte';
+	import NavigationBarContainer from '$lib/components/navigation/NavigationBarContainer.svelte';
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let entidadLegalItems = getEntidadLegal();
@@ -132,7 +132,7 @@
 		{showNavigationBar}
 		{showNotificationBar}
 	/>
-	<NavigationBar {showNavigationBar} {navigationItems} />
+	<NavigationBarContainer {showNavigationBar} {navigationItems} />
 	<NotificationBarContainer {showNotificationBar} />
 	<Toolbar
 		crearTitle="Nueva entidad"

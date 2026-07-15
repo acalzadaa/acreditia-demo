@@ -27,12 +27,17 @@
 </main>
 
 <!-- MODAL CREAR -->
-<AddIndicadorEvidenciaPicker
-	open={modal.isOpen('create')}
-	{evidenciaRef}
-	onClose={modal.close}
-/>
+<AddIndicadorEvidenciaPicker open={modal.isOpen('add')} {evidenciaRef} onClose={modal.close} />
 
 {#if modal.selectedItem}
-	<ConfirmModal open={modal.isOpen('delete')} id={modal.selectedItem.id} onClose={modal.close} />
+	<ConfirmModal
+		demo={true}
+		message="¿Desea remover el registro?"
+		title="Remover evidencia"
+		buttonLabel="Remover"
+		open={modal.isOpen('remove')}
+		id={modal.selectedItem.id}
+		onClose={modal.close}
+		actionButtonVariant='critical'
+	/>
 {/if}
