@@ -3,7 +3,7 @@
 	import type { indicadorNavListItem } from '$lib/schemas/indicadorNavigation.schema';
 	import EmptySection from '../common/EmptySection.svelte';
 	import PageHeader from '../common/PageHeader.svelte';
-	import IconButton from '../ui/IconButton.svelte';
+	import Button from '../ui/Button.svelte';
 
 	interface Props {
 		showHeader?: boolean;
@@ -24,25 +24,17 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-code">Seccion</th>
-						<th class="col-actions-sm">Acciones</th>
+						<th class="col-actions-sm">Agregar complementos</th>
 					</tr>
 				</thead>
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.name}</td>
-
 							<td class="col-actions-sm">
 								<div class="col-actions-row">
-									<IconButton
-										name="detail"
-										tooltipLabel="Ver detalle"
-										size="md"
-										borderShape="square"
-										variant="ghost"
-										onClick={() => navigateTo(item.url)}
-									/>
+									<Button variant="link" onClick={() => navigateTo(item.url)}
+										>{item.name}</Button
+									>
 								</div>
 							</td>
 						</tr>

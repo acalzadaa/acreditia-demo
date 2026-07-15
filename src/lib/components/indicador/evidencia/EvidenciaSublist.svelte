@@ -66,7 +66,7 @@
 										{item}
 										showRemove={true}
 										isRemoveDisabled={false}
-										onClickRemove={() => onClickRemover}
+										onClickRemove={() => onClickRemover(item)}
 									/>
 								</td>
 							</tr>
@@ -102,7 +102,12 @@
 						</CardContent>
 
 						<CardFooter>
-							<Actions {item} isRemoveDisabled={false} onClickRemove={() => onClickRemover} />
+							<Actions
+								{item}
+								showRemove={true}
+								isRemoveDisabled={false}
+								onClickRemove={() => onClickRemover(item)}
+							/>
 						</CardFooter>
 					</Card>
 				{/each}
