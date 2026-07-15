@@ -33,23 +33,66 @@
 	flex-direction: column;
 }
 
-/* detail-panel y detail-content van en los hijos de layout */
+/* =============================================
+   .detail-panel TIENE TRES VARIANTES.
+   Elige una explícitamente; no mezcles overrides sueltos
+   (mismo criterio que .table-container en table.css).
+
+   VARIANTE 1 (default, sin modificador) — "grupo apilado":
+   .detail-panel scrollea TODO el grupo como una unidad.
+   Úsala cuando no hay header/toolbar que deba quedarse fijo
+   arriba — todo el contenido (incluyendo cualquier título)
+   se desplaza junto. Los hijos van con .main-panel--inline /
+   .table-container--inline (ver table.css).
+
+   VARIANTE 2 (.detail-panel--static + .detail-content) —
+   "header fijo, contenido scrollable":
+   .detail-panel NO scrollea (overflow: hidden); contiene un
+   header/toolbar de altura natural + UN .detail-content que
+   sí scrollea. Úsala cuando necesitas que algo (título, tabs,
+   toolbar) se quede visible mientras el resto se desplaza.
+
+   VARIANTE 3 (.detail-panel--static + .detail-content--delegate) —
+   "header fijo, scroll delegado a un nieto":
+   Igual que la 2, pero el contenido de .detail-content YA trae
+   su propio scroll interno (ej. .table-container Variante A).
+   Aquí .detail-content NO debe scrollear (overflow: hidden) o
+   tendrás doble scrollbar — el nieto es quien scrollea.
+   ============================================= */
+
+/* Base: compartida por las 3 variantes */
 .detail-panel {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
 	min-height: 0;
+}
+
+/* VARIANTE 1 (default): el panel mismo scrollea el grupo */
+.detail-panel {
+	overflow-y: auto;
+}
+
+/* VARIANTE 2 y 3: el panel NO scrollea, tiene header fijo */
+.detail-panel--static {
 	overflow: hidden;
 }
 
-/* Si se usa .table-container
-	se debe cambiar "overflow-y: scroll"
-	por "overflow-y: hidden"
-	ya que .table-container ya tiene su propio scroll */
+/* .detail-content: compartida por Variante 2 y 3 */
 .detail-content {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
 	min-height: 0;
-	overflow-y: scroll;
+}
+
+/* VARIANTE 2: .detail-content scrollea su propio contenido */
+.detail-content {
+	overflow-y: auto;
+}
+
+/* VARIANTE 3: .detail-content delega el scroll a su hijo
+   (ej. un .main-panel + .table-container Variante A) */
+.detail-content--delegate {
+	overflow: hidden;
 }
