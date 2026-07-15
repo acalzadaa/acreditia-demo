@@ -1,57 +1,30 @@
 <script lang="ts">
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import { resolve } from '$app/paths';
-	import { goto } from '$app/navigation';
-	import IndicadorList from '$lib/components/indicador/IndicadorList.svelte';
 	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
-	import BorrarIndicadorForm from '$lib/components/indicador/BorrarIndicadorForm.svelte';
-	import RestaurarIndicadorForm from '$lib/components/indicador/RestaurarIndicadorForm.svelte';
 	import CrearIndicadorForm from '$lib/components/indicador/CrearIndicadorForm.svelte';
 	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
 	import { getIndicador, getModeloFullRef } from '$lib/stores/data.svelte';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import IndicadorList from '$lib/components/indicador/IndicadorList.svelte';
 
-	let indicadorItems = getIndicador();
+	let items = getIndicador();
 	let modeloFullRef = getModeloFullRef();
 
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<IndicadorItem>();
-
-	/* DETALLE */
-	function onClickDetalle(item: IndicadorItem) {
-		goto(resolve(`/indicador/${item.code}`));
-	}
-
-	function onKeydownDetalle(e: KeyboardEvent, item: IndicadorItem) {
-		if (e.key === 'Enter') {
-			onClickDetalle(item);
-		}
-	}
 </script>
 
-<div class="detail-panel">
-	<Toolbar
-		gridArea="toolbar"
-		crearTitle="Nuevo indicador"
+<main class="detail-panel">
+	<IndicadorList
+		{items}
+		onClickEditar={modal.handlers('edit').onClickItem}
+		onClickBorrar={modal.handlers('delete').onClickItem}
+		onClickRestaurar={modal.handlers('restore').onClickItem}
 		onClickCrear={modal.handlers('create').onClick}
-		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
-		showExport={true}
-		showFilter={true}
+		onClickFilter={modal.handlers('filter').onClick}
+		onClickExport={modal.handlers('export').onClick}
 	/>
-	<main class="detail-content">
-		<IndicadorList
-			{indicadorItems}
-			onClickEditar={modal.handlers('edit').onClickItem}
-			onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
-			onClickBorrar={modal.handlers('delete').onClickItem}
-			onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
-			onClickRestaurar={modal.handlers('restore').onClickItem}
-			onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
-			onClickDetalle={(item: IndicadorItem) => onClickDetalle(item)}
-			onKeydownDetalle={(e: KeyboardEvent, item: IndicadorItem) => onKeydownDetalle(e, item)}
-		/>
-	</main>
-</div>
+</main>
 
 <!-- MODAL CREAR -->
 <CrearIndicadorForm open={modal.isOpen('create')} {modeloFullRef} onClose={modal.close} />
@@ -64,15 +37,17 @@
 		onClose={modal.close}
 	/>
 
-	<BorrarIndicadorForm
+	<ConfirmDeleteModal
+		demo={true}
 		open={modal.isOpen('delete')}
-		selectedItem={modal.selectedItem}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 
-	<RestaurarIndicadorForm
+	<ConfirmRestoreModal
+		demo={true}
 		open={modal.isOpen('restore')}
-		selectedItem={modal.selectedItem}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 {/if}
@@ -83,14 +58,6 @@
 		flex-direction: column;
 		flex: 1;
 		min-height: 0;
-		overflow: hidden;
-	}
-
-	.detail-content {
-		flex: 1;
-		min-height: 0;
-		overflow-y: hidden;
-		display: flex;
-		flex-direction: column;
+		overflow-y: auto;
 	}
 </style>

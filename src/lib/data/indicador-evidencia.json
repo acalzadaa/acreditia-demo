@@ -1,0 +1,62 @@
+{
+	"indicadorEvidenciaItems": [
+		{
+			"id": "55bbcf82-8cf4-4081-ae48-45bb4949efd3",
+			"code": "ind-001-NOR-AC-001",
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"evidencia": {
+				"id": "8b066f4e-651d-403a-9444-e70dfeced066",
+				"code": "EV-002",
+				"name": "Reporte de seguimiento de egresados",
+				"description": "Base de datos actualizada con contacto, empleabilidad, estudios de posgrado y satisfacción de egresados de los últimos 5 años.",
+				"version": 1,
+				"isCurrent": true,
+				"validFrom": "2025-01-01T00:00:00Z",
+				"validTo": "2026-01-01T00:00:00Z",
+				"isDeleted": false,
+				"createdAt": "2026-06-05T12:00:00Z",
+				"createdBy": "system"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-15T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-15T10:30:00Z",
+			"createdBy": "planeacion@universidad.edu"
+		},
+		{
+			"id": "3b25f44a-1419-472f-86d6-3e34338a1d94",
+			"code": "ind-001-NOR-DOC-002",
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"evidencia": {
+				"id": "7d8c7d24-f628-438d-81c1-bb4323d53a70",
+				"code": "EV-005",
+				"name": "Manual de procesos de admisión",
+				"description": "PDF que describe convocatorias, criterios de selección, exámenes aplicados, y tablas de resultados por periodo.",
+				"version": 1,
+				"isCurrent": true,
+				"validFrom": "2025-01-01T00:00:00Z",
+				"validTo": "2026-01-01T00:00:00Z",
+				"isDeleted": false,
+				"createdAt": "2026-06-05T12:00:00Z",
+				"createdBy": "system"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-15T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-15T10:30:00Z",
+			"createdBy": "planeacion@universidad.edu"
+		}
+	]
+}

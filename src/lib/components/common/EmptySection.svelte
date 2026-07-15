@@ -2,10 +2,10 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 
 	interface Props {
-		message: string;
+		message?: string;
 	}
 
-	let { message }: Props = $props();
+	let { message = 'No hay elementos disponibles' }: Props = $props();
 </script>
 
 <div class="empty-state">

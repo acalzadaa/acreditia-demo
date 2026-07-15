@@ -23,8 +23,13 @@
 </div>
 
 <div class="navbar-slot navbar-slot--drawer">
-	<Drawer show={showNavigationBar} position="top-left" ariaLabel="Menú de navegación">
-			<NavigationBarList {navigationItems} />
+	<Drawer
+		show={showNavigationBar}
+		top="calc(var(--header-height) + var(--subheader-height))"
+		position="top-left"
+		ariaLabel="Menú de navegación"
+	>
+		<NavigationBarList {navigationItems} />
 	</Drawer>
 </div>
 

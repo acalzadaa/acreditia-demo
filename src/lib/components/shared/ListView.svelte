@@ -55,7 +55,7 @@
 
 		breakpoint = 900,
 
-		emptyMessage = 'No hay elementos',
+		emptyMessage,
 
 		table,
 		cards

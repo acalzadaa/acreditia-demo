@@ -196,7 +196,7 @@
 			/>
 		</header>
 
-		<form
+		<form class='modal-flex'
 			onsubmit={(e) => {
 				e.preventDefault();
 				handleSubmit();

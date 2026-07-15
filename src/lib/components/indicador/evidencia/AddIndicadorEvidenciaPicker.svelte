@@ -4,15 +4,15 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { NormativaRef } from '$lib/schemas/shared.schema';
+	import type { EvidenciaRef } from '$lib/schemas/evidencia.schema';
 
 	interface Props {
 		open: boolean;
-		normativaRef: NormativaRef[];
+		evidenciaRef: EvidenciaRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, normativaRef = [] }: Props = $props();
+	let { open = $bindable(false), onClose, evidenciaRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
@@ -22,8 +22,8 @@
 	let errorMessage = $state('');
 
 	// Opciones para el select de área responsable
-	const subareaFuncionalOptions = $derived(
-		normativaRef.map((ref) => ({
+	const evidenciaOptions = $derived(
+		evidenciaRef.map((ref) => ({
 			id: ref.code,
 			option: `${ref.code} - ${ref.name}`
 		}))
@@ -32,7 +32,7 @@
 	function handleSubmit() {
 		// Validación básica
 		if (!formData.code) {
-			errorMessage = 'Debes seleccionar un indicador estrategico';
+			errorMessage = 'Debes seleccionar una evidencia';
 			return;
 		}
 
@@ -75,7 +75,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Agregar normativa</h2>
+			<h2 class="modal-title text-h4">Agregar evidencia</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -101,9 +101,9 @@
 					{/if}
 
 					<InputSelect
-						label="Normativa"
+						label="Evidencia"
 						name="code"
-						optionsData={subareaFuncionalOptions}
+						optionsData={evidenciaOptions}
 						required={true}
 						bind:value={formData.code}
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
@@ -111,10 +111,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Agregar</Button>
-			</footer>
+				<Button type="submit" variant="primary">Agregar evidencia</Button>
+			</menu>
 		</form>
 	</div>
 </Modal>

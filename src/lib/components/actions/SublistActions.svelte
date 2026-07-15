@@ -5,11 +5,11 @@
 	interface Props {
 		item: unknown;
 
-		showEdit: boolean;
+		showEdit?: boolean;
 		isEditDisabled: boolean;
 		onClickEdit: () => void;
 
-		showRemove: boolean;
+		showRemove?: boolean;
 		isRemoveDisabled: boolean;
 		onClickRemove: () => void;
 	}

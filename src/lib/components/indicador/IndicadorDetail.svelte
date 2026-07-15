@@ -1,134 +1,125 @@
 <script lang="ts">
+	import EmptySection from '$lib/components/common/EmptySection.svelte';
+	import Badge from '$lib/components/ui/Badge.svelte';
+	import PageHeader from '$lib/components/common/PageHeader.svelte';
+	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
+	import Card from '$lib/components/ui/card/Card.svelte';
+	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
+	import CardContent from '$lib/components/ui/card/CardContent.svelte';
+	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import type { IndicadorItem } from '$lib/schemas/indicador.schema';
-	import EmptySection from '../common/EmptySection.svelte';
-	import PageHeader from '../common/PageHeader.svelte';
-	import Badge from '../ui/Badge.svelte';
-	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
+		items: IndicadorItem[];
+		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		indicadorItems: IndicadorItem[];
-		onClickEditar: (item: IndicadorItem) => void;
-		onKeydownEditar: (e: KeyboardEvent, item: IndicadorItem) => void;
-		onClickBorrar: (item: IndicadorItem) => void;
-		onKeydownBorrar: (e: KeyboardEvent, item: IndicadorItem) => void;
-		onClickRestaurar: (item: IndicadorItem) => void;
-		onKeydownRestaurar: (e: KeyboardEvent, item: IndicadorItem) => void;
-		onClickDetalle?: (item: IndicadorItem) => void;
-		onKeydownDetalle?: (e: KeyboardEvent, item: IndicadorItem) => void;
 	}
 
 	const {
-		title = 'Add',
-		subtitle = '',
-		indicadorItems,
-		onClickEditar,
-		onKeydownEditar,
-		onClickBorrar,
-		onKeydownBorrar,
-		onClickRestaurar,
-		onKeydownRestaurar,
-		onClickDetalle,
-		onKeydownDetalle
+		items,
+		showHeader = true,
+		title = 'Detalle de indicador',
+		subtitle = ''
 	}: Props = $props();
 
-	let showHeader = $derived(indicadorItems.length == 1);
-	let showDetailIcon = $derived(indicadorItems.length > 1);
+	function buildTarget(item: IndicadorItem): string {
+		return item.target + ' ' + item.targetUnit;
+	}
 </script>
 
-<main class="main-panel">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-	<section class="table-container">
-		{#if indicadorItems && indicadorItems.length > 0}
-			<table class="data-table text-body">
-				<thead class="text-body-strong">
-					<tr>
-						<th class="col-code">Seccion</th>
-						<th class="col-code">Código</th>
-						<th class="col-label">Nombre</th>
-						<th class="col-text">Descripción</th>
-						<th class="col-metric">Meta</th>
-						<th class="col-badge">Estatus</th>
-						<th class="col-actions-md">Acciones</th>
-					</tr>
-				</thead>
-				<tbody class="text-body">
-					{#each indicadorItems as item (item.id)}
-						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.section.name}</td>
-							<td class="col-code">{item.code}</td>
-							<td class="col-label">{item.name}</td>
-							<td class="col-text">{item.description}</td>
-							<td class="col-metric">{item.target} {item.targetUnit}</td>
-							<td class="col-badge">
-								<Badge variant={item.isDeleted ? 'error' : 'success'}>
-									{item.isDeleted ? 'borrado' : 'activo'}
-								</Badge>
-							</td>
-							<td class="col-actions-md">
-								<div class="actions-row">
-									{#if showDetailIcon && onClickDetalle && onKeydownDetalle}
-										<IconButton
-											isDisabled={item.isDeleted}
-											name="detail"
-											tooltipLabel="Ver detalle"
-											size="md"
-											borderShape="square"
-											variant="ghost"
-											onClick={() => onClickDetalle(item)}
-											onKeydown={(e) => onKeydownDetalle(e, item)}
-										/>
-									{/if}
-									<IconButton
-										isDisabled={item.isDeleted}
-										name="edit"
-										tooltipLabel="Editar registro"
-										size="md"
-										borderShape="square"
-										variant="ghost"
-										onClick={() => onClickEditar(item)}
-										onKeydown={(e) => onKeydownEditar(e, item)}
-									/>
-									<IconButton
-										isDisabled={item.isDeleted}
-										name="delete"
-										tooltipLabel="Borrar registro"
-										size="md"
-										borderShape="square"
-										variant="ghost"
-										onClick={() => onClickBorrar(item)}
-										onKeydown={(e) => onKeydownBorrar(e, item)}
-									/>
-									<IconButton
-										isDisabled={!item.isDeleted}
-										name="restore"
-										tooltipLabel="Restaurar registro"
-										size="md"
-										borderShape="square"
-										variant="ghost"
-										onClick={() => onClickRestaurar(item)}
-										onKeydown={(e) => onKeydownRestaurar(e, item)}
-									/>
-								</div>
-							</td>
+<main class="main-panel--inline">
+	<section class="list-view--table">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
+		{#if items.length > 0}
+			<div class="table-container--inline">
+				<table class="data-table text-body">
+					<thead class="text-body-strong">
+						<tr>
+							<th class="col-code">Seccion</th>
+							<th class="col-code">Código</th>
+							<th class="col-label">Nombre</th>
+							<th class="col-text">Descripción</th>
+							<th class="col-metric">Meta</th>
+							<th class="col-badge">Estatus</th>
 						</tr>
-					{/each}
-				</tbody>
-			</table>
+					</thead>
+
+					<tbody class="text-body">
+						{#each items as item (item.id)}
+							<tr class="table-row tr-expandable">
+								<td class="col-code">{item.section.code}</td>
+								<td class="col-code">{item.code}</td>
+								<td class="col-label">{item.name}</td>
+								<td class="col-text">{item.description}</td>
+								<td class="col-metric">{buildTarget(item)}</td>
+								<td class="col-badge">
+									<Badge variant={item.isDeleted ? 'error' : 'success'}>
+										{item.isDeleted ? 'borrado' : 'activo'}
+									</Badge>
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</div>
 		{:else}
-			<EmptySection message="No hay elementos de indicador"></EmptySection>
+			<EmptySection />
+		{/if}
+	</section>
+
+	<section class="list-view--cards">
+		{#if items.length > 0}
+			<CardColumn minWidth="360px" maxWidth="2500px">
+				{#each items as item (item.id)}
+					<Card>
+						<CardHeader code={item.code} name={item.name}>
+							<Badge variant={item.isDeleted ? 'error' : 'success'}>
+								{item.isDeleted ? 'borrado' : 'activo'}
+							</Badge>
+						</CardHeader>
+
+						<CardContent>
+							<CardContentItem label="Descripción" value={item.description} />
+							<CardContentItem label="Tipo" value={item.indicadorType} />
+							<CardContentItem label="Meta" value={buildTarget(item)} />
+						</CardContent>
+					</Card>
+				{/each}
+			</CardColumn>
+		{:else}
+			<EmptySection message="No hay elementos"></EmptySection>
 		{/if}
 	</section>
 </main>
 
 <style>
-	.main-panel {
-		flex-shrink: 0;
-		position: sticky;
-		top: 0;
-		z-index: 1;
+	.main-panel--inline {
+		flex: none;
+		min-height: auto;
+		overflow: visible;
+	}
+
+	/* Por default (>= 1500px) gana la tabla; las cards quedan ocultas
+	   y fuera del flujo para no pelear por el flex del panel. */
+	.list-view--table {
+		display: contents;
+	}
+
+	.list-view--cards {
+		display: none;
+	}
+
+	/* Ajustar el max-width dependiendo el contenido! */
+	@media (max-width: 2500px) {
+		.list-view--table {
+			display: none;
+		}
+
+		.list-view--cards {
+			display: grid;
+		}
 	}
 </style>

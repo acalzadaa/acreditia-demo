@@ -11,7 +11,6 @@
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
 	import type { PlaneacionEstrategicaItem } from '$lib/schemas/planeacionEstrategica.schema';
-	
 
 	interface Props {
 		items: PlaneacionEstrategicaItem[];
@@ -101,7 +100,7 @@
 				</table>
 			</div>
 		{:else}
-			<EmptySection message="No hay elementos"></EmptySection>
+			<EmptySection />
 		{/if}
 	</section>
 

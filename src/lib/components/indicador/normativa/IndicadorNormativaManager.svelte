@@ -23,7 +23,7 @@
 			<IconButton
 				name="chevron-down"
 				size="md"
-				shape="round"
+				shape="circle"
 				variant="ghost"
 				onClick={cardExpand.onClick}
 				onKeydown={(e) => cardExpand.onKeydown(e)}
@@ -37,7 +37,7 @@
 			<IconButton
 				name="add"
 				size="md"
-				shape="round"
+				shape="circle"
 				variant="outline"
 				tooltipLabel="Agregar grupo"
 				onClick={modalNormativa.handlers('add').onClick}
@@ -60,22 +60,22 @@
 								</div>
 
 								<div class="element-item__actions">
-										<IconButton
-											name="delete"
-											tooltipLabel="Borrar registro"
-											size="sm"
-											shape="square"
-											variant="ghost"
-											onClick={() => modalNormativa.handlers('delete').onClickItem(item)}
-											onKeydown={(e) => modalNormativa.handlers('delete').onKeydownItem(e, item)}
-										/>
+									<IconButton
+										name="delete"
+										tooltipLabel="Borrar registro"
+										size="sm"
+										shape="square"
+										variant="ghost"
+										onClick={() => modalNormativa.handlers('delete').onClickItem(item)}
+										onKeydown={(e) => modalNormativa.handlers('delete').onKeydownItem(e, item)}
+									/>
 								</div>
 							</header>
 						</article>
 					{/each}
 				</div>
 			{:else}
-				<EmptySection message="No hay areas responsables"></EmptySection>
+				<EmptySection />
 			{/if}
 		</div>
 	{/if}
