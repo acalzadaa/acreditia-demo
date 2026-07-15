@@ -15,13 +15,11 @@
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let navigationItems = $derived(page.data.navigationItems);
 
-	/* LOGOUT */
 	async function onClickLogout() {
 		auth.logout();
 		goto(resolve('/login'), { replaceState: true });
 	}
 
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR + MODALS =====
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
 </script>
@@ -50,19 +48,6 @@
 </div>
 
 <style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto 1fr auto;
-		height: 100vh;
-		position: relative;
-	}
-	
 	.main-children {
 		grid-area: main;
 		background-color: var(--bg-ground);

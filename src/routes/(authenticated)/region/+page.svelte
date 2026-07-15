@@ -6,7 +6,7 @@
 	import { goto } from '$app/navigation';
 	import CrearRegionForm from '$lib/components/region/CrearRegionForm.svelte';
 	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
-	import Region from '$lib/components/region/Region.svelte';
+	import Region from '$lib/components/region/RegionList.svelte';
 	import { getPuestoRef, getRegion } from '$lib/stores/data.svelte';
 	import type { RegionWithRelationsItem } from '$lib/schemas/region.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
@@ -14,7 +14,6 @@
 	let regionItems = getRegion();
 	let puestos = getPuestoRef('region');
 
-	/* DETALLE */
 	function onClickDetalle(item: RegionWithRelationsItem) {
 		goto(resolve(`/region/${item.code}`));
 	}
@@ -25,7 +24,6 @@
 		}
 	}
 
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR + MODALS =====
 	let modal = createModalManager<RegionWithRelationsItem>();
 </script>
 
@@ -52,10 +50,8 @@
 		/>
 	</main>
 
-	<!-- MODAL CREAR -->
 	<CrearRegionForm open={modal.isOpen('create')} refs={puestos} onClose={modal.close} />
 
-	<!-- MODAL EDITAR -->
 	{#if modal.selectedItem}
 		<EditarRegionForm
 			open={modal.isOpen('edit')}
@@ -64,14 +60,12 @@
 			onClose={modal.close}
 		/>
 
-		<!-- MODAL BORRAR -->
 		<BorrarRegionForm
 			open={modal.isOpen('delete')}
 			selectedItem={modal.selectedItem}
 			onClose={modal.close}
 		/>
 
-		<!-- MODAL RESTAURAR -->
 		<RestaurarRegionForm
 			open={modal.isOpen('restore')}
 			selectedItem={modal.selectedItem}

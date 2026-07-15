@@ -1,20 +1,17 @@
 <script lang="ts">
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Region from '$lib/components/region/Region.svelte';
+	import Region from '$lib/components/region/RegionList.svelte';
 	import { getCampusRef, getPuestoRef, getRegion, getRegionCampus } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 
 	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
-	import RestaurarRegionForm from '$lib/components/region/RestaurarRegionForm.svelte';
-	import BorrarRegionForm from '$lib/components/region/BorrarRegionForm.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import EditarRegionCampusForm from '$lib/components/region/campus/EditarRegionCampusForm.svelte';
-	import BorrarRegionCampusForm from '$lib/components/region/campus/BorrarRegionCampusForm.svelte';
-	import RestaurarRegionCampusForm from '$lib/components/region/campus/RestaurarRegionCampusForm.svelte';
 	import AddRegionCampusForm from '$lib/components/region/campus/AddRegionCampusForm.svelte';
 	import type { RegionItem } from '$lib/schemas/region.schema';
-	import RegionCampus from '$lib/components/region/campus/RegionCampus.svelte';
 	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
+	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import RegionCampusSublist from '$lib/components/region/campus/RegionCampusSublist.svelte';
 
 	let regionCode = page.params.regionCode;
 	let regionItems = getRegion().filter((item) => item.code === regionCode);
@@ -26,7 +23,6 @@
 		(item) => !regionCampusItems.some((campusItem) => campusItem?.id === item.id)
 	);
 
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<RegionItem>();
 	let modalRegionCampus = createModalManager<RegionCampusItem>();
 </script>
@@ -47,27 +43,18 @@
 		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
 	></Region>
 
-	<Toolbar
-		gridArea="campusToolbar"
-		crearTitle="Agregar campus"
-		onClickCrear={modalRegionCampus.handlers('create').onClick}
-		onKeydownCrear={(e) => modalRegionCampus.handlers('create').onKeydown(e)}
-	/>
-
 	<main class="detail-content">
-		<RegionCampus
+		<RegionCampusSublist
 			showHeader={true}
 			title="Lista de campus asignados"
-			{regionCampusItems}
-			onClickEditar={modalRegionCampus.handlers('edit').onClickItem}
-			onClickBorrar={modalRegionCampus.handlers('delete').onClickItem}
-			onClickRestaurar={modalRegionCampus.handlers('restore').onClickItem}
+			items={regionCampusItems}
+			onClickRemover={modalRegionCampus.handlers('remove').onClickItem}
+			onClickAgregar={modalRegionCampus.handlers('add').onClick}
 		/>
 	</main>
 </div>
 
 {#if modal.selectedItem}
-	<!-- MODAL EDITAR -->
 	<EditarRegionForm
 		open={modal.isOpen('edit')}
 		selectedItem={modal.selectedItem}
@@ -75,48 +62,37 @@
 		onClose={modal.close}
 	/>
 
-	<!-- MODAL BORRAR -->
-	<BorrarRegionForm
+	<ConfirmDeleteModal
+		demo={true}
 		open={modal.isOpen('delete')}
-		selectedItem={modal.selectedItem}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 
-	<!-- MODAL RESTAURAR -->
-	<RestaurarRegionForm
+	<ConfirmRestoreModal
+		demo={true}
 		open={modal.isOpen('restore')}
-		selectedItem={modal.selectedItem}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 {/if}
 
 <AddRegionCampusForm
-	open={modalRegionCampus.isOpen('create')}
+	open={modalRegionCampus.isOpen('add')}
 	{campusRef}
 	onClose={modalRegionCampus.close}
 />
 
 {#if modalRegionCampus.selectedItem}
-	<!-- MODAL EDITAR -->
-	<EditarRegionCampusForm
-		open={modalRegionCampus.isOpen('edit')}
-		selectedItem={modalRegionCampus.selectedItem}
-		{campusRef}
+	<ConfirmModal
+		demo={true}
+		message="¿Desea remover el registro?"
+		title="Remover campus"
+		buttonLabel="Remover"
+		open={modalRegionCampus.isOpen('remove')}
+		id={modalRegionCampus.selectedItem.id}
 		onClose={modalRegionCampus.close}
-	/>
-
-	<!-- MODAL BORRAR -->
-	<BorrarRegionCampusForm
-		open={modalRegionCampus.isOpen('delete')}
-		selectedItem={modalRegionCampus.selectedItem}
-		onClose={modalRegionCampus.close}
-	/>
-
-	<!-- MODAL RESTAURAR -->
-	<RestaurarRegionCampusForm
-		open={modalRegionCampus.isOpen('restore')}
-		selectedItem={modalRegionCampus.selectedItem}
-		onClose={modalRegionCampus.close}
+		actionButtonVariant="critical"
 	/>
 {/if}
 
