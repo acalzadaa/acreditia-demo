@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
-	import InputText from '../ui/input/InputText.svelte';
+	
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { jobTypeOptions, puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
 	import { hasFormErrors } from '$lib/helpers/superform';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
@@ -102,7 +103,7 @@
 						required={true}
 						bind:value={$form.type}
 						errors={$errors.type}
-					></InputSelect>
+					/>
 
 					<TextArea
 						label="Descripcion"
@@ -112,16 +113,16 @@
 						disabled={false}
 						bind:value={$form.description}
 						errors={$errors.description}
-					></TextArea>
+					/>
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}
 					>Cancelar</Button
 				>
 				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar puesto</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

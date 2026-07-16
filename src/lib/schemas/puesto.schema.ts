@@ -2,10 +2,17 @@ import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
 
 export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
+export const JOB_LEVEL_TYPE = ['principal', 'auxiliar'] as const;
 export const ESTATUS = ['activo', 'inactivo', 'borrado'] as const;
 
 export const jobTypeOptions: OptionData[] =
 	JOB_TYPE.map((v) => ({
+		id: v,
+		option: v.toUpperCase()
+	})) ?? [];
+
+export const jobLevelTypeOptions: OptionData[] =
+	JOB_LEVEL_TYPE.map((v) => ({
 		id: v,
 		option: v.toUpperCase()
 	})) ?? [];
@@ -23,7 +30,10 @@ export const puestoFormSchema = z.object({
 		.string()
 		.min(1, 'El nombre es obligatorio')
 		.max(255, 'El nombre debe tener máximo 255 caracteres'),
-	type: z.enum(JOB_TYPE).default('funcional'),
+	type: z.enum(JOB_TYPE).default('responsable'),
+
+	referenceId: z.uuid(),
+	level: z.enum(JOB_LEVEL_TYPE).default('principal'),
 	description: z.string().default('')
 });
 
@@ -37,6 +47,8 @@ export const puestoItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	type: z.enum(JOB_TYPE),
+	referenceId: z.uuid(),
+	level: z.enum(JOB_LEVEL_TYPE),
 	description: z.string().default(''),
 	version: z.number().int().nonnegative().default(0),
 	isCurrent: z.boolean().default(true),

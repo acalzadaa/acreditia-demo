@@ -6,7 +6,7 @@
 	import Footer from '$lib/components/common/Footer.svelte';
 	import EditarPuestoForm from '$lib/components/puesto-de-trabajo/EditarPuestoForm.svelte';
 	import CrearPuestoForm from '$lib/components/puesto-de-trabajo/CrearPuestoForm.svelte';
-	import Puesto from '$lib/components/puesto-de-trabajo/Puesto.svelte';
+	import Puesto from '$lib/components/puesto-de-trabajo/PuestoList.svelte';
 	import type { PuestoItem } from '$lib/schemas/puesto.schema';
 	import BorrarPuestoForm from '$lib/components/puesto-de-trabajo/BorrarPuestoForm.svelte';
 	import RestaurarPuestoForm from '$lib/components/puesto-de-trabajo/RestaurarPuestoForm.svelte';
