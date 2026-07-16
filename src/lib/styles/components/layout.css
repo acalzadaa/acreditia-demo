@@ -71,11 +71,13 @@
 /* VARIANTE 1 (default): el panel mismo scrollea el grupo */
 .detail-panel {
 	overflow-y: auto;
+	gap: var(--space-4);
 }
 
 /* VARIANTE 2 y 3: el panel NO scrollea, tiene header fijo */
 .detail-panel--static {
 	overflow: hidden;
+	gap: var(--space-4);
 }
 
 /* .detail-content: compartida por Variante 2 y 3 */

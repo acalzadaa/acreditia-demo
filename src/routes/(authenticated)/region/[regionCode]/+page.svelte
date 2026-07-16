@@ -3,11 +3,11 @@
 	import { page } from '$app/state';
 
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import AddRegionCampusForm from '$lib/components/region/campus/AddRegionCampusForm.svelte';
 	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
-	import RegionCampusSublist from '$lib/components/region/campus/RegionCampusSublist.svelte';
-	import RegionDetail from '$lib/components/region/RegionDetail.svelte';
+	import RegionDetail from '$lib/components/features/region/RegionDetail.svelte';
+	import RegionCampusSublist from '$lib/components/features/region/campus/RegionCampusSublist.svelte';
+	import AddRegionCampusForm from '$lib/components/features/region/campus/AddRegionCampusForm.svelte';
 
 	let regionCode = page.params.regionCode;
 	let regionItems = getRegion().filter((item) => item.code === regionCode);
@@ -52,8 +52,3 @@
 	/>
 {/if}
 
-<style>
-	.detail-panel {
-		gap: 10px;
-	}
-</style>

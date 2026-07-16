@@ -2,7 +2,7 @@ import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
 
 export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
-export const JOB_LEVEL_TYPE = ['principal', 'auxiliar'] as const;
+export const JOB_LEVEL_TYPE = ['primario', 'secundario'] as const;
 export const ESTATUS = ['activo', 'inactivo', 'borrado'] as const;
 
 export const jobTypeOptions: OptionData[] =
@@ -33,7 +33,7 @@ export const puestoFormSchema = z.object({
 	type: z.enum(JOB_TYPE).default('responsable'),
 
 	referenceId: z.uuid(),
-	level: z.enum(JOB_LEVEL_TYPE).default('principal'),
+	level: z.enum(JOB_LEVEL_TYPE).default('primario'),
 	description: z.string().default('')
 });
 

@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-
-	import InputText from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import Icon from '../ui/Icon.svelte';
-		import type { PuestoRef } from '$lib/schemas/shared.schema';
+	import type { PuestoRef } from '$lib/schemas/shared.schema';
 	import { regionItemSchema, type RegionItem } from '$lib/schemas/region.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
@@ -80,13 +79,12 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name="warning"></Icon>
+						<Icon name="warning"/>
 						{$message}
 					</div>
 				{/if}
 
 				<div class="form-fields">
-				
 					<InputText
 						label="Nombre"
 						name="name"

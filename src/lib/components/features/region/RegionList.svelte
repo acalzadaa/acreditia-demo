@@ -1,34 +1,64 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
+	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
+	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
+	import { navigateTo } from '$lib/helpers/navigation';
 	import type { RegionItem } from '$lib/schemas/region.schema';
+	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
 
 	interface Props {
 		items: RegionItem[];
+		onClickEditar: (item: RegionItem) => void;
+		onClickBorrar: (item: RegionItem) => void;
+		onClickRestaurar: (item: RegionItem) => void;
+
+		onClickCrear: () => void;
+		onClickExport?: () => void;
+		onClickFilter?: () => void;
+
 		showHeader?: boolean;
+		showFilter?: boolean;
+		showExport?: boolean;
 		title?: string;
 		subtitle?: string;
 	}
 
 	const {
 		items,
+		onClickEditar,
+		onClickBorrar,
+		onClickRestaurar,
+		onClickCrear,
+		onClickExport,
+		onClickFilter,
 		showHeader = true,
+		showExport = false,
+		showFilter = false,
 		title = 'Detalle de region',
 		subtitle = ''
 	}: Props = $props();
 </script>
 
-<main class="main-panel main-panel--inline">
+<main class="main-panel">
 	<section class="list-view--table">
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />
 		{/if}
+		<ToolbarV2
+			crearTitle="Nueva region"
+			{onClickCrear}
+			{onClickFilter}
+			{onClickExport}
+			{showExport}
+			{showFilter}
+		/>
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
@@ -38,6 +68,7 @@
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Descripción</th>
 							<th class="col-badge">Estatus</th>
+							<th class="col-actions-md">Acciones</th>
 						</tr>
 					</thead>
 
@@ -51,6 +82,19 @@
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
 									</Badge>
+								</td>
+								<td class="col-actions-md">
+									<ListDetailActions
+										{item}
+										onClickDetail={() => navigateTo(item.code)}
+										isDetailDisabled={item.isDeleted}
+										onClickEdit={() => onClickEditar(item)}
+										isEditDisabled={item.isDeleted}
+										onClickDelete={() => onClickBorrar(item)}
+										isDeleteDisabled={item.isDeleted}
+										onClickRestore={() => onClickRestaurar(item)}
+										isRestoreDisabled={!item.isDeleted}
+									/>
 								</td>
 							</tr>
 						{/each}
@@ -66,8 +110,17 @@
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />
 		{/if}
+		<ToolbarV2
+			mobileVersion={true}
+			crearTitle="Nueva region"
+			{onClickCrear}
+			{onClickExport}
+			{onClickFilter}
+			showExport={false}
+			showFilter={false}
+		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1500px">
+			<CardColumn minWidth="360px" maxWidth="1910px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader code={item.code} name={item.name}>
@@ -79,6 +132,20 @@
 						<CardContent>
 							<CardContentItem label="Descripción" value={item.description} />
 						</CardContent>
+
+						<CardFooter>
+							<ListDetailActions
+								{item}
+								onClickDetail={() => navigateTo(item.code)}
+								isDetailDisabled={item.isDeleted}
+								onClickEdit={() => onClickEditar(item)}
+								isEditDisabled={item.isDeleted}
+								onClickDelete={() => onClickBorrar(item)}
+								isDeleteDisabled={item.isDeleted}
+								onClickRestore={() => onClickRestaurar(item)}
+								isRestoreDisabled={!item.isDeleted}
+							/>
+						</CardFooter>
 					</Card>
 				{/each}
 			</CardColumn>
@@ -98,7 +165,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1500px) {
+	@media (max-width: 1910px) {
 		.list-view--table {
 			display: none;
 		}
