@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
-	import { getAreaFuncional, getAreaFuncionalRef, getPuestoRef } from '$lib/stores/data.svelte';
+	import { getAreaFuncional, getAreaFuncionalRef } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
@@ -10,7 +10,6 @@
 
 	let areaFuncionalItems = getAreaFuncional();
 	let areaFuncionalRef = getAreaFuncionalRef();
-	let puestos = getPuestoRef('funcional');
 	let modal = createModalManager<AreaFuncionalItem>();
 </script>
 
@@ -26,7 +25,6 @@
 
 <CrearAreaFuncionalForm
 	open={modal.isOpen('create')}
-	refs={puestos}
 	{areaFuncionalRef}
 	onClose={modal.close}
 />
@@ -35,7 +33,6 @@
 	<EditarAreaFuncionalForm
 		open={modal.isOpen('edit')}
 		selectedItem={modal.selectedItem}
-		refs={puestos}
 		{areaFuncionalRef}
 		onClose={modal.close}
 	/>

@@ -1,23 +1,23 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
-	import InputText from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
+	
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import Icon from '../ui/Icon.svelte';
 	import {
 		areaResponsableFormSchema,
 		type AreaResponsableItem
 	} from '$lib/schemas/areaResponsable.schema';
-	import type { AreaResponsableRef, InstitucionRef, PuestoRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, InstitucionRef } from '$lib/schemas/shared.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
 		selectedItem: AreaResponsableItem;
-		puestoRef: PuestoRef[];
 		institucionRef: InstitucionRef[];
 		areaResponsableRef: AreaResponsableRef[];
 		onClose: () => void;
@@ -25,12 +25,7 @@
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	const puestoOptions = $derived(
-		props.puestoRef?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
+	
 
 	let institucionOptions = $derived(
 		props.institucionRef?.map((ref) => ({
@@ -53,7 +48,6 @@
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
 		{
 			id: props.selectedItem.id,
-			puestoId: props.selectedItem.puesto.id,
 			code: props.selectedItem.code,
 			name: props.selectedItem.name,
 			description: props.selectedItem.description,
@@ -131,15 +125,7 @@
 						{...$constraints.institucionId}
 					/>
 
-					<InputSelect
-						label="Puesto"
-						name="puestoId"
-						optionsData={puestoOptions}
-						required={true}
-						bind:value={$form.puestoId}
-						errors={$errors.puestoId}
-						{...$constraints.puestoId}
-					></InputSelect>
+					
 
 					<InputText
 						label="Nombre"

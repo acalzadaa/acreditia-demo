@@ -1,36 +1,28 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
-	import InputText from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
+
 	import {
 		areaFuncionalFormSchema,
-		type AreaFuncionalRef,
-		type AreaFuncionalWithRelationsItem
+		type AreaFuncionalItem
 	} from '$lib/schemas/areaFuncional.schema';
-	import type { PuestoRef } from '$lib/schemas/puesto.schema';
 	import { zod4 } from 'sveltekit-superforms/adapters';
+	import type { AreaFuncionalRef } from '$lib/schemas/shared.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
-		selectedItem: AreaFuncionalWithRelationsItem;
-		refs: PuestoRef[];
+		selectedItem: AreaFuncionalItem;
 		areaFuncionalRef: AreaFuncionalRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
-
-	const puestoOptions = $derived(
-		props.refs?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
 
 	const areaFuncionalOptions = $derived(
 		props.areaFuncionalRef?.map((ref) => ({
@@ -46,7 +38,6 @@
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
 		{
 			id: props.selectedItem.id,
-			puestoId: props.selectedItem.puestoId,
 			code: props.selectedItem.code,
 			name: props.selectedItem.name,
 			description: props.selectedItem.description,
@@ -113,16 +104,6 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelect
-						label="puesto"
-						name="puestoId"
-						optionsData={puestoOptions}
-						required={true}
-						bind:value={$form.puestoId}
-						errors={$errors.puestoId}
-						{...$constraints.puestoId}
-					/>
-
 					<InputText
 						label="Nombre"
 						name="name"
@@ -155,12 +136,12 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
 				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar area</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

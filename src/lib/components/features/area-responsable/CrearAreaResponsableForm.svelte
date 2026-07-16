@@ -1,16 +1,16 @@
 <script lang="ts">
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
-	import InputText from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
-	import type { AreaResponsableRef, InstitucionRef, PuestoRef } from '$lib/schemas/shared.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+
+	import type { AreaResponsableRef, InstitucionRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		puestoRef: PuestoRef[];
 		areaResponsableRef: AreaResponsableRef[];
 		institucionRef: InstitucionRef[];
 		onClose: () => void;
@@ -30,14 +30,6 @@
 
 	let errorMessage = $state('');
 
-	// Opciones para el select de puesto
-	const puestoOptions = $derived(
-		props.puestoRef.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		}))
-	);
-
 	let institucionOptions = $derived(
 		props.institucionRef?.map((ref) => ({
 			id: ref.id,
@@ -54,11 +46,8 @@
 
 	// Auto-seleccionar si solo hay una opción
 	$effect(() => {
-		if (puestoOptions.length === 1 && !formData.puestoId) {
-			formData.puestoId = puestoOptions[0].id;
-		}
 		if (areaResponsableOptions.length === 1 && !formData.parentId) {
-			formData.parentId = puestoOptions[0]!.id;
+			formData.parentId = areaResponsableOptions[0]!.id;
 		}
 	});
 
@@ -160,15 +149,6 @@
 						errors={errorMessage && !formData.institucionId ? [errorMessage] : undefined}
 					/>
 
-					<InputSelect
-						label="Puesto"
-						name="puestoId"
-						optionsData={puestoOptions}
-						required={true}
-						bind:value={formData.puestoId}
-						errors={errorMessage && !formData.puestoId ? [errorMessage] : undefined}
-					/>
-
 					<InputText
 						label="Código"
 						name="code"
@@ -211,10 +191,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
 				<Button type="submit" variant="primary">Crear área</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

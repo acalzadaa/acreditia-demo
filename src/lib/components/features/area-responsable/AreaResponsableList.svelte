@@ -10,13 +10,13 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
-	import type { AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
+	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
 
 	interface Props {
-		items: AreaFuncionalItem[];
-		onClickEditar: (item: AreaFuncionalItem) => void;
-		onClickBorrar: (item: AreaFuncionalItem) => void;
-		onClickRestaurar: (item: AreaFuncionalItem) => void;
+		items: AreaResponsableItem[];
+		onClickEditar: (item: AreaResponsableItem) => void;
+		onClickBorrar: (item: AreaResponsableItem) => void;
+		onClickRestaurar: (item: AreaResponsableItem) => void;
 
 		onClickCrear: () => void;
 		onClickExport: () => void;
@@ -36,7 +36,7 @@
 		onClickExport,
 		onClickFilter,
 		showHeader = true,
-		title = 'Listado de areas funcionales',
+		title = 'Listado de areas responsables',
 		subtitle = ''
 	}: Props = $props();
 </script>
