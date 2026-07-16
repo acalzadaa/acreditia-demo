@@ -2,19 +2,16 @@
 	import Modal from '../modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import type { PuestoRef } from '$lib/schemas/puesto.schema';
 
 	interface Props {
 		open: boolean;
-		refs: PuestoRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, refs = [] }: Props = $props();
+	let { open = $bindable(false), onClose }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
@@ -25,21 +22,6 @@
 	});
 
 	let errorMessage = $state('');
-
-	// Opciones para el select de puesto
-	const puestoOptions = $derived(
-		refs.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		}))
-	);
-
-	// Auto-seleccionar si solo hay una opción
-	$effect(() => {
-		if (puestoOptions.length === 1 && !formData.puestoId) {
-			formData.puestoId = puestoOptions[0].id;
-		}
-	});
 
 	function handleSubmit() {
 		// Validación básica
@@ -126,14 +108,6 @@
 						</div>
 					{/if}
 
-					<InputSelect
-						label="Puesto de Director"
-						name="puestoId"
-						optionsData={puestoOptions}
-						required={true}
-						bind:value={formData.puestoId}
-						errors={errorMessage && !formData.puestoId ? [errorMessage] : undefined}
-					/>
 
 					<InputText
 						label="Código"

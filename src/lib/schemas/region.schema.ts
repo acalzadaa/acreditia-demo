@@ -1,12 +1,11 @@
 import { z } from 'zod';
-import { puestoRefSchema, usuarioRefSchema } from './shared.schema';
+import { usuarioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
 export const regionFormSchema = z.object({
 	id: z.uuid().optional(),
-	puestoId: z.uuid('El puesto es requerido'), // FIX: required, no optional
 	code: z
 		.string()
 		.min(3, 'El código es requerido')
@@ -31,8 +30,6 @@ export type RegionForm = z.infer<typeof regionFormSchema>;
 // ============================================
 export const regionItemSchema = z.object({
 	id: z.uuid(),
-	puestoId: z.uuid(),
-	puesto: puestoRefSchema,
 	usuario: usuarioRefSchema,
 	code: z.string(),
 	name: z.string(),

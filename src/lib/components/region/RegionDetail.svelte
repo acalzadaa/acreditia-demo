@@ -19,7 +19,7 @@
 	const {
 		items,
 		showHeader = true,
-		title = 'Detalle de indicador',
+		title = 'Detalle de region',
 		subtitle = ''
 	}: Props = $props();
 </script>
