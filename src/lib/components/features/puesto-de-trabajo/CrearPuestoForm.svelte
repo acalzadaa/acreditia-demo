@@ -20,6 +20,8 @@
 		code: '',
 		name: '',
 		type: '',
+		referenceId: '',
+		level: '',
 		description: ''
 	});
 
@@ -48,6 +50,8 @@
 			code: '',
 			name: '',
 			type: '',
+			referenceId: '',
+			level: '',
 			description: ''
 		};
 
@@ -64,6 +68,8 @@
 			code: '',
 			name: '',
 			type: '',
+			referenceId: '',
+			level: '',
 			description: ''
 		};
 		errorMessage = '';

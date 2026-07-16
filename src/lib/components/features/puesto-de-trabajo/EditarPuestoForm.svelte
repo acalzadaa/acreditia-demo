@@ -3,7 +3,6 @@
 	
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { jobTypeOptions, puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
-	import { hasFormErrors } from '$lib/helpers/superform';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
@@ -27,6 +26,7 @@
 	const { form, errors, enhance, submitting, tainted, isTainted, message } = superForm(
 		props.selectedItem,
 		{
+			dataType: 'json',
 			validators: zod4(puestoItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
@@ -40,7 +40,7 @@
 				}
 			},
 			onUpdated: async ({ form }) => {
-				if (form.valid && !hasFormErrors(form.errors)) {
+				if (form.valid) {
 					onClose();
 				}
 			}

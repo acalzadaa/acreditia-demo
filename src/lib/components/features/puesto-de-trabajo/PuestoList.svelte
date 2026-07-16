@@ -60,9 +60,11 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Código</th>
-							<th class="col-label">Nombre</th>
-							<th class="col-label">Tipo</th>
+							<th class="col-label">Código</th>
+							<th class="col-label">Puesto</th>
+							<th class="col-label">Departamento</th>
+							<th class="col-code">Tipo</th>
+							<th class="col-code">Nivel de atencion</th>
 							<th class="col-text">Descripción</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
@@ -71,9 +73,11 @@
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr>
-								<td class="col-code">{item.code}</td>
+								<td class="col-label">{item.code}</td>
 								<td class="col-label">{item.name}</td>
-								<td class="col-label">{item.type}</td>
+								<td class="col-label">{item.reference.name}</td>
+								<td class="col-code">{item.type}</td>
+								<td class="col-code">{item.level}</td>
 								<td class="col-text">{item.description}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
@@ -112,7 +116,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1500px">
+			<CardColumn minWidth="360px" maxWidth="2500px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader code={item.code} name={item.name}>
@@ -122,7 +126,9 @@
 						</CardHeader>
 
 						<CardContent>
+							<CardContentItem label="Departamento" value={item.reference.name} />
 							<CardContentItem label="Tipo de puesto" value={item.type} />
+							<CardContentItem label="Nivel de atencion" value={item.level} />
 							<CardContentItem label="Descripción" value={item.description} />
 						</CardContent>
 
@@ -158,7 +164,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1500px) {
+	@media (max-width: 2500px) {
 		.list-view--table {
 			display: none;
 		}

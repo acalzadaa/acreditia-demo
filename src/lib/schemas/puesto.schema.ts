@@ -1,5 +1,6 @@
 import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
+import { baseRefSchema } from './shared.schema';
 
 export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
 export const JOB_LEVEL_TYPE = ['primario', 'secundario'] as const;
@@ -31,7 +32,6 @@ export const puestoFormSchema = z.object({
 		.min(1, 'El nombre es obligatorio')
 		.max(255, 'El nombre debe tener máximo 255 caracteres'),
 	type: z.enum(JOB_TYPE).default('responsable'),
-
 	referenceId: z.uuid(),
 	level: z.enum(JOB_LEVEL_TYPE).default('primario'),
 	description: z.string().default('')
@@ -47,7 +47,7 @@ export const puestoItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	type: z.enum(JOB_TYPE),
-	referenceId: z.uuid(),
+	reference: baseRefSchema,
 	level: z.enum(JOB_LEVEL_TYPE),
 	description: z.string().default(''),
 	version: z.number().int().nonnegative().default(0),
