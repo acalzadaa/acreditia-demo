@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { areaResponsableRefSchema, institucionRefSchema, puestoRefSchema } from './shared.schema';
-import { puestoItemSchema } from './puesto.schema';
+import { areaResponsableRefSchema, institucionRefSchema } from './shared.schema';
 import { institucionItemSchema } from './institucion.schema';
 
 // ============================================
@@ -12,7 +11,6 @@ import { institucionItemSchema } from './institucion.schema';
 // ============================================
 export const areaResponsableFormSchema = z.object({
 	id: z.uuid().optional(),
-	puestoId: z.uuid({ message: 'El puesto es requerido' }),
 	institucionId: z.uuid({ message: 'La institucion es requerida' }),
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
@@ -33,7 +31,6 @@ export const areaResponsableItemSchema = z.object({
 	name: z.string(),
 	description: z.string().default(''),
 
-	puesto: puestoRefSchema,
 	institucion: institucionRefSchema,
 	parent: areaResponsableRefSchema.nullable(),
 
@@ -49,10 +46,8 @@ export const areaResponsableItemSchema = z.object({
 export type AreaResponsableItem = z.infer<typeof areaResponsableItemSchema>;
 
 export const areaResponsableWithRelationsItemSchema = areaResponsableItemSchema.extend({
-	puesto: puestoItemSchema,
 	parent: areaResponsableItemSchema
 		.omit({
-			puesto: true,
 			institucion: true,
 			parent: true
 		})

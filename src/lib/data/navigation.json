@@ -239,6 +239,25 @@
 					"status": "inactive"
 				}
 			]
+		},
+		{
+			"id": 7,
+			"order": 70,
+			"label": "Configuracion",
+			"description": "Configuración del sistema",
+			"itemType": "section",
+			"status": "active", 
+			"children" : [
+					{
+					"id": 701,
+					"order": 71,
+					"label": "Usuario",
+					"href": "/usuario",
+					"description": "Administra permisos de usuarios",
+					"itemType": "link",
+					"status": "active"
+				}
+			]
 		}
 	]
 }

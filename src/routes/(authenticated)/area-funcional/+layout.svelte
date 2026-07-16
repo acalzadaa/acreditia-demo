@@ -18,7 +18,6 @@
 	let navigationItems = $derived(page.data.navigationItems);
 	let notificationItems = getNotificacion();
 
-	/* LOGOUT */
 	async function onClickLogout() {
 		await auth.logout();
 		goto(resolve('/login'), { replaceState: true });

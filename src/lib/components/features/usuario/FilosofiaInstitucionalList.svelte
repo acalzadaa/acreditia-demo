@@ -48,7 +48,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva filosofia"
+			crearTitle="Nueva planeacion"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -103,7 +103,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva filosofia"
+			crearTitle="Nueva planeacion"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -156,7 +156,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1500px) {
+	@media (max-width: 1686px) {
 		.list-view--table {
 			display: none;
 		}

@@ -1,214 +1,56 @@
 <script lang="ts">
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
-	import type {
-		AreaFuncionalItem,
-		AreaFuncionalWithRelationsItem
-	} from '$lib/schemas/areaFuncional.schema';
-	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
-	import AreaFuncional from '$lib/components/area-funcional/AreaFuncional.svelte';
-	import CrearAreaFuncionalForm from '$lib/components/area-funcional/CrearAreaFuncionalForm.svelte';
-	import EditarAreaFuncionalForm from '$lib/components/area-funcional/EditarAreaFuncionalForm.svelte';
-	import BorrarAreaFuncionalForm from '$lib/components/area-funcional/BorrarAreaFuncionalForm.svelte';
-	import RestaurarAreaFuncionalForm from '$lib/components/area-funcional/RestaurarAreaFuncionalForm.svelte';
-	import { auth } from '$lib/stores/auth.svelte';
+	import type { AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
 	import { getAreaFuncional, getAreaFuncionalRef, getPuestoRef } from '$lib/stores/data.svelte';
-	import { page } from '$app/state';
-	import NavigationBarContainer from '$lib/components/navigation/NavigationBarContainer.svelte';
-
-	let username = auth.user?.email?.split('@')[0] || 'Usuario';
+	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import AreaFuncionalList from '$lib/components/features/area-funcional/AreaFuncionalList.svelte';
+	import CrearAreaFuncionalForm from '$lib/components/features/area-funcional/CrearAreaFuncionalForm.svelte';
+	import EditarAreaFuncionalForm from '$lib/components/features/area-funcional/EditarAreaFuncionalForm.svelte';
 
 	let areaFuncionalItems = getAreaFuncional();
 	let areaFuncionalRef = getAreaFuncionalRef();
-	let navigationItems = $derived(page.data.navigationItems);
 	let puestos = getPuestoRef('funcional');
-
-	let itemSeleccionado: AreaFuncionalWithRelationsItem | null = $state(null);
-
-	/* LOGOUT */
-	async function onClickLogout() {
-		auth.logout();
-		goto(resolve('/login'), { replaceState: true });
-	}
-
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
-	let showNotificationBar = $state(false);
-	let showNavigationBar = $state(true);
-
-	function onClickNavigationBar() {
-		showNavigationBar = !showNavigationBar;
-	}
-
-	function onKeydownNavigationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNavigationBar();
-		}
-	}
-
-	function onClickNotificationBar() {
-		showNotificationBar = !showNotificationBar;
-	}
-
-	function onKeydownNotificationBar(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickNotificationBar();
-		}
-	}
-
-	// ===== ESTADOS DE MODALES =====
-	let showCrearModal = $state(false);
-	let showEditarModal = $state(false);
-	let showBorrarModal = $state(false);
-	let showRestaurarModal = $state(false);
-
-	// ===== HANDLERS =====
-
-	/* CREAR */
-
-	function onClickCrear() {
-		showCrearModal = true;
-	}
-
-	function onKeydownCrear(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			onClickCrear();
-		}
-	}
-
-	/* EDITAR */
-
-	function onClickEditar(item: AreaFuncionalWithRelationsItem) {
-		itemSeleccionado = item;
-		showEditarModal = true;
-	}
-
-	function onKeydownEditar(e: KeyboardEvent, item: AreaFuncionalWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickEditar(item);
-		}
-	}
-
-	/* BORRAR */
-
-	function onClickBorrar(item: AreaFuncionalWithRelationsItem) {
-		itemSeleccionado = item;
-		showBorrarModal = true;
-	}
-
-	function onKeydownBorrar(e: KeyboardEvent, item: AreaFuncionalWithRelationsItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	/* RESTAURAR */
-	function onClickRestaurar(item: AreaFuncionalItem) {
-		itemSeleccionado = item;
-		showRestaurarModal = true;
-	}
-
-	function onKeydownRestaurar(e: KeyboardEvent, item: AreaFuncionalItem) {
-		if (e.key === 'Enter') {
-			onClickBorrar(item);
-		}
-	}
-
-	function handleCerrar() {
-		showCrearModal = false;
-		showEditarModal = false;
-		showBorrarModal = false;
-		showRestaurarModal = false;
-		itemSeleccionado = null;
-	}
+	let modal = createModalManager<AreaFuncionalItem>();
 </script>
 
-<div class="app-grid">
-	<Header
-		{username}
-		{onClickLogout}
-	/>
-	<Subheader
-		{onClickNavigationBar}
-		onKeydownNavigationBar={(e) => onKeydownNavigationBar(e)}
-		{onClickNotificationBar}
-		onKeydownNotificationBar={(e) => onKeydownNotificationBar(e)}
-		{showNavigationBar}
-		{showNotificationBar}
-	/>
-	<NavigationBarContainer {showNavigationBar} {navigationItems} />
-	<NotificationBarContainer {showNotificationBar} />
-	<Toolbar
-		crearTitle="Nueva area"
-		{onClickCrear}
-		onKeydownCrear={(e) => onKeydownCrear(e)}
-		showExport={true}
-		showFilter={true}
-	/>
-	<AreaFuncional
-		{areaFuncionalItems}
-		onClickEditar={(item) => onClickEditar(item)}
-		onKeydownEditar={(e, item) => onKeydownEditar(e, item)}
-		onClickBorrar={(item) => onClickBorrar(item)}
-		onKeydownBorrar={(e, item) => onKeydownBorrar(e, item)}
-		onClickRestaurar={(item: AreaFuncionalItem) => onClickRestaurar(item)}
-		onKeydownRestaurar={(e: KeyboardEvent, item: AreaFuncionalItem) => onKeydownRestaurar(e, item)}
-	/>
+<AreaFuncionalList
+	items={areaFuncionalItems}
+	onClickEditar={(item) => modal.handlers('edit').onClickItem(item)}
+	onClickBorrar={(item) => modal.handlers('delete').onClickItem(item)}
+	onClickRestaurar={(item) => modal.handlers('restore').onClickItem(item)}
+	onClickCrear={modal.handlers('create').onClick}
+	onClickExport={modal.handlers('export').onClick}
+	onClickFilter={modal.handlers('filter').onClick}
+/>
 
-	<!-- MODAL CREAR -->
-	<CrearAreaFuncionalForm
-		bind:open={showCrearModal}
+<CrearAreaFuncionalForm
+	open={modal.isOpen('create')}
+	refs={puestos}
+	{areaFuncionalRef}
+	onClose={modal.close}
+/>
+
+{#if modal.selectedItem}
+	<EditarAreaFuncionalForm
+		open={modal.isOpen('edit')}
+		selectedItem={modal.selectedItem}
 		refs={puestos}
 		{areaFuncionalRef}
-		onClose={handleCerrar}
+		onClose={modal.close}
 	/>
 
-	<!-- MODAL EDITAR -->
-	{#if showEditarModal && itemSeleccionado}
-		<EditarAreaFuncionalForm
-			bind:open={showEditarModal}
-			selectedItem={itemSeleccionado}
-			refs={puestos}
-			{areaFuncionalRef}
-			onClose={handleCerrar}
-		/>
-	{/if}
+	<ConfirmDeleteModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('delete')}
+		onClose={modal.close}
+	/>
 
-	<!-- MODAL BORRAR -->
-	{#if showBorrarModal && itemSeleccionado}
-		<BorrarAreaFuncionalForm
-			bind:open={showBorrarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
-		/>
-	{/if}
-
-	<!-- MODAL RESTAURAR -->
-	{#if showRestaurarModal && itemSeleccionado}
-		<RestaurarAreaFuncionalForm
-			bind:open={showRestaurarModal}
-			selectedItem={itemSeleccionado}
-			onClose={handleCerrar}
-		/>
-	{/if}
-	<Footer />
-</div>
-
-<style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
-		height: 100vh;
-		position: relative;
-	}
-</style>
+	<ConfirmRestoreModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('restore')}
+		onClose={modal.close}
+	/>
+{/if}

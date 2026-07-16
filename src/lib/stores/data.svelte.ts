@@ -75,10 +75,7 @@ import {
 	unidadAcademicaItemSchema,
 	type UnidadAcademicaItem
 } from '$lib/schemas/unidadAcademica.schema';
-import {
-	areaFuncionalWithRelationsItemSchema,
-	type AreaFuncionalWithRelationsItem
-} from '$lib/schemas/areaFuncional.schema';
+import { areaFuncionalItemSchema, type AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
 
 import {
 	type ModeloFullRef,
@@ -171,7 +168,7 @@ let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
 let puesto = $state<PuestoItem[]>([]);
 
 let areaResponsable = $state<AreaResponsableItem[]>([]);
-let areaFuncional = $state<AreaFuncionalWithRelationsItem[]>([]);
+let areaFuncional = $state<AreaFuncionalItem[]>([]);
 
 let modelo = $state<ModeloItem[]>([]);
 let capitulo = $state<CapituloItem[]>([]);
@@ -250,7 +247,7 @@ puesto = puestoRawData.map((item) => puestoItemSchema.parse(item));
 
 const areaFuncionalRawData = areaFuncionalJsonData.areaFuncionalItems;
 areaFuncional = areaFuncionalRawData.map((item) =>
-	areaFuncionalWithRelationsItemSchema.parse(item)
+	areaFuncionalItemSchema.parse(item)
 );
 
 const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;

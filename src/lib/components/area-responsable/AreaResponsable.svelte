@@ -43,7 +43,6 @@
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-code">Puesto</th>
 						<th class="col-code">Código</th>
 						<th class="col-label">Nombre</th>
 						<th class="col-text">Descripción</th>
@@ -55,9 +54,6 @@
 				<tbody class="text-body">
 					{#each areaResponsableItems as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">
-								{item.puesto?.code}
-							</td>
 							<td class="col-code">{item.code}</td>
 							<td class="col-label">{item.name}</td>
 							<td class="col-text">{item.description}</td>

@@ -1,22 +1,22 @@
 <script lang="ts">
-	import type { FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
-	import EmptySection from '$lib/components/common/EmptySection.svelte';
-	import Badge from '$lib/components/ui/Badge.svelte';
-	import ListActions from '$lib/components/actions/ListActions.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
-	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
-	import Card from '$lib/components/ui/card/Card.svelte';
-	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
-	import CardContent from '$lib/components/ui/card/CardContent.svelte';
-	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
-	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
+	import type { AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
+	import ListActions from '../actions/ListActions.svelte';
+	import EmptySection from '../common/EmptySection.svelte';
+	import PageHeader from '../common/PageHeader.svelte';
+	import ToolbarV2 from '../common/ToolbarV2.svelte';
+	import Badge from '../ui/Badge.svelte';
+	import Card from '../ui/card/Card.svelte';
+	import CardColumn from '../ui/card/CardColumn.svelte';
+	import CardContent from '../ui/card/CardContent.svelte';
+	import CardContentItem from '../ui/card/CardContentItem.svelte';
+	import CardFooter from '../ui/card/CardFooter.svelte';
+	import CardHeader from '../ui/card/CardHeader.svelte';
 
 	interface Props {
-		items: FilosofiaInstitucionalItem[];
-		onClickEditar: (item: FilosofiaInstitucionalItem) => void;
-		onClickBorrar: (item: FilosofiaInstitucionalItem) => void;
-		onClickRestaurar: (item: FilosofiaInstitucionalItem) => void;
+		items: AreaFuncionalItem[];
+		onClickEditar: (item: AreaFuncionalItem) => void;
+		onClickBorrar: (item: AreaFuncionalItem) => void;
+		onClickRestaurar: (item: AreaFuncionalItem) => void;
 
 		onClickCrear: () => void;
 		onClickExport: () => void;
@@ -36,7 +36,7 @@
 		onClickExport,
 		onClickFilter,
 		showHeader = true,
-		title = 'Listado de filosofias institucionales',
+		title = 'Listado de areas funcionales',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -48,7 +48,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva filosofia"
+			crearTitle="Nueva area"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -63,17 +63,18 @@
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Descripción</th>
+							<th class="col-label">Reporta a</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
 						</tr>
 					</thead>
-
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
 								<td class="col-text">{item.description}</td>
+								<td class="col-label">{item.parent?.name}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
@@ -82,10 +83,10 @@
 								<td class="col-actions-md">
 									<ListActions
 										{item}
-										onClickEdit={() => onClickEditar(item)}
-										isEditDisabled={item.isDeleted}
-										onClickDelete={() => onClickBorrar(item)}
+										onClickDelete={() => onClickEditar(item)}
 										isDeleteDisabled={item.isDeleted}
+										onClickEdit={() => onClickBorrar(item)}
+										isEditDisabled={item.isDeleted}
 										onClickRestore={() => onClickRestaurar(item)}
 										isRestoreDisabled={!item.isDeleted}
 									/>
@@ -103,7 +104,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva filosofia"
+			crearTitle="Nueva area"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -111,7 +112,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1500px">
+			<CardColumn minWidth="360px" maxWidth="1899px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader code={item.code} name={item.name}>
@@ -122,6 +123,7 @@
 
 						<CardContent>
 							<CardContentItem label="Descripción" value={item.description} />
+							<CardContentItem label="Depende de" value={item.parent?.name} />
 						</CardContent>
 
 						<CardFooter>
@@ -156,7 +158,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1500px) {
+	@media (max-width: 1900px) {
 		.list-view--table {
 			display: none;
 		}

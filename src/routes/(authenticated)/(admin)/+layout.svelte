@@ -1,59 +1,59 @@
 <script lang="ts">
-	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
-	import { resolve } from '$app/paths';
-	import { goto } from '$app/navigation';
-	import type { LayoutProps } from '../$types';
-	import { auth } from '$lib/stores/auth.svelte';
-	import { page } from '$app/state';
-	import { getNotificacion } from '$lib/stores/data.svelte';
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
+	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import ToastContainer from '$lib/components/common/ToastContainer.svelte';
+	import { resolve } from '$app/paths';
+	import { goto } from '$app/navigation';
+	import { auth } from '$lib/stores/auth.svelte';
+	import { page } from '$app/state';
+	import { createToggle } from '$lib/utils/toggle.svelte';
+	import type { LayoutProps } from '../$types';
 	import NavigationBarContainer from '$lib/components/navigation/NavigationBarContainer.svelte';
 	let { children }: LayoutProps = $props();
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';
 	let navigationItems = $derived(page.data.navigationItems);
-	let notificationItems = getNotificacion();
 
-	/* LOGOUT */
 	async function onClickLogout() {
-		await auth.logout();
+		auth.logout();
 		goto(resolve('/login'), { replaceState: true });
 	}
 
 	let navigationToggle = createToggle(true);
 	let notificationToggle = createToggle(false);
-	let userMenuToggle = createToggle(false);
 </script>
 
 <div class="app-grid">
 	<Header
 		{username}
 		{onClickLogout}
-		onClickAvatar={() => userMenuToggle.toggle()}
-		showUserMenu={userMenuToggle.value}
 	/>
 	<Subheader
 		onClickNavigationBar={navigationToggle.onClick}
 		onKeydownNavigationBar={(e) => navigationToggle.onKeydown(e)}
-		onClickNotificationBar={notificationToggle.onClick}
-		onKeydownNotificationBar={(e) => notificationToggle.onKeydown(e)}
+		onClickNotificationBar={navigationToggle.onClick}
+		onKeydownNotificationBar={(e) => navigationToggle.onKeydown(e)}
 		showNavigationBar={navigationToggle.value}
 		showNotificationBar={notificationToggle.value}
 	/>
 	<NavigationBarContainer showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBarContainer
-		items={notificationItems}
-		showNotificationBar={notificationToggle.value}
-	/>
+	<NotificationBarContainer showNotificationBar={notificationToggle.value} />
 
 	<main class="main-children">
 		{@render children()}
 	</main>
+
 	<Footer />
 </div>
 
-<ToastContainer />
+<style>
+	.main-children {
+		grid-area: main;
+		background-color: var(--bg-ground);
+		min-height: 0;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+	}
+</style>

@@ -26,6 +26,9 @@ export type UsuarioForm = z.infer<typeof usuarioFormSchema>;
 export const usuarioItemSchema = z.object({
 	id: z.uuid(),
 	authUserId: z.string(),
+	firstName: z.string().default(''),
+	lastName: z.string().default(''),
+	email: z.email(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(true),
 	validFrom: z.coerce.date(),

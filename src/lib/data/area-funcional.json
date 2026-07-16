@@ -2,16 +2,10 @@
 	"areaFuncionalItems": [
 		{
 			"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puestoId": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
 			"code": "VPA",
 			"name": "VP Académica",
 			"description": "Vicepresidencia académica institucional responsable de la calidad educativa, planes de estudio y acreditación",
 			"parentId": null,
-			"puesto": {
-				"id": "79a162b0-b9bf-43c6-9eb2-6b1f7dcd87f6",
-				"code": "VPA",
-				"name": "VP Académica"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -23,16 +17,10 @@
 		},
 		{
 			"id": "7bf3c6a3-fe6d-4cb4-b304-f60fab8c7e8a",
-			"puestoId": "11935fea-37be-44a6-9545-e62f28bf60bc",
 			"code": "ACPA",
 			"name": "Aseguramiento de la Calidad y Planeación Académica",
 			"description": "Garantiza la calidad académica, planeación institucional y preparación para acreditaciones FIMPES",
 			"parentId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puesto": {
-				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
-				"code": "DIR_CALIDAD",
-				"name": "Director de Calidad y Acreditación"
-			},
 			"parent": {
 				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
 				"code": "VPA",
@@ -48,16 +36,10 @@
 		},
 		{
 			"id": "333cdb19-e282-49db-be20-f28eb2189eb2",
-			"puestoId": "fa1c495d-ae96-47f9-a2da-1d1c32d1da5b",
 			"code": "DIES",
 			"name": "Dirección Institucional de Educación Superior",
 			"description": "Define políticas y estrategias para educación superior y programas académicos",
 			"parentId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puesto": {
-				"id": "fa1c495d-ae96-47f9-a2da-1d1c32d1da5b",
-				"code": "DIR_EDUCACION",
-				"name": "Director de Educación Superior"
-			},
 			"parent": {
 				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
 				"code": "VPA",
@@ -73,16 +55,10 @@
 		},
 		{
 			"id": "b8c9d0e1-f2a3-4567-8901-23456789abcd",
-			"puestoId": "cf3afbe7-13f8-4e12-9e31-bf69ee6d3fd2",
 			"code": "STYCN",
 			"name": "Secretaría Técnica y Cumplimiento Normativo",
 			"description": "Asegura el cumplimiento normativo académico y documentos para FIMPES",
 			"parentId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puesto": {
-				"id": "cf3afbe7-13f8-4e12-9e31-bf69ee6d3fd2",
-				"code": "SEC_TECNICA",
-				"name": "Secretario Técnico"
-			},
 			"parent": {
 				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
 				"code": "VPA",
@@ -98,16 +74,10 @@
 		},
 		{
 			"id": "c9d0e1f2-a3b4-5678-9012-3456789abcde",
-			"puestoId": "b7acbb51-4eee-43a2-9204-b678fa0d9489",
 			"code": "SATE",
 			"name": "Dirección de Servicios Académicos y Tecnología Educativa",
 			"description": "Provee servicios académicos y soporte tecnológico educativo para los programas",
 			"parentId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puesto": {
-				"id": "b7acbb51-4eee-43a2-9204-b678fa0d9489",
-				"code": "DIR_SERVICIOS_ACAD",
-				"name": "Director de Servicios Académicos"
-			},
 			"parent": {
 				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
 				"code": "VPA",
@@ -123,16 +93,10 @@
 		},
 		{
 			"id": "1579411b-7c44-44eb-9f90-a911f735ae47",
-			"puestoId": "bdd42817-05d6-47ac-8d60-e6eeeda463a6",
 			"code": "DDE",
 			"name": "Dirección de Desarrollo Educativo",
 			"description": "Diseña e implementa programas de formación docente y actualización pedagógica",
 			"parentId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puesto": {
-				"id": "bdd42817-05d6-47ac-8d60-e6eeeda463a6",
-				"code": "DIR_DESARROLLO_EDU",
-				"name": "Director de Desarrollo Educativo"
-			},
 			"parent": {
 				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
 				"code": "VPA",
@@ -148,16 +112,10 @@
 		},
 		{
 			"id": "cf7de7cd-b1f8-41b6-b305-6cd257b80516",
-			"puestoId": "926bd942-6707-4b63-bf73-7fd4b14a7a6e",
 			"code": "DIE",
 			"name": "Dirección de Innovación Educativa",
 			"description": "Fomenta la innovación en metodologías y estrategias de enseñanza-aprendizaje",
 			"parentId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puesto": {
-				"id": "926bd942-6707-4b63-bf73-7fd4b14a7a6e",
-				"code": "DIR_INNOVACION_EDU",
-				"name": "Director de Innovación Educativa"
-			},
 			"parent": {
 				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
 				"code": "VPA",
@@ -173,16 +131,10 @@
 		},
 		{
 			"id": "2e5af159-63c0-4670-b3af-74379943ee95",
-			"puestoId": "8ff55421-1aba-453f-8861-c0d6e7920172",
 			"code": "DCE",
 			"name": "Dirección de Curriculum y Evaluación",
 			"description": "Diseño curricular y evaluación de programas educativos para estándares FIMPES",
 			"parentId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puesto": {
-				"id": "8ff55421-1aba-453f-8861-c0d6e7920172",
-				"code": "DIR_CURRICULUM",
-				"name": "Director de Curriculum y Evaluación"
-			},
 			"parent": {
 				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
 				"code": "VPA",
@@ -198,16 +150,10 @@
 		},
 		{
 			"id": "44f38dc9-090f-4d80-9c0c-d80df5b5da80",
-			"puestoId": "e12e5bd7-5be1-45e8-9d3b-68113b1a31c2",
 			"code": "DED",
 			"name": "Dirección de Educación Dual y Vinculación Académica",
 			"description": "Coordina programas de educación dual y vinculación con empresas",
 			"parentId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-			"puesto": {
-				"id": "e12e5bd7-5be1-45e8-9d3b-68113b1a31c2",
-				"code": "DIR_EDUCACION_DUAL",
-				"name": "Director de Educación Dual"
-			},
 			"parent": {
 				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
 				"code": "VPA",
@@ -223,16 +169,10 @@
 		},
 		{
 			"id": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
-			"puestoId": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
 			"code": "VPC",
 			"name": "VP Comercial y Experiencia del Estudiante",
 			"description": "Vicepresidencia comercial y experiencia estudiantil responsable de la satisfacción del estudiante",
 			"parentId": null,
-			"puesto": {
-				"id": "c8017b62-34ca-489f-b4f5-f6ea97e4c2d3",
-				"code": "VPC",
-				"name": "VP Comercial y Experiencia del Estudiante"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -244,16 +184,10 @@
 		},
 		{
 			"id": "fdba3ad1-01df-4b17-8e71-118afb32add6",
-			"puestoId": "bd0b971c-d4d1-4339-85e8-126352c427df",
 			"code": "VLRE",
 			"name": "Dirección de Vinculación Laboral y Relación con Egresados",
 			"description": "Conecta estudiantes con oportunidades laborales y gestiona egresados",
 			"parentId": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
-			"puesto": {
-				"id": "bd0b971c-d4d1-4339-85e8-126352c427df",
-				"code": "DIR_VINCULACION_LAB",
-				"name": "Director de Vinculación Laboral"
-			},
 			"parent": {
 				"id": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
 				"code": "VPC",
@@ -269,16 +203,10 @@
 		},
 		{
 			"id": "93ab18f1-859d-4d71-9f90-e3a97be1fc98",
-			"puestoId": "46ce2ddc-9ab9-4fa3-af14-a5ca45b8f903",
 			"code": "DRYR",
 			"name": "Dirección de Retención y Regresos",
 			"description": "Implementa estrategias para retención estudiantil y reinserción de desertores",
 			"parentId": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
-			"puesto": {
-				"id": "46ce2ddc-9ab9-4fa3-af14-a5ca45b8f903",
-				"code": "DIR_RETENCION",
-				"name": "Director de Retención y Regresos"
-			},
 			"parent": {
 				"id": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
 				"code": "VPC",
@@ -294,16 +222,10 @@
 		},
 		{
 			"id": "2c3fefa6-08af-4711-a41c-c8333d23f0d5",
-			"puestoId": "1a916d8d-6cb3-4d35-b957-6e18d5fe070b",
 			"code": "SYCAE",
 			"name": "Dirección de Servicios y Canal de Atención al Estudiante",
 			"description": "Gestiona servicios y atención al estudiante para mejorar su experiencia",
 			"parentId": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
-			"puesto": {
-				"id": "1a916d8d-6cb3-4d35-b957-6e18d5fe070b",
-				"code": "DIR_SERVICIOS_EST",
-				"name": "Director de Servicios Estudiantiles"
-			},
 			"parent": {
 				"id": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
 				"code": "VPC",
@@ -319,16 +241,10 @@
 		},
 		{
 			"id": "b8f8002f-f6cf-4c99-9be7-be8dbf64c094",
-			"puestoId": "9315bc46-149e-4449-b4a3-07a80fe40289",
 			"code": "DME",
 			"name": "Dirección de Mercadotecnia y Captación",
 			"description": "Estrategias de marketing educativo y captación de nuevos estudiantes",
 			"parentId": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
-			"puesto": {
-				"id": "9315bc46-149e-4449-b4a3-07a80fe40289",
-				"code": "DIR_MARKETING",
-				"name": "Director de Mercadotecnia"
-			},
 			"parent": {
 				"id": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
 				"code": "VPC",
@@ -344,16 +260,10 @@
 		},
 		{
 			"id": "2a6d03f9-613f-474a-9c22-fe6e2f3582d5",
-			"puestoId": "b1911c8a-bd35-40c1-96d4-5792c90935f9",
 			"code": "DBE",
 			"name": "Dirección de Bienestar Estudiantil",
 			"description": "Programas de bienestar, salud emocional y desarrollo integral",
 			"parentId": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
-			"puesto": {
-				"id": "b1911c8a-bd35-40c1-96d4-5792c90935f9",
-				"code": "DIR_BIENESTAR",
-				"name": "Director de Bienestar Estudiantil"
-			},
 			"parent": {
 				"id": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
 				"code": "VPC",
@@ -369,16 +279,10 @@
 		},
 		{
 			"id": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
-			"puestoId": "9c39c016-b0f5-443a-b143-50bda4004ad3",
 			"code": "VPO",
 			"name": "VP Operaciones en Campus",
 			"description": "Vicepresidencia de operaciones en campus responsable de la gestión de instalaciones y servicios",
 			"parentId": null,
-			"puesto": {
-				"id": "9c39c016-b0f5-443a-b143-50bda4004ad3",
-				"code": "VPO",
-				"name": "VP Operaciones en Campus"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -390,16 +294,10 @@
 		},
 		{
 			"id": "b8c9d0e1-f2a3-4567-8901-23456789abce",
-			"puestoId": "3d1f5d29-cc01-4e13-9aa4-5dfd564ffeae",
 			"code": "DOC",
 			"name": "Dirección de Operaciones en Campus",
 			"description": "Supervisa operaciones diarias en campus y mantenimiento de instalaciones",
 			"parentId": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
-			"puesto": {
-				"id": "3d1f5d29-cc01-4e13-9aa4-5dfd564ffeae",
-				"code": "DIR_OPERACIONES",
-				"name": "Director de Operaciones en Campus"
-			},
 			"parent": {
 				"id": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
 				"code": "VPO",
@@ -415,16 +313,10 @@
 		},
 		{
 			"id": "c9d0e1f2-a3b4-5678-9012-3456789abcdf",
-			"puestoId": "4c64348f-6f0c-48be-8e02-109cca60b4e3",
 			"code": "DGA",
 			"name": "Dirección de Gestión Administrativa",
 			"description": "Gestiona operaciones administrativas en campus y servicios generales",
 			"parentId": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
-			"puesto": {
-				"id": "4c64348f-6f0c-48be-8e02-109cca60b4e3",
-				"code": "DIR_GESTION_ADMIN",
-				"name": "Director de Gestión Administrativa"
-			},
 			"parent": {
 				"id": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
 				"code": "VPO",
@@ -440,16 +332,10 @@
 		},
 		{
 			"id": "dc5b1cef-fb69-4f0e-a9ad-53342e726655",
-			"puestoId": "27d1c701-a0da-45eb-a0cd-10e5891d6825",
 			"code": "DIM",
 			"name": "Dirección de Infraestructura y Mantenimiento",
 			"description": "Coordina proyectos de infraestructura y mantenimiento de campus",
 			"parentId": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
-			"puesto": {
-				"id": "27d1c701-a0da-45eb-a0cd-10e5891d6825",
-				"code": "DIR_INFRAESTRUCTURA",
-				"name": "Director de Infraestructura y Mantenimiento"
-			},
 			"parent": {
 				"id": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
 				"code": "VPO",
@@ -465,16 +351,10 @@
 		},
 		{
 			"id": "f562c4b7-e8f2-4125-8510-1f346e7e7554",
-			"puestoId": "133383a9-c128-418e-b288-a18be1887732",
 			"code": "DSC",
 			"name": "Dirección de Seguridad y Contingencias",
 			"description": "Implementa protocolos de seguridad y atención a contingencias",
 			"parentId": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
-			"puesto": {
-				"id": "133383a9-c128-418e-b288-a18be1887732",
-				"code": "DIR_SEGURIDAD",
-				"name": "Director de Seguridad y Contingencias"
-			},
 			"parent": {
 				"id": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
 				"code": "VPO",
@@ -490,16 +370,10 @@
 		},
 		{
 			"id": "1d113d7d-3341-4cec-b500-199164864d9c",
-			"puestoId": "e5f078a6-20b2-4ee9-89fd-4b85e7ca7153",
 			"code": "VPRH",
 			"name": "VP Recursos Humanos",
 			"description": "Vicepresidencia de recursos humanos responsable del talento y desarrollo organizacional",
 			"parentId": null,
-			"puesto": {
-				"id": "e5f078a6-20b2-4ee9-89fd-4b85e7ca7153",
-				"code": "VPRH",
-				"name": "VP Recursos Humanos"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -511,16 +385,10 @@
 		},
 		{
 			"id": "82d91873-8045-452a-9e16-ae333137e16b",
-			"puestoId": "b75590eb-3713-4ed1-9bf9-06560d7c5ea6",
 			"code": "DRHH",
 			"name": "Dirección de Recursos Humanos",
 			"description": "Gestiona el talento humano institucional y procesos de selección",
 			"parentId": "1d113d7d-3341-4cec-b500-199164864d9c",
-			"puesto": {
-				"id": "b75590eb-3713-4ed1-9bf9-06560d7c5ea6",
-				"code": "DIR_RRHH",
-				"name": "Director de Recursos Humanos"
-			},
 			"parent": {
 				"id": "1d113d7d-3341-4cec-b500-199164864d9c",
 				"code": "VPRH",
@@ -536,16 +404,10 @@
 		},
 		{
 			"id": "17af9e97-b9d6-42d2-88fe-1593ddb116e4",
-			"puestoId": "5d3ab617-736e-4df9-8d8c-415d8ba50e15",
 			"code": "DCL",
 			"name": "Dirección de Compensaciones y Beneficios",
 			"description": "Diseña esquemas de compensación, beneficios y reconocimiento",
 			"parentId": "1d113d7d-3341-4cec-b500-199164864d9c",
-			"puesto": {
-				"id": "5d3ab617-736e-4df9-8d8c-415d8ba50e15",
-				"code": "DIR_COMPENSACIONES",
-				"name": "Director de Compensaciones y Beneficios"
-			},
 			"parent": {
 				"id": "1d113d7d-3341-4cec-b500-199164864d9c",
 				"code": "VPRH",
@@ -561,16 +423,10 @@
 		},
 		{
 			"id": "0afa48dc-3106-4f4d-8714-ac872ebe6def",
-			"puestoId": "64b3f27c-132d-4611-a444-fc6bc2af9aee",
 			"code": "DDH",
 			"name": "Dirección de Desarrollo Humano y Capacitación",
 			"description": "Coordina programas de capacitación y desarrollo profesional",
 			"parentId": "1d113d7d-3341-4cec-b500-199164864d9c",
-			"puesto": {
-				"id": "64b3f27c-132d-4611-a444-fc6bc2af9aee",
-				"code": "DIR_DESARROLLO_HUM",
-				"name": "Director de Desarrollo Humano"
-			},
 			"parent": {
 				"id": "1d113d7d-3341-4cec-b500-199164864d9c",
 				"code": "VPRH",
@@ -586,16 +442,10 @@
 		},
 		{
 			"id": "c34611b1-79ca-46f8-837e-b23be34b5e75",
-			"puestoId": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
 			"code": "VPTI",
 			"name": "VP Tecnologías de Información",
 			"description": "Vicepresidencia de tecnologías de información responsable de la transformación digital",
 			"parentId": null,
-			"puesto": {
-				"id": "8ea4f4f1-5226-4038-bc15-8a3ebe03d472",
-				"code": "VPTI",
-				"name": "VP Tecnologías de Información"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -607,16 +457,10 @@
 		},
 		{
 			"id": "637d32f5-6953-43d2-b90e-2b103da97f61",
-			"puestoId": "06458542-0fc1-441b-bb47-47d54f8218ee",
 			"code": "DDTI",
 			"name": "Dirección de Operaciones de Tecnología de Información",
 			"description": "Opera y mantiene la infraestructura tecnológica y plataformas digitales",
 			"parentId": "c34611b1-79ca-46f8-837e-b23be34b5e75",
-			"puesto": {
-				"id": "06458542-0fc1-441b-bb47-47d54f8218ee",
-				"code": "DIR_TI",
-				"name": "Director de Tecnologías de Información"
-			},
 			"parent": {
 				"id": "c34611b1-79ca-46f8-837e-b23be34b5e75",
 				"code": "VPTI",
@@ -632,16 +476,10 @@
 		},
 		{
 			"id": "47fc2ef2-0f1a-420e-a935-2f1bfef2d329",
-			"puestoId": "3c587ce8-78b2-40d1-aa9b-9dd4bdc6a732",
 			"code": "DSI",
 			"name": "Dirección de Sistemas de Información",
 			"description": "Desarrolla y gestiona sistemas de información institucionales",
 			"parentId": "c34611b1-79ca-46f8-837e-b23be34b5e75",
-			"puesto": {
-				"id": "3c587ce8-78b2-40d1-aa9b-9dd4bdc6a732",
-				"code": "DIR_SISTEMAS",
-				"name": "Director de Sistemas de Información"
-			},
 			"parent": {
 				"id": "c34611b1-79ca-46f8-837e-b23be34b5e75",
 				"code": "VPTI",
@@ -657,16 +495,10 @@
 		},
 		{
 			"id": "a934e854-8bb7-4815-8e1f-b49cb221d8a4",
-			"puestoId": "98408da3-9ad6-4b67-be1e-f68a41e8d409",
 			"code": "VPCOM",
 			"name": "Vicerrectoría de Comunicación y Marketing Institucional",
 			"description": "Estrategia de comunicación, marca institucional, relaciones públicas y marketing educativo",
 			"parentId": null,
-			"puesto": {
-				"id": "98408da3-9ad6-4b67-be1e-f68a41e8d409",
-				"code": "VP_COM",
-				"name": "Vicerrector de Comunicación y Marketing Institucional"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -678,16 +510,10 @@
 		},
 		{
 			"id": "f697fdcb-f21a-42e4-8092-4172678b49d0",
-			"puestoId": "84d2cd04-5632-49d0-8024-589dff1251c5",
 			"code": "VPPDI",
 			"name": "Vicerrectoría de Planeación y Desarrollo Institucional",
 			"description": "Planeación estratégica, indicadores FIMPES, mejora continua, evaluación institucional",
 			"parentId": null,
-			"puesto": {
-				"id": "84d2cd04-5632-49d0-8024-589dff1251c5",
-				"code": "VP_PLAN",
-				"name": "Vicerrector de Planeación y Desarrollo Institucional"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -699,16 +525,10 @@
 		},
 		{
 			"id": "97ce6fcc-14cb-4b09-acd5-6a94f2c19869",
-			"puestoId": "f1e097bd-37ca-4aa5-819d-cda579119aa9",
 			"code": "VPF",
 			"name": "Vicerrectoría de Finanzas y Administración",
 			"description": "Estrategia financiera, presupuesto institucional, control de gestión y tesorería",
 			"parentId": null,
-			"puesto": {
-				"id": "f1e097bd-37ca-4aa5-819d-cda579119aa9",
-				"code": "VP_FIN",
-				"name": "Vicerrector de Finanzas y Administración"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -720,16 +540,10 @@
 		},
 		{
 			"id": "86b2ff8b-4577-4ab3-964f-e679e0645566",
-			"puestoId": "bd8f0fba-8f2d-4c8f-bea0-6c2166545fad",
 			"code": "VPII",
 			"name": "Vicerrectoría de Investigación e Innovación",
 			"description": "Estrategia de investigación, posgrado, innovación educativa, cuerpos académicos y laboratorios",
 			"parentId": null,
-			"puesto": {
-				"id": "bd8f0fba-8f2d-4c8f-bea0-6c2166545fad",
-				"code": "VP_INV",
-				"name": "Vicerrector de Investigación e Innovación"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -741,16 +555,10 @@
 		},
 		{
 			"id": "1890b23a-6482-4061-a238-b10505f9b4fc",
-			"puestoId": "5232efe0-a21d-4c07-afa1-90e875e3fd53",
 			"code": "VPI",
 			"name": "Vicerrectoría de Internacionalización",
 			"description": "Estrategia de internacionalización, alianzas globales, acreditaciones internacionales, movilidad estratégica",
 			"parentId": null,
-			"puesto": {
-				"id": "5232efe0-a21d-4c07-afa1-90e875e3fd53",
-				"code": "VP_INT",
-				"name": "Vicerrector de Internacionalización"
-			},
 			"parent": null,
 			"version": 1,
 			"isCurrent": true,
@@ -762,16 +570,10 @@
 		},
 		{
 			"id": "bcbfeb92-9f84-4e2d-8063-7b037d437075",
-			"puestoId": "95890acb-fd63-4448-912d-5c7ad23ff9cb",
 			"code": "DCM",
 			"name": "Dirección de Comunicación y Marketing",
 			"description": "Gestiona la comunicación interna y externa y campañas de marketing",
 			"parentId": "a934e854-8bb7-4815-8e1f-b49cb221d8a4",
-			"puesto": {
-				"id": "95890acb-fd63-4448-912d-5c7ad23ff9cb",
-				"code": "DIR_COMUNICACION",
-				"name": "Director de Comunicación y Marketing"
-			},
 			"parent": {
 				"id": "a934e854-8bb7-4815-8e1f-b49cb221d8a4",
 				"code": "VPCOM",
@@ -787,16 +589,10 @@
 		},
 		{
 			"id": "c93cf745-98d9-4ca0-807c-d7efe9c3889c",
-			"puestoId": "92c6d217-db9c-442f-9473-bcb84f255416",
 			"code": "DPD",
 			"name": "Dirección de Planeación y Desarrollo",
 			"description": "Coordina la planeación estratégica y proyectos de desarrollo institucional",
 			"parentId": "f697fdcb-f21a-42e4-8092-4172678b49d0",
-			"puesto": {
-				"id": "92c6d217-db9c-442f-9473-bcb84f255416",
-				"code": "DIR_PLANEACION",
-				"name": "Director de Planeación y Desarrollo"
-			},
 			"parent": {
 				"id": "f697fdcb-f21a-42e4-8092-4172678b49d0",
 				"code": "VPPDI",
@@ -812,16 +608,10 @@
 		},
 		{
 			"id": "64930dc7-dce9-4a2a-a669-d24793a6df15",
-			"puestoId": "4dfbd5ff-6fdf-4ed4-a794-c0b746902c3c",
 			"code": "DFA",
 			"name": "Dirección de Finanzas y Administración",
 			"description": "Gestiona presupuestos, contabilidad y administración financiera",
 			"parentId": "97ce6fcc-14cb-4b09-acd5-6a94f2c19869",
-			"puesto": {
-				"id": "4dfbd5ff-6fdf-4ed4-a794-c0b746902c3c",
-				"code": "DIR_FINANZAS",
-				"name": "Director de Finanzas y Administración"
-			},
 			"parent": {
 				"id": "97ce6fcc-14cb-4b09-acd5-6a94f2c19869",
 				"code": "VPF",
@@ -837,16 +627,10 @@
 		},
 		{
 			"id": "c65de87b-d6de-45ca-aa64-ec0b91096fe3",
-			"puestoId": "3f21c22a-1cfb-46d5-93a9-2c9130966e84",
 			"code": "DII",
 			"name": "Dirección de Investigación e Innovación",
 			"description": "Coordina proyectos de investigación e innovación educativa",
 			"parentId": "86b2ff8b-4577-4ab3-964f-e679e0645566",
-			"puesto": {
-				"id": "3f21c22a-1cfb-46d5-93a9-2c9130966e84",
-				"code": "DIR_INVESTIGACION",
-				"name": "Director de Investigación e Innovación"
-			},
 			"parent": {
 				"id": "86b2ff8b-4577-4ab3-964f-e679e0645566",
 				"code": "VPII",
@@ -862,16 +646,10 @@
 		},
 		{
 			"id": "9033941d-2fb8-4b73-af9b-d705a6ad4ba0",
-			"puestoId": "f53407c8-7d52-4b4f-bbd2-34022296c4a9",
 			"code": "DINT",
 			"name": "Dirección de Internacionalización",
 			"description": "Coordina movilidad estudiantil y alianzas internacionales",
 			"parentId": "1890b23a-6482-4061-a238-b10505f9b4fc",
-			"puesto": {
-				"id": "f53407c8-7d52-4b4f-bbd2-34022296c4a9",
-				"code": "DIR_INTERNACIONAL",
-				"name": "Director de Internacionalización"
-			},
 			"parent": {
 				"id": "1890b23a-6482-4061-a238-b10505f9b4fc",
 				"code": "VPI",
