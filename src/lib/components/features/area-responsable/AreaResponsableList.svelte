@@ -141,7 +141,7 @@
 				{/each}
 			</CardColumn>
 		{:else}
-			<EmptySection message="No hay elementos"></EmptySection>
+			<EmptySection />
 		{/if}
 	</section>
 </main>

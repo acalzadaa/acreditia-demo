@@ -17,7 +17,6 @@
 	let areaResponsableRef = getAreaResponsableRef();
 	let institucionRef = getInstitucionRef();
 
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<AreaResponsableItem>();
 </script>
 
@@ -30,9 +29,7 @@
 	onClickExport={modal.handlers('export').onClick}
 	onClickFilter={modal.handlers('filter').onClick}
 />
-/>
 
-<!-- MODAL CREAR -->
 <CrearAreaResponsableForm
 	open={modal.isOpen('create')}
 	{areaResponsableRef}
