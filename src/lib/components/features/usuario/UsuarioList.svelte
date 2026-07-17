@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import ListActions from '$lib/components/actions/ListActions.svelte';
@@ -11,12 +10,13 @@
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
+	import type { UsuarioItem } from '$lib/schemas/usuario.schema';
 
 	interface Props {
-		items: FilosofiaInstitucionalItem[];
-		onClickEditar: (item: FilosofiaInstitucionalItem) => void;
-		onClickBorrar: (item: FilosofiaInstitucionalItem) => void;
-		onClickRestaurar: (item: FilosofiaInstitucionalItem) => void;
+		items: UsuarioItem[];
+		onClickEditar: (item: UsuarioItem) => void;
+		onClickBorrar: (item: UsuarioItem) => void;
+		onClickRestaurar: (item: UsuarioItem) => void;
 
 		onClickCrear: () => void;
 		onClickExport: () => void;
@@ -36,7 +36,7 @@
 		onClickExport,
 		onClickFilter,
 		showHeader = true,
-		title = 'Listado de filosofias institucionales',
+		title = 'Listado de usuarios',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -48,7 +48,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva planeacion"
+			crearTitle="Nuevo usuario"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -71,9 +71,9 @@
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
-								<td class="col-code">{item.code}</td>
-								<td class="col-label">{item.name}</td>
-								<td class="col-text">{item.description}</td>
+								<td class="col-code">{item.email}</td>
+								<td class="col-label">{item.firstName}</td>
+								<td class="col-text">{item.lastName}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}

@@ -11,7 +11,6 @@
 				"code": "ACPA",
 				"name": "Aseguramiento de la Calidad y Planeación Académica"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -31,7 +30,6 @@
 				"code": "DIES",
 				"name": "Dirección Institucional de Educación Superior"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -51,7 +49,6 @@
 				"code": "STYCN",
 				"name": "Secretaría Técnica y Cumplimiento Normativo"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -71,7 +68,6 @@
 				"code": "SATE",
 				"name": "Dirección de Servicios Académicos y Tecnología Educativa"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -91,7 +87,6 @@
 				"code": "DDE",
 				"name": "Dirección de Desarrollo Educativo"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -111,7 +106,6 @@
 				"code": "DIE",
 				"name": "Dirección de Innovación Educativa"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -131,7 +125,6 @@
 				"code": "DCE",
 				"name": "Dirección de Curriculum y Evaluación"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -151,7 +144,6 @@
 				"code": "DED",
 				"name": "Dirección de Educación Dual y Vinculación Académica"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -171,7 +163,6 @@
 				"code": "VLRE",
 				"name": "Dirección de Vinculación Laboral y Relación con Egresados"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -191,7 +182,6 @@
 				"code": "DRYR",
 				"name": "Dirección de Retención y Regresos"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -211,7 +201,6 @@
 				"code": "SYCAE",
 				"name": "Dirección de Servicios y Canal de Atención al Estudiante"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -231,7 +220,6 @@
 				"code": "DME",
 				"name": "Dirección de Mercadotecnia y Captación"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -251,7 +239,6 @@
 				"code": "DBE",
 				"name": "Dirección de Bienestar Estudiantil"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -271,7 +258,6 @@
 				"code": "DOC",
 				"name": "Dirección de Operaciones en Campus"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -291,7 +277,6 @@
 				"code": "DGA",
 				"name": "Dirección de Gestión Administrativa"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -311,7 +296,6 @@
 				"code": "DIM",
 				"name": "Dirección de Infraestructura y Mantenimiento"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -331,7 +315,6 @@
 				"code": "DSC",
 				"name": "Dirección de Seguridad y Contingencias"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -351,7 +334,6 @@
 				"code": "DRHH",
 				"name": "Dirección de Recursos Humanos"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -371,7 +353,6 @@
 				"code": "DCL",
 				"name": "Dirección de Compensaciones y Beneficios"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -391,7 +372,6 @@
 				"code": "DDH",
 				"name": "Dirección de Desarrollo Humano y Capacitación"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -411,7 +391,6 @@
 				"code": "DDTI",
 				"name": "Dirección de Operaciones de Tecnología de Información"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -431,7 +410,6 @@
 				"code": "DSI",
 				"name": "Dirección de Sistemas de Información"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -451,7 +429,6 @@
 				"code": "DCM",
 				"name": "Dirección de Comunicación y Marketing"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -471,7 +448,6 @@
 				"code": "DPD",
 				"name": "Dirección de Planeación y Desarrollo"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -491,7 +467,6 @@
 				"code": "DFA",
 				"name": "Dirección de Finanzas y Administración"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -511,7 +486,6 @@
 				"code": "DII",
 				"name": "Dirección de Investigación e Innovación"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -531,7 +505,6 @@
 				"code": "DINT",
 				"name": "Dirección de Internacionalización"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -551,7 +524,6 @@
 				"code": "VPA",
 				"name": "VP Académica"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -571,7 +543,6 @@
 				"code": "VPC",
 				"name": "VP Comercial y Experiencia del Estudiante"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -591,7 +562,6 @@
 				"code": "VPRH",
 				"name": "VP Recursos Humanos"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -611,7 +581,6 @@
 				"code": "VPTI",
 				"name": "VP Tecnologías de Información"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -631,7 +600,6 @@
 				"code": "VPO",
 				"name": "VP Operaciones en Campus"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -651,7 +619,6 @@
 				"code": "VPCOM",
 				"name": "Vicerrectoría de Comunicación y Marketing Institucional"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -671,7 +638,6 @@
 				"code": "VPPDI",
 				"name": "Vicerrectoría de Planeación y Desarrollo Institucional"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -691,7 +657,6 @@
 				"code": "VPF",
 				"name": "Vicerrectoría de Finanzas y Administración"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -711,7 +676,6 @@
 				"code": "VPII",
 				"name": "Vicerrectoría de Investigación e Innovación"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -731,7 +695,6 @@
 				"code": "VPI",
 				"name": "Vicerrectoría de Internacionalización"
 			},
-			"level": "primario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -750,7 +713,6 @@
 				"code": "r-001",
 				"name": "Región Norte"
 			},
-			"level": "secundario",
 			"description": "",
 			"version": 1,
 			"isCurrent": true,
@@ -771,7 +733,6 @@
 				"name": "Región Centro"
 			},
 			"description": "",
-			"level": "secundario",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -786,7 +747,6 @@
 			"name": "Director de Campus",
 			"type": "responsable",
 			"description": "Responsable máximo del campus",
-			"level": "secundario",
 			"reference": {
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
@@ -806,7 +766,6 @@
 			"name": "Director Académico",
 			"type": "responsable",
 			"description": "Liderazgo académico del campus",
-			"level": "secundario",
 			"reference": {
 				"id": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
 				"code": "AR_DIR_ACAD",
@@ -826,7 +785,6 @@
 			"name": "Director de Calidad y Acreditación",
 			"type": "responsable",
 			"description": "Gestión de acreditación FIMPES y mejora continua",
-			"level": "secundario",
 			"reference": {
 				"id": "be96c912-6cec-4195-aef9-1bfdd1c1fce6",
 				"code": "AR_DIR_CALIDAD",
@@ -846,7 +804,6 @@
 			"name": "Director Administrativo",
 			"type": "responsable",
 			"description": "Gestión administrativa y financiera del campus",
-			"level": "secundario",
 			"reference": {
 				"id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
 				"code": "AR_DIR_ADMIN",
@@ -866,7 +823,6 @@
 			"name": "Director de Recursos Humanos",
 			"type": "responsable",
 			"description": "Gestión del talento humano del campus",
-			"level": "secundario",
 			"reference": {
 				"id": "dbef1f3f-713f-405b-9c76-1df20f652348",
 				"code": "AR_DIR_RRHH",
@@ -886,7 +842,6 @@
 			"name": "Director de Tecnologías de Información",
 			"type": "responsable",
 			"description": "Estrategia y operación TIC del campus",
-			"level": "secundario",
 			"reference": {
 				"id": "9adf4263-3812-4b2d-a842-961a1a86389a",
 				"code": "AR_DIR_TIC",
@@ -906,7 +861,6 @@
 			"name": "Director de Servicios Estudiantiles",
 			"type": "responsable",
 			"description": "Atención integral a estudiantes",
-			"level": "secundario",
 			"reference": {
 				"id": "5260e4c1-1089-47a3-8985-984f8f64b039",
 				"code": "AR_DIR_ESTUDIANTES",
@@ -926,7 +880,6 @@
 			"name": "Director de Investigación",
 			"type": "responsable",
 			"description": "Fomento y gestión de la investigación",
-			"level": "secundario",
 			"reference": {
 				"id": "af9a643b-6ad0-4b3a-a746-de5ce7f5cf22",
 				"code": "AR_DIR_INVESTIGACION",
@@ -946,7 +899,6 @@
 			"name": "Director de Extensión y Vinculación",
 			"type": "responsable",
 			"description": "Relación con empresas y comunidad",
-			"level": "secundario",
 			"reference": {
 				"id": "1097f076-2a22-4adc-8e91-a2f3e815220d",
 				"code": "AR_DIR_EXTENSION",
@@ -966,7 +918,6 @@
 			"name": "Director de Internacionalización",
 			"type": "responsable",
 			"description": "Movilidad y convenios internacionales",
-			"level": "secundario",
 			"reference": {
 				"id": "b204f185-f579-4bd6-952a-f4abe3ab7a57",
 				"code": "AR_DIR_INTERNACIONAL",
