@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { auditMetadata, baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 
 export const rolFormSchema = z.object({
 	id: z.uuid().optional(),
@@ -13,5 +13,5 @@ export const rolItemSchema = baseRefSchema
 	.extend({
 		description: z.string().default('')
 	})
-	.extend(auditMetadata.shape);
+	.extend(auditMetadataSchema.shape);
 export type RolItem = z.infer<typeof rolItemSchema>;

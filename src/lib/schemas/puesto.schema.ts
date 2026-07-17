@@ -1,6 +1,6 @@
 import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
-import { auditMetadata, baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 
 export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
 export const ESTATUS = ['activo', 'inactivo', 'borrado'] as const;
@@ -41,7 +41,7 @@ export const puestoItemSchema = z
 		description: z.string().default('')
 	})
 	.extend(baseRefSchema.shape)
-	.extend(auditMetadata.shape);
+	.extend(auditMetadataSchema.shape);
 
 export type PuestoItem = z.infer<typeof puestoItemSchema>;
 

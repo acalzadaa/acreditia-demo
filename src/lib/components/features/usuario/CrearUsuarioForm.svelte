@@ -4,9 +4,7 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
-	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 
-	
 	import { toast } from '$lib/utils/toastManager.svelte';
 
 	interface Props {
@@ -18,26 +16,20 @@
 
 	// Estado local del formulario
 	let formData = $state({
-		code: '',
-		name: '',
-		description: ''
+		email: '',
+		firstName: '',
+		lastName: ''
 	});
 
 	// Estado para mensajes de error (opcional, para demo)
 	let errorMessage = $state('');
 
 	function handleSubmit() {
-		// Aquí podrías validar los datos si quieres
-		if (!formData.code || !formData.name) {
-			errorMessage = 'Código y nombre son requeridos';
-			return;
-		}
-
 		// Limpiar el formulario
 		formData = {
-			code: '',
-			name: '',
-			description: ''
+			email: '',
+			firstName: '',
+			lastName: ''
 		};
 
 		// Limpiar mensaje de error
@@ -47,7 +39,7 @@
 		handleClose();
 
 		// Mostrar toast
-		toast.success('Filosofia creada exitosamente');
+		toast.success('Usuario creado exitosamente');
 	}
 
 	function handleClose() {
@@ -64,9 +56,9 @@
 	function handleCancel() {
 		// Limpiar formulario al cancelar también
 		formData = {
-			code: '',
-			name: '',
-			description: ''
+			email: '',
+			firstName: '',
+			lastName: ''
 		};
 		errorMessage = '';
 		handleClose();
@@ -76,7 +68,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear filosofía institucional</h2>
+			<h2 class="modal-title text-h4">Crear usuario</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -102,40 +94,41 @@
 
 				<div class="form-fields">
 					<InputText
-						label="Código"
-						name="code"
+						label="Email"
+						type="email"
+						name="email"
 						required={true}
-						placeholder="PE-001"
-						status={errorMessage && !formData.code ? 'error' : 'normal'}
+						placeholder="acreditia@acreditia.com.mx"
+						status={errorMessage && !formData.email ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={formData.code}
+						bind:value={formData.email}
 					/>
 
 					<InputText
 						label="Nombre"
-						name="name"
+						name="firstName"
 						required={true}
-						placeholder="Excelencia educativa"
-						status={errorMessage && !formData.name ? 'error' : 'normal'}
+						placeholder="Alberto"
+						status={errorMessage && !formData.firstName ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={formData.name}
+						bind:value={formData.firstName}
 					/>
 
-					<TextArea
-						label="Descripcion"
-						name="description"
-						placeholder="Descripcion..."
-						status="normal"
+					<InputText
+						label="Apellido"
+						name="lastName"
+						required={true}
+						placeholder="Alvarez"
+						status={errorMessage && !formData.lastName ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={formData.description}
-						rows={4}
+						bind:value={formData.lastName}
 					/>
 				</div>
 			</div>
 
 			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear filosofia</Button>
+				<Button type="submit" variant="primary">Crear</Button>
 			</menu>
 		</form>
 	</div>

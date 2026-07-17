@@ -5,7 +5,7 @@
 import z from 'zod';
 
 //SDC Type 2 - Metadata
-export const auditMetadata = z.object({
+export const auditMetadataSchema = z.object({
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(true),
 	validFrom: z.coerce.date(),
@@ -14,6 +14,9 @@ export const auditMetadata = z.object({
 	createdAt: z.iso.datetime().optional(),
 	createdBy: z.string()
 });
+
+export type AuditMetadata = z.infer<typeof auditMetadataSchema>;
+
 
 // Base reference schema
 export const baseRefSchema = z.object({

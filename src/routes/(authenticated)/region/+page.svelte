@@ -18,7 +18,7 @@
 	<RegionList
 		items={regionItems}
 		showHeader={true}
-		title="Region"
+		title="Listado de regiones"
 		onClickCrear={modal.handlers('create').onClick}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onClickBorrar={modal.handlers('delete').onClickItem}

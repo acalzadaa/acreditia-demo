@@ -47,6 +47,8 @@ import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-i
 
 import notificationJsonData from '$lib/data/notification.json';
 
+import usuarioJsonData from '$lib/data/usuario.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
@@ -143,7 +145,11 @@ import {
 	type EvaluacionEtapaIndicadorCampusItem
 } from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
 import { notificationItemSchema, type NotificationItem } from '$lib/schemas/notificacion.schema';
-import { indicadorEvidenciaItemSchema, type IndicadorEvidenciaItem } from '$lib/schemas/indicadorEvidencia';
+import {
+	indicadorEvidenciaItemSchema,
+	type IndicadorEvidenciaItem
+} from '$lib/schemas/indicadorEvidencia';
+import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -194,6 +200,8 @@ let etapaDetail = $state<EtapaDetailItem[]>([]);
 let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]>([]);
 
 let notification = $state<NotificationItem[]>([]);
+
+let usuario = $state<UsuarioItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -246,9 +254,7 @@ const puestoRawData = puestoJsonData.puestos;
 puesto = puestoRawData.map((item) => puestoItemSchema.parse(item));
 
 const areaFuncionalRawData = areaFuncionalJsonData.areaFuncionalItems;
-areaFuncional = areaFuncionalRawData.map((item) =>
-	areaFuncionalItemSchema.parse(item)
-);
+areaFuncional = areaFuncionalRawData.map((item) => areaFuncionalItemSchema.parse(item));
 
 const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;
 areaResponsable = areaResponsableRawData.map((item) => areaResponsableItemSchema.parse(item));
@@ -329,6 +335,9 @@ etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item)
 
 const notificationRawData = notificationJsonData.notificationItems;
 notification = notificationRawData.map((item) => notificationItemSchema.parse(item));
+
+const usuarioRawData = usuarioJsonData.usuarioItems;
+usuario = usuarioRawData.map((item) => usuarioItemSchema.parse(item));
 
 // Helpers
 export function getFilosofia() {
@@ -586,4 +595,8 @@ export function getNotificacion() {
 
 export function getIndicadorEvidencia() {
 	return indicadorEvidencia;
+}
+
+export function getUsuario() {
+	return usuario;
 }

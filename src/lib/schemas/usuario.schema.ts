@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { auditMetadata, campusRefSchema, puestoRefSchema } from './shared.schema';
+import { auditMetadataSchema, campusRefSchema, puestoRefSchema } from './shared.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -23,9 +23,16 @@ export const usuarioItemSchema = z
 		authUserId: z.string(),
 		firstName: z.string().default(''),
 		lastName: z.string().default(''),
-		email: z.email()
+		email: z.email(),
+		version: z.number().default(0),
+		isCurrent: z.boolean().default(true),
+		validFrom: z.coerce.date(),
+		validTo: z.coerce.date().nullable(),
+		isDeleted: z.boolean().default(false),
+		createdAt: z.iso.datetime().optional(),
+		createdBy: z.string()
 	})
-	.extend(auditMetadata.shape);
+	.extend(auditMetadataSchema.shape);
 
 export type UsuarioItem = z.infer<typeof usuarioItemSchema>;
 

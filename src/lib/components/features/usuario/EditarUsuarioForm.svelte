@@ -1,23 +1,16 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	
-
-	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import {
-		filosofiaInstitucionalItemSchema,
-		type FilosofiaInstitucionalItem
-	} from '$lib/schemas/filosofiaInstitucional.schema';
+	import { zod4 } from 'sveltekit-superforms/adapters';
 	import Modal from '$lib/components/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
-	
+	import { usuarioItemSchema, type UsuarioItem } from '$lib/schemas/usuario.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: FilosofiaInstitucionalItem;
+		selectedItem: UsuarioItem;
 		onClose: () => void;
 	}
 
@@ -30,8 +23,8 @@
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
 		props.selectedItem,
 		{
-			dataType: 'json',
-			validators: zod4Client(filosofiaInstitucionalItemSchema),
+			dataType: 'form',
+			validators: zod4(usuarioItemSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -54,21 +47,13 @@
 	function handleClose() {
 		onClose();
 	}
-
-
 </script>
 
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
 			<h2 class="modal-title text-h4">Editar filosofía institucional</h2>
-			<IconButton
-				name="close"
-				variant="ghost"
-				size="lg"
-				onClick={handleClose}
-				isDisabled={false}
-			/>
+			<IconButton name="close" variant="ghost" size="lg" onClick={handleClose} isDisabled={false} />
 		</header>
 
 		<form method="POST" action="?/edit" use:enhance>
@@ -84,27 +69,40 @@
 
 				<div class="form-fields">
 					<InputText
-						label="Nombre"
+						label="email"
+						type="email"
 						name="name"
 						required={true}
-						placeholder="Excelencia educativa"
-						status={$errors.name ? 'error' : 'normal'}
+						placeholder="acreditia@acreditia.com.mx"
+						status={$errors.email ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.name}
-						errors={$errors.name}
-						{...$constraints.name}
+						bind:value={$form.email}
+						errors={$errors.email}
+						{...$constraints.email}
 					/>
 
-					<TextArea
-						label="Descripcion"
-						name="description"
-						placeholder="Descripcion..."
-						status={$errors.description ? 'error' : 'normal'}
+					<InputText
+						label="nombre"
+						name="name"
+						required={true}
+						placeholder="Acreditia"
+						status={$errors.firstName ? 'error' : 'normal'}
 						disabled={false}
-						bind:value={$form.description}
-						errors={$errors.description}
-						{...$constraints.description}
-						rows={4}
+						bind:value={$form.firstName}
+						errors={$errors.firstName}
+						{...$constraints.firstName}
+					/>
+
+					<InputText
+						label="apellido"
+						name="lastName"
+						required={true}
+						placeholder="Acreditia"
+						status={$errors.lastName ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={$form.lastName}
+						errors={$errors.lastName}
+						{...$constraints.lastName}
 					/>
 				</div>
 			</div>
@@ -113,7 +111,7 @@
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar filosofia</Button>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar</Button>
 			</menu>
 		</form>
 	</div>

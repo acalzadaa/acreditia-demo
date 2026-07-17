@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { auditMetadata } from './shared.schema';
+import { auditMetadataSchema } from './shared.schema';
 
 export const permisoFormSchema = z.object({
 	id: z.uuid().optional(),
@@ -17,5 +17,5 @@ export const permisoItemSchema = z
 		resource: z.string(),
 		description: z.string().default('')
 	})
-	.extend(auditMetadata.shape);
+	.extend(auditMetadataSchema.shape);
 export type PermisoItem = z.infer<typeof permisoItemSchema>;

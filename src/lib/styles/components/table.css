@@ -280,13 +280,5 @@ MOBILE — placeholder para cards
 
 /*
 * A partir de ~640px la tabla horizontal deja de ser cómoda.
-* Aquí irá la transformación a cards.
-* Por ahora solo ocultamos la tabla si el contenedor
-* es demasiado angosto; más adelante se reemplaza por cards.
-*
-* @media (max-width: 640px) {
-*		.table-container { padding: 0 var(--space-4) var(--space-4); }
-*     .data-table { display: none; }
-*     .card-list  { display: flex; flex-direction: column; gap: var(--space-3); }
-* }
+* Aquí irá la transformación a cards. Ver Card.svelte
 */
