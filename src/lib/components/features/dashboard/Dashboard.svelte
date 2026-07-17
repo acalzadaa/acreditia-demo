@@ -5,6 +5,7 @@
 		<p class="main-panel--subheader" style:margin-top="var(--space-2)">
 			Bienvenido a su herramienta de mejora continua
 		</p>
+		
 	</section>
 
 	<!-- Dashboard Panel - Content Section -->

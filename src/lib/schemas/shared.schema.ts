@@ -4,6 +4,17 @@
 
 import z from 'zod';
 
+//SDC Type 2 - Metadata
+export const auditMetadata = z.object({
+	version: z.number().default(0),
+	isCurrent: z.boolean().default(true),
+	validFrom: z.coerce.date(),
+	validTo: z.coerce.date().nullable(),
+	isDeleted: z.boolean().default(false),
+	createdAt: z.iso.datetime().optional(),
+	createdBy: z.string()
+});
+
 // Base reference schema
 export const baseRefSchema = z.object({
   id: z.uuid(),

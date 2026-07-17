@@ -324,7 +324,7 @@ evaluacionNavigation = evaluacionNavigationRawData.map((item) =>
 	evaluacionNavItemSchema.parse(item)
 );
 
-const etapaDetailRawData = etapaDetailJsonData.etapaDetailItem;
+const etapaDetailRawData = etapaDetailJsonData.etapaDetailItems;
 etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));
 
 const notificationRawData = notificationJsonData.notificationItems;

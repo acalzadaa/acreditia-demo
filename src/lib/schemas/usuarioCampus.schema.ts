@@ -1,10 +1,5 @@
-// usuarioCampus.schema.ts (NUEVO)
 import { z } from 'zod';
-import { campusRefSchema, usuarioRefSchema } from './shared.schema';
-
-// ============================================
-// 1. REFERENCE SCHEMAS
-// ============================================
+import { auditMetadata } from './shared.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -21,30 +16,15 @@ export type UsuarioCampusForm = z.infer<typeof usuarioCampusFormSchema>;
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
-export const usuarioCampusItemSchema = z.object({
-	id: z.uuid(),
-	usuarioId: z.uuid(),
-	campusId: z.uuid(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(true),
-	validFrom: z.coerce.date(),
-	validTo: z.coerce.date().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const usuarioCampusItemSchema = z
+	.object({
+		id: z.uuid(),
+		usuarioId: z.uuid(),
+		campusId: z.uuid()
+	})
+	.extend(auditMetadata.shape);
 
 export type UsuarioCampusItem = z.infer<typeof usuarioCampusItemSchema>;
-
-// ============================================
-// 4. ITEM WITH RELATIONS SCHEMA
-// ============================================
-export const usuarioCampusWithRelationsItemSchema = usuarioCampusItemSchema.extend({
-	usuario: usuarioRefSchema,
-	campus: campusRefSchema
-});
-
-export type UsuarioCampusWithRelationsItem = z.infer<typeof usuarioCampusWithRelationsItemSchema>;
 
 // ============================================
 // 5. CONFIG SCHEMA

@@ -1,19 +1,12 @@
 import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
-import { baseRefSchema } from './shared.schema';
+import { auditMetadata, baseRefSchema } from './shared.schema';
 
 export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
-export const JOB_LEVEL_TYPE = ['primario', 'secundario'] as const;
 export const ESTATUS = ['activo', 'inactivo', 'borrado'] as const;
 
 export const jobTypeOptions: OptionData[] =
 	JOB_TYPE.map((v) => ({
-		id: v,
-		option: v.toUpperCase()
-	})) ?? [];
-
-export const jobLevelTypeOptions: OptionData[] =
-	JOB_LEVEL_TYPE.map((v) => ({
 		id: v,
 		option: v.toUpperCase()
 	})) ?? [];
@@ -33,7 +26,6 @@ export const puestoFormSchema = z.object({
 		.max(255, 'El nombre debe tener máximo 255 caracteres'),
 	type: z.enum(JOB_TYPE).default('responsable'),
 	referenceId: z.uuid(),
-	level: z.enum(JOB_LEVEL_TYPE).default('primario'),
 	description: z.string().default('')
 });
 
@@ -42,21 +34,14 @@ export type PuestoForm = z.infer<typeof puestoFormSchema>;
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
-export const puestoItemSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	type: z.enum(JOB_TYPE),
-	reference: baseRefSchema,
-	level: z.enum(JOB_LEVEL_TYPE),
-	description: z.string().default(''),
-	version: z.number().int().nonnegative().default(0),
-	isCurrent: z.boolean().default(true),
-	validFrom: z.coerce.date(),
-	validTo: z.coerce.date().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.coerce.date().nullable()
-});
+export const puestoItemSchema = z
+	.object({
+		type: z.enum(JOB_TYPE),
+		reference: baseRefSchema,
+		description: z.string().default('')
+	})
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadata.shape);
 
 export type PuestoItem = z.infer<typeof puestoItemSchema>;
 
