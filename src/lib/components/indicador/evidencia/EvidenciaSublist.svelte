@@ -90,7 +90,7 @@
 			<CardColumn minWidth="360px" maxWidth="1500px">
 				{#each items as item (item.id)}
 					<Card>
-						<CardHeader code={item.code} name={item.name}>
+						<CardHeader subtitle={item.code} title={item.name}>
 							<Badge variant={item.isDeleted ? 'error' : 'success'}>
 								{item.isDeleted ? 'borrado' : 'activo'}
 							</Badge>

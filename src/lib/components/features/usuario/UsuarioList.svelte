@@ -119,7 +119,7 @@
 			<CardColumn minWidth="360px" maxWidth="2700px">
 				{#each items as item (item.id)}
 					<Card>
-						<CardHeader code={item.authUserId} name={item.email}>
+						<CardHeader subtitle={item.authUserId} name={item.email}>
 							<Badge variant={item.isDeleted ? 'error' : 'success'}>
 								{item.isDeleted ? 'borrado' : 'activo'}
 							</Badge>

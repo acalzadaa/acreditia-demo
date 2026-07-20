@@ -7,7 +7,7 @@
 	 * del estado abierto/cerrado: este componente NUNCA muta `open` por
 	 * su cuenta, solo avisa con `onToggle` cuando se hace click/Enter/
 	 * Espacio en el header. El snippet recibe open para controlar
-     * elementos del header 
+	 * elementos del header
 	 *
 	 * El contenido muestra doble contenido: se renderizan
 	 * `children` (desktop) y `mobileContent` (<=640px) y el CSS decide
