@@ -10,11 +10,11 @@
 	import Icon from '../ui/Icon.svelte';
 	import { type CapituloRef } from '$lib/schemas/shared.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
-	import { seccionFormSchema, type SeccionWithCapituloItem } from '$lib/schemas/seccion.schema';
+	import { seccionFormSchema, type SeccionItem } from '$lib/schemas/seccion.schema';
 
 	interface Props {
 		open: boolean;
-		item: SeccionWithCapituloItem;
+		item: SeccionItem;
 		refs: CapituloRef[];
 		onClose: () => void;
 	}
@@ -35,7 +35,7 @@
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
 		{
 			id: props.item.id,
-			capituloId: props.item.capituloId,
+			capituloId: props.item.capitulo.id,
 			code: props.item.code,
 			name: props.item.name,
 			description: props.item.description,

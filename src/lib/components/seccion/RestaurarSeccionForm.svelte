@@ -4,11 +4,11 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { seccionFormSchema, type SeccionWithCapituloItem } from '$lib/schemas/seccion.schema';
+	import { seccionFormSchema, type SeccionItem } from '$lib/schemas/seccion.schema';
 
 	interface Props {
 		open: boolean;
-		item: SeccionWithCapituloItem;
+		item: SeccionItem;
 		onClose: () => void;
 	}
 
@@ -21,7 +21,7 @@
 	const { form, enhance } = superForm(
 		{
 			id: props.item.id,
-			capituloId: props.item.capituloId,
+			capituloId: props.item.capitulo.id,
 			code: props.item.code,
 			name: props.item.name,
 			description: props.item.description,

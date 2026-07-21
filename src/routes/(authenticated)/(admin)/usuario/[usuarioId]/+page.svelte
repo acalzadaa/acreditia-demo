@@ -23,7 +23,6 @@
 	<UsuarioPuestoList
 		items={usuarioPuestoItems}
 		isVisible={usuarioPuestoToggle.value}
-		onClickExpand={usuarioPuestoToggle.toggle}
 		onClickAdd={usuarioPuestoModal.handlers('add').onClick}
 		onClickRemover={usuarioPuestoModal.handlers('remove').onClickItem}
 		title="Puestos del usuario"

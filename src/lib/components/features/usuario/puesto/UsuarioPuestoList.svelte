@@ -4,16 +4,15 @@
 	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
 	import AccordionContentItem from '$lib/components/ui/accordion/AccordionContentItem.svelte';
 	import type { UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
-	import AccordionHeaderClickable from '$lib/components/ui/accordion/AccordionHeaderClickable.svelte';
 	import AccordionFooter from '$lib/components/ui/accordion/AccordionFooter.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import AccordionHeader from '$lib/components/ui/accordion/AccordionHeader.svelte';
 
 	interface Props {
 		items: UsuarioPuestoItem[];
 		isVisible: boolean;
 		onClickRemover: (item: UsuarioPuestoItem) => void;
 		onClickAdd: () => void;
-		onClickExpand: () => void;
 		title?: string;
 		subtitle?: string;
 	}
@@ -23,7 +22,6 @@
 		isVisible = false,
 		onClickRemover,
 		onClickAdd,
-		onClickExpand,
 		title = 'Puestos asignados al usuario',
 		subtitle
 	}: Props = $props();
@@ -33,9 +31,9 @@
 	<section class="list-view--cards">
 		<AccordionColumn minWidth="360px" maxWidth="2700px">
 			<Accordion>
-				<AccordionHeaderClickable {title} {subtitle} {isVisible} onClick={onClickExpand} />
+				<AccordionHeader {title} {subtitle} />
 
-				<AccordionContent isCollapsible={true} {isVisible}>
+				<AccordionContent {isVisible}>
 					{#each items as item (item)}
 						<AccordionContentItem
 							label=""
