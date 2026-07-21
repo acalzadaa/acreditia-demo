@@ -6,7 +6,6 @@
 	import BorrarCampusForm from '$lib/components/campus/BorrarCampusForm.svelte';
 	import RestaurarCampusForm from '$lib/components/campus/RestaurarCampusForm.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import AreaResponsable from '$lib/components/area-responsable/AreaResponsable.svelte';
 	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
 	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
 	import EditarCampusUnidadAcademicaForm from '$lib/components/campus/unidad-academica/EditarCampusUnidadAcademicaForm.svelte';

@@ -1,133 +1,62 @@
 <script lang="ts">
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
 	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
-	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
-	import AreaResponsable from '$lib/components/area-responsable/AreaResponsable.svelte';
-	import CrearAreaResponsableForm from '$lib/components/area-responsable/CrearAreaResponsableForm.svelte';
-	import EditarAreaResponsableForm from '$lib/components/area-responsable/EditarAreaResponsableForm.svelte';
-	import BorrarAreaResponsableForm from '$lib/components/area-responsable/BorrarAreaResponsableForm.svelte';
-	import RestaurarAreaResponsableForm from '$lib/components/area-responsable/RestaurarAreaResponsableForm.svelte';
-	import { auth } from '$lib/stores/auth.svelte';
+
 	import {
 		getAreaResponsable,
 		getAreaResponsableRef,
-		getInstitucionRef,
-		getPuestoRef
+		getInstitucionRef
 	} from '$lib/stores/data.svelte';
-	import { page } from '$app/state';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
-	import NavigationBarContainer from '$lib/components/navigation/NavigationBarContainer.svelte';
-
-	let username = auth.user?.email?.split('@')[0] || 'Usuario';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import AreaResponsableList from '$lib/components/features/area-responsable/AreaResponsableList.svelte';
+	import CrearAreaResponsableForm from '$lib/components/features/area-responsable/CrearAreaResponsableForm.svelte';
+	import EditarAreaResponsableForm from '$lib/components/features/area-responsable/EditarAreaResponsableForm.svelte';
 
 	let areaResponsableItems = getAreaResponsable();
 	let areaResponsableRef = getAreaResponsableRef();
-	let navigationItems = $derived(page.data.navigationItems);
-	let puestoRef = getPuestoRef('responsable');
 	let institucionRef = getInstitucionRef();
 
-	/* LOGOUT */
-	async function onClickLogout() {
-		auth.logout();
-		goto(resolve('/login'), { replaceState: true });
-	}
-
-
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<AreaResponsableItem>();
-	let navigationToggle = createToggle(true);
-	let notificationToggle = createToggle(false);
 </script>
 
-<div class="app-grid">
-	<Header
-		{username}
-		{onClickLogout}
-	/>
-	<Subheader
-		onClickNavigationBar={navigationToggle.onClick}
-		onKeydownNavigationBar={(e) => navigationToggle.onKeydown(e)}
-		onClickNotificationBar={navigationToggle.onClick}
-		onKeydownNotificationBar={(e) => navigationToggle.onKeydown(e)}
-		showNavigationBar={navigationToggle.value}
-		showNotificationBar={notificationToggle.value}
-	/>
-	<NavigationBarContainer showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBarContainer showNotificationBar={notificationToggle.value} />
+<AreaResponsableList
+	items={areaResponsableItems}
+	onClickEditar={(item) => modal.handlers('edit').onClickItem(item)}
+	onClickBorrar={(item) => modal.handlers('delete').onClickItem(item)}
+	onClickRestaurar={(item) => modal.handlers('restore').onClickItem(item)}
+	onClickCrear={modal.handlers('create').onClick}
+	onClickExport={modal.handlers('export').onClick}
+	onClickFilter={modal.handlers('filter').onClick}
+/>
 
-	<Toolbar
-		crearTitle="Nueva area"
-		onClickCrear={modal.handlers('create').onClick}
-		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
-		showExport={true}
-		showFilter={true}
-	/>
+<CrearAreaResponsableForm
+	open={modal.isOpen('create')}
+	{areaResponsableRef}
+	{institucionRef}
+	onClose={modal.close}
+/>
 
-	<AreaResponsable
-		{areaResponsableItems}
-		onClickEditar={modal.handlers('edit').onClickItem}
-		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
-		onClickRestaurar={modal.handlers('restore').onClickItem}
-		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
-	/>
-
-	<!-- MODAL CREAR -->
-	<CrearAreaResponsableForm
-		open={modal.isOpen('create')}
-		{puestoRef}
+{#if modal.selectedItem}
+	<EditarAreaResponsableForm
+		open={modal.isOpen('edit')}
+		selectedItem={modal.selectedItem}
 		{areaResponsableRef}
 		{institucionRef}
 		onClose={modal.close}
 	/>
 
-	{#if modal.selectedItem}
-		<!-- MODAL EDITAR -->
-		<EditarAreaResponsableForm
-			open={modal.isOpen('edit')}
-			selectedItem={modal.selectedItem}
-			{puestoRef}
-			{areaResponsableRef}
-			{institucionRef}
-			onClose={modal.close}
-		/>
+	<ConfirmDeleteModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('delete')}
+		onClose={modal.close}
+	/>
 
-		<!-- MODAL BORRAR -->
-		<BorrarAreaResponsableForm
-			open={modal.isOpen('delete')}
-			selectedItem={modal.selectedItem}
-			onClose={modal.close}
-		/>
-
-		<!-- MODAL RESTAURAR -->
-		<RestaurarAreaResponsableForm
-			open={modal.isOpen('restore')}
-			selectedItem={modal.selectedItem}
-			onClose={modal.close}
-		/>
-	{/if}
-	<Footer />
-</div>
-
-<style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
-		height: 100vh;
-		position: relative;
-	}
-</style>
+	<ConfirmRestoreModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('restore')}
+		onClose={modal.close}
+	/>
+{/if}

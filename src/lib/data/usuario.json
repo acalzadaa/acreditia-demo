@@ -1,10 +1,39 @@
 {
-	"users": [
+	"usuarioItems": [
 		{
 			"id": "061dfb45-1261-49ea-9374-4e9b3610d533",
-			"firstName": "Martin",
-			"lastName": "Martinez",
-			"email": "martin.martinez@system.com",
+			"authUserId": "70e72da4-87a6-4cda-85f0-1d82c215b587",
+			"firstName": "Gustavo",
+			"lastName": "Guajardo",
+			"email": "gguajardo@wikitek.com.mx",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "56f25f92-2101-4d57-9ac6-d654bfe3fa0a",
+			"authUserId": "b08be510-5440-4c2d-a6b6-5368e4fcc1fe",
+			"firstName": "Luis",
+			"lastName": "Rey",
+			"email": "lrey@wikitek.com.mx",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "d2b23716-a1c6-4769-b138-a4c94e0daa5d",
+			"authUserId": "22110ab1-92b0-4826-a112-50eea27be366",
+			"firstName": "Alejandro",
+			"lastName": "Calzada",
+			"email": "acalzadaa@wikitek.com.mx",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",

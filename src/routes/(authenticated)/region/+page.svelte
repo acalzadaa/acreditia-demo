@@ -1,12 +1,12 @@
 <script lang="ts">
-	import CrearRegionForm from '$lib/components/region/CrearRegionForm.svelte';
-	import EditarRegionForm from '$lib/components/region/EditarRegionForm.svelte';
 	import { getPuestoRef, getRegion } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import type { RegionItem } from '$lib/schemas/region.schema';
-	import RegionList from '$lib/components/region/RegionList.svelte';
+	import RegionList from '$lib/components/features/region/RegionList.svelte';
+	import CrearRegionForm from '$lib/components/features/region/CrearRegionForm.svelte';
+	import EditarRegionForm from '$lib/components/features/region/EditarRegionForm.svelte';
 
 	let regionItems = getRegion();
 	let puestos = getPuestoRef('region');
@@ -18,14 +18,14 @@
 	<RegionList
 		items={regionItems}
 		showHeader={true}
-		title="Region"
+		title="Listado de regiones"
 		onClickCrear={modal.handlers('create').onClick}
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onClickBorrar={modal.handlers('delete').onClickItem}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
 	/>
 </div>
-<CrearRegionForm open={modal.isOpen('create')} refs={puestos} onClose={modal.close} />
+<CrearRegionForm open={modal.isOpen('create')} onClose={modal.close} />
 
 {#if modal.selectedItem}
 	<EditarRegionForm

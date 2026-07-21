@@ -1,10 +1,16 @@
-// usuarioPuesto.schema.ts (NUEVO)
 import { z } from 'zod';
-import { puestoRefSchema, usuarioRefSchema } from './shared.schema';
+import { auditMetadataSchema, puestoRefSchema } from './shared.schema';
+import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
 // ============================================
+export const JOB_LEVEL_TYPE = ['primario', 'secundario'] as const;
+export const jobLevelTypeOptions: OptionData[] =
+	JOB_LEVEL_TYPE.map((v) => ({
+		id: v,
+		option: v.toUpperCase()
+	})) ?? [];
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -13,6 +19,7 @@ export const usuarioPuestoFormSchema = z.object({
 	id: z.uuid().optional(),
 	usuarioId: z.uuid('Debes seleccionar un usuario'),
 	puestoId: z.uuid('Debes seleccionar un puesto'),
+	level: z.enum(JOB_LEVEL_TYPE),
 	createdBy: z.string().optional()
 });
 
@@ -21,30 +28,15 @@ export type UsuarioPuestoForm = z.infer<typeof usuarioPuestoFormSchema>;
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
-export const usuarioPuestoItemSchema = z.object({
-	id: z.uuid(),
-	usuarioId: z.uuid(),
-	puestoId: z.uuid(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(true),
-	validFrom: z.coerce.date(),
-	validTo: z.coerce.date().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const usuarioPuestoItemSchema = z
+	.object({
+		id: z.uuid(),
+		usuarioId: z.uuid(),
+		puesto: puestoRefSchema,
+	})
+	.extend(auditMetadataSchema.shape);
 
 export type UsuarioPuestoItem = z.infer<typeof usuarioPuestoItemSchema>;
-
-// ============================================
-// 4. ITEM WITH RELATIONS SCHEMA
-// ============================================
-export const usuarioPuestoWithRelationsItemSchema = usuarioPuestoItemSchema.extend({
-	usuario: usuarioRefSchema,
-	puesto: puestoRefSchema
-});
-
-export type UsuarioPuestoWithRelationsItem = z.infer<typeof usuarioPuestoWithRelationsItemSchema>;
 
 // ============================================
 // 5. CONFIG SCHEMA

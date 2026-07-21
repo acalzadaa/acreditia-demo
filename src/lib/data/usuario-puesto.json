@@ -1,0 +1,55 @@
+{
+	"usuarioPuestoItems": [
+		{
+			"id": "e42a2dde-941b-488e-983d-add4e15f90d1",
+			"usuarioId": "70e72da4-87a6-4cda-85f0-1d82c215b587",
+			"puesto": {
+				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
+				"code": "DIR_CALIDAD",
+				"name": "Director de Calidad y Acreditación",
+				"type": "funcional"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "49b0e02b-e97f-4c69-8121-c3013eca6f15",
+			"usuarioId": "b08be510-5440-4c2d-a6b6-5368e4fcc1fe",
+			"puesto": {
+				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
+				"code": "DIR_CALIDAD",
+				"name": "Director de Calidad y Acreditación",
+				"type": "funcional"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "da1c1ba8-48e2-4e8d-8cd5-58d6170f788e",
+			"usuarioId": "22110ab1-92b0-4826-a112-50eea27be366",
+			"puesto": {
+				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
+				"code": "DIR_CALIDAD",
+				"name": "Director de Calidad y Acreditación",
+				"type": "funcional"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
+}

@@ -1,10 +1,5 @@
-import { ESTATUS } from '$lib/types/common.types';
 import { z } from 'zod';
-import { campusRefSchema, puestoRefSchema } from './shared.schema';
-
-// ============================================
-// 1. REFERENCE SCHEMAS
-// ============================================
+import { auditMetadataSchema, campusRefSchema, puestoRefSchema } from './shared.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -14,7 +9,6 @@ export const usuarioFormSchema = z.object({
 	authUserId: z.string().min(1, 'El Id de autenticación es requerido'),
 	firstName: z.string().optional(),
 	lastName: z.string().optional(),
-	status: z.enum(ESTATUS).default('activo'),
 	createdBy: z.string().optional()
 });
 
@@ -23,17 +17,15 @@ export type UsuarioForm = z.infer<typeof usuarioFormSchema>;
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
-export const usuarioItemSchema = z.object({
-	id: z.uuid(),
-	authUserId: z.string(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(true),
-	validFrom: z.coerce.date(),
-	validTo: z.coerce.date().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const usuarioItemSchema = z
+	.object({
+		id: z.uuid(),
+		authUserId: z.string(),
+		firstName: z.string().default(''),
+		lastName: z.string().default(''),
+		email: z.email()
+	})
+	.extend(auditMetadataSchema.shape);
 
 export type UsuarioItem = z.infer<typeof usuarioItemSchema>;
 

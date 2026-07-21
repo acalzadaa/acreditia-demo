@@ -47,6 +47,9 @@ import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-i
 
 import notificationJsonData from '$lib/data/notification.json';
 
+import usuarioJsonData from '$lib/data/usuario.json';
+import usuarioPuestoJsonData from '$lib/data/usuario-puesto.json';
+
 import {
 	filosofiaInstitucionalItemSchema,
 	type FilosofiaInstitucionalItem
@@ -75,10 +78,7 @@ import {
 	unidadAcademicaItemSchema,
 	type UnidadAcademicaItem
 } from '$lib/schemas/unidadAcademica.schema';
-import {
-	areaFuncionalWithRelationsItemSchema,
-	type AreaFuncionalWithRelationsItem
-} from '$lib/schemas/areaFuncional.schema';
+import { areaFuncionalItemSchema, type AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
 
 import {
 	type ModeloFullRef,
@@ -146,7 +146,12 @@ import {
 	type EvaluacionEtapaIndicadorCampusItem
 } from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
 import { notificationItemSchema, type NotificationItem } from '$lib/schemas/notificacion.schema';
-import { indicadorEvidenciaItemSchema, type IndicadorEvidenciaItem } from '$lib/schemas/indicadorEvidencia';
+import {
+	indicadorEvidenciaItemSchema,
+	type IndicadorEvidenciaItem
+} from '$lib/schemas/indicadorEvidencia';
+import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
+import { usuarioPuestoItemSchema, type UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -171,7 +176,7 @@ let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
 let puesto = $state<PuestoItem[]>([]);
 
 let areaResponsable = $state<AreaResponsableItem[]>([]);
-let areaFuncional = $state<AreaFuncionalWithRelationsItem[]>([]);
+let areaFuncional = $state<AreaFuncionalItem[]>([]);
 
 let modelo = $state<ModeloItem[]>([]);
 let capitulo = $state<CapituloItem[]>([]);
@@ -197,6 +202,9 @@ let etapaDetail = $state<EtapaDetailItem[]>([]);
 let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]>([]);
 
 let notification = $state<NotificationItem[]>([]);
+
+let usuario = $state<UsuarioItem[]>([]);
+let usuarioPuesto = $state<UsuarioPuestoItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -249,9 +257,7 @@ const puestoRawData = puestoJsonData.puestos;
 puesto = puestoRawData.map((item) => puestoItemSchema.parse(item));
 
 const areaFuncionalRawData = areaFuncionalJsonData.areaFuncionalItems;
-areaFuncional = areaFuncionalRawData.map((item) =>
-	areaFuncionalWithRelationsItemSchema.parse(item)
-);
+areaFuncional = areaFuncionalRawData.map((item) => areaFuncionalItemSchema.parse(item));
 
 const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;
 areaResponsable = areaResponsableRawData.map((item) => areaResponsableItemSchema.parse(item));
@@ -327,11 +333,17 @@ evaluacionNavigation = evaluacionNavigationRawData.map((item) =>
 	evaluacionNavItemSchema.parse(item)
 );
 
-const etapaDetailRawData = etapaDetailJsonData.etapaDetailItem;
+const etapaDetailRawData = etapaDetailJsonData.etapaDetailItems;
 etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));
 
 const notificationRawData = notificationJsonData.notificationItems;
 notification = notificationRawData.map((item) => notificationItemSchema.parse(item));
+
+const usuarioRawData = usuarioJsonData.usuarioItems;
+usuario = usuarioRawData.map((item) => usuarioItemSchema.parse(item));
+
+const usuarioPuestoRawData = usuarioPuestoJsonData.usuarioPuestoItems;
+usuarioPuesto = usuarioPuestoRawData.map((item) => usuarioPuestoItemSchema.parse(item));
 
 // Helpers
 export function getFilosofia() {
@@ -452,7 +464,8 @@ export function getPuestoRef(jobType: string) {
 		.map((item) => ({
 			id: item.id,
 			code: item.code,
-			name: item.name
+			name: item.name,
+			type: item.type
 		}));
 }
 
@@ -589,4 +602,12 @@ export function getNotificacion() {
 
 export function getIndicadorEvidencia() {
 	return indicadorEvidencia;
+}
+
+export function getUsuario() {
+	return usuario;
+}
+
+export function getUsuarioPuesto() {
+	return usuarioPuesto;
 }

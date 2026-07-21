@@ -1,0 +1,22 @@
+import { z } from 'zod';
+import { auditMetadataSchema, baseRefSchema, permisoRefSchema } from './shared.schema';
+
+export const rolFormSchema = z.object({
+	id: z.uuid().optional(),
+	name: z.string().min(1, 'El nombre es requerido'),
+	description: z.string().default(''),
+	createdBy: z.string().optional()
+});
+export type RolForm = z.infer<typeof rolFormSchema>;
+
+export const rolItemSchema = baseRefSchema
+	.extend({
+		description: z.string().default('')
+	})
+	.extend(auditMetadataSchema.shape);
+export type RolItem = z.infer<typeof rolItemSchema>;
+
+export const rolWithRelationsItemSchema = rolItemSchema.extend({
+	permisos: z.array(permisoRefSchema)
+});
+export type RolWithRelationsItem = z.infer<typeof rolWithRelationsItemSchema>;

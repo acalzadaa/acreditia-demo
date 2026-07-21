@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { seccionRefSchema } from './shared.schema';
 import { seccionItemSchema } from './seccion.schema';
 
+/* Especifico es especifico de una unidad academica, mientras que campus
+esta relacionada con todo el campus y las unidades academicas que lo componen*/
 export const INDICADOR_TYPE = ['campus', 'especifico'] as const;
 
 export const indicadorTypeOptions: OptionData[] =
@@ -54,8 +56,8 @@ export const indicadorItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	section: seccionRefSchema,
-	target: z.coerce.number(),
+	section: seccionRefSchema, //referencia a la seccion del sistema de calidad
+	target: z.coerce.number(), //referencia a la meta que se desea obtener
 	targetUnit: z.string(),
 	indicadorType: z.string(),
 	version: z.number().default(0),

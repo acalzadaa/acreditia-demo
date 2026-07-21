@@ -6,6 +6,11 @@
 			"name": "Director de Calidad y Acreditación",
 			"type": "funcional",
 			"description": "Responsable del aseguramiento de la calidad y planeación académica",
+			"reference": {
+				"id": "7bf3c6a3-fe6d-4cb4-b304-f60fab8c7e8a",
+				"code": "ACPA",
+				"name": "Aseguramiento de la Calidad y Planeación Académica"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -20,6 +25,11 @@
 			"name": "Director de Educación Superior",
 			"type": "funcional",
 			"description": "Responsable de la dirección institucional de educación superior",
+			"reference": {
+				"id": "333cdb19-e282-49db-be20-f28eb2189eb2",
+				"code": "DIES",
+				"name": "Dirección Institucional de Educación Superior"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -34,6 +44,11 @@
 			"name": "Secretario Técnico",
 			"type": "funcional",
 			"description": "Responsable de la secretaría técnica y cumplimiento normativo",
+			"reference": {
+				"id": "b8c9d0e1-f2a3-4567-8901-23456789abcd",
+				"code": "STYCN",
+				"name": "Secretaría Técnica y Cumplimiento Normativo"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -48,6 +63,11 @@
 			"name": "Director de Servicios Académicos",
 			"type": "funcional",
 			"description": "Responsable de servicios académicos y tecnología educativa",
+			"reference": {
+				"id": "c9d0e1f2-a3b4-5678-9012-3456789abcde",
+				"code": "SATE",
+				"name": "Dirección de Servicios Académicos y Tecnología Educativa"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -62,6 +82,11 @@
 			"name": "Director de Desarrollo Educativo",
 			"type": "funcional",
 			"description": "Responsable del desarrollo educativo y formación docente",
+			"reference": {
+				"id": "1579411b-7c44-44eb-9f90-a911f735ae47",
+				"code": "DDE",
+				"name": "Dirección de Desarrollo Educativo"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -76,6 +101,11 @@
 			"name": "Director de Innovación Educativa",
 			"type": "funcional",
 			"description": "Responsable de la innovación en metodologías educativas",
+			"reference": {
+				"id": "cf7de7cd-b1f8-41b6-b305-6cd257b80516",
+				"code": "DIE",
+				"name": "Dirección de Innovación Educativa"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -90,6 +120,11 @@
 			"name": "Director de Curriculum y Evaluación",
 			"type": "funcional",
 			"description": "Responsable del diseño curricular y evaluación de programas",
+			"reference": {
+				"id": "2e5af159-63c0-4670-b3af-74379943ee95",
+				"code": "DCE",
+				"name": "Dirección de Curriculum y Evaluación"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -104,6 +139,11 @@
 			"name": "Director de Educación Dual",
 			"type": "funcional",
 			"description": "Responsable de la educación dual y vinculación académica",
+			"reference": {
+				"id": "44f38dc9-090f-4d80-9c0c-d80df5b5da80",
+				"code": "DED",
+				"name": "Dirección de Educación Dual y Vinculación Académica"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -118,6 +158,11 @@
 			"name": "Director de Vinculación Laboral",
 			"type": "funcional",
 			"description": "Responsable de la vinculación laboral y relación con egresados",
+			"reference": {
+				"id": "fdba3ad1-01df-4b17-8e71-118afb32add6",
+				"code": "VLRE",
+				"name": "Dirección de Vinculación Laboral y Relación con Egresados"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -132,6 +177,11 @@
 			"name": "Director de Retención y Regresos",
 			"type": "funcional",
 			"description": "Responsable de la retención estudiantil y regresos",
+			"reference": {
+				"id": "93ab18f1-859d-4d71-9f90-e3a97be1fc98",
+				"code": "DRYR",
+				"name": "Dirección de Retención y Regresos"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -146,6 +196,11 @@
 			"name": "Director de Servicios Estudiantiles",
 			"type": "funcional",
 			"description": "Responsable de servicios y canal de atención al estudiante",
+			"reference": {
+				"id": "2c3fefa6-08af-4711-a41c-c8333d23f0d5",
+				"code": "SYCAE",
+				"name": "Dirección de Servicios y Canal de Atención al Estudiante"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -160,6 +215,11 @@
 			"name": "Director de Mercadotecnia",
 			"type": "funcional",
 			"description": "Responsable de la mercadotecnia y captación de estudiantes",
+			"reference": {
+				"id": "b8f8002f-f6cf-4c99-9be7-be8dbf64c094",
+				"code": "DME",
+				"name": "Dirección de Mercadotecnia y Captación"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -174,6 +234,11 @@
 			"name": "Director de Bienestar Estudiantil",
 			"type": "funcional",
 			"description": "Responsable del bienestar y desarrollo integral estudiantil",
+			"reference": {
+				"id": "2a6d03f9-613f-474a-9c22-fe6e2f3582d5",
+				"code": "DBE",
+				"name": "Dirección de Bienestar Estudiantil"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -188,6 +253,11 @@
 			"name": "Director de Operaciones en Campus",
 			"type": "funcional",
 			"description": "Responsable de las operaciones diarias en campus",
+			"reference": {
+				"id": "b8c9d0e1-f2a3-4567-8901-23456789abce",
+				"code": "DOC",
+				"name": "Dirección de Operaciones en Campus"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -202,6 +272,11 @@
 			"name": "Director de Gestión Administrativa",
 			"type": "funcional",
 			"description": "Responsable de la gestión administrativa en campus",
+			"reference": {
+				"id": "c9d0e1f2-a3b4-5678-9012-3456789abcdf",
+				"code": "DGA",
+				"name": "Dirección de Gestión Administrativa"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -216,6 +291,11 @@
 			"name": "Director de Infraestructura y Mantenimiento",
 			"type": "funcional",
 			"description": "Responsable de la infraestructura y mantenimiento de campus",
+			"reference": {
+				"id": "dc5b1cef-fb69-4f0e-a9ad-53342e726655",
+				"code": "DIM",
+				"name": "Dirección de Infraestructura y Mantenimiento"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -230,6 +310,11 @@
 			"name": "Director de Seguridad y Contingencias",
 			"type": "funcional",
 			"description": "Responsable de la seguridad y atención a contingencias",
+			"reference": {
+				"id": "f562c4b7-e8f2-4125-8510-1f346e7e7554",
+				"code": "DSC",
+				"name": "Dirección de Seguridad y Contingencias"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -244,6 +329,11 @@
 			"name": "Director de Recursos Humanos",
 			"type": "funcional",
 			"description": "Responsable de la gestión de recursos humanos institucionales",
+			"reference": {
+				"id": "82d91873-8045-452a-9e16-ae333137e16b",
+				"code": "DRHH",
+				"name": "Dirección de Recursos Humanos"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -258,6 +348,11 @@
 			"name": "Director de Compensaciones y Beneficios",
 			"type": "funcional",
 			"description": "Responsable de compensaciones, beneficios y reconocimiento",
+			"reference": {
+				"id": "17af9e97-b9d6-42d2-88fe-1593ddb116e4",
+				"code": "DCL",
+				"name": "Dirección de Compensaciones y Beneficios"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -272,6 +367,11 @@
 			"name": "Director de Desarrollo Humano",
 			"type": "funcional",
 			"description": "Responsable del desarrollo humano y capacitación",
+			"reference": {
+				"id": "0afa48dc-3106-4f4d-8714-ac872ebe6def",
+				"code": "DDH",
+				"name": "Dirección de Desarrollo Humano y Capacitación"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -286,6 +386,11 @@
 			"name": "Director de Tecnologías de Información",
 			"type": "funcional",
 			"description": "Responsable de las operaciones de tecnología de información",
+			"reference": {
+				"id": "637d32f5-6953-43d2-b90e-2b103da97f61",
+				"code": "DDTI",
+				"name": "Dirección de Operaciones de Tecnología de Información"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -300,6 +405,11 @@
 			"name": "Director de Sistemas de Información",
 			"type": "funcional",
 			"description": "Responsable de los sistemas de información institucionales",
+			"reference": {
+				"id": "47fc2ef2-0f1a-420e-a935-2f1bfef2d329",
+				"code": "DSI",
+				"name": "Dirección de Sistemas de Información"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -314,6 +424,11 @@
 			"name": "Director de Comunicación y Marketing",
 			"type": "funcional",
 			"description": "Responsable de la comunicación y marketing institucional",
+			"reference": {
+				"id": "bcbfeb92-9f84-4e2d-8063-7b037d437075",
+				"code": "DCM",
+				"name": "Dirección de Comunicación y Marketing"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -328,6 +443,11 @@
 			"name": "Director de Planeación y Desarrollo",
 			"type": "funcional",
 			"description": "Responsable de la planeación estratégica y desarrollo institucional",
+			"reference": {
+				"id": "c93cf745-98d9-4ca0-807c-d7efe9c3889c",
+				"code": "DPD",
+				"name": "Dirección de Planeación y Desarrollo"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -342,6 +462,11 @@
 			"name": "Director de Finanzas y Administración",
 			"type": "funcional",
 			"description": "Responsable de las finanzas y administración institucional",
+			"reference": {
+				"id": "64930dc7-dce9-4a2a-a669-d24793a6df15",
+				"code": "DFA",
+				"name": "Dirección de Finanzas y Administración"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -356,6 +481,11 @@
 			"name": "Director de Investigación e Innovación",
 			"type": "funcional",
 			"description": "Responsable de la investigación e innovación educativa",
+			"reference": {
+				"id": "c65de87b-d6de-45ca-aa64-ec0b91096fe3",
+				"code": "DII",
+				"name": "Dirección de Investigación e Innovación"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -370,34 +500,11 @@
 			"name": "Director de Internacionalización",
 			"type": "funcional",
 			"description": "Responsable de la internacionalización y alianzas globales",
-			"version": 1,
-			"isCurrent": true,
-			"validFrom": "2024-01-01T00:00:00Z",
-			"validTo": null,
-			"isDeleted": false,
-			"createdAt": "2024-01-01T10:30:00Z",
-			"createdBy": "admin@system.com"
-		},
-		{
-			"id": "bf35d065-b622-4703-bc1d-90894c2a657e",
-			"code": "REGION-1",
-			"name": "Director de Region 1",
-			"type": "region",
-			"description": "",
-			"version": 1,
-			"isCurrent": true,
-			"validFrom": "2024-01-01T00:00:00Z",
-			"validTo": null,
-			"isDeleted": false,
-			"createdAt": "2024-01-01T10:30:00Z",
-			"createdBy": "admin@system.com"
-		},
-		{
-			"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
-			"code": "REGION-2",
-			"name": "Director de Region 2",
-			"type": "region",
-			"description": "",
+			"reference": {
+				"id": "9033941d-2fb8-4b73-af9b-d705a6ad4ba0",
+				"code": "DINT",
+				"name": "Dirección de Internacionalización"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -412,6 +519,11 @@
 			"name": "VP Académica",
 			"type": "funcional",
 			"description": "Vicepresidencia académica institucional",
+			"reference": {
+				"id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+				"code": "VPA",
+				"name": "VP Académica"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -426,6 +538,11 @@
 			"name": "VP Comercial y Experiencia del Estudiante",
 			"type": "funcional",
 			"description": "Vicepresidencia comercial y experiencia estudiantil",
+			"reference": {
+				"id": "38c6d8b6-2310-4b21-b4d2-81b5963b7c12",
+				"code": "VPC",
+				"name": "VP Comercial y Experiencia del Estudiante"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -440,6 +557,11 @@
 			"name": "VP Recursos Humanos",
 			"type": "funcional",
 			"description": "Vicepresidencia de recursos humanos",
+			"reference": {
+				"id": "1d113d7d-3341-4cec-b500-199164864d9c",
+				"code": "VPRH",
+				"name": "VP Recursos Humanos"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -454,6 +576,11 @@
 			"name": "VP Tecnologías de Información",
 			"type": "funcional",
 			"description": "Vicepresidencia de tecnologías de información",
+			"reference": {
+				"id": "c34611b1-79ca-46f8-837e-b23be34b5e75",
+				"code": "VPTI",
+				"name": "VP Tecnologías de Información"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -468,6 +595,11 @@
 			"name": "VP Operaciones en Campus",
 			"type": "funcional",
 			"description": "Vicepresidencia de operaciones en campus",
+			"reference": {
+				"id": "bc46641b-7b12-4caf-96ee-8fe322cf0255",
+				"code": "VPO",
+				"name": "VP Operaciones en Campus"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -482,6 +614,11 @@
 			"name": "Vicerrector de Comunicación y Marketing Institucional",
 			"type": "funcional",
 			"description": "Responsable de la estrategia de comunicación y marca institucional",
+			"reference": {
+				"id": "a934e854-8bb7-4815-8e1f-b49cb221d8a4",
+				"code": "VPCOM",
+				"name": "Vicerrectoría de Comunicación y Marketing Institucional"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -496,6 +633,11 @@
 			"name": "Vicerrector de Planeación y Desarrollo Institucional",
 			"type": "funcional",
 			"description": "Responsable de la planeación estratégica y mejora continua",
+			"reference": {
+				"id": "f697fdcb-f21a-42e4-8092-4172678b49d0",
+				"code": "VPPDI",
+				"name": "Vicerrectoría de Planeación y Desarrollo Institucional"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -510,6 +652,11 @@
 			"name": "Vicerrector de Finanzas y Administración",
 			"type": "funcional",
 			"description": "Responsable de la estrategia financiera institucional",
+			"reference": {
+				"id": "97ce6fcc-14cb-4b09-acd5-6a94f2c19869",
+				"code": "VPF",
+				"name": "Vicerrectoría de Finanzas y Administración"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -524,6 +671,11 @@
 			"name": "Vicerrector de Investigación e Innovación",
 			"type": "funcional",
 			"description": "Responsable de la estrategia de investigación e innovación",
+			"reference": {
+				"id": "86b2ff8b-4577-4ab3-964f-e679e0645566",
+				"code": "VPII",
+				"name": "Vicerrectoría de Investigación e Innovación"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -538,6 +690,49 @@
 			"name": "Vicerrector de Internacionalización",
 			"type": "funcional",
 			"description": "Responsable de la estrategia de internacionalización",
+			"reference": {
+				"id": "1890b23a-6482-4061-a238-b10505f9b4fc",
+				"code": "VPI",
+				"name": "Vicerrectoría de Internacionalización"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "bf35d065-b622-4703-bc1d-90894c2a657e",
+			"code": "REGION-1",
+			"name": "Director de Region 1",
+			"type": "region",
+			"reference": {
+				"id": "d9a9f1fd-e2b8-4acf-8ede-2e08be7ff88f",
+				"code": "r-001",
+				"name": "Región Norte"
+			},
+			"description": "",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+			"code": "REGION-2",
+			"name": "Director de Region 2",
+			"type": "region",
+			"reference": {
+				"id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+				"code": "r-002",
+				"name": "Región Centro"
+			},
+			"description": "",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -552,6 +747,11 @@
 			"name": "Director de Campus",
 			"type": "responsable",
 			"description": "Responsable máximo del campus",
+			"reference": {
+				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+				"code": "AR_DIR_CAMPUS",
+				"name": "Dirección del Campus"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -566,6 +766,11 @@
 			"name": "Director Académico",
 			"type": "responsable",
 			"description": "Liderazgo académico del campus",
+			"reference": {
+				"id": "781ad3aa-02eb-468c-8c78-e72b7ee8b106",
+				"code": "AR_DIR_ACAD",
+				"name": "Dirección Académica"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -580,6 +785,11 @@
 			"name": "Director de Calidad y Acreditación",
 			"type": "responsable",
 			"description": "Gestión de acreditación FIMPES y mejora continua",
+			"reference": {
+				"id": "be96c912-6cec-4195-aef9-1bfdd1c1fce6",
+				"code": "AR_DIR_CALIDAD",
+				"name": "Dirección de Calidad y Acreditación"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -594,6 +804,11 @@
 			"name": "Director Administrativo",
 			"type": "responsable",
 			"description": "Gestión administrativa y financiera del campus",
+			"reference": {
+				"id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
+				"code": "AR_DIR_ADMIN",
+				"name": "Dirección Administrativa"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -608,6 +823,11 @@
 			"name": "Director de Recursos Humanos",
 			"type": "responsable",
 			"description": "Gestión del talento humano del campus",
+			"reference": {
+				"id": "dbef1f3f-713f-405b-9c76-1df20f652348",
+				"code": "AR_DIR_RRHH",
+				"name": "Dirección de Recursos Humanos"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -622,6 +842,11 @@
 			"name": "Director de Tecnologías de Información",
 			"type": "responsable",
 			"description": "Estrategia y operación TIC del campus",
+			"reference": {
+				"id": "9adf4263-3812-4b2d-a842-961a1a86389a",
+				"code": "AR_DIR_TIC",
+				"name": "Dirección de Tecnologías de Información"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -636,6 +861,11 @@
 			"name": "Director de Servicios Estudiantiles",
 			"type": "responsable",
 			"description": "Atención integral a estudiantes",
+			"reference": {
+				"id": "5260e4c1-1089-47a3-8985-984f8f64b039",
+				"code": "AR_DIR_ESTUDIANTES",
+				"name": "Dirección de Servicios Estudiantiles"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -650,6 +880,11 @@
 			"name": "Director de Investigación",
 			"type": "responsable",
 			"description": "Fomento y gestión de la investigación",
+			"reference": {
+				"id": "af9a643b-6ad0-4b3a-a746-de5ce7f5cf22",
+				"code": "AR_DIR_INVESTIGACION",
+				"name": "Dirección de Investigación"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -664,6 +899,11 @@
 			"name": "Director de Extensión y Vinculación",
 			"type": "responsable",
 			"description": "Relación con empresas y comunidad",
+			"reference": {
+				"id": "1097f076-2a22-4adc-8e91-a2f3e815220d",
+				"code": "AR_DIR_EXTENSION",
+				"name": "Dirección de Extensión y Vinculación"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -678,6 +918,11 @@
 			"name": "Director de Internacionalización",
 			"type": "responsable",
 			"description": "Movilidad y convenios internacionales",
+			"reference": {
+				"id": "b204f185-f579-4bd6-952a-f4abe3ab7a57",
+				"code": "AR_DIR_INTERNACIONAL",
+				"name": "Dirección de Internacionalización"
+			},
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",

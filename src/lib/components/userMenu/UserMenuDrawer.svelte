@@ -16,6 +16,9 @@
 
 <style>
 	.userMenu--panel {
-		padding: 10px;
+		padding-top: 10px;
+		display: flex;
+		flex: 1;
+		justify-content: center;
 	}
 </style>

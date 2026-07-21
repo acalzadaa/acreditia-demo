@@ -48,7 +48,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva planeacion"
+			crearTitle="Nueva filosofia"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -103,7 +103,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva planeacion"
+			crearTitle="Nueva filosofia"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -114,7 +114,7 @@
 			<CardColumn minWidth="360px" maxWidth="1500px">
 				{#each items as item (item.id)}
 					<Card>
-						<CardHeader code={item.code} name={item.name}>
+						<CardHeader subtitle={item.code} title={item.name}>
 							<Badge variant={item.isDeleted ? 'error' : 'success'}>
 								{item.isDeleted ? 'borrado' : 'activo'}
 							</Badge>
@@ -156,7 +156,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1686px) {
+	@media (max-width: 1500px) {
 		.list-view--table {
 			display: none;
 		}
