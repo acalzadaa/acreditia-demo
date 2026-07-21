@@ -17,7 +17,6 @@ export const auditMetadataSchema = z.object({
 
 export type AuditMetadata = z.infer<typeof auditMetadataSchema>;
 
-
 // Base reference schema
 export const baseRefSchema = z.object({
   id: z.uuid(),
@@ -108,3 +107,10 @@ export const usuarioRefSchema = z.object({
 	email: z.email()
 });
 export type UsuarioRef = z.infer<typeof usuarioRefSchema>;
+
+export const permisoRefSchema = z.object({
+	id: z.uuid(),
+	action: z.string(),
+	resource: z.string()
+});
+export type PermisoRef = z.infer<typeof permisoRefSchema>;

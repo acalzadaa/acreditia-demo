@@ -5,6 +5,7 @@
 		subtitle?: string;
 		title: string;
 		/** Ej. un <Badge> de estatus. */
+		
 		children?: Snippet;
 		class?: string;
 	}
@@ -18,7 +19,7 @@
 	{/if}
 	<h3 class="card-header__title text-body-strong">{title}</h3>
 	{#if children}
-		<div class="card-header__status">
+		<div class="card-header__metadata">
 			{@render children()}
 		</div>
 	{/if}

@@ -37,7 +37,7 @@ export type PuestoForm = z.infer<typeof puestoFormSchema>;
 export const puestoItemSchema = z
 	.object({
 		type: z.enum(JOB_TYPE),
-		reference: baseRefSchema,
+		reference: baseRefSchema, //los datos ref de la area responsable, funcional o region
 		description: z.string().default('')
 	})
 	.extend(baseRefSchema.shape)

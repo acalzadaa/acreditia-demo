@@ -4,33 +4,33 @@ import { auditMetadataSchema } from './shared.schema';
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // ============================================
-export const usuarioCampusFormSchema = z.object({
+export const rolPermisoFormSchema = z.object({
 	id: z.uuid().optional(),
-	usuarioId: z.uuid('Debes seleccionar un usuario'),
-	campusId: z.uuid('Debes seleccionar un campus'),
+	rolId: z.uuid('Debes seleccionar un rol'),
+	permisoId: z.uuid('Debes seleccionar un permiso'),
 	createdBy: z.string().optional()
 });
 
-export type UsuarioCampusForm = z.infer<typeof usuarioCampusFormSchema>;
+export type RolPermisoForm = z.infer<typeof rolPermisoFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
-export const usuarioCampusItemSchema = z
+export const rolPermisoItemSchema = z
 	.object({
 		id: z.uuid(),
-		usuarioId: z.uuid(),
-		campusId: z.uuid()
+		rolId: z.uuid(),
+		permisoId: z.uuid()
 	})
 	.extend(auditMetadataSchema.shape);
 
-export type UsuarioCampusItem = z.infer<typeof usuarioCampusItemSchema>;
+export type RolPermisoItem = z.infer<typeof rolPermisoItemSchema>;
 
 // ============================================
 // 5. CONFIG SCHEMA
 // ============================================
-export const usuarioCampusConfigSchema = z.object({
-	usuarioCampusItems: z.array(usuarioCampusItemSchema)
+export const rolPermisoConfigSchema = z.object({
+	rolPermisoItems: z.array(rolPermisoItemSchema)
 });
 
-export type UsuarioCampusConfig = z.infer<typeof usuarioCampusConfigSchema>;
+export type RolPermisoConfig = z.infer<typeof rolPermisoConfigSchema>;

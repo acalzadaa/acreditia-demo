@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { auditMetadata, baseRefSchema } from './shared.schema';
+import { auditMetadataSchema } from './shared.schema';
 
 export const usuarioRolFormSchema = z.object({
 	id: z.uuid().optional(),
@@ -15,11 +15,5 @@ export const usuarioRolItemSchema = z
 		usuarioId: z.uuid(),
 		rolId: z.uuid()
 	})
-	.extend(auditMetadata.shape);
+	.extend(auditMetadataSchema.shape);
 export type UsuarioRolItem = z.infer<typeof usuarioRolItemSchema>;
-
-export const usuarioRolWithRelationsItemSchema = usuarioRolItemSchema.extend({
-	usuario: baseRefSchema,
-	rol: baseRefSchema
-});
-export type UsuarioRolWithRelationsItem = z.infer<typeof usuarioRolWithRelationsItemSchema>;

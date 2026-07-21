@@ -1,6 +1,6 @@
 /* components/card.css
    Card usado como alterna de .data-table en viewports angostos.
-   Tres secciones fijas: header (código/nombre/estatus, en columna),
+   Tres secciones fijas: header (titulo/subtitulo/children, en columna),
    content (lista de items, cada uno clamped a 2 renglones con
    "ver más"/"ver menos") y footer (acciones, iconos alineados a la
    izquierda). */
@@ -96,17 +96,17 @@
 	border-bottom: var(--divider);
 }
 
-.card-header__code {
+.card-header__subtitle {
 	color: var(--text-secondary);
 }
 
-.card-header__name {
+.card-header__title {
 	color: var(--text-primary);
 	overflow-wrap: break-word;
 	word-break: break-word;
 }
 
-.card-header__status {
+.card-header__metadata {
 	margin-top: var(--space-1);
 }
 
@@ -120,6 +120,28 @@
 	flex: 1;
 	min-width: 0;
 }
+
+/* Este wrapper es para el content collapsible */
+.card-content-wrapper {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.25s ease;
+}
+
+.card-content-wrapper.is-open {
+	grid-template-rows: 1fr;
+}
+
+.card-content-inner {
+	overflow: hidden;
+	min-height: 0;
+}
+
+.is-open .card-content-inner {
+	overflow: auto;
+}
+
+/* Este elemento es para los hijos del card content */
 
 .card-content-item {
 	display: flex;

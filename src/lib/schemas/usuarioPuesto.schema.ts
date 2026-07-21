@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { auditMetadata, puestoRefSchema, usuarioRefSchema } from './shared.schema';
+import { auditMetadataSchema, puestoRefSchema } from './shared.schema';
 import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 
 // ============================================
@@ -35,19 +35,9 @@ export const usuarioPuestoItemSchema = z
 		puesto: puestoRefSchema,
 		level: z.enum(JOB_LEVEL_TYPE)
 	})
-	.extend(auditMetadata.shape);
+	.extend(auditMetadataSchema.shape);
 
 export type UsuarioPuestoItem = z.infer<typeof usuarioPuestoItemSchema>;
-
-// ============================================
-// 4. ITEM WITH RELATIONS SCHEMA
-// ============================================
-export const usuarioPuestoWithRelationsItemSchema = usuarioPuestoItemSchema.extend({
-	usuario: usuarioRefSchema,
-	puesto: puestoRefSchema
-});
-
-export type UsuarioPuestoWithRelationsItem = z.infer<typeof usuarioPuestoWithRelationsItemSchema>;
 
 // ============================================
 // 5. CONFIG SCHEMA

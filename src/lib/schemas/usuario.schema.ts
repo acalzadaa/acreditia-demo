@@ -23,14 +23,7 @@ export const usuarioItemSchema = z
 		authUserId: z.string(),
 		firstName: z.string().default(''),
 		lastName: z.string().default(''),
-		email: z.email(),
-		version: z.number().default(0),
-		isCurrent: z.boolean().default(true),
-		validFrom: z.coerce.date(),
-		validTo: z.coerce.date().nullable(),
-		isDeleted: z.boolean().default(false),
-		createdAt: z.iso.datetime().optional(),
-		createdBy: z.string()
+		email: z.email()
 	})
 	.extend(auditMetadataSchema.shape);
 
