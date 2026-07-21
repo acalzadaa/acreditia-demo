@@ -9,12 +9,12 @@
 	import TextArea from '../ui/input/TextArea.svelte';
 	import Icon from '../ui/Icon.svelte';
 	import { type ModeloRef } from '$lib/schemas/shared.schema';
-	import { capituloFormSchema, type CapituloWithModeloItem } from '$lib/schemas/capitulo.schema';
+	import { capituloFormSchema, type CapituloItem } from '$lib/schemas/capitulo.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;
-		item: CapituloWithModeloItem;
+		item: CapituloItem;
 		refs: ModeloRef[];
 		onClose: () => void;
 	}
@@ -35,7 +35,7 @@
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
 		{
 			id: props.item.id,
-			modeloId: props.item.modeloId,
+			modeloId: props.item.modelo.id,
 			code: props.item.code,
 			name: props.item.name,
 			description: props.item.description,

@@ -14,7 +14,7 @@
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, refs = [] }: Props = $props();
+	let { open = false, onClose, refs = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
