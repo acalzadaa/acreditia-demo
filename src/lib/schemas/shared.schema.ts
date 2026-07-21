@@ -19,9 +19,9 @@ export type AuditMetadata = z.infer<typeof auditMetadataSchema>;
 
 // Base reference schema
 export const baseRefSchema = z.object({
-  id: z.uuid(),
-  code: z.string(),
-  name: z.string()
+	id: z.uuid(),
+	code: z.string(),
+	name: z.string()
 });
 export type BaseRef = z.infer<typeof baseRefSchema>;
 
@@ -55,7 +55,15 @@ export type CampusRef = z.infer<typeof campusRefSchema>;
 export const unidadAcademicaRefSchema = baseRefSchema;
 export type UnidadAcademicaRef = z.infer<typeof unidadAcademicaRefSchema>;
 
-export const puestoRefSchema = baseRefSchema;
+export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
+
+export const puestoRefSchema = z.object({
+	id: z.uuid(),
+	code: z.string(),
+	name: z.string(),
+	type: z.enum(JOB_TYPE)
+
+});
 export type PuestoRef = z.infer<typeof puestoRefSchema>;
 
 export const areaFuncionalRefSchema = baseRefSchema;

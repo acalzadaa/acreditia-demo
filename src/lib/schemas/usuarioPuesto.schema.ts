@@ -33,7 +33,6 @@ export const usuarioPuestoItemSchema = z
 		id: z.uuid(),
 		usuarioId: z.uuid(),
 		puesto: puestoRefSchema,
-		level: z.enum(JOB_LEVEL_TYPE)
 	})
 	.extend(auditMetadataSchema.shape);
 

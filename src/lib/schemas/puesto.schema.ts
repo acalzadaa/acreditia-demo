@@ -1,8 +1,7 @@
 import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
-import { auditMetadataSchema, baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema, JOB_TYPE } from './shared.schema';
 
-export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
 export const ESTATUS = ['activo', 'inactivo', 'borrado'] as const;
 
 export const jobTypeOptions: OptionData[] =

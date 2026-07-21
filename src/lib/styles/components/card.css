@@ -121,25 +121,6 @@
 	min-width: 0;
 }
 
-/* Este wrapper es para el content collapsible */
-.card-content-wrapper {
-	display: grid;
-	grid-template-rows: 0fr;
-	transition: grid-template-rows 0.25s ease;
-}
-
-.card-content-wrapper.is-open {
-	grid-template-rows: 1fr;
-}
-
-.card-content-inner {
-	overflow: hidden;
-	min-height: 0;
-}
-
-.is-open .card-content-inner {
-	overflow: auto;
-}
 
 /* Este elemento es para los hijos del card content */
 

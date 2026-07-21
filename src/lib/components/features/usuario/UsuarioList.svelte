@@ -85,8 +85,8 @@
 								<td class="col-actions-md">
 									<ListDetailActions
 										{item}
-										onClickDetail={() => navigateTo(item.id)}
-										isDetailDisabled={true}
+										onClickDetail={() => navigateTo(item.authUserId)}
+										isDetailDisabled={false}
 										onClickEdit={() => onClickEditar(item)}
 										isEditDisabled={item.isDeleted}
 										onClickDelete={() => onClickBorrar(item)}
@@ -134,7 +134,7 @@
 							<ListDetailActions
 								{item}
 								onClickDetail={() => navigateTo(item.authUserId)}
-								isDetailDisabled={true}
+								isDetailDisabled={item.isDeleted}
 								onClickEdit={() => onClickEditar(item)}
 								isEditDisabled={item.isDeleted}
 								onClickDelete={() => onClickBorrar(item)}

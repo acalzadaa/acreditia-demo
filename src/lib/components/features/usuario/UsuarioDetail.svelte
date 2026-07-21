@@ -10,22 +10,22 @@
 	import type { UsuarioItem } from '$lib/schemas/usuario.schema';
 	
 	interface Props {
-		items: UsuarioItem[];
+		item?: UsuarioItem;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
 	}
 
-	const { items, showHeader = true, title = 'Detalle de usuario', subtitle = '' }: Props = $props();
+	const { item, showHeader = true, title = 'Detalle de usuario', subtitle = '' }: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel--inner">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
 
 	<section class="list-view--table">
-		{#if items.length > 0}
+		{#if item}
 			<div class="table-container">
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
@@ -39,7 +39,6 @@
 					</thead>
 
 					<tbody class="text-body">
-						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
 								<td class="col-label">{item.authUserId}</td>
 								<td class="col-label">{item.email}</td>
@@ -51,7 +50,6 @@
 									</Badge>
 								</td>
 							</tr>
-						{/each}
 					</tbody>
 				</table>
 			</div>
@@ -61,9 +59,8 @@
 	</section>
 
 	<section class="list-view--cards">
-		{#if items.length > 0}
+		{#if item}
 			<CardColumn minWidth="360px" maxWidth="2700px">
-				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.authUserId} title={item.email}>
 							<Badge variant={item.isDeleted ? 'error' : 'success'}>
@@ -76,7 +73,6 @@
 							<CardContentItem label="Apellido" value={item.lastName} />
 						</CardContent>
 					</Card>
-				{/each}
 			</CardColumn>
 		{:else}
 			<EmptySection message="No hay elementos"></EmptySection>

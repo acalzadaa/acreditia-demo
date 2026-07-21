@@ -48,6 +48,7 @@ import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-i
 import notificationJsonData from '$lib/data/notification.json';
 
 import usuarioJsonData from '$lib/data/usuario.json';
+import usuarioPuestoJsonData from '$lib/data/usuario-puesto.json';
 
 import {
 	filosofiaInstitucionalItemSchema,
@@ -150,6 +151,7 @@ import {
 	type IndicadorEvidenciaItem
 } from '$lib/schemas/indicadorEvidencia';
 import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
+import { usuarioPuestoItemSchema, type UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -202,6 +204,7 @@ let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]
 let notification = $state<NotificationItem[]>([]);
 
 let usuario = $state<UsuarioItem[]>([]);
+let usuarioPuesto = $state<UsuarioPuestoItem[]>([]);
 
 const filosofiaRawData = filosofiaJsonData.filosofiaInstitucionalItem;
 filosofias = filosofiaRawData.map((item) => filosofiaInstitucionalItemSchema.parse(item));
@@ -339,6 +342,9 @@ notification = notificationRawData.map((item) => notificationItemSchema.parse(it
 const usuarioRawData = usuarioJsonData.usuarioItems;
 usuario = usuarioRawData.map((item) => usuarioItemSchema.parse(item));
 
+const usuarioPuestoRawData = usuarioPuestoJsonData.usuarioPuestoItems;
+usuarioPuesto = usuarioPuestoRawData.map((item) => usuarioPuestoItemSchema.parse(item));
+
 // Helpers
 export function getFilosofia() {
 	return filosofias;
@@ -458,7 +464,8 @@ export function getPuestoRef(jobType: string) {
 		.map((item) => ({
 			id: item.id,
 			code: item.code,
-			name: item.name
+			name: item.name,
+			type: item.type
 		}));
 }
 
@@ -599,4 +606,8 @@ export function getIndicadorEvidencia() {
 
 export function getUsuario() {
 	return usuario;
+}
+
+export function getUsuarioPuesto() {
+	return usuarioPuesto;
 }
