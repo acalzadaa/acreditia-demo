@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { entidadLegalItemSchema, entidadLegalRefSchema } from './entidadLegal.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -21,20 +22,12 @@ export type InstitucionForm = z.infer<typeof institucionFormSchema>;
 // Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
 
-export const institucionItemSchema = z.object({
-	id: z.uuid(),
-	entidadLegalId: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	entidadLegal: entidadLegalRefSchema.optional(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const institucionItemSchema = z
+	.object({
+		entidadLegal: entidadLegalRefSchema
+	})
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadataSchema.shape);
 
 export type InstitucionItem = z.infer<typeof institucionItemSchema>;
 
