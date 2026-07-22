@@ -20,7 +20,10 @@
 	--accordion-column-max-width: 640px;
 
 	--accordion-bg: var(--bg-raised);
+	--accordion-bg-hover: var(--bg-raised-hover);
+
 	--accordion-border: var(--border-card);
+
 	--accordion-radius: var(--border-radius-card);
 	--accordion-shadow: var(--shadow-card);
 	--accordion-padding: var(--space-4);
@@ -74,9 +77,7 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: var(--space-2);
-
 	padding-bottom: var(--accordion-section-gap);
-	border-bottom: var(--divider);
 }
 
 .accordion-header__text {
@@ -157,6 +158,8 @@
 	gap: var(--stack-sm);
 	flex: 1;
 	min-width: 0;
+	border-top: var(--divider);
+	padding-top: var(--space-2);
 }
 
 /* ==========================================
@@ -170,6 +173,12 @@
 	justify-content: space-between;
 	gap: var(--space-2);
 	min-width: 0;
+	padding: var(--space-2);
+
+}
+
+.accordion-content-item:hover {
+	background: var(--accordion-bg-hover);
 }
 
 .accordion-content-item__body {
@@ -231,5 +240,4 @@
 	gap: var(--space-1);
 
 	padding-top: var(--accordion-section-gap);
-	border-top: var(--divider);
 }

@@ -36,7 +36,7 @@
 				<AccordionContent {isVisible}>
 					{#each items as item (item)}
 						<AccordionContentItem
-							label=""
+							label={item.puesto.type}
 							value={item.puesto.name}
 							onRemove={() => onClickRemover(item)}
 							removeIcon="remove"
