@@ -1,22 +1,21 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-
-	import InputSelect from '../ui/input/InputSelect.svelte';
-	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import Icon from '../ui/Icon.svelte';
 	import {
-		institucionWithRelationsItemSchema,
-		type InstitucionWithRelationsItem
+		institucionFormSchema,
+		type InstitucionItem
 	} from '$lib/schemas/institucion.schema';
 	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
-		selectedItem: InstitucionWithRelationsItem;
+		selectedItem: InstitucionItem;
 		entidadLegalRef: EntidadLegalRef[];
 		onClose: () => void;
 	}
@@ -35,10 +34,15 @@
 	// Therefore ignoring the state_referenced_locally warning is safe.
 	// svelte-ignore state_referenced_locally
 	const { form, errors, enhance, submitting, tainted, isTainted, message, constraints } = superForm(
-		props.selectedItem,
+		{
+			id: props.selectedItem.id,
+			entidadLegalId: props.selectedItem.entidadLegal?.id,
+			code: props.selectedItem.code,
+			name: props.selectedItem.name
+		},
 		{
 			dataType: 'json',
-			validators: zod4(institucionWithRelationsItemSchema),
+			validators: zod4(institucionFormSchema),
 			validationMethod: 'onblur',
 			customValidity: false,
 			resetForm: false,
@@ -90,7 +94,7 @@
 			<div class="modal-body">
 				{#if $message}
 					<div class="form-feedback form-feedback--error" role="alert">
-						<Icon name="warning"></Icon>
+						<Icon name="warning" />
 						{$message}
 					</div>
 				{/if}
@@ -120,12 +124,12 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
 				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>
