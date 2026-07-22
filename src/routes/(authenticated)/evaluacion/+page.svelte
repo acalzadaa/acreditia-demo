@@ -14,8 +14,6 @@
 	let modeloRef = getModeloRef();
 	let institucionRef = getInstitucionRef();
 
-	// ===== HEADER =====
-
 	let modal = createModalManager<EvaluacionItem>();
 </script>
 
