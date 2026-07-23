@@ -7,7 +7,7 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import type { ModeloRef } from '$lib/schemas/shared.schema';
-	
+
 	interface Props {
 		open: boolean;
 		refs: ModeloRef[];
@@ -119,6 +119,7 @@
 		</header>
 
 		<form
+			class="modal-flex"
 			onsubmit={(e) => {
 				e.preventDefault();
 				handleSubmit();
