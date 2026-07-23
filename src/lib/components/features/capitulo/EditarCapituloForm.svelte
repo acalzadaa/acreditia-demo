@@ -11,7 +11,7 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	
+
 	interface Props {
 		open: boolean;
 		item: CapituloItem;
@@ -95,7 +95,7 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/edit" use:enhance>
+		<form class="modal-flex" method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
 			<div class="modal-body">
