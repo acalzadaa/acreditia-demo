@@ -10,8 +10,8 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { CampusItem } from '$lib/schemas/campus.schema';
-	import ListDetailActions from '../actions/ListDetailActions.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
+	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
 
 	interface Props {
 		items: CampusItem[];
