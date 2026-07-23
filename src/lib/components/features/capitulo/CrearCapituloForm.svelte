@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import Input from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import type { ModeloRef } from '$lib/schemas/shared.schema';
-
+	
 	interface Props {
 		open: boolean;
 		refs: ModeloRef[];
@@ -142,7 +142,7 @@
 						errors={errorMessage && !formData.modeloId ? [errorMessage] : undefined}
 					/>
 
-					<Input
+					<InputText
 						label="Código"
 						name="code"
 						required={true}
@@ -153,7 +153,7 @@
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
 					/>
 
-					<Input
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -188,10 +188,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear capítulo</Button>
-			</footer>
+				<Button type="submit" variant="primary">Crear</Button>
+			</menu>
 		</form>
 	</div>
 </Modal>

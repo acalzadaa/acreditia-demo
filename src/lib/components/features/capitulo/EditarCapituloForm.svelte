@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
 
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import Input from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
 	import { type ModeloRef } from '$lib/schemas/shared.schema';
 	import { capituloFormSchema, type CapituloItem } from '$lib/schemas/capitulo.schema';
-	import InputSelect from '../ui/input/InputSelect.svelte';
-
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	
 	interface Props {
 		open: boolean;
 		item: CapituloItem;
@@ -116,7 +116,7 @@
 						errors={$errors.modeloId}
 						{...$constraints.modeloId}
 					/>
-					<Input
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -155,12 +155,12 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar capitulo</Button>
-			</footer>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar</Button>
+			</menu>
 		</form>
 	</div>
 </Modal>
