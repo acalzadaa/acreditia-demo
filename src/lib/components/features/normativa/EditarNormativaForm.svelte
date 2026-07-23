@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
-	import Icon from '../ui/Icon.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
@@ -112,10 +112,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
 				<Button type="submit" variant="primary">Editar</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>
