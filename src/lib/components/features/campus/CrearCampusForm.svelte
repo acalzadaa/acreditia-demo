@@ -1,26 +1,50 @@
 <script lang="ts">
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputText from '../ui/input/InputText.svelte';
-	import Icon from '../ui/Icon.svelte';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import type { InstitucionRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
+		institucionRef: InstitucionRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose }: Props = $props();
+	let { open = $bindable(false), onClose, institucionRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
+		institucionId: '',
 		code: '',
 		name: ''
 	});
 
 	let errorMessage = $state('');
 
+	// Opciones para el select de institución
+	const institucionOptions = $derived(
+		institucionRef.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		}))
+	);
+
+	// Auto-seleccionar si solo hay una opción
+	$effect(() => {
+		if (institucionOptions.length === 1 && !formData.institucionId) {
+			formData.institucionId = institucionOptions[0].id;
+		}
+	});
+
 	function handleSubmit() {
+		// Validación básica
+		if (!formData.institucionId) {
+			errorMessage = 'Debes seleccionar una institución';
+			return;
+		}
 		if (!formData.code) {
 			errorMessage = 'El código es requerido';
 			return;
@@ -35,6 +59,7 @@
 
 		// Limpiar formulario
 		formData = {
+			institucionId: '',
 			code: '',
 			name: ''
 		};
@@ -49,6 +74,7 @@
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
+			institucionId: '',
 			code: '',
 			name: ''
 		};
@@ -71,7 +97,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear unidad académica</h2>
+			<h2 class="modal-title text-h4">Crear campus</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -96,11 +122,20 @@
 						</div>
 					{/if}
 
+					<InputSelect
+						label="Institución"
+						name="institucionId"
+						optionsData={institucionOptions}
+						required={true}
+						bind:value={formData.institucionId}
+						errors={errorMessage && !formData.institucionId ? [errorMessage] : undefined}
+					/>
+
 					<InputText
 						label="Código"
 						name="code"
 						required={true}
-						placeholder="UA-001"
+						placeholder="CAMP-001"
 						status={errorMessage && !formData.code ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.code}
@@ -111,7 +146,7 @@
 						label="Nombre"
 						name="name"
 						required={true}
-						placeholder="Facultad de Ingeniería"
+						placeholder="Campus Norte"
 						status={errorMessage && !formData.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.name}
@@ -120,10 +155,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear unidad académica</Button>
-			</footer>
+				<Button type="submit" variant="primary">Crear</Button>
+			</menu>
 		</form>
 	</div>
 </Modal>
