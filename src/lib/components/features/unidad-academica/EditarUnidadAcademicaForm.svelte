@@ -1,16 +1,15 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-
-	import InputText from '../ui/input/InputText.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import Icon from '../ui/Icon.svelte';
 	import {
 		unidadAcademicaItemSchema,
 		type UnidadAcademicaItem
 	} from '$lib/schemas/unidadAcademica.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
@@ -100,12 +99,12 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
 				<Button type="submit" variant="primary" isDisabled={$submitting}>Editar unidad</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

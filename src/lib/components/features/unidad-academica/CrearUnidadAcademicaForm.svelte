@@ -1,9 +1,10 @@
 <script lang="ts">
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputText from '../ui/input/InputText.svelte';
-	import Icon from '../ui/Icon.svelte';
+	import Modal from "$lib/components/modal/Modal.svelte";
+	import Button from "$lib/components/ui/Button.svelte";
+	import Icon from "$lib/components/ui/Icon.svelte";
+	import IconButton from "$lib/components/ui/IconButton.svelte";
+	import InputText from "$lib/components/ui/input/InputText.svelte";
+
 
 	interface Props {
 		open: boolean;
@@ -120,10 +121,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
 				<Button type="submit" variant="primary">Crear unidad académica</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

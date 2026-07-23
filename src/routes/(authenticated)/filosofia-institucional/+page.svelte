@@ -9,8 +9,6 @@
 	import CrearFilosofiaInstitucionalForm from '$lib/components/features/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';
 
 	let filosofiaInstitucionalItems = getFilosofia().filter((item) => item.isCurrent);
-
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<FilosofiaInstitucionalItem>();
 </script>
 
