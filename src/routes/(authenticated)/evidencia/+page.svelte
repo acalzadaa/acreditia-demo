@@ -1,115 +1,47 @@
 <script lang="ts">
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
-	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-
-	import { auth } from '$lib/stores/auth.svelte';
-	import { page } from '$app/state';
 	import { getEvidencia } from '$lib/stores/data.svelte';
-	import Evidencia from '$lib/components/evidencia/Evidencia.svelte';
-	import CrearEvidenciaForm from '$lib/components/evidencia/CrearEvidenciaForm.svelte';
-	import EditarEvidenciaForm from '$lib/components/evidencia/EditarEvidenciaForm.svelte';
-	import BorrarEvidenciaForm from '$lib/components/evidencia/BorrarEvidenciaForm.svelte';
-	import RestaurarEvidenciaForm from '$lib/components/evidencia/RestaurarEvidenciaForm.svelte';
-	import NavigationBarContainer from '$lib/components/navigation/NavigationBarContainer.svelte';
-
-	let username = auth.user?.email?.split('@')[0] || 'Usuario';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import EvidenciaList from '$lib/components/features/evidencia/EvidenciaList.svelte';
+	import CrearEvidenciaForm from '$lib/components/features/evidencia/CrearEvidenciaForm.svelte';
+	import EditarEvidenciaForm from '$lib/components/features/evidencia/EditarEvidenciaForm.svelte';
 
 	let evidenciaItems = getEvidencia();
-	let navigationItems = $derived(page.data.navigationItems);
-
-	// ===== HEADER =====
-
-	/* LOGOUT */
-	async function onClickLogout() {
-		auth.logout();
-		goto(resolve('/login'), { replaceState: true });
-	}
-
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<EvidenciaItem>();
-	let navigationToggle = createToggle(true);
-	let notificationToggle = createToggle(false);
 </script>
 
-<div class="app-grid">
-	<Header
-		{username}
-		{onClickLogout}
-	/>
-	<Subheader
-		onClickNavigationBar={navigationToggle.onClick}
-		onKeydownNavigationBar={(e) => navigationToggle.onKeydown(e)}
-		onClickNotificationBar={navigationToggle.onClick}
-		onKeydownNotificationBar={(e) => navigationToggle.onKeydown(e)}
-		showNavigationBar={navigationToggle.value}
-		showNotificationBar={notificationToggle.value}
-	/>
-	<NavigationBarContainer showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBarContainer showNotificationBar={notificationToggle.value} />
-	<Toolbar
-		crearTitle="Nueva evidencia"
-		onClickCrear={modal.handlers('create').onClick}
-		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
-		showExport={true}
-		showFilter={true}
-	/>
-	<Evidencia
-		items={evidenciaItems}
-		onClickEditar={modal.handlers('edit').onClickItem}
-		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
-		onClickRestaurar={modal.handlers('restore').onClickItem}
-		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
+<EvidenciaList
+	items={evidenciaItems}
+	onClickEditar={(item) => modal.handlers('edit').onClickItem(item)}
+	onClickBorrar={(item) => modal.handlers('delete').onClickItem(item)}
+	onClickRestaurar={(item) => modal.handlers('restore').onClickItem(item)}
+	onClickCrear={modal.handlers('create').onClick}
+	onClickExport={modal.handlers('export').onClick}
+	onClickFilter={modal.handlers('filter').onClick}
+/>
+
+<CrearEvidenciaForm open={modal.isOpen('create')} onClose={modal.close} />
+
+{#if modal.selectedItem}
+	<EditarEvidenciaForm
+		open={modal.isOpen('edit')}
+		item={modal.selectedItem}
+		onClose={modal.close}
 	/>
 
-	<!-- MODAL CREAR -->
-	<CrearEvidenciaForm open={modal.isOpen('create')} onClose={modal.close} />
-	{#if modal.selectedItem}
-		<!-- MODAL EDITAR -->
-		<EditarEvidenciaForm
-			open={modal.isOpen('edit')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
+	<ConfirmDeleteModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('delete')}
+		onClose={modal.close}
+	/>
 
-		<!-- MODAL BORRAR -->
-		<BorrarEvidenciaForm
-			open={modal.isOpen('delete')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
-
-		<!-- MODAL RESTAURAR -->
-		<RestaurarEvidenciaForm
-			open={modal.isOpen('restore')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
-	{/if}
-	<Footer />
-</div>
-
-<style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
-		height: 100vh;
-		position: relative;
-	}
-</style>
+	<ConfirmRestoreModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('restore')}
+		onClose={modal.close}
+	/>
+{/if}
