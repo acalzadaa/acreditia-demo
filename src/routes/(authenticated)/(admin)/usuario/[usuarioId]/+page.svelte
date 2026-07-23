@@ -14,7 +14,7 @@
 	let usuarioPuestoItems = getUsuarioPuesto().filter((item) => item.usuarioId === usuarioId);
 	let puestoRef = getPuestoRef('responsable');
 	let usuarioPuestoModal = createModalManager<UsuarioPuestoItem>();
-	let usuarioPuestoToggle = createToggle(false);
+	let usuarioPuestoToggle = createToggle(true);
 </script>
 
 <div class="detail-panel">
@@ -23,9 +23,9 @@
 	<UsuarioPuestoList
 		items={usuarioPuestoItems}
 		isVisible={usuarioPuestoToggle.value}
+		onClickToggle={usuarioPuestoToggle.onClick}
 		onClickAdd={usuarioPuestoModal.handlers('add').onClick}
 		onClickRemover={usuarioPuestoModal.handlers('remove').onClickItem}
-		title="Puestos del usuario"
 	/>
 
 	<AddUsuarioPuestoForm
