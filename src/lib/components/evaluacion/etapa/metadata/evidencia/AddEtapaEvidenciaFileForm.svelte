@@ -3,7 +3,7 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import InputFile from '$lib/components/ui/input/InputFile.svelte';
 	import { isDirty } from 'zod/v3';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 
 	interface Props {
 		open: boolean;

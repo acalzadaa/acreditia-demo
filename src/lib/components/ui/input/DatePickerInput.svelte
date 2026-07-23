@@ -27,7 +27,7 @@
 	 */
 
 	import IconButton from '../IconButton.svelte';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import DateRangePicker from '../DateRangePicker.svelte';
 
 	type Status = 'normal' | 'success' | 'error' | 'warning' | 'info';
