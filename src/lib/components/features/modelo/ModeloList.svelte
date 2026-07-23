@@ -9,15 +9,14 @@
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
-	import { navigateTo } from '$lib/helpers/navigation';
-	import type { RegionItem } from '$lib/schemas/region.schema';
-	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
+	import type { ModeloItem } from '$lib/schemas/modelo.schema';
+	import ListActions from '$lib/components/actions/ListActions.svelte';
 
 	interface Props {
-		items: RegionItem[];
-		onClickEditar: (item: RegionItem) => void;
-		onClickBorrar: (item: RegionItem) => void;
-		onClickRestaurar: (item: RegionItem) => void;
+		items: ModeloItem[];
+		onClickEditar: (item: ModeloItem) => void;
+		onClickBorrar: (item: ModeloItem) => void;
+		onClickRestaurar: (item: ModeloItem) => void;
 
 		onClickCrear: () => void;
 		onClickExport?: () => void;
@@ -41,18 +40,18 @@
 		showHeader = true,
 		showExport = false,
 		showFilter = false,
-		title = 'Listado de regiones',
+		title = 'Listado de Modelos',
 		subtitle = ''
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel--inner">
 	<section class="list-view--table">
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />
 		{/if}
 		<ToolbarV2
-			crearTitle="Nueva region"
+			crearTitle="Nuevo modelo"
 			{onClickCrear}
 			{onClickFilter}
 			{onClickExport}
@@ -67,6 +66,7 @@
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Descripción</th>
+							<th class="col-label">Acreditadora</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
 						</tr>
@@ -78,16 +78,15 @@
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
 								<td class="col-text">{item.description}</td>
+								<td class="col-label">{item.entidadAcreditadora}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
 									</Badge>
 								</td>
 								<td class="col-actions-md">
-									<ListDetailActions
+									<ListActions
 										{item}
-										onClickDetail={() => navigateTo(item.code)}
-										isDetailDisabled={item.isDeleted}
 										onClickEdit={() => onClickEditar(item)}
 										isEditDisabled={item.isDeleted}
 										onClickDelete={() => onClickBorrar(item)}
@@ -112,7 +111,7 @@
 		{/if}
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva region"
+			crearTitle="Nuevo modelo"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -130,14 +129,13 @@
 						</CardHeader>
 
 						<CardContent>
+							<CardContentItem label="Acreditadora" value={item.entidadAcreditadora} />
 							<CardContentItem label="Descripción" value={item.description} />
 						</CardContent>
 
 						<CardFooter>
-							<ListDetailActions
+							<ListActions
 								{item}
-								onClickDetail={() => navigateTo(item.code)}
-								isDetailDisabled={item.isDeleted}
 								onClickEdit={() => onClickEditar(item)}
 								isEditDisabled={item.isDeleted}
 								onClickDelete={() => onClickBorrar(item)}
