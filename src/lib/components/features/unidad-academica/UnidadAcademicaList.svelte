@@ -99,7 +99,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva filosofia"
+			crearTitle="Nueva unidad academica"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
