@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
-	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
 	import {
 		getAreaResponsableRef,
 		getCampus,
@@ -17,6 +15,7 @@
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import CampusUnidadAcademicaList from '$lib/components/campus/unidad-academica/CampusUnidadAcademicaList.svelte';
+	import type { AreaResponsableRef, UnidadAcademicaRef } from '$lib/schemas/shared.schema';
 
 	let campusCode = page.params.campusCode;
 
@@ -32,8 +31,8 @@
 	let unidadAcademicaRef = getUnidadAcademicaRef();
 	let areaResponsableRef = getAreaResponsableRef();
 
-	let modalUnidadAcademica = createModalManager<UnidadAcademicaItem>();
-	let modalAreaResponsable = createModalManager<AreaResponsableItem>();
+	let modalUnidadAcademica = createModalManager<UnidadAcademicaRef>();
+	let modalAreaResponsable = createModalManager<AreaResponsableRef>();
 
 	let areaResponsableToggle = createToggle(true);
 	let unidadAcademicaToggle = createToggle(true);
@@ -47,7 +46,7 @@
 		isVisible={areaResponsableToggle.value}
 		onClickToggle={areaResponsableToggle.onClick}
 		onClickAdd={modalAreaResponsable.handlers('add').onClick}
-		onClickRemover={() => modalAreaResponsable.handlers('remove').onClickItem}
+		onClickRemover={modalAreaResponsable.handlers('remove').onClickItem}
 	/>
 
 	<CampusUnidadAcademicaList
@@ -55,7 +54,7 @@
 		isVisible={unidadAcademicaToggle.value}
 		onClickToggle={unidadAcademicaToggle.onClick}
 		onClickAdd={modalUnidadAcademica.handlers('add').onClick}
-		onClickRemover={() => modalUnidadAcademica.handlers('remove').onClickItem}
+		onClickRemover={modalUnidadAcademica.handlers('remove').onClickItem}
 	/>
 </div>
 

@@ -40,7 +40,7 @@
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
-								<td class="col-label">
+								<td class="col-code">
 									{item.institucion?.code}
 								</td>
 								<td class="col-code">{item.code}</td>

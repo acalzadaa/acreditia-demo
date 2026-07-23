@@ -61,7 +61,7 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-label">Institucion</th>
+							<th class="col-code">Institucion</th>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-badge">Estatus</th>
@@ -72,7 +72,7 @@
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
-								<td class="col-label">
+								<td class="col-code">
 									{item.institucion?.code}
 								</td>
 								<td class="col-code">{item.code}</td>
@@ -116,7 +116,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1299px">
+			<CardColumn minWidth="360px" maxWidth="1599px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.code} title={item.name}>
@@ -163,7 +163,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1300px) {
+	@media (max-width: 1600px) {
 		.list-view--table {
 			display: none;
 		}
