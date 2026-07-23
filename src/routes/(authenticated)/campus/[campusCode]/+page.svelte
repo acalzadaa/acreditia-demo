@@ -8,14 +8,14 @@
 		getUnidadAcademicaRef
 	} from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import AddCampusAreaResponsableForm from '$lib/components/campus/area-responsable/AddCampusAreaResponsableForm.svelte';
-	import AddCampusUnidadAcademicaForm from '$lib/components/campus/unidad-academica/AddCampusUnidadAcademicaForm.svelte';
-	import CampusDetail from '$lib/components/campus/CampusDetail.svelte';
-	import CampusAreaResponsableList from '$lib/components/campus/area-responsable/CampusAreaResponsableList.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
-	import CampusUnidadAcademicaList from '$lib/components/campus/unidad-academica/CampusUnidadAcademicaList.svelte';
 	import type { AreaResponsableRef, UnidadAcademicaRef } from '$lib/schemas/shared.schema';
+	import CampusDetail from '$lib/components/features/campus/CampusDetail.svelte';
+	import CampusAreaResponsableList from '$lib/components/features/campus/area-responsable/CampusAreaResponsableList.svelte';
+	import CampusUnidadAcademicaList from '$lib/components/features/campus/unidad-academica/CampusUnidadAcademicaList.svelte';
+	import AddCampusAreaResponsableForm from '$lib/components/features/campus/area-responsable/AddCampusAreaResponsableForm.svelte';
+	import AddCampusUnidadAcademicaForm from '$lib/components/features/campus/unidad-academica/AddCampusUnidadAcademicaForm.svelte';
 
 	let campusCode = page.params.campusCode;
 

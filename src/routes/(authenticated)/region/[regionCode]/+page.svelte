@@ -6,8 +6,9 @@
 	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import RegionDetail from '$lib/components/features/region/RegionDetail.svelte';
-	import RegionCampusSublist from '$lib/components/features/region/campus/RegionCampusSublist.svelte';
 	import AddRegionCampusForm from '$lib/components/features/region/campus/AddRegionCampusForm.svelte';
+	import RegionCampusList from '$lib/components/features/region/campus/RegionCampusList.svelte';
+	import { createToggle } from '$lib/utils/toggle.svelte';
 
 	let regionCode = page.params.regionCode;
 	let regionItems = getRegion().filter((item) => item.code === regionCode);
@@ -19,17 +20,18 @@
 	);
 
 	let modalRegionCampus = createModalManager<RegionCampusItem>();
+	let regionCampusToggle = createToggle();
 </script>
 
 <div class="detail-panel">
 	<RegionDetail items={regionItems} showHeader={true} title="Region" subtitle={regionCode} />
 
-	<RegionCampusSublist
-		showHeader={true}
-		title="Lista de campus asignados"
+	<RegionCampusList
 		items={regionCampusItems}
+		isVisible={regionCampusToggle.value}
+		onClickToggle={regionCampusToggle.onClick}
+		onClickAdd={modalRegionCampus.handlers('add').onClick}
 		onClickRemover={modalRegionCampus.handlers('remove').onClickItem}
-		onClickAgregar={modalRegionCampus.handlers('add').onClick}
 	/>
 </div>
 

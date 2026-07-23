@@ -1,12 +1,12 @@
 <script lang="ts">
-	import CrearCampusForm from '$lib/components/campus/CrearCampusForm.svelte';
-	import EditarCampusForm from '$lib/components/campus/EditarCampusForm.svelte';
 	import { getCampus, getInstitucionRef } from '$lib/stores/data.svelte';
 	import type { CampusItem } from '$lib/schemas/campus.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import CampusList from '$lib/components/campus/CampusList.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import EditarCampusForm from '$lib/components/features/campus/EditarCampusForm.svelte';
+	import CrearCampusForm from '$lib/components/features/campus/CrearCampusForm.svelte';
+	import CampusList from '$lib/components/features/campus/CampusList.svelte';
 
 	let campusItems = getCampus();
 	let institucionRef = getInstitucionRef();

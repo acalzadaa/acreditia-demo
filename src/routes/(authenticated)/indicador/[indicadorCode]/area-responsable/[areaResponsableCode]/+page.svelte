@@ -3,7 +3,7 @@
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import AddUnidadAcademicaForm from '$lib/components/indicador/area-responsable/unidad-academica/AddIndicadorUnidadAcademicaPicker.svelte';
 	import IndicadorUnidadAcademica from '$lib/components/indicador/area-responsable/unidad-academica/IndicadorUnidadAcademica.svelte';
-	import BorrarUnidadAcademicaForm from '$lib/components/unidad-academica/BorrarUnidadAcademicaForm.svelte';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import type { UnidadAcademicaRef } from '$lib/schemas/shared.schema';
 	import { getIndicadorAreaResponsable, getUnidadAcademicaRef } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
@@ -39,9 +39,10 @@
 	/>
 
 	{#if modal.selectedItem}
-		<BorrarUnidadAcademicaForm
+		<ConfirmDeleteModal
+			demo={true}
+			id={modal.selectedItem.id}
 			open={modal.isOpen('delete')}
-			selectedItem={modal.selectedItem}
 			onClose={modal.close}
 		/>
 	{/if}
