@@ -1,22 +1,23 @@
 <script lang="ts">
-	import ListActions from '$lib/components/actions/ListActions.svelte';
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
-	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import Card from '$lib/components/ui/card/Card.svelte';
+	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
+	import Card from '$lib/components/ui/card/Card.svelte';
+	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
-	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
-	import type { PuestoItem } from '$lib/schemas/puesto.schema';
+	import type { CampusItem } from '$lib/schemas/campus.schema';
+	import ListDetailActions from '../actions/ListDetailActions.svelte';
+	import { navigateTo } from '$lib/helpers/navigation';
 
 	interface Props {
-		items: PuestoItem[];
-		onClickEditar: (item: PuestoItem) => void;
-		onClickBorrar: (item: PuestoItem) => void;
-		onClickRestaurar: (item: PuestoItem) => void;
+		items: CampusItem[];
+		onClickEditar: (item: CampusItem) => void;
+		onClickBorrar: (item: CampusItem) => void;
+		onClickRestaurar: (item: CampusItem) => void;
 
 		onClickCrear: () => void;
 		onClickExport: () => void;
@@ -36,7 +37,7 @@
 		onClickExport,
 		onClickFilter,
 		showHeader = true,
-		title = 'Listado de puestos de trabajo',
+		title = 'Listado de instituciones',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -48,7 +49,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nuevo puesto"
+			crearTitle="Nuevo campus"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -60,31 +61,32 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-label">Código</th>
-							<th class="col-label">Puesto</th>
-							<th class="col-label">Departamento</th>
-							<th class="col-code">Tipo</th>
-							<th class="col-text">Descripción</th>
+							<th class="col-code">Institucion</th>
+							<th class="col-code">Código</th>
+							<th class="col-label">Nombre</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
 						</tr>
 					</thead>
+
 					<tbody class="text-body">
 						{#each items as item (item.id)}
-							<tr>
-								<td class="col-label">{item.code}</td>
+							<tr class="table-row tr-expandable">
+								<td class="col-code">
+									{item.institucion?.code}
+								</td>
+								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
-								<td class="col-label">{item.reference.name}</td>
-								<td class="col-code">{item.type}</td>
-								<td class="col-text">{item.description}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
 									</Badge>
 								</td>
 								<td class="col-actions-md">
-									<ListActions
+									<ListDetailActions
 										{item}
+										onClickDetail={() => navigateTo(item.code)}
+										isDetailDisabled={item.isDeleted}
 										onClickEdit={() => onClickEditar(item)}
 										isEditDisabled={item.isDeleted}
 										onClickDelete={() => onClickBorrar(item)}
@@ -106,7 +108,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nuevo puesto"
+			crearTitle="Nueva entidad"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -114,7 +116,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="2500px">
+			<CardColumn minWidth="360px" maxWidth="1599px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.code} title={item.name}>
@@ -124,14 +126,14 @@
 						</CardHeader>
 
 						<CardContent>
-							<CardContentItem label="Departamento" value={item.reference.name} />
-							<CardContentItem label="Tipo de puesto" value={item.type} />
-							<CardContentItem label="Descripción" value={item.description} />
+							<CardContentItem label="Institucion" value={item.institucion?.code} />
 						</CardContent>
 
 						<CardFooter>
-							<ListActions
+							<ListDetailActions
 								{item}
+								onClickDetail={() => navigateTo(item.code)}
+								isDetailDisabled={item.isDeleted}
 								onClickEdit={() => onClickEditar(item)}
 								isEditDisabled={item.isDeleted}
 								onClickDelete={() => onClickBorrar(item)}
@@ -144,7 +146,7 @@
 				{/each}
 			</CardColumn>
 		{:else}
-			<EmptySection />
+			<EmptySection message="No hay elementos"></EmptySection>
 		{/if}
 	</section>
 </main>
@@ -161,7 +163,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 2500px) {
+	@media (max-width: 1600px) {
 		.list-view--table {
 			display: none;
 		}

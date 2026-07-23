@@ -23,7 +23,7 @@ Wrapper de la lista de AccordionContentItem, opcionalmente colapsable.
 </script>
 
 {#if isCollapsible}
-	<div class={['accordion-content-wrapper', { 'is-open': !isVisible }]}>
+	<div class={['accordion-content-wrapper', { 'is-open': isVisible }]}>
 		<div class="accordion-content-inner">
 			<div class={['accordion-content', className]}>
 				{@render children()}

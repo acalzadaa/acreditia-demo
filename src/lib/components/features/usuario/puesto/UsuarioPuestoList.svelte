@@ -4,36 +4,31 @@
 	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
 	import AccordionContentItem from '$lib/components/ui/accordion/AccordionContentItem.svelte';
 	import type { UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
-	import AccordionFooter from '$lib/components/ui/accordion/AccordionFooter.svelte';
-	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import AccordionHeader from '$lib/components/ui/accordion/AccordionHeader.svelte';
+	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		items: UsuarioPuestoItem[];
 		isVisible: boolean;
+		onClickToggle: () => void;
 		onClickRemover: (item: UsuarioPuestoItem) => void;
 		onClickAdd: () => void;
-		title?: string;
-		subtitle?: string;
 	}
 
-	const {
-		items,
-		isVisible = false,
-		onClickRemover,
-		onClickAdd,
-		title = 'Puestos asignados al usuario',
-		subtitle
-	}: Props = $props();
+	const { items, isVisible = false, onClickToggle, onClickRemover, onClickAdd }: Props = $props();
 </script>
 
 <main class="main-panel--inner">
-	<section class="list-view--cards">
+	<section class="list-view--cards text-body">
 		<AccordionColumn minWidth="360px" maxWidth="2700px">
 			<Accordion>
-				<AccordionHeader {title} {subtitle} />
+				<AccordionHeaderButton onToggle={onClickToggle} {isVisible}>
+					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>
+						Agregar puesto
+					</Button>
+				</AccordionHeaderButton>
 
-				<AccordionContent {isVisible}>
+				<AccordionContent isCollapsible={true} {isVisible}>
 					{#each items as item (item)}
 						<AccordionContentItem
 							label={item.puesto.type}
@@ -44,10 +39,6 @@
 						/>
 					{/each}
 				</AccordionContent>
-
-				<AccordionFooter>
-					<IconButton name="add" variant="ghost" onClick={onClickAdd} />
-				</AccordionFooter>
 			</Accordion>
 		</AccordionColumn>
 	</section>

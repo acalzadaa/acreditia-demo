@@ -6,9 +6,12 @@
    definidos fuera de este archivo.
 
    Estructura:
-   AccordionColumn > Accordion > AccordionHeader | AccordionHeaderClickable
+   AccordionColumn > Accordion > AccordionHeaderClickable | AccordionHeaderButton
    > AccordionContent (colapsable) > lista de AccordionContentItem
    > AccordionFooter (opcional).
+
+   (El header estático no-clickeable, sin toggle, se movió fuera de
+   Accordion — vivirá en un futuro componente Panel.)
 
    Layout: Accordion siempre usa AccordionColumn (1 por renglón). No
    existe variante grid — a diferencia de Card, escanear accordions en
@@ -29,6 +32,7 @@
 	--accordion-padding: var(--space-4);
 
 	--accordion-section-gap: var(--stack-xs);
+	--accordion-content-max-height: 300px;
 }
 
 /* ==========================================
@@ -57,7 +61,6 @@
 .accordion {
 	display: flex;
 	flex-direction: column;
-	gap: var(--accordion-section-gap);
 
 	background-color: var(--accordion-bg);
 	border: var(--accordion-border);
@@ -68,8 +71,33 @@
 	min-width: 0;
 }
 
+/* Espaciado entre secciones vía margin (no gap) para poder anularlo
+   selectivamente cuando el content-wrapper está colapsado — así no
+   queda un hueco visible entre header y footer. */
+.accordion > * + * {
+	margin-top: var(--accordion-section-gap);
+}
+
+.accordion-content-wrapper:not(.is-open) {
+	margin-top: 0;
+}
+
+.accordion-content-wrapper:not(.is-open) + .accordion-footer {
+	margin-top: 0;
+	padding-top: 0;
+}
+
 /* ==========================================
-   HEADER — texto a la izquierda, acción/chevron a la derecha
+   HEADER
+
+   Header tiene 2 variantes:
+
+   Variante A (AccordionHeaderClickable): título + subtítulo
+   opcional + chevron. Todo el header es un <button> que hace toggle.
+
+   Variante B (AccordionHeaderButton): un Button de acción (icono+
+   texto) a la izquierda + un IconButton chevron a la derecha. Solo
+   el chevron hace toggle; el Button es una acción independiente.
    ========================================== */
 .accordion-header {
 	display: flex;
@@ -77,7 +105,6 @@
 	align-items: center;
 	justify-content: space-between;
 	gap: var(--space-2);
-	padding-bottom: var(--accordion-section-gap);
 }
 
 .accordion-header__text {
@@ -106,7 +133,7 @@
 	flex-shrink: 0;
 }
 
-/* Variante 3: todo el header es un <button> */
+/* Variante A: todo el header es un <button> */
 .accordion-header--clickable {
 	width: 100%;
 	background: none;
@@ -136,7 +163,9 @@
 .accordion-content-wrapper {
 	display: grid;
 	grid-template-rows: 0fr;
-	transition: grid-template-rows 0.25s ease;
+	transition:
+		grid-template-rows 0.25s ease,
+		margin-top 0.25s ease;
 }
 
 .accordion-content-wrapper.is-open {
@@ -146,10 +175,20 @@
 .accordion-content-inner {
 	overflow: hidden;
 	min-height: 0;
+	max-height: var(--accordion-content-max-height);
 }
 
 .is-open .accordion-content-inner {
-	overflow: auto;
+	overflow-y: auto;
+}
+
+/* Caso no colapsable (AccordionContent sin isCollapsible): el propio
+   .accordion-content, hijo directo de .accordion, es el contenedor
+   con scroll. No se aplica cuando está anidado dentro de
+   .accordion-content-inner (ese caso ya scrollea arriba). */
+.accordion > .accordion-content {
+	max-height: var(--accordion-content-max-height);
+	overflow-y: auto;
 }
 
 .accordion-content {
@@ -174,7 +213,8 @@
 	gap: var(--space-2);
 	min-width: 0;
 	padding: var(--space-2);
-
+	border-radius: var(--border-radius-md);
+	transition: background-color 0.15s ease;
 }
 
 .accordion-content-item:hover {

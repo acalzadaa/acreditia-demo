@@ -7,6 +7,7 @@
 		variant?: 'ghost' | 'solid' | 'outline';
 		size?: 'sm' | 'md' | 'lg';
 		shape?: 'circle' | 'square';
+		iconRotate?: number;
 		isActive?: boolean;
 		isDisabled?: boolean;
 		type?: 'button' | 'submit' | 'reset';
@@ -36,6 +37,7 @@
 		variant = 'ghost',
 		size = 'md',
 		shape = 'circle',
+		iconRotate = 0,
 		isActive = false,
 		isDisabled = false,
 		type = 'button',
@@ -82,5 +84,5 @@
 	aria-controls={ariaControls}
 	{...restProps}
 >
-	<Icon {name} {size} isFilled={variant === 'solid' && isActive} />
+	<Icon {name} {size} rotate={iconRotate} isFilled={variant === 'solid' && isActive} />
 </button>
