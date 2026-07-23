@@ -1,113 +1,45 @@
 <script lang="ts">
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
-	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
-	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 
-	import { createToggle } from '$lib/utils/toggle.svelte';
-	import { auth } from '$lib/stores/auth.svelte';
 	import { getModelo } from '$lib/stores/data.svelte';
-	import { page } from '$app/state';
 
-	import Modelo from '$lib/components/modelo/Modelo.svelte';
 	import type { ModeloItem } from '$lib/schemas/modelo.schema';
-	import EditarModeloForm from '$lib/components/modelo/EditarModeloForm.svelte';
-	import BorrarModeloForm from '$lib/components/modelo/BorrarModeloForm.svelte';
-	import RestaurarModeloForm from '$lib/components/modelo/RestaurarModeloForm.svelte';
-	import CrearModeloForm from '$lib/components/modelo/CrearModeloForm.svelte';
-	import NavigationBarContainer from '$lib/components/navigation/NavigationBarContainer.svelte';
-
-	let username = auth.user?.email?.split('@')[0] || 'Usuario';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import ModeloList from '$lib/components/features/modelo/ModeloList.svelte';
+	import CrearModeloForm from '$lib/components/features/modelo/CrearModeloForm.svelte';
+	import EditarModeloForm from '$lib/components/features/modelo/EditarModeloForm.svelte';
 
 	let calidadModeloItems = getModelo();
-	let navigationItems = $derived(page.data.navigationItems);
-
-	// ===== HEADER =====
-
-	/* LOGOUT */
-	async function onClickLogout() {
-		auth.logout();
-		goto(resolve('/login'), { replaceState: true });
-	}
-
-	// ===== SUBHEADER + NAVIGATIONBAR + NOTIFICATIONBAR =====
 	let modal = createModalManager<ModeloItem>();
-	let navigationToggle = createToggle(true);
-	let notificationToggle = createToggle(false);
 </script>
 
-<div class="app-grid">
-	<Header
-		{username}
-		{onClickLogout}
-	/>
-	<Subheader
-		onClickNavigationBar={navigationToggle.onClick}
-		onKeydownNavigationBar={(e) => navigationToggle.onKeydown(e)}
-		onClickNotificationBar={navigationToggle.onClick}
-		onKeydownNotificationBar={(e) => navigationToggle.onKeydown(e)}
-		showNavigationBar={navigationToggle.value}
-		showNotificationBar={notificationToggle.value}
-	/>
-	<NavigationBarContainer showNavigationBar={navigationToggle.value} {navigationItems} />
-	<NotificationBarContainer showNotificationBar={notificationToggle.value} />
-	<Toolbar
-		crearTitle="Nuevo modelo"
-		onClickCrear={modal.handlers('create').onClick}
-		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
-		showExport={true}
-		showFilter={true}
-	/>
-	<Modelo
-		items={calidadModeloItems}
-		onClickEditar={modal.handlers('edit').onClickItem}
-		onKeydownEditar={(e, item) => modal.handlers('edit').onKeydownItem(e, item)}
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		onKeydownBorrar={(e, item) => modal.handlers('delete').onKeydownItem(e, item)}
-		onClickRestaurar={modal.handlers('restore').onClickItem}
-		onKeydownRestaurar={(e, item) => modal.handlers('restore').onKeydownItem(e, item)}
+<ModeloList
+	items={calidadModeloItems}
+	onClickEditar={(item) => modal.handlers('edit').onClickItem(item)}
+	onClickBorrar={(item) => modal.handlers('delete').onClickItem(item)}
+	onClickRestaurar={(item) => modal.handlers('restore').onClickItem(item)}
+	onClickCrear={modal.handlers('create').onClick}
+	onClickExport={modal.handlers('export').onClick}
+	onClickFilter={modal.handlers('filter').onClick}
+/>
+
+<CrearModeloForm open={modal.isOpen('create')} onClose={modal.close} />
+
+{#if modal.selectedItem}
+	<EditarModeloForm open={modal.isOpen('edit')} item={modal.selectedItem} onClose={modal.close} />
+
+	<ConfirmDeleteModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('delete')}
+		onClose={modal.close}
 	/>
 
-	<!-- MODAL CREAR -->
-	<CrearModeloForm open={modal.isOpen('create')} onClose={modal.close} />
-	{#if modal.selectedItem}
-		<!-- MODAL EDITAR -->
-		<EditarModeloForm open={modal.isOpen('edit')} item={modal.selectedItem} onClose={modal.close} />
-
-		<!-- MODAL BORRAR -->
-		<BorrarModeloForm
-			open={modal.isOpen('delete')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
-
-		<!-- MODAL RESTAURAR -->
-		<RestaurarModeloForm
-			open={modal.isOpen('restore')}
-			item={modal.selectedItem}
-			onClose={modal.close}
-		/>
-	{/if}
-
-	<Footer />
-</div>
-
-<style>
-	.app-grid {
-		display: grid;
-		grid-template-areas:
-			'header header'
-			'subheader subheader'
-			'navbar toolbar'
-			'navbar main'
-			'footer footer';
-		grid-template-columns: auto 1fr;
-		grid-template-rows: auto auto auto 1fr auto;
-		height: 100vh;
-		position: relative;
-	}
-</style>
+	<ConfirmRestoreModal
+		demo={true}
+		id={modal.selectedItem.id}
+		open={modal.isOpen('restore')}
+		onClose={modal.close}
+	/>
+{/if}

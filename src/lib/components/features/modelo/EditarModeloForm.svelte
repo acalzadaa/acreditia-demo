@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
 
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import Input from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
 	import { modeloFormSchema, type ModeloItem } from '$lib/schemas/modelo.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
@@ -89,7 +89,7 @@
 				{/if}
 
 				<div class="form-fields">
-					<Input
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -113,7 +113,7 @@
 						rows={4}
 					/>
 
-					<Input
+					<InputText
 						label="Acreditadora"
 						name="acreditadora"
 						required={true}
@@ -127,13 +127,12 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Actualiza filosofia</Button
-				>
-			</footer>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Actualiza</Button>
+			</menu>
 		</form>
 	</div>
 </Modal>
