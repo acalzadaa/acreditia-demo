@@ -2,7 +2,7 @@
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import { evidenciaFormSchema, type EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';

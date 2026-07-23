@@ -7,7 +7,7 @@
 		filosofiaInstitucionalItemSchema,
 		type FilosofiaInstitucionalItem
 	} from '$lib/schemas/filosofiaInstitucional.schema';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import Button from '$lib/components/ui/Button.svelte';

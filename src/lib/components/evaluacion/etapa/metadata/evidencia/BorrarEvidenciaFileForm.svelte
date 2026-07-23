@@ -3,7 +3,7 @@
 
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { evidenciaFileRefSchema, type EvidenciaFileRef } from '$lib/schemas/etapaMetadata.schema';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 

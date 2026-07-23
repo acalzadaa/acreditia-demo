@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import type { ButtonVariant } from '../Button.svelte';
 	import Button from '../Button.svelte';
 	import IconButton from '../IconButton.svelte';

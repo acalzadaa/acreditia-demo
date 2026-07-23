@@ -3,7 +3,7 @@
 	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { EtapaResultadosItem } from '$lib/schemas/etapaMetadata.schema';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 
 	interface Props {

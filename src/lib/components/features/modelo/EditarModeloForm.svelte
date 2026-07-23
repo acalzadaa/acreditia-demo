@@ -3,7 +3,7 @@
 
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import { modeloFormSchema, type ModeloItem } from '$lib/schemas/modelo.schema';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';

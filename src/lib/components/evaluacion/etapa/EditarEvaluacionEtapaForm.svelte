@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import { etapaFormSchema, type EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
-	import Modal from '$lib/components/modal/Modal.svelte';
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import DatePickerInput from '$lib/components/ui/input/DatePickerInput.svelte';
