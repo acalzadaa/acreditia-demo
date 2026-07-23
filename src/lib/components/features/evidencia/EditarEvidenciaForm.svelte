@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	import Modal from '../modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import Input from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import Icon from '../ui/Icon.svelte';
 	import { evidenciaFormSchema, type EvidenciaItem } from '$lib/schemas/evidencia.schema';
+	import Modal from '$lib/components/modal/Modal.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		open: boolean;
@@ -71,7 +70,7 @@
 			/>
 		</header>
 
-		<form method="POST" action="?/edit" use:enhance>
+		<form class="modal-flex" method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="id" value={$form.id} />
 			<div class="modal-body">
@@ -83,7 +82,7 @@
 				{/if}
 
 				<div class="form-fields">
-					<Input
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}
@@ -109,13 +108,12 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose} isDisabled={$submitting}>
 					Cancelar
 				</Button>
-				<Button type="submit" variant="primary" isDisabled={$submitting}>Actualiza filosofia</Button
-				>
-			</footer>
+				<Button type="submit" variant="primary" isDisabled={$submitting}>Actualiza</Button>
+			</menu>
 		</form>
 	</div>
 </Modal>
