@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Tag from "../ui/Tag.svelte";
+
 
 	interface Props {
 		title: string;
@@ -12,9 +14,7 @@
 	<div class="page-header-content">
 		<h2 class="page-header-title text-h5">{title}</h2>
 		{#if subtitle}
-			<div class="page-header-subtitle text-body">
-				{subtitle}
-			</div>
+			<Tag variant="info" class="text-body">{subtitle}</Tag>
 		{/if}
 	</div>
 </header>
