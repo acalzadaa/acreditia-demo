@@ -1,0 +1,183 @@
+/* components/panel.css
+
+   1. El reset de <button> para la variante A (renglón-botón completo).
+   2. Un alias neutral para el slot de acción de la variante B (en vez
+      de reusar el nombre `.panel-content-item__remove`, que es
+      semánticamente específico de "eliminar").
+*/
+
+:root {
+	--panel-gap: var(--space-4);
+	--panel-bg: var(--bg-raised);
+	--panel-bg-hover: var(--bg-raised-hover);
+	--panel-border: var(--border-card);
+	--panel-radius: var(--border-radius-card);
+	--panel-shadow: var(--shadow-card);
+	--panel-padding: var(--space-4);
+}
+
+/* ==========================================
+   PANEL — wrapper general
+   ========================================== */
+.panel {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--panel-bg);
+	border: var(--panel-border);
+	border-radius: var(--panel-radius);
+	box-shadow: var(--panel-shadow);
+	padding: var(--panel-padding);
+	min-width: 0;
+	margin-left: 10px;
+}
+
+/* ==========================================
+   HEADER
+
+   Header tiene 2 variantes:
+
+   Variante A (AccordionHeaderClickable): título + subtítulo
+   opcional + chevron. Todo el header es un <button> que hace toggle.
+
+   Variante B (AccordionHeaderButton): un Button de acción (icono+
+   texto) a la izquierda + un IconButton chevron a la derecha. Solo
+   el chevron hace toggle; el Button es una acción independiente.
+   ========================================== */
+.panel-header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-2);
+	padding-bottom: var(--space-2);
+	border-bottom: var(--divider);
+}
+
+.panel-header__text {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-1);
+	min-width: 0;
+}
+
+.panel-header__subtitle {
+	color: var(--text-secondary);
+}
+
+.panel-header__title {
+	color: var(--text-primary);
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+.panel-header__metadata {
+	margin-top: var(--space-1);
+}
+
+.panel-header__action {
+	flex-shrink: 0;
+}
+
+/* ==========================================
+   ITEM — label/value a la izquierda, IconButton de eliminar
+   opcional a la derecha
+   ========================================== */
+.panel-content-item {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--space-2);
+	min-width: 0;
+	padding: var(--space-2);
+	border-radius: var(--border-radius-md);
+	transition: background-color 0.15s ease;
+}
+
+.panel-content-item__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+	min-width: 0;
+	flex: 1;
+}
+
+.panel-content-item__label {
+	color: var(--text-secondary);
+}
+
+.panel-content-item__text {
+	margin: 0;
+	color: var(--text-primary);
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+/* Clamp a 2 renglones. Se retira cuando el item está expandido
+   o cuando no hubo overflow real (ver PanelContentItem.svelte). */
+.panel-content-item__text--clamped {
+	display: -webkit-box;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.panel-content-item__toggle {
+	align-self: flex-start;
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	color: var(--border-brand);
+	font-weight: var(--weight-medium);
+}
+
+.panel-content-item__toggle:hover {
+	color: var(--border-brand-strong);
+	text-decoration: underline;
+}
+
+/* ==========================================
+   VARIANTE A — PanelListItemButton
+   Todo el renglón es un <button>; reusa .panel-content-item
+   para layout/hover y solo resetea las propiedades nativas de botón.
+   ========================================== */
+.panel-list-item--button {
+	width: 100%;
+	background: none;
+	border: none;
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+.panel-list-item--button:hover {
+	background-color: var(--panel-bg-hover);
+}
+
+.panel-list-item--button:disabled {
+	opacity: var(--button-disabled-opacity, 0.5);
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.panel-list-item--button:focus-visible {
+	outline: var(--button-focus-outline);
+	outline-offset: var(--button-focus-outline-offset);
+}
+
+/* ==========================================
+   VARIANTE B — PanelListItem
+   ========================================== */
+.panel-list-item__text {
+	min-width: 0;
+}
+
+.panel-list-item__action {
+	flex-shrink: 0;
+}
