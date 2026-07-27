@@ -40,7 +40,7 @@
 		showHeader = true,
 		showExport = false,
 		showFilter = false,
-		title = 'Listado de Modelos',
+		title = 'Listado de modelos',
 		subtitle = ''
 	}: Props = $props();
 </script>
