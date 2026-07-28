@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import AddIndicadorAreaResponsablePicker from '$lib/components/indicador/area-responsable/AddIndicadorAreaResponsablePicker.svelte';
-	import BorrarIndicadorAreaResponsableForm from '$lib/components/indicador/area-responsable/BorrarIndicadorAreaResponsableForm.svelte';
-	import IndicadorAreaResponsable from '$lib/components/indicador/area-responsable/IndicadorAreaResponsable.svelte';
+	import AddIndicadorAreaResponsable from '$lib/components/indicador/area-responsable/AddIndicadorAreaResponsable.svelte';
+	import IndicadorAreaResponsableList from '$lib/components/indicador/area-responsable/IndicadorAreaResponsableList.svelte';
+	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
 	import { getAreaResponsableRef, getIndicadorAreaResponsable } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
@@ -17,32 +16,29 @@
 </script>
 
 <main>
-	<Toolbar
-		gridArea="toolbar"
-		crearTitle="Agregar area responsable"
-		onClickCrear={modal.handlers('create').onClick}
-		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
-		showExport={false}
-		showFilter={false}
-	/>
-	<IndicadorAreaResponsable
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		showDetailIcon={true}
+	<IndicadorAreaResponsableList
+		onClickRemover={modal.handlers('remove').onClickItem}
+		onClickAdd={modal.handlers('add').onClick}
 		items={areaResponsableItems}
 	/>
 </main>
 
 <!-- MODAL CREAR -->
-<AddIndicadorAreaResponsablePicker
-	open={modal.isOpen('create')}
+<AddIndicadorAreaResponsable
+	open={modal.isOpen('add')}
 	{areaResponsableRef}
 	onClose={modal.close}
 />
 
 {#if modal.selectedItem}
-	<BorrarIndicadorAreaResponsableForm
-		open={modal.isOpen('delete')}
-		selectedItem={modal.selectedItem}
+	<ConfirmModal
+		demo={true}
+		message="¿Desea remover el registro?"
+		title="Remover criterio"
+		buttonLabel="Remover"
+		open={modal.isOpen('remove')}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
+		actionButtonVariant="critical"
 	/>
 {/if}
