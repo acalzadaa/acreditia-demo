@@ -1,6 +1,5 @@
 <script lang="ts">
-	import Tag from "../ui/Tag.svelte";
-
+	import Tag from '../ui/Tag.svelte';
 
 	interface Props {
 		title: string;
@@ -18,46 +17,41 @@
 		{/if}
 	</div>
 </header>
-
 <style>
 	.page-header {
 		display: flex;
 		align-items: center;
-		padding: 0 var(--space-3);
+		padding: var(--stack-xs) var(--layout-container-padding);
 		background-color: var(--bg-raised);
 		box-shadow: var(--shadow-xs);
-		border-bottom: var(--border-width-thin) solid var(--border-regular);
+		border-bottom: var(--divider);
 		flex-shrink: 0;
-		height: var(--subheader-height);
+		min-height: var(--subheader-height);
 		margin-left: var(--space-2);
 		margin-right: var(--space-2);
 	}
 
 	.page-header-content {
 		display: flex;
-		flex-direction: row;
+		flex-flow: row wrap;
 		align-items: center;
-		gap: var(--space-3);
+		column-gap: var(--space-3);
+		row-gap: var(--stack-xs);
+		min-width: 0;
 	}
 
 	.page-header-title {
 		color: var(--text-primary);
 		margin: 0;
 		line-height: var(--text-h5-height);
+		min-width: 0;
 	}
 
-	.page-header-subtitle {
-		color: var(--text-on-brand);
-		background-color: var(--bg-overlay-brand);
-		border-radius: var(--border-radius-button);
-		padding: var(--space-1) var(--space-2);
-		line-height: 1;
-	}
-
-	/* Responsive */
+	/* Responsive: solo ajusta el "aire" exterior según el dispositivo,
+	   el row->column del contenido ya lo resuelve flex-wrap */
 	@media (max-width: 768px) {
 		.page-header {
-			padding: 0 var(--space-4);
+			padding: var(--stack-xs) var(--space-4);
 		}
 	}
 </style>

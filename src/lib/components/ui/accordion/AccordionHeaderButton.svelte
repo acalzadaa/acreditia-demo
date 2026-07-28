@@ -44,6 +44,11 @@ Ej.:
 		onToggle: () => void;
 		toggleAriaLabel?: string;
 
+		/** titulo y/o subtitulo */
+		title?: Snippet;
+		subtitle?: Snippet;
+		/** badge opcional */
+
 		/** El Button de acción a la izquierda del header. */
 		children: Snippet;
 		class?: string;
@@ -54,14 +59,30 @@ Ej.:
 		isVisible,
 		onToggle,
 		toggleAriaLabel = 'Expandir/colapsar',
+		title,
+		subtitle,
 		children,
 		class: className = ''
 	}: Props = $props();
 </script>
 
 <div class={['accordion-header', className]}>
-	<div class="accordion-header__action">
-		{@render children()}
+	<div class="accordion-header__left">
+		<div class="accordion-header__text">
+			{#if subtitle}
+				<div class="accordion-header__subtitle text-h6">
+					{@render subtitle()}
+				</div>
+			{/if}
+			{#if title}
+				<div class="accordion-header__title text-h6">
+					{@render title()}
+				</div>
+			{/if}
+		</div>
+		<div class="accordion-header__action text-body">
+			{@render children()}
+		</div>
 	</div>
 	<IconButton
 		name="chevron-down"

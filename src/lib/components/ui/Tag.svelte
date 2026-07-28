@@ -4,13 +4,13 @@
 	export type TagStatus = 'info' | 'warning' | 'error' | 'success';
 
 	interface Props {
-		variant: TagStatus;
+		variant?: TagStatus;
 		class?: string;
 		children: Snippet;
 		[key: string]: unknown;
 	}
 
-	const { variant, children, class: className = '', ...props }: Props = $props();
+	const { variant = 'info', children, class: className = '', ...props }: Props = $props();
 </script>
 
 <span
@@ -18,7 +18,7 @@
 		'tag',
 		className,
 		{
-			[`status-tag--variant-${variant}`]: true
+			[`tag--variant-${variant}`]: true
 		},
 		props
 	]}
@@ -41,23 +41,19 @@
 	.tag--variant-success {
 		background-color: var(--bg-success-subtle);
 		color: var(--text-on-success);
-		border: var(--border-width-thin) solid var(--border-success-strong);
 	}
 
 	.tag--variant-error {
 		background-color: var(--bg-error-subtle);
 		color: var(--text-on-error);
-		border: var(--border-width-thin) solid var(--border-error-strong);
 	}
 	.tag--variant-warning {
 		background-color: var(--bg-warning-subtle);
 		color: var(--text-on-warning);
-		border: var(--border-width-thin) solid var(--border-warning-strong);
 	}
 
 	.tag--variant-info {
 		background-color: var(--bg-info-subtle);
 		color: var(--text-on-info);
-		border: var(--border-width-thin) solid var(--border-info-strong);
 	}
 </style>

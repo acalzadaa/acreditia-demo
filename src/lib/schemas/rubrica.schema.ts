@@ -1,7 +1,7 @@
 // rubrica.schema.ts
 import { z } from 'zod';
 import { rubricaCriterioItemSchema } from './rubricaCriterio.schema';
-import { indicadorRefSchema, rubricaCriterioRefSchema } from './shared.schema';
+import { baseRefSchema, indicadorRefSchema, rubricaCriterioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA
@@ -49,22 +49,22 @@ export type RubricaForm = z.infer<typeof rubricaFormSchema>;
 // ============================================
 // 3. ITEM SCHEMA (Con criterios incluidos)
 // ============================================
-export const rubricaItemSchema = z.object({
-	id: z.uuid(),
-	indicador: indicadorRefSchema,
-	code: z.string(),
-	rangeStart: z.number().int(),
-	rangeEnd: z.number().int(),
-	order: z.number().int().min(1).max(5),
-	criterios: z.array(rubricaCriterioRefSchema),
-	version: z.number().int().nonnegative(),
-	isCurrent: z.boolean(),
-	validFrom: z.coerce.date(),
-	validTo: z.coerce.date().nullable(),
-	isDeleted: z.boolean(),
-	createdAt: z.coerce.date(),
-	createdBy: z.string()
-});
+export const rubricaItemSchema = z
+	.object({
+		indicador: indicadorRefSchema,
+		rangeStart: z.number().int(),
+		rangeEnd: z.number().int(),
+		order: z.number().int().min(1).max(5),
+		criterios: z.array(rubricaCriterioRefSchema),
+		version: z.number().int().nonnegative(),
+		isCurrent: z.boolean(),
+		validFrom: z.coerce.date(),
+		validTo: z.coerce.date().nullable(),
+		isDeleted: z.boolean(),
+		createdAt: z.coerce.date(),
+		createdBy: z.string()
+	})
+	.extend(baseRefSchema.shape);
 
 export type RubricaItem = z.infer<typeof rubricaItemSchema>;
 

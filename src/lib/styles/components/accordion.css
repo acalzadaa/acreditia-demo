@@ -109,6 +109,14 @@
 
 .accordion-header__text {
 	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: var(--space-1);
+	min-width: 0;
+}
+
+.accordion-header__left {
+	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: var(--space-1);
@@ -130,6 +138,8 @@
 }
 
 .accordion-header__action {
+	display: flex;
+	justify-content: left;
 	flex-shrink: 0;
 }
 

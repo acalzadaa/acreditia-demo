@@ -46,3 +46,12 @@ export const rubricaCriterioItemSchema = z.object({
 });
 
 export type RubricaCriterioItem = z.infer<typeof rubricaCriterioItemSchema>;
+
+
+/* Caso especial para eliminar el criterio de una rubrica */
+export const removerRubricaCriterioItemSchema = z.object({
+	id: z.uuid(),
+	criterioId: z.uuid()
+});
+
+export type RemoverRubricaCriterioItem = z.infer<typeof removerRubricaCriterioItemSchema>;

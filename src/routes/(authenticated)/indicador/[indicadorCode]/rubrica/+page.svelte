@@ -1,21 +1,43 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import RubricaListViewDetail from '$lib/components/rubrica/RubricaListViewDetail.svelte';
+	import PageHeader from '$lib/components/common/PageHeader.svelte';
+	import CrearRubricaCriterioForm from '$lib/components/indicador/rubrica/CrearRubricaCriterioForm.svelte';
+	import RubricaCriterioList from '$lib/components/indicador/rubrica/RubricaCriterioList.svelte';
+	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
+	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
+	import type { RemoverRubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
 	import { getRubrica } from '$lib/stores/data.svelte';
+	import { createModalManager } from '$lib/utils/modalManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let rubricaItems = getRubrica().filter((item) => item.indicador.code === indicadorCode);
+
+	let modal = createModalManager<RubricaItem>();
+	let modalCriterio = createModalManager<RemoverRubricaCriterioItem>();
 </script>
 
-<main class="rubrica-page">
-	<RubricaListViewDetail items={rubricaItems} />
-</main>
+<main class="detail-panel">
+	<PageHeader title="Niveles de desempeño" subtitle='agregue los criterios de evaluacion'/>
+	<RubricaCriterioList
+		items={rubricaItems}
+		onClickRemover={modalCriterio.handlers('remove').onClickItem}
+		onClickAdd={modal.handlers('add').onClickItem}
+	/>
+	<CrearRubricaCriterioForm
+		open={modal.isOpen('add')}
+		onClose={modal.close}
+	/>
 
-<style>
-	.rubrica-page {
-		flex: 1;
-		min-height: 0;
-		display: flex;
-		flex-direction: column;
-	}
-</style>
+	{#if modalCriterio.selectedItem}
+		<ConfirmModal
+			demo={true}
+			message="¿Desea remover el registro?"
+			title="Remover criterio"
+			buttonLabel="Remover"
+			open={modalCriterio.isOpen('remove')}
+			id={modalCriterio.selectedItem.id}
+			onClose={modalCriterio.close}
+			actionButtonVariant="critical"
+		/>
+	{/if}
+</main>
