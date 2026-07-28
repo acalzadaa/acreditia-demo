@@ -15,7 +15,7 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 		label: string;
 		value?: string;
 		/** Si se pasa, se muestra un IconButton a la derecha del item. */
-		onRemove?: (e: MouseEvent) => void;
+		onRemove?: () => void;
 		removeIcon?: IconName;
 		removeAriaLabel?: string;
 		class?: string;

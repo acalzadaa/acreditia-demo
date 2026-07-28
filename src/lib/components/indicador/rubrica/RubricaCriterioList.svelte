@@ -7,16 +7,17 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
+	import type { RemoverRubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
 	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
 
 	interface Props {
 		items: RubricaItem[];
-		onClickAdd: () => void;
-		onClickRemover: () => void;
+		onClickAdd: (item: RubricaItem) => void;
+		onClickRemover: (item: RemoverRubricaCriterioItem) => void;
 	}
 
-	function calculateRubricaRange(index: number) {
-		return `${index * 2 + 1} al ${index * 2 + 2}`;
+	function calculateRubricaRange(item: RubricaItem) {
+		return `${item.rangeStart} al ${item.rangeEnd}`;
 	}
 
 	const { items, onClickAdd, onClickRemover }: Props = $props();
@@ -24,13 +25,13 @@
 	// Un toggle independiente por cada item (accordion), en vez de un único
 	// isVisible compartido por todos. `defaultOpen: true` mantiene el
 	// comportamiento previo de mostrar los criterios expandidos de entrada.
-	const accordions = createToggleManager({ defaultOpen: false });
+	const accordions = createToggleManager({ defaultOpen: false, exclusive: true });
 </script>
 
-<main class="main-panel--inner">
+<section class="main-panel--inner">
 	{#if items && items.length > 0}
 		<AccordionColumn minWidth="360px" maxWidth="2500px">
-			{#each items as item, index (item.id)}
+			{#each items as item (item.id)}
 				<Accordion>
 					<AccordionHeaderButton
 						id="acc-{item.id}"
@@ -38,19 +39,22 @@
 						onToggle={() => accordions.toggle(item.id)}
 					>
 						{#snippet title()}
-							Rango <Tag variant="info">{calculateRubricaRange(index)}</Tag>
+							<div style="display: flex; flex-direction: row;">
+								<p style="text-transform: capitalize;">{item.name}</p>
+								<Tag variant="info">{calculateRubricaRange(item)}</Tag>
+							</div>
 						{/snippet}
-						<Button variant="ghost" size="sm" name="add" onClick={() => onClickAdd()}>
+						<Button variant="ghost" size="sm" name="add" onClick={() => onClickAdd(item)}>
 							Agregar criterio
 						</Button>
 					</AccordionHeaderButton>
 
 					<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(item.id)}>
-						{#each item['criterios'] as criterio (criterio)}
+						{#each item['criterios'] as criterio (criterio.id)}
 							<AccordionContentItem
 								label={criterio.code}
 								value={criterio.criterio}
-								onRemove={() => onClickRemover()}
+								onRemove={() => onClickRemover({ id: item.id, criterioId: criterio.id })}
 								removeIcon="remove"
 								removeAriaLabel="remover elemento"
 							/>
@@ -60,4 +64,4 @@
 			{/each}
 		</AccordionColumn>
 	{/if}
-</main>
+</section>

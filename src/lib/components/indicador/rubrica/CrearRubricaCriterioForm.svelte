@@ -66,7 +66,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Crear criterio</h2>
+			<h2 class="modal-title text-h4">Crear criterio de evaluacion</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -95,7 +95,7 @@
 						label="Criterio"
 						name="criterio"
 						required={true}
-						placeholder="INST-001"
+						placeholder="Logra construir..."
 						status={errorMessage && !formData.criterio ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={formData.criterio}
@@ -106,7 +106,7 @@
 
 			<footer class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear</Button>
+				<Button type="submit" variant="primary">Crear criterio</Button>
 			</footer>
 		</form>
 	</div>
