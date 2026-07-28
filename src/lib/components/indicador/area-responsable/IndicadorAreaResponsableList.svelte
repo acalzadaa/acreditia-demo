@@ -9,13 +9,14 @@
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
-	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	import SublistActions from '$lib/components/actions/SublistActions.svelte';
+	import { navigateTo } from '$lib/helpers/navigation';
+	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
+	import Actions from '$lib/components/ui/Actions.svelte';
 
 	interface Props {
-		items: EvidenciaItem[];
-		onClickRemover: (item: EvidenciaItem) => void;
-		onClickAgregar: () => void;
+		items: IndicadorAreaResponsableItem[];
+		onClickRemover: (item: IndicadorAreaResponsableItem) => void;
+		onClickAdd: () => void;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
@@ -24,44 +25,51 @@
 	const {
 		items,
 		onClickRemover,
-		onClickAgregar,
-
+		onClickAdd,
 		showHeader = true,
-		title = 'Listado de evidencias',
+		title = 'Listado de areas responsables',
 		subtitle = ''
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel--inner">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2 crearTitle="Agregar evidencia" onClickCrear={onClickAgregar} />
+		<ToolbarV2
+			crearTitle="Agregar area responsable"
+			onClickCrear={onClickAdd}
+			showExport={false}
+			showFilter={false}
+		/>
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
 							<th class="col-code">Codigo</th>
-							<th class="col-label">Nombre</th>
-							<th class="col-text">Descripcion</th>
+							<th class="col-code">Area responsable</th>
+							<th class="col-label">Descripcion</th>
 							<th class="col-actions-sm">Acciones</th>
 						</tr>
 					</thead>
+
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
 								<td class="col-code">{item.code}</td>
-								<td class="col-label">{item.name}</td>
-								<td class="col-text">
-									{item.description}
+								<td class="col-code">{item.areaResponsable.code}</td>
+								<td class="col-label">
+									{item.areaResponsable.name}
 								</td>
-
 								<td class="col-actions-sm">
-									<SublistActions
+									<Actions
 										{item}
+										showDetail={true}
+										isDetailDisabled={false}
+										onClickDetail={() => navigateTo(item.code)}
 										showRemove={true}
 										isRemoveDisabled={false}
 										onClickRemove={() => onClickRemover(item)}
@@ -80,28 +88,31 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Agregar evidencia"
-			onClickCrear={onClickAgregar}
+			crearTitle="Agregar area responsable"
+			onClickCrear={onClickAdd}
 			showExport={false}
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1500px">
+			<CardColumn minWidth="360px" maxWidth="1599px">
 				{#each items as item (item.id)}
 					<Card>
-						<CardHeader subtitle={item.code} title={item.name}>
+						<CardHeader subtitle={item.areaResponsable.code} title={item.areaResponsable.name}>
 							<Badge variant={item.isDeleted ? 'error' : 'success'}>
 								{item.isDeleted ? 'borrado' : 'activo'}
 							</Badge>
 						</CardHeader>
 
 						<CardContent>
-							<CardContentItem label="Descripción" value={item.description} />
+							<CardContentItem label="Codigo" value={item.code} />
 						</CardContent>
 
 						<CardFooter>
-							<SublistActions
+							<Actions
 								{item}
+								showDetail={true}
+								isDetailDisabled={false}
+								onClickDetail={() => navigateTo(item.code)}
 								showRemove={true}
 								isRemoveDisabled={false}
 								onClickRemove={() => onClickRemover(item)}
@@ -111,7 +122,7 @@
 				{/each}
 			</CardColumn>
 		{:else}
-			<EmptySection />
+			<EmptySection message="No hay elementos"></EmptySection>
 		{/if}
 	</section>
 </main>
@@ -128,7 +139,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1500px) {
+	@media (max-width: 1600px) {
 		.list-view--table {
 			display: none;
 		}
