@@ -80,7 +80,7 @@ Ej.:
 				</div>
 			{/if}
 		</div>
-		<div class="accordion-header__action">
+		<div class="accordion-header__action text-body">
 			{@render children()}
 		</div>
 	</div>
