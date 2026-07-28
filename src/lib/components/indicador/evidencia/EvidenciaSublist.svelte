@@ -10,7 +10,6 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	import Actions from '$lib/components/ui/Actions.svelte';
 	import SublistActions from '$lib/components/actions/SublistActions.svelte';
 
 	interface Props {
@@ -61,7 +60,7 @@
 								</td>
 
 								<td class="col-actions-sm">
-									<Actions
+									<SublistActions
 										{item}
 										showRemove={true}
 										isRemoveDisabled={false}

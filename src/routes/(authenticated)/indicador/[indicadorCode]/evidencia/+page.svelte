@@ -18,13 +18,11 @@
 	let modal = createModalManager<EvidenciaItem>();
 </script>
 
-<main>
-	<EvidenciaSublist
-		onClickAgregar={modal.handlers('add').onClick}
-		onClickRemover={modal.handlers('remove').onClickItem}
-		items={evidenciaItem}
-	/>
-</main>
+<EvidenciaSublist
+	onClickAgregar={modal.handlers('add').onClick}
+	onClickRemover={modal.handlers('remove').onClickItem}
+	items={evidenciaItem}
+/>
 
 <!-- MODAL CREAR -->
 <AddIndicadorEvidenciaPicker open={modal.isOpen('add')} {evidenciaRef} onClose={modal.close} />
@@ -38,6 +36,6 @@
 		open={modal.isOpen('remove')}
 		id={modal.selectedItem.id}
 		onClose={modal.close}
-		actionButtonVariant='critical'
+		actionButtonVariant="critical"
 	/>
 {/if}
