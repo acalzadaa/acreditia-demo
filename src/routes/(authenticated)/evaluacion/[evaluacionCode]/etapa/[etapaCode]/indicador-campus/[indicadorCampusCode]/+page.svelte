@@ -147,12 +147,12 @@
 				>
 			</div>
 
-			<Toolbar crearTitle="Agregar archivo" onClickCrear={modalFile.handlers('create').onClick} />
+			<Toolbar actionTitle="Agregar archivo" onClickCrear={modalFile.handlers('create').onClick} />
 			<EvidenciaFile
 				items={fileRefs}
 				onClickBorrar={(item) => modalFile.handlers('delete').onClickItem(item)}
 			/>
-			<Toolbar crearTitle="Agregar url" onClickCrear={modalUrl.handlers('create').onClick} />
+			<Toolbar actionTitle="Agregar url" onClickCrear={modalUrl.handlers('create').onClick} />
 
 			<EvidenciaUrl
 				items={urlRefs}

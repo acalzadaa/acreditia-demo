@@ -49,7 +49,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nuevo usuario"
+			actionTitle="Nuevo usuario"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -108,7 +108,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nuevo usuario"
+			actionTitle="Nuevo usuario"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

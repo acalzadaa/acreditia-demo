@@ -19,7 +19,7 @@
 <main>
 	<Toolbar
 		gridArea="toolbar"
-		crearTitle="Agregar area funcional"
+		actionTitle="Agregar area funcional"
 		onClickCrear={modal.handlers('create').onClick}
 		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
 		showExport={false}

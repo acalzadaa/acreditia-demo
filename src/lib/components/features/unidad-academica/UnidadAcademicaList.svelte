@@ -46,7 +46,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva unidad academica"
+			actionTitle="Nueva unidad academica"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -99,7 +99,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva unidad academica"
+			actionTitle="Nueva unidad academica"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

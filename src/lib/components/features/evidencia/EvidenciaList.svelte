@@ -51,7 +51,7 @@
 			<PageHeader {title} {subtitle} />
 		{/if}
 		<ToolbarV2
-			crearTitle="Nueva evidencia"
+			actionTitle="Nueva evidencia"
 			{onClickCrear}
 			{onClickFilter}
 			{onClickExport}
@@ -109,7 +109,7 @@
 		{/if}
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva evidencia"
+			actionTitle="Nueva evidencia"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

@@ -51,7 +51,7 @@
 			<PageHeader {title} {subtitle} />
 		{/if}
 		<ToolbarV2
-			crearTitle="Nueva normativa"
+			actionTitle="Nueva normativa"
 			{onClickCrear}
 			{onClickFilter}
 			{onClickExport}
@@ -109,7 +109,7 @@
 		{/if}
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva normativa"
+			actionTitle="Nueva normativa"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

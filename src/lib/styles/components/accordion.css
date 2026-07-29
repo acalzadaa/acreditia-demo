@@ -289,4 +289,5 @@
 	justify-content: flex-start;
 	gap: var(--space-1);
 	padding-top: var(--accordion-section-gap);
+	min-height: 50px;
 }

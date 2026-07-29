@@ -19,7 +19,7 @@
 
 <div class="detail-panel">
 	<Toolbar
-		crearTitle="Nueva evaluacion"
+		actionTitle="Nueva evaluacion"
 		onClickCrear={modal.handlers('create').onClick}
 		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
 		showExport={true}

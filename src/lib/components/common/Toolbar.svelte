@@ -10,7 +10,7 @@
 	interface Props {
 		gridArea?: string;
 
-		crearTitle?: string;
+		actionTitle?: string;
 		onClickCrear: (e: MouseEvent) => void;
 		onKeydownCrear?: (e: KeyboardEvent) => void;
 
@@ -26,7 +26,7 @@
 	const {
 		gridArea = 'toolbar',
 		onClickCrear,
-		crearTitle = 'Crear',
+		actionTitle = 'Crear',
 		onKeydownCrear,
 		onClickExport,
 		onKeydownExport,
@@ -46,7 +46,7 @@
 			onClick={onClickCrear}
 			onKeydown={onKeydownCrear}
 		>
-			{crearTitle}
+			{actionTitle}
 		</Button>
 	</section>
 	<section>

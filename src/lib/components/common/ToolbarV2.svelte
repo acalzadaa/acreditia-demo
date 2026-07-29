@@ -3,7 +3,7 @@
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		crearTitle?: string;
+		actionTitle?: string;
 		mobileVersion?: boolean;
 		onClickCrear: (e: MouseEvent) => void;
 		onKeydownCrear?: (e: KeyboardEvent) => void;
@@ -20,7 +20,7 @@
 	const {
 		onClickCrear,
 		mobileVersion = false,
-		crearTitle = 'Crear',
+		actionTitle = 'Crear',
 		onKeydownCrear,
 		onClickExport,
 		onKeydownExport,
@@ -41,7 +41,7 @@
 			onClick={onClickCrear}
 			onKeydown={onKeydownCrear}
 		>
-			{crearTitle}
+			{actionTitle}
 		</Button>
 	</section>
 	<section>

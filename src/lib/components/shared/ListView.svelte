@@ -17,7 +17,7 @@
 		title?: string;
 		subtitle?: string;
 
-		crearTitle: string;
+		actionTitle: string;
 		onClickCrear: () => void;
 		onClickExport: () => void;
 		onClickFilter: () => void;
@@ -46,7 +46,7 @@
 		title = '',
 		subtitle = '',
 
-		crearTitle,
+		actionTitle,
 		onClickCrear,
 		onClickExport,
 		onClickFilter,
@@ -75,7 +75,7 @@
 	<section class="list-view">
 		<ToolbarV2
 			mobileVersion={!showTable}
-			{crearTitle}
+			{actionTitle}
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

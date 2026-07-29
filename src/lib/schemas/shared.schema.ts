@@ -4,6 +4,21 @@
 
 import z from 'zod';
 
+/**
+ * Este caso se utiliza cuando se tiene una lista de elementos padres,
+ * y se desea identificar un elemento hijo especifico que esta dentro de un elemento padre especifico.
+ * En el caso de un create, el hijo aun no tiene un id, por lo que se puede enviar solo el parentId.
+ * Util en actions: create, add, remove, edit, delete, etc.
+ *
+ */
+
+export const identifyParentChildItemSchema = z.object({
+	parentId: z.uuid(),
+	childId: z.uuid().optional()
+});
+
+export type IdentifyParentChildItemSchema = z.infer<typeof identifyParentChildItemSchema>;
+
 //SDC Type 2 - Metadata
 export const auditMetadataSchema = z.object({
 	version: z.number().default(0),
@@ -62,7 +77,6 @@ export const puestoRefSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	type: z.enum(JOB_TYPE)
-
 });
 export type PuestoRef = z.infer<typeof puestoRefSchema>;
 
