@@ -57,7 +57,7 @@
 			<PageHeader {title} {subtitle} />
 		{/if}
 		<ToolbarV2
-			crearTitle="Nuevo indicador"
+			actionTitle="Nuevo indicador"
 			{onClickCrear}
 			{onClickFilter}
 			{onClickExport}
@@ -123,7 +123,7 @@
 		{/if}
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nuevo indicador"
+			actionTitle="Nuevo indicador"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

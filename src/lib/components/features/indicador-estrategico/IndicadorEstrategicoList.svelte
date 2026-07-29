@@ -49,7 +49,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nuevo indicador"
+			actionTitle="Nuevo indicador"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -116,7 +116,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nuevo indicador"
+			actionTitle="Nuevo indicador"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

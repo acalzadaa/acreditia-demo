@@ -51,7 +51,7 @@
 			<PageHeader {title} {subtitle} />
 		{/if}
 		<ToolbarV2
-			crearTitle="Nueva seccion"
+			actionTitle="Nueva seccion"
 			{onClickCrear}
 			{onClickFilter}
 			{onClickExport}
@@ -113,7 +113,7 @@
 		{/if}
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva seccion"
+			actionTitle="Nueva seccion"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

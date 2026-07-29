@@ -48,7 +48,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva area"
+			actionTitle="Nueva area"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -104,7 +104,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva area"
+			actionTitle="Nueva area"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

@@ -48,7 +48,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nuevo puesto"
+			actionTitle="Nuevo puesto"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -106,7 +106,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nuevo puesto"
+			actionTitle="Nuevo puesto"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

@@ -20,7 +20,7 @@
 <main>
 	<Toolbar
 		gridArea="toolbar"
-		crearTitle="Agregar unidad academica"
+		actionTitle="Agregar unidad academica"
 		onClickCrear={modal.handlers('create').onClick}
 		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
 		showExport={false}

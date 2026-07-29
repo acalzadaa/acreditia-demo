@@ -48,7 +48,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Nueva institucion"
+			actionTitle="Nueva institucion"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -105,7 +105,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Nueva entidad"
+			actionTitle="Nueva entidad"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

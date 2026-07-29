@@ -38,7 +38,7 @@
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2 crearTitle="Agregar evidencia" onClickCrear={onClickAgregar} />
+		<ToolbarV2 actionTitle="Agregar evidencia" onClickCrear={onClickAgregar} />
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
@@ -80,7 +80,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Agregar evidencia"
+			actionTitle="Agregar evidencia"
 			onClickCrear={onClickAgregar}
 			showExport={false}
 			showFilter={false}

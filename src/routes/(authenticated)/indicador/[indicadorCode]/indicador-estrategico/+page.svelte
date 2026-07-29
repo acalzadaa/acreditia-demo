@@ -22,7 +22,7 @@
 <main>
 	<Toolbar
 		gridArea="toolbar"
-		crearTitle="Agregar indicador estrategico"
+		actionTitle="Agregar indicador estrategico"
 		onClickCrear={modal.handlers('create').onClick}
 		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
 		showExport={false}

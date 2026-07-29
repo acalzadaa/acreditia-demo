@@ -39,7 +39,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			crearTitle="Agregar area responsable"
+			actionTitle="Agregar area responsable"
 			onClickCrear={onClickAdd}
 			showExport={false}
 			showFilter={false}
@@ -88,7 +88,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			crearTitle="Agregar area responsable"
+			actionTitle="Agregar area responsable"
 			onClickCrear={onClickAdd}
 			showExport={false}
 			showFilter={false}

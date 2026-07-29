@@ -19,7 +19,7 @@
 <main>
 	<Toolbar
 		gridArea="toolbar"
-		crearTitle="Agregar normativa"
+		actionTitle="Agregar normativa"
 		onClickCrear={modal.handlers('create').onClick}
 		showExport={false}
 		showFilter={false}
