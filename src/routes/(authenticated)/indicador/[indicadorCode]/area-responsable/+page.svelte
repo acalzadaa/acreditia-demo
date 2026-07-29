@@ -35,7 +35,6 @@
 	/>
 </main>
 
-<!-- MODAL CREAR -->
 <AddIndicadorAreaResponsable
 	open={modal.isOpen('add')}
 	{areaResponsableRef}

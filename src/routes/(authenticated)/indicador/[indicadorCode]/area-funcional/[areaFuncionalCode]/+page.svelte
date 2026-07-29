@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import AddIndicadorSubareaFuncionalPicker from '$lib/components/indicador/area-funcional/subarea-funcional/AddIndicadorSubareaFuncionalPicker.svelte';
+	import AddIndicadorSubareaFuncionalPicker from '$lib/components/indicador/area-funcional/subarea-funcional/AddIndicadorSubareaFuncional.svelte';
 	import BorrarIndicadorSubareaFuncionalForm from '$lib/components/indicador/area-funcional/subarea-funcional/BorrarIndicadorSubareaFuncionalForm.svelte';
 	import IndicadorSubareaFuncional from '$lib/components/indicador/area-funcional/subarea-funcional/IndicadorSubareaFuncional.svelte';
 	import type { AreaFuncionalRef } from '$lib/schemas/shared.schema';

@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import AddIndicadorAreaFuncionalPicker from '$lib/components/indicador/area-funcional/AddIndicadorAreaFuncionalPicker.svelte';
-	import BorrarIndicadorAreaFuncionalForm from '$lib/components/indicador/area-funcional/BorrarIndicadorAreaFuncionalForm.svelte';
-	import IndicadorAreaFuncional from '$lib/components/indicador/area-funcional/IndicadorAreaFuncional.svelte';
+	import AddIndicadorAreaFuncional from '$lib/components/indicador/area-funcional/AddIndicadorAreaFuncionalPicker.svelte';
+	import IndicadorAreaFuncionalNestedList from '$lib/components/indicador/area-funcional/IndicadorAreaFuncionalNestedList.svelte';
+	import AddIndicadorSubareaFuncional from '$lib/components/indicador/area-funcional/subarea-funcional/AddIndicadorSubareaFuncional.svelte';
+	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
+	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
 	import type { IndicadorAreaFuncionalItem } from '$lib/schemas/indicadorAreaFuncional';
+	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
 	import { getAreaFuncionalRef, getIndicadorAreaFuncional } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 
@@ -13,36 +15,47 @@
 		(item) => item.indicador.code === indicadorCode
 	);
 	let subareaFuncionalRef = getAreaFuncionalRef();
+	let modalChild = createModalManager<IdentifyParentChildItemSchema>();
 	let modal = createModalManager<IndicadorAreaFuncionalItem>();
 </script>
 
 <main>
-	<Toolbar
-		gridArea="toolbar"
-		actionTitle="Agregar area funcional"
-		onClickCrear={modal.handlers('create').onClick}
-		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
-		showExport={false}
-		showFilter={false}
-	/>
-	<IndicadorAreaFuncional
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		showDetailIcon={true}
+	<IndicadorAreaFuncionalNestedList
+		onClickRemover={modal.handlers('remove').onClickItem}
+		onClickRemoverChild={modalChild.handlers('remove').onClickItem}
+		onClickAdd={modal.handlers('add').onClick}
+		onClickAddChild={modalChild.handlers('add').onClickItem}
 		items={areaFuncionalItems}
 	/>
 </main>
 
 <!-- MODAL CREAR -->
-<AddIndicadorAreaFuncionalPicker
-	open={modal.isOpen('create')}
+<AddIndicadorAreaFuncional
+	open={modal.isOpen('add')}
 	{subareaFuncionalRef}
 	onClose={modal.close}
 />
 
+<AddIndicadorSubareaFuncional
+	open={modalChild.isOpen('add')}
+	{subareaFuncionalRef}
+	onClose={modalChild.close}
+/>
+
 {#if modal.selectedItem}
-	<BorrarIndicadorAreaFuncionalForm
-		open={modal.isOpen('delete')}
-		selectedItem={modal.selectedItem}
+	<ConfirmRemoveModal
+		demo={true}
+		open={modal.isOpen('remove')}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
+	/>
+{/if}
+
+{#if modalChild.selectedItem}
+	<ConfirmRemoveModalParentChild
+		demo={true}
+		open={modalChild.isOpen('remove')}
+		id={modalChild.selectedItem}
+		onClose={modalChild.close}
 	/>
 {/if}
