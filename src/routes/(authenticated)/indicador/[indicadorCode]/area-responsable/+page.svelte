@@ -1,10 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import AddIndicadorAreaResponsable from '$lib/components/indicador/area-responsable/AddIndicadorAreaResponsable.svelte';
-	import IndicadorAreaResponsableList from '$lib/components/indicador/area-responsable/IndicadorAreaResponsableList.svelte';
-	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
+	import IndicadorAreaResponsableNestedList from '$lib/components/indicador/area-responsable/IndicadorAreaResponsableNestedList.svelte';
+	import AddIndicadorUnidadAcademica from '$lib/components/indicador/area-responsable/unidad-academica/AddIndicadorUnidadAcademica.svelte';
+	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
+	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
 	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
-	import { getAreaResponsableRef, getIndicadorAreaResponsable } from '$lib/stores/data.svelte';
+	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
+	import {
+		getAreaResponsableRef,
+		getIndicadorAreaResponsable,
+		getUnidadAcademicaRef
+	} from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
@@ -12,13 +19,18 @@
 		(item) => item.indicador.code === indicadorCode
 	);
 	let areaResponsableRef = getAreaResponsableRef();
+	let modalChild = createModalManager<IdentifyParentChildItemSchema>();
 	let modal = createModalManager<IndicadorAreaResponsableItem>();
+
+	let unidadAcademicaRef = getUnidadAcademicaRef();
 </script>
 
 <main>
-	<IndicadorAreaResponsableList
+	<IndicadorAreaResponsableNestedList
 		onClickRemover={modal.handlers('remove').onClickItem}
+		onClickRemoverChild={modalChild.handlers('remove').onClickItem}
 		onClickAdd={modal.handlers('add').onClick}
+		onClickAddChild={modalChild.handlers('add').onClickItem}
 		items={areaResponsableItems}
 	/>
 </main>
@@ -30,15 +42,26 @@
 	onClose={modal.close}
 />
 
+<AddIndicadorUnidadAcademica
+	open={modalChild.isOpen('add')}
+	{unidadAcademicaRef}
+	onClose={modalChild.close}
+/>
+
 {#if modal.selectedItem}
-	<ConfirmModal
+	<ConfirmRemoveModal
 		demo={true}
-		message="¿Desea remover el registro?"
-		title="Remover criterio"
-		buttonLabel="Remover"
 		open={modal.isOpen('remove')}
 		id={modal.selectedItem.id}
 		onClose={modal.close}
-		actionButtonVariant="critical"
+	/>
+{/if}
+
+{#if modalChild.selectedItem}
+	<ConfirmRemoveModalParentChild
+		demo={true}
+		open={modalChild.isOpen('remove')}
+		id={modalChild.selectedItem}
+		onClose={modalChild.close}
 	/>
 {/if}
