@@ -1,3 +1,10 @@
+<!--
+@component
+DetailActions esta pensado para que tenga los IconButtons necesarios
+para una pantalla de detalle, normalmente Edit.
+
+-->
+
 <script lang="ts">
 	import Actions from "../ui/Actions.svelte";
 

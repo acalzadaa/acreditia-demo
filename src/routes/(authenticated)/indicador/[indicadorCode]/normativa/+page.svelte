@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import AddIndicadorNormativaPicker from '$lib/components/indicador/normativa/AddIndicadorNormativaPicker.svelte';
-	import BorrarIndicadorNormativaForm from '$lib/components/indicador/normativa/BorrarIndicadorNormativaForm.svelte';
-	import IndicadorNormativa from '$lib/components/indicador/normativa/IndicadorNormativa.svelte';
+	import AddIndicadorNormativa from '$lib/components/indicador/normativa/AddIndicadorNormativa.svelte';
+	import IndicadorNormativaList from '$lib/components/indicador/normativa/IndicadorNormativaList.svelte';
+	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
 	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
 	import { getIndicadorNormativa, getNormativaRef } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
@@ -16,28 +15,19 @@
 	let normativaRef = getNormativaRef();
 </script>
 
-<main>
-	<Toolbar
-		gridArea="toolbar"
-		actionTitle="Agregar normativa"
-		onClickCrear={modal.handlers('create').onClick}
-		showExport={false}
-		showFilter={false}
-	/>
-	<IndicadorNormativa
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		showDetailIcon={false}
-		items={indicadorNormativaItems}
-	/>
-</main>
+<IndicadorNormativaList
+	onClickCrear={modal.handlers('create').onClick}
+	onClickRemover={modal.handlers('remove').onClickItem}
+	items={indicadorNormativaItems}
+/>
 
-<!-- MODAL CREAR -->
-<AddIndicadorNormativaPicker open={modal.isOpen('create')} {normativaRef} onClose={modal.close} />
+<AddIndicadorNormativa open={modal.isOpen('create')} {normativaRef} onClose={modal.close} />
 
 {#if modal.selectedItem}
-	<BorrarIndicadorNormativaForm
-		open={modal.isOpen('delete')}
-		selectedItem={modal.selectedItem}
+	<ConfirmRemoveModal
+		demo={true}
+		open={modal.isOpen('remove')}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 {/if}
