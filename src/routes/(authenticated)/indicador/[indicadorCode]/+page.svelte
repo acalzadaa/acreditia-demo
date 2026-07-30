@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
-	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
+	import EditarIndicadorForm from '$lib/components/features/indicador/EditarIndicadorForm.svelte';
 	import { getIndicador, getIndicadorNavList, getModeloFullRef } from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import IndicadorDetail from '$lib/components/indicador/IndicadorDetail.svelte';
+	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
-	import IndicadorNavList from '$lib/components/indicador/IndicadorNavList.svelte';
+	import IndicadorNavList from '$lib/components/features/indicador/IndicadorNavList.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 

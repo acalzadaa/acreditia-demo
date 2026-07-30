@@ -1,13 +1,13 @@
 <script lang="ts">
+	import Button from '$lib/components/ui/Button.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
-	import Button from '../ui/Button.svelte';
-	import IconButton from '../ui/IconButton.svelte';
-	import InputText from '../ui/input/InputText.svelte';
-	import TextArea from '../ui/input/TextArea.svelte';
-	import InputNumber from '../ui/input/InputNumber.svelte';
-	import Icon from '../ui/Icon.svelte';
 	import { indicadorTypeOptions } from '$lib/schemas/indicador.schema';
-	import InputSelect from '../ui/input/InputSelect.svelte';
 	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
 
 	interface Props {
@@ -196,7 +196,8 @@
 			/>
 		</header>
 
-		<form class='modal-flex'
+		<form
+			class="modal-flex"
 			onsubmit={(e) => {
 				e.preventDefault();
 				handleSubmit();
@@ -304,10 +305,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
 				<Button type="submit" variant="primary">Crear indicador</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

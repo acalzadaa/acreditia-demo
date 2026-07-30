@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import CrearRubricaCriterioForm from '$lib/components/indicador/rubrica/CrearRubricaCriterioForm.svelte';
-	import RubricaCriterioList from '$lib/components/indicador/rubrica/RubricaCriterioList.svelte';
+	import CrearRubricaCriterioForm from '$lib/components/features/indicador/rubrica/CrearRubricaCriterioForm.svelte';
+	import RubricaCriterioList from '$lib/components/features/indicador/rubrica/RubricaCriterioList.svelte';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import type { RemoverRubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';

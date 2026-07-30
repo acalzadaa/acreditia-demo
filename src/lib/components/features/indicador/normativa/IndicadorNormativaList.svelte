@@ -9,6 +9,8 @@
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
 	import SublistActions from '$lib/components/actions/SublistActions.svelte';
+	import CardContent from '$lib/components/ui/card/CardContent.svelte';
+	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 
 	interface Props {
 		items: IndicadorNormativaItem[];
@@ -86,15 +88,17 @@
 		showFilter={false}
 	/>
 	{#if items.length > 0}
-		<CardColumn minWidth="360px" maxWidth="2500px">
+		<CardColumn minWidth="360px" maxWidth="900px">
 			{#each items as item (item.id)}
 				<Card>
-					<CardHeader subtitle={item.normativa.code} title={item.normativa.name}>
+					<CardHeader subtitle={item.indicador.code} title={item.normativa.name}>
 						<Badge variant={item.isDeleted ? 'error' : 'success'}>
 							{item.isDeleted ? 'borrado' : 'activo'}
 						</Badge>
 					</CardHeader>
-
+					<CardContent>
+						<CardContentItem label="Codigo de normativa" value={item.normativa.code} />
+					</CardContent>
 					<CardFooter>
 						<SublistActions
 							{item}
@@ -121,7 +125,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 2500px) {
+	@media (max-width: 900px) {
 		.list-view--table {
 			display: none;
 		}

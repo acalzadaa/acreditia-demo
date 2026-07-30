@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AddIndicadorNormativa from '$lib/components/indicador/normativa/AddIndicadorNormativa.svelte';
-	import IndicadorNormativaList from '$lib/components/indicador/normativa/IndicadorNormativaList.svelte';
+	import AddIndicadorNormativa from '$lib/components/features/indicador/normativa/AddIndicadorNormativa.svelte';
+	import IndicadorNormativaList from '$lib/components/features/indicador/normativa/IndicadorNormativaList.svelte';
 	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
 	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
 	import { getIndicadorNormativa, getNormativaRef } from '$lib/stores/data.svelte';

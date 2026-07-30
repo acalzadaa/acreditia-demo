@@ -23,9 +23,7 @@
 		<AccordionColumn minWidth="360px" maxWidth="2700px">
 			<Accordion>
 				<AccordionHeaderButton onToggle={onClickToggle} {isVisible}>
-					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>
-						Agregar campus
-					</Button>
+					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>Agregar campus</Button>
 				</AccordionHeaderButton>
 
 				<AccordionContent isCollapsible={true} {isVisible}>
@@ -47,9 +45,6 @@
 <style>
 	/* Por default (>= 1500px) gana la tabla; las cards quedan ocultas
 	   y fuera del flujo para no pelear por el flex del panel. */
-	.list-view--table {
-		display: contents;
-	}
 
 	.list-view--cards {
 		display: none;
@@ -57,10 +52,6 @@
 
 	/* Ajustar el max-width dependiendo el contenido! */
 	@media (max-width: 2700px) {
-		.list-view--table {
-			display: none;
-		}
-
 		.list-view--cards {
 			display: grid;
 			flex: 1;
