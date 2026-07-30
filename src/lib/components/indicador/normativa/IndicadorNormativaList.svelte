@@ -49,7 +49,7 @@
 				<tbody class="text-body">
 					{#each items as item (item.id)}
 						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.indicador.code}</td>
+							<td class="col-code">{item.normativa.code}</td>
 							<td class="col-code">
 								<Badge variant="info">{item.normativa.code}</Badge>
 							</td>
@@ -86,7 +86,7 @@
 		showFilter={false}
 	/>
 	{#if items.length > 0}
-		<CardColumn minWidth="360px" maxWidth="2500px">
+		<CardColumn minWidth="360px" maxWidth="900px">
 			{#each items as item (item.id)}
 				<Card>
 					<CardHeader subtitle={item.normativa.code} title={item.normativa.name}>
@@ -121,7 +121,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 2500px) {
+	@media (max-width: 900px) {
 		.list-view--table {
 			display: none;
 		}
