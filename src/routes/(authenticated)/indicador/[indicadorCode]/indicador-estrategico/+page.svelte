@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AddIndicadorIndicadorEstrategicoPicker from '$lib/components/indicador/indicador-estrategico/AddIndicadorIndicadorEstrategico.svelte';
-	import IndicadorIndicadorEstrategicoList from '$lib/components/indicador/indicador-estrategico/IndicadorIndicadorEstrategicoList.svelte';
+	import AddIndicadorIndicadorEstrategicoPicker from '$lib/components/features/indicador/indicador-estrategico/AddIndicadorIndicadorEstrategico.svelte';
+	import IndicadorIndicadorEstrategicoList from '$lib/components/features/indicador/indicador-estrategico/IndicadorIndicadorEstrategicoList.svelte';
 	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
 	import type { IndicadorIndicadorEstrategicoItem } from '$lib/schemas/indicadorIndicadorEstrategico';
 	import {

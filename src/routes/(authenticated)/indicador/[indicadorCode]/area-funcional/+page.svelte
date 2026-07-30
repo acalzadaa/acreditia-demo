@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AddIndicadorAreaFuncional from '$lib/components/indicador/area-funcional/AddIndicadorAreaFuncionalPicker.svelte';
-	import IndicadorAreaFuncionalNestedList from '$lib/components/indicador/area-funcional/IndicadorAreaFuncionalNestedList.svelte';
-	import AddIndicadorSubareaFuncional from '$lib/components/indicador/area-funcional/subarea-funcional/AddIndicadorSubareaFuncional.svelte';
+	import AddIndicadorAreaFuncional from '$lib/components/features/indicador/area-funcional/AddIndicadorAreaFuncionalPicker.svelte';
+	import IndicadorAreaFuncionalNestedList from '$lib/components/features/indicador/area-funcional/IndicadorAreaFuncionalNestedList.svelte';
+	import AddIndicadorSubareaFuncional from '$lib/components/features/indicador/area-funcional/subarea-funcional/AddIndicadorSubareaFuncional.svelte';
 	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
 	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
 	import type { IndicadorAreaFuncionalItem } from '$lib/schemas/indicadorAreaFuncional';

@@ -1,11 +1,11 @@
 <script lang="ts">
+	import EmptySection from '$lib/components/common/EmptySection.svelte';
+	import Panel from '$lib/components/ui/panel/Panel.svelte';
+	import PanelContent from '$lib/components/ui/panel/PanelContent.svelte';
+	import PanelHeader from '$lib/components/ui/panel/PanelHeader.svelte';
+	import PanelListItemButton from '$lib/components/ui/panel/PanelListItemButton.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 	import type { indicadorNavListItem } from '$lib/schemas/indicadorNavigation.schema';
-	import EmptySection from '../common/EmptySection.svelte';
-	import Panel from '../ui/panel/Panel.svelte';
-	import PanelContent from '../ui/panel/PanelContent.svelte';
-	import PanelHeader from '../ui/panel/PanelHeader.svelte';
-	import PanelListItemButton from '../ui/panel/PanelListItemButton.svelte';
 
 	interface Props {
 		showHeader?: boolean;

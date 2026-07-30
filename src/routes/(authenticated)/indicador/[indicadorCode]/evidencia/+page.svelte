@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AddIndicadorEvidenciaPicker from '$lib/components/indicador/evidencia/AddIndicadorEvidenciaPicker.svelte';
-	import EvidenciaSublist from '$lib/components/indicador/evidencia/EvidenciaSublist.svelte';
+	import AddIndicadorEvidenciaPicker from '$lib/components/features/indicador/evidencia/AddIndicadorEvidenciaPicker.svelte';
+	import EvidenciaSublist from '$lib/components/features/indicador/evidencia/EvidenciaSublist.svelte';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
 	import { getEvidenciaRef, getIndicadorEvidencia } from '$lib/stores/data.svelte';

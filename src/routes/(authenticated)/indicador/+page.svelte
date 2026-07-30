@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
-	import CrearIndicadorForm from '$lib/components/indicador/CrearIndicadorForm.svelte';
-	import EditarIndicadorForm from '$lib/components/indicador/EditarIndicadorForm.svelte';
+	import CrearIndicadorForm from '$lib/components/features/indicador/CrearIndicadorForm.svelte';
+	import EditarIndicadorForm from '$lib/components/features/indicador/EditarIndicadorForm.svelte';
 	import { getIndicador, getModeloFullRef } from '$lib/stores/data.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
-	import IndicadorList from '$lib/components/indicador/IndicadorList.svelte';
+	import IndicadorList from '$lib/components/features/indicador/IndicadorList.svelte';
 
 	let items = getIndicador();
 	let modeloFullRef = getModeloFullRef();

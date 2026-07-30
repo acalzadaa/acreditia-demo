@@ -9,10 +9,10 @@
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
-	import Actions from '../ui/Actions.svelte';
 	import type { IndicadorItem } from '$lib/schemas/indicador.schema';
 	import { navigateTo } from '$lib/helpers/navigation';
-	import ListDetailActions from '../actions/ListDetailActions.svelte';
+	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
+	import Actions from '$lib/components/ui/Actions.svelte';
 
 	interface Props {
 		items: IndicadorItem[];

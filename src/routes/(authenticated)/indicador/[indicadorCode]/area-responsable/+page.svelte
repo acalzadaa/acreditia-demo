@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AddIndicadorAreaResponsable from '$lib/components/indicador/area-responsable/AddIndicadorAreaResponsable.svelte';
-	import IndicadorAreaResponsableNestedList from '$lib/components/indicador/area-responsable/IndicadorAreaResponsableNestedList.svelte';
-	import AddIndicadorUnidadAcademica from '$lib/components/indicador/area-responsable/unidad-academica/AddIndicadorUnidadAcademica.svelte';
+	import AddIndicadorAreaResponsable from '$lib/components/features/indicador/area-responsable/AddIndicadorAreaResponsable.svelte';
+	import IndicadorAreaResponsableNestedList from '$lib/components/features/indicador/area-responsable/IndicadorAreaResponsableNestedList.svelte';
+	import AddIndicadorUnidadAcademica from '$lib/components/features/indicador/area-responsable/unidad-academica/AddIndicadorUnidadAcademica.svelte';
 	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
 	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
 	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
