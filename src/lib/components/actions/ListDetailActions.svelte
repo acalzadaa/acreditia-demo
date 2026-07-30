@@ -1,3 +1,10 @@
+<!--
+@component
+ListDetailActions esta pensado para que tenga los IconButtons necesarios
+para una pantalla de lista de elementos con un boton de detalle
+este boton de detalle normalmente tiene un onClick(navigateTo('url'))
+Usa Actions y agrega el boton de Detail a ListActions.
+-->
 <script lang="ts">
 	import Actions from '../ui/Actions.svelte';
 

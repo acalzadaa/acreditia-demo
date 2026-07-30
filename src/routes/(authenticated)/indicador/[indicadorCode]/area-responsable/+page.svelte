@@ -25,15 +25,13 @@
 	let unidadAcademicaRef = getUnidadAcademicaRef();
 </script>
 
-<main>
-	<IndicadorAreaResponsableNestedList
-		onClickRemover={modal.handlers('remove').onClickItem}
-		onClickRemoverChild={modalChild.handlers('remove').onClickItem}
-		onClickAdd={modal.handlers('add').onClick}
-		onClickAddChild={modalChild.handlers('add').onClickItem}
-		items={areaResponsableItems}
-	/>
-</main>
+<IndicadorAreaResponsableNestedList
+	onClickRemover={modal.handlers('remove').onClickItem}
+	onClickRemoverChild={modalChild.handlers('remove').onClickItem}
+	onClickAdd={modal.handlers('add').onClick}
+	onClickAddChild={modalChild.handlers('add').onClickItem}
+	items={areaResponsableItems}
+/>
 
 <AddIndicadorAreaResponsable
 	open={modal.isOpen('add')}
