@@ -7,14 +7,14 @@
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
-	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
 	import SublistActions from '$lib/components/actions/SublistActions.svelte';
+	import type { IndicadorIndicadorEstrategicoItem } from '$lib/schemas/indicadorIndicadorEstrategico';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 
 	interface Props {
-		items: IndicadorNormativaItem[];
-		onClickRemover: (item: IndicadorNormativaItem) => void;
+		items: IndicadorIndicadorEstrategicoItem[];
+		onClickRemover: (item: IndicadorIndicadorEstrategicoItem) => void;
 		onClickCrear: () => void;
 		showHeader?: boolean;
 		title?: string;
@@ -26,7 +26,7 @@
 		onClickRemover,
 		onClickCrear,
 		showHeader = true,
-		title = 'Detalle de normativa',
+		title = 'Detalle de indicador estrategico',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -35,14 +35,14 @@
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
-	<ToolbarV2 actionTitle="Agregar normativa" {onClickCrear} />
+	<ToolbarV2 actionTitle="Agregar indicador estrategico" {onClickCrear} />
 	{#if items.length > 0}
 		<div class="table-container">
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
 						<th class="col-code">Codigo</th>
-						<th class="col-code">Normativa</th>
+						<th class="col-code">Indicador Estrategico</th>
 						<th class="col-label">Descripcion</th>
 						<th class="col-actions-md">Acciones</th>
 					</tr>
@@ -53,10 +53,10 @@
 						<tr class="table-row tr-expandable">
 							<td class="col-code">{item.indicador.code}</td>
 							<td class="col-code">
-								<Badge variant="info">{item.normativa.code}</Badge>
+								<Badge variant="info">{item.indicadorEstrategico.code}</Badge>
 							</td>
 							<td class="col-label">
-								{item.normativa.name}
+								{item.indicadorEstrategico.name}
 							</td>
 							<td class="col-actions-md">
 								<SublistActions
@@ -82,7 +82,7 @@
 	{/if}
 	<ToolbarV2
 		mobileVersion={true}
-		actionTitle="Agregar normativa"
+		actionTitle="Agregar indicador estrategico"
 		{onClickCrear}
 		showExport={false}
 		showFilter={false}
@@ -91,13 +91,13 @@
 		<CardColumn minWidth="360px" maxWidth="900px">
 			{#each items as item (item.id)}
 				<Card>
-					<CardHeader subtitle={item.indicador.code} title={item.normativa.name}>
+					<CardHeader subtitle={item.indicador.code} title={item.indicadorEstrategico.name}>
 						<Badge variant={item.isDeleted ? 'error' : 'success'}>
 							{item.isDeleted ? 'borrado' : 'activo'}
 						</Badge>
 					</CardHeader>
 					<CardContent>
-						<CardContentItem label="Codigo de normativa" value={item.normativa.code} />
+						<CardContentItem label="Codigo" value={item.indicadorEstrategico.code} />
 					</CardContent>
 					<CardFooter>
 						<SublistActions

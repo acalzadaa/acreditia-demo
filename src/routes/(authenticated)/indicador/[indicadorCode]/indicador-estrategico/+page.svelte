@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import AddIndicadorIndicadorEstrategicoPicker from '$lib/components/indicador/indicador-estrategico/AddIndicadorIndicadorEstrategicoPicker.svelte';
-	import BorrarIndicadorIndicadorEstrategicoForm from '$lib/components/indicador/indicador-estrategico/BorrarIndicadorIndicadorEstrategicoForm.svelte';
-	import IndicadorIndicadorEstrategico from '$lib/components/indicador/indicador-estrategico/IndicadorIndicadorEstrategico.svelte';
+	import AddIndicadorIndicadorEstrategicoPicker from '$lib/components/indicador/indicador-estrategico/AddIndicadorIndicadorEstrategico.svelte';
+	import IndicadorIndicadorEstrategicoList from '$lib/components/indicador/indicador-estrategico/IndicadorIndicadorEstrategicoList.svelte';
+	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
 	import type { IndicadorIndicadorEstrategicoItem } from '$lib/schemas/indicadorIndicadorEstrategico';
 	import {
 		getIndicadorEstrategicoRef,
@@ -19,23 +18,12 @@
 	let modal = createModalManager<IndicadorIndicadorEstrategicoItem>();
 </script>
 
-<main>
-	<Toolbar
-		gridArea="toolbar"
-		actionTitle="Agregar indicador estrategico"
-		onClickCrear={modal.handlers('create').onClick}
-		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
-		showExport={false}
-		showFilter={false}
-	/>
-	<IndicadorIndicadorEstrategico
-		onClickBorrar={modal.handlers('delete').onClickItem}
-		showDetailIcon={false}
-		items={indicadorIndicadorEstrategicoItems}
-	/>
-</main>
+<IndicadorIndicadorEstrategicoList
+	onClickRemover={modal.handlers('remove').onClickItem}
+	onClickCrear={modal.handlers('create').onClick}
+	items={indicadorIndicadorEstrategicoItems}
+/>
 
-<!-- MODAL CREAR -->
 <AddIndicadorIndicadorEstrategicoPicker
 	open={modal.isOpen('create')}
 	{indicadorEstrategicoRef}
@@ -43,9 +31,10 @@
 />
 
 {#if modal.selectedItem}
-	<BorrarIndicadorIndicadorEstrategicoForm
-		open={modal.isOpen('delete')}
-		selectedItem={modal.selectedItem}
+	<ConfirmRemoveModal
+		demo={true}
+		open={modal.isOpen('remove')}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 {/if}
