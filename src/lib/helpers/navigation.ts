@@ -37,3 +37,26 @@ export function navigateTo(childPath: string) {
 	// eslint-disable-next-line svelte/no-navigation-without-resolve
 	goto(buildChildUrl(childPath));
 }
+
+export function navigateToBreadcrumb(segment: string) {
+	console.log('segment: ', segment, 'pathname', page.url.pathname);
+	const currentPath = page.url.pathname;
+	const pathSegments = currentPath.split('/').filter((segment) => segment.length > 0);
+	console.log('segments', pathSegments);
+
+	// Encontrar el índice del segmento en la ruta actual
+	const normalizedSegment = segment.replace(/^\/|\/$/g, '');
+	const segmentIndex = pathSegments.indexOf(normalizedSegment);
+
+	if (segmentIndex === -1) {
+		console.warn(`Segmento "${segment}" no encontrado en la ruta actual`);
+		return;
+	}
+
+	// Construir la ruta hasta el segmento encontrado
+	const targetSegments = pathSegments.slice(0, segmentIndex + 1);
+	const targetPath = '/' + targetSegments.join('/');
+
+	// eslint-disable-next-line svelte/no-navigation-without-resolve
+	goto(targetPath);
+}
