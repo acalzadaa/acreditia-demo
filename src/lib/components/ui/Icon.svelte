@@ -31,9 +31,11 @@
 		| 'password'
 		| 'remove';
 
+	export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
 	interface Props {
 		name: IconName;
-		size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+		size?: IconSize;
 		color?: string;
 		isFilled?: boolean;
 		weight?: number;
@@ -53,7 +55,7 @@
 		...restProps
 	}: Props = $props();
 
-	const sizeMap = {
+	export const iconSizeMap = {
 		xs: '1em', // 16px
 		sm: '1.25em', // 20px
 		md: '1.5em', // 24px
@@ -61,7 +63,7 @@
 		xl: '2.5em' // 40px
 	};
 
-	const currentSize = $derived(sizeMap[size]);
+	const currentSize = $derived(iconSizeMap[size]);
 </script>
 
 <svg

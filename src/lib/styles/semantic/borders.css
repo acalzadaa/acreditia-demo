@@ -2,12 +2,15 @@
 	--border-radius-card: var(--border-radius-lg);
 	--border-radius-button: var(--border-radius-md);
 	--border-radius-tag: var(--border-radius-md);
+	--border-radius-dot: var(--border-radius-full);
 
 	--border-input: var(--border-width-thin) solid var(--border-light);
 	--border-avatar: var(--border-width-regular) solid var(--border-regular);
 	--border-card: var(--border-width-thin) solid var(--border-subtle);
+	--border-dot: var(--border-width-regular) solid var(-border-regular);
 	
 	--border-button: var(--border-width-thin) solid transparent;
 	--border-button-focus: 2px solid var(--border-brand);
 	--divider: var(--border-width-thin) solid var(--border-light);
+
 }
