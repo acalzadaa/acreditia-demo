@@ -19,22 +19,15 @@
 	let modal = createModalManager<IndicadorAreaFuncionalItem>();
 </script>
 
-<main>
-	<IndicadorAreaFuncionalNestedList
-		onClickRemover={modal.handlers('remove').onClickItem}
-		onClickRemoverChild={modalChild.handlers('remove').onClickItem}
-		onClickAdd={modal.handlers('add').onClick}
-		onClickAddChild={modalChild.handlers('add').onClickItem}
-		items={areaFuncionalItems}
-	/>
-</main>
-
-<!-- MODAL CREAR -->
-<AddIndicadorAreaFuncional
-	open={modal.isOpen('add')}
-	{subareaFuncionalRef}
-	onClose={modal.close}
+<IndicadorAreaFuncionalNestedList
+	onClickRemover={modal.handlers('remove').onClickItem}
+	onClickRemoverChild={modalChild.handlers('remove').onClickItem}
+	onClickAdd={modal.handlers('add').onClick}
+	onClickAddChild={modalChild.handlers('add').onClickItem}
+	items={areaFuncionalItems}
 />
+
+<AddIndicadorAreaFuncional open={modal.isOpen('add')} {subareaFuncionalRef} onClose={modal.close} />
 
 <AddIndicadorSubareaFuncional
 	open={modalChild.isOpen('add')}
