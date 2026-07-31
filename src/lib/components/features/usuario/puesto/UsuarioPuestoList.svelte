@@ -18,7 +18,7 @@
 	const { items, isVisible = false, onClickToggle, onClickRemover, onClickAdd }: Props = $props();
 </script>
 
-<main class="main-panel--inner">
+<main class="main-panel--inline">
 	<section class="list-view--cards text-body">
 		<AccordionColumn minWidth="360px" maxWidth="2700px">
 			<Accordion>

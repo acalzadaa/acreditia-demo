@@ -39,7 +39,7 @@
 	const accordions = createToggleManager({ defaultOpen: false, exclusive: true });
 </script>
 
-<section class="main-panel--inner">
+<section class="detail-panel">
 	<PageHeader {title} {subtitle} />
 	<ToolbarV2 actionTitle="Agregar area funcional" onClickCrear={onClickAdd} />
 	{#if items && items.length > 0}
@@ -48,7 +48,7 @@
 				<Accordion>
 					<AccordionHeaderButton
 						id="acc-{item.id}"
-						isVisible={!accordions.isOpen(item.id)}
+						isVisible={accordions.isOpen(item.id)}
 						onToggle={() => accordions.toggle(item.id)}
 					>
 						{#snippet title()}

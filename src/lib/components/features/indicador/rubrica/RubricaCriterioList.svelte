@@ -28,7 +28,7 @@
 	const accordions = createToggleManager({ defaultOpen: false, exclusive: true });
 </script>
 
-<section class="main-panel--inner">
+<section class="main-panel--inline">
 	{#if items && items.length > 0}
 		<AccordionColumn minWidth="360px" maxWidth="2500px">
 			{#each items as item (item.id)}

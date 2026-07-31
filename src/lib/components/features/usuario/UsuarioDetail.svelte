@@ -19,7 +19,7 @@
 	const { item, showHeader = true, title = 'Detalle de usuario', subtitle = '' }: Props = $props();
 </script>
 
-<main class="main-panel--inner">
+<main class="main-panel--inline">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
