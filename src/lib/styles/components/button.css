@@ -64,6 +64,11 @@
 	height: var(--button-height-md);
 }
 
+.button--shape-rectangle {
+		border-radius: var(--button-border-radius);
+
+}
+
 /* ==========================================
    SIZES
    ========================================== */

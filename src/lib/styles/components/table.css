@@ -221,7 +221,7 @@ de lo contrario se van a tener 2 scrollbars uno para todo el grupo y otro para l
    Badges de estatus tipo "success"/"error". El más
    largo no necesita wrap. */
 .data-table .col-badge {
-	width: 6.5rem;
+	width: 7.5rem;
 	min-width: 5.5rem;
 	white-space: nowrap;
 }

@@ -3,7 +3,12 @@ import { modeloItemSchema } from './modelo.schema';
 import { institucionItemSchema } from './institucion.schema';
 import { institucionRefSchema, modeloRefSchema } from './shared.schema';
 
-export const EvaluacionStatusEnum = z.enum(['planned', 'active', 'completed', 'cancelled']);
+export const EvaluacionStatusEnum = z.enum([
+	'planning', /* entre creada y hasta agregar la penultima fecha */
+	'ready', /* desde agregar la ultima fecha hasta presionar execute */
+	'running', /* desde presionar execute hasta que acaba la ultima etapa (tiempo o terminar etapa) */
+	'completed' /* desde que acaba la ultima etapa (por tiempo o terminar etapa) */
+]);
 
 export type EvaluacionStatus = z.infer<typeof EvaluacionStatusEnum>;
 
@@ -60,7 +65,7 @@ export const evaluacionItemSchema = z.object({
 	validFrom: z.coerce.date().optional(),
 	validTo: z.coerce.date().optional().nullable(),
 
-	status: EvaluacionStatusEnum.default('planned'),
+	status: EvaluacionStatusEnum.default('planning'),
 	startedAt: z.coerce.date().optional().nullable(),
 	startedBy: z.string().optional().nullable(),
 	completedAt: z.coerce.date().optional().nullable(),

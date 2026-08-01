@@ -1,14 +1,14 @@
 <script lang="ts">
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import type { EvaluacionItem } from '$lib/schemas/evaluacion.schema';
-	import Evaluacion from '$lib/components/evaluacion/Evaluacion.svelte';
 	import CrearEvaluacionForm from '$lib/components/evaluacion/CrearEvaluacionForm.svelte';
 	import EditarEvaluacionForm from '$lib/components/evaluacion/EditarEvaluacionForm.svelte';
-	import BorrarEvaluacionForm from '$lib/components/evaluacion/BorrarEvaluacionForm.svelte';
-	import RestaurarEvaluacionForm from '$lib/components/evaluacion/RestaurarEvaluacionForm.svelte';
+	import EvaluacionList from '$lib/components/evaluacion/EvaluacionList.svelte';
+	import IniciarEvaluacionForm from '$lib/components/evaluacion/IniciarEvaluacionForm.svelte';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	import type { EvaluacionItem } from '$lib/schemas/evaluacion.schema';
+
 	import { getEvaluacion, getInstitucionRef, getModeloRef } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import IniciarEvaluacionForm from '$lib/components/evaluacion/IniciarEvaluacionForm.svelte';
 
 	let evaluacionItems = getEvaluacion();
 	let modeloRef = getModeloRef();
@@ -18,25 +18,16 @@
 </script>
 
 <div class="detail-panel">
-	<Toolbar
-		actionTitle="Nueva evaluacion"
+	<EvaluacionList
+		items={evaluacionItems}
+		onClickEditar={modal.handlers('edit').onClickItem}
+		onClickBorrar={modal.handlers('delete').onClickItem}
+		onClickRestaurar={modal.handlers('restore').onClickItem}
+		onClickEjecutarEvaluacion={modal.handlers('iniciar').onClickItem}
 		onClickCrear={modal.handlers('create').onClick}
-		onKeydownCrear={(e) => modal.handlers('create').onKeydown(e)}
-		showExport={true}
-		showFilter={true}
 	/>
-
-	<main class="detail-content">
-		<Evaluacion
-			items={evaluacionItems}
-			onClickEditar={modal.handlers('edit').onClickItem}
-			onClickBorrar={modal.handlers('delete').onClickItem}
-			onClickRestaurar={modal.handlers('restore').onClickItem}
-			onClickIniciarEvaluacion={modal.handlers('iniciar').onClickItem}
-		/>
-	</main>
+	<!-- agregar listado de acordion de etapas -->
 </div>
-
 <CrearEvaluacionForm
 	open={modal.isOpen('create')}
 	{modeloRef}
@@ -51,7 +42,6 @@
 		onClose={modal.close}
 	/>
 
-	<!-- MODAL EDITAR -->
 	<EditarEvaluacionForm
 		open={modal.isOpen('edit')}
 		item={modal.selectedItem}
@@ -60,17 +50,17 @@
 		onClose={modal.close}
 	/>
 
-	<!-- MODAL BORRAR -->
-	<BorrarEvaluacionForm
+	<ConfirmDeleteModal
+		demo={true}
 		open={modal.isOpen('delete')}
-		item={modal.selectedItem}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 
-	<!-- MODAL RESTAURAR -->
-	<RestaurarEvaluacionForm
+	<ConfirmRestoreModal
+		demo={true}
 		open={modal.isOpen('restore')}
-		item={modal.selectedItem}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 {/if}
