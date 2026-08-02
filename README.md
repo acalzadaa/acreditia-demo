@@ -1,42 +1,16 @@
-# sv
+# Acreditia
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## El problema
+Una empresa sin clientes ni validación quería que construyera una web app completa para ayudar a universidades con su acreditación.
 
-## Creating a project
+## La restricción real
+Construir el producto completo antes de tener un solo cliente interesado es apostar meses de desarrollo (y salario) a una hipótesis sin probar.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## La decisión
+Propuse un demo frontend-first en Svelte con datos fijos en JSON, desplegado en Netlify + Identity — costo de infraestructura $0, sin backend real hasta validar interés.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## El resultado
+8 meses de aprendizaje real sobre flujos, estructura de datos y necesidades del usuario, con solo un interesado formal hasta ahora — pero sin gastar un dólar adicional a mi salario, y con un demo tangible y funcional que se puede mostrar en cualquier reunión.
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-pnpm dlx sv@0.15.3 create --template minimal --types ts --add prettier eslint --install pnpm acreditia-demo
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Por qué importa
+Validar es más barato que construir.
