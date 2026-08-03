@@ -70,3 +70,5 @@ export function isActionDisabled(item: EvaluacionItem, action: EvaluacionAction)
 			return false;
 	}
 }
+
+

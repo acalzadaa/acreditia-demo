@@ -26,13 +26,17 @@ Ej.:
 	import Icon from '../Icon.svelte';
 
 	interface Props {
-		subtitle?: string;
-		title: string;
 		/** Id compartido con el AccordionContent asociado (aria-controls). */
 		id?: string;
 		isVisible: boolean;
-		onClick: () => void;
+		onToggle: () => void;
+		toggleAriaLabel?: string;
 
+		/** titulo y/o subtitulo */
+		title?: Snippet;
+		subtitle?: Snippet;
+
+		/** badge opcional */
 		/** Ej. un <Badge> de estatus, debajo del título. */
 		children?: Snippet;
 		class?: string;
@@ -43,7 +47,8 @@ Ej.:
 		title,
 		id,
 		isVisible,
-		onClick,
+		onToggle,
+		toggleAriaLabel = 'Expandir/colapsar',
 		children,
 		class: className = ''
 	}: Props = $props();
@@ -54,13 +59,20 @@ Ej.:
 	class={['accordion-header', 'accordion-header--clickable', className]}
 	aria-expanded={isVisible}
 	aria-controls={id}
-	onclick={onClick}
+	aria-label={toggleAriaLabel}
+	onclick={onToggle}
 >
-	<div class="accordion-header__text">
-		{#if subtitle}
-			<span class="accordion-header__subtitle text-caption">{subtitle}</span>
+	<div class="accordion-header__left">
+		{#if title}
+			<div class="accordion-header__title text-h6">
+				{@render title()}
+			</div>
 		{/if}
-		<h3 class="accordion-header__title text-body-strong">{title}</h3>
+		{#if subtitle}
+			<div class="accordion-header__subtitle text-body">
+				{@render subtitle()}
+			</div>
+		{/if}
 		{#if children}
 			<div class="accordion-header__metadata">
 				{@render children()}

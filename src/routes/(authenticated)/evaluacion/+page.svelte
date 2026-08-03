@@ -2,8 +2,8 @@
 	import CrearEvaluacionForm from '$lib/components/evaluacion/CrearEvaluacionForm.svelte';
 	import EditarEvaluacionForm from '$lib/components/evaluacion/EditarEvaluacionForm.svelte';
 	import EvaluacionList from '$lib/components/evaluacion/EvaluacionList.svelte';
-	import IniciarEvaluacionForm from '$lib/components/evaluacion/IniciarEvaluacionForm.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import type { EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 
@@ -26,8 +26,8 @@
 		onClickEjecutarEvaluacion={modal.handlers('iniciar').onClickItem}
 		onClickCrear={modal.handlers('create').onClick}
 	/>
-	<!-- agregar listado de acordion de etapas -->
 </div>
+
 <CrearEvaluacionForm
 	open={modal.isOpen('create')}
 	{modeloRef}
@@ -36,9 +36,10 @@
 />
 
 {#if modal.selectedItem}
-	<IniciarEvaluacionForm
+	<ConfirmModal
+		demo={true}
 		open={modal.isOpen('iniciar')}
-		item={modal.selectedItem}
+		id={modal.selectedItem.id}
 		onClose={modal.close}
 	/>
 
