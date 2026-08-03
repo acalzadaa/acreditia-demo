@@ -276,7 +276,7 @@
 	text-decoration: underline;
 }
 
-.accordion-content-item__remove {
+.accordion-content-item__action {
 	flex-shrink: 0;
 }
 

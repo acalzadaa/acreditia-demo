@@ -71,7 +71,7 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 		{/if}
 	</div>
 	{#if onRemove}
-		<div class="accordion-content-item__remove">
+		<div class="accordion-content-item__action">
 			<IconButton
 				name={removeIcon}
 				variant="ghost"
