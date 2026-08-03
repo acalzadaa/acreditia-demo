@@ -53,7 +53,7 @@
 						{/if}
 					</AccordionHeaderClickable>
 					<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(item.id)}>
-						<AccordionContentItem label="Fecha de inicio" value={formatDate(item.fechaInicio)} onRemove={onEditCalendar} removeIcon='calendar'/>
+						<AccordionContentItem label="Fecha de inicio" value={formatDate(item.fechaInicio)} onAction={onEditCalendar} actionIcon='calendar'/>
 						<AccordionContentItem label="Fecha de final" value={formatDate(item.fechaFinal)} />
 						{#if item.periodoExtraordinario}
 							<AccordionContentItem

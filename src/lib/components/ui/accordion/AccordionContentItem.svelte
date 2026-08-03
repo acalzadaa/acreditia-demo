@@ -15,18 +15,18 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 		label: string;
 		value?: string;
 		/** Si se pasa, se muestra un IconButton a la derecha del item. */
-		onRemove?: () => void;
-		removeIcon?: IconName;
-		removeAriaLabel?: string;
+		onAction?: () => void;
+		actionIcon?: IconName;
+		actionAriaLabel?: string;
 		class?: string;
 	}
 
 	const {
 		label,
 		value = '',
-		onRemove,
-		removeIcon = 'delete',
-		removeAriaLabel = 'Eliminar',
+		onAction,
+		actionIcon = 'check',
+		actionAriaLabel = 'Action',
 		class: className = ''
 	}: Props = $props();
 
@@ -70,14 +70,14 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 			</div>
 		{/if}
 	</div>
-	{#if onRemove}
+	{#if onAction}
 		<div class="accordion-content-item__action">
 			<IconButton
-				name={removeIcon}
+				name={actionIcon}
 				variant="ghost"
 				size="sm"
-				ariaLabel={removeAriaLabel}
-				onClick={onRemove}
+				ariaLabel={actionAriaLabel}
+				onClick={onAction}
 			/>
 		</div>
 	{/if}
