@@ -26,7 +26,7 @@
 </script>
 
 <section>
-	<PageHeader title="Planeacion de etapas de evaluacion"/>
+	<PageHeader title="Planeación de etapas de evaluación"/>
 	{#if items && items.length > 0}
 		<AccordionColumn minWidth="360px" maxWidth="2900px">
 			{#each items as item (item.id)}
