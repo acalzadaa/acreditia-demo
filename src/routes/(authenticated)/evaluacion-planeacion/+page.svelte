@@ -10,7 +10,7 @@
 	import { getEvaluacion, getInstitucionRef, getModeloRef } from '$lib/stores/data.svelte';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 
-	let evaluacionItems = getEvaluacion();
+	let evaluacionItems = getEvaluacion().filter((item) => item.startedAt === null);
 	let modeloRef = getModeloRef();
 	let institucionRef = getInstitucionRef();
 
@@ -20,6 +20,8 @@
 <div class="detail-panel">
 	<EvaluacionList
 		items={evaluacionItems}
+		title='Listado de evaluaciones'
+		subtitle='Planeacion'
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onClickBorrar={modal.handlers('delete').onClickItem}
 		onClickRestaurar={modal.handlers('restore').onClickItem}
@@ -38,6 +40,10 @@
 {#if modal.selectedItem}
 	<ConfirmModal
 		demo={true}
+		formAction='?/execute'
+		buttonLabel='iniciar'
+		message='¿Deseas iniciar el ciclo de evaluación?'
+		title='Iniciar ciclo de evalución'
 		open={modal.isOpen('iniciar')}
 		id={modal.selectedItem.id}
 		onClose={modal.close}

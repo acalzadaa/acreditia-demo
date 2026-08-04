@@ -3,7 +3,14 @@
 	import Icon, { type IconName } from './Icon.svelte';
 	import { tooltip, type TooltipPosition } from '$lib/actions/tooltip';
 
-	export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'critical' | 'ghost' | 'link';
+	export type ButtonVariant =
+		| 'primary'
+		| 'secondary'
+		| 'outline'
+		| 'critical'
+		| 'ghost'
+		| 'link'
+		| 'text';
 
 	export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 

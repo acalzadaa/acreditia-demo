@@ -28,7 +28,13 @@ export function findParentIdByUrl(url: string, navigationItems: NavigationItem[]
 function buildChildUrl(childPath: string): string {
 	const base = page.url.pathname.replace(/\/+$/, '');
 	const child = childPath.replace(/^\/+/, '');
-	return `${base}/${child}`.replace(/\/{2,}/g, '/');
+	const result = `${base}/${child}`.replace(/\/{2,}/g, '/');
+
+	console.log('Base:', base);
+	console.log('Child:', child);
+	console.log('Result:', result);
+
+	return result;
 }
 
 export function navigateTo(childPath: string) {

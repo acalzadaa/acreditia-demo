@@ -2,11 +2,11 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
-	import Input from '../ui/input/InputText.svelte';
 	import Icon from '../ui/Icon.svelte';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import type { InstitucionRef, ModeloRef } from '$lib/schemas/shared.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
+	import InputText from '../ui/input/InputText.svelte';
 
 	interface Props {
 		open: boolean;
@@ -138,6 +138,7 @@
 		</header>
 
 		<form
+			class="modal-flex"
 			onsubmit={(e) => {
 				e.preventDefault();
 				handleSubmit();
@@ -170,7 +171,7 @@
 						errors={errorMessage && !formData.institucionId ? [errorMessage] : undefined}
 					/>
 
-					<Input
+					<InputText
 						label="Código"
 						name="code"
 						required={true}
@@ -181,7 +182,7 @@
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
 					/>
 
-					<Input
+					<InputText
 						label="Nombre"
 						name="name"
 						required={true}

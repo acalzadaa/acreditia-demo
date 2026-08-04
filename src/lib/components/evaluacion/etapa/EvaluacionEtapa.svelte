@@ -38,7 +38,7 @@
 	}
 </script>
 
-<main class="main-panel">
+<main class="main-panel--inner">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
@@ -114,12 +114,3 @@
 	</section>
 </main>
 
-<style>
-	.main-panel {
-		min-height: 0;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-	}
-</style>

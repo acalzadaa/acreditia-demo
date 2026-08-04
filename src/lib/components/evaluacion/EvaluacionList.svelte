@@ -22,7 +22,7 @@
 		onClickBorrar: (item: EvaluacionItem) => void;
 		onClickRestaurar: (item: EvaluacionItem) => void;
 
-		onClickCrear: () => void;
+		onClickCrear?: () => void;
 		onClickExport?: () => void;
 		onClickFilter?: () => void;
 
@@ -46,20 +46,22 @@
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel--inner">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2
-			actionTitle="Nueva evaluacion"
-			{onClickCrear}
-			{onClickExport}
-			{onClickFilter}
-			showExport={false}
-			showFilter={false}
-		/>
+		{#if onClickCrear}
+			<ToolbarV2
+				actionTitle="Nueva evaluacion"
+				{onClickCrear}
+				{onClickExport}
+				{onClickFilter}
+				showExport={false}
+				showFilter={false}
+			/>
+		{/if}
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
@@ -121,15 +123,17 @@
 	</section>
 
 	<section class="list-view--cards">
-		<ToolbarV2
-			mobileVersion={true}
-			actionTitle="Nueva evaluacion"
-			{onClickCrear}
-			{onClickExport}
-			{onClickFilter}
-			showExport={false}
-			showFilter={false}
-		/>
+		{#if onClickCrear}
+			<ToolbarV2
+				mobileVersion={true}
+				actionTitle="Nueva evaluación"
+				{onClickCrear}
+				{onClickExport}
+				{onClickFilter}
+				showExport={false}
+				showFilter={false}
+			/>
+		{/if}
 		{#if items.length > 0}
 			<CardColumn minWidth="360px" maxWidth="2749px">
 				{#each items as item (item.id)}

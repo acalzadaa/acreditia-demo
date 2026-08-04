@@ -314,7 +314,7 @@
 	color: var(--text-primary);
 	border: none;
 	box-shadow: none;
-	padding: var(--space-1) var(--space-2);
+	padding: var(--space-1) var(--space-1);
 	height: auto;
 	font-weight: var(--weight-regular);
 	letter-spacing: normal;

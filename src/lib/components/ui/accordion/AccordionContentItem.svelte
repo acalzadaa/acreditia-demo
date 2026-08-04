@@ -7,6 +7,7 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 
 <script lang="ts">
 	import { createToggle } from '$lib/utils/toggle.svelte';
+	import type { Snippet } from 'svelte';
 	import Button from '../Button.svelte';
 	import type { IconName } from '../Icon.svelte';
 	import IconButton from '../IconButton.svelte';
@@ -14,6 +15,7 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 	interface Props {
 		label: string;
 		value?: string;
+		children?: Snippet;
 		/** Si se pasa, se muestra un IconButton a la derecha del item. */
 		onAction?: () => void;
 		actionIcon?: IconName;
@@ -23,7 +25,8 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 
 	const {
 		label,
-		value = '',
+		value,
+		children,
 		onAction,
 		actionIcon = 'check',
 		actionAriaLabel = 'Action',
@@ -60,7 +63,11 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 			class="accordion-content-item__text text-body"
 			class:accordion-content-item__text--clamped={!expandedToggle.value}
 		>
-			{value}
+			{#if children}
+				{@render children?.()}
+			{:else}
+				{value}
+			{/if}
 		</p>
 		{#if isOverflowing || expandedToggle.value}
 			<div class="accordion-content-item__toggle text-body-small">
