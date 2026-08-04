@@ -3,12 +3,12 @@
 		{
 			"order": 1,
 			"code": "meta",
-			"name": "Agregar metas"
+			"name": "Captura de metas"
 		},
 		{
 			"order": 2,
 			"code": "evidencia",
-			"name": "Capturar evidencia"
+			"name": "Captura de evidencias"
 		},
 		{
 			"order": 3,
@@ -18,7 +18,7 @@
 		{
 			"order": 4,
 			"code": "autoevaluacion",
-			"name": "Captura de autoevaluacion"
+			"name": "Ejecucion de autoevaluacion"
 		},
 		{
 			"order": 5,
@@ -32,11 +32,6 @@
 		},
 		{
 			"order": 7,
-			"code": "autorizacion",
-			"name": "Autorizacion de plan de mejora"
-		},
-		{
-			"order": 8,
 			"code": "ejecucion",
 			"name": "Ejecucion de plan de mejora"
 		}

@@ -1,6 +1,181 @@
 {
 	"evaluacionEtapaItems": [
 		{
+			"id": "fc19f5d4-6962-45bf-8d1e-e1e915e126df",
+			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+			"etapa": {
+				"order": 1,
+				"code": "meta",
+				"name": "Agregar metas"
+			},
+			"fechaInicio": "2025-01-15T00:00:00Z",
+			"fechaFinal": null,
+			"periodoExtraordinario": false,
+			"periodoExtraordinarioInicio": null,
+			"periodoExtraordinarioFinal": null,
+			"status": "planning",
+			"evaluacion": {
+				"id": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+				"code": "2026-2",
+				"name": "Verano 2026"
+			},
+			"createdAt": "2024-01-01T10:30:00Z",
+			"updatedAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com",
+			"updatedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": "bd358e70-03d2-47eb-9bee-78a877238f27",
+			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+			"etapa": {
+				"order": 2,
+				"code": "evidencia",
+				"name": "Capturar evidencia"
+			},
+			"fechaInicio": "2025-01-15T00:00:00Z",
+			"fechaFinal": null,
+			"periodoExtraordinario": false,
+			"periodoExtraordinarioInicio": null,
+			"periodoExtraordinarioFinal": null,
+			"status": "planning",
+			"evaluacion": {
+				"id": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+				"code": "2026-2",
+				"name": "Verano 2026"
+			},
+			"createdAt": "2024-01-01T10:30:00Z",
+			"updatedAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com",
+			"updatedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": "1f389397-8045-449f-ac98-fba714793dec",
+			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+			"etapa": {
+				"order": 3,
+				"code": "resultados",
+				"name": "Captura de resultados"
+			},
+			"fechaInicio": "2025-01-15T00:00:00Z",
+			"fechaFinal": "2025-02-28T00:00:00Z",
+			"periodoExtraordinario": false,
+			"periodoExtraordinarioInicio": null,
+			"periodoExtraordinarioFinal": null,
+			"status": "planning",
+			"createdAt": "2024-01-01T10:30:00Z",
+			"updatedAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com",
+			"updatedBy": null,
+			"isDeleted": false,
+			"evaluacion": {
+				"id": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+				"code": "2026-2",
+				"name": "Verano 2026"
+			}
+		},
+		{
+			"id": "3f5efb3f-9289-4f9c-baae-de4c4971183f",
+			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+			"etapa": {
+				"order": 4,
+				"code": "autoevaluacion",
+				"name": "Captura de autoevaluacion"
+			},
+			"fechaInicio": "2025-01-15T00:00:00Z",
+			"fechaFinal": "2025-02-28T00:00:00Z",
+			"periodoExtraordinario": false,
+			"periodoExtraordinarioInicio": null,
+			"periodoExtraordinarioFinal": null,
+			"status": "planning",
+			"createdAt": "2024-01-01T10:30:00Z",
+			"updatedAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com",
+			"updatedBy": null,
+			"isDeleted": false,
+			"evaluacion": {
+				"id": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+				"code": "2026-2",
+				"name": "Verano 2026"
+			}
+		},
+		{
+			"id": "c8469c20-44fb-4f78-ae0b-32a672ee5b19",
+			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+			"etapa": {
+				"order": 5,
+				"code": "revision",
+				"name": "Revision de autoevaluacion"
+			},
+			"fechaInicio": "2025-01-15T00:00:00Z",
+			"fechaFinal": "2025-02-28T00:00:00Z",
+			"periodoExtraordinario": false,
+			"periodoExtraordinarioInicio": null,
+			"periodoExtraordinarioFinal": null,
+			"status": "planning",
+			"createdAt": "2024-01-01T10:30:00Z",
+			"updatedAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com",
+			"updatedBy": null,
+			"isDeleted": false,
+			"evaluacion": {
+				"id": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+				"code": "2026-2",
+				"name": "Verano 2026"
+			}
+		},
+		{
+			"id": "c42c31f0-94e9-4fca-b951-2261246e8649",
+			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+			"etapa": {
+				"order": 6,
+				"code": "captura-plan-mejora",
+				"name": "Captura de plan de mejora"
+			},
+			"fechaInicio": "2025-01-15T00:00:00Z",
+			"fechaFinal": "2025-02-28T00:00:00Z",
+			"periodoExtraordinario": false,
+			"periodoExtraordinarioInicio": null,
+			"periodoExtraordinarioFinal": null,
+			"status": "planning",
+			"createdAt": "2024-01-01T10:30:00Z",
+			"updatedAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com",
+			"updatedBy": null,
+			"isDeleted": false,
+			"evaluacion": {
+				"id": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+				"code": "2026-2",
+				"name": "Verano 2026"
+			}
+		},
+		{
+			"id": "dd78d6a3-808f-48b9-82ec-c6c439c4ca6e",
+			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+			"etapa": {
+				"order": 7,
+				"code": "autorizacion-plan-mejora",
+				"name": "Autorizacion de plan de mejora"
+			},
+			"fechaInicio": "2025-01-15T00:00:00Z",
+			"fechaFinal": "2025-02-28T00:00:00Z",
+			"periodoExtraordinario": false,
+			"periodoExtraordinarioInicio": null,
+			"periodoExtraordinarioFinal": null,
+			"status": "planning",
+			"createdAt": "2024-01-01T10:30:00Z",
+			"updatedAt": "2024-01-01T10:30:00Z",
+			"createdBy": "admin@system.com",
+			"updatedBy": null,
+			"isDeleted": false,
+			"evaluacion": {
+				"id": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
+				"code": "2026-2",
+				"name": "Verano 2026"
+			}
+		},
+		{
 			"id": "a1b511ae-f2b0-479b-9ecd-ed0fdba19f18",
 			"evaluacionId": "b9e8b5eb-dd82-49ad-8173-538926c0fb53",
 			"etapa": {

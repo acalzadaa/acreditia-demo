@@ -223,15 +223,24 @@
 				{
 					"id": 601,
 					"order": 61,
-					"label": "Evaluación",
-					"href": "/evaluacion",
-					"description": "Crea un nuevo ciclo de evaluación",
+					"label": "Planeacion",
+					"href": "/evaluacion-planeacion",
+					"description": "Administra un nuevo ciclo de evaluación",
 					"itemType": "link",
 					"status": "active"
 				},
 				{
 					"id": 602,
 					"order": 62,
+					"label": "Ejecucion",
+					"href": "/evaluacion-ejecucion",
+					"description": "Administra un ciclo de evaluación",
+					"itemType": "link",
+					"status": "active"
+				},
+				{
+					"id": 603,
+					"order": 63,
 					"label": "Criterios de evaluación",
 					"href": "/criterios-evaluacion",
 					"description": "Configura los criterios de evaluacion por etapa",

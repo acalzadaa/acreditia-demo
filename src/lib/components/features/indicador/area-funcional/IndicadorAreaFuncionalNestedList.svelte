@@ -78,10 +78,10 @@
 							<AccordionContentItem
 								label={subareasFuncional.code}
 								value={subareasFuncional.name}
-								onRemove={() =>
+								onAction={() =>
 									onClickRemoverChild({ parentId: item.id, childId: subareasFuncional.id })}
-								removeIcon="remove"
-								removeAriaLabel="remover elemento"
+								actionIcon="remove"
+								actionAriaLabel="remover elemento"
 							/>
 						{/each}
 					</AccordionContent>

@@ -36,6 +36,18 @@ export const etapaFormSchema = z.object({
 
 export type EtapaForm = z.infer<typeof etapaFormSchema>;
 
+export const etapaDateItemSchema = z.object({
+	etapa: z.number(),
+	dateEnum: z.enum([
+		'StartDate',
+		'EndDate',
+		'StartExtraordinaryPeriodDate',
+		'EndExtraordinaryPeriodDate'
+	])
+});
+
+export type EtapaDateItem = z.infer<typeof etapaDateItemSchema>;
+
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // Datos completos desde la base de datos, incluyendo timestamps
@@ -46,9 +58,9 @@ export const evaluacionEtapaItemSchema = z.object({
 	evaluacionId: z.uuid(),
 	evaluacion: evaluacionRefSchema,
 	etapa: etapaRefSchema,
+	periodoExtraordinario: z.boolean().default(false),
 	fechaInicio: z.coerce.date().optional().nullable(),
 	fechaFinal: z.coerce.date().optional().nullable(),
-	periodoExtraordinario: z.boolean().default(false),
 	periodoExtraordinarioInicio: z.coerce.date().optional().nullable(),
 	periodoExtraordinarioFinal: z.coerce.date().optional().nullable(),
 	status: EvaluacionEtapaStatusEnum,

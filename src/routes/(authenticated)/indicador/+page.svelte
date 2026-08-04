@@ -26,7 +26,6 @@
 	/>
 </div>
 
-<!-- MODAL CREAR -->
 <CrearIndicadorForm open={modal.isOpen('create')} {modeloFullRef} onClose={modal.close} />
 
 {#if modal.selectedItem}
@@ -51,13 +50,3 @@
 		onClose={modal.close}
 	/>
 {/if}
-
-<style>
-	.detail-panel {
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-		min-height: 0;
-		overflow-y: auto;
-	}
-</style>

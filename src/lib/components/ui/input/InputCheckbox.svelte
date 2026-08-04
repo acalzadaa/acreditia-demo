@@ -11,6 +11,7 @@
 		required?: boolean;
 		status?: Status;
 		disabled?: boolean;
+		onChange?: ()=> void;
 		class?: string;
 		[key: string]: unknown;
 	}
@@ -24,6 +25,7 @@
 		required = false,
 		status = 'normal',
 		disabled = false,
+		onChange,
 		class: className = '',
 		...props
 	}: Props = $props();
@@ -54,6 +56,7 @@
 			bind:group
 			{required}
 			{disabled}
+			onchange={onChange}
 			aria-invalid={hasErrors ? 'true' : undefined}
 			aria-required={required}
 			aria-describedby={hasErrors ? `${name}-error` : undefined}

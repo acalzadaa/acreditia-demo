@@ -33,9 +33,9 @@
 						<AccordionContentItem
 							label={item.code}
 							value={item.name}
-							onRemove={() => onClickRemover(item)}
-							removeIcon="remove"
-							removeAriaLabel="remover elemento"
+							onAction={() => onClickRemover(item)}
+							actionIcon="remove"
+							actionAriaLabel="remover elemento"
 						/>
 					{/each}
 				</AccordionContent>
