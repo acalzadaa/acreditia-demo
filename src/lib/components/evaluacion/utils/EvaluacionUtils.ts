@@ -70,16 +70,3 @@ export function isActionDisabled(item: EvaluacionItem, action: EvaluacionAction)
 			return false;
 	}
 }
-
-/**
- * Este wrapper de NavigateTo modifica la funcion del detail dependiendo el status de item.
- * Si item.status = ['planning', 'ready'] el goto /{item.code}/planeacion
- * Si item.status = ['executing', 'completed'] el goto /{item.code}/etapa
- * @param item
- */
-export function getEvaluacionEtapaUrl(item: EvaluacionItem) {
-	if (item.status === 'planning' || item.status === 'ready') {
-		return item.code + '/planning';
-	}
-	return item.code + '/etapa';
-}

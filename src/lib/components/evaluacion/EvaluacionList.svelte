@@ -96,19 +96,19 @@
 									<Actions
 										{item}
 										onClickExecute={() => onClickEjecutarEvaluacion(item)}
-										isExecuteDisabled={item.startedAt !== null}
+										isExecuteDisabled={isActionDisabled(item, 'execute')}
 										showExecute={true}
 										onClickDetail={() => navigateTo(item.code)}
-										isDetailDisabled={item.isDeleted}
+										isDetailDisabled={isActionDisabled(item, 'detail')}
 										showDetail={true}
 										onClickEdit={() => onClickEditar(item)}
-										isEditDisabled={item.isDeleted}
+										isEditDisabled={isActionDisabled(item, 'edit')}
 										showEdit={true}
 										onClickDelete={() => onClickBorrar(item)}
-										isDeleteDisabled={item.isDeleted}
+										isDeleteDisabled={isActionDisabled(item, 'delete')}
 										showDelete={true}
 										onClickRestore={() => onClickRestaurar(item)}
-										isRestoreDisabled={!item.isDeleted}
+										isRestoreDisabled={isActionDisabled(item, 'restore')}
 										showRestore={true}
 									/>
 								</td>

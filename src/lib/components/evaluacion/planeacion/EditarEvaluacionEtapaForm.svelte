@@ -7,6 +7,8 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import DatePickerInput from '$lib/components/ui/input/DatePickerInput.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import InputCheckbox from '$lib/components/ui/input/InputCheckbox.svelte';
+	import { createToggle } from '$lib/utils/toggle.svelte';
 
 	interface Props {
 		open: boolean;
@@ -15,6 +17,8 @@
 	}
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
+
+	let periodoExtraordinario = $derived(props.item.periodoExtraordinario);
 
 	// NOTE: The form prop is replaced via server response and page re-render,
 	// not through reactive updates within this component instance.
@@ -60,6 +64,9 @@
 			handleClose();
 		}
 	}
+	
+	// svelte-ignore state_referenced_locally
+	let periodoExtraordinarioToggle = createToggle(periodoExtraordinario);
 </script>
 
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
@@ -98,10 +105,18 @@
 						{...$constraints.fechaInicio}
 					/>
 
-					{#if props.item.periodoExtraordinario}
+					<InputCheckbox
+						name="periodoExtraordinario"
+						label="¿Agregar periodo extraordinario?"
+						checked={periodoExtraordinarioToggle.value}
+						value={props.item.periodoExtraordinario}
+						onchange={periodoExtraordinarioToggle.toggle}
+					/>
+
+					{#if periodoExtraordinarioToggle.value}
 						<DatePickerInput
-							label="Periodo extraordinario"
-							name="periodoExtraordinario"
+							label="Fechas de periodo extraordinario"
+							name="fechasPeriodoExtraordinario"
 							required={true}
 							bind:startDate={$form.periodoExtraordinarioInicio}
 							bind:endDate={$form.periodoExtraordinarioFinal}

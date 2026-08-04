@@ -1,7 +1,5 @@
 import { formatDate } from '$lib/helpers/dates';
-import {
-	type EvaluacionEtapaItem
-} from '$lib/schemas/evaluacionEtapa.schema';
+import { type EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
 
 export function formatEtapaDateRange(
 	startDate?: Date | null | undefined,
