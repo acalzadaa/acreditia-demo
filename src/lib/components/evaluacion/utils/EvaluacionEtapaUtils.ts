@@ -1,5 +1,7 @@
+import type { BadgeStatus } from '$lib/components/ui/Badge.svelte';
+import type { IconName } from '$lib/components/ui/Icon.svelte';
 import { formatDate } from '$lib/helpers/dates';
-import { type EvaluacionEtapaEjecucionStatus, type EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
+import {  type EvaluacionEtapaItem, type EvaluacionEtapaStatus } from '$lib/schemas/evaluacionEtapa.schema';
 
 export function formatEtapaDateRange(
 	startDate?: Date | null | undefined,
@@ -54,29 +56,47 @@ function isEvaluacionEtapaFechaReady(item: EvaluacionEtapaItem): boolean {
 	return true;
 }
 
-export function getEtapaStatus(item: EvaluacionEtapaItem, currentDate: Date): EvaluacionEtapaEjecucionStatus {
-	// Si no tiene fechas válidas, asumimos que está "antes" (pendiente)
-	if (!isEvaluacionEtapaFechaReady(item)) {
-		return 'pendiente';
+const EVALUACION_ETAPA_STATUS_TO_BADGE_CONFIG: Record<
+	EvaluacionEtapaStatus,
+	{
+		evaluacionStatus: EvaluacionEtapaStatus;
+		badgeStatus: BadgeStatus;
+		icon: IconName;
+		label: string;
 	}
-
-	const startDate = item.fechaInicio!;
-	const endDate = getEffectiveEndDate(item);
-
-	if (currentDate < startDate) {
-		return 'pendiente';
+> = {
+	planning: {
+		evaluacionStatus: 'planning',
+		badgeStatus: 'info',
+		icon: 'close',
+		label: 'Planeando'
+	},
+	ready: {
+		evaluacionStatus: 'ready',
+		badgeStatus: 'success',
+		icon: 'check',
+		label: 'Planeacion completa'
+	},
+	pending: { evaluacionStatus: 'pending', badgeStatus: 'info', icon: 'check', label: 'En espera' },
+	active: {
+		evaluacionStatus: 'active',
+		badgeStatus: 'success',
+		icon: 'check',
+		label: 'En proceso'
+	},
+	completed: {
+		evaluacionStatus: 'completed',
+		badgeStatus: 'warning',
+		icon: 'check',
+		label: 'Finalizado'
 	}
+};
 
-	if (currentDate >= startDate && currentDate <= endDate) {
-		return 'activo'; // Dentro del rango
-	}
-
-	return 'finalizado'; // Después del rango
-}
-
-function getEffectiveEndDate(item: EvaluacionEtapaItem): Date {
-	const hasExtraordinary =
-		item.periodoExtraordinario && isEvaluacionEtapaFechaExtraordinariaReady(item);
-
-	return hasExtraordinary ? item.periodoExtraordinarioFinal! : item.fechaFinal!;
+export function convertStatusToBadgeVariant(status: EvaluacionEtapaStatus): {
+	evaluacionStatus: EvaluacionEtapaStatus;
+	badgeStatus: BadgeStatus;
+	icon: IconName;
+	label: string;
+} {
+	return EVALUACION_ETAPA_STATUS_TO_BADGE_CONFIG[status];
 }

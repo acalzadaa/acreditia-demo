@@ -1,13 +1,11 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import Badge, { type BadgeStatus } from '$lib/components/ui/Badge.svelte';
+	import Badge from '$lib/components/ui/Badge.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import { formatDate } from '$lib/helpers/dates';
-	import type {
-		EvaluacionEtapaItem,
-		EvaluacionEtapaPlaneacionStatus
-	} from '$lib/schemas/evaluacionEtapa.schema';
+	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
+	import { convertStatusToBadgeVariant } from '../../utils/EvaluacionEtapaEjecucionUtils';
 
 	interface Props {
 		showHeader?: boolean;
@@ -17,22 +15,6 @@
 	}
 
 	const { showHeader = false, title = '', subtitle = '', items }: Props = $props();
-
-	const STATUS_TO_BADGE_CONFIG: Record<
-		EvaluacionEtapaPlaneacionStatus,
-		{ etapaStatus: EvaluacionEtapaPlaneacionStatus; badgeStatus: BadgeStatus; label: string }
-	> = {
-		planning: { etapaStatus: 'planning', badgeStatus: 'success', label: 'Planeado' },
-		ready: { etapaStatus: 'ready', badgeStatus: 'success', label: 'Listo' }
-	};
-
-	export function convertStatusToBadgeVariant(status: EvaluacionEtapaPlaneacionStatus): {
-		etapaStatus: EvaluacionEtapaPlaneacionStatus;
-		badgeStatus: BadgeStatus;
-		label: string;
-	} {
-		return STATUS_TO_BADGE_CONFIG[status];
-	}
 </script>
 
 <main class="main-panel">
@@ -69,14 +51,10 @@
 							<td class="col-date">{formatDate(item.periodoExtraordinarioInicio)}</td>
 							<td class="col-date">{formatDate(item.periodoExtraordinarioFinal)}</td>
 							<td class="col-badge">
-								<Badge
-									variant={convertStatusToBadgeVariant(item.status as EvaluacionEtapaPlaneacionStatus)
-										.badgeStatus}
-								>
-									{convertStatusToBadgeVariant(item.status as EvaluacionEtapaPlaneacionStatus).label}
+								<Badge variant={convertStatusToBadgeVariant(item.status).badgeStatus}>
+									{convertStatusToBadgeVariant(item.status).label}
 								</Badge>
 							</td>
-							
 						</tr>
 					{/each}
 				</tbody>

@@ -7,15 +7,14 @@
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
-	import { convertDateRangeToBadgeVariant } from '../utils/EvaluacionEtapaEjecucionUtils';
+	import { convertStatusToBadgeVariant } from '../utils/EvaluacionEtapaEjecucionUtils';
 	import { formatEtapaDateRange, isEtapaDateRange } from '../utils/EvaluacionEtapaUtils';
 
 	interface Props {
 		items: EvaluacionEtapaItem[];
-		currentDate: Date;
 	}
 
-	const { items, currentDate }: Props = $props();
+	const { items }: Props = $props();
 </script>
 
 <section>
@@ -46,9 +45,9 @@
 							{/if}
 						{/snippet}
 						<Badge
-							variant={convertDateRangeToBadgeVariant(item, currentDate).badgeStatus}
-							icon={convertDateRangeToBadgeVariant(item, currentDate).icon}
-							>{convertDateRangeToBadgeVariant(item, currentDate).label}</Badge
+							variant={convertStatusToBadgeVariant(item.status).badgeStatus}
+							icon={convertStatusToBadgeVariant(item.status).icon}
+							>{convertStatusToBadgeVariant(item.status).label}</Badge
 						>
 					</NavigationHeader>
 				</Navigation>
