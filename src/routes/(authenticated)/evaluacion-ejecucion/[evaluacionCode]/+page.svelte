@@ -9,10 +9,9 @@
 	let evaluacionEtapaItems = getEvaluacionEtapa().filter(
 		(item) => item.evaluacion.code === evaluacionCode
 	);
-	let currentDate = new Date(2025, 10, 10);
 </script>
 
 <div class="detail-panel">
 	<EvaluacionDetail items={evaluacionItems} title="Detalle de evaluación" />
-	<EvaluacionEtapaNavigationList items={evaluacionEtapaItems} {currentDate} />
+	<EvaluacionEtapaNavigationList items={evaluacionEtapaItems} />
 </div>

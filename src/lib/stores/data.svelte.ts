@@ -42,7 +42,7 @@ import indicadorEvidenciaJsonData from '$lib/data/indicador-evidencia.json';
 
 import indicadorNavigationJsonData from '$lib/data/indicador-navigation.json';
 import etapaDetailJsonData from '$lib/data/etapa-detail.json';
-import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-indicador-campus.json';
+import evaluacionEtapaIndicadorJsonData from '$lib/data/evaluacion-etapa-indicador.json';
 
 import notificationJsonData from '$lib/data/notification.json';
 
@@ -137,10 +137,7 @@ import {
 	type EvaluacionEtapaItem
 } from '$lib/schemas/evaluacionEtapa.schema';
 import { etapaDetailItemSchema, type EtapaDetailItem } from '$lib/schemas/etapaDetail.schema';
-import {
-	evaluacionEtapaIndicadorCampusItemSchema,
-	type EvaluacionEtapaIndicadorCampusItem
-} from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
+
 import { notificationItemSchema, type NotificationItem } from '$lib/schemas/notificacion.schema';
 import {
 	indicadorEvidenciaItemSchema,
@@ -148,6 +145,7 @@ import {
 } from '$lib/schemas/indicadorEvidencia';
 import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
 import { usuarioPuestoItemSchema, type UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
+import { evaluacionEtapaIndicadorItemSchema, type EvaluacionEtapaIndicadorItem } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -194,7 +192,7 @@ let indicadorEvidencia = $state<IndicadorEvidenciaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
 let indicadorNavList = $state<indicadorNavListItem[]>([]);
 let etapaDetail = $state<EtapaDetailItem[]>([]);
-let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]>([]);
+let evaluacionEtapaIndicador = $state<EvaluacionEtapaIndicadorItem[]>([]);
 
 let notification = $state<NotificationItem[]>([]);
 
@@ -287,10 +285,10 @@ rubricaCriterio = rubricaCriterioRawData.map((item) => rubricaCriterioItemSchema
 const evaluacionEtapaRawData = evaluacionEtapaJsonData.evaluacionEtapaItems;
 evaluacionEtapa = evaluacionEtapaRawData.map((item) => evaluacionEtapaItemSchema.parse(item));
 
-const evaluacionEtapaIndicadorCampusRawData =
-	evaluacionEtapaIndicadorCampusJsonData.evaluacionEtapaIndicadorCampus;
-evaluacionEtapaIndicadorCampus = evaluacionEtapaIndicadorCampusRawData.map((item) =>
-	evaluacionEtapaIndicadorCampusItemSchema.parse(item)
+const evaluacionEtapaIndicadorRawData =
+	evaluacionEtapaIndicadorJsonData.evaluacionEtapaIndicadorItems;
+evaluacionEtapaIndicador = evaluacionEtapaIndicadorRawData.map((item) =>
+	evaluacionEtapaIndicadorItemSchema.parse(item)
 );
 
 const indicadorAreaResponsableRawData =
@@ -578,8 +576,8 @@ export function getEtapaDetail() {
 	return etapaDetail;
 }
 
-export function getEvaluacionEtapaIndicadorCampus() {
-	return evaluacionEtapaIndicadorCampus;
+export function getEvaluacionEtapaIndicador() {
+	return evaluacionEtapaIndicador;
 }
 
 export function getNotificacion() {

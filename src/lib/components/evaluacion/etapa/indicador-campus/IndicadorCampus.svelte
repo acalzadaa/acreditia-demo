@@ -5,9 +5,9 @@
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 	import type {
-		EvaluacionEtapaIndicadorCampusItem,
-		EvaluacionEtapaIndicadorCampusStatus
-	} from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
+		EvaluacionEtapaIndicadorItem,
+		EvaluacionEtapaIndicadorStatus
+	} from '$lib/schemas/evaluacionEtapaIndicador.schema';
 
 	interface Props {
 		gridArea?: string;
@@ -16,8 +16,8 @@
 		subtitle?: string;
 		showDetails?: boolean;
 		showEdit?: boolean;
-		onClickEdit?: (item: EvaluacionEtapaIndicadorCampusItem) => void;
-		items?: EvaluacionEtapaIndicadorCampusItem[] | null;
+		onClickEdit?: (item: EvaluacionEtapaIndicadorItem) => void;
+		items?: EvaluacionEtapaIndicadorItem[] | null;
 	}
 
 	const {
@@ -32,9 +32,9 @@
 	}: Props = $props();
 
 	const STATUS_TO_BADGE_CONFIG: Record<
-		EvaluacionEtapaIndicadorCampusStatus,
+		EvaluacionEtapaIndicadorStatus,
 		{
-			indicadorCampusStatus: EvaluacionEtapaIndicadorCampusStatus;
+			indicadorCampusStatus: EvaluacionEtapaIndicadorStatus;
 			badgeStatus: BadgeStatus;
 			label: string;
 		}
@@ -44,8 +44,8 @@
 		ready: { indicadorCampusStatus: 'ready', badgeStatus: 'success', label: 'Enviado' }
 	};
 
-	export function convertStatusToBadgeVariant(status: EvaluacionEtapaIndicadorCampusStatus): {
-		indicadorCampusStatus: EvaluacionEtapaIndicadorCampusStatus;
+	export function convertStatusToBadgeVariant(status: EvaluacionEtapaIndicadorStatus): {
+		indicadorCampusStatus: EvaluacionEtapaIndicadorStatus;
 		badgeStatus: BadgeStatus;
 		label: string;
 	} {
@@ -81,10 +81,10 @@
 							<td class="col-status">
 								<Badge
 									variant={convertStatusToBadgeVariant(
-										item.status as EvaluacionEtapaIndicadorCampusStatus
+										item.status as EvaluacionEtapaIndicadorStatus
 									).badgeStatus}
 								>
-									{convertStatusToBadgeVariant(item.status as EvaluacionEtapaIndicadorCampusStatus)
+									{convertStatusToBadgeVariant(item.status as EvaluacionEtapaIndicadorStatus)
 										.label}
 								</Badge>
 							</td>

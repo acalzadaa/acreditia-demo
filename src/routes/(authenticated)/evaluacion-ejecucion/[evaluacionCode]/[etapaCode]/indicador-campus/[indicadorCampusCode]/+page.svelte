@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { getEvaluacionEtapaIndicadorCampus, getRubrica } from '$lib/stores/data.svelte';
-	import IndicadorCampus from '$lib/components/evaluacion/etapa/indicador-campus/IndicadorCampus.svelte';
+	import { getEvaluacionEtapaIndicador, getRubrica } from '$lib/stores/data.svelte';
+	import Indicador from '$lib/components/evaluacion/etapa/indicador-campus/Indicador.svelte';
 	import {
 		type EtapaAutoevaluacionItem,
 		type EtapaAutorizacionPlanMejoraItem,
@@ -57,11 +57,11 @@
 	let etapaCode = page.params.etapaCode;
 	let indicadorCampusCode = page.params.indicadorCampusCode;
 
-	let evaluacionEtapaIndicadorCampusItems = getEvaluacionEtapaIndicadorCampus().filter(
+	let evaluacionEtapaIndicadorItems = getEvaluacionEtapaIndicador().filter(
 		(item) => item.code === indicadorCampusCode && item.etapa.code === etapaCode
 	);
 
-	let etapaMetadataItem = getEvaluacionEtapaIndicadorCampus()
+	let etapaMetadataItem = getEvaluacionEtapaIndicador()
 		.filter((item) => item.code === indicadorCampusCode)
 		.flatMap((item) => item.metadata)[0];
 
@@ -78,7 +78,7 @@
 
 	//elementos que necesitan autoevaluacion y revision autoevaluacion
 	let indicadorCodes = [
-		...new Set(evaluacionEtapaIndicadorCampusItems.map((item) => item.indicador.code))
+		...new Set(evaluacionEtapaIndicadorItems.map((item) => item.indicador.code))
 	];
 	let rubricaItems = getRubrica().filter((item) => indicadorCodes.includes(item.indicador.code));
 
@@ -109,10 +109,10 @@
 
 <main class="page-grid">
 	<div class="header-area">
-		<IndicadorCampus
+		<Indicador
 			showDetails={false}
 			showEdit={false}
-			items={evaluacionEtapaIndicadorCampusItems}
+			items={evaluacionEtapaIndicadorItems}
 		/>
 	</div>
 	<div class="content-area">

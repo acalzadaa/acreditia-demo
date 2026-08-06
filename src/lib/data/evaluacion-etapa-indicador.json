@@ -1,5 +1,5 @@
 {
-	"evaluacionEtapaIndicadorCampus": [
+	"evaluacionEtapaIndicadorItems": [
 		{
 			"id": "bdec5dfc-e6ef-45a6-8861-14092073e623",
 			"code": "2025-3-meta-ind-001-CAMPUS-MTY-001",
@@ -26,7 +26,7 @@
 			"metadata": {
 				"code": "meta"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -65,7 +65,7 @@
 				"doesNotApply": true,
 				"doesNotApplyReason": "Este es el primer año del campus, por lo que estes indicador no se podra evaluar sino hasta las inscripciones del proximo semestre"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -118,7 +118,7 @@
 					}
 				]
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -171,7 +171,7 @@
 					}
 				]
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -210,7 +210,7 @@
 				"isGoalReached": false,
 				"reason": "Hubo una alta migracion de estudiantes al campus Saltillo"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -246,7 +246,7 @@
 				"code": "resultados",
 				"target": 95
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -283,7 +283,7 @@
 				"score": 8,
 				"comment": "El documento de retencion no representa la realidad"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -318,7 +318,7 @@
 			"metadata": {
 				"code": "autoevaluacion"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -356,7 +356,7 @@
 				"score": 9,
 				"comment": "Cumplio con los criterios del nivel"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -393,7 +393,7 @@
 				"originalScore": 8,
 				"score": 8
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -429,7 +429,7 @@
 				"code": "captura",
 				"acuerdos": "Se va a realizar un proceso de entrevista al alumnado para entender sus inquietudes"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -465,7 +465,7 @@
 				"code": "captura",
 				"acuerdos": "Se va a crear un proceso para mejorar el contacto con los alumnos y poder determinar con mas velocidad sus necesidades"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -501,7 +501,7 @@
 				"code": "autorizacion",
 				"agreements": "Se va a realizar un proceso de entrevista al alumnado para entender sus inquietudes"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -538,7 +538,7 @@
 				"agreements": "Se va a crear un proceso para mejorar el contacto con los alumnos y poder determinar con mas velocidad sus necesidades",
 				"authorized": true
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -573,7 +573,7 @@
 			"metadata": {
 				"code": "ejecucion"
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -609,7 +609,7 @@
 				"code": "ejecucion",
 				"processing": true
 			},
-			"status": "working",
+			"status": "in-process",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
