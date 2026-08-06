@@ -10,8 +10,13 @@
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
 	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
-	import { formatEtapaContentItem, formatEtapaDateRange, isEtapaDateRange, isEvalucionEtapaReady } from '../utils/EvaluacionEtapaUtils';
-	
+	import {
+		formatEtapaContentItem,
+		formatEtapaDateRange,
+		isEtapaDateRange,
+		isEvalucionEtapaPlaneacionReady
+	} from '../utils/EvaluacionEtapaUtils';
+
 	interface Props {
 		items: EvaluacionEtapaItem[];
 		onEditCalendar: (item: EvaluacionEtapaItem) => void;
@@ -26,7 +31,7 @@
 </script>
 
 <section>
-	<PageHeader title="Planeación de etapas de evaluación"/>
+	<PageHeader title="Planeación de etapas de evaluación" subtitle="Seleccione una etapa" />
 	{#if items && items.length > 0}
 		<AccordionColumn minWidth="360px" maxWidth="2900px">
 			{#each items as item (item.id)}
@@ -44,12 +49,21 @@
 						{/snippet}
 						{#snippet subtitle()}
 							{#if isEtapaDateRange(item.fechaInicio, item.fechaFinal)}
-								<p>{formatEtapaDateRange(item.fechaInicio, item.fechaFinal)}</p>
+								<p>Ordinario: {formatEtapaDateRange(item.fechaInicio, item.fechaFinal)}</p>
+							{/if}
+							{#if item.periodoExtraordinario}
+								<p>
+									Extraordinario:
+									{formatEtapaDateRange(
+										item.periodoExtraordinarioInicio,
+										item.periodoExtraordinarioFinal
+									)}
+								</p>
 							{/if}
 						{/snippet}
-						{#if isEvalucionEtapaReady(item)}
+						{#if isEvalucionEtapaPlaneacionReady(item)}
 							<Badge variant="success" icon="check">Completado</Badge>
-							{:else}
+						{:else}
 							<Badge variant="warning" icon="close">Faltan fechas</Badge>
 						{/if}
 					</AccordionHeaderClickable>

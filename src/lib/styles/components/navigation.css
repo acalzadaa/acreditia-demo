@@ -1,0 +1,170 @@
+/* components/navigation.css
+   Navigation es independiente de Card: define sus propios tokens,
+   layout y clases (.navigation-*). No depende de .card, .card-header,
+   .card-content, etc. — solo de los design tokens globales
+   (--space-*, --text-*, --border-*, --shadow-*, --bg-*, --divider)
+   definidos fuera de este archivo.
+
+   Estructura:
+   NavigationColumn > Navigation > NavigationHeaderClickable | NavigationHeaderButton
+   > NavigationContent (colapsable) > lista de NavigationContentItem
+   > NavigationFooter (opcional).
+
+   (El header estático no-clickeable, sin toggle, se movió fuera de
+   Navigation — vivirá en un futuro componente Panel.)
+
+   Layout: Navigation siempre usa NavigationColumn (1 por renglón). No
+   existe variante grid — a diferencia de Card, escanear navigations en
+   cuadrícula no tiene mucho sentido de uso. */
+
+:root {
+	--navigation-gap: var(--space-4);
+	--navigation-column-min-width: 320px;
+	--navigation-column-max-width: 640px;
+
+	--navigation-bg: var(--bg-raised);
+	--navigation-bg-hover: var(--bg-raised-hover);
+
+	--navigation-border: var(--border-card);
+
+	--navigation-radius: var(--border-radius-card);
+	--navigation-shadow: var(--shadow-card);
+	--navigation-padding: var(--space-4);
+
+	--navigation-section-gap: var(--stack-xs);
+}
+
+/* ==========================================
+   COLUMN — layout único de navigation
+   ========================================== */
+.navigation-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--navigation-gap);
+	padding: var(--space-2);
+	overflow-y: auto;
+	overflow-x: auto;
+	height: 100%;
+}
+
+.navigation-column > .navigation {
+	width: 100%;
+	min-width: var(--navigation-column-min-width);
+	max-width: var(--navigation-column-max-width);
+}
+
+/* ==========================================
+   NAVIGATION — wrapper general
+   ========================================== */
+.navigation {
+	display: flex;
+	flex-direction: column;
+
+	background-color: var(--navigation-bg);
+	border: var(--navigation-border);
+	border-radius: var(--navigation-radius);
+	box-shadow: var(--navigation-shadow);
+	padding: var(--navigation-padding);
+
+	min-width: 0;
+}
+
+/* Espaciado entre secciones vía margin (no gap) para poder anularlo
+   selectivamente cuando el content-wrapper está colapsado — así no
+   queda un hueco visible entre header y footer. */
+.navigation > * + * {
+	margin-top: var(--navigation-section-gap);
+}
+
+/* ==========================================
+   HEADER
+
+   Header tiene 2 variantes:
+
+   Variante A (NavigationHeaderClickable): título + subtítulo
+   opcional + chevron. Todo el header es un <button> que hace toggle.
+
+   Variante B (NavigationHeaderButton): un Button de acción (icono+
+   texto) a la izquierda + un IconButton chevron a la derecha. Solo
+   el chevron hace toggle; el Button es una acción independiente.
+   ========================================== */
+.navigation-header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-2);
+}
+
+.navigation-header__text {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	gap: var(--space-1);
+	min-width: 0;
+}
+
+.navigation-header__left {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--space-1);
+	min-width: 0;
+}
+
+.navigation-header__subtitle {
+	color: var(--text-secondary);
+}
+
+.navigation-header__title {
+	color: var(--text-primary);
+	overflow-wrap: break-word;
+	word-break: break-word;
+}
+
+.navigation-header__metadata {
+	margin-top: var(--space-1);
+}
+
+.navigation-header__action {
+	display: flex;
+	justify-content: left;
+	flex-shrink: 0;
+}
+
+/* Variante A: todo el header es un <button> */
+.navigation-header--clickable {
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 0 0 var(--navigation-section-gap) 0;
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	text-align: left;
+}
+
+.navigation-header--clickable:hover .navigation-header__title {
+	color: var(--text-primary-hover);
+}
+
+.navigation-header__chevron {
+	flex-shrink: 0;
+	color: var(--text-secondary);
+	transition: transform 0.2s ease;
+}
+
+
+/* ==========================================
+   FOOTER — solo iconos (actions), cargados a la izquierda
+   ========================================== */
+.navigation-footer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: var(--space-1);
+	padding-top: var(--navigation-section-gap);
+	min-height: 50px;
+}

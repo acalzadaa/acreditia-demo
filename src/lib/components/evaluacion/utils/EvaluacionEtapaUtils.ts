@@ -1,5 +1,5 @@
 import { formatDate } from '$lib/helpers/dates';
-import { type EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
+import { type EvaluacionEtapaEjecucionStatus, type EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
 
 export function formatEtapaDateRange(
 	startDate?: Date | null | undefined,
@@ -30,7 +30,7 @@ export function formatEtapaContentItem(date: Date | null | undefined) {
 	}
 }
 
-export function isEvalucionEtapaReady(item: EvaluacionEtapaItem): boolean {
+export function isEvalucionEtapaPlaneacionReady(item: EvaluacionEtapaItem): boolean {
 	if (isEvaluacionEtapaFechaExtraordinariaReady(item) && isEvaluacionEtapaFechaReady(item)) {
 		return true;
 	}
@@ -52,4 +52,31 @@ function isEvaluacionEtapaFechaReady(item: EvaluacionEtapaItem): boolean {
 		return false;
 	}
 	return true;
+}
+
+export function getEtapaStatus(item: EvaluacionEtapaItem, currentDate: Date): EvaluacionEtapaEjecucionStatus {
+	// Si no tiene fechas válidas, asumimos que está "antes" (pendiente)
+	if (!isEvaluacionEtapaFechaReady(item)) {
+		return 'pendiente';
+	}
+
+	const startDate = item.fechaInicio!;
+	const endDate = getEffectiveEndDate(item);
+
+	if (currentDate < startDate) {
+		return 'pendiente';
+	}
+
+	if (currentDate >= startDate && currentDate <= endDate) {
+		return 'activo'; // Dentro del rango
+	}
+
+	return 'finalizado'; // Después del rango
+}
+
+function getEffectiveEndDate(item: EvaluacionEtapaItem): Date {
+	const hasExtraordinary =
+		item.periodoExtraordinario && isEvaluacionEtapaFechaExtraordinariaReady(item);
+
+	return hasExtraordinary ? item.periodoExtraordinarioFinal! : item.fechaFinal!;
 }
