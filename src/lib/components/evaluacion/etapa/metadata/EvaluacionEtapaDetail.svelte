@@ -6,7 +6,7 @@
 	import { formatDate } from '$lib/helpers/dates';
 	import type {
 		EvaluacionEtapaItem,
-		EvaluacionEtapaStatus
+		EvaluacionEtapaPlaneacionStatus
 	} from '$lib/schemas/evaluacionEtapa.schema';
 
 	interface Props {
@@ -19,15 +19,15 @@
 	const { showHeader = false, title = '', subtitle = '', items }: Props = $props();
 
 	const STATUS_TO_BADGE_CONFIG: Record<
-		EvaluacionEtapaStatus,
-		{ etapaStatus: EvaluacionEtapaStatus; badgeStatus: BadgeStatus; label: string }
+		EvaluacionEtapaPlaneacionStatus,
+		{ etapaStatus: EvaluacionEtapaPlaneacionStatus; badgeStatus: BadgeStatus; label: string }
 	> = {
 		planning: { etapaStatus: 'planning', badgeStatus: 'success', label: 'Planeado' },
 		ready: { etapaStatus: 'ready', badgeStatus: 'success', label: 'Listo' }
 	};
 
-	export function convertStatusToBadgeVariant(status: EvaluacionEtapaStatus): {
-		etapaStatus: EvaluacionEtapaStatus;
+	export function convertStatusToBadgeVariant(status: EvaluacionEtapaPlaneacionStatus): {
+		etapaStatus: EvaluacionEtapaPlaneacionStatus;
 		badgeStatus: BadgeStatus;
 		label: string;
 	} {
@@ -70,10 +70,10 @@
 							<td class="col-date">{formatDate(item.periodoExtraordinarioFinal)}</td>
 							<td class="col-badge">
 								<Badge
-									variant={convertStatusToBadgeVariant(item.status as EvaluacionEtapaStatus)
+									variant={convertStatusToBadgeVariant(item.status as EvaluacionEtapaPlaneacionStatus)
 										.badgeStatus}
 								>
-									{convertStatusToBadgeVariant(item.status as EvaluacionEtapaStatus).label}
+									{convertStatusToBadgeVariant(item.status as EvaluacionEtapaPlaneacionStatus).label}
 								</Badge>
 							</td>
 							

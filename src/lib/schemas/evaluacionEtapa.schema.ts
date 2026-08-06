@@ -7,8 +7,11 @@ import { etapaRefSchema } from './etapa.schema';
 // ENUMS
 // ============================================
 
-export const EvaluacionEtapaStatusEnum = z.enum(['planning', 'ready']);
-export type EvaluacionEtapaStatus = z.infer<typeof EvaluacionEtapaStatusEnum>;
+export const evaluacionEtapaPlaneacionStatusEnum = z.enum(['planning', 'ready']);
+export type EvaluacionEtapaPlaneacionStatus = z.infer<typeof evaluacionEtapaPlaneacionStatusEnum>;
+
+export const evaluacionEtapaEjecucionStatusEnum = z.enum(['pendiente', 'activo', 'finalizado']);
+export type EvaluacionEtapaEjecucionStatus = z.infer<typeof evaluacionEtapaEjecucionStatusEnum>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -63,7 +66,7 @@ export const evaluacionEtapaItemSchema = z.object({
 	fechaFinal: z.coerce.date().optional().nullable(),
 	periodoExtraordinarioInicio: z.coerce.date().optional().nullable(),
 	periodoExtraordinarioFinal: z.coerce.date().optional().nullable(),
-	status: EvaluacionEtapaStatusEnum,
+	status: evaluacionEtapaPlaneacionStatusEnum,
 	createdAt: z.iso.datetime().optional(),
 	updatedAt: z.iso.datetime().optional(),
 	createdBy: z.string().optional().nullable(),
