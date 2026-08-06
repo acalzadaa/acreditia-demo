@@ -38,7 +38,7 @@
 				<Accordion>
 					<AccordionHeaderClickable
 						id="acc-{item.id}"
-						isVisible={!accordions.isOpen(item.id)}
+						isVisible={accordions.isOpen(item.id)}
 						onToggle={() => accordions.toggle(item.id)}
 					>
 						{#snippet title()}
