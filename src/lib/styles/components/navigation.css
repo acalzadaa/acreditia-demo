@@ -6,12 +6,8 @@
    definidos fuera de este archivo.
 
    Estructura:
-   NavigationColumn > Navigation > NavigationHeaderClickable | NavigationHeaderButton
-   > NavigationContent (colapsable) > lista de NavigationContentItem
-   > NavigationFooter (opcional).
-
-   (El header estático no-clickeable, sin toggle, se movió fuera de
-   Navigation — vivirá en un futuro componente Panel.)
+   NavigationColumn > Navigation > NavigationHeader
+   NavigationFooter (opcional).
 
    Layout: Navigation siempre usa NavigationColumn (1 por renglón). No
    existe variante grid — a diferencia de Card, escanear navigations en
@@ -70,6 +66,10 @@
 	min-width: 0;
 }
 
+.navigation:hover {
+	background-color: var(--navigation-bg-hover);
+}
+
 /* Espaciado entre secciones vía margin (no gap) para poder anularlo
    selectivamente cuando el content-wrapper está colapsado — así no
    queda un hueco visible entre header y footer. */
@@ -77,17 +77,16 @@
 	margin-top: var(--navigation-section-gap);
 }
 
+.navigation-content-wrapper:not(.is-open) + .navigation-footer {
+	margin-top: 0;
+	padding-top: 0;
+}
+
 /* ==========================================
    HEADER
 
-   Header tiene 2 variantes:
-
-   Variante A (NavigationHeaderClickable): título + subtítulo
-   opcional + chevron. Todo el header es un <button> que hace toggle.
-
-   Variante B (NavigationHeaderButton): un Button de acción (icono+
-   texto) a la izquierda + un IconButton chevron a la derecha. Solo
-   el chevron hace toggle; el Button es una acción independiente.
+   título + subtítulo opcional. 
+   Todo el header es un <button> que hace NavigateTo.
    ========================================== */
 .navigation-header {
 	display: flex;
@@ -96,6 +95,8 @@
 	justify-content: space-between;
 	gap: var(--space-2);
 }
+
+
 
 .navigation-header__text {
 	display: flex;
@@ -127,13 +128,7 @@
 	margin-top: var(--space-1);
 }
 
-.navigation-header__action {
-	display: flex;
-	justify-content: left;
-	flex-shrink: 0;
-}
-
-/* Variante A: todo el header es un <button> */
+/* Todo el header es un <button> */
 .navigation-header--clickable {
 	width: 100%;
 	background: none;
@@ -155,7 +150,6 @@
 	color: var(--text-secondary);
 	transition: transform 0.2s ease;
 }
-
 
 /* ==========================================
    FOOTER — solo iconos (actions), cargados a la izquierda

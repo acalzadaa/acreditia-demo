@@ -12,14 +12,14 @@
 
 	const style = $derived(
 		[
-			maxWidth ? `--accordion-column-max-width: ${maxWidth}` : '',
-			minWidth ? `--accordion-column-min-width: ${minWidth}` : ''
+			maxWidth ? `--navigation-column-max-width: ${maxWidth}` : '',
+			minWidth ? `--navigation-column-min-width: ${minWidth}` : ''
 		]
 			.filter(Boolean)
 			.join('; ')
 	);
 </script>
 
-<div class={['accordion-column', className]} style={style || undefined}>
+<div class={['navigation-column', className]} style={style || undefined}>
 	{@render children()}
 </div>
