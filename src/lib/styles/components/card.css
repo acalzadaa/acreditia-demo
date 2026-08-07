@@ -91,9 +91,7 @@
 	flex-direction: column;
 	align-items: flex-start;
 	gap: var(--space-1);
-
 	padding-bottom: var(--card-section-gap);
-	border-bottom: var(--divider);
 }
 
 .card-header__subtitle {

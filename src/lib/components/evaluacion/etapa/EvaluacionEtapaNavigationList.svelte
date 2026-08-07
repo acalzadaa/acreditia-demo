@@ -7,8 +7,7 @@
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
-	import { convertStatusToBadgeVariant } from '../utils/EvaluacionEtapaEjecucionUtils';
-	import { formatEtapaDateRange, isEtapaDateRange } from '../utils/EvaluacionEtapaUtils';
+	import { convertEvaluacionEtapaStatusToBadgeVariant, formatEtapaDateRange, isEtapaDateRange } from '../utils/EvaluacionEtapaUtils';
 
 	interface Props {
 		items: EvaluacionEtapaItem[];
@@ -45,9 +44,9 @@
 							{/if}
 						{/snippet}
 						<Badge
-							variant={convertStatusToBadgeVariant(item.status).badgeStatus}
-							icon={convertStatusToBadgeVariant(item.status).icon}
-							>{convertStatusToBadgeVariant(item.status).label}</Badge
+							variant={convertEvaluacionEtapaStatusToBadgeVariant(item.status).badgeStatus}
+							icon={convertEvaluacionEtapaStatusToBadgeVariant(item.status).icon}
+							>{convertEvaluacionEtapaStatusToBadgeVariant(item.status).label}</Badge
 						>
 					</NavigationHeader>
 				</Navigation>

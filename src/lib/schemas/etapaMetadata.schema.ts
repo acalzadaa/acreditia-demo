@@ -10,8 +10,7 @@ export const EtapaCodeEnum = z.enum([
 	'captura',
 	'autoevaluacion',
 	'revision',
-	'planMejora',
-	'autorizacion',
+	'planeacion',
 	'ejecucion'
 ]);
 export type EtapaCode = z.infer<typeof EtapaCodeEnum>;
@@ -194,3 +193,24 @@ export const etapaMetadataSchema = z.discriminatedUnion('code', [
 ]);
 
 export type EtapaMetadata = z.infer<typeof etapaMetadataSchema>;
+
+
+/**
+ * Deriva automáticamente { meta: EtapaMetaItem, evidencia: EtapaEvidenciaItem, ... }
+ * a partir de la unión discriminada. Si agregas/quitas un miembro de
+ * etapaMetadataSchema, este mapa se actualiza solo — cero mantenimiento manual.
+ */
+export type EtapaMetadataByCode = {
+	[K in EtapaMetadata['code']]: Extract<EtapaMetadata, { code: K }>;
+};
+
+/**
+ * Type guard: dado un EtapaMetadata cualquiera, confirma (para TS y en runtime)
+ * que corresponde al código T y lo estrecha al tipo concreto.
+ */
+export function isEtapaMetadataOfCode<T extends EtapaMetadata['code']>(
+	metadata: EtapaMetadata,
+	code: T
+): metadata is EtapaMetadataByCode[T] {
+	return metadata.code === code;
+}

@@ -11,7 +11,7 @@
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
 	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
 	import {
-		convertStatusToBadgeVariant,
+	convertEvaluacionEtapaStatusToBadgeVariant,
 		formatEtapaContentItem,
 		formatEtapaDateRange,
 		isEtapaDateRange
@@ -62,9 +62,9 @@
 							{/if}
 						{/snippet}
 						<Badge
-							variant={convertStatusToBadgeVariant(item.status).badgeStatus}
-							icon={convertStatusToBadgeVariant(item.status).icon}
-							>{convertStatusToBadgeVariant(item.status).label}</Badge
+							variant={convertEvaluacionEtapaStatusToBadgeVariant(item.status).badgeStatus}
+							icon={convertEvaluacionEtapaStatusToBadgeVariant(item.status).icon}
+							>{convertEvaluacionEtapaStatusToBadgeVariant(item.status).label}</Badge
 						>
 					</AccordionHeaderClickable>
 					<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(item.id)}>

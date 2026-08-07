@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { campusRefSchema, evaluacionRefSchema, indicadorRefSchema } from './shared.schema';
 import { etapaRefSchema } from './etapa.schema';
-import { etapaMetadataSchema } from './etapaMetadata.schema';
+import { etapaMetadataSchema, type EtapaMetadataByCode } from './etapaMetadata.schema';
 
 // ============================================
 // ENUMS
@@ -9,11 +9,11 @@ import { etapaMetadataSchema } from './etapaMetadata.schema';
 
 export const EvaluacionEtapaIndicadorStatusEnum = z.enum([
 	'pending',
-	'in-process',
+	'in_process',
 	'completed',
 	'not_applicable',
 	'excluded',
-	'forced-in-process'
+	'forced_in_process'
 ]);
 export type EvaluacionEtapaIndicadorStatus = z.infer<typeof EvaluacionEtapaIndicadorStatusEnum>;
 
@@ -82,3 +82,11 @@ export const evaluacionEtapaIndicadorItemSchema = z
 	});
 
 export type EvaluacionEtapaIndicadorItem = z.infer<typeof evaluacionEtapaIndicadorItemSchema>;
+
+
+/**
+ * EvaluacionEtapaIndicadorItem, pero con `metadata` estrechado a la forma
+ * concreta correspondiente a T. Conserva id, status, campus, etc.
+ */
+export type EvaluacionEtapaIndicadorItemFor<T extends EtapaMetadataByCode[keyof EtapaMetadataByCode]['code']> =
+	Omit<EvaluacionEtapaIndicadorItem, 'metadata'> & { metadata: EtapaMetadataByCode[T] };

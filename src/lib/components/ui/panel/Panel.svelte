@@ -31,7 +31,14 @@ amerita duplicar tokens ni CSS nuevo.
 </script>
 
 <Panel>
-	<PanelHeader title="Complementos" subtitle="Agregar" />
+	<PanelHeader>
+		{#snippet title()}
+			Complementos
+		{/snippet}
+		{#snippet subtitle()}
+			Agregar	
+		{/snippet}
+	<PanelHeader/>
 	<PanelContent>
 		{#each items as item (item.id)}
 			<PanelListItemButton onClick={() => navigateTo(item.url)}>

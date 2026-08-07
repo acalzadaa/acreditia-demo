@@ -1,31 +1,20 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { getEtapaDetail, getEvaluacionEtapa } from '$lib/stores/data.svelte';
-	import EtapaDetail from '$lib/components/evaluacion/etapa/EtapaDetail.svelte';
-	import EvaluacionEtapaDetail from '$lib/components/evaluacion/etapa/metadata/EvaluacionEtapaDetail.svelte';
+	import EvaluacionEtapaDetail from '$lib/components/evaluacion/etapa/EvaluacionEtapaDetail.svelte';
+	import EvaluacionEtapaMetadataList from '$lib/components/evaluacion/etapa/metadata/EvaluacionEtapaMetadataList.svelte';
+	import type { EtapaCode } from '$lib/schemas/etapaMetadata.schema';
+	import { getEvaluacionEtapa, getEvaluacionEtapaIndicador } from '$lib/stores/data.svelte';
 
 	let evaluacionCode = page.params.evaluacionCode;
-	let etapaCode = page.params.etapaCode;
+	let etapaCode = page.params.etapaCode as EtapaCode;
 	let etapaItems = getEvaluacionEtapa().filter(
 		(item) => item.evaluacion.code === evaluacionCode && item.etapa.code === etapaCode
 	);
 
-	let etapaDetail = getEtapaDetail();
+	let evaluacionEtapaIndicadorItems = getEvaluacionEtapaIndicador().filter(
+		(item) => item.evaluacion.code === evaluacionCode && item.etapa.code === etapaCode
+	);
 </script>
 
-<main>
-	<EvaluacionEtapaDetail
-		showHeader={true}
-		title="Etapas asignadas a la evaluacion"
-		items={etapaItems}
-	/>
-	<div class="detail">
-		<EtapaDetail items={etapaDetail} />
-	</div>
-</main>
-
-<style>
-	.detail {
-		padding-top: 10px;
-	}
-</style>
+<EvaluacionEtapaDetail items={etapaItems}/>
+<EvaluacionEtapaMetadataList etapaCode={etapaCode} items={evaluacionEtapaIndicadorItems}/>

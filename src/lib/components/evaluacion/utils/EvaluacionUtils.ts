@@ -11,7 +11,7 @@ const STATUS_TO_BADGE_CONFIG: Record<
 	completed: { evaluacionStatus: 'completed', badgeStatus: 'warning', label: 'Completado' }
 };
 
-export function convertStatusToBadgeVariant(status: EvaluacionStatus): {
+export function convertEvaluacionStatusToBadgeVariant(status: EvaluacionStatus): {
 	evaluacionStatus: EvaluacionStatus;
 	badgeStatus: BadgeStatus;
 	label: string;

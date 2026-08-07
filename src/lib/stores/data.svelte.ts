@@ -41,7 +41,6 @@ import indicadorIndicadorEstrategicoJsonData from '$lib/data/indicador-indicador
 import indicadorEvidenciaJsonData from '$lib/data/indicador-evidencia.json';
 
 import indicadorNavigationJsonData from '$lib/data/indicador-navigation.json';
-import etapaDetailJsonData from '$lib/data/etapa-detail.json';
 import evaluacionEtapaIndicadorJsonData from '$lib/data/evaluacion-etapa-indicador.json';
 
 import notificationJsonData from '$lib/data/notification.json';
@@ -136,7 +135,6 @@ import {
 	evaluacionEtapaItemSchema,
 	type EvaluacionEtapaItem
 } from '$lib/schemas/evaluacionEtapa.schema';
-import { etapaDetailItemSchema, type EtapaDetailItem } from '$lib/schemas/etapaDetail.schema';
 
 import { notificationItemSchema, type NotificationItem } from '$lib/schemas/notificacion.schema';
 import {
@@ -191,7 +189,6 @@ let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 let indicadorEvidencia = $state<IndicadorEvidenciaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
 let indicadorNavList = $state<indicadorNavListItem[]>([]);
-let etapaDetail = $state<EtapaDetailItem[]>([]);
 let evaluacionEtapaIndicador = $state<EvaluacionEtapaIndicadorItem[]>([]);
 
 let notification = $state<NotificationItem[]>([]);
@@ -320,9 +317,6 @@ indicadorIndicadorEstrategico = indicadorIndicadorEstrategicoRawData.map((item) 
 
 const indicadorNavigationRawData = indicadorNavigationJsonData.indicadorNavListItem;
 indicadorNavList = indicadorNavigationRawData.map((item) => indicadorNavListItemSchema.parse(item));
-
-const etapaDetailRawData = etapaDetailJsonData.etapaDetailItems;
-etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));
 
 const notificationRawData = notificationJsonData.notificationItems;
 notification = notificationRawData.map((item) => notificationItemSchema.parse(item));
@@ -570,10 +564,6 @@ export function getIndicadorIndicadorEstrategico() {
 
 export function getIndicadorNavList() {
 	return indicadorNavList;
-}
-
-export function getEtapaDetail() {
-	return etapaDetail;
 }
 
 export function getEvaluacionEtapaIndicador() {

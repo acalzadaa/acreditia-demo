@@ -92,7 +92,7 @@ const EVALUACION_ETAPA_STATUS_TO_BADGE_CONFIG: Record<
 	}
 };
 
-export function convertStatusToBadgeVariant(status: EvaluacionEtapaStatus): {
+export function convertEvaluacionEtapaStatusToBadgeVariant(status: EvaluacionEtapaStatus): {
 	evaluacionStatus: EvaluacionEtapaStatus;
 	badgeStatus: BadgeStatus;
 	icon: IconName;
