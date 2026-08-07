@@ -58,7 +58,7 @@
 	}: Props = $props();
 </script>
 
-<main>
+<menu>
 	<div class="col-actions-row">
 		{#if showExecute && onClickExecute && item}
 			<IconButton
@@ -143,4 +143,4 @@
 			/>
 		{/if}
 	</div>
-</main>
+</menu>

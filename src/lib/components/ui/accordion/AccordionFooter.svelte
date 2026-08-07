@@ -9,6 +9,6 @@
 	const { class: className = '', children }: Props = $props();
 </script>
 
-<footer class={['accordion-footer', className]}>
+<menu class={['accordion-footer', className]}>
 	{@render children()}
-</footer>
+</menu>

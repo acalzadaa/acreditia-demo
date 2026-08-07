@@ -56,7 +56,7 @@ Ej.:
 
 <button
 	type="button"
-	class={['accordion-header', 'accordion-header--clickable', className]}
+	class={['accordion-header', 'accordion-header--clickable', { 'is-open': isVisible }, className]}
 	aria-expanded={isVisible}
 	aria-controls={id}
 	aria-label={toggleAriaLabel}

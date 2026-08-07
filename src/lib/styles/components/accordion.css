@@ -71,6 +71,10 @@
 	min-width: 0;
 }
 
+.accordion:hover {
+	background-color: var(--accordion-bg-hover);
+}
+
 /* Espaciado entre secciones vía margin (no gap) para poder anularlo
    selectivamente cuando el content-wrapper está colapsado — así no
    queda un hueco visible entre header y footer. */

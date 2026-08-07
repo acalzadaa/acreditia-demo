@@ -1,10 +1,10 @@
 <!--
 @component
-# AccordionHeaderClickable
-Variante 3 del header de accordion: todo el bloque es un <button> que
+# NavigationHeaderClickable
+Variante 3 del header de navigation: todo el bloque es un <button> que
 controla el expand/collapse. Recibe el `toggle` (de `createToggle()`)
 creado y manejado en +page.svelte, y lo comparte con el
-AccordionContent asociado — así ambos leen el mismo estado sin
+NavigationContent asociado — así ambos leen el mismo estado sin
 sincronizar props por separado.
 
 Ej.:
@@ -14,10 +14,10 @@ Ej.:
 	const sectionToggle = createToggle();
 </script>
 
-<AccordionHeaderClickable title="Sección" toggle={sectionToggle} id="acc-1" />
-<AccordionContent id="acc-1" toggle={sectionToggle}>
+<NavigationHeaderClickable title="Sección" toggle={sectionToggle} id="acc-1" />
+<NavigationContent id="acc-1" toggle={sectionToggle}>
 	...
-</AccordionContent>
+</NavigationContent>
 ```
 -->
 
@@ -50,23 +50,23 @@ Ej.:
 
 <button
 	type="button"
-	class={['accordion-header', 'accordion-header--clickable', className]}
+	class={['navigation-header', 'navigation-header--clickable', className]}
 	aria-label={ariaLabel}
 	onclick={onClickNavigate}
 >
-	<div class="accordion-header__left">
+	<div class="navigation-header__left">
 		{#if title}
-			<div class="accordion-header__title text-h6">
+			<div class="navigation-header__title text-h6">
 				{@render title()}
 			</div>
 		{/if}
 		{#if subtitle}
-			<div class="accordion-header__subtitle text-body">
+			<div class="navigation-header__subtitle text-body">
 				{@render subtitle()}
 			</div>
 		{/if}
 		{#if children}
-			<div class="accordion-header__metadata">
+			<div class="navigation-header__metadata">
 				{@render children()}
 			</div>
 		{/if}

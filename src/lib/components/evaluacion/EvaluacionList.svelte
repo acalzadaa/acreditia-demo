@@ -10,7 +10,7 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { EvaluacionItem } from '$lib/schemas/evaluacion.schema';
-	import { convertStatusToBadgeVariant, isActionDisabled } from './utils/EvaluacionUtils';
+	import { convertEvaluacionStatusToBadgeVariant, isActionDisabled } from './utils/EvaluacionUtils';
 	import Actions from '../ui/Actions.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 
@@ -88,8 +88,8 @@
 								<td class="col-metric">{item.year}</td>
 								<td class="col-metric">{item.cycle}</td>
 								<td class="col-badge">
-									<Badge variant={convertStatusToBadgeVariant(item.status).badgeStatus}>
-										{convertStatusToBadgeVariant(item.status).label}
+									<Badge variant={convertEvaluacionStatusToBadgeVariant(item.status).badgeStatus}>
+										{convertEvaluacionStatusToBadgeVariant(item.status).label}
 									</Badge>
 								</td>
 								<td class="col-actions-lg">
@@ -139,8 +139,8 @@
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.code} title={item.name}>
-							<Badge variant={convertStatusToBadgeVariant(item.status).badgeStatus}>
-								{convertStatusToBadgeVariant(item.status).label}
+							<Badge variant={convertEvaluacionStatusToBadgeVariant(item.status).badgeStatus}>
+								{convertEvaluacionStatusToBadgeVariant(item.status).label}
 							</Badge>
 						</CardHeader>
 

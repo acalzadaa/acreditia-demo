@@ -11,10 +11,10 @@
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
 	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
 	import {
+	convertEvaluacionEtapaStatusToBadgeVariant,
 		formatEtapaContentItem,
 		formatEtapaDateRange,
-		isEtapaDateRange,
-		isEvalucionEtapaPlaneacionReady
+		isEtapaDateRange
 	} from '../utils/EvaluacionEtapaUtils';
 
 	interface Props {
@@ -38,7 +38,7 @@
 				<Accordion>
 					<AccordionHeaderClickable
 						id="acc-{item.id}"
-						isVisible={!accordions.isOpen(item.id)}
+						isVisible={accordions.isOpen(item.id)}
 						onToggle={() => accordions.toggle(item.id)}
 					>
 						{#snippet title()}
@@ -61,11 +61,11 @@
 								</p>
 							{/if}
 						{/snippet}
-						{#if isEvalucionEtapaPlaneacionReady(item)}
-							<Badge variant="success" icon="check">Completado</Badge>
-						{:else}
-							<Badge variant="warning" icon="close">Faltan fechas</Badge>
-						{/if}
+						<Badge
+							variant={convertEvaluacionEtapaStatusToBadgeVariant(item.status).badgeStatus}
+							icon={convertEvaluacionEtapaStatusToBadgeVariant(item.status).icon}
+							>{convertEvaluacionEtapaStatusToBadgeVariant(item.status).label}</Badge
+						>
 					</AccordionHeaderClickable>
 					<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(item.id)}>
 						<AccordionContentItem label="Fecha de inicio">

@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { createToggle } from '$lib/utils/toggle.svelte';
+	import type { Snippet } from 'svelte';
 	import Button from '../Button.svelte';
 
 	interface Props {
 		label: string;
 		value?: string;
+		children?: Snippet;
 		class?: string;
 	}
 
-	const { label, value = '', class: className = '' }: Props = $props();
+	const { label, value = '', children, class: className = '' }: Props = $props();
 
 	let isOverflowing = $state(false);
 	let textEl: HTMLParagraphElement;
@@ -39,7 +41,11 @@
 		class="card-content-item__text text-body"
 		class:card-content-item__text--clamped={!expandedToggle.value}
 	>
-		{value}
+		{#if children}
+			{@render children?.()}
+		{:else}
+			{value}
+		{/if}
 	</p>
 	{#if isOverflowing || expandedToggle.value}
 		<div class="card-content-item__toggle text-body-small">

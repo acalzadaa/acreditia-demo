@@ -8,7 +8,7 @@
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import type { EvaluacionItem } from '$lib/schemas/evaluacion.schema';
-	import { convertStatusToBadgeVariant } from './utils/EvaluacionUtils';
+	import { convertEvaluacionStatusToBadgeVariant } from './utils/EvaluacionUtils';
 	
 	interface Props {
 		items: EvaluacionItem[];
@@ -56,8 +56,8 @@
 								<td class="col-metric">{item.year}</td>
 								<td class="col-metric">{item.cycle}</td>
 								<td class="col-badge">
-									<Badge variant={convertStatusToBadgeVariant(item.status).badgeStatus}>
-										{convertStatusToBadgeVariant(item.status).label}
+									<Badge variant={convertEvaluacionStatusToBadgeVariant(item.status).badgeStatus}>
+										{convertEvaluacionStatusToBadgeVariant(item.status).label}
 									</Badge>
 								</td>
 							</tr>
@@ -76,8 +76,8 @@
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.code} title={item.name}>
-							<Badge variant={convertStatusToBadgeVariant(item.status).badgeStatus}>
-								{convertStatusToBadgeVariant(item.status).label}
+							<Badge variant={convertEvaluacionStatusToBadgeVariant(item.status).badgeStatus}>
+								{convertEvaluacionStatusToBadgeVariant(item.status).label}
 							</Badge>
 						</CardHeader>
 

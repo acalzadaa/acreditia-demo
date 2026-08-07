@@ -1,23 +1,29 @@
 import { z } from 'zod';
 import { campusRefSchema, evaluacionRefSchema, indicadorRefSchema } from './shared.schema';
 import { etapaRefSchema } from './etapa.schema';
-import { etapaMetadataSchema } from './etapaMetadata.schema';
+import { etapaMetadataSchema, type EtapaMetadataByCode } from './etapaMetadata.schema';
 
 // ============================================
 // ENUMS
 // ============================================
 
-export const EvaluacionEtapaIndicadorCampusStatusEnum = z.enum(['new', 'working', 'ready']);
-export type EvaluacionEtapaIndicadorCampusStatus = z.infer<
-	typeof EvaluacionEtapaIndicadorCampusStatusEnum
->;
+export const EvaluacionEtapaIndicadorStatusEnum = z.enum([
+	'pending',
+	'in_process',
+	'ready',
+	'completed',
+	'invalidate_request',
+	'invalidate_confirmed',
+	'forced_in_process'
+]);
+export type EvaluacionEtapaIndicadorStatus = z.infer<typeof EvaluacionEtapaIndicadorStatusEnum>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // Para operaciones CRUD: crear y actualizar
 // ============================================
 
-export const evaluacionEtapaIndicadorCampusFormSchema = z
+export const evaluacionEtapaIndicadorFormSchema = z
 	.object({
 		id: z.uuid().optional(),
 		evaluacionCode: z.string(),
@@ -40,15 +46,13 @@ export const evaluacionEtapaIndicadorCampusFormSchema = z
 		}
 	});
 
-export type EvaluacionEtapaIndicadorCampusForm = z.infer<
-	typeof evaluacionEtapaIndicadorCampusFormSchema
->;
+export type EvaluacionEtapaIndicadorForm = z.infer<typeof evaluacionEtapaIndicadorFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
 
-export const evaluacionEtapaIndicadorCampusItemSchema = z
+export const evaluacionEtapaIndicadorItemSchema = z
 	.object({
 		id: z.uuid(),
 		code: z.string(),
@@ -57,7 +61,7 @@ export const evaluacionEtapaIndicadorCampusItemSchema = z
 		indicador: indicadorRefSchema,
 		campus: campusRefSchema,
 		metadata: etapaMetadataSchema,
-		status: EvaluacionEtapaIndicadorCampusStatusEnum,
+		status: EvaluacionEtapaIndicadorStatusEnum,
 		version: z.number().default(0),
 		isCurrent: z.boolean().default(false),
 		validFrom: z.coerce.date().optional(),
@@ -78,6 +82,12 @@ export const evaluacionEtapaIndicadorCampusItemSchema = z
 		}
 	});
 
-export type EvaluacionEtapaIndicadorCampusItem = z.infer<
-	typeof evaluacionEtapaIndicadorCampusItemSchema
->;
+export type EvaluacionEtapaIndicadorItem = z.infer<typeof evaluacionEtapaIndicadorItemSchema>;
+
+
+/**
+ * EvaluacionEtapaIndicadorItem, pero con `metadata` estrechado a la forma
+ * concreta correspondiente a T. Conserva id, status, campus, etc.
+ */
+export type EvaluacionEtapaIndicadorItemFor<T extends EtapaMetadataByCode[keyof EtapaMetadataByCode]['code']> =
+	Omit<EvaluacionEtapaIndicadorItem, 'metadata'> & { metadata: EtapaMetadataByCode[T] };

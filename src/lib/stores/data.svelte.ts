@@ -41,9 +41,7 @@ import indicadorIndicadorEstrategicoJsonData from '$lib/data/indicador-indicador
 import indicadorEvidenciaJsonData from '$lib/data/indicador-evidencia.json';
 
 import indicadorNavigationJsonData from '$lib/data/indicador-navigation.json';
-import evaluacionNavigationJsonData from '$lib/data/evaluacion-navigation.json';
-import etapaDetailJsonData from '$lib/data/etapa-detail.json';
-import evaluacionEtapaIndicadorCampusJsonData from '$lib/data/evaluacion-etapa-indicador-campus.json';
+import evaluacionEtapaIndicadorJsonData from '$lib/data/evaluacion-etapa-indicador.json';
 
 import notificationJsonData from '$lib/data/notification.json';
 
@@ -132,18 +130,12 @@ import {
 	type RubricaCriterioItem
 } from '$lib/schemas/rubricaCriterio.schema';
 import {
-	evaluacionNavItemSchema,
-	type EvaluacionNavItem
 } from '$lib/schemas/evaluacionNavigation.schema';
 import {
 	evaluacionEtapaItemSchema,
 	type EvaluacionEtapaItem
 } from '$lib/schemas/evaluacionEtapa.schema';
-import { etapaDetailItemSchema, type EtapaDetailItem } from '$lib/schemas/etapaDetail.schema';
-import {
-	evaluacionEtapaIndicadorCampusItemSchema,
-	type EvaluacionEtapaIndicadorCampusItem
-} from '$lib/schemas/evaluacionEtapaIndicadorCampus.schema';
+
 import { notificationItemSchema, type NotificationItem } from '$lib/schemas/notificacion.schema';
 import {
 	indicadorEvidenciaItemSchema,
@@ -151,6 +143,7 @@ import {
 } from '$lib/schemas/indicadorEvidencia';
 import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
 import { usuarioPuestoItemSchema, type UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
+import { evaluacionEtapaIndicadorItemSchema, type EvaluacionEtapaIndicadorItem } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -185,7 +178,6 @@ let modeloFullRef = $state<ModeloFullRef[]>([]);
 let evidencia = $state<EvidenciaItem[]>([]);
 
 let evaluacion = $state<EvaluacionItem[]>([]);
-let evaluacionNavigation = $state<EvaluacionNavItem[]>([]);
 let evaluacionEtapa = $state<EvaluacionEtapaItem[]>([]);
 
 let indicador = $state<IndicadorItem[]>([]);
@@ -197,8 +189,7 @@ let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 let indicadorEvidencia = $state<IndicadorEvidenciaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
 let indicadorNavList = $state<indicadorNavListItem[]>([]);
-let etapaDetail = $state<EtapaDetailItem[]>([]);
-let evaluacionEtapaIndicadorCampus = $state<EvaluacionEtapaIndicadorCampusItem[]>([]);
+let evaluacionEtapaIndicador = $state<EvaluacionEtapaIndicadorItem[]>([]);
 
 let notification = $state<NotificationItem[]>([]);
 
@@ -291,10 +282,10 @@ rubricaCriterio = rubricaCriterioRawData.map((item) => rubricaCriterioItemSchema
 const evaluacionEtapaRawData = evaluacionEtapaJsonData.evaluacionEtapaItems;
 evaluacionEtapa = evaluacionEtapaRawData.map((item) => evaluacionEtapaItemSchema.parse(item));
 
-const evaluacionEtapaIndicadorCampusRawData =
-	evaluacionEtapaIndicadorCampusJsonData.evaluacionEtapaIndicadorCampus;
-evaluacionEtapaIndicadorCampus = evaluacionEtapaIndicadorCampusRawData.map((item) =>
-	evaluacionEtapaIndicadorCampusItemSchema.parse(item)
+const evaluacionEtapaIndicadorRawData =
+	evaluacionEtapaIndicadorJsonData.evaluacionEtapaIndicadorItems;
+evaluacionEtapaIndicador = evaluacionEtapaIndicadorRawData.map((item) =>
+	evaluacionEtapaIndicadorItemSchema.parse(item)
 );
 
 const indicadorAreaResponsableRawData =
@@ -326,14 +317,6 @@ indicadorIndicadorEstrategico = indicadorIndicadorEstrategicoRawData.map((item) 
 
 const indicadorNavigationRawData = indicadorNavigationJsonData.indicadorNavListItem;
 indicadorNavList = indicadorNavigationRawData.map((item) => indicadorNavListItemSchema.parse(item));
-
-const evaluacionNavigationRawData = evaluacionNavigationJsonData.evaluacionNavItem;
-evaluacionNavigation = evaluacionNavigationRawData.map((item) =>
-	evaluacionNavItemSchema.parse(item)
-);
-
-const etapaDetailRawData = etapaDetailJsonData.etapaDetailItems;
-etapaDetail = etapaDetailRawData.map((item) => etapaDetailItemSchema.parse(item));
 
 const notificationRawData = notificationJsonData.notificationItems;
 notification = notificationRawData.map((item) => notificationItemSchema.parse(item));
@@ -547,10 +530,6 @@ export function getEvaluacion() {
 	return evaluacion;
 }
 
-export function getEvaluacionNavigation() {
-	return evaluacionNavigation;
-}
-
 export function getEvaluacionEtapa() {
 	return evaluacionEtapa;
 }
@@ -587,12 +566,8 @@ export function getIndicadorNavList() {
 	return indicadorNavList;
 }
 
-export function getEtapaDetail() {
-	return etapaDetail;
-}
-
-export function getEvaluacionEtapaIndicadorCampus() {
-	return evaluacionEtapaIndicadorCampus;
+export function getEvaluacionEtapaIndicador() {
+	return evaluacionEtapaIndicador;
 }
 
 export function getNotificacion() {
