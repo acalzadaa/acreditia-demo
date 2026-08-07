@@ -96,7 +96,7 @@
 			/>
 		</header>
 
-		<form class="modal-flex" method="POST" action="?/edit" use:enhance>
+		<form method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
 
 			<div class="modal-body">

@@ -9,6 +9,6 @@
 	const { class: className = '', children }: Props = $props();
 </script>
 
-<footer class={['card-footer', className]}>
+<menu class={['card-footer', className]}>
 	{@render children()}
-</footer>
+</menu>

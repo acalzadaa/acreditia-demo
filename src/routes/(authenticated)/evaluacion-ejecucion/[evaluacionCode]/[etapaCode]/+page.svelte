@@ -16,5 +16,9 @@
 	);
 </script>
 
-<EvaluacionEtapaDetail items={etapaItems}/>
-<EvaluacionEtapaMetadataList etapaCode={etapaCode} items={evaluacionEtapaIndicadorItems}/>
+<div class="detail-panel">
+	<EvaluacionEtapaDetail items={etapaItems} />
+	<div class="detail-content">
+		<EvaluacionEtapaMetadataList {etapaCode} items={evaluacionEtapaIndicadorItems} />
+	</div>
+</div>

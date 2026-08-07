@@ -61,11 +61,9 @@
 			"metadata": {
 				"code": "meta",
 				"target": 95,
-				"targetUnit": "porcentaje de egresados",
-				"doesNotApply": true,
-				"doesNotApplyReason": "Este es el primer año del campus, por lo que estes indicador no se podra evaluar sino hasta las inscripciones del proximo semestre"
+				"targetUnit": "porcentaje de egresados"
 			},
-			"status": "in_process",
+			"status": "ready",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",

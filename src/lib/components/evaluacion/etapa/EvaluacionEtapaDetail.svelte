@@ -6,7 +6,7 @@
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
 	import CardHeaderCustom from '$lib/components/ui/card/CardHeaderCustom.svelte';
 	import {
-		convertStatusToBadgeVariant,
+		convertEvaluacionEtapaStatusToBadgeVariant,
 		formatEtapaDateRange,
 		isEtapaDateRange
 	} from '../utils/EvaluacionEtapaUtils';
@@ -19,50 +19,47 @@
 	const { items }: Props = $props();
 </script>
 
-<main class="main-panel--inline">
-	<section class="list-view--cards">
-		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="3000px">
-				{#each items as item (item.id)}
-					<Card>
-						<CardHeaderCustom>
-							{#snippet title()}
-								<Tag class="text-caption" variant="info">Etapa {item.etapa.order}</Tag>
-								<p style="text-transform: capitalize;">
-									{item.etapa.name}
+<section class="list-view--cards">
+	{#if items.length > 0}
+		<CardColumn minWidth="360px" maxWidth="3000px">
+			{#each items as item (item.id)}
+				<Card>
+					<CardHeaderCustom>
+						{#snippet title()}
+							<Tag class="text-caption" variant="info">Etapa {item.etapa.order}</Tag>
+							<p style="text-transform: capitalize;">
+								{item.etapa.name}
+							</p>
+						{/snippet}
+						{#snippet subtitle()}
+							{#if isEtapaDateRange(item.fechaInicio, item.fechaFinal)}
+								<p>Ordinario: {formatEtapaDateRange(item.fechaInicio, item.fechaFinal)}</p>
+							{/if}
+							{#if item.periodoExtraordinario}
+								<p>
+									Extraordinario:
+									{formatEtapaDateRange(
+										item.periodoExtraordinarioInicio,
+										item.periodoExtraordinarioFinal
+									)}
 								</p>
-							{/snippet}
-							{#snippet subtitle()}
-								{#if isEtapaDateRange(item.fechaInicio, item.fechaFinal)}
-									<p>Ordinario: {formatEtapaDateRange(item.fechaInicio, item.fechaFinal)}</p>
-								{/if}
-								{#if item.periodoExtraordinario}
-									<p>
-										Extraordinario:
-										{formatEtapaDateRange(
-											item.periodoExtraordinarioInicio,
-											item.periodoExtraordinarioFinal
-										)}
-									</p>
-								{/if}
-							{/snippet}
-							<Badge
-								variant={convertStatusToBadgeVariant(item.status).badgeStatus}
-								icon={convertStatusToBadgeVariant(item.status).icon}
-								>{convertStatusToBadgeVariant(item.status).label}</Badge
-							>
-						</CardHeaderCustom>
-					</Card>
-				{/each}
-			</CardColumn>
-		{:else}
-			<EmptySection message="No hay elementos"></EmptySection>
-		{/if}
-	</section>
-</main>
+							{/if}
+						{/snippet}
+						<Badge
+							variant={convertEvaluacionEtapaStatusToBadgeVariant(item.status).badgeStatus}
+							icon={convertEvaluacionEtapaStatusToBadgeVariant(item.status).icon}
+							>{convertEvaluacionEtapaStatusToBadgeVariant(item.status).label}</Badge
+						>
+					</CardHeaderCustom>
+				</Card>
+			{/each}
+		</CardColumn>
+	{:else}
+		<EmptySection message="No hay elementos"></EmptySection>
+	{/if}
+</section>
 
 <style>
-
 	/* Por default (>= 1500px) gana la tabla; las cards quedan ocultas
 	   y fuera del flujo para no pelear por el flex del panel. */
 

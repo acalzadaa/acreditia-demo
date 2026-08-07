@@ -10,9 +10,10 @@ import { etapaMetadataSchema, type EtapaMetadataByCode } from './etapaMetadata.s
 export const EvaluacionEtapaIndicadorStatusEnum = z.enum([
 	'pending',
 	'in_process',
+	'ready',
 	'completed',
-	'not_applicable',
-	'excluded',
+	'invalidate_request',
+	'invalidate_confirmed',
 	'forced_in_process'
 ]);
 export type EvaluacionEtapaIndicadorStatus = z.infer<typeof EvaluacionEtapaIndicadorStatusEnum>;

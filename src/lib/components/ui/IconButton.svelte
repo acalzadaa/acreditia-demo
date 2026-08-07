@@ -6,6 +6,7 @@
 		name: IconName;
 		variant?: 'ghost' | 'solid' | 'outline';
 		size?: 'sm' | 'md' | 'lg';
+		color?: string;
 		shape?: 'circle' | 'square';
 		iconRotate?: number;
 		isActive?: boolean;
@@ -36,6 +37,7 @@
 		name,
 		variant = 'ghost',
 		size = 'md',
+		color,
 		shape = 'circle',
 		iconRotate = 0,
 		isActive = false,
@@ -84,5 +86,5 @@
 	aria-controls={ariaControls}
 	{...restProps}
 >
-	<Icon {name} {size} rotate={iconRotate} isFilled={variant === 'solid' && isActive} />
+	<Icon {color} {name} {size} rotate={iconRotate} isFilled={variant === 'solid' && isActive} />
 </button>

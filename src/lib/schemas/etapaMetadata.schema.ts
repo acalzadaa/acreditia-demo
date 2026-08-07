@@ -16,13 +16,13 @@ export const EtapaCodeEnum = z.enum([
 export type EtapaCode = z.infer<typeof EtapaCodeEnum>;
 
 // ============================================
-// Schema compartido para "no aplicable"
+// Schema compartido para "invalidar"
 // (se puede mezclar con cualquier etapa vía .extend() o .merge())
 // ============================================
 
-export const etapaNotAppliableItemSchema = z.object({
-	doesNotApply: z.boolean(),
-	doesNotApplyReason: z.string()
+export const etapaInvalidatedItemSchema = z.object({
+	invalidate: z.boolean().default(false),
+	invalidateReason: z.string().default('')
 });
 
 // ============================================
@@ -31,21 +31,19 @@ export const etapaNotAppliableItemSchema = z.object({
 // ============================================
 
 //etapa 1
-export const etapaMetaItemSchema = z.object({
-	code: z.literal('meta'),
-	target: z.coerce.number().default(0),
-	targetUnit: z.string().default(''),
-	doesNotApply: z.boolean().default(false),
-	doesNotApplyReason: z.string().default('')
-});
+export const etapaMetaItemSchema = z
+	.object({
+		code: z.literal('meta'),
+		target: z.number().nullable().default(null),
+		targetUnit: z.string().optional()
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
 
 export type EtapaMetaItem = z.infer<typeof etapaMetaItemSchema>;
 
 export const etapaMetaFormSchema = z.object({
-	target: z.coerce.number().default(0),
-	targetUnit: z.string().optional(),
-	doesNotApply: z.boolean().default(false),
-	doesNotApplyReason: z.string().default('')
+	target: z.number().min(0).nullable().default(null),
+	targetUnit: z.string().optional()
 });
 
 export type EtapaMetaForm = z.infer<typeof etapaMetaFormSchema>;
@@ -193,7 +191,6 @@ export const etapaMetadataSchema = z.discriminatedUnion('code', [
 ]);
 
 export type EtapaMetadata = z.infer<typeof etapaMetadataSchema>;
-
 
 /**
  * Deriva automáticamente { meta: EtapaMetaItem, evidencia: EtapaEvidenciaItem, ... }

@@ -1,28 +1,36 @@
 import type { BadgeStatus } from '$lib/components/ui/Badge.svelte';
 import type { IconName } from '$lib/components/ui/Icon.svelte';
 import { isEtapaMetadataOfCode, type EtapaMetadataByCode } from '$lib/schemas/etapaMetadata.schema';
-import type { EvaluacionEtapaIndicadorItem, EvaluacionEtapaIndicadorItemFor, EvaluacionEtapaIndicadorStatus } from '$lib/schemas/evaluacionEtapaIndicador.schema';
+import type {
+	EvaluacionEtapaIndicadorItem,
+	EvaluacionEtapaIndicadorItemFor,
+	EvaluacionEtapaIndicadorStatus
+} from '$lib/schemas/evaluacionEtapaIndicador.schema';
 
 const EVALUACION_ETAPA_INDICADOR_STATUS_TO_BADGE_CONFIG: Record<
 	EvaluacionEtapaIndicadorStatus,
 	{
 		evaluacionStatus: EvaluacionEtapaIndicadorStatus;
 		badgeStatus: BadgeStatus;
-		icon: IconName;
+		icon?: IconName;
 		label: string;
 	}
 > = {
 	pending: {
 		evaluacionStatus: 'pending',
 		badgeStatus: 'info',
-		icon: 'close',
 		label: 'Creado'
 	},
 	in_process: {
 		evaluacionStatus: 'in_process',
 		badgeStatus: 'info',
-		icon: 'check',
 		label: 'En proceso'
+	},
+	ready: {
+		evaluacionStatus: 'ready',
+		badgeStatus: 'info',
+		icon: 'check',
+		label: 'Listo para enviar'
 	},
 	completed: {
 		evaluacionStatus: 'completed',
@@ -30,43 +38,43 @@ const EVALUACION_ETAPA_INDICADOR_STATUS_TO_BADGE_CONFIG: Record<
 		icon: 'check',
 		label: 'Completado'
 	},
-	not_applicable: {
-		evaluacionStatus: 'not_applicable',
+	invalidate_request: {
+		evaluacionStatus: 'invalidate_request',
 		badgeStatus: 'warning',
-		icon: 'check',
-		label: 'Peticion de no aplica'
+		label: 'Peticion de invalidacion'
 	},
 	forced_in_process: {
 		evaluacionStatus: 'forced_in_process',
-		badgeStatus: 'error',
-		icon: 'close',
+		badgeStatus: 'warning',
 		label: 'En proceso obligatorio'
 	},
-	excluded: {
-		evaluacionStatus: 'excluded',
-		badgeStatus: 'success',
+	invalidate_confirmed: {
+		evaluacionStatus: 'invalidate_confirmed',
+		badgeStatus: 'error',
 		icon: 'check',
-		label: 'Excluido'
+		label: 'Invalidado'
 	}
 };
 
-export function convertEvaluacionEtapaIndicadorStatusToBadgeVariant(status: EvaluacionEtapaIndicadorStatus): {
+export function convertEvaluacionEtapaIndicadorStatusToBadgeVariant(
+	status: EvaluacionEtapaIndicadorStatus
+): {
 	evaluacionStatus: EvaluacionEtapaIndicadorStatus;
 	badgeStatus: BadgeStatus;
-	icon: IconName;
+	icon?: IconName;
 	label: string;
 } {
 	return EVALUACION_ETAPA_INDICADOR_STATUS_TO_BADGE_CONFIG[status];
 }
 
 /**
+ * OBSOLETO!! Utiliza extractEtapaItems.
  * Filtra items por etapaCode y devuelve SOLO sus metadata, ya
  * estrechados al tipo concreto (ej. EtapaMetaItem[] si code='meta').
  */
-export function extractEtapaMetadata<T extends EtapaMetadataByCode[keyof EtapaMetadataByCode]['code']>(
-	items: EvaluacionEtapaIndicadorItem[],
-	etapaCode: T
-): EtapaMetadataByCode[T][] {
+export function extractEtapaMetadata<
+	T extends EtapaMetadataByCode[keyof EtapaMetadataByCode]['code']
+>(items: EvaluacionEtapaIndicadorItem[], etapaCode: T): EtapaMetadataByCode[T][] {
 	return items
 		.map((item) => item.metadata)
 		.filter((metadata): metadata is EtapaMetadataByCode[T] =>
@@ -81,15 +89,7 @@ export function extractEtapaItems<T extends EtapaMetadataByCode[keyof EtapaMetad
 	items: EvaluacionEtapaIndicadorItem[],
 	etapaCode: T
 ): EvaluacionEtapaIndicadorItemFor<T>[] {
-	return items.filter(
-		(item): item is EvaluacionEtapaIndicadorItemFor<T> => isEtapaMetadataOfCode(item.metadata, etapaCode)
+	return items.filter((item): item is EvaluacionEtapaIndicadorItemFor<T> =>
+		isEtapaMetadataOfCode(item.metadata, etapaCode)
 	);
 }
-
-
-
-
-
-
-
-
