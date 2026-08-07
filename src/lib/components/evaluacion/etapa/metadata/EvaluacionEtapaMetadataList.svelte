@@ -6,11 +6,11 @@
 	} from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 
-	import AddEtapaMetaForm from '$lib/components/evaluacion/etapa/metadata/meta/EditarEtapaMetaForm.svelte';
 	import { extractEtapaItems } from '../../utils/EvaluacionEtapaIndicadorUtils';
 	import EvaluacionEtapaMetaList from './meta/EvaluacionEtapaMetaList.svelte';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import InvalidarEtapaMetaForm from './meta/InvalidarEtapaMetaForm.svelte';
+	import EditarEtapaMetaForm from './meta/EditarEtapaMetaForm.svelte';
 
 	interface Props {
 		items: EvaluacionEtapaIndicadorItem[];
@@ -32,7 +32,7 @@
 	/>
 
 	{#if modalMeta.selectedItem}
-		<AddEtapaMetaForm
+		<EditarEtapaMetaForm
 			open={modalMeta.isOpen('edit')}
 			selectedItem={modalMeta.selectedItem}
 			onClose={modalMeta.close}
