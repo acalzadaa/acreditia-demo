@@ -13,8 +13,8 @@ export const EvaluacionEtapaIndicadorStatusEnum = z.enum([
 	'ready',
 	'completed',
 	'invalidate_request',
-	'invalidate_confirmed',
-	'forced_in_process'
+	'forced_in_process',
+	'forced_ready'
 ]);
 export type EvaluacionEtapaIndicadorStatus = z.infer<typeof EvaluacionEtapaIndicadorStatusEnum>;
 
@@ -84,10 +84,10 @@ export const evaluacionEtapaIndicadorItemSchema = z
 
 export type EvaluacionEtapaIndicadorItem = z.infer<typeof evaluacionEtapaIndicadorItemSchema>;
 
-
 /**
  * EvaluacionEtapaIndicadorItem, pero con `metadata` estrechado a la forma
  * concreta correspondiente a T. Conserva id, status, campus, etc.
  */
-export type EvaluacionEtapaIndicadorItemFor<T extends EtapaMetadataByCode[keyof EtapaMetadataByCode]['code']> =
-	Omit<EvaluacionEtapaIndicadorItem, 'metadata'> & { metadata: EtapaMetadataByCode[T] };
+export type EvaluacionEtapaIndicadorItemFor<
+	T extends EtapaMetadataByCode[keyof EtapaMetadataByCode]['code']
+> = Omit<EvaluacionEtapaIndicadorItem, 'metadata'> & { metadata: EtapaMetadataByCode[T] };

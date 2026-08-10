@@ -48,11 +48,11 @@ const EVALUACION_ETAPA_INDICADOR_STATUS_TO_BADGE_CONFIG: Record<
 		badgeStatus: 'warning',
 		label: 'En proceso obligatorio'
 	},
-	invalidate_confirmed: {
-		evaluacionStatus: 'invalidate_confirmed',
-		badgeStatus: 'error',
+	forced_ready: {
+		evaluacionStatus: 'forced_ready',
+		badgeStatus: 'info',
 		icon: 'check',
-		label: 'Invalidado'
+		label: 'Listo para enviar'
 	}
 };
 
@@ -92,4 +92,91 @@ export function extractEtapaItems<T extends EtapaMetadataByCode[keyof EtapaMetad
 	return items.filter((item): item is EvaluacionEtapaIndicadorItemFor<T> =>
 		isEtapaMetadataOfCode(item.metadata, etapaCode)
 	);
+}
+
+// Definir transiciones válidas
+type TransitionMap = {
+	[K in EvaluacionEtapaIndicadorStatus]?: EvaluacionEtapaIndicadorStatus[];
+};
+
+const TRANSITIONS: TransitionMap = {
+	pending: ['in_process'],
+	in_process: ['ready', 'invalidate_request'],
+	ready: ['completed'],
+	completed: [],
+	invalidate_request: ['completed', 'forced_in_process'],
+	forced_in_process: ['forced_ready'],
+	forced_ready: ['completed']
+};
+
+export function canTransition(
+	current: EvaluacionEtapaIndicadorStatus,
+	next: EvaluacionEtapaIndicadorStatus
+): boolean {
+	const allowed = TRANSITIONS[current] || [];
+	return allowed.includes(next);
+}
+
+export function getAvailableActions(status: EvaluacionEtapaIndicadorStatus): EvaluacionAction[] {
+	const actionMap: Record<EvaluacionEtapaIndicadorStatus, EvaluacionAction[]> = {
+		pending: [],
+		in_process: ['edit', 'invalidate'],
+		ready: ['edit', 'upload', 'invalidate'],
+		completed: [],
+		invalidate_request: ['accept', 'reject'],
+		forced_in_process: ['edit'],
+		forced_ready: ['upload']
+	};
+
+	return actionMap[status] || [];
+}
+
+export type EvaluacionAction = 'edit' | 'upload' | 'invalidate' | 'accept' | 'reject';
+
+export function isEvaluacionEtapaIndicadorActionDisabled(
+	item: EvaluacionEtapaIndicadorStatus,
+	action: EvaluacionAction
+): { visible: boolean; disabled: boolean } {
+	switch (action) {
+		case 'edit': {
+			return {
+				visible: item !== 'invalidate_request',
+				disabled: !getAvailableActions(item).includes('edit')
+			};
+		}
+
+		case 'upload': {
+			return {
+				visible: item !== 'invalidate_request',
+				disabled: !getAvailableActions(item).includes('upload')
+			};
+		}
+
+		case 'invalidate': {
+			return {
+				visible: item !== 'invalidate_request',
+				disabled: !getAvailableActions(item).includes('invalidate')
+			};
+		}
+
+		case 'accept': {
+			return {
+				visible: item === 'invalidate_request',
+				disabled: !getAvailableActions(item).includes('accept')
+			};
+		}
+
+		case 'reject': {
+			return {
+				visible: item === 'invalidate_request',
+				disabled: !getAvailableActions(item).includes('reject')
+			};
+		}
+
+		default:
+			return {
+				visible: true,
+				disabled: false
+			};
+	}
 }
