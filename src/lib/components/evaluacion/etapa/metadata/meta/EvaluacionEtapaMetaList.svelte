@@ -4,16 +4,17 @@
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardHeaderCustom from '$lib/components/ui/card/CardHeaderCustom.svelte';
-
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
-	import { convertEvaluacionEtapaIndicadorStatusToBadgeVariant } from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
+	import {
+		convertEvaluacionEtapaIndicadorStatusToBadgeVariant
+	} from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import { getSafeText } from '$lib/components/evaluacion/utils/EvaluacionUtils';
+	import EvalucionEtapaIndicadorFooterActions from '../EvalucionEtapaIndicadorFooterActions.svelte';
 
 	type MetaIndicadorItem = EvaluacionEtapaIndicadorItemFor<'meta'>;
 
@@ -22,8 +23,17 @@
 		onClickEditar: (item: MetaIndicadorItem) => void;
 		onClickNoAplica: (item: MetaIndicadorItem) => void;
 		onClickFinish: (item: MetaIndicadorItem) => void;
+		onClickAceptar: (item: MetaIndicadorItem) => void;
+		onClickRechazar: (item: MetaIndicadorItem) => void;
 	}
-	const { items, onClickEditar, onClickNoAplica, onClickFinish }: Props = $props();
+	const {
+		items,
+		onClickEditar,
+		onClickNoAplica,
+		onClickFinish,
+		onClickAceptar,
+		onClickRechazar
+	}: Props = $props();
 </script>
 
 <section class="list-view--cards">
@@ -59,16 +69,14 @@
 						</CardContentItem>
 					</CardContent>
 					<CardFooter class="text-body">
-						<IconButton variant="ghost" name="edit" onClick={() => onClickEditar(item)} />
-						<Button
-							variant="outline"
-							isDisabled={item.status !== 'ready'}
-							name="upload"
-							onClick={() => onClickFinish(item)}>Enviar</Button
-						>
-						<Button variant="critical" name="close" onClick={() => onClickNoAplica(item)}
-							>Invalidar</Button
-						>
+						<EvalucionEtapaIndicadorFooterActions
+							{item}
+							{onClickEditar}
+							{onClickNoAplica}
+							{onClickFinish}
+							{onClickAceptar}
+							{onClickRechazar}
+						/>
 					</CardFooter>
 				</Card>
 			{/each}

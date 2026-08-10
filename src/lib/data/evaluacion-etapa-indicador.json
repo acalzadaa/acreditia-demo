@@ -73,6 +73,154 @@
 			"createdBy": "admin@system.com"
 		},
 		{
+			"id": "41ae5940-53e7-483a-b432-e76142cfeb56",
+			"code": "2025-3-meta-ind-001-CAMPUS-SALT-002",
+			"evaluacion": {
+				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+				"code": "2025-3",
+				"name": "Invierno 2025"
+			},
+			"etapa": {
+				"order": 1,
+				"code": "meta",
+				"name": "Agregar metas"
+			},
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"campus": {
+				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+				"code": "CAMPUS-SALT-002",
+				"name": "Campus Saltillo"
+			},
+			"metadata": {
+				"code": "meta",
+				"target": 95,
+				"targetUnit": "porcentaje de egresados"
+			},
+			"status": "completed",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "1960a86b-5d60-4ea7-9df6-7719e7d696d3",
+			"code": "2025-3-meta-ind-001-CAMPUS-SALT-002",
+			"evaluacion": {
+				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+				"code": "2025-3",
+				"name": "Invierno 2025"
+			},
+			"etapa": {
+				"order": 1,
+				"code": "meta",
+				"name": "Agregar metas"
+			},
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"campus": {
+				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+				"code": "CAMPUS-SALT-002",
+				"name": "Campus Saltillo"
+			},
+			"metadata": {
+				"code": "meta",
+				"target": 95,
+				"targetUnit": "porcentaje de egresados"
+			},
+			"status": "invalidate_request",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "5e5ba757-c4af-4f34-ab11-7945e61acb6c",
+			"code": "2025-3-meta-ind-001-CAMPUS-SALT-002",
+			"evaluacion": {
+				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+				"code": "2025-3",
+				"name": "Invierno 2025"
+			},
+			"etapa": {
+				"order": 1,
+				"code": "meta",
+				"name": "Agregar metas"
+			},
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"campus": {
+				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+				"code": "CAMPUS-SALT-002",
+				"name": "Campus Saltillo"
+			},
+			"metadata": {
+				"code": "meta",
+				"target": 95,
+				"targetUnit": "porcentaje de egresados"
+			},
+			"status": "forced_in_process",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "ec7144c2-78c0-46b6-a2fe-ce14facf8c18",
+			"code": "2025-3-meta-ind-001-CAMPUS-SALT-002",
+			"evaluacion": {
+				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+				"code": "2025-3",
+				"name": "Invierno 2025"
+			},
+			"etapa": {
+				"order": 1,
+				"code": "meta",
+				"name": "Agregar metas"
+			},
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"campus": {
+				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+				"code": "CAMPUS-SALT-002",
+				"name": "Campus Saltillo"
+			},
+			"metadata": {
+				"code": "meta",
+				"target": 95,
+				"targetUnit": "porcentaje de egresados"
+			},
+			"status": "forced_ready",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
 			"id": "333f7920-7892-4d8e-927f-fb5781f26454",
 			"code": "2025-3-evidencia-ind-001-CAMPUS-MTY-001",
 			"evaluacion": {

@@ -73,10 +73,10 @@
 					</div>
 				</div>
 
-				<footer class="modal-footer text-body">
+				<menu class="modal-footer text-body">
 					<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
 					<Button type="submit" variant={actionButtonVariant}>{buttonLabel}</Button>
-				</footer>
+				</menu>
 			</form>
 		{/if}
 	</div>

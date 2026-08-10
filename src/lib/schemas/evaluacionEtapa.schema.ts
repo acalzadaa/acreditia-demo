@@ -7,7 +7,13 @@ import { etapaRefSchema } from './etapa.schema';
 // ENUMS
 // ============================================
 
-export const evaluacionEtapaStatusEnum = z.enum(['planning', 'ready','pending', 'active', 'completed']);
+export const evaluacionEtapaStatusEnum = z.enum([
+	'planning',
+	'ready',
+	'pending',
+	'active',
+	'completed'
+]);
 export type EvaluacionEtapaStatus = z.infer<typeof evaluacionEtapaStatusEnum>;
 
 // ============================================
