@@ -153,6 +153,7 @@
 	justify-content: left;
 	flex-shrink: 0;
 	align-items: center;
+	gap: var(--space-1);
 }
 
 /* Variante A: todo el header es un <button> */
