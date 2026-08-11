@@ -3,6 +3,10 @@
 # AccordionContentItem
 Label + value con clamp a 2 renglones y "ver más"/"ver menos", con un
 IconButton opcional a la derecha (ej. eliminar el registro).
+
+isVisible (optional, default=false) activa activa hover si AccordionContent isVisible={true}
+Esto funciona para cuando se desea crear un AccordionContent a manera de subheader.
+)
 -->
 
 <script lang="ts">
@@ -13,9 +17,12 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 	import IconButton from '../IconButton.svelte';
 
 	interface Props {
-		label: string;
+		label?: string;
 		value?: string;
 		children?: Snippet;
+		/** (opcional) usar el valor de isVisible de AccordionContent,
+		 * apaga :hover si no es visible */
+		isVisible?: boolean;
 		/** Si se pasa, se muestra un IconButton a la derecha del item. */
 		onAction?: () => void;
 		actionIcon?: IconName;
@@ -27,6 +34,7 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 		label,
 		value,
 		children,
+		isVisible = false,
 		onAction,
 		actionIcon = 'check',
 		actionAriaLabel = 'Action',
@@ -53,7 +61,7 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 	});
 </script>
 
-<div class={['accordion-content-item', className]}>
+<div class={['accordion-content-item', { 'is-open': isVisible }, className]}>
 	<div class="accordion-content-item__body">
 		{#if label}
 			<span class="accordion-content-item__label text-label">{label}</span>

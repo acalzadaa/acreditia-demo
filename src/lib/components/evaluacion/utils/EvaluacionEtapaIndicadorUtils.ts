@@ -180,3 +180,16 @@ export function isEvaluacionEtapaIndicadorActionDisabled(
 			};
 	}
 }
+
+export function formatNumberOfElementsAndText(
+    value: unknown[] | null | undefined, 
+    singular: string, 
+    plural: string
+) {
+    const count = Array.isArray(value) ? value.length : 0;
+    
+    if (count === 1) {
+        return `${count} ${singular}`;
+    }
+    return `${count} ${plural}`;
+}
