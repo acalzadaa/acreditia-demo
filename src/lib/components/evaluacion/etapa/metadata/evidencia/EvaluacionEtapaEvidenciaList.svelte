@@ -69,6 +69,12 @@
 					</AccordionHeader>
 					<AccordionContent isCollapsible={false}>
 						<AccordionContentItem label="Campus" value={item.campus.name} />
+						{#if item.metadata.invalidate}
+							<AccordionContentItem
+								label="Razón de invalidación"
+								value={item.metadata.invalidateReason}
+							/>
+						{/if}
 					</AccordionContent>
 
 					<!-- Listado de archivos -->
@@ -86,7 +92,13 @@
 							>
 								Agregar archivo
 							</Button>
-							<Tag variant='info'>{formatNumberOfElementsAndText(item.metadata.file, 'archivo cargado', 'archivos cargados')}</Tag>
+							<Tag variant="info"
+								>{formatNumberOfElementsAndText(
+									item.metadata.file,
+									'archivo cargado',
+									'archivos cargados'
+								)}</Tag
+							>
 						</AccordionHeaderButton>
 
 						<AccordionContent
@@ -121,7 +133,13 @@
 							>
 								Agregar url
 							</Button>
-							<Tag variant='info'>{formatNumberOfElementsAndText(item.metadata.url, 'url agregado', 'urls agregados')}</Tag>
+							<Tag variant="info"
+								>{formatNumberOfElementsAndText(
+									item.metadata.url,
+									'url agregado',
+									'urls agregados'
+								)}</Tag
+							>
 						</AccordionHeaderButton>
 
 						<AccordionContent

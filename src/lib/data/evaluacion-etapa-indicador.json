@@ -134,8 +134,8 @@
 			},
 			"metadata": {
 				"code": "meta",
-				"invalidate" : true,
-				"invalidateReason" : "El campus no tiene historial suficiente para calcular la tasa de retencion."
+				"invalidate": true,
+				"invalidateReason": "El campus no tiene historial suficiente para calcular la tasa de retencion."
 			},
 			"status": "invalidate_request",
 			"version": 1,
@@ -302,6 +302,61 @@
 				]
 			},
 			"status": "ready",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "38333405-0bdf-45ad-afb2-226884356de6",
+			"code": "2025-3-evidencia-ind-001-CAMPUS-SALT-002",
+			"evaluacion": {
+				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+				"code": "2025-3",
+				"name": "Invierno 2025"
+			},
+			"etapa": {
+				"order": 2,
+				"code": "evidencia",
+				"name": "Capturar evidencia"
+			},
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"campus": {
+				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+				"code": "CAMPUS-SALT-002",
+				"name": "Campus Saltillo"
+			},
+			"metadata": {
+				"code": "evidencia",
+				"file": [
+					{
+						"id": "519d098a-6106-45f3-862b-3a1627f13169",
+						"filename": "reporte de graduados COAHUILA.xlsx",
+						"status": "ready"
+					},
+					{
+						"id": "169670d1-0fba-4fd1-b034-b11ac5a73a90",
+						"filename": "reporte de alumnos de nuevo ingreso SALTILLO.xlsx",
+						"status": "ready"
+					}
+				],
+				"url": [
+					{
+						"id": "d479055a-c06f-4701-91b9-5e3bfac7874d",
+						"url": "https://drive.google.com/b96ef0ba-cdcc-45d4-9fb2-eb31bff7ea7b/share"
+					}
+				],
+				"invalidate": true,
+				"invalidateReason": "El campus no tiene historial suficiente para calcular la tasa de retencion."
+			},
+			"status": "invalidate_request",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
