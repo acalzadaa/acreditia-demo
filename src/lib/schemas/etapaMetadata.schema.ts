@@ -86,11 +86,13 @@ export const evidenciaUrlRefSchema = z.object({
 
 export type EvidenciaUrlRef = z.infer<typeof evidenciaUrlRefSchema>;
 
-export const etapaEvidenciaItemSchema = z.object({
-	code: z.literal('evidencia'),
-	file: z.array(evidenciaFileRefSchema).optional(),
-	url: z.array(evidenciaUrlRefSchema).optional()
-});
+export const etapaEvidenciaItemSchema = z
+	.object({
+		code: z.literal('evidencia'),
+		file: z.array(evidenciaFileRefSchema).optional(),
+		url: z.array(evidenciaUrlRefSchema).optional()
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
 
 export type EtapaEvidenciaItem = z.infer<typeof etapaEvidenciaItemSchema>;
 
@@ -111,13 +113,15 @@ export const etapaEvidenciaFormSchema = z.object({
 export type EtapaEvidenciaForm = z.infer<typeof etapaEvidenciaFormSchema>;
 
 //etapa 3
-export const etapaResultadosItemSchema = z.object({
-	code: z.literal('resultados'),
-	target: z.number().optional(),
-	result: z.number().optional(),
-	isGoalReached: z.boolean().optional(),
-	reason: z.string().default('')
-});
+export const etapaResultadosItemSchema = z
+	.object({
+		code: z.literal('resultados'),
+		target: z.number().optional(),
+		result: z.number().optional(),
+		isGoalReached: z.boolean().optional(),
+		reason: z.string().default('')
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
 
 export type EtapaResultadosItem = z.infer<typeof etapaResultadosItemSchema>;
 
@@ -129,48 +133,58 @@ export const etapaResultadosFormSchema = z.object({
 export type EtapaResultadosForm = z.infer<typeof etapaResultadosFormSchema>;
 
 //etapa 4
-export const etapaAutoevaluacionItemSchema = z.object({
-	code: z.literal('autoevaluacion'),
-	score: z.number().optional(),
-	comment: z.string().optional()
-});
+export const etapaAutoevaluacionItemSchema = z
+	.object({
+		code: z.literal('autoevaluacion'),
+		score: z.number().optional(),
+		comment: z.string().optional()
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
 
 export type EtapaAutoevaluacionItem = z.infer<typeof etapaAutoevaluacionItemSchema>;
 
 //etapa 5
-export const etapaRevisionAutoevaluacionItemSchema = z.object({
-	code: z.literal('revision'),
-	originalScore: z.number().optional(),
-	score: z.number().optional(),
-	comment: z.string().optional()
-});
+export const etapaRevisionAutoevaluacionItemSchema = z
+	.object({
+		code: z.literal('revision'),
+		originalScore: z.number().optional(),
+		score: z.number().optional(),
+		comment: z.string().optional()
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
 
 export type EtapaRevisionAutoevaluacionItem = z.infer<typeof etapaRevisionAutoevaluacionItemSchema>;
 
 //etapa 6
-export const etapaCapturaPlanMejoraItemSchema = z.object({
-	code: z.literal('captura'),
-	agreements: z.string().default('')
-});
+export const etapaCapturaPlanMejoraItemSchema = z
+	.object({
+		code: z.literal('captura'),
+		agreements: z.string().default('')
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
 
 export type EtapaCapturaPlanMejoraItem = z.infer<typeof etapaCapturaPlanMejoraItemSchema>;
 
 //etapa 7
-export const etapaAutorizacionPlanMejoraItemSchema = z.object({
-	code: z.literal('autorizacion'),
-	agreements: z.string().default(''),
-	authorized: z.boolean().default(false),
-	comments: z.string().default('')
-});
+export const etapaAutorizacionPlanMejoraItemSchema = z
+	.object({
+		code: z.literal('autorizacion'),
+		agreements: z.string().default(''),
+		authorized: z.boolean().default(false),
+		comments: z.string().default('')
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
 
 export type EtapaAutorizacionPlanMejoraItem = z.infer<typeof etapaAutorizacionPlanMejoraItemSchema>;
 
 //etapa 8
-export const etapaEjecucionPlanMejoraItemSchema = z.object({
-	code: z.literal('ejecucion'),
-	processing: z.boolean().optional()
-});
-
+export const etapaEjecucionPlanMejoraItemSchema = z
+	.object({
+		code: z.literal('ejecucion'),
+		processing: z.boolean().optional()
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
+	
 export type EtapaEjecucionPlanMejoraItem = z.infer<typeof etapaEjecucionPlanMejoraItemSchema>;
 
 // ============================================

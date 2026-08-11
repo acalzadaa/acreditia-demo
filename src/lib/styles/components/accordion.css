@@ -10,6 +10,12 @@
    > AccordionContent (colapsable) > lista de AccordionContentItem
    > AccordionFooter (opcional).
 
+   Cuando un Accordion tiene más de un par HeaderButton+Content (ej.
+   "Archivos", "Urls"), cada par se envuelve en AccordionSection para
+   agruparlos visualmente — sin eso, todos son hijos directos de
+   .accordion al mismo nivel y no hay forma de distinguir dónde
+   termina una sección y empieza otra.
+
    (El header estático no-clickeable, sin toggle, se movió fuera de
    Accordion — vivirá en un futuro componente Panel.)
 
@@ -33,6 +39,7 @@
 
 	--accordion-section-gap: var(--stack-xs);
 	--accordion-content-max-height: 300px;
+	--accordion-content-item-bg-hover: var(--bg-raised-hover);
 }
 
 /* ==========================================
@@ -71,9 +78,14 @@
 	min-width: 0;
 }
 
-.accordion:hover {
-	background-color: var(--accordion-bg-hover);
-}
+/* Nota: NO hay .accordion:hover global. Antes existía y pintaba toda
+   la tarjeta con --accordion-bg-hover en cuanto el mouse entraba a
+   cualquier parte del accordion (bubbling) — como usa el mismo color
+   que .accordion-content-item:hover, el hover del item quedaba
+   invisible, fundido con el fondo ya "hovereado" del padre. Si se
+   necesita un affordance de tarjeta interactiva, debe scopearse a un
+   estado concreto (ej. :has(.accordion-header--clickable:hover)),
+   nunca a :hover del wrapper completo. */
 
 /* Espaciado entre secciones vía margin (no gap) para poder anularlo
    selectivamente cuando el content-wrapper está colapsado — así no
@@ -84,11 +96,6 @@
 
 .accordion-content-wrapper:not(.is-open) {
 	margin-top: 0;
-}
-
-.accordion-content-wrapper:not(.is-open) + .accordion-footer {
-	margin-top: 0;
-	padding-top: 0;
 }
 
 /* ==========================================
@@ -171,6 +178,38 @@
 }
 
 /* ==========================================
+   SECTION — agrupa un AccordionHeaderButton + su
+   AccordionContent asociado como una sola unidad, para
+   cuando un Accordion tiene varias secciones repetidas
+   (ej. "Archivos", "Urls"). Sin esto, cada HeaderButton y
+   Content son hijos directos de .accordion al mismo nivel
+   que el resto, y ".accordion > * + *" los separa a todos
+   por igual — no hay forma de distinguir dónde termina una
+   sección y empieza otra.
+
+   AccordionSection es hijo directo de .accordion, así que
+   sigue recibiendo el margin-top de ".accordion > * + *"
+   frente al header global o a otra sección; el borde de
+   abajo solo refuerza esa separación con una línea visible.
+   ========================================== */
+.accordion-section {
+	display: flex;
+	flex-direction: column;
+}
+
+.accordion-section + .accordion-section {
+	border-top: var(--divider);
+	padding-top: var(--accordion-section-gap);
+}
+
+/* Header y content dentro de una misma sección van más
+   pegados entre sí que el gap "entre secciones", para que
+   se lean como una sola unidad. */
+.accordion-section > .accordion-header {
+	padding-bottom: var(--space-1);
+}
+
+/* ==========================================
    CONTENT — colapsable, lista de items
    ========================================== */
 .accordion-content-wrapper {
@@ -229,8 +268,12 @@
 	transition: background-color 0.15s ease;
 }
 
+/* Token propio (con fallback a --accordion-bg-hover si no
+   está definido) en vez de compartir el mismo valor que otros
+   estados de hover del accordion, para que el hover del item se siga
+   viendo aunque conviva con otro fondo activo cerca. */
 .accordion-content-item:hover {
-	background: var(--accordion-bg-hover);
+	background: var(--accordion-content-item-bg-hover, var(--accordion-bg-hover));
 }
 
 .accordion-content-item__body {
@@ -291,6 +334,18 @@
 	align-items: center;
 	justify-content: flex-start;
 	gap: var(--space-1);
-	padding-top: var(--accordion-section-gap);
+	margin-top: var(
+		--space-4
+	) !important; /* pisa el margin-top de ".accordion > * + *": el footer necesita más aire que el gap genérico entre secciones */
+	padding-top: var(--space-4);
+	border-top: var(--divider);
 	min-height: 50px;
+}
+
+/* El caso "content cerrado + footer" sigue sin doble espacio: no hay
+   contenido visible que separar, así que colapsa a solo la línea. */
+.accordion-content-wrapper:not(.is-open) + .accordion-footer,
+.accordion-section:has(.accordion-content-wrapper:not(.is-open)) + .accordion-footer {
+	margin-top: var(--accordion-section-gap) !important;
+	padding-top: var(--space-2);
 }

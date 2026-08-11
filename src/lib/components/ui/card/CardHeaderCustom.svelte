@@ -6,7 +6,7 @@
 		title?: Snippet;
 		subtitle?: Snippet;
 		/** Ej. un <Badge> de estatus. */
-		
+
 		children?: Snippet;
 		class?: string;
 	}
@@ -16,18 +16,18 @@
 
 <header class={['card-header', className]}>
 	{#if title}
-			<div class="navigation-header__title text-h6">
-				{@render title()}
-			</div>
-		{/if}
-		{#if subtitle}
-			<div class="navigation-header__subtitle text-body">
-				{@render subtitle()}
-			</div>
-		{/if}
-		{#if children}
-			<div class="navigation-header__metadata">
-				{@render children()}
-			</div>
-		{/if}
+		<div class="card-header__title text-h6">
+			{@render title()}
+		</div>
+	{/if}
+	{#if subtitle}
+		<div class="card-header__subtitle text-body">
+			{@render subtitle()}
+		</div>
+	{/if}
+	{#if children}
+		<div class="card-header__metadata">
+			{@render children()}
+		</div>
+	{/if}
 </header>

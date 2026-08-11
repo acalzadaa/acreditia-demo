@@ -5,11 +5,12 @@
 	interface Props {
 		demo: boolean;
 		id: IdentifyParentChildItemSchema;
+		formAction?: string;
 		open: boolean;
 		onClose: () => void;
 	}
 
-	let { open = false, onClose, id, demo = false }: Props = $props();
+	let { open = false, onClose, id, formAction = '?/remove', demo = false }: Props = $props();
 
 	function handleClose() {
 		onClose();
@@ -23,7 +24,7 @@
 	{open}
 	title="Confirmar"
 	onClose={handleClose}
-	formAction="?/remove"
+	{formAction}
 	buttonLabel="Remover"
 	actionButtonVariant="critical"
 />

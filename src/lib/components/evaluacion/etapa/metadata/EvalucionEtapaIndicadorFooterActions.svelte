@@ -11,7 +11,7 @@
 
 	interface Props {
 		item: T;
-		onClickEditar: (item: T) => void;
+		onClickEditar?: (item: T) => void;
 		onClickNoAplica: (item: T) => void;
 		onClickFinish: (item: T) => void;
 		onClickAceptar: (item: T) => void;
@@ -29,12 +29,14 @@
 </script>
 
 {#if item.status !== 'invalidate_request'}
-	<IconButton
-		variant="ghost"
-		isDisabled={isEvaluacionEtapaIndicadorActionDisabled(item.status, 'edit').disabled}
-		name="edit"
-		onClick={() => onClickEditar(item)}
-	/>
+	{#if onClickEditar}
+		<IconButton
+			variant="ghost"
+			isDisabled={isEvaluacionEtapaIndicadorActionDisabled(item.status, 'edit').disabled}
+			name="edit"
+			onClick={() => onClickEditar(item)}
+		/>
+	{/if}
 	<Button
 		variant="outline"
 		isDisabled={isEvaluacionEtapaIndicadorActionDisabled(item.status, 'upload').disabled}

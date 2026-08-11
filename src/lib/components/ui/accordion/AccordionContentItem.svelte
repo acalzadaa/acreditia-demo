@@ -13,7 +13,7 @@ IconButton opcional a la derecha (ej. eliminar el registro).
 	import IconButton from '../IconButton.svelte';
 
 	interface Props {
-		label: string;
+		label?: string;
 		value?: string;
 		children?: Snippet;
 		/** Si se pasa, se muestra un IconButton a la derecha del item. */

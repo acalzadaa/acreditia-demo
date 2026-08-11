@@ -8,7 +8,6 @@
 		getUnidadAcademicaRef
 	} from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
-	import { createToggle } from '$lib/utils/toggle.svelte';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { AreaResponsableRef, UnidadAcademicaRef } from '$lib/schemas/shared.schema';
 	import CampusDetail from '$lib/components/features/campus/CampusDetail.svelte';
@@ -16,6 +15,7 @@
 	import CampusUnidadAcademicaList from '$lib/components/features/campus/unidad-academica/CampusUnidadAcademicaList.svelte';
 	import AddCampusAreaResponsableForm from '$lib/components/features/campus/area-responsable/AddCampusAreaResponsableForm.svelte';
 	import AddCampusUnidadAcademicaForm from '$lib/components/features/campus/unidad-academica/AddCampusUnidadAcademicaForm.svelte';
+	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
 
 	let campusCode = page.params.campusCode;
 
@@ -34,8 +34,8 @@
 	let modalUnidadAcademica = createModalManager<UnidadAcademicaRef>();
 	let modalAreaResponsable = createModalManager<AreaResponsableRef>();
 
-	let areaResponsableToggle = createToggle(true);
-	let unidadAcademicaToggle = createToggle(true);
+	let toggle = createToggleManager({defaultOpen: true, exclusive: false});
+
 </script>
 
 <div class="detail-panel">
@@ -43,16 +43,16 @@
 
 	<CampusAreaResponsableList
 		items={campusAreaResponsableItems}
-		isVisible={areaResponsableToggle.value}
-		onClickToggle={areaResponsableToggle.onClick}
+		isVisible={toggle.isOpen('area-responsable')}
+		onClickToggle={toggle.handlers('area-responsable').onClick}
 		onClickAdd={modalAreaResponsable.handlers('add').onClick}
 		onClickRemover={modalAreaResponsable.handlers('remove').onClickItem}
 	/>
 
 	<CampusUnidadAcademicaList
 		items={campusUnidadAcademicaItems}
-		isVisible={unidadAcademicaToggle.value}
-		onClickToggle={unidadAcademicaToggle.onClick}
+		isVisible={toggle.isOpen('unidad-academica')}
+		onClickToggle={toggle.handlers('unidad-academica').onClick}
 		onClickAdd={modalUnidadAcademica.handlers('add').onClick}
 		onClickRemover={modalUnidadAcademica.handlers('remove').onClickItem}
 	/>
