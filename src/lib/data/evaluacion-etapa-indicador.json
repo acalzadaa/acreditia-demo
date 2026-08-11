@@ -245,24 +245,8 @@
 			},
 			"metadata": {
 				"code": "evidencia",
-				"file": [
-					{
-						"id": "3a975947-46df-445d-bd0e-d43fd9912771",
-						"filename": "reporte de graduados.xlsx",
-						"status": "ready"
-					},
-					{
-						"id": "6a2073cc-6c13-4d88-943e-faba16472237",
-						"filename": "reporte de alumnos de nuevo ingreso.xlsx",
-						"status": "ready"
-					}
-				],
-				"url": [
-					{
-						"id": "8d874146-85fb-4f11-889f-5edf540967ab",
-						"url": "https://drive.google.com/2c7d3298-71e7-4ec9-b8ed-0c486459c56b/share"
-					}
-				]
+				"file": [],
+				"url": []
 			},
 			"status": "in_process",
 			"version": 1,
@@ -317,7 +301,7 @@
 					}
 				]
 			},
-			"status": "in_process",
+			"status": "ready",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",

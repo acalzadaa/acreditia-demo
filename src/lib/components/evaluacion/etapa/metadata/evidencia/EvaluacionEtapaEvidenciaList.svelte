@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { convertEvaluacionEtapaIndicadorStatusToBadgeVariant } from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
+	import {
+		convertEvaluacionEtapaIndicadorStatusToBadgeVariant,
+		formatNumberOfElementsAndText
+	} from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
 	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
 	import AccordionColumn from '$lib/components/ui/accordion/AccordionColumn.svelte';
 	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
@@ -64,6 +67,9 @@
 							{convertEvaluacionEtapaIndicadorStatusToBadgeVariant(item.status).label}
 						</Badge>
 					</AccordionHeader>
+					<AccordionContent isCollapsible={false}>
+						<AccordionContentItem label="Campus" value={item.campus.name} />
+					</AccordionContent>
 
 					<!-- Listado de archivos -->
 					<AccordionSection>
@@ -80,6 +86,7 @@
 							>
 								Agregar archivo
 							</Button>
+							<Tag variant='success'>{formatNumberOfElementsAndText(item.metadata.file, 'archivo cargado', 'archivos cargados')}</Tag>
 						</AccordionHeaderButton>
 
 						<AccordionContent
@@ -90,6 +97,7 @@
 								<AccordionContentItem
 									label="Nombre de archivo"
 									value={file.filename}
+									isVisible={toggleManager.isOpen(item.id + 'file')}
 									onAction={() => onClickRemoveFile({ parentId: item.id, childId: file.id })}
 									actionIcon="remove"
 									actionAriaLabel="remover elemento"
@@ -113,6 +121,7 @@
 							>
 								Agregar url
 							</Button>
+							<Tag variant='success'>{formatNumberOfElementsAndText(item.metadata.url, 'url agregado', 'urls agregados')}</Tag>
 						</AccordionHeaderButton>
 
 						<AccordionContent
@@ -123,6 +132,7 @@
 								<AccordionContentItem
 									label="Url"
 									value={url.url}
+									isVisible={toggleManager.isOpen(item.id + 'file')}
 									onAction={() => onClickRemoveUrl({ parentId: item.id, childId: url.id })}
 									actionIcon="remove"
 									actionAriaLabel="remover elemento"

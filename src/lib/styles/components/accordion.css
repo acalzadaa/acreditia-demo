@@ -152,6 +152,7 @@
 	display: flex;
 	justify-content: left;
 	flex-shrink: 0;
+	align-items: center;
 }
 
 /* Variante A: todo el header es un <button> */
@@ -272,7 +273,7 @@
    está definido) en vez de compartir el mismo valor que otros
    estados de hover del accordion, para que el hover del item se siga
    viendo aunque conviva con otro fondo activo cerca. */
-.accordion-content-item:hover {
+.accordion-content-item.is-open:hover {
 	background: var(--accordion-content-item-bg-hover, var(--accordion-bg-hover));
 }
 
