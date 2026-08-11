@@ -86,7 +86,7 @@
 							>
 								Agregar archivo
 							</Button>
-							<Tag variant='success'>{formatNumberOfElementsAndText(item.metadata.file, 'archivo cargado', 'archivos cargados')}</Tag>
+							<Tag variant='info'>{formatNumberOfElementsAndText(item.metadata.file, 'archivo cargado', 'archivos cargados')}</Tag>
 						</AccordionHeaderButton>
 
 						<AccordionContent
@@ -121,7 +121,7 @@
 							>
 								Agregar url
 							</Button>
-							<Tag variant='success'>{formatNumberOfElementsAndText(item.metadata.url, 'url agregado', 'urls agregados')}</Tag>
+							<Tag variant='info'>{formatNumberOfElementsAndText(item.metadata.url, 'url agregado', 'urls agregados')}</Tag>
 						</AccordionHeaderButton>
 
 						<AccordionContent

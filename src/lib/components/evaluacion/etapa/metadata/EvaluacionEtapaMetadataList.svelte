@@ -17,6 +17,8 @@
 	import EvaluacionEtapaEvidenciaList from './evidencia/EvaluacionEtapaEvidenciaList.svelte';
 	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
 	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
+	import AddEtapaEvidenciaFileForm from './evidencia/AddEtapaEvidenciaFileForm.svelte';
+	import AddEtapaEvidenciaUrlForm from './evidencia/AddEtapaEvidenciaUrlForm.svelte';
 
 	interface Props {
 		items: EvaluacionEtapaIndicadorItem[];
@@ -101,6 +103,15 @@
 			id={modalEvidenciaChildren.selectedItem}
 			formAction="?/removeUrl"
 			open={modalEvidenciaChildren.isOpen('removeUrl')}
+			onClose={modalEvidenciaChildren.close}
+		/>
+		<AddEtapaEvidenciaFileForm
+			open={modalEvidenciaChildren.isOpen('addFile')}
+			onClose={modalEvidenciaChildren.close}
+		/>
+
+		<AddEtapaEvidenciaUrlForm
+			open={modalEvidenciaChildren.isOpen('addUrl')}
 			onClose={modalEvidenciaChildren.close}
 		/>
 	{/if}
