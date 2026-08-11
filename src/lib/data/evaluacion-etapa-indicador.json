@@ -134,8 +134,8 @@
 			},
 			"metadata": {
 				"code": "meta",
-				"target": 95,
-				"targetUnit": "porcentaje de egresados"
+				"invalidate" : true,
+				"invalidateReason" : "El campus no tiene historial suficiente para calcular la tasa de retencion."
 			},
 			"status": "invalidate_request",
 			"version": 1,

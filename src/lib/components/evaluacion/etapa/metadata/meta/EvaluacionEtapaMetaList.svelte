@@ -6,9 +6,7 @@
 	import CardHeaderCustom from '$lib/components/ui/card/CardHeaderCustom.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
-	import {
-		convertEvaluacionEtapaIndicadorStatusToBadgeVariant
-	} from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
+	import { convertEvaluacionEtapaIndicadorStatusToBadgeVariant } from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
@@ -67,6 +65,11 @@
 								{getSafeText(item.metadata.targetUnit, 'Agrega la unidad de meta')}
 							</Button>
 						</CardContentItem>
+						{#if item.metadata.invalidate}
+							<CardContentItem label="Razón de invalidación">
+								{item.metadata.invalidateReason}
+							</CardContentItem>
+						{/if}
 					</CardContent>
 					<CardFooter class="text-body">
 						<EvalucionEtapaIndicadorFooterActions
