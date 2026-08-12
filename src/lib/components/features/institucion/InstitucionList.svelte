@@ -42,11 +42,10 @@
 </script>
 
 <main class="main-panel">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-
 	<section class="list-view--table">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
 		<ToolbarV2
 			actionTitle="Nueva institucion"
 			{onClickCrear}
@@ -103,6 +102,9 @@
 	</section>
 
 	<section class="list-view--cards">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
 		<ToolbarV2
 			mobileVersion={true}
 			actionTitle="Nueva entidad"
@@ -164,7 +166,8 @@
 		}
 
 		.list-view--cards {
-			display: grid;
+			display: flex;
+			flex-direction: column;
 			flex: 1;
 			min-height: 0;
 		}
