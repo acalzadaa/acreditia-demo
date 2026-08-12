@@ -7,7 +7,7 @@ import { z } from 'zod';
 export const EtapaCodeEnum = z.enum([
 	'meta',
 	'evidencia',
-	'captura',
+	'resultados',
 	'autoevaluacion',
 	'revision',
 	'planeacion',

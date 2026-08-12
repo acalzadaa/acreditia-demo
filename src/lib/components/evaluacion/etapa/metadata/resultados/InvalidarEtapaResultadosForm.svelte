@@ -7,10 +7,10 @@
 
 	import { toast } from '$lib/utils/toastManager.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
-	type MetaIndicadorItem = EvaluacionEtapaIndicadorItemFor<'meta'>;
+	type ResultadosIndicadorItem = EvaluacionEtapaIndicadorItemFor<'resultados'>;
 
 	interface Props {
-		selectedItem: MetaIndicadorItem;
+		selectedItem: ResultadosIndicadorItem;
 		open: boolean;
 		onClose: () => void;
 	}

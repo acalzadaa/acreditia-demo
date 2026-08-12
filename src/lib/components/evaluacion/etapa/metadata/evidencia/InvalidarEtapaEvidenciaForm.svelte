@@ -91,7 +91,7 @@
 
 				<div class="form-fields">
 					<TextArea
-						label="Razon de invalidacion"
+						label="Razón de invalidación"
 						name="invalidateReason"
 						placeholder="El indicador no..."
 						status="normal"

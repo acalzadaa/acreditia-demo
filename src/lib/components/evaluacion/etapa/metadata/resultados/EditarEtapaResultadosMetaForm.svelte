@@ -1,24 +1,26 @@
 <script lang="ts">
 	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { EtapaResultadosItem } from '$lib/schemas/etapaMetadata.schema';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
+	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+	type ResultadosIndicadorItem = EvaluacionEtapaIndicadorItemFor<'resultados'>;
 
 	interface Props {
-		selectedItem: EtapaResultadosItem;
+		selectedItem: ResultadosIndicadorItem;
 		open: boolean;
 		onClose: () => void;
 	}
 
 	let { selectedItem, open, onClose }: Props = $props();
 
-	// Estado local del formulario
+	// Estado de los campos
 	let formData = $derived({
-		target: selectedItem.target,
-		result: selectedItem.result || 0,
-		isGoalReached: selectedItem.isGoalReached || false,
-		reason: selectedItem.reason
+		target: selectedItem.metadata.target,
+		result: selectedItem.metadata.result || 0,
+		isGoalReached: selectedItem.metadata.isGoalReached || false,
+		reason: selectedItem.metadata.reason
 	});
 
 	let errorMessage = $state('');
@@ -72,26 +74,38 @@
 
 			<div class="modal-body">
 				<div class="form-fields">
-					<TextArea
-						label="Describa la razón"
-						name="reason"
-						placeholder="El campus no..."
-						required={false}
-						status={errorMessage && !formData.reason ? 'error' : 'normal'}
+					<InputNumber
+						label="Resultados"
+						name="results"
+						required={true}
+						placeholder="20"
+						status={errorMessage && !formData.target ? 'error' : 'normal'}
 						disabled={isSubmitting}
-						bind:value={formData.reason}
-						errors={errorMessage && !formData.reason ? [errorMessage] : undefined}
-						rows={4}
+						bind:value={formData.target}
+						errors={errorMessage && !formData.target ? [errorMessage] : undefined}
 					/>
+					{#if formData.result && !formData.isGoalReached}
+						<TextArea
+							label="Describa la razón"
+							name="reason"
+							placeholder="El campus no..."
+							required={false}
+							status={errorMessage && !formData.reason ? 'error' : 'normal'}
+							disabled={isSubmitting}
+							bind:value={formData.reason}
+							errors={errorMessage && !formData.reason ? [errorMessage] : undefined}
+							rows={4}
+						/>
+					{/if}
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
 				<Button type="submit" variant="primary" isDisabled={isSubmitting}>
 					{isSubmitting ? 'Guardando...' : 'Capturar'}
 				</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

@@ -395,7 +395,45 @@
 				"isGoalReached": false,
 				"reason": "Hubo una alta migracion de estudiantes al campus Saltillo"
 			},
-			"status": "in_process",
+			"status": "ready",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "34ba7a81-85f8-4e65-bd7c-323d6ee34d0f",
+			"code": "2025-3-resultados-ind-001-CAMPUS-MTY-001",
+			"evaluacion": {
+				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+				"code": "2025-3",
+				"name": "Invierno 2025"
+			},
+			"etapa": {
+				"order": 3,
+				"code": "resultados",
+				"name": "Capturar de resultados"
+			},
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"campus": {
+				"id": "99be4241-389d-430a-83f2-b1c612c029ac",
+				"code": "CAMPUS-MTY-001",
+				"name": "Campus Monterrey"
+			},
+			"metadata": {
+				"code": "resultados",
+				"target": 95,
+				"result": 98,
+				"isGoalReached": true
+			},
+			"status": "ready",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -429,9 +467,14 @@
 			},
 			"metadata": {
 				"code": "resultados",
-				"target": 95
+				"target": 95,
+				"result": 90,
+				"isGoalReached": false,
+				"reason": "Hubo una alta migracion de estudiantes al campus Saltillo",
+				"invalidate": true,
+				"invalidateReason": "El campus no tiene historial suficiente para calcular la tasa de retencion."
 			},
-			"status": "in_process",
+			"status": "invalidate_request",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
