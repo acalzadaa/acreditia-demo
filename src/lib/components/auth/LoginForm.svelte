@@ -52,13 +52,14 @@
 				placeholder="********"
 				bind:value={password}
 				errors={errorMsg ?? ''}
+				onEnter={handleLogin}
 			/>
 		</div>
 	</div>
 
-	<footer class="form-actions text-body">
+	<menu class="form-actions text-body">
 		<Button type="button" variant="primary" onClick={handleLogin} disabled={loading}>
 			{loading ? 'Iniciando...' : 'Iniciar Sesión'}
 		</Button>
-	</footer>
+	</menu>
 </div>
