@@ -12,16 +12,17 @@
 	let modal = createModalManager<EntidadLegalItem>();
 </script>
 
-<EntidadLegalList
-	items={entidadLegalItems}
-	onClickEditar={(item) => modal.handlers('edit').onClickItem(item)}
-	onClickBorrar={(item) => modal.handlers('delete').onClickItem(item)}
-	onClickRestaurar={(item) => modal.handlers('restore').onClickItem(item)}
-	onClickCrear={modal.handlers('create').onClick}
-	onClickExport={modal.handlers('export').onClick}
-	onClickFilter={modal.handlers('filter').onClick}
-/>
-
+<div class="detail-panel">
+	<EntidadLegalList
+		items={entidadLegalItems}
+		onClickEditar={(item) => modal.handlers('edit').onClickItem(item)}
+		onClickBorrar={(item) => modal.handlers('delete').onClickItem(item)}
+		onClickRestaurar={(item) => modal.handlers('restore').onClickItem(item)}
+		onClickCrear={modal.handlers('create').onClick}
+		onClickExport={modal.handlers('export').onClick}
+		onClickFilter={modal.handlers('filter').onClick}
+	/>
+</div>
 <CrearEntidadLegalForm open={modal.isOpen('create')} onClose={modal.close} />
 
 {#if modal.selectedItem}

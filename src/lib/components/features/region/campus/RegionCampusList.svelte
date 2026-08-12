@@ -53,7 +53,8 @@
 	/* Ajustar el max-width dependiendo el contenido! */
 	@media (max-width: 2700px) {
 		.list-view--cards {
-			display: grid;
+			display: flex;
+			flex-direction: column;
 			flex: 1;
 			min-height: 0;
 		}
