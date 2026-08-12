@@ -119,7 +119,6 @@
 	min-width: 0;
 }
 
-
 /* Este elemento es para los hijos del card content */
 
 .card-content-item {
@@ -176,4 +175,30 @@
 	gap: var(--space-3);
 	padding-top: var(--card-section-gap);
 	border-top: var(--divider);
+}
+
+.card-column,
+.card-grid {
+	container-type: inline-size;
+	container-name: card-list;
+}
+
+/* MIDSIZE: el label deja de ir arriba del value y pasa a la
+   izquierda, con ancho fijo — el label actúa como "header" de fila. */
+@container card-list (min-width: 640px) {
+	.card-content-item {
+		flex-direction: row;
+		align-items: baseline;
+		gap: var(--space-3);
+	}
+
+	.card-content-item__label {
+		flex: 0 0 var(--card-content-item-label-width, 9rem);
+		white-space: nowrap;
+	}
+
+	.card-content-item__text {
+		flex: 1;
+		min-width: 0;
+	}
 }
