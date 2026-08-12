@@ -14,15 +14,15 @@
 	import { getSafeText } from '$lib/components/evaluacion/utils/EvaluacionUtils';
 	import EvalucionEtapaIndicadorFooterActions from '../EvalucionEtapaIndicadorFooterActions.svelte';
 
-	type MetaIndicadorItem = EvaluacionEtapaIndicadorItemFor<'meta'>;
+	type ResultadosIndicadorItem = EvaluacionEtapaIndicadorItemFor<'resultados'>;
 
 	interface Props {
-		items: MetaIndicadorItem[];
-		onClickEditar: (item: MetaIndicadorItem) => void;
-		onClickNoAplica: (item: MetaIndicadorItem) => void;
-		onClickFinish: (item: MetaIndicadorItem) => void;
-		onClickAceptar: (item: MetaIndicadorItem) => void;
-		onClickRechazar: (item: MetaIndicadorItem) => void;
+		items: ResultadosIndicadorItem[];
+		onClickEditar: (item: ResultadosIndicadorItem) => void;
+		onClickNoAplica: (item: ResultadosIndicadorItem) => void;
+		onClickFinish: (item: ResultadosIndicadorItem) => void;
+		onClickAceptar: (item: ResultadosIndicadorItem) => void;
+		onClickRechazar: (item: ResultadosIndicadorItem) => void;
 	}
 	const {
 		items,
@@ -55,16 +55,22 @@
 					</CardHeaderCustom>
 					<CardContent>
 						<CardContentItem label="Campus" value={item.campus.name} />
-						<CardContentItem label="Meta">
+						<CardContentItem label="Meta original">{item.metadata.target}</CardContentItem>
+						<CardContentItem label="Resultado">
 							<Button onClick={() => onClickEditar(item)} variant="text">
-								{getSafeText(item.metadata.target, 'Agrega la meta')}
+								{getSafeText(item.metadata.result, 'Agrega el resultado')}
 							</Button>
 						</CardContentItem>
-						<CardContentItem label="Unidad de la meta">
-							<Button onClick={() => onClickEditar(item)} variant="text">
-								{getSafeText(item.metadata.targetUnit, 'Agrega la unidad de meta')}
-							</Button>
-						</CardContentItem>
+						{#if item.metadata.result}
+							<CardContentItem label="¿Se logró la meta?">
+								{item.metadata.isGoalReached ? 'Si' : 'No'}
+							</CardContentItem>
+							{#if !item.metadata.isGoalReached}
+								<CardContentItem label="¿Por qué no se alcanzó la meta?">
+									{item.metadata.reason}
+								</CardContentItem>
+							{/if}
+						{/if}
 						{#if item.metadata.invalidate}
 							<CardContentItem label="Razón de invalidación">
 								{item.metadata.invalidateReason}

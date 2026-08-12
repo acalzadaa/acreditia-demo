@@ -23,6 +23,6 @@
 	title="Confirmar envio de datos"
 	onClose={handleClose}
 	formAction="?/enviar"
-	buttonLabel="enviar"
+	buttonLabel="Enviar"
 	actionButtonVariant="critical"
 />
