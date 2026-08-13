@@ -44,7 +44,7 @@
 								<Tag variant="info">{calculateRubricaRange(item)}</Tag>
 							</div>
 						{/snippet}
-						<Button variant="ghost" size="sm" name="add" onClick={() => onClickAdd(item)}>
+						<Button variant="outline" size="sm" name="add" onClick={() => onClickAdd(item)}>
 							Agregar criterio
 						</Button>
 					</AccordionHeaderButton>
