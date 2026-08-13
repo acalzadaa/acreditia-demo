@@ -266,7 +266,7 @@
 	gap: var(--space-3);
 	min-width: 0;
 	padding: var(--space-2);
-	border-radius: var(--border-radius-md);
+	border-radius: var(--border-radius-lg);
 	transition: background-color 0.15s ease;
 }
 
@@ -275,7 +275,7 @@
    estados de hover del accordion, para que el hover del item se siga
    viendo aunque conviva con otro fondo activo cerca. */
 .accordion-content-item.is-open:hover {
-	background: var(--accordion-content-item-bg-hover, var(--accordion-bg-hover));
+	background: var(--accordion-bg-hover);
 }
 
 .accordion-content-item__body {

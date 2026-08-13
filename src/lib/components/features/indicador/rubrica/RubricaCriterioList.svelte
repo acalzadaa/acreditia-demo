@@ -52,6 +52,7 @@
 					<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(item.id)}>
 						{#each item['criterios'] as criterio (criterio.id)}
 							<AccordionContentItem
+								isVisible={accordions.isOpen(item.id)}
 								value={criterio.criterio}
 								onAction={() => onClickRemover({ id: item.id, criterioId: criterio.id })}
 								actionIcon="remove"
