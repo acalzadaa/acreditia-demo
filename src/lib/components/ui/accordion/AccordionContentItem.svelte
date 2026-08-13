@@ -15,10 +15,11 @@ Esto funciona para cuando se desea crear un AccordionContent a manera de subhead
 	import Button from '../Button.svelte';
 	import type { IconName } from '../Icon.svelte';
 	import IconButton from '../IconButton.svelte';
+	import Dot from '../Dot.svelte';
 
 	interface Props {
 		label?: string;
-		value?: string;
+		value: string;
 		children?: Snippet;
 		/** (opcional) usar el valor de isVisible de AccordionContent,
 		 * apaga :hover si no es visible */
@@ -62,6 +63,7 @@ Esto funciona para cuando se desea crear un AccordionContent a manera de subhead
 </script>
 
 <div class={['accordion-content-item', { 'is-open': isVisible }, className]}>
+	<Dot size="sm" />
 	<div class="accordion-content-item__body">
 		{#if label}
 			<span class="accordion-content-item__label text-label">{label}</span>

@@ -35,7 +35,7 @@
 				<Accordion>
 					<AccordionHeaderButton
 						id="acc-{item.id}"
-						isVisible={!accordions.isOpen(item.id)}
+						isVisible={accordions.isOpen(item.id)}
 						onToggle={() => accordions.toggle(item.id)}
 					>
 						{#snippet title()}
@@ -52,7 +52,6 @@
 					<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(item.id)}>
 						{#each item['criterios'] as criterio (criterio.id)}
 							<AccordionContentItem
-								label={criterio.code}
 								value={criterio.criterio}
 								onAction={() => onClickRemover({ id: item.id, criterioId: criterio.id })}
 								actionIcon="remove"
