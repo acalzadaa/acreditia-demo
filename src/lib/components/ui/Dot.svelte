@@ -9,8 +9,8 @@
 	export type DotSize = 'xs' | 'sm' | 'md' | 'lg';
 
 	interface Props {
-		size: DotSize;
-		color: string;
+		size?: DotSize;
+		color?: string;
 		borderColor?: string;
 		borderWidth?: string;
 	}

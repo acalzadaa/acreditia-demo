@@ -6,7 +6,7 @@
 
 	--border-input: var(--border-width-thin) solid var(--border-light);
 	--border-avatar: var(--border-width-regular) solid var(--border-regular);
-	--border-card: var(--border-width-thin) solid var(--border-subtle);
+	--border-card: var(--border-width-thin) solid var(--border-light);
 	--border-dot: var(--border-width-regular) solid var(--border-regular);
 	
 	--border-button: var(--border-width-thin) solid transparent;

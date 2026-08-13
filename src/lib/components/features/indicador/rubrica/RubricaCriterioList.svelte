@@ -35,7 +35,7 @@
 				<Accordion>
 					<AccordionHeaderButton
 						id="acc-{item.id}"
-						isVisible={!accordions.isOpen(item.id)}
+						isVisible={accordions.isOpen(item.id)}
 						onToggle={() => accordions.toggle(item.id)}
 					>
 						{#snippet title()}
@@ -44,7 +44,7 @@
 								<Tag variant="info">{calculateRubricaRange(item)}</Tag>
 							</div>
 						{/snippet}
-						<Button variant="ghost" size="sm" name="add" onClick={() => onClickAdd(item)}>
+						<Button variant="outline" size="sm" name="add" onClick={() => onClickAdd(item)}>
 							Agregar criterio
 						</Button>
 					</AccordionHeaderButton>
@@ -52,7 +52,7 @@
 					<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(item.id)}>
 						{#each item['criterios'] as criterio (criterio.id)}
 							<AccordionContentItem
-								label={criterio.code}
+								isVisible={accordions.isOpen(item.id)}
 								value={criterio.criterio}
 								onAction={() => onClickRemover({ id: item.id, criterioId: criterio.id })}
 								actionIcon="remove"
