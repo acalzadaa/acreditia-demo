@@ -70,8 +70,11 @@
 
 						<AccordionContentItem
 							dot={false}
-							label="Calificación"
-							value={getSafeText(item.metadata.score, 'Favor de seleccionar el nivel de desempeño')}
+							label="Nivel de desempeño"
+							value={getSafeText(
+								capitalizeText(item.metadata.name),
+								'Seleccionar un nivel de desempeño'
+							)}
 						/>
 
 						{#if item.metadata.invalidate}

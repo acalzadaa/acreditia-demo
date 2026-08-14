@@ -137,6 +137,7 @@ export const etapaAutoevaluacionEjecucionItemSchema = z
 	.object({
 		code: z.literal('autoevaluacion-ejecucion'),
 		score: z.number().optional(),
+		name: z.string().default(''),
 		comment: z.string().optional()
 	})
 	.extend(etapaInvalidatedItemSchema.shape);
@@ -184,7 +185,7 @@ export const etapaEjecucionPlanMejoraItemSchema = z
 		processing: z.boolean().optional()
 	})
 	.extend(etapaInvalidatedItemSchema.shape);
-	
+
 export type EtapaEjecucionPlanMejoraItem = z.infer<typeof etapaEjecucionPlanMejoraItemSchema>;
 
 // ============================================

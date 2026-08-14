@@ -509,6 +509,7 @@
 			"metadata": {
 				"code": "autoevaluacion-ejecucion",
 				"score": 4,
+				"name" : "competente",
 				"comment": "El documento de retencion no representa la realidad"
 			},
 			"status": "ready",
