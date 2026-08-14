@@ -67,6 +67,11 @@
 					<!-- Datos de rubrica seleccionada -->
 					<AccordionContent isCollapsible={false}>
 						<AccordionContentItem dot={false} label="Campus" value={item.campus.name} />
+						<AccordionContentItem
+							dot={false}
+							label="Unidad académica"
+							value={item.unidadAcademica.name}
+						/>
 
 						<AccordionContentItem
 							dot={false}

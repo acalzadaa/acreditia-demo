@@ -55,6 +55,7 @@
 					</CardHeaderCustom>
 					<CardContent>
 						<CardContentItem label="Campus" value={item.campus.name} />
+						<CardContentItem label="Unidad académica" value={item.unidadAcademica.name} />
 						<CardContentItem label="Meta">
 							<Button onClick={() => onClickEditar(item)} variant="text">
 								{getSafeText(item.metadata.target, 'Agrega la meta')}

@@ -1,5 +1,10 @@
 import { z } from 'zod';
-import { campusRefSchema, evaluacionRefSchema, indicadorRefSchema } from './shared.schema';
+import {
+	campusRefSchema,
+	evaluacionRefSchema,
+	indicadorRefSchema,
+	unidadAcademicaRefSchema
+} from './shared.schema';
 import { etapaRefSchema } from './etapa.schema';
 import { etapaMetadataSchema, type EtapaMetadataByCode } from './etapaMetadata.schema';
 
@@ -30,6 +35,7 @@ export const evaluacionEtapaIndicadorFormSchema = z
 		etapaCode: z.string(),
 		indicadorCode: z.string(),
 		campusCode: z.string(),
+		unidadAcademicaCode: z.string(),
 		// metadata acepta CUALQUIERA de las 8 formas válidas (discriminated union)
 		metadata: etapaMetadataSchema,
 		createdBy: z.string().optional().default('')
@@ -60,6 +66,7 @@ export const evaluacionEtapaIndicadorItemSchema = z
 		etapa: etapaRefSchema,
 		indicador: indicadorRefSchema,
 		campus: campusRefSchema,
+		unidadAcademica: unidadAcademicaRefSchema,
 		metadata: etapaMetadataSchema,
 		status: EvaluacionEtapaIndicadorStatusEnum,
 		version: z.number().default(0),
