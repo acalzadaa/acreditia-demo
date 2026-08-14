@@ -4,13 +4,7 @@
 	import { tooltip, type TooltipPosition } from '$lib/actions/tooltip';
 
 	export type ButtonVariant =
-		| 'primary'
-		| 'secondary'
-		| 'outline'
-		| 'critical'
-		| 'ghost'
-		| 'link'
-		| 'text';
+		'primary' | 'secondary' | 'outline' | 'critical' | 'ghost' | 'link' | 'text';
 
 	export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 

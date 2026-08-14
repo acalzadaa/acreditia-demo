@@ -9,7 +9,7 @@ export const EtapaCodeEnum = z.enum([
 	'evidencia',
 	'resultados',
 	'autoevaluacion-ejecucion',
-	'revision',
+	'autoevaluacion-revision',
 	'planeacion',
 	'ejecucion'
 ]);
@@ -137,6 +137,7 @@ export const etapaAutoevaluacionEjecucionItemSchema = z
 	.object({
 		code: z.literal('autoevaluacion-ejecucion'),
 		score: z.number().optional(),
+		name: z.string().default(''),
 		comment: z.string().optional()
 	})
 	.extend(etapaInvalidatedItemSchema.shape);
@@ -144,16 +145,18 @@ export const etapaAutoevaluacionEjecucionItemSchema = z
 export type EtapaAutoevaluacionItem = z.infer<typeof etapaAutoevaluacionEjecucionItemSchema>;
 
 //etapa 5
-export const etapaRevisionAutoevaluacionItemSchema = z
+export const etapaAutoevaluacionRevisionItemSchema = z
 	.object({
-		code: z.literal('revision'),
+		code: z.literal('autoevaluacion-revision'),
 		originalScore: z.number().optional(),
 		score: z.number().optional(),
+		originalName: z.string().default(''),
+		name: z.string().default(''),
 		comment: z.string().optional()
 	})
 	.extend(etapaInvalidatedItemSchema.shape);
 
-export type EtapaRevisionAutoevaluacionItem = z.infer<typeof etapaRevisionAutoevaluacionItemSchema>;
+export type EtapaAutoevaluacionRevisionItem = z.infer<typeof etapaAutoevaluacionRevisionItemSchema>;
 
 //etapa 6
 export const etapaCapturaPlanMejoraItemSchema = z
@@ -184,7 +187,7 @@ export const etapaEjecucionPlanMejoraItemSchema = z
 		processing: z.boolean().optional()
 	})
 	.extend(etapaInvalidatedItemSchema.shape);
-	
+
 export type EtapaEjecucionPlanMejoraItem = z.infer<typeof etapaEjecucionPlanMejoraItemSchema>;
 
 // ============================================
@@ -198,7 +201,7 @@ export const etapaMetadataSchema = z.discriminatedUnion('code', [
 	etapaEvidenciaItemSchema,
 	etapaResultadosItemSchema,
 	etapaAutoevaluacionEjecucionItemSchema,
-	etapaRevisionAutoevaluacionItemSchema,
+	etapaAutoevaluacionRevisionItemSchema,
 	etapaCapturaPlanMejoraItemSchema,
 	etapaAutorizacionPlanMejoraItemSchema,
 	etapaEjecucionPlanMejoraItemSchema

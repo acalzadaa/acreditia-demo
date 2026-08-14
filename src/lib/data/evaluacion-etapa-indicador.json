@@ -509,6 +509,7 @@
 			"metadata": {
 				"code": "autoevaluacion-ejecucion",
 				"score": 4,
+				"name": "competente",
 				"comment": "El documento de retencion no representa la realidad"
 			},
 			"status": "ready",
@@ -565,7 +566,7 @@
 			},
 			"etapa": {
 				"order": 5,
-				"code": "revision",
+				"code": "autoevaluacion-revision",
 				"name": "Revision de autoevaluacion"
 			},
 			"indicador": {
@@ -579,9 +580,9 @@
 				"name": "Campus Monterrey"
 			},
 			"metadata": {
-				"code": "revision",
-				"originalScore": 8,
-				"score": 9,
+				"code": "autoevaluacion-revision",
+				"originalScore": 4,
+				"originalName": "competente",
 				"comment": "Cumplio con los criterios del nivel"
 			},
 			"status": "in_process",
@@ -603,7 +604,7 @@
 			},
 			"etapa": {
 				"order": 5,
-				"code": "revision",
+				"code": "autoevaluacion-revision",
 				"name": "Revision de autoevaluacion"
 			},
 			"indicador": {
@@ -617,9 +618,11 @@
 				"name": "Campus Saltillo"
 			},
 			"metadata": {
-				"code": "revision",
-				"originalScore": 8,
-				"score": 8
+				"code": "autoevaluacion-revision",
+				"originalScore": 4,
+				"score": 3,
+				"originalName": "competente",
+				"name": "suficiente"
 			},
 			"status": "in_process",
 			"version": 1,

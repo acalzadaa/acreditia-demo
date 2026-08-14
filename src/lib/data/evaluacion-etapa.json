@@ -105,7 +105,7 @@
 			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
 			"etapa": {
 				"order": 5,
-				"code": "revision",
+				"code": "ejecucion-revision",
 				"name": "Revision de autoevaluacion"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
@@ -280,7 +280,7 @@
 			"evaluacionId": "b9e8b5eb-dd82-49ad-8173-538926c0fb53",
 			"etapa": {
 				"order": 5,
-				"code": "revision",
+				"code": "ejecucion-revision",
 				"name": "Revision de autoevaluacion"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
@@ -455,7 +455,7 @@
 			"evaluacionId": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
 			"etapa": {
 				"order": 5,
-				"code": "revision",
+				"code": "autoevaluacion-revision",
 				"name": "Revision de la autoevaluacion"
 			},
 			"fechaInicio": "2025-12-01T00:00:00Z",
@@ -655,7 +655,7 @@
 			"evaluacionId": "fda91ef4-4fc3-4c24-ab22-99f2d90aeef0",
 			"etapa": {
 				"order": 5,
-				"code": "revision",
+				"code": "autoevaluacion-revision",
 				"name": "Revision de la autoevaluacion"
 			},
 			"fechaInicio": "2025-11-01T00:00:00Z",
@@ -830,7 +830,7 @@
 			"evaluacionId": "a95ecd86-ad5c-43c2-8762-18001e661069",
 			"etapa": {
 				"order": 5,
-				"code": "revision",
+				"code": "autoevaluacion-revision",
 				"name": "Revision de la autoevaluacion"
 			},
 			"fechaInicio": "2025-07-16T00:00:00Z",
