@@ -22,8 +22,8 @@
 		open = false,
 		onClose,
 		formAction = '?/confirm',
-		title = 'Confirmar accion',
-		message = 'Favor de confirmar la accion',
+		title = 'Confirmar acción',
+		message = 'Favor de confirmar la acción',
 		buttonLabel = 'Confirmar',
 		actionButtonVariant = 'critical',
 		demo = false

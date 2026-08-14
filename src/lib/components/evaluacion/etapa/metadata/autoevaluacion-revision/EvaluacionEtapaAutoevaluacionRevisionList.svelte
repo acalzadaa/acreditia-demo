@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
-	import { selectAutoevaluacionEjecucionButtonConfig } from '$lib/components/evaluacion/utils/AutoevaluacionUtils';
+	import { selectAutoevaluacionRevisionButtonConfig } from '$lib/components/evaluacion/utils/AutoevaluacionUtils';
 	import { convertEvaluacionEtapaIndicadorStatusToBadgeVariant } from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
 	import { getSafeText } from '$lib/components/evaluacion/utils/EvaluacionUtils';
 	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
@@ -18,29 +18,16 @@
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
 	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
-	import EvalucionEtapaIndicadorFooterActions from '../EvalucionEtapaIndicadorFooterActions.svelte';
-	type EvaluacionEjecucionIndicadorItem =
-		EvaluacionEtapaIndicadorItemFor<'autoevaluacion-ejecucion'>;
+	type EvaluacionRevisionIndicadorItem = EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>;
 
 	interface Props {
-		items: EvaluacionEjecucionIndicadorItem[];
+		items: EvaluacionRevisionIndicadorItem[];
 		rubricaItems: RubricaItem[];
 		onClickSeleccionar: (item: IdentifyParentChildItemSchema) => void;
-		onClickNoAplica: (item: EvaluacionEjecucionIndicadorItem) => void;
-		onClickFinish: (item: EvaluacionEjecucionIndicadorItem) => void;
-		onClickAceptar: (item: EvaluacionEjecucionIndicadorItem) => void;
-		onClickRechazar: (item: EvaluacionEjecucionIndicadorItem) => void;
+		onClickFinish: (item: EvaluacionRevisionIndicadorItem) => void;
 	}
 
-	const {
-		items,
-		rubricaItems,
-		onClickSeleccionar,
-		onClickNoAplica,
-		onClickFinish,
-		onClickAceptar,
-		onClickRechazar
-	}: Props = $props();
+	const { items, rubricaItems, onClickSeleccionar, onClickFinish }: Props = $props();
 
 	const accordions = createToggleManager({ defaultOpen: false, exclusive: true });
 </script>
@@ -70,10 +57,16 @@
 
 						<AccordionContentItem
 							dot={false}
-							label="Nivel de desempeño"
+							label="Autoevaluación"
+							value={capitalizeText(item.metadata.originalName)}
+						/>
+
+						<AccordionContentItem
+							dot={false}
+							label="Autoevaluación revisada"
 							value={getSafeText(
 								capitalizeText(item.metadata.name),
-								'Seleccionar un nivel de desempeño'
+								'Confirmar o seleccionar un nuevo nivel de desempeño'
 							)}
 						/>
 
@@ -109,29 +102,35 @@
 							</AccordionContent>
 							<AccordionFooter>
 								<Button
-									isDisabled={selectAutoevaluacionEjecucionButtonConfig(
+									isDisabled={selectAutoevaluacionRevisionButtonConfig(
 										rubrica,
+										item.metadata.originalScore!,
 										item.metadata.score
 									).isDisabled}
 									onClick={() => onClickSeleccionar({ parentId: item.id, childId: rubrica.id })}
 									variant="outline"
-									name={selectAutoevaluacionEjecucionButtonConfig(rubrica, item.metadata.score)
-										.icon}
-									>{selectAutoevaluacionEjecucionButtonConfig(rubrica, item.metadata.score)
-										.label}</Button
+									name={selectAutoevaluacionRevisionButtonConfig(
+										rubrica,
+										item.metadata.originalScore!,
+										item.metadata.score
+									).icon}
+									>{selectAutoevaluacionRevisionButtonConfig(
+										rubrica,
+										item.metadata.originalScore!,
+										item.metadata.score
+									).label}</Button
 								>
 							</AccordionFooter>
 						</AccordionSection>
 					{/each}
 
 					<AccordionFooter class="accordion-footer">
-						<EvalucionEtapaIndicadorFooterActions
-							{item}
-							{onClickNoAplica}
-							{onClickFinish}
-							{onClickAceptar}
-							{onClickRechazar}
-						/>
+						<Button
+							variant="outline"
+							isDisabled={false}
+							name="upload"
+							onClick={() => onClickFinish(item)}>Confirmar</Button
+						>
 					</AccordionFooter>
 				</Accordion>
 			</AccordionColumn>

@@ -33,7 +33,7 @@
 	--button-height-xl: 56px;
 
 	/* ===== STATES ===== */
-	--button-disabled-opacity: 0.5;
+	--button-disabled-opacity: 0.95;
 	--button-scale-active: 0.98;
 }
 
