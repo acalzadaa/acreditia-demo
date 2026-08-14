@@ -26,7 +26,7 @@
 {:else if etapaCode === 'autoevaluacion-ejecucion'}
 	<EvaluacionEtapaMetadataAutoevaluacionEjecucion {items} {rubricaItems} />
 {:else if etapaCode === 'autoevaluacion-revision'}
-	<EvaluacionEtapaMetadataAutoevaluacionRevision {items} {rubricaItems} />
+	<EvaluacionEtapaMetadataAutoevaluacionRevision {items} />
 {:else if etapaCode === 'planeacion'}
 	<!-- TODO -->
 {:else if etapaCode === 'ejecucion'}
