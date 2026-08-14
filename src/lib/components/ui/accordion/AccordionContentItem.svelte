@@ -19,11 +19,13 @@ Esto funciona para cuando se desea crear un AccordionContent a manera de subhead
 
 	interface Props {
 		label?: string;
-		value: string;
+		value?: string;
 		children?: Snippet;
 		/** (opcional) usar el valor de isVisible de AccordionContent,
 		 * apaga :hover si no es visible */
 		isVisible?: boolean;
+		/** presenta una viñeta al inicio del item */
+		dot?: boolean;
 		/** Si se pasa, se muestra un IconButton a la derecha del item. */
 		onAction?: () => void;
 		actionIcon?: IconName;
@@ -36,6 +38,7 @@ Esto funciona para cuando se desea crear un AccordionContent a manera de subhead
 		value,
 		children,
 		isVisible = false,
+		dot = true,
 		onAction,
 		actionIcon = 'check',
 		actionAriaLabel = 'Action',
@@ -63,7 +66,9 @@ Esto funciona para cuando se desea crear un AccordionContent a manera de subhead
 </script>
 
 <div class={['accordion-content-item', { 'is-open': isVisible }, className]}>
-	<Dot size="sm" />
+	{#if dot}
+		<Dot size="sm" />
+	{/if}
 	<div class="accordion-content-item__body">
 		{#if label}
 			<span class="accordion-content-item__label text-label">{label}</span>

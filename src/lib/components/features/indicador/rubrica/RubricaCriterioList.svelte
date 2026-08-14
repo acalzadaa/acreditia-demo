@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
 	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
 	import AccordionColumn from '$lib/components/ui/accordion/AccordionColumn.svelte';
 	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
@@ -14,10 +15,6 @@
 		items: RubricaItem[];
 		onClickAdd: (item: RubricaItem) => void;
 		onClickRemover: (item: RemoverRubricaCriterioItem) => void;
-	}
-
-	function calculateRubricaRange(item: RubricaItem) {
-		return `${item.rangeStart} al ${item.rangeEnd}`;
 	}
 
 	const { items, onClickAdd, onClickRemover }: Props = $props();
@@ -38,11 +35,11 @@
 						isVisible={accordions.isOpen(item.id)}
 						onToggle={() => accordions.toggle(item.id)}
 					>
+						{#snippet subtitle()}
+							<p class="text-caption">Nivel {item.order}</p>
+						{/snippet}
 						{#snippet title()}
-							<div style="display: flex; flex-direction: row;">
-								<p style="text-transform: capitalize;">{item.name}</p>
-								<Tag variant="info">{calculateRubricaRange(item)}</Tag>
-							</div>
+							<Tag variant="info">{capitalizeText(item.name)}</Tag>
 						{/snippet}
 						<Button variant="outline" size="sm" name="add" onClick={() => onClickAdd(item)}>
 							Agregar criterio

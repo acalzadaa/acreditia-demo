@@ -8,7 +8,7 @@ export const EtapaCodeEnum = z.enum([
 	'meta',
 	'evidencia',
 	'resultados',
-	'autoevaluacion',
+	'autoevaluacion-ejecucion',
 	'revision',
 	'planeacion',
 	'ejecucion'
@@ -133,15 +133,15 @@ export const etapaResultadosFormSchema = z.object({
 export type EtapaResultadosForm = z.infer<typeof etapaResultadosFormSchema>;
 
 //etapa 4
-export const etapaAutoevaluacionItemSchema = z
+export const etapaAutoevaluacionEjecucionItemSchema = z
 	.object({
-		code: z.literal('autoevaluacion'),
+		code: z.literal('autoevaluacion-ejecucion'),
 		score: z.number().optional(),
 		comment: z.string().optional()
 	})
 	.extend(etapaInvalidatedItemSchema.shape);
 
-export type EtapaAutoevaluacionItem = z.infer<typeof etapaAutoevaluacionItemSchema>;
+export type EtapaAutoevaluacionItem = z.infer<typeof etapaAutoevaluacionEjecucionItemSchema>;
 
 //etapa 5
 export const etapaRevisionAutoevaluacionItemSchema = z
@@ -197,7 +197,7 @@ export const etapaMetadataSchema = z.discriminatedUnion('code', [
 	etapaMetaItemSchema,
 	etapaEvidenciaItemSchema,
 	etapaResultadosItemSchema,
-	etapaAutoevaluacionItemSchema,
+	etapaAutoevaluacionEjecucionItemSchema,
 	etapaRevisionAutoevaluacionItemSchema,
 	etapaCapturaPlanMejoraItemSchema,
 	etapaAutorizacionPlanMejoraItemSchema,

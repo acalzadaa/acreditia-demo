@@ -38,6 +38,7 @@
 	--accordion-padding: var(--space-4);
 
 	--accordion-section-gap: var(--stack-xs);
+	--accordion-section-border: 1px solid var(--border-regular);
 	--accordion-content-max-height: 300px;
 	--accordion-content-item-bg-hover: var(--bg-raised-hover);
 }
@@ -120,7 +121,7 @@
 
 .accordion-header__text {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: flex-start;
 	gap: var(--space-1);
 	min-width: 0;
@@ -197,10 +198,13 @@
 .accordion-section {
 	display: flex;
 	flex-direction: column;
+	gap: 5px;
+	padding: 15px;
+	border: var(--accordion-section-border);
+	border-radius: 15px;
 }
 
 .accordion-section + .accordion-section {
-	border-top: var(--divider);
 	padding-top: var(--accordion-section-gap);
 }
 

@@ -66,9 +66,7 @@ import {
 } from '$lib/schemas/indicadorEstrategico.schema';
 import { normativaItemSchema, type NormativaItem } from '$lib/schemas/normativa.schema';
 import { entidadLegalItemSchema, type EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
-import {
-	institucionItemSchema,
-	type InstitucionItem} from '$lib/schemas/institucion.schema';
+import { institucionItemSchema, type InstitucionItem } from '$lib/schemas/institucion.schema';
 
 import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
 import {
@@ -129,8 +127,7 @@ import {
 	rubricaCriterioItemSchema,
 	type RubricaCriterioItem
 } from '$lib/schemas/rubricaCriterio.schema';
-import {
-} from '$lib/schemas/evaluacionNavigation.schema';
+import {} from '$lib/schemas/evaluacionNavigation.schema';
 import {
 	evaluacionEtapaItemSchema,
 	type EvaluacionEtapaItem
@@ -143,7 +140,10 @@ import {
 } from '$lib/schemas/indicadorEvidencia';
 import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
 import { usuarioPuestoItemSchema, type UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
-import { evaluacionEtapaIndicadorItemSchema, type EvaluacionEtapaIndicadorItem } from '$lib/schemas/evaluacionEtapaIndicador.schema';
+import {
+	evaluacionEtapaIndicadorItemSchema,
+	type EvaluacionEtapaIndicadorItem
+} from '$lib/schemas/evaluacionEtapaIndicador.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -284,6 +284,7 @@ evaluacionEtapa = evaluacionEtapaRawData.map((item) => evaluacionEtapaItemSchema
 
 const evaluacionEtapaIndicadorRawData =
 	evaluacionEtapaIndicadorJsonData.evaluacionEtapaIndicadorItems;
+
 evaluacionEtapaIndicador = evaluacionEtapaIndicadorRawData.map((item) =>
 	evaluacionEtapaIndicadorItemSchema.parse(item)
 );

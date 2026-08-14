@@ -80,7 +80,7 @@
 			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
 			"etapa": {
 				"order": 4,
-				"code": "autoevaluacion",
+				"code": "autoevaluacion-ejecucion",
 				"name": "Captura de autoevaluacion"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
@@ -255,7 +255,7 @@
 			"evaluacionId": "b9e8b5eb-dd82-49ad-8173-538926c0fb53",
 			"etapa": {
 				"order": 4,
-				"code": "autoevaluacion",
+				"code": "autoevaluacion-ejecucion",
 				"name": "Captura de autoevaluacion"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
@@ -430,7 +430,7 @@
 			"evaluacionId": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
 			"etapa": {
 				"order": 4,
-				"code": "autoevaluacion",
+				"code": "autoevaluacion-ejecucion",
 				"name": "Realizar autoevaluacion"
 			},
 			"fechaInicio": "2025-12-01T00:00:00Z",
