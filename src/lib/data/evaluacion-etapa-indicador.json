@@ -443,7 +443,7 @@
 			"createdBy": "admin@system.com"
 		},
 		{
-			"id": "1c53d952-ebe6-4b82-9d27-7feecdf99a2a",
+			"id": "2654eddf-21bb-4451-81a9-bdd7bf626ebc",
 			"code": "2025-3-resultados-ind-001-CAMPUS-SALT-002",
 			"evaluacion": {
 				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
@@ -493,7 +493,7 @@
 			},
 			"etapa": {
 				"order": 4,
-				"code": "autoevaluacion",
+				"code": "autoevaluacion-ejecucion",
 				"name": "Captura de autoevaluacion"
 			},
 			"indicador": {
@@ -507,11 +507,11 @@
 				"name": "Campus Monterrey"
 			},
 			"metadata": {
-				"code": "autoevaluacion",
-				"score": 8,
+				"code": "autoevaluacion-ejecucion",
+				"score": 4,
 				"comment": "El documento de retencion no representa la realidad"
 			},
-			"status": "in_process",
+			"status": "ready",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",
@@ -530,7 +530,7 @@
 			},
 			"etapa": {
 				"order": 4,
-				"code": "autoevaluacion",
+				"code": "autoevaluacion-ejecucion",
 				"name": "Captura de autoevaluacion"
 			},
 			"indicador": {
@@ -544,7 +544,7 @@
 				"name": "Campus Saltillo"
 			},
 			"metadata": {
-				"code": "autoevaluacion"
+				"code": "autoevaluacion-ejecucion"
 			},
 			"status": "in_process",
 			"version": 1,

@@ -10,7 +10,7 @@
 			"code": "rub-001-ind-001",
 			"name": "insuficiente",
 			"rangeStart": 1,
-			"rangeEnd": 2,
+			"rangeEnd": 1,
 			"order": 1,
 			"criterios": [
 				{
@@ -36,8 +36,8 @@
 			},
 			"code": "rub-002-ind-001",
 			"name": "en proceso",
-			"rangeStart": 3,
-			"rangeEnd": 4,
+			"rangeStart": 2,
+			"rangeEnd": 2,
 			"order": 2,
 			"criterios": [
 				{
@@ -73,8 +73,8 @@
 			},
 			"code": "rub-003-ind-001",
 			"name": "suficiente",
-			"rangeStart": 5,
-			"rangeEnd": 6,
+			"rangeStart": 3,
+			"rangeEnd": 3,
 			"order": 3,
 			"criterios": [
 				{
@@ -121,8 +121,8 @@
 			},
 			"code": "rub-004-ind-001",
 			"name": "competente",
-			"rangeStart": 7,
-			"rangeEnd": 8,
+			"rangeStart": 4,
+			"rangeEnd": 4,
 			"order": 4,
 			"criterios": [
 				{
@@ -178,8 +178,8 @@
 			},
 			"code": "rub-005-ind-001",
 			"name": "sobresaliente",
-			"rangeStart": 9,
-			"rangeEnd": 10,
+			"rangeStart": 5,
+			"rangeEnd": 5,
 			"order": 5,
 			"criterios": [
 				{
@@ -236,7 +236,7 @@
 			"code": "rub-ind-002",
 			"name" : "insuficiente",
 			"rangeStart": 1,
-			"rangeEnd": 2,
+			"rangeEnd": 1,
 			"order": 1,
 			"criterios": [
 				{
@@ -262,8 +262,8 @@
 			},
 			"code": "rub-ind-002",
 			"name": "en proceso",
-			"rangeStart": 3,
-			"rangeEnd": 4,
+			"rangeStart": 2,
+			"rangeEnd": 2,
 			"order": 2,
 			"criterios": [
 				{
@@ -299,8 +299,8 @@
 			},
 			"code": "rub-ind-002",
 			"name" : "suficiente",
-			"rangeStart": 5,
-			"rangeEnd": 6,
+			"rangeStart": 3,
+			"rangeEnd": 3,
 			"order": 3,
 			"criterios": [
 				{
@@ -346,8 +346,8 @@
 			},
 			"code": "rub-ind-002",
 			"name" : "competente",
-			"rangeStart": 7,
-			"rangeEnd": 8,
+			"rangeStart": 4,
+			"rangeEnd": 4,
 			"order": 4,
 			"criterios": [
 				{
@@ -403,8 +403,8 @@
 			},
 			"code": "rub-ind-002",
 			"name" : "sobresaliente",
-			"rangeStart": 9,
-			"rangeEnd": 10,
+			"rangeStart": 5,
+			"rangeEnd": 5,
 			"order": 5,
 			"criterios": [
 				{
@@ -461,7 +461,7 @@
 			"code": "rub-ind-003",
 			"name" : "insuficiente",
 			"rangeStart": 1,
-			"rangeEnd": 2,
+			"rangeEnd": 1,
 			"order": 1,
 			"criterios": [
 				{
@@ -487,8 +487,8 @@
 			},
 			"code": "rub-ind-003",
 			"name" : "en proceso",
-			"rangeStart": 3,
-			"rangeEnd": 4,
+			"rangeStart": 2,
+			"rangeEnd": 2,
 			"order": 2,
 			"criterios": [
 				{
@@ -524,8 +524,8 @@
 			},
 			"code": "rub-ind-003",
 			"name" : "suficiente",
-			"rangeStart": 5,
-			"rangeEnd": 6,
+			"rangeStart": 3,
+			"rangeEnd": 3,
 			"order": 3,
 			"criterios": [
 				{
@@ -571,8 +571,8 @@
 			},
 			"code": "rub-ind-003",
 			"name" : "competente",
-			"rangeStart": 7,
-			"rangeEnd": 8,
+			"rangeStart": 4,
+			"rangeEnd": 4,
 			"order": 4,
 			"criterios": [
 				{
@@ -628,8 +628,8 @@
 			},
 			"code": "rub-ind-004",
 			"name" : "sobresaliente",
-			"rangeStart": 9,
-			"rangeEnd": 10,
+			"rangeStart": 1,
+			"rangeEnd": 1,
 			"order": 1,
 			"criterios": [
 				{
@@ -655,8 +655,8 @@
 			},
 			"code": "rub-ind-004",
 			"name" : "en proceso",
-			"rangeStart": 3,
-			"rangeEnd": 4,
+			"rangeStart": 2,
+			"rangeEnd": 2,
 			"order": 2,
 			"criterios": [
 				{
@@ -692,8 +692,8 @@
 			},
 			"code": "rub-ind-004",
 			"name" : "suficiente",
-			"rangeStart": 5,
-			"rangeEnd": 6,
+			"rangeStart": 3,
+			"rangeEnd": 3,
 			"order": 3,
 			"criterios": [
 				{
@@ -739,8 +739,8 @@
 			},
 			"code": "rub-ind-004",
 			"name" : "competente",
-			"rangeStart": 7,
-			"rangeEnd": 8,
+			"rangeStart": 4,
+			"rangeEnd": 4,
 			"order": 4,
 			"criterios": [
 				{
@@ -797,7 +797,7 @@
 			"code": "rub-ind-005",
 			"name" : "insuficiente",
 			"rangeStart": 1,
-			"rangeEnd": 2,
+			"rangeEnd": 1,
 			"order": 1,
 			"criterios": [
 				{
@@ -823,8 +823,8 @@
 			},
 			"code": "rub-ind-005",
 			"name" : "en proceso",
-			"rangeStart": 3,
-			"rangeEnd": 4,
+			"rangeStart": 2,
+			"rangeEnd": 2,
 			"order": 2,
 			"criterios": [
 				{
@@ -861,8 +861,8 @@
 			},
 			"code": "rub-ind-005",
 			"name" : "suficiente",
-			"rangeStart": 5,
-			"rangeEnd": 6,
+			"rangeStart": 3,
+			"rangeEnd": 3,
 			"order": 3,
 			"criterios": [
 				{
@@ -908,8 +908,8 @@
 			},
 			"code": "rub-ind-005",
 			"name" : "competente",
-			"rangeStart": 7,
-			"rangeEnd": 8,
+			"rangeStart": 4,
+			"rangeEnd": 4,
 			"order": 4,
 			"criterios": [
 				{

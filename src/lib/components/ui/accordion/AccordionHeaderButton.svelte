@@ -70,7 +70,7 @@ Ej.:
 	<div class="accordion-header__left">
 		<div class="accordion-header__text">
 			{#if subtitle}
-				<div class="accordion-header__subtitle text-h6">
+				<div class="accordion-header__subtitle text-body">
 					{@render subtitle()}
 				</div>
 			{/if}
