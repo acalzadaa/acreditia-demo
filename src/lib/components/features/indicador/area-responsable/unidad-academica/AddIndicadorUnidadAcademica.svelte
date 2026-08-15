@@ -101,7 +101,7 @@
 					{/if}
 
 					<InputSelect
-						label="Unidad Academica"
+						label="Unidad académica"
 						name="code"
 						optionsData={unidadAcademicaOptions}
 						required={true}

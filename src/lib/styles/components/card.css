@@ -94,6 +94,18 @@
 	padding-bottom: var(--card-section-gap);
 }
 
+.card-header--clickable {
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 0 0 var(--card-section-gap) 0;
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	text-align: left;
+}
+
 .card-header__subtitle {
 	color: var(--text-secondary);
 }

@@ -1,5 +1,6 @@
 import { isRubricaRange } from '$lib/components/common/utils/rubricaUtils';
 import type { IconName } from '$lib/components/ui/Icon.svelte';
+import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 
 interface AutoevaluacionButtonConfig {
@@ -61,4 +62,23 @@ export function selectAutoevaluacionRevisionButtonConfig(
 		return { label: 'Seleccionado', isDisabled: true, icon: 'check' };
 	}
 	return { label: 'Seleccionar', isDisabled: false };
+}
+
+export function appendScoreAndName(
+	item: EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>,
+	score: number,
+	name: string
+) {
+	return {
+		...item,
+		metadata: {
+			code: item.metadata.code,
+			originalName: item.metadata.originalName,
+			name: name,
+			originalScore: item.metadata.originalScore,
+			invalidate: item.metadata.invalidate,
+			invalidateReason: item.metadata.invalidateReason,
+			score: score
+		}
+	};
 }

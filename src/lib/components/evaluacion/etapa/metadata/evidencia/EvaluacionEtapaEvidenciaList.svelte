@@ -68,7 +68,13 @@
 						</Badge>
 					</AccordionHeader>
 					<AccordionContent isCollapsible={false}>
-						<AccordionContentItem label="Campus" value={item.campus.name} />
+						<AccordionContentItem dot={false} label="Campus" value={item.campus.name} />
+						<AccordionContentItem
+							dot={false}
+							label="Unidad académica"
+							value={item.unidadAcademica.name}
+						/>
+
 						{#if item.metadata.invalidate}
 							<AccordionContentItem
 								label="Razón de invalidación"

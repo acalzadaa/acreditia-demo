@@ -20,7 +20,7 @@
 	--form-input-bg: var(--neutral-tinted-25);
 	--form-input-bg-hover: var(--neutral-tinted-50);
 	--form-input-bg-focus: var(--bg-raised);
-	--form-input-bg-disabled: var(--neutral-tinted-200);
+	--form-input-bg-disabled: var(--neutral-tinted-50);
 
 	--form-input-border: var(--border-regular);
 	--form-input-border-hover: var(--border-strong);
@@ -31,7 +31,7 @@
 	--form-input-border-info: var(--border-info);
 
 	--form-input-text: var(--text-on-surface);
-	--form-input-text-disabled: var(--text-disabled);
+	--form-input-text-disabled: var(--text-on-surface);
 	--form-input-placeholder: var(--text-muted);
 
 	/* Feedback */
@@ -331,6 +331,7 @@
 
 .form-feedback {
 	margin-top: var(--form-feedback-margin-top);
+	margin-bottom: var(--form-feedback-margin-top);
 	display: flex;
 	align-items: center;
 	gap: var(--space-2);

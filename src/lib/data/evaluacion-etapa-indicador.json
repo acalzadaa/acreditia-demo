@@ -23,6 +23,11 @@
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "meta"
 			},
@@ -57,6 +62,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "meta",
@@ -95,6 +105,11 @@
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "meta",
 				"target": 95,
@@ -131,6 +146,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "meta",
@@ -169,6 +189,11 @@
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "meta",
 				"target": 95,
@@ -205,6 +230,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "meta",
@@ -243,6 +273,11 @@
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "evidencia",
 				"file": [],
@@ -279,6 +314,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "evidencia",
@@ -333,6 +373,11 @@
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "evidencia",
 				"file": [
@@ -388,6 +433,11 @@
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "resultados",
 				"target": 95,
@@ -427,6 +477,11 @@
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "resultados",
 				"target": 95,
@@ -464,6 +519,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "resultados",
@@ -506,6 +566,11 @@
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "autoevaluacion-ejecucion",
 				"score": 4,
@@ -544,6 +609,11 @@
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "autoevaluacion-ejecucion"
 			},
@@ -578,6 +648,11 @@
 				"id": "99be4241-389d-430a-83f2-b1c612c029ac",
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "autoevaluacion-revision",
@@ -616,6 +691,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "autoevaluacion-revision",
@@ -656,6 +736,11 @@
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "captura",
 				"acuerdos": "Se va a realizar un proceso de entrevista al alumnado para entender sus inquietudes"
@@ -691,6 +776,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "captura",
@@ -728,6 +818,11 @@
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "autorizacion",
 				"agreements": "Se va a realizar un proceso de entrevista al alumnado para entender sus inquietudes"
@@ -763,6 +858,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "autorizacion",
@@ -801,6 +901,11 @@
 				"code": "CAMPUS-MTY-001",
 				"name": "Campus Monterrey"
 			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
 			"metadata": {
 				"code": "ejecucion"
 			},
@@ -835,6 +940,11 @@
 				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
 				"code": "CAMPUS-SALT-002",
 				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
 			},
 			"metadata": {
 				"code": "ejecucion",
