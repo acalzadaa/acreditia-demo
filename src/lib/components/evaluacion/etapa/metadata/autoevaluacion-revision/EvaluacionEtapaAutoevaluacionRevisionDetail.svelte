@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
-	import { selectAutoevaluacionRevisionButtonConfig } from '$lib/components/evaluacion/utils/AutoevaluacionUtils';
+	import { appendScoreAndName, selectAutoevaluacionRevisionButtonConfig } from '$lib/components/evaluacion/utils/AutoevaluacionUtils';
 	import { convertEvaluacionEtapaIndicadorStatusToBadgeVariant } from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
 	import { getSafeText } from '$lib/components/evaluacion/utils/EvaluacionUtils';
 	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
@@ -16,14 +16,13 @@
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
-	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
 	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
 	type EvaluacionRevisionIndicadorItem = EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>;
 
 	interface Props {
 		items: EvaluacionRevisionIndicadorItem[];
 		rubricaItems: RubricaItem[];
-		onClickSeleccionar: (item: IdentifyParentChildItemSchema) => void;
+		onClickSeleccionar: (item: EvaluacionRevisionIndicadorItem) => void;
 		onClickFinish: (item: EvaluacionRevisionIndicadorItem) => void;
 	}
 
@@ -53,7 +52,11 @@
 					</AccordionHeader>
 					<!-- Datos de rubrica seleccionada -->
 					<AccordionContent isCollapsible={false}>
-						<AccordionContentItem dot={false} label="Unidad académica" value={item.unidadAcademica.name} />
+						<AccordionContentItem
+							dot={false}
+							label="Unidad académica"
+							value={item.unidadAcademica.name}
+						/>
 						<AccordionContentItem
 							dot={false}
 							label="Autoevaluación"
@@ -106,7 +109,8 @@
 										item.metadata.originalScore!,
 										item.metadata.score
 									).isDisabled}
-									onClick={() => onClickSeleccionar({ parentId: item.id, childId: rubrica.id })}
+									onClick={() =>
+										onClickSeleccionar(appendScoreAndName(item, rubrica.rangeStart, rubrica.name))}
 									variant="outline"
 									name={selectAutoevaluacionRevisionButtonConfig(
 										rubrica,

@@ -158,6 +158,8 @@ export const etapaAutoevaluacionRevisionItemSchema = z
 
 export type EtapaAutoevaluacionRevisionItem = z.infer<typeof etapaAutoevaluacionRevisionItemSchema>;
 
+
+
 //etapa 6
 export const etapaCapturaPlanMejoraItemSchema = z
 	.object({
