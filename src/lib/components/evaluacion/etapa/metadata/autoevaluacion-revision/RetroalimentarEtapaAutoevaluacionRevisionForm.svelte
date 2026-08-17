@@ -7,7 +7,6 @@
 
 	import { toast } from '$lib/utils/toastManager.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
-	import InputText from '$lib/components/ui/input/InputText.svelte';
 
 	type EvaluacionRevisionIndicadorItem = EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>;
 
@@ -21,8 +20,8 @@
 
 	// Estado local del formulario
 	let formData = $state({
-		feedback: (selectedItem.metadata.feedback = ''),
-		comment: (selectedItem.metadata.comment = ''),
+		feedback: (selectedItem.metadata.feedback || ''),
+		comment: (selectedItem.metadata.comment || ''),
 		name: selectedItem.metadata.name
 	});
 
@@ -73,7 +72,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<p class="modal-title text-h4">Retroalimentación</p>
+			<p class="modal-title text-h4">Agregar retroalimentación</p>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -98,29 +97,22 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputText
-						label="Nivel de desempeño"
-						name="name"
-						required={false}
-						placeholder=""
-						disabled={true}
-						bind:value={formData.name}
-					/>
 					<TextArea
-						label="Retroalimentacion"
+						label="Retroalimentación"
 						name="feedback"
 						placeholder="El usuario demostro..."
 						status="normal"
 						disabled={false}
 						bind:value={formData.feedback}
-						rows={4}
+						rows={8}
+						maxLength={500}
 					/>
 				</div>
 			</div>
 
 			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="critical">Retroalimentar</Button>
+				<Button type="submit" variant="primary">Guardar</Button>
 			</menu>
 		</form>
 	</div>

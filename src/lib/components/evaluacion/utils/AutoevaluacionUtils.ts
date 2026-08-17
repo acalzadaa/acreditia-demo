@@ -2,7 +2,6 @@ import { isRubricaRange } from '$lib/components/common/utils/rubricaUtils';
 import type { IconName } from '$lib/components/ui/Icon.svelte';
 import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 import type { RubricaItem } from '$lib/schemas/rubrica.schema';
-import type { EvaluacionRevisionIndicadorItem } from '../etapa/metadata/autoevaluacion-revision/EvaluacionEtapaAutoevaluacionRevisionDetail.svelte';
 
 interface AutoevaluacionButtonConfig {
 	label: string;
@@ -33,7 +32,7 @@ export function selectAutoevaluacionEjecucionButtonConfig(
 
 export function selectAutoevaluacionRevisionButtonConfig(
 	rubrica: RubricaItem,
-	item: EvaluacionRevisionIndicadorItem
+	item: EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>
 ): AutoevaluacionButtonConfig {
 	/** Hay 5 casos:
 	 * 1) rubrica.startRange es diferente que originalScore y score
@@ -82,6 +81,13 @@ export function selectAutoevaluacionRevisionButtonConfig(
 		};
 	}
 	return returnConfig;
+}
+
+export function showRubricaListSection(item: EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>) {
+	if (item.status === 'feedback_in_progress' || item.status === 'feedback_ready') {
+		return false;
+	}
+	return true;
 }
 
 export function appendScoreAndName(

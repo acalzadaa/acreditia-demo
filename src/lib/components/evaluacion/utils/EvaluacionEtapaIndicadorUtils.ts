@@ -139,6 +139,12 @@ export function isEvaluacionEtapaIndicadorActionDisabled(
 	action: EvaluacionAction
 ): { visible: boolean; disabled: boolean } {
 	switch (action) {
+		case 'edit_feedback': {
+			return {
+				visible: true,
+				disabled: !getAvailableActions(item).includes('edit_feedback')
+			};
+		}
 		case 'edit': {
 			return {
 				visible: item !== 'invalidate_request',

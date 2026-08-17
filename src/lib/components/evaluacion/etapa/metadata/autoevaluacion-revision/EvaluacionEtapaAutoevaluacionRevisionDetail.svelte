@@ -2,7 +2,10 @@
 	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
 	import {
 		appendScoreAndName,
-		selectAutoevaluacionRevisionButtonConfig
+		selectAutoevaluacionRevisionButtonConfig,
+
+		showRubricaListSection
+
 	} from '$lib/components/evaluacion/utils/AutoevaluacionUtils';
 	import {
 		convertEvaluacionEtapaIndicadorStatusToBadgeVariant,
@@ -23,8 +26,7 @@
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
-	export type EvaluacionRevisionIndicadorItem =
-		EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>;
+	type EvaluacionRevisionIndicadorItem = EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>;
 
 	interface Props {
 		items: EvaluacionRevisionIndicadorItem[];
@@ -59,7 +61,7 @@
 							{convertEvaluacionEtapaIndicadorStatusToBadgeVariant(item.status).label}
 						</Badge>
 					</AccordionHeader>
-					
+
 					<!-- Datos de rubrica seleccionada -->
 					<AccordionContent isCollapsible={false}>
 						<AccordionContentItem
@@ -107,7 +109,7 @@
 						{/if}
 					</AccordionContent>
 
-					{#if !(item.status === 'feedback_in_progress' || item.status === 'feedback_ready')}
+					{#if showRubricaListSection(item)}
 						<!-- Listado de rubricas 1 al 5 -->
 						{#each rubricaItems as rubrica (rubrica.id)}
 							<AccordionSection>
@@ -158,7 +160,7 @@
 							isDisabled={isEvaluacionEtapaIndicadorActionDisabled(item.status, 'edit_feedback')
 								.disabled}
 							name="feedback"
-							onClick={() => onClickFeedback(item)}>Retroalimentación</Button
+							onClick={() => onClickFeedback(item)}>Retroalimentar</Button
 						>
 					</AccordionFooter>
 				</Accordion>
