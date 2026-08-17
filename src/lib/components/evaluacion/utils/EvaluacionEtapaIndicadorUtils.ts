@@ -53,6 +53,17 @@ const EVALUACION_ETAPA_INDICADOR_STATUS_TO_BADGE_CONFIG: Record<
 		badgeStatus: 'info',
 		icon: 'check',
 		label: 'Listo para enviar'
+	},
+	feedback_ready: {
+		evaluacionStatus: 'ready',
+		badgeStatus: 'info',
+		icon: 'check',
+		label: 'Listo para enviar'
+	},
+	feedback_in_progress: {
+		evaluacionStatus: 'in_process',
+		badgeStatus: 'info',
+		label: 'Retroalimentacion en proceso'
 	}
 };
 
@@ -65,21 +76,6 @@ export function convertEvaluacionEtapaIndicadorStatusToBadgeVariant(
 	label: string;
 } {
 	return EVALUACION_ETAPA_INDICADOR_STATUS_TO_BADGE_CONFIG[status];
-}
-
-/**
- * OBSOLETO!! Utiliza extractEtapaItems.
- * Filtra items por etapaCode y devuelve SOLO sus metadata, ya
- * estrechados al tipo concreto (ej. EtapaMetaItem[] si code='meta').
- */
-export function extractEtapaMetadata<
-	T extends EtapaMetadataByCode[keyof EtapaMetadataByCode]['code']
->(items: EvaluacionEtapaIndicadorItem[], etapaCode: T): EtapaMetadataByCode[T][] {
-	return items
-		.map((item) => item.metadata)
-		.filter((metadata): metadata is EtapaMetadataByCode[T] =>
-			isEtapaMetadataOfCode(metadata, etapaCode)
-		);
 }
 
 /**
@@ -102,11 +98,13 @@ type TransitionMap = {
 const TRANSITIONS: TransitionMap = {
 	pending: ['in_process'],
 	in_process: ['ready', 'invalidate_request'],
-	ready: ['completed'],
-	completed: [],
+	ready: ['completed', 'feedback_in_progress'],
 	invalidate_request: ['completed', 'forced_in_process'],
 	forced_in_process: ['forced_ready'],
-	forced_ready: ['completed']
+	forced_ready: ['completed'],
+	feedback_in_progress: ['feedback_ready'],
+	feedback_ready: ['completed'],
+	completed: []
 };
 
 export function canTransition(
@@ -125,19 +123,28 @@ export function getAvailableActions(status: EvaluacionEtapaIndicadorStatus): Eva
 		completed: [],
 		invalidate_request: ['accept', 'reject'],
 		forced_in_process: ['edit'],
-		forced_ready: ['upload']
+		forced_ready: ['upload'],
+		feedback_in_progress: ['edit_feedback'],
+		feedback_ready: ['edit_feedback', 'upload']
 	};
 
 	return actionMap[status] || [];
 }
 
-export type EvaluacionAction = 'edit' | 'upload' | 'invalidate' | 'accept' | 'reject';
+export type EvaluacionAction =
+	'edit_feedback' | 'edit' | 'upload' | 'invalidate' | 'accept' | 'reject';
 
 export function isEvaluacionEtapaIndicadorActionDisabled(
 	item: EvaluacionEtapaIndicadorStatus,
 	action: EvaluacionAction
 ): { visible: boolean; disabled: boolean } {
 	switch (action) {
+		case 'edit_feedback': {
+			return {
+				visible: true,
+				disabled: !getAvailableActions(item).includes('edit_feedback')
+			};
+		}
 		case 'edit': {
 			return {
 				visible: item !== 'invalidate_request',
@@ -182,14 +189,14 @@ export function isEvaluacionEtapaIndicadorActionDisabled(
 }
 
 export function formatNumberOfElementsAndText(
-    value: unknown[] | null | undefined, 
-    singular: string, 
-    plural: string
+	value: unknown[] | null | undefined,
+	singular: string,
+	plural: string
 ) {
-    const count = Array.isArray(value) ? value.length : 0;
-    
-    if (count === 1) {
-        return `${count} ${singular}`;
-    }
-    return `${count} ${plural}`;
+	const count = Array.isArray(value) ? value.length : 0;
+
+	if (count === 1) {
+		return `${count} ${singular}`;
+	}
+	return `${count} ${plural}`;
 }

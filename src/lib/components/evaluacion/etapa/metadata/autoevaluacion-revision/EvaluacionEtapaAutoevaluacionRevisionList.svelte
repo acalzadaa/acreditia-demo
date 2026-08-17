@@ -41,8 +41,11 @@
 					</CardHeaderCustom>
 					<!-- Datos de rubrica seleccionada -->
 					<CardContent>
-						<CardContentItem label="Campus" value={item.campus.name} />
-						<CardContentItem label="Unidad académica" value={item.unidadAcademica.name} />
+						<CardContentItem label="Campus" value={capitalizeText(item.campus.name)} />
+						<CardContentItem
+							label="Unidad académica"
+							value={capitalizeText(item.unidadAcademica.name)}
+						/>
 
 						<CardContentItem
 							label="Autoevaluación"
@@ -51,11 +54,17 @@
 
 						<CardContentItem
 							label="Autoevaluación revisada"
-							value={getSafeText(
-								capitalizeText(item.metadata.name),
-								'Confirmar o seleccionar un nuevo nivel de desempeño'
-							)}
+							value={getSafeText(capitalizeText(item.metadata.name), 'Sin completar')}
 						/>
+						{#if item.metadata.comment}
+							<CardContentItem label="Comentario" value={capitalizeText(item.metadata.comment)} />
+						{/if}
+						{#if item.metadata.feedback}
+							<CardContentItem
+								label="Retroalimentacion"
+								value={capitalizeText(item.metadata.feedback)}
+							/>
+						{/if}
 					</CardContent>
 				</Card>
 			</CardColumn>

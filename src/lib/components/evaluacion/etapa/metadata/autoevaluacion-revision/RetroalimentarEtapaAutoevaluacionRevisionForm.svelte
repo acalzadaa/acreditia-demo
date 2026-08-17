@@ -1,0 +1,119 @@
+<script lang="ts">
+	import Modal from '$lib/components/ui/modal/Modal.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import IconButton from '$lib/components/ui/IconButton.svelte';
+	import TextArea from '$lib/components/ui/input/TextArea.svelte';
+
+	import { toast } from '$lib/utils/toastManager.svelte';
+	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
+
+	type EvaluacionRevisionIndicadorItem = EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>;
+
+	interface Props {
+		selectedItem: EvaluacionRevisionIndicadorItem;
+		open: boolean;
+		onClose: () => void;
+	}
+
+	let { selectedItem, open = $bindable(false), onClose }: Props = $props();
+
+	// Estado local del formulario
+	let formData = $state({
+		feedback: (selectedItem.metadata.feedback || ''),
+		comment: (selectedItem.metadata.comment || ''),
+		name: selectedItem.metadata.name
+	});
+
+	// Estado para mensajes de error (opcional, para demo)
+	let errorMessage = $state('');
+
+	function handleSubmit() {
+		// Limpiar el formulario
+		formData = {
+			feedback: '',
+			comment: '',
+			name: ''
+		};
+
+		// Limpiar mensaje de error
+		errorMessage = '';
+
+		// Cerrar el modal
+		handleClose();
+
+		// Mostrar toast
+		toast.success('Indicador de revision de autoevaluacion terminada');
+	}
+
+	function handleClose() {
+		onClose();
+	}
+
+	function onKeydownClose(e: KeyboardEvent) {
+		if (e.key === 'Enter' && !e.shiftKey) {
+			e.preventDefault();
+			handleSubmit();
+		}
+	}
+
+	function handleCancel() {
+		// Limpiar formulario al cancelar también
+		formData = {
+			feedback: '',
+			comment: '',
+			name: ''
+		};
+		errorMessage = '';
+		handleClose();
+	}
+</script>
+
+<Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
+	<div class="modal">
+		<header class="modal-header">
+			<p class="modal-title text-h4">Agregar retroalimentación</p>
+			<IconButton
+				name="close"
+				variant="ghost"
+				size="lg"
+				onClick={handleCancel}
+				onKeydown={(e) => onKeydownClose(e)}
+			/>
+		</header>
+
+		<form
+			onsubmit={(e) => {
+				e.preventDefault();
+				handleSubmit();
+			}}
+		>
+			<div class="modal-body">
+				{#if errorMessage}
+					<div class="form-feedback form-feedback--error" role="alert">
+						<Icon name="warning"></Icon>
+						{errorMessage}
+					</div>
+				{/if}
+
+				<div class="form-fields">
+					<TextArea
+						label="Retroalimentación"
+						name="feedback"
+						placeholder="El usuario demostro..."
+						status="normal"
+						disabled={false}
+						bind:value={formData.feedback}
+						rows={8}
+						maxLength={500}
+					/>
+				</div>
+			</div>
+
+			<menu class="modal-footer text-body">
+				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
+				<Button type="submit" variant="primary">Guardar</Button>
+			</menu>
+		</form>
+	</div>
+</Modal>

@@ -12,16 +12,18 @@ import { etapaMetadataSchema, type EtapaMetadataByCode } from './etapaMetadata.s
 // ENUMS
 // ============================================
 
-export const EvaluacionEtapaIndicadorStatusEnum = z.enum([
+export const evaluacionEtapaIndicadorStatusEnum = z.enum([
 	'pending',
 	'in_process',
 	'ready',
 	'completed',
 	'invalidate_request',
 	'forced_in_process',
-	'forced_ready'
+	'forced_ready',
+	'feedback_in_progress',
+	'feedback_ready',
 ]);
-export type EvaluacionEtapaIndicadorStatus = z.infer<typeof EvaluacionEtapaIndicadorStatusEnum>;
+export type EvaluacionEtapaIndicadorStatus = z.infer<typeof evaluacionEtapaIndicadorStatusEnum>;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -68,7 +70,7 @@ export const evaluacionEtapaIndicadorItemSchema = z
 		campus: campusRefSchema,
 		unidadAcademica: unidadAcademicaRefSchema,
 		metadata: etapaMetadataSchema,
-		status: EvaluacionEtapaIndicadorStatusEnum,
+		status: evaluacionEtapaIndicadorStatusEnum,
 		version: z.number().default(0),
 		isCurrent: z.boolean().default(false),
 		validFrom: z.coerce.date().optional(),

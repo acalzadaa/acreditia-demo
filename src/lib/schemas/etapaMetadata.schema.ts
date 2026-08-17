@@ -152,13 +152,12 @@ export const etapaAutoevaluacionRevisionItemSchema = z
 		score: z.number().optional(),
 		originalName: z.string().default(''),
 		name: z.string().default(''),
-		comment: z.string().optional()
+		comment: z.string().optional(),
+		feedback: z.string().optional()
 	})
 	.extend(etapaInvalidatedItemSchema.shape);
 
 export type EtapaAutoevaluacionRevisionItem = z.infer<typeof etapaAutoevaluacionRevisionItemSchema>;
-
-
 
 //etapa 6
 export const etapaCapturaPlanMejoraItemSchema = z

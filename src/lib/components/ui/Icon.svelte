@@ -29,7 +29,8 @@
 		| 'eye-closed'
 		| 'email'
 		| 'password'
-		| 'remove';
+		| 'remove'
+		| 'feedback';
 
 	export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 

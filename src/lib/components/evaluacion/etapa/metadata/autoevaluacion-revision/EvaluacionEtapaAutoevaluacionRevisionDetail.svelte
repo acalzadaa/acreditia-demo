@@ -1,7 +1,16 @@
 <script lang="ts">
 	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
-	import { appendScoreAndName, selectAutoevaluacionRevisionButtonConfig } from '$lib/components/evaluacion/utils/AutoevaluacionUtils';
-	import { convertEvaluacionEtapaIndicadorStatusToBadgeVariant } from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
+	import {
+		appendScoreAndName,
+		selectAutoevaluacionRevisionButtonConfig,
+
+		showRubricaListSection
+
+	} from '$lib/components/evaluacion/utils/AutoevaluacionUtils';
+	import {
+		convertEvaluacionEtapaIndicadorStatusToBadgeVariant,
+		isEvaluacionEtapaIndicadorActionDisabled
+	} from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
 	import { getSafeText } from '$lib/components/evaluacion/utils/EvaluacionUtils';
 	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
 	import AccordionColumn from '$lib/components/ui/accordion/AccordionColumn.svelte';
@@ -23,10 +32,12 @@
 		items: EvaluacionRevisionIndicadorItem[];
 		rubricaItems: RubricaItem[];
 		onClickSeleccionar: (item: EvaluacionRevisionIndicadorItem) => void;
-		onClickFinish: (item: EvaluacionRevisionIndicadorItem) => void;
+		onClickConfirm: (item: EvaluacionRevisionIndicadorItem) => void;
+		onClickFeedback: (item: EvaluacionRevisionIndicadorItem) => void;
 	}
 
-	const { items, rubricaItems, onClickSeleccionar, onClickFinish }: Props = $props();
+	const { items, rubricaItems, onClickSeleccionar, onClickConfirm, onClickFeedback }: Props =
+		$props();
 
 	const accordions = createToggleManager({ defaultOpen: false, exclusive: true });
 </script>
@@ -50,12 +61,13 @@
 							{convertEvaluacionEtapaIndicadorStatusToBadgeVariant(item.status).label}
 						</Badge>
 					</AccordionHeader>
+
 					<!-- Datos de rubrica seleccionada -->
 					<AccordionContent isCollapsible={false}>
 						<AccordionContentItem
 							dot={false}
 							label="Unidad académica"
-							value={item.unidadAcademica.name}
+							value={capitalizeText(item.unidadAcademica.name)}
 						/>
 						<AccordionContentItem
 							dot={false}
@@ -72,67 +84,83 @@
 							)}
 						/>
 
+						{#if item.metadata.comment}
+							<AccordionContentItem
+								dot={false}
+								label="Comentario"
+								value={capitalizeText(item.metadata.comment)}
+							/>
+						{/if}
+
+						{#if item.metadata.feedback}
+							<AccordionContentItem
+								dot={false}
+								label="Retroalimentacion"
+								value={capitalizeText(item.metadata.feedback)}
+							/>
+						{/if}
+
 						{#if item.metadata.invalidate}
 							<AccordionContentItem
+								dot={false}
 								label="Razón de invalidación"
 								value={item.metadata.invalidateReason}
 							/>
 						{/if}
 					</AccordionContent>
 
-					<!-- Listado de rubricas 1 al 5 -->
-					{#each rubricaItems as rubrica (rubrica.id)}
-						<AccordionSection>
-							<AccordionHeaderClickable
-								id="acc-{rubrica.id}"
-								isVisible={accordions.isOpen(rubrica.id)}
-								onToggle={() => accordions.toggle(rubrica.id)}
-							>
-								{#snippet title()}
-									<p class="text-caption">Nivel {rubrica.order}</p>
-									<Tag class="text-h6" variant="info">{capitalizeText(rubrica.name)}</Tag>
-								{/snippet}
-							</AccordionHeaderClickable>
-
-							<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(rubrica.id)}>
-								{#each rubrica.criterios as criterio (criterio.id)}
-									<AccordionContentItem
-										isVisible={accordions.isOpen(rubrica.id)}
-										value={criterio.criterio}
-									/>
-								{/each}
-							</AccordionContent>
-							<AccordionFooter>
-								<Button
-									isDisabled={selectAutoevaluacionRevisionButtonConfig(
-										rubrica,
-										item.metadata.originalScore!,
-										item.metadata.score
-									).isDisabled}
-									onClick={() =>
-										onClickSeleccionar(appendScoreAndName(item, rubrica.rangeStart, rubrica.name))}
-									variant="outline"
-									name={selectAutoevaluacionRevisionButtonConfig(
-										rubrica,
-										item.metadata.originalScore!,
-										item.metadata.score
-									).icon}
-									>{selectAutoevaluacionRevisionButtonConfig(
-										rubrica,
-										item.metadata.originalScore!,
-										item.metadata.score
-									).label}</Button
+					{#if showRubricaListSection(item)}
+						<!-- Listado de rubricas 1 al 5 -->
+						{#each rubricaItems as rubrica (rubrica.id)}
+							<AccordionSection>
+								<AccordionHeaderClickable
+									id="acc-{rubrica.id}"
+									isVisible={accordions.isOpen(rubrica.id)}
+									onToggle={() => accordions.toggle(rubrica.id)}
 								>
-							</AccordionFooter>
-						</AccordionSection>
-					{/each}
+									{#snippet title()}
+										<p class="text-caption">Nivel {rubrica.order}</p>
+										<Tag class="text-h6" variant="info">{capitalizeText(rubrica.name)}</Tag>
+									{/snippet}
+								</AccordionHeaderClickable>
+
+								<AccordionContent isCollapsible={true} isVisible={accordions.isOpen(rubrica.id)}>
+									{#each rubrica.criterios as criterio (criterio.id)}
+										<AccordionContentItem
+											isVisible={accordions.isOpen(rubrica.id)}
+											value={criterio.criterio}
+										/>
+									{/each}
+								</AccordionContent>
+								<AccordionFooter>
+									<Button
+										isDisabled={selectAutoevaluacionRevisionButtonConfig(rubrica, item).isDisabled}
+										onClick={() =>
+											onClickSeleccionar(
+												appendScoreAndName(item, rubrica.rangeStart, rubrica.name)
+											)}
+										variant="outline"
+										name={selectAutoevaluacionRevisionButtonConfig(rubrica, item).icon}
+										>{selectAutoevaluacionRevisionButtonConfig(rubrica, item).label}</Button
+									>
+								</AccordionFooter>
+							</AccordionSection>
+						{/each}
+					{/if}
 
 					<AccordionFooter class="accordion-footer">
 						<Button
 							variant="outline"
-							isDisabled={false}
+							isDisabled={isEvaluacionEtapaIndicadorActionDisabled(item.status, 'upload').disabled}
 							name="upload"
-							onClick={() => onClickFinish(item)}>Confirmar</Button
+							onClick={() => onClickConfirm(item)}>Confirmar</Button
+						>
+						<Button
+							variant="outline"
+							isDisabled={isEvaluacionEtapaIndicadorActionDisabled(item.status, 'edit_feedback')
+								.disabled}
+							name="feedback"
+							onClick={() => onClickFeedback(item)}>Retroalimentar</Button
 						>
 					</AccordionFooter>
 				</Accordion>
