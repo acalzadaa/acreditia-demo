@@ -657,8 +657,7 @@
 			"metadata": {
 				"code": "autoevaluacion-revision",
 				"originalScore": 4,
-				"originalName": "competente",
-				"comment": "Cumplio con los criterios del nivel"
+				"originalName": "competente"
 			},
 			"status": "in_process",
 			"version": 1,
@@ -704,7 +703,98 @@
 				"originalName": "competente",
 				"name": "suficiente"
 			},
-			"status": "in_process",
+			"status": "ready",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "5677e0f1-c914-42ba-9fe7-8abdbdbdffc5",
+			"code": "2025-3-revision-ind-001-CAMPUS-SALT-002",
+			"evaluacion": {
+				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+				"code": "2025-3",
+				"name": "Invierno 2025"
+			},
+			"etapa": {
+				"order": 5,
+				"code": "autoevaluacion-revision",
+				"name": "Revision de autoevaluacion"
+			},
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"campus": {
+				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+				"code": "CAMPUS-SALT-002",
+				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
+			"metadata": {
+				"code": "autoevaluacion-revision",
+				"originalScore": 4,
+				"score": 3,
+				"originalName": "competente",
+				"name": "suficiente",
+				"comment": "El documento de retencion no representa la realidad"
+			},
+			"status": "feedback_in_progress",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-01T10:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "18cb9544-dc46-480b-8a3a-ae48d55fb317",
+			"code": "2025-3-revision-ind-001-CAMPUS-SALT-002",
+			"evaluacion": {
+				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
+				"code": "2025-3",
+				"name": "Invierno 2025"
+			},
+			"etapa": {
+				"order": 5,
+				"code": "autoevaluacion-revision",
+				"name": "Revision de autoevaluacion"
+			},
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"campus": {
+				"id": "50af0ff9-38f3-4f06-b161-9b9edf9dd3cd",
+				"code": "CAMPUS-SALT-002",
+				"name": "Campus Saltillo"
+			},
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "fic-001",
+				"name": "facultad de ingeniería y ciencias aplicadas"
+			},
+			"metadata": {
+				"code": "autoevaluacion-revision",
+				"originalScore": 4,
+				"score": 3,
+				"originalName": "competente",
+				"name": "suficiente",
+				"comment": "El documento de retencion no representa la realidad",
+				"feedback": "El usuario necesita tomar un curso de Administracion de procesos"
+			},
+			"status": "feedback_ready",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-01-01T00:00:00Z",

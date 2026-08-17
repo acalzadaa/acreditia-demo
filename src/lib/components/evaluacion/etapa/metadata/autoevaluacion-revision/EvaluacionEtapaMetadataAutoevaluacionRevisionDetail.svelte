@@ -8,6 +8,7 @@
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import { createModalManager } from '$lib/utils/modalManager.svelte';
 	import EvaluacionEtapaAutoevaluacionRevisionDetail from './EvaluacionEtapaAutoevaluacionRevisionDetail.svelte';
+	import RetroalimentarEtapaAutoevaluacionRevisionForm from './RetroalimentarEtapaAutoevaluacionRevisionForm.svelte';
 	import SeleccionarEtapaAutoevaluacionRevisionForm from './SeleccionarEtapaAutoevaluacionRevisionForm.svelte';
 
 	interface Props {
@@ -26,7 +27,8 @@
 	items={evaluacionRevisionItems}
 	{rubricaItems}
 	onClickSeleccionar={(item) => modalEvaluacionRevision.handlers('select').onClickItem(item)}
-	onClickFinish={(item) => modalEvaluacionRevision.handlers('finish').onClickItem(item)}
+	onClickConfirm={(item) => modalEvaluacionRevision.handlers('confirm').onClickItem(item)}
+	onClickFeedback={(item) => modalEvaluacionRevision.handlers('feedback').onClickItem(item)}
 />
 
 {#if modalEvaluacionRevision.selectedItem}
@@ -37,10 +39,15 @@
 	/>
 	<ConfirmModal
 		demo={true}
-		open={modalEvaluacionRevision.isOpen('finish')}
+		open={modalEvaluacionRevision.isOpen('confirm')}
 		id={modalEvaluacionRevision.selectedItem.id}
 		onClose={modalEvaluacionRevision.close}
-		message="¿Desea confirmar la revisión de la autoevalución?"
+		message="¿Desea confirmar la revisión de la autoevalución? Una vez confirmada la selección ya no podrá hacer cambios."
 		buttonLabel="Confirmar"
+	/>
+	<RetroalimentarEtapaAutoevaluacionRevisionForm
+		open={modalEvaluacionRevision.isOpen('feedback')}
+		selectedItem={modalEvaluacionRevision.selectedItem}
+		onClose={modalEvaluacionRevision.close}
 	/>
 {/if}

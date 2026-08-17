@@ -2,6 +2,7 @@ import { isRubricaRange } from '$lib/components/common/utils/rubricaUtils';
 import type { IconName } from '$lib/components/ui/Icon.svelte';
 import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 import type { RubricaItem } from '$lib/schemas/rubrica.schema';
+import type { EvaluacionRevisionIndicadorItem } from '../etapa/metadata/autoevaluacion-revision/EvaluacionEtapaAutoevaluacionRevisionDetail.svelte';
 
 interface AutoevaluacionButtonConfig {
 	label: string;
@@ -32,10 +33,9 @@ export function selectAutoevaluacionEjecucionButtonConfig(
 
 export function selectAutoevaluacionRevisionButtonConfig(
 	rubrica: RubricaItem,
-	originalScore: number,
-	newScore?: number
+	item: EvaluacionRevisionIndicadorItem
 ): AutoevaluacionButtonConfig {
-	/** Hay 4 casos:
+	/** Hay 5 casos:
 	 * 1) rubrica.startRange es diferente que originalScore y score
 	 * Label = 'seleccionar'
 	 * 2) rubrica.startRange es igual a originalScore pero score es null.
@@ -47,21 +47,41 @@ export function selectAutoevaluacionRevisionButtonConfig(
 	 * 4) rubrica.startRange es igual a score y a originalScore.
 	 * Label = 'seleccionado'
 	 * isDisabled = true
+	 * 5) status = 'feedback-in-progress' o 'feedback-ready'
+	 * isDisabled = true
 	 */
 
-	if (!isRubricaRange(rubrica, originalScore ?? 0) && !isRubricaRange(rubrica, newScore ?? 0)) {
-		return { label: 'Seleccionar', isDisabled: false };
-	} else if (isRubricaRange(rubrica, originalScore ?? 0) && newScore !== originalScore) {
-		return { label: 'Seleccionado', isDisabled: true };
-	} else if (isRubricaRange(rubrica, newScore ?? 0) && newScore !== originalScore) {
-		return { label: 'Revisado', isDisabled: true, icon: 'check' };
-	} else if (
-		isRubricaRange(rubrica, originalScore ?? 0) &&
-		isRubricaRange(rubrica, newScore ?? 0)
+	let returnConfig: AutoevaluacionButtonConfig = { label: 'Seleccionar', isDisabled: false };
+
+	if (
+		!isRubricaRange(rubrica, item.metadata.originalScore ?? 0) &&
+		!isRubricaRange(rubrica, item.metadata.score ?? 0)
 	) {
-		return { label: 'Seleccionado', isDisabled: true, icon: 'check' };
+		returnConfig = { label: 'Seleccionar', isDisabled: false };
+	} else if (
+		isRubricaRange(rubrica, item.metadata.originalScore ?? 0) &&
+		item.metadata.score !== item.metadata.originalScore
+	) {
+		returnConfig = { label: 'Seleccionado', isDisabled: true };
+	} else if (
+		isRubricaRange(rubrica, item.metadata.score ?? 0) &&
+		item.metadata.originalScore !== item.metadata.score
+	) {
+		returnConfig = { label: 'Revisado', isDisabled: true, icon: 'check' };
+	} else if (
+		isRubricaRange(rubrica, item.metadata.originalScore ?? 0) &&
+		isRubricaRange(rubrica, item.metadata.score ?? 0)
+	) {
+		returnConfig = { label: 'Seleccionado', isDisabled: true, icon: 'check' };
 	}
-	return { label: 'Seleccionar', isDisabled: false };
+
+	if (item.status === 'feedback_in_progress' || item.status === 'completed') {
+		returnConfig = {
+			...returnConfig,
+			isDisabled: true
+		};
+	}
+	return returnConfig;
 }
 
 export function appendScoreAndName(
