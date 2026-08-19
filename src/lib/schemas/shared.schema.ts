@@ -30,6 +30,10 @@ export const auditMetadataSchema = z.object({
 	createdBy: z.string()
 });
 
+export const fileSchema = z.object({
+	file: z.instanceof(File).refine((f) => f.size > 0, 'El archivo está vacío')
+});
+
 export type AuditMetadata = z.infer<typeof auditMetadataSchema>;
 
 // Base reference schema
@@ -70,14 +74,17 @@ export type CampusRef = z.infer<typeof campusRefSchema>;
 export const unidadAcademicaRefSchema = baseRefSchema;
 export type UnidadAcademicaRef = z.infer<typeof unidadAcademicaRefSchema>;
 
-export const JOB_TYPE = ['funcional', 'responsable', 'region'] as const;
+export const JOB_SCOPE = ['funcional', 'responsable', 'region'];
+export const JOB_TYPE = ['directivo', 'operativo', 'administrativo'];
 
 export const puestoRefSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	name: z.string(),
+	scope: z.enum(JOB_SCOPE),
 	type: z.enum(JOB_TYPE)
 });
+
 export type PuestoRef = z.infer<typeof puestoRefSchema>;
 
 export const areaFuncionalRefSchema = baseRefSchema;

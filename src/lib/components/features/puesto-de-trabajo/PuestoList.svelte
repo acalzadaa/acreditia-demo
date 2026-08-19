@@ -62,8 +62,9 @@
 						<tr>
 							<th class="col-label">Código</th>
 							<th class="col-label">Puesto</th>
-							<th class="col-label">Departamento</th>
+							<th class="col-code">Ambito</th>
 							<th class="col-code">Tipo</th>
+
 							<th class="col-text">Descripción</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
@@ -74,7 +75,7 @@
 							<tr>
 								<td class="col-label">{item.code}</td>
 								<td class="col-label">{item.name}</td>
-								<td class="col-label">{item.reference.name}</td>
+								<td class="col-code">{item.scope}</td>
 								<td class="col-code">{item.type}</td>
 								<td class="col-text">{item.description}</td>
 								<td class="col-badge">
@@ -124,7 +125,7 @@
 						</CardHeader>
 
 						<CardContent>
-							<CardContentItem label="Departamento" value={item.reference.name} />
+							<CardContentItem label="Ámbito del puesto" value={item.scope} />
 							<CardContentItem label="Tipo de puesto" value={item.type} />
 							<CardContentItem label="Descripción" value={item.description} />
 						</CardContent>

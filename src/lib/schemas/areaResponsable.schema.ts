@@ -54,8 +54,7 @@ export const areaResponsableWithRelationsItemSchema = areaResponsableItemSchema.
 		.nullable()
 		.optional(),
 	institucion: institucionItemSchema.omit({
-		entidadLegal: true,
-		entidadLegalId: true
+		entidadLegal: true
 	})
 });
 
