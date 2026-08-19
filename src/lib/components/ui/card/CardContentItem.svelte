@@ -2,6 +2,7 @@
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import type { Snippet } from 'svelte';
 	import Button from '../Button.svelte';
+	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
 
 	interface Props {
 		label: string;
@@ -44,7 +45,7 @@
 		{#if children}
 			{@render children?.()}
 		{:else}
-			{value}
+			{capitalizeText(value)}
 		{/if}
 	</p>
 	{#if isOverflowing || expandedToggle.value}

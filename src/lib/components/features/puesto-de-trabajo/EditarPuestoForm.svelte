@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	
+
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import { jobTypeOptions, puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
+	import { puestoItemSchema, type PuestoItem } from '$lib/schemas/puesto.schema';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
@@ -10,6 +10,7 @@
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import { jobScopeOptions, jobTypeOptions } from './utils/puesto';
 
 	interface Props {
 		open: boolean;
@@ -97,7 +98,16 @@
 					/>
 
 					<InputSelect
-						label="Tipo"
+						label="Ámbito del puesto"
+						name="scope"
+						optionsData={jobScopeOptions}
+						required={true}
+						bind:value={$form.scope}
+						errors={$errors.scope}
+					/>
+
+					<InputSelect
+						label="Tipo de puesto"
 						name="type"
 						optionsData={jobTypeOptions}
 						required={true}

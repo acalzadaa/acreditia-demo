@@ -1,14 +1,5 @@
-import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
-import { auditMetadataSchema, baseRefSchema, JOB_TYPE } from './shared.schema';
-
-export const ESTATUS = ['activo', 'inactivo', 'borrado'] as const;
-
-export const jobTypeOptions: OptionData[] =
-	JOB_TYPE.map((v) => ({
-		id: v,
-		option: v.toUpperCase()
-	})) ?? [];
+import { auditMetadataSchema, baseRefSchema, JOB_SCOPE, JOB_TYPE } from './shared.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -23,8 +14,8 @@ export const puestoFormSchema = z.object({
 		.string()
 		.min(1, 'El nombre es obligatorio')
 		.max(255, 'El nombre debe tener máximo 255 caracteres'),
-	type: z.enum(JOB_TYPE).default('responsable'),
-	referenceId: z.uuid(),
+	type: z.enum(JOB_TYPE),
+	scope: z.enum(JOB_SCOPE),
 	description: z.string().default('')
 });
 
@@ -35,8 +26,8 @@ export type PuestoForm = z.infer<typeof puestoFormSchema>;
 // ============================================
 export const puestoItemSchema = z
 	.object({
+		scope: z.enum(JOB_SCOPE),
 		type: z.enum(JOB_TYPE),
-		reference: baseRefSchema, //los datos ref de la area responsable, funcional o region
 		description: z.string().default('')
 	})
 	.extend(baseRefSchema.shape)

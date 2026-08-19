@@ -29,7 +29,7 @@
 		onClickRemoverChild,
 		onClickAdd,
 		onClickAddChild,
-		title = 'Listado de areas funcionales',
+		title = 'Listado de áreas funcionales',
 		subtitle = ''
 	}: Props = $props();
 

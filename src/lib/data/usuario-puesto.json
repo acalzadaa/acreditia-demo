@@ -7,7 +7,8 @@
 				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
 				"code": "DIR_CALIDAD",
 				"name": "Director de Calidad y Acreditación",
-				"type": "funcional"
+				"scope": "funcional",
+				"type": "operativo"
 			},
 			"version": 1,
 			"isCurrent": true,
@@ -24,7 +25,8 @@
 				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
 				"code": "DIR_CALIDAD",
 				"name": "Director de Calidad y Acreditación",
-				"type": "funcional"
+				"scope": "funcional",
+				"type": "operativo"
 			},
 			"version": 1,
 			"isCurrent": true,
@@ -41,7 +43,8 @@
 				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
 				"code": "DIR_CALIDAD",
 				"name": "Director de Calidad y Acreditación",
-				"type": "funcional"
+				"scope": "funcional",
+				"type": "operativo"
 			},
 			"version": 1,
 			"isCurrent": true,

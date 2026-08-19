@@ -6,7 +6,7 @@
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
-	import { jobTypeOptions } from '$lib/schemas/puesto.schema';
+	import { jobScopeOptions, jobTypeOptions } from './utils/puesto';
 
 	interface Props {
 		open: boolean;
@@ -20,6 +20,7 @@
 		code: '',
 		name: '',
 		type: '',
+		scope: '',
 		referenceId: '',
 		level: '',
 		description: ''
@@ -52,6 +53,7 @@
 			type: '',
 			referenceId: '',
 			level: '',
+			scope: '',
 			description: ''
 		};
 
@@ -68,6 +70,7 @@
 			code: '',
 			name: '',
 			type: '',
+			scope: '',
 			referenceId: '',
 			level: '',
 			description: ''
@@ -137,6 +140,15 @@
 						disabled={false}
 						bind:value={formData.name}
 						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
+					/>
+
+					<InputSelect
+						label="Ámbito de puesto"
+						name="scope"
+						optionsData={jobScopeOptions}
+						required={true}
+						bind:value={formData.scope}
+						errors={errorMessage && !formData.scope ? [errorMessage] : undefined}
 					/>
 
 					<InputSelect
