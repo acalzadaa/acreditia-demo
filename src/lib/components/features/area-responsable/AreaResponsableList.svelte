@@ -36,7 +36,7 @@
 		onClickExport,
 		onClickFilter,
 		showHeader = true,
-		title = 'Listado de areas responsables',
+		title = 'Listado de áreas responsables',
 		subtitle = ''
 	}: Props = $props();
 </script>

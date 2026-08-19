@@ -29,7 +29,7 @@
 		onClickRemoverChild,
 		onClickAdd,
 		onClickAddChild,
-		title = 'Listado de areas responsables',
+		title = 'Listado de áreas responsables',
 		subtitle = ''
 	}: Props = $props();
 
