@@ -1,6 +1,66 @@
 {
 	"areaResponsableItems": [
 		{
+			"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+			"code": "RH-I",
+			"name": "Direccion de Recursos Humanos",
+			"description": "Responsable de los recursos humanos",
+			"parent": null,
+			"type": "global",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+			"code": "RECTORIA",
+			"name": "Rectoria",
+			"description": "Autoridad maxima del campus",
+			"parent": null,
+			"type": "global",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+			"code": "DIR_SE",
+			"name": "Direccion de servicios escolares",
+			"description": "Direccion de soporte a asuntos educativos",
+			"parent": null,
+			"type": "campus",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+			"code": "FAC_ING",
+			"name": "Facultad de Ingenieria",
+			"description": "Autoridad de las escuelas relacionadas con Ingenieria",
+			"parent": null,
+			"type": "unidad_academica",
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
 			"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 			"code": "AR_DIR_CAMPUS",
 			"name": "Dirección del Campus",
@@ -11,6 +71,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -34,6 +95,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -57,6 +119,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -80,6 +143,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -103,6 +167,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -126,6 +191,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -149,6 +215,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -172,6 +239,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -195,6 +263,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -218,6 +287,7 @@
 				"code": "IA-001",
 				"name": "Universidad Tecnológica del Norte"
 			},
+			"type": "global",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",

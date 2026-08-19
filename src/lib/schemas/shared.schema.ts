@@ -53,7 +53,10 @@ export const campusAreaResponsableRefSchema = z.object({
 });
 export type CampusAreaResponsableRef = z.infer<typeof campusAreaResponsableRefSchema>;
 
-export const areaResponsableRefSchema = baseRefSchema;
+export const AREA_RESPONSABLE_TYPE = ['campus', 'unidad_academica'];
+export const areaResponsableRefSchema = baseRefSchema.extend({
+	type: z.enum(AREA_RESPONSABLE_TYPE)
+});
 export type AreaResponsableRef = z.infer<typeof areaResponsableRefSchema>;
 
 export const seccionRefSchema = baseRefSchema;
@@ -77,10 +80,7 @@ export type UnidadAcademicaRef = z.infer<typeof unidadAcademicaRefSchema>;
 export const JOB_SCOPE = ['funcional', 'responsable', 'region'];
 export const JOB_TYPE = ['directivo', 'operativo', 'administrativo'];
 
-export const puestoRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
+export const puestoRefSchema = baseRefSchema.extend({
 	scope: z.enum(JOB_SCOPE),
 	type: z.enum(JOB_TYPE)
 });

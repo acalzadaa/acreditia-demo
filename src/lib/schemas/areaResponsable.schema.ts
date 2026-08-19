@@ -1,5 +1,9 @@
 import { z } from 'zod';
-import { areaResponsableRefSchema, institucionRefSchema } from './shared.schema';
+import {
+	AREA_RESPONSABLE_TYPE,
+	areaResponsableRefSchema,
+	institucionRefSchema
+} from './shared.schema';
 import { institucionItemSchema } from './institucion.schema';
 
 // ============================================
@@ -11,7 +15,6 @@ import { institucionItemSchema } from './institucion.schema';
 // ============================================
 export const areaResponsableFormSchema = z.object({
 	id: z.uuid().optional(),
-	institucionId: z.uuid({ message: 'La institucion es requerida' }),
 	code: z.string().min(1, 'El código es requerido'),
 	name: z.string().min(1, 'El nombre es requerido'),
 	description: z.string().default(''),
@@ -31,8 +34,9 @@ export const areaResponsableItemSchema = z.object({
 	name: z.string(),
 	description: z.string().default(''),
 
-	institucion: institucionRefSchema,
+	institucion: institucionRefSchema.optional(), //DEPRECATED
 	parent: areaResponsableRefSchema.nullable(),
+	type: z.enum(AREA_RESPONSABLE_TYPE),
 
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
