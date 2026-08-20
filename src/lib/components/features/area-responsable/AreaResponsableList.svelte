@@ -1,9 +1,9 @@
 <script lang="ts">
-	import ListActions from '$lib/components/actions/ListActions.svelte';
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
 	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
+	import Actions from '$lib/components/ui/Actions.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
@@ -11,6 +11,7 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
+	import { navigateTo } from '$lib/helpers/navigation';
 	import type { AreaResponsableItem } from '$lib/schemas/areaResponsable.schema';
 
 	interface Props {
@@ -63,9 +64,10 @@
 						<tr>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
-							<th class="col-code">Type</th>
+							<th class="col-label">Type</th>
 							<th class="col-text">Descripción</th>
 							<th class="col-label">Reporta a</th>
+							<th class="col-metric">Total de puestos</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
 						</tr>
@@ -78,20 +80,27 @@
 								<td class="col-label">{capitalizeText(item.type)}</td>
 								<td class="col-text">{item.description}</td>
 								<td class="col-label">{item.parent?.name}</td>
+								<td class="col-metric">{item.totalPuestos}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
 									</Badge>
 								</td>
 								<td class="col-actions-md">
-									<ListActions
+									<Actions
 										{item}
-										onClickDelete={() => onClickEditar(item)}
-										isDeleteDisabled={item.isDeleted}
-										onClickEdit={() => onClickBorrar(item)}
-										isEditDisabled={item.isDeleted}
+										onClickDetail={() => navigateTo(item.code)}
+										isDetailDisabled={false}
+										showDetail={true}
+										onClickEdit={() => onClickEditar(item)}
+										isEditDisabled={false}
+										showEdit={true}
+										onClickDelete={() => onClickBorrar(item)}
+										isDeleteDisabled={false}
+										showDelete={true}
 										onClickRestore={() => onClickRestaurar(item)}
-										isRestoreDisabled={!item.isDeleted}
+										isRestoreDisabled={true}
+										showRestore={true}
 									/>
 								</td>
 							</tr>
@@ -115,7 +124,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1899px">
+			<CardColumn minWidth="360px" maxWidth="3500px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.code} title={item.name}>
@@ -130,17 +139,26 @@
 							{#if item.parent?.name}
 								<CardContentItem label="Depende de" value={item.parent?.name} />
 							{/if}
+							<CardContentItem label="Total de puestos">
+								{item.totalPuestos}
+							</CardContentItem>
 						</CardContent>
 
 						<CardFooter>
-							<ListActions
+							<Actions
 								{item}
+								onClickDetail={() => navigateTo(item.code)}
+								isDetailDisabled={false}
+								showDetail={true}
 								onClickEdit={() => onClickEditar(item)}
-								isEditDisabled={item.isDeleted}
+								isEditDisabled={false}
+								showEdit={true}
 								onClickDelete={() => onClickBorrar(item)}
-								isDeleteDisabled={item.isDeleted}
+								isDeleteDisabled={false}
+								showDelete={true}
 								onClickRestore={() => onClickRestaurar(item)}
-								isRestoreDisabled={!item.isDeleted}
+								isRestoreDisabled={true}
+								showRestore={true}
 							/>
 						</CardFooter>
 					</Card>
@@ -164,7 +182,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1900px) {
+	@media (max-width: 3500px) {
 		.list-view--table {
 			display: none;
 		}

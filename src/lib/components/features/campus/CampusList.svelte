@@ -37,7 +37,7 @@
 		onClickExport,
 		onClickFilter,
 		showHeader = true,
-		title = 'Listado de instituciones',
+		title = 'Listado de campus',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -62,8 +62,10 @@
 					<thead class="text-body-strong">
 						<tr>
 							<th class="col-code">Institucion</th>
-							<th class="col-code">Código</th>
+							<th class="col-label">Código</th>
 							<th class="col-label">Nombre</th>
+							<th class="col-metrics">Total áreas responsables</th>
+							<th class="col-metrics">Total unidades académicas</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
 						</tr>
@@ -75,8 +77,10 @@
 								<td class="col-code">
 									{item.institucion?.code}
 								</td>
-								<td class="col-code">{item.code}</td>
+								<td class="col-label">{item.code}</td>
 								<td class="col-label">{item.name}</td>
+								<td class="col-metrics">{item.totalAreaResponsable}</td>
+								<td class="col-metrics">{item.totalUnidadAcademica}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
@@ -108,7 +112,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			actionTitle="Nueva entidad"
+			actionTitle="Nuevo campus"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -127,6 +131,12 @@
 
 						<CardContent>
 							<CardContentItem label="Institucion" value={item.institucion?.code} />
+							<CardContentItem label="Total de áreas responsables">
+								{item.totalAreaResponsable}
+							</CardContentItem>
+							<CardContentItem label="Total de unidades académicas">
+								{item.totalUnidadAcademica}
+							</CardContentItem>
 						</CardContent>
 
 						<CardFooter>

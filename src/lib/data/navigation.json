@@ -223,7 +223,7 @@
 				{
 					"id": 601,
 					"order": 61,
-					"label": "Planeacion",
+					"label": "Planeación",
 					"href": "/evaluacion-planeacion",
 					"description": "Administra un nuevo ciclo de evaluación",
 					"itemType": "link",

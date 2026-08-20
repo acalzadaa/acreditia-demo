@@ -21,7 +21,7 @@
 	<EvaluacionList
 		items={evaluacionItems}
 		title='Listado de evaluaciones'
-		subtitle='Planeacion'
+		subtitle='Planeación'
 		onClickEditar={modal.handlers('edit').onClickItem}
 		onClickBorrar={modal.handlers('delete').onClickItem}
 		onClickRestaurar={modal.handlers('restore').onClickItem}

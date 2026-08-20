@@ -3,7 +3,7 @@ interface CapitalizeOptions {
 	keepCaps?: boolean;
 }
 
-export function capitalizeText(text: string, options: CapitalizeOptions = {}) {
+export function capitalizeText(text?: string, options: CapitalizeOptions = {}) {
 	const { allWords = false, keepCaps = false } = options;
 	if (!text) return '';
 
