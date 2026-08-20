@@ -34,7 +34,7 @@
 		onClickExport,
 		onClickFilter,
 		showHeader = true,
-		title = 'Listado de unidades academicas',
+		title = 'Listado de unidades académicas',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -46,7 +46,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			actionTitle="Nueva unidad academica"
+			actionTitle="Nueva unidad académica"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -99,7 +99,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			actionTitle="Nueva unidad academica"
+			actionTitle="Nueva unidad académica"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

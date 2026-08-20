@@ -98,7 +98,7 @@
 				{/if}
 				<div class="form-fields">
 					<InputSelect
-						label="Planeacion Estrategica"
+						label="Planeación Estratégica"
 						name="planeacionId"
 						optionsData={planeacionesOptions}
 						required={true}
@@ -129,7 +129,7 @@
 					/>
 
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
 						placeholder="Descripcion..."
 						bind:value={$form.description}

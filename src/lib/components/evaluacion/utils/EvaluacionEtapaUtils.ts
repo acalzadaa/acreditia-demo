@@ -75,7 +75,7 @@ const EVALUACION_ETAPA_STATUS_TO_BADGE_CONFIG: Record<
 		evaluacionStatus: 'ready',
 		badgeStatus: 'success',
 		icon: 'check',
-		label: 'Planeacion completa'
+		label: 'Planeación completa'
 	},
 	pending: { evaluacionStatus: 'pending', badgeStatus: 'info', icon: 'check', label: 'En espera' },
 	active: {

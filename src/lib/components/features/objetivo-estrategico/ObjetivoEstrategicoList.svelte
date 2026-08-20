@@ -37,7 +37,7 @@
 		onClickFilter,
 
 		showHeader = true,
-		title = 'Listado de objetivos estrategicos',
+		title = 'Listado de objetivos estratégicos',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -61,7 +61,7 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Planeacion</th>
+							<th class="col-code">Planeación</th>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Descripción</th>
@@ -116,7 +116,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1499px">
+			<CardColumn minWidth="360px" maxWidth="1740px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.code} title={item.name}>
@@ -126,7 +126,7 @@
 						</CardHeader>
 
 						<CardContent>
-							<CardContentItem label="Planeacion" value={item.planeacion?.code} />
+							<CardContentItem label="Planeación" value={item.planeacion?.code} />
 							<CardContentItem label="Descripción" value={item.description} />
 						</CardContent>
 
@@ -162,7 +162,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1499px) {
+	@media (max-width: 1740px) {
 		.list-view--table {
 			display: none;
 		}

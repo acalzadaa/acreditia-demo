@@ -3,8 +3,9 @@ import { z } from 'zod';
 import { baseRefSchema } from './shared.schema';
 import { seccionItemSchema } from './seccion.schema';
 
-/* Especifico es especifico de una unidad academica, mientras que campus
-esta relacionada con todo el campus y las unidades academicas que lo componen*/
+/* Especifico es especifico de un area responsable de un campus, 
+mientras que campus
+esta relacionada con todo el campus y, las areas responsables y unidades academicas que lo componen*/
 export const INDICADOR_TYPE = ['campus', 'especifico'] as const;
 
 export const indicadorTypeOptions: OptionData[] =

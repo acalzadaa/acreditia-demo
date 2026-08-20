@@ -123,7 +123,9 @@
 
 						<CardContent>
 							<CardContentItem label="Descripción" value={item.description} />
-							<CardContentItem label="Depende de" value={item.parent?.name} />
+							{#if item.parent?.name}
+								<CardContentItem label="Depende de" value={item.parent?.name} />
+							{/if}
 						</CardContent>
 
 						<CardFooter>
