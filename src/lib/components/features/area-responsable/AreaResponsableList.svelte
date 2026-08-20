@@ -62,6 +62,7 @@
 						<tr>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
+							<th class="col-code">Type</th>
 							<th class="col-text">Descripción</th>
 							<th class="col-label">Reporta a</th>
 							<th class="col-badge">Estatus</th>
@@ -73,6 +74,7 @@
 							<tr class="table-row tr-expandable">
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
+								<td class="col-label">{item.type}</td>
 								<td class="col-text">{item.description}</td>
 								<td class="col-label">{item.parent?.name}</td>
 								<td class="col-badge">
@@ -122,8 +124,11 @@
 						</CardHeader>
 
 						<CardContent>
+							<CardContentItem label="Tipo de área" value={item.type} />
 							<CardContentItem label="Descripción" value={item.description} />
-							<CardContentItem label="Depende de" value={item.parent?.name} />
+							{#if item.parent?.name}
+								<CardContentItem label="Depende de" value={item.parent?.name} />
+							{/if}
 						</CardContent>
 
 						<CardFooter>

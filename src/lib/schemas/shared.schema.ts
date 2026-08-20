@@ -30,19 +30,21 @@ export const auditMetadataSchema = z.object({
 	createdBy: z.string()
 });
 
-export const fileSchema = z.object({
-	file: z.instanceof(File).refine((f) => f.size > 0, 'El archivo está vacío')
-});
-
 export type AuditMetadata = z.infer<typeof auditMetadataSchema>;
 
 // Base reference schema
 export const baseRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string()
+	id: z.uuid(), //id de una version especifica
+	uniqueId: z.uuid().optional(), //id unico de un grupo de versiones
+	code: z.string(), //usar este code solo para UI
+	slug: z.string().optional(), //implementar este slug como version modificada de code para mostrar en url
+	name: z.string() //usar este nombre para mostrar en UI
 });
 export type BaseRef = z.infer<typeof baseRefSchema>;
+
+export const fileSchema = z.object({
+	file: z.instanceof(File).refine((f) => f.size > 0, 'El archivo está vacío')
+});
 
 export const regionRefSchema = baseRefSchema;
 export type RegionRef = z.infer<typeof regionRefSchema>;
@@ -53,7 +55,7 @@ export const campusAreaResponsableRefSchema = z.object({
 });
 export type CampusAreaResponsableRef = z.infer<typeof campusAreaResponsableRefSchema>;
 
-export const AREA_RESPONSABLE_TYPE = ['campus', 'unidad_academica'];
+export const AREA_RESPONSABLE_TYPE = ['global', 'campus', 'unidad academica'];
 export const areaResponsableRefSchema = baseRefSchema.extend({
 	type: z.enum(AREA_RESPONSABLE_TYPE)
 });

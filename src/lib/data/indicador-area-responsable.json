@@ -9,6 +9,7 @@
 				"name": "Tasa de Retención Estudiantil"
 			},
 			"areaResponsable": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"

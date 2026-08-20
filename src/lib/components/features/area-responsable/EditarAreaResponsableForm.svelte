@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
-	
+
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
 		areaResponsableFormSchema,
+		areaResponsableTypeOptions,
 		type AreaResponsableItem
 	} from '$lib/schemas/areaResponsable.schema';
 	import type { AreaResponsableRef, InstitucionRef } from '$lib/schemas/shared.schema';
@@ -25,15 +26,6 @@
 
 	let { open = $bindable(false), onClose, ...props }: Props = $props();
 
-	
-
-	let institucionOptions = $derived(
-		props.institucionRef?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
-
 	const areaResponsableOptions = $derived(
 		props.areaResponsableRef?.map((ref) => ({
 			id: ref.id,
@@ -51,7 +43,7 @@
 			code: props.selectedItem.code,
 			name: props.selectedItem.name,
 			description: props.selectedItem.description,
-			institucionId: props.selectedItem.institucion.id,
+			type: props.selectedItem.type,
 			parentId: props.selectedItem.parent?.id ?? '',
 			createdBy: props.selectedItem.createdBy
 		},
@@ -91,7 +83,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar area responsable</h2>
+			<h2 class="modal-title text-h4">Editar área responsable</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -115,18 +107,6 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelect
-						label="Institucion"
-						name="institucionId"
-						optionsData={institucionOptions}
-						required={true}
-						bind:value={$form.institucionId}
-						errors={$errors.institucionId}
-						{...$constraints.institucionId}
-					/>
-
-					
-
 					<InputText
 						label="Nombre"
 						name="name"
@@ -137,23 +117,30 @@
 						bind:value={$form.name}
 						errors={$errors.name}
 					/>
-
+					<InputSelect
+						label="Tipo de área"
+						name="type"
+						optionsData={areaResponsableTypeOptions}
+						required={false}
+						bind:value={$form.type}
+						errors={$errors.parentId}
+						{...$constraints.parentId}
+					/>
+					<InputSelect
+						label="Reporta a"
+						name="parentId"
+						optionsData={areaResponsableOptions}
+						required={false}
+						bind:value={$form.parentId}
+						errors={$errors.parentId}
+						{...$constraints.parentId}
+					/>
 					<TextArea
 						label="Descripcion"
 						name="description"
 						placeholder="Descripcion..."
 						bind:value={$form.description}
 						rows={4}
-					/>
-
-					<InputSelect
-						label="Reporta a"
-						name="parentId"
-						optionsData={areaResponsableOptions}
-						required={true}
-						bind:value={$form.parentId}
-						errors={$errors.parentId}
-						{...$constraints.parentId}
 					/>
 				</div>
 			</div>

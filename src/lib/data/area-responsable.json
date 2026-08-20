@@ -16,7 +16,7 @@
 			"createdBy": "admin@system.com"
 		},
 		{
-			"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+			"id": "9f2b4f39-f1bc-4b63-ac02-ee6d89c7de9a",
 			"code": "RECTORIA",
 			"name": "Rectoria",
 			"description": "Autoridad maxima del campus",
@@ -31,7 +31,7 @@
 			"createdBy": "admin@system.com"
 		},
 		{
-			"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+			"id": "ac895bc0-7a76-4b25-bef6-73afdc20b527",
 			"code": "DIR_SE",
 			"name": "Direccion de servicios escolares",
 			"description": "Direccion de soporte a asuntos educativos",
@@ -46,12 +46,12 @@
 			"createdBy": "admin@system.com"
 		},
 		{
-			"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+			"id": "363c41af-140e-4af2-b028-00d45ca45bf4",
 			"code": "FAC_ING",
 			"name": "Facultad de Ingenieria",
 			"description": "Autoridad de las escuelas relacionadas con Ingenieria",
 			"parent": null,
-			"type": "unidad_academica",
+			"type": "unidad academica",
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -86,6 +86,7 @@
 			"name": "Dirección Académica",
 			"description": "Planeación y seguimiento de programas académicos, diseño curricular y evaluación docente.",
 			"parent": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"
@@ -110,6 +111,7 @@
 			"name": "Dirección de Calidad y Acreditación",
 			"description": "Gestión de la mejora continua, indicadores FIMPES, autoevaluación y seguimiento de planes de mejora.",
 			"parent": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"
@@ -134,6 +136,7 @@
 			"name": "Dirección Administrativa",
 			"description": "Gestión de recursos financieros, compras, servicios generales y mantenimiento.",
 			"parent": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"
@@ -158,6 +161,7 @@
 			"name": "Dirección de Recursos Humanos",
 			"description": "Administración del personal, desarrollo organizacional, clima laboral y capacitación.",
 			"parent": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"
@@ -182,6 +186,7 @@
 			"name": "Dirección de Tecnologías de Información",
 			"description": "Infraestructura tecnológica, sistemas académicos y administrativos, soporte técnico.",
 			"parent": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"
@@ -206,6 +211,7 @@
 			"name": "Dirección de Servicios Estudiantiles",
 			"description": "Atención a estudiantes, becas, tutorías, actividades extracurriculares y egresados.",
 			"parent": {
+				"type": "global",
 				"id": "9dd76dac-b1fb-4b71-8a8a-f3ef3b15e57a",
 				"code": "AR_DIR_ADMIN",
 				"name": "Dirección Administrativa"
@@ -230,6 +236,7 @@
 			"name": "Dirección de Investigación",
 			"description": "Fomento a la investigación, cuerpos académicos, laboratorios y publicaciones.",
 			"parent": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"
@@ -254,6 +261,7 @@
 			"name": "Dirección de Extensión y Vinculación",
 			"description": "Relación con sector externo, educación continua, vinculación empresarial y responsabilidad social.",
 			"parent": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"
@@ -278,6 +286,7 @@
 			"name": "Dirección de Internacionalización",
 			"description": "Movilidad estudiantil y docente, convenios internacionales, dobles titulaciones.",
 			"parent": {
+				"type": "global",
 				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
 				"code": "AR_DIR_CAMPUS",
 				"name": "Dirección del Campus"
