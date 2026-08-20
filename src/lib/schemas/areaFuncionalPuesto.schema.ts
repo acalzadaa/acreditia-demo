@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { areaFuncionalRefSchema, puestoRefSchema } from './shared.schema';
+import { baseRefSchema, puestoRefSchema } from './shared.schema';
 import { puestoItemSchema } from './puesto.schema';
 
 // ============================================
@@ -25,8 +25,8 @@ export const areaFuncionalPuestoItemSchema = z.object({
 	name: z.string(),
 	description: z.string().default(''),
 
-	areaFuncional: areaFuncionalRefSchema,
-	parent: areaFuncionalRefSchema.nullable(),
+	areaFuncional: baseRefSchema,
+	parent: baseRefSchema.nullable(),
 
 	puestos: z.array(puestoRefSchema.nullable()),
 

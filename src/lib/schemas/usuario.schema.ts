@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { auditMetadataSchema, campusRefSchema, puestoRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema, puestoRefSchema } from './shared.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -43,7 +43,7 @@ export const usuarioWithRelationsItemSchema = usuarioItemSchema.extend({
 		})
 		.optional(),
 	puestos: z.array(puestoRefSchema),
-	campus: z.array(campusRefSchema)
+	campus: z.array(baseRefSchema)
 });
 
 export type UsuarioWithRelationsItem = z.infer<typeof usuarioWithRelationsItemSchema>;

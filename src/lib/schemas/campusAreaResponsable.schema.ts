@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { areaResponsableWithRelationsItemSchema } from './areaResponsable.schema';
-import { areaResponsableRefSchema, campusRefSchema } from './shared.schema';
+import { areaResponsableRefSchema, baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA (Cliente ↔ Servidor)
@@ -19,7 +19,7 @@ export type CampusAreaResponsableForm = z.infer<typeof campusAreaResponsableForm
 // ============================================
 export const campusAreaResponsableItemSchema = z.object({
 	id: z.uuid(),
-	campus: campusRefSchema,
+	campus: baseRefSchema,
 	areaResponsable: areaResponsableRefSchema,
 	version: z.number().int().nonnegative().default(0),
 	isCurrent: z.boolean().default(true),

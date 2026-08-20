@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { evaluacionRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 import { evaluacionItemSchema } from './evaluacion.schema';
 import { etapaRefSchema } from './etapa.schema';
 
@@ -62,7 +62,7 @@ export type EtapaDateItem = z.infer<typeof etapaDateItemSchema>;
 export const evaluacionEtapaItemSchema = z.object({
 	id: z.uuid(),
 	evaluacionId: z.uuid(),
-	evaluacion: evaluacionRefSchema,
+	evaluacion: baseRefSchema,
 	etapa: etapaRefSchema,
 	periodoExtraordinario: z.boolean().default(false),
 	fechaInicio: z.coerce.date().optional().nullable(),

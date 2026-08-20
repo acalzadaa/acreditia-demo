@@ -9,7 +9,7 @@
 	} from '$lib/stores/data.svelte';
 	import { page } from '$app/state';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
-	import type { AreaResponsableRef, UnidadAcademicaRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, BaseRef } from '$lib/schemas/shared.schema';
 	import CampusDetail from '$lib/components/features/campus/CampusDetail.svelte';
 	import CampusAreaResponsableList from '$lib/components/features/campus/area-responsable/CampusAreaResponsableList.svelte';
 	import CampusUnidadAcademicaList from '$lib/components/features/campus/unidad-academica/CampusUnidadAcademicaList.svelte';
@@ -31,7 +31,7 @@
 	let unidadAcademicaRef = getUnidadAcademicaRef();
 	let areaResponsableRef = getAreaResponsableRef();
 
-	let modalUnidadAcademica = createModalManager<UnidadAcademicaRef>();
+	let modalUnidadAcademica = createModalManager<BaseRef>();
 	let modalAreaResponsable = createModalManager<AreaResponsableRef>();
 
 	let toggle = createToggleManager({defaultOpen: true, exclusive: false});

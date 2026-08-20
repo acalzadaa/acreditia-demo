@@ -3,15 +3,15 @@
 	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
 	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
 	import AccordionContentItem from '$lib/components/ui/accordion/AccordionContentItem.svelte';
-	import type { UnidadAcademicaRef } from '$lib/schemas/shared.schema';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
 	import Button from '$lib/components/ui/Button.svelte';
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
 
 	interface Props {
-		items: UnidadAcademicaRef[];
+		items: BaseRef[];
 		isVisible: boolean;
 		onClickToggle: () => void;
-		onClickRemover: (item: UnidadAcademicaRef) => void;
+		onClickRemover: (item: BaseRef) => void;
 		onClickAdd: () => void;
 	}
 

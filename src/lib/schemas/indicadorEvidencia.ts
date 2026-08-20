@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { indicadorRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 import { evidenciaItemSchema } from './evidencia.schema';
 
 // ============================================
@@ -41,7 +41,7 @@ export type IndicadorEvidenciaFormSchema = z.infer<typeof indicadorEvidenciaForm
 
 export const indicadorEvidenciaItemSchema = z.object({
 	id: z.uuid(),
-	indicador: indicadorRefSchema,
+	indicador: baseRefSchema,
 	code: z.string(),
 	evidencia: evidenciaItemSchema,
 	version: z.number().int().nonnegative(),

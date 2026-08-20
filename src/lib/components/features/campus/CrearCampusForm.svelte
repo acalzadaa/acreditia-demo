@@ -5,11 +5,11 @@
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
-	import type { InstitucionRef } from '$lib/schemas/shared.schema';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		institucionRef: InstitucionRef[];
+		institucionRef: BaseRef[];
 		onClose: () => void;
 	}
 

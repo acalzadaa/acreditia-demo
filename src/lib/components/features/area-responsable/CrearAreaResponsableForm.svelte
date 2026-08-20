@@ -7,13 +7,13 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 
-	import type { AreaResponsableRef, InstitucionRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, BaseRef } from '$lib/schemas/shared.schema';
 	import { areaResponsableTypeOptions } from '$lib/schemas/areaResponsable.schema';
 
 	interface Props {
 		open: boolean;
 		areaResponsableRef: AreaResponsableRef[];
-		institucionRef?: InstitucionRef[];
+		institucionRef?: BaseRef[];
 		onClose: () => void;
 	}
 

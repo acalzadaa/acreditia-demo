@@ -38,7 +38,7 @@ export const baseRefSchema = z.object({
 	uniqueId: z.uuid().optional(), //id unico de un grupo de versiones
 	code: z.string(), //usar este code solo para UI
 	name: z.string(), //usar este nombre para mostrar en UI
-	slug: z.string().optional() //implementar este slug como version modificada de code para mostrar en url
+	slug: z.string().optional(), //implementar este slug como version modificada de code para mostrar en url
 });
 export type BaseRef = z.infer<typeof baseRefSchema>;
 
@@ -61,15 +61,6 @@ export const areaResponsableRefSchema = baseRefSchema.extend({
 });
 export type AreaResponsableRef = z.infer<typeof areaResponsableRefSchema>;
 
-export const institucionRefSchema = baseRefSchema;
-export type InstitucionRef = z.infer<typeof institucionRefSchema>;
-
-export const campusRefSchema = baseRefSchema;
-export type CampusRef = z.infer<typeof campusRefSchema>;
-
-export const unidadAcademicaRefSchema = baseRefSchema;
-export type UnidadAcademicaRef = z.infer<typeof unidadAcademicaRefSchema>;
-
 export const JOB_SCOPE = ['funcional', 'responsable', 'region'];
 export const JOB_TYPE = ['directivo', 'operativo', 'administrativo'];
 
@@ -77,17 +68,7 @@ export const puestoRefSchema = baseRefSchema.extend({
 	scope: z.enum(JOB_SCOPE),
 	type: z.enum(JOB_TYPE)
 });
-
 export type PuestoRef = z.infer<typeof puestoRefSchema>;
-
-export const areaFuncionalRefSchema = baseRefSchema;
-export type AreaFuncionalRef = z.infer<typeof areaFuncionalRefSchema>;
-
-export const evaluacionRefSchema = baseRefSchema;
-export type EvaluacionRef = z.infer<typeof evaluacionRefSchema>;
-
-export const normativaRefSchema = baseRefSchema;
-export type NormativaRef = z.infer<typeof normativaRefSchema>;
 
 export const rubricaCriterioRefSchema = z.object({
 	id: z.uuid(),
@@ -104,9 +85,6 @@ export const rubricaRefSchema = z.object({
 	order: z.number().int().min(1).max(5, 'Solo se permiten 5 rúbricas')
 });
 export type RubricaRef = z.infer<typeof rubricaRefSchema>;
-
-export const indicadorRefSchema = baseRefSchema;
-export type IndicadorRef = z.infer<typeof indicadorRefSchema>;
 
 export const usuarioCampusRefSchema = z.object({
 	id: z.uuid(),

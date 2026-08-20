@@ -7,7 +7,7 @@
 		areaResponsableTypeOptions,
 		type AreaResponsableItem
 	} from '$lib/schemas/areaResponsable.schema';
-	import type { AreaResponsableRef, InstitucionRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, BaseRef } from '$lib/schemas/shared.schema';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
@@ -19,7 +19,7 @@
 	interface Props {
 		open: boolean;
 		selectedItem: AreaResponsableItem;
-		institucionRef: InstitucionRef[];
+		institucionRef: BaseRef[];
 		areaResponsableRef: AreaResponsableRef[];
 		onClose: () => void;
 	}

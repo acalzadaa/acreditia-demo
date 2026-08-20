@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { unidadAcademicaItemSchema } from './unidadAcademica.schema';
-import { campusRefSchema, unidadAcademicaRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA (Cliente ↔ Servidor)
@@ -19,8 +19,8 @@ export type CampusUnidadAcademicaForm = z.infer<typeof campusUnidadAcademicaForm
 // ============================================
 export const campusUnidadAcademicaItemSchema = z.object({
 	id: z.uuid(),
-	unidadAcademica: unidadAcademicaRefSchema,
-	campus: campusRefSchema,
+	unidadAcademica: baseRefSchema,
+	campus: baseRefSchema,
 	version: z.number().int().nonnegative().default(0),
 	isCurrent: z.boolean().default(true),
 	validFrom: z.coerce.date(),

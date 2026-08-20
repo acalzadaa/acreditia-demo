@@ -4,7 +4,6 @@ import {
 	areaResponsableRefSchema,
 	auditMetadataSchema,
 	baseRefSchema,
-	institucionRefSchema
 } from './shared.schema';
 import { institucionItemSchema } from './institucion.schema';
 import { createOptions } from '$lib/components/common/utils/formUtils';
@@ -37,7 +36,7 @@ export type AreaResponsableForm = z.infer<typeof areaResponsableFormSchema>;
 export const areaResponsableItemSchema = z
 	.object({
 		description: z.string().default(''),
-		institucion: institucionRefSchema.optional(), //DEPRECATED
+		institucion: baseRefSchema.optional(), //DEPRECATED
 		parent: areaResponsableRefSchema.nullable(),
 		type: z.enum(AREA_RESPONSABLE_TYPE)
 	})
