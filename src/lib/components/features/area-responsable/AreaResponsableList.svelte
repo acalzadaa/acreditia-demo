@@ -3,6 +3,7 @@
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
@@ -74,7 +75,7 @@
 							<tr class="table-row tr-expandable">
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
-								<td class="col-label">{item.type}</td>
+								<td class="col-label">{capitalizeText(item.type)}</td>
 								<td class="col-text">{item.description}</td>
 								<td class="col-label">{item.parent?.name}</td>
 								<td class="col-badge">
