@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { modeloItemSchema } from './modelo.schema';
 import { institucionItemSchema } from './institucion.schema';
-import { institucionRefSchema, modeloRefSchema } from './shared.schema';
+import { institucionRefSchema, baseRefSchema } from './shared.schema';
 
 export const EvaluacionStatusEnum = z.enum([
 	'planning', /* entre creada y hasta agregar la penultima fecha */
@@ -52,7 +52,7 @@ export const evaluacionItemSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	modeloId: z.uuid(),
-	modelo: modeloRefSchema,
+	modelo: baseRefSchema,
 
 	institucionId: z.uuid(),
 	institucion: institucionRefSchema,

@@ -1,6 +1,6 @@
 import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
-import { seccionRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 import { seccionItemSchema } from './seccion.schema';
 
 /* Especifico es especifico de una unidad academica, mientras que campus
@@ -56,7 +56,7 @@ export const indicadorItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	section: seccionRefSchema, //referencia a la seccion del sistema de calidad
+	section: baseRefSchema, //referencia a la seccion del sistema de calidad
 	target: z.coerce.number(), //referencia a la meta que se desea obtener
 	targetUnit: z.string(),
 	indicadorType: z.string(),

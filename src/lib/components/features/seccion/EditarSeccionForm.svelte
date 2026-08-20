@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import { type CapituloRef } from '$lib/schemas/shared.schema';
+	import { type BaseRef } from '$lib/schemas/shared.schema';
 	import { seccionFormSchema, type SeccionItem } from '$lib/schemas/seccion.schema';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
@@ -14,7 +14,7 @@
 	interface Props {
 		open: boolean;
 		item: SeccionItem;
-		refs: CapituloRef[];
+		refs: BaseRef[];
 		onClose: () => void;
 	}
 

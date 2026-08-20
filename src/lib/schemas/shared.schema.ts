@@ -19,7 +19,7 @@ export const identifyParentChildItemSchema = z.object({
 
 export type IdentifyParentChildItemSchema = z.infer<typeof identifyParentChildItemSchema>;
 
-//SDC Type 2 - Metadata
+//SDC Type 2 - Metadata, este objeto debe agregarse a todos los objetos raiz que requieran auditoria
 export const auditMetadataSchema = z.object({
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(true),
@@ -32,13 +32,13 @@ export const auditMetadataSchema = z.object({
 
 export type AuditMetadata = z.infer<typeof auditMetadataSchema>;
 
-// Base reference schema
+// Base reference schema - este objeto es la base de SCD type2 se debe agregar a todos los objetos que utilizen auditoria
 export const baseRefSchema = z.object({
 	id: z.uuid(), //id de una version especifica
 	uniqueId: z.uuid().optional(), //id unico de un grupo de versiones
 	code: z.string(), //usar este code solo para UI
-	slug: z.string().optional(), //implementar este slug como version modificada de code para mostrar en url
-	name: z.string() //usar este nombre para mostrar en UI
+	name: z.string(), //usar este nombre para mostrar en UI
+	slug: z.string().optional() //implementar este slug como version modificada de code para mostrar en url
 });
 export type BaseRef = z.infer<typeof baseRefSchema>;
 
@@ -60,15 +60,6 @@ export const areaResponsableRefSchema = baseRefSchema.extend({
 	type: z.enum(AREA_RESPONSABLE_TYPE)
 });
 export type AreaResponsableRef = z.infer<typeof areaResponsableRefSchema>;
-
-export const seccionRefSchema = baseRefSchema;
-export type SeccionRef = z.infer<typeof seccionRefSchema>;
-
-export const capituloRefSchema = baseRefSchema;
-export type CapituloRef = z.infer<typeof capituloRefSchema>;
-
-export const modeloRefSchema = baseRefSchema;
-export type ModeloRef = z.infer<typeof modeloRefSchema>;
 
 export const institucionRefSchema = baseRefSchema;
 export type InstitucionRef = z.infer<typeof institucionRefSchema>;

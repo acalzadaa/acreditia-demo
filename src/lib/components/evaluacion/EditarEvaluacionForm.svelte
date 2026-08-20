@@ -7,7 +7,7 @@
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import Input from '../ui/input/InputText.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import { type InstitucionRef, type ModeloRef } from '$lib/schemas/shared.schema';
+	import { type InstitucionRef, type BaseRef } from '$lib/schemas/shared.schema';
 	import InputSelect from '../ui/input/InputSelect.svelte';
 	import { evaluacionFormSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
@@ -15,7 +15,7 @@
 	interface Props {
 		open: boolean;
 		item: EvaluacionItem;
-		modeloRef: ModeloRef[];
+		modeloRef: BaseRef[];
 		institucionRef: InstitucionRef[];
 		onClose: () => void;
 	}

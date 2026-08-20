@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { capituloRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 import { capituloItemSchema } from './capitulo.schema';
 
 // ============================================
@@ -48,7 +48,7 @@ export const seccionItemSchema = z.object({
 	description: z.string(),
 	content: z.string(),
 	order: z.number(),
-	capitulo: capituloRefSchema,
+	capitulo: baseRefSchema,
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
