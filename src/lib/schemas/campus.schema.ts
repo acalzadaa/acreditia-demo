@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { institucionItemSchema } from './institucion.schema';
-import { baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
@@ -23,20 +23,15 @@ export type CampusForm = z.infer<typeof campusFormSchema>;
 // 3. ITEM WITH RELATIONS SCHEMA
 // ============================================
 
-export const campusItemSchema = z.object({
-	id: z.uuid(),
-	institucionId: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	institucion: baseRefSchema.optional(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const campusItemSchema = z
+	.object({
+		institucionId: z.uuid(),
+		institucion: baseRefSchema.optional(),
+		totalAreaResponsable: z.number().min(0).default(0),
+		totalUnidadAcademica: z.number().min(0).default(0)
+	})
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadataSchema.shape);
 
 export type CampusItem = z.infer<typeof campusItemSchema>;
 

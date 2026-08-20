@@ -6,6 +6,7 @@
 	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
 	import Button from '$lib/components/ui/Button.svelte';
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
+	import Tag from '$lib/components/ui/Tag.svelte';
 
 	interface Props {
 		items: AreaResponsableRef[];
@@ -23,8 +24,11 @@
 		<AccordionColumn minWidth="360px" maxWidth="2500px">
 			<Accordion>
 				<AccordionHeaderButton id="acc-1" {isVisible} onToggle={() => onClickToggle()}>
+					{#snippet subtitle()}
+						<Tag>Total de areas responsables: {items.length}</Tag>
+					{/snippet}
 					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>
-						Agregar area responsable
+						Agregar área responsable
 					</Button>
 				</AccordionHeaderButton>
 
