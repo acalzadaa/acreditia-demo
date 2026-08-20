@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { areaFuncionalRefSchema, indicadorRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA (Para relaciones)
@@ -40,9 +40,9 @@ export type IndicadorAreaFuncionalFormSchema = z.infer<typeof indicadorAreaFunci
 
 export const indicadorAreaFuncionalItemSchema = z.object({
 	id: z.uuid(),
-	indicador: indicadorRefSchema,
+	indicador: baseRefSchema,
 	code: z.string(),
-	areaFuncional: areaFuncionalRefSchema,
+	areaFuncional: baseRefSchema,
 	subareasFuncionales: z.array(indicadorAreaFuncionalRefSchema).default([]),
 	version: z.number().int().nonnegative(),
 	isCurrent: z.boolean(),

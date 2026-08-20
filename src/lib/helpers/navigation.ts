@@ -29,11 +29,6 @@ function buildChildUrl(childPath: string): string {
 	const base = page.url.pathname.replace(/\/+$/, '');
 	const child = childPath.replace(/^\/+/, '');
 	const result = `${base}/${child}`.replace(/\/{2,}/g, '/');
-
-	console.log('Base:', base);
-	console.log('Child:', child);
-	console.log('Result:', result);
-
 	return result;
 }
 
@@ -45,10 +40,8 @@ export function navigateTo(childPath: string) {
 }
 
 export function navigateToBreadcrumb(segment: string) {
-	console.log('segment: ', segment, 'pathname', page.url.pathname);
 	const currentPath = page.url.pathname;
 	const pathSegments = currentPath.split('/').filter((segment) => segment.length > 0);
-	console.log('segments', pathSegments);
 
 	// Encontrar el índice del segmento en la ruta actual
 	const normalizedSegment = segment.replace(/^\/|\/$/g, '');

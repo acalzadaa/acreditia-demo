@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { capituloRefSchema, modeloRefSchema, seccionRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -64,10 +64,10 @@ export type CalidadModeloConfig = z.infer<typeof modeloConfigSchema>;
 // Agrega datos completos de padres
 // ============================================
 
-export const modeloFullRefSchema = modeloRefSchema.extend({
+export const modeloFullRefSchema = baseRefSchema.extend({
 	capitulos: z.array(
-		capituloRefSchema.extend({
-			secciones: z.array(seccionRefSchema)
+		baseRefSchema.extend({
+			secciones: z.array(baseRefSchema)
 		})
 	)
 });

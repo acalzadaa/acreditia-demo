@@ -4,14 +4,14 @@
 	import IconButton from '../ui/IconButton.svelte';
 	import Icon from '../ui/Icon.svelte';
 	import InputSelect from '../ui/input/InputSelect.svelte';
-	import type { InstitucionRef, ModeloRef } from '$lib/schemas/shared.schema';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
 	import InputText from '../ui/input/InputText.svelte';
 
 	interface Props {
 		open: boolean;
-		modeloRef: ModeloRef[];
-		institucionRef: InstitucionRef[];
+		modeloRef: BaseRef[];
+		institucionRef: BaseRef[];
 		onClose: () => void;
 	}
 

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { areaFuncionalRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -28,7 +28,7 @@ export const areaFuncionalItemSchema = z.object({
 	name: z.string(),
 	description: z.string().default(''),
 	parentId: z.uuid().nullable(),
-	parent: areaFuncionalRefSchema.nullable(),
+	parent: baseRefSchema.nullable(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),

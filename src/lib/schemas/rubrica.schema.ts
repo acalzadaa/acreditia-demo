@@ -1,7 +1,7 @@
 // rubrica.schema.ts
 import { z } from 'zod';
 import { rubricaCriterioItemSchema } from './rubricaCriterio.schema';
-import { baseRefSchema, indicadorRefSchema, rubricaCriterioRefSchema } from './shared.schema';
+import { baseRefSchema, rubricaCriterioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA
@@ -51,7 +51,7 @@ export type RubricaForm = z.infer<typeof rubricaFormSchema>;
 // ============================================
 export const rubricaItemSchema = z
 	.object({
-		indicador: indicadorRefSchema,
+		indicador: baseRefSchema,
 		rangeStart: z.number().int(),
 		rangeEnd: z.number().int(),
 		order: z.number().int().min(1).max(5),

@@ -6,11 +6,11 @@
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
-	import type { ModeloRef } from '$lib/schemas/shared.schema';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		refs: ModeloRef[];
+		refs: BaseRef[];
 		onClose: () => void;
 	}
 

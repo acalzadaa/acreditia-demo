@@ -2,7 +2,7 @@
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import { campusItemSchema, type CampusItem } from '$lib/schemas/campus.schema';
-	import type { InstitucionRef } from '$lib/schemas/shared.schema';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
@@ -13,7 +13,7 @@
 	interface Props {
 		open: boolean;
 		selectedItem: CampusItem;
-		institucionRef: InstitucionRef[];
+		institucionRef: BaseRef[];
 		onClose: () => void;
 	}
 

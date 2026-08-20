@@ -4,11 +4,11 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { AreaFuncionalRef } from '$lib/schemas/shared.schema';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		subareaFuncionalRef: AreaFuncionalRef[];
+		subareaFuncionalRef: BaseRef[];
 		onClose: () => void;
 	}
 

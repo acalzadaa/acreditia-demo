@@ -1,10 +1,5 @@
 import { z } from 'zod';
-import {
-	campusRefSchema,
-	evaluacionRefSchema,
-	indicadorRefSchema,
-	unidadAcademicaRefSchema
-} from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 import { etapaRefSchema } from './etapa.schema';
 import { etapaMetadataSchema, type EtapaMetadataByCode } from './etapaMetadata.schema';
 
@@ -21,7 +16,7 @@ export const evaluacionEtapaIndicadorStatusEnum = z.enum([
 	'forced_in_process',
 	'forced_ready',
 	'feedback_in_progress',
-	'feedback_ready',
+	'feedback_ready'
 ]);
 export type EvaluacionEtapaIndicadorStatus = z.infer<typeof evaluacionEtapaIndicadorStatusEnum>;
 
@@ -64,11 +59,11 @@ export const evaluacionEtapaIndicadorItemSchema = z
 	.object({
 		id: z.uuid(),
 		code: z.string(),
-		evaluacion: evaluacionRefSchema,
+		evaluacion: baseRefSchema,
 		etapa: etapaRefSchema,
-		indicador: indicadorRefSchema,
-		campus: campusRefSchema,
-		unidadAcademica: unidadAcademicaRefSchema,
+		indicador: baseRefSchema,
+		campus: baseRefSchema,
+		unidadAcademica: baseRefSchema,
 		metadata: etapaMetadataSchema,
 		status: evaluacionEtapaIndicadorStatusEnum,
 		version: z.number().default(0),

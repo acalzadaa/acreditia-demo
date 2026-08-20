@@ -6,11 +6,11 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
-	import type { AreaFuncionalRef } from '$lib/schemas/shared.schema';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		areaFuncionalRef: AreaFuncionalRef[];
+		areaFuncionalRef: BaseRef[];
 		onClose: () => void;
 	}
 

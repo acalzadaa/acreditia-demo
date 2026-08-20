@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { indicadorRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA (Para relaciones)
@@ -40,7 +40,7 @@ export type IndicadorNormativaFormSchema = z.infer<typeof indicadorNormativaForm
 
 export const indicadorNormativaItemSchema = z.object({
 	id: z.uuid(),
-	indicador: indicadorRefSchema,
+	indicador: baseRefSchema,
 	code: z.string(),
 	normativa: indicadorNormativaRefSchema,
 	version: z.number().int().nonnegative(),

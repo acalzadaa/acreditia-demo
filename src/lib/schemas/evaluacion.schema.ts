@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { modeloItemSchema } from './modelo.schema';
 import { institucionItemSchema } from './institucion.schema';
-import { institucionRefSchema, modeloRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 
 export const EvaluacionStatusEnum = z.enum([
-	'planning', /* entre creada y hasta agregar la penultima fecha */
-	'ready', /* desde agregar la ultima fecha hasta presionar execute */
-	'running', /* desde presionar execute hasta que acaba la ultima etapa (tiempo o terminar etapa) */
+	'planning' /* entre creada y hasta agregar la penultima fecha */,
+	'ready' /* desde agregar la ultima fecha hasta presionar execute */,
+	'running' /* desde presionar execute hasta que acaba la ultima etapa (tiempo o terminar etapa) */,
 	'completed' /* desde que acaba la ultima etapa (por tiempo o terminar etapa) */
 ]);
 
@@ -52,10 +52,10 @@ export const evaluacionItemSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	modeloId: z.uuid(),
-	modelo: modeloRefSchema,
+	modelo: baseRefSchema,
 
 	institucionId: z.uuid(),
-	institucion: institucionRefSchema,
+	institucion: baseRefSchema,
 
 	name: z.string(),
 	year: z.number(),

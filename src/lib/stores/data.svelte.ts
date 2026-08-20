@@ -222,7 +222,16 @@ const regionRawData = regionJsonData.regionItems;
 region = regionRawData.map((item) => regionItemSchema.parse(item));
 
 const regionCampusRawData = regionCampusJsonData.regionCampusItems;
-regionCampus = regionCampusRawData.map((item) => regionCampusItemSchema.parse(item));
+
+regionCampus = regionCampusRawData.map((item) => {
+	try {
+		return regionCampusItemSchema.parse(item);
+	} catch (error) {
+		console.error('Fallo en item.id:', item.id);
+		console.error('Error:', error);
+		throw error;
+	}
+});
 
 const institucionRawData = institucionJsonData.institucionItems;
 institucion = institucionRawData.map((item) => institucionItemSchema.parse(item));
@@ -231,9 +240,15 @@ const campusRawData = campusJsonData.campusItems;
 campus = campusRawData.map((item) => campusItemSchema.parse(item));
 
 const campusAreaResponsableRawData = campusAreaResponsableJsonData.campusAreaResponsableItems;
-campusAreaResponsable = campusAreaResponsableRawData.map((item) =>
-	campusAreaResponsableItemSchema.parse(item)
-);
+campusAreaResponsable = campusAreaResponsableRawData.map((item) => {
+	try {
+		return campusAreaResponsableItemSchema.parse(item);
+	} catch (error) {
+		console.error('Fallo en item.id:', item.id);
+		console.error('Error:', error);
+		throw error;
+	}
+});
 
 const campusUnidadAcademicaRawData = campusUnidadAcademicaJsonData.campusUnidadAcademicaItems;
 campusUnidadAcademica = campusUnidadAcademicaRawData.map((item) =>
@@ -250,7 +265,15 @@ const areaFuncionalRawData = areaFuncionalJsonData.areaFuncionalItems;
 areaFuncional = areaFuncionalRawData.map((item) => areaFuncionalItemSchema.parse(item));
 
 const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;
-areaResponsable = areaResponsableRawData.map((item) => areaResponsableItemSchema.parse(item));
+areaResponsable = areaResponsableRawData.map((item) => {
+	try {
+		return areaResponsableItemSchema.parse(item);
+	} catch (error) {
+		console.error('Fallo en item.id:', item.id);
+		console.error('Error:', error);
+		throw error;
+	}
+});
 
 const modeloRawData = modeloJsonData.modeloItems;
 modelo = modeloRawData.map((item) => modeloItemSchema.parse(item));
@@ -471,7 +494,8 @@ export function getAreaResponsableRef() {
 	return areaResponsable.map((item) => ({
 		id: item.id,
 		code: item.code,
-		name: item.name
+		name: item.name,
+		type: item.type
 	}));
 }
 

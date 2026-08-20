@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { modeloRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 import { modeloItemSchema } from './modelo.schema';
 
 // ============================================
@@ -48,7 +48,7 @@ export const capituloItemSchema = z.object({
 	description: z.string(),
 	content: z.string(),
 	order: z.number(),
-	modelo: modeloRefSchema,
+	modelo: baseRefSchema,
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),

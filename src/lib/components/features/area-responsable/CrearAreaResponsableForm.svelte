@@ -7,12 +7,13 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 
-	import type { AreaResponsableRef, InstitucionRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef, BaseRef } from '$lib/schemas/shared.schema';
+	import { areaResponsableTypeOptions } from '$lib/schemas/areaResponsable.schema';
 
 	interface Props {
 		open: boolean;
 		areaResponsableRef: AreaResponsableRef[];
-		institucionRef: InstitucionRef[];
+		institucionRef?: BaseRef[];
 		onClose: () => void;
 	}
 
@@ -24,18 +25,12 @@
 		institucionId: '',
 		code: '',
 		name: '',
+		type: '',
 		description: '',
 		parentId: ''
 	});
 
 	let errorMessage = $state('');
-
-	let institucionOptions = $derived(
-		props.institucionRef?.map((ref) => ({
-			id: ref.id,
-			option: `${ref.code} - ${ref.name}`
-		})) ?? []
-	);
 
 	const areaResponsableOptions = $derived(
 		props.areaResponsableRef?.map((ref) => ({
@@ -75,6 +70,7 @@
 			institucionId: '',
 			code: '',
 			name: '',
+			type: '',
 			description: '',
 			parentId: ''
 		};
@@ -93,6 +89,7 @@
 			institucionId: '',
 			code: '',
 			name: '',
+			type: '',
 			description: '',
 			parentId: ''
 		};
@@ -140,13 +137,15 @@
 						</div>
 					{/if}
 
-					<InputSelect
-						label="Institucion"
-						name="institucionId"
-						optionsData={institucionOptions}
+					<InputText
+						label="Nombre"
+						name="name"
 						required={true}
-						bind:value={formData.institucionId}
-						errors={errorMessage && !formData.institucionId ? [errorMessage] : undefined}
+						placeholder="Dirección de Planeación"
+						status={errorMessage && !formData.name ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={formData.name}
+						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
 					/>
 
 					<InputText
@@ -160,23 +159,14 @@
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
 					/>
 
-					<InputText
-						label="Nombre"
-						name="name"
+					<InputSelect
+						label="Tipo de área"
+						name="type"
+						optionsData={areaResponsableTypeOptions}
 						required={true}
-						placeholder="Dirección de Planeación"
-						status={errorMessage && !formData.name ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={formData.name}
-						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
-					/>
-
-					<TextArea
-						label="Descripción"
-						name="description"
-						placeholder="Descripción..."
-						bind:value={formData.description}
-						rows={4}
+						bind:value={formData.type}
+						nullOption="Ninguno (utilizar el default)"
+						errors={errorMessage && !formData.type ? [errorMessage] : undefined}
 					/>
 
 					<InputSelect
@@ -187,6 +177,13 @@
 						bind:value={formData.parentId}
 						nullOption="Ninguno (es un elemento raiz)"
 						errors={errorMessage && !formData.parentId ? [errorMessage] : undefined}
+					/>
+					<TextArea
+						label="Descripción"
+						name="description"
+						placeholder="Descripción..."
+						bind:value={formData.description}
+						rows={4}
 					/>
 				</div>
 			</div>

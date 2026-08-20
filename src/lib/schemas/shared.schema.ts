@@ -19,7 +19,7 @@ export const identifyParentChildItemSchema = z.object({
 
 export type IdentifyParentChildItemSchema = z.infer<typeof identifyParentChildItemSchema>;
 
-//SDC Type 2 - Metadata
+//SDC Type 2 - Metadata, este objeto debe agregarse a todos los objetos raiz que requieran auditoria
 export const auditMetadataSchema = z.object({
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(true),
@@ -30,19 +30,21 @@ export const auditMetadataSchema = z.object({
 	createdBy: z.string()
 });
 
+export type AuditMetadata = z.infer<typeof auditMetadataSchema>;
+
+// Base reference schema - este objeto es la base de SCD type2 se debe agregar a todos los objetos que utilizen auditoria
+export const baseRefSchema = z.object({
+	id: z.uuid(), //id de una version especifica
+	uniqueId: z.uuid().optional(), //id unico de un grupo de versiones
+	code: z.string(), //usar este code solo para UI
+	name: z.string(), //usar este nombre para mostrar en UI
+	slug: z.string().optional(), //implementar este slug como version modificada de code para mostrar en url
+});
+export type BaseRef = z.infer<typeof baseRefSchema>;
+
 export const fileSchema = z.object({
 	file: z.instanceof(File).refine((f) => f.size > 0, 'El archivo está vacío')
 });
-
-export type AuditMetadata = z.infer<typeof auditMetadataSchema>;
-
-// Base reference schema
-export const baseRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string()
-});
-export type BaseRef = z.infer<typeof baseRefSchema>;
 
 export const regionRefSchema = baseRefSchema;
 export type RegionRef = z.infer<typeof regionRefSchema>;
@@ -53,48 +55,20 @@ export const campusAreaResponsableRefSchema = z.object({
 });
 export type CampusAreaResponsableRef = z.infer<typeof campusAreaResponsableRefSchema>;
 
-export const areaResponsableRefSchema = baseRefSchema;
+export const AREA_RESPONSABLE_TYPE = ['global', 'campus', 'unidad academica'];
+export const areaResponsableRefSchema = baseRefSchema.extend({
+	type: z.enum(AREA_RESPONSABLE_TYPE)
+});
 export type AreaResponsableRef = z.infer<typeof areaResponsableRefSchema>;
-
-export const seccionRefSchema = baseRefSchema;
-export type SeccionRef = z.infer<typeof seccionRefSchema>;
-
-export const capituloRefSchema = baseRefSchema;
-export type CapituloRef = z.infer<typeof capituloRefSchema>;
-
-export const modeloRefSchema = baseRefSchema;
-export type ModeloRef = z.infer<typeof modeloRefSchema>;
-
-export const institucionRefSchema = baseRefSchema;
-export type InstitucionRef = z.infer<typeof institucionRefSchema>;
-
-export const campusRefSchema = baseRefSchema;
-export type CampusRef = z.infer<typeof campusRefSchema>;
-
-export const unidadAcademicaRefSchema = baseRefSchema;
-export type UnidadAcademicaRef = z.infer<typeof unidadAcademicaRefSchema>;
 
 export const JOB_SCOPE = ['funcional', 'responsable', 'region'];
 export const JOB_TYPE = ['directivo', 'operativo', 'administrativo'];
 
-export const puestoRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
+export const puestoRefSchema = baseRefSchema.extend({
 	scope: z.enum(JOB_SCOPE),
 	type: z.enum(JOB_TYPE)
 });
-
 export type PuestoRef = z.infer<typeof puestoRefSchema>;
-
-export const areaFuncionalRefSchema = baseRefSchema;
-export type AreaFuncionalRef = z.infer<typeof areaFuncionalRefSchema>;
-
-export const evaluacionRefSchema = baseRefSchema;
-export type EvaluacionRef = z.infer<typeof evaluacionRefSchema>;
-
-export const normativaRefSchema = baseRefSchema;
-export type NormativaRef = z.infer<typeof normativaRefSchema>;
 
 export const rubricaCriterioRefSchema = z.object({
 	id: z.uuid(),
@@ -111,9 +85,6 @@ export const rubricaRefSchema = z.object({
 	order: z.number().int().min(1).max(5, 'Solo se permiten 5 rúbricas')
 });
 export type RubricaRef = z.infer<typeof rubricaRefSchema>;
-
-export const indicadorRefSchema = baseRefSchema;
-export type IndicadorRef = z.infer<typeof indicadorRefSchema>;
 
 export const usuarioCampusRefSchema = z.object({
 	id: z.uuid(),

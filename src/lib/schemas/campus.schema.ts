@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { institucionItemSchema } from './institucion.schema';
-import { institucionRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS
@@ -28,7 +28,7 @@ export const campusItemSchema = z.object({
 	institucionId: z.uuid(),
 	code: z.string(),
 	name: z.string(),
-	institucion: institucionRefSchema.optional(),
+	institucion: baseRefSchema.optional(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
@@ -41,7 +41,7 @@ export const campusItemSchema = z.object({
 export type CampusItem = z.infer<typeof campusItemSchema>;
 
 export const campusWithRelationsItemSchema = campusItemSchema.omit({ institucionId: true }).extend({
-	institucion: institucionItemSchema.omit({ entidadLegal: true, entidadLegalId: true })
+	institucion: institucionItemSchema.omit({ entidadLegal: true })
 });
 
 export type CampusWithRelationsItem = z.infer<typeof campusWithRelationsItemSchema>;
