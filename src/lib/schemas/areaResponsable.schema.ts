@@ -38,7 +38,8 @@ export const areaResponsableItemSchema = z
 		description: z.string().default(''),
 		institucion: baseRefSchema.optional(), //DEPRECATED
 		parent: areaResponsableRefSchema.nullable(),
-		type: z.enum(AREA_RESPONSABLE_TYPE)
+		type: z.enum(AREA_RESPONSABLE_TYPE),
+		totalPuestos: z.number().min(0).default(0)
 	})
 	.extend(baseRefSchema.shape)
 	.extend(auditMetadataSchema.shape);

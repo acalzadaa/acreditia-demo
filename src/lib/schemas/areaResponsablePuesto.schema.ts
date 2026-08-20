@@ -1,6 +1,7 @@
 import { z } from 'zod';
-import { areaResponsableRefSchema, puestoRefSchema } from './shared.schema';
+import { areaResponsableRefSchema, auditMetadataSchema, puestoRefSchema } from './shared.schema';
 import { puestoItemSchema } from './puesto.schema';
+import { areaResponsableItemSchema } from './areaResponsable.schema';
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -19,36 +20,25 @@ export type AreaResponsablePuestoForm = z.infer<typeof areaResponsablePuestoForm
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
 
-export const areaResponsablePuestoItemSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	description: z.string().default(''),
-
-	areaResponsable: areaResponsableRefSchema,
-	parent: areaResponsableRefSchema.nullable(),
-
-	puestos: z.array(puestoRefSchema.nullable()),
-
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const areaResponsablePuestoItemSchema = z
+	.object({
+		id: z.uuid(),
+		uniqueId: z.uuid(),
+		areaResponsable: areaResponsableRefSchema,
+		puesto: puestoRefSchema.nullable()
+	})
+	.extend(auditMetadataSchema.shape);
 
 export type AreaResponsablePuestoItem = z.infer<typeof areaResponsablePuestoItemSchema>;
 
 export const areaResponsablePuestoWithRelationsItemSchema = areaResponsablePuestoItemSchema.extend({
-	parent: areaResponsablePuestoItemSchema
+	parent: areaResponsableItemSchema
 		.omit({
 			parent: true
 		})
 		.nullable()
 		.optional(),
-	puestos: puestoItemSchema
+	puestos: z.array(puestoItemSchema)
 });
 
 export type AreaResponsablePuestoWithRelationsItem = z.infer<

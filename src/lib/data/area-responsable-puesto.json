@@ -1,0 +1,51 @@
+{
+	"areaResponsablePuestoItems": [
+		{
+			"id": "c86dc162-137b-4ed2-9ac9-5a832e1b17d5",
+			"uniqueId": "9ea84d68-561f-4169-a0e9-0fe7682fb89b",
+			"areaResponsable": {
+				"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+				"code": "RH-I",
+				"name": "Direccion de Recursos Humanos"
+				
+			},
+			"puesto": {
+				"id": "2ec9751d-f46a-474c-99b9-42763ea38828",
+				"code": "REC_HUM_I",
+				"name": "Jefe de Recursos Humanos",
+				"scope": "responsable",
+				"type": "directivo"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "27f211a2-d9bf-4fa0-8fb3-21e15e5a5427",
+			"uniqueId": "f2da22ee-93cf-42f2-9cbd-2367ce6533da",
+			"areaResponsable": {
+				"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+				"code": "RH-I",
+				"name": "Direccion de Recursos Humanos"
+			},
+			"puesto": {
+				"id": "160ac4b2-5bb8-4682-96e5-75db199a255f",
+				"code": "REC_HUM_II",
+				"name": "Coordinador de Recursos Humanos",
+				"scope": "responsable",
+				"type": "operativo"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
+}

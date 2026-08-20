@@ -38,7 +38,7 @@ export const baseRefSchema = z.object({
 	uniqueId: z.uuid().optional(), //id unico de un grupo de versiones
 	code: z.string(), //usar este code solo para UI
 	name: z.string(), //usar este nombre para mostrar en UI
-	slug: z.string().optional(), //implementar este slug como version modificada de code para mostrar en url
+	slug: z.string().optional() //implementar este slug como version modificada de code para mostrar en url
 });
 export type BaseRef = z.infer<typeof baseRefSchema>;
 
@@ -57,7 +57,7 @@ export type CampusAreaResponsableRef = z.infer<typeof campusAreaResponsableRefSc
 
 export const AREA_RESPONSABLE_TYPE = ['global', 'campus', 'unidad academica'];
 export const areaResponsableRefSchema = baseRefSchema.extend({
-	type: z.enum(AREA_RESPONSABLE_TYPE)
+	type: z.enum(AREA_RESPONSABLE_TYPE).optional()
 });
 export type AreaResponsableRef = z.infer<typeof areaResponsableRefSchema>;
 

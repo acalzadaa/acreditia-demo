@@ -17,6 +17,7 @@ import puestoJsonData from '$lib/data/puesto.json';
 
 import areaFuncionalJsonData from '$lib/data/area-funcional.json';
 import areaResponsableJsonData from '$lib/data/area-responsable.json';
+import areaResponsablePuestoJsonData from '$lib/data/area-responsable-puesto.json';
 
 import modeloJsonData from '$lib/data/modelo.json';
 import capituloJsonData from '$lib/data/capitulo.json';
@@ -73,6 +74,7 @@ import {
 	unidadAcademicaItemSchema,
 	type UnidadAcademicaItem
 } from '$lib/schemas/unidadAcademica.schema';
+
 import { areaFuncionalItemSchema, type AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
 
 import {
@@ -144,6 +146,7 @@ import {
 	evaluacionEtapaIndicadorItemSchema,
 	type EvaluacionEtapaIndicadorItem
 } from '$lib/schemas/evaluacionEtapaIndicador.schema';
+import { areaResponsablePuestoItemSchema, type AreaResponsablePuestoItem } from '$lib/schemas/areaResponsablePuesto.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -168,6 +171,7 @@ let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
 let puesto = $state<PuestoItem[]>([]);
 
 let areaResponsable = $state<AreaResponsableItem[]>([]);
+let areaResponsablePuesto = $state<AreaResponsablePuestoItem[]>([]);
 let areaFuncional = $state<AreaFuncionalItem[]>([]);
 
 let modelo = $state<ModeloItem[]>([]);
@@ -268,6 +272,17 @@ const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;
 areaResponsable = areaResponsableRawData.map((item) => {
 	try {
 		return areaResponsableItemSchema.parse(item);
+	} catch (error) {
+		console.error('Fallo en item.id:', item.id);
+		console.error('Error:', error);
+		throw error;
+	}
+});
+
+const areaResponsablePuestoRawData = areaResponsablePuestoJsonData.areaResponsablePuestoItems;
+areaResponsablePuesto = areaResponsablePuestoRawData.map((item) => {
+	try {
+		return areaResponsablePuestoItemSchema.parse(item);
 	} catch (error) {
 		console.error('Fallo en item.id:', item.id);
 		console.error('Error:', error);
@@ -466,12 +481,13 @@ export function getPuesto() {
 
 export function getPuestoRef(jobType: string) {
 	return puesto
-		.filter((item) => item.type === jobType)
+		.filter((item) => item.scope === jobType)
 		.map((item) => ({
 			id: item.id,
 			code: item.code,
 			name: item.name,
-			type: item.type
+			type: item.type,
+			scope: item.scope
 		}));
 }
 
@@ -497,6 +513,10 @@ export function getAreaResponsableRef() {
 		name: item.name,
 		type: item.type
 	}));
+}
+
+export function getAreaResponsablePuesto() {
+	return areaResponsablePuesto;
 }
 
 export function getModelo() {
@@ -610,3 +630,4 @@ export function getUsuario() {
 export function getUsuarioPuesto() {
 	return usuarioPuesto;
 }
+

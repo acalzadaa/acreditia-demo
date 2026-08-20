@@ -22,7 +22,7 @@ Esto funciona para cuando se desea crear un AccordionContent a manera de subhead
 		value?: string;
 		children?: Snippet;
 		/** (opcional) usar el valor de isVisible de AccordionContent,
-		 * apaga :hover si no es visible */
+		 * esta opcion apaga :hover si no es visible por default */
 		isVisible?: boolean;
 		/** presenta una viñeta al inicio del item */
 		dot?: boolean;
