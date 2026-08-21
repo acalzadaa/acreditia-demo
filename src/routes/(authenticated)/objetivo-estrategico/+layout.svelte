@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NotificationBarContainer from '$lib/components/notification/NotificationBarContainer.svelte';
+	import NotificationBarContainer from '$lib/components/features/notification/NotificationBarContainer.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';

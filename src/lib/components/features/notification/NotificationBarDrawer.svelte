@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import Actions from '$lib/components/ui/Actions.svelte';
+	import Card from '$lib/components/ui/card/Card.svelte';
+	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
+	import CardContent from '$lib/components/ui/card/CardContent.svelte';
+	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
+	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
+	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
 	import type { NotificationItem } from '$lib/schemas/notificacion.schema';
-	import Actions from '../ui/Actions.svelte';
-	import Card from '../ui/card/Card.svelte';
-	import CardColumn from '../ui/card/CardColumn.svelte';
-	import CardContent from '../ui/card/CardContent.svelte';
-	import CardContentItem from '../ui/card/CardContentItem.svelte';
-	import CardFooter from '../ui/card/CardFooter.svelte';
-	import CardHeader from '../ui/card/CardHeader.svelte';
+	
 
 	interface Props {
 		items: NotificationItem[];

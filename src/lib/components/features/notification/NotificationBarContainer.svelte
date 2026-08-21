@@ -1,6 +1,6 @@
 <script lang="ts">
+	import Drawer from '$lib/components/ui/Drawer.svelte';
 	import type { NotificationItem } from '$lib/schemas/notificacion.schema';
-	import Drawer from '../ui/Drawer.svelte';
 	import NotificationBarDrawer from './NotificationBarDrawer.svelte';
 
 	interface Props {
