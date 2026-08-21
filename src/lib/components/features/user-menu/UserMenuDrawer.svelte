@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Button from '../ui/Button.svelte';
+	import Button from "$lib/components/ui/Button.svelte";
+
 
 	interface Props {
 		onClickLogout: (e: MouseEvent) => void;

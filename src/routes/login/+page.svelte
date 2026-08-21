@@ -1,7 +1,7 @@
 <script lang="ts">
-	import LoginForm from '$lib/components/auth/LoginForm.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
-	import Header from '$lib/components/common/Header.svelte';
+	import LoginForm from '$lib/components/features/auth/LoginForm.svelte';
+	import Footer from '$lib/components/features/layout/Footer.svelte';
+	import Header from '$lib/components/features/layout/Header.svelte';
 </script>
 
 <div class="app-grid">

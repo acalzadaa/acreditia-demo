@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import Button from '$lib/components/ui/Button.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import { auth } from '$lib/stores/auth.svelte';
-	import Button from '../ui/Button.svelte';
-	import InputText from '../ui/input/InputText.svelte';
 
 	let email = $state('');
 	let password = $state('');

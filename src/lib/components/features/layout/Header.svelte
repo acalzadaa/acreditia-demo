@@ -1,7 +1,8 @@
 <script lang="ts">
-	import Avatar from '../ui/Avatar.svelte';
-	import Logo from '../ui/Logo.svelte';
-	import UserMenuContainer from '../userMenu/UserMenuContainer.svelte';
+	import Avatar from "$lib/components/ui/Avatar.svelte";
+	import Logo from "$lib/components/ui/Logo.svelte";
+	import UserMenuContainer from "../user-menu/UserMenuContainer.svelte";
+
 
 	interface Props {
 		showAuth?: boolean;

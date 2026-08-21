@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { superForm, type SuperValidated } from 'sveltekit-superforms';
-	import Button from '../ui/Button.svelte';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import InputText from '../ui/input/InputText.svelte';
 	import { registerFormSchema, type RegisterForm } from '$lib/schemas/register.schema';
-	import Icon from '../ui/Icon.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
 		form: SuperValidated<RegisterForm>;
@@ -82,9 +82,9 @@
 			</div>
 		</div>
 
-		<footer class="form-actions text-body">
+		<menu class="form-actions text-body">
 			<Button type="submit" variant="primary">Registrar Usuario</Button>
-		</footer>
+		</menu>
 	</form>
 </div>
 

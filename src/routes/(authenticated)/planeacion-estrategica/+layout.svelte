@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
+	import Header from '$lib/components/features/layout/Header.svelte';
+	import Subheader from '$lib/components/features/layout/Subheader.svelte';
 	import NotificationBarContainer from '$lib/components/features/notification/NotificationBarContainer.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
+	import Footer from '$lib/components/features/layout/Footer.svelte';
 	import { createToggle } from '$lib/utils/toggle.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';

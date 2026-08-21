@@ -4,8 +4,8 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import { page } from '$app/state';
-	import Header from '$lib/components/common/Header.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
+	import Header from '$lib/components/features/layout/Header.svelte';
+	import Footer from '$lib/components/features/layout/Footer.svelte';
 	import { resolve } from '$app/paths';
 	import { auth } from '$lib/stores/auth.svelte';
 

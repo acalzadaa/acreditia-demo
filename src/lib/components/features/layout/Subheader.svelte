@@ -1,6 +1,6 @@
 <script lang="ts">
-	import IconButton from '../ui/IconButton.svelte';
-	import Breadcrumb from '../ui/Breadcrumb.svelte';
+	import IconButton from '../../ui/IconButton.svelte';
+	import Breadcrumb from '../../ui/Breadcrumb.svelte';
 
 	interface Props {
 		onClickNavigationBar: (e: MouseEvent) => void;
@@ -27,7 +27,7 @@
 			name="menu"
 			variant="ghost"
 			size="md"
-			shape="round"
+			shape="circle"
 			isActive={showNavigationBar}
 			onClick={onClickNavigationBar}
 			onKeydown={onKeydownNavigationBar}
@@ -45,7 +45,7 @@
 		<IconButton
 			name="bell"
 			variant="ghost"
-			shape="round"
+			shape="circle"
 			isActive={showNotificationBar}
 			isFilled={showNotificationBar}
 			onClick={onClickNotificationBar}

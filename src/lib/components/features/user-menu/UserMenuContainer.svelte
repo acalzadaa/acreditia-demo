@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Drawer from '../ui/Drawer.svelte';
+	import Drawer from '$lib/components/ui/Drawer.svelte';
 	import UserMenuDrawer from './UserMenuDrawer.svelte';
 
 	interface Props {

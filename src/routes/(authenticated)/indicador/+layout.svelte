@@ -7,9 +7,9 @@
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
 	import { getNotificacion } from '$lib/stores/data.svelte';
-	import Header from '$lib/components/common/Header.svelte';
-	import Subheader from '$lib/components/common/Subheader.svelte';
-	import Footer from '$lib/components/common/Footer.svelte';
+	import Header from '$lib/components/features/layout/Header.svelte';
+	import Subheader from '$lib/components/features/layout/Subheader.svelte';
+	import Footer from '$lib/components/features/layout/Footer.svelte';
 	import ToastContainer from '$lib/components/ui/toast/ToastContainer.svelte';
 	import NavigationBarContainer from '$lib/components/features/navigation/NavigationBarContainer.svelte';
 	let { children }: LayoutProps = $props();
