@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -22,21 +22,15 @@ export type AreaFuncionalForm = z.infer<typeof areaFuncionalFormSchema>;
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
-export const areaFuncionalItemSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	description: z.string().default(''),
-	parentId: z.uuid().nullable(),
-	parent: baseRefSchema.nullable(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const areaFuncionalItemSchema = z
+		.object({
+			description: z.string().default(''),
+			institucion: baseRefSchema.optional(), //DEPRECATED
+			parent: baseRefSchema.nullable(),
+			totalPuestos: z.number().min(0).default(0)
+		})
+		.extend(baseRefSchema.shape)
+		.extend(auditMetadataSchema.shape);
 
 export type AreaFuncionalItem = z.infer<typeof areaFuncionalItemSchema>;
 

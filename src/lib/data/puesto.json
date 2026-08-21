@@ -2,7 +2,7 @@
 	"puestos": [
 		{
 			"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
-			"code": "DIR_CALIDAD",
+			"code": "DIR_CALIDAD-I",
 			"name": "Director de Calidad y Acreditación",
 			"scope": "funcional",
 			"type": "directivo",
@@ -17,7 +17,7 @@
 		},
 		{
 			"id": "4e503703-ba1e-406c-989c-408be07f0da1",
-			"code": "DIR_CALIDAD",
+			"code": "DIR_CALIDAD-II",
 			"name": "Coordinacion de Calidad y Acreditación",
 			"scope": "funcional",
 			"type": "operativo",
