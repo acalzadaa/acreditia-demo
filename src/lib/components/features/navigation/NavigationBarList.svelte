@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { slide } from 'svelte/transition';
-	import Icon from '../ui/Icon.svelte';
 	import { findParentIdByUrl } from '$lib/helpers/navigation';
-		import type { NavigationItem } from '$lib/schemas/navigation.schema';
+	import type { NavigationItem } from '$lib/schemas/navigation.schema';
 	import { resolve } from '$app/paths';
+	import Icon from '$lib/components/ui/Icon.svelte';
 
 	interface Props {
 		navigationItems: NavigationItem[];

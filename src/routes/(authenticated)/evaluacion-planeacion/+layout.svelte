@@ -9,7 +9,7 @@
 	import type { LayoutProps } from '../$types';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
-	import NavigationBarContainer from '$lib/components/navigation/NavigationBarContainer.svelte';
+	import NavigationBarContainer from '$lib/components/features/navigation/NavigationBarContainer.svelte';
 	let { children }: LayoutProps = $props();
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';

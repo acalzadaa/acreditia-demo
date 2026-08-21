@@ -11,7 +11,7 @@
 	import { page } from '$app/state';
 	import ToastContainer from '$lib/components/common/ToastContainer.svelte';
 	import { getNotificacion } from '$lib/stores/data.svelte';
-	import NavigationBarContainer from '$lib/components/navigation/NavigationBarContainer.svelte';
+	import NavigationBarContainer from '$lib/components/features/navigation/NavigationBarContainer.svelte';
 	let { children }: LayoutProps = $props();
 
 	let username = auth.user?.email?.split('@')[0] || 'Usuario';

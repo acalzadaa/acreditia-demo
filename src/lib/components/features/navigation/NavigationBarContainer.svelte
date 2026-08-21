@@ -1,6 +1,6 @@
 <script lang="ts">
+	import Drawer from '$lib/components/ui/Drawer.svelte';
 		import type { NavigationItem } from '$lib/schemas/navigation.schema';
-	import Drawer from '../ui/Drawer.svelte';
 	import NavigationBar from './NavigationBar.svelte';
 	import NavigationBarList from './NavigationBarList.svelte';
 

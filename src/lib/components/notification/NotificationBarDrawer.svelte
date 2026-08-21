@@ -26,10 +26,10 @@
 <CardColumn>
 	{#each items as item (item)}
 		<Card>
-			<CardHeader name={item.header} />
+			<CardHeader title={item.header} />
 			{#if item.message}
 				<CardContent>
-					<CardContentItem value={item.message} />
+					<CardContentItem label={item.from.type} value={item.message} />
 				</CardContent>
 			{/if}
 			{#if item.link}
