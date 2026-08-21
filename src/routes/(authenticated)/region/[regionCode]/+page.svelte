@@ -24,7 +24,7 @@
 </script>
 
 <div class="detail-panel">
-	<RegionDetail items={regionItems} showHeader={true} title="Region" subtitle={regionCode} />
+	<RegionDetail items={regionItems} showHeader={true} title="Región" subtitle={regionCode} />
 
 	<RegionCampusList
 		items={regionCampusItems}

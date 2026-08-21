@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { campusItemSchema } from './campus.schema';
-import { baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA
@@ -17,19 +17,14 @@ export type RegionCampusForm = z.infer<typeof regionCampusFormSchema>;
 // ============================================
 // 2. ITEM SCHEMA
 // ============================================
-export const regionCampusItemSchema = z.object({
-	id: z.uuid(),
-	regionId: z.uuid(),
-	campusId: z.uuid(),
-	campus: baseRefSchema,
-	version: z.number().int().nonnegative().default(0),
-	isCurrent: z.boolean().default(true),
-	validFrom: z.coerce.date(),
-	validTo: z.coerce.date().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().nullable().optional(),
-	createdBy: z.string()
-});
+export const regionCampusItemSchema = z
+	.object({
+		id: z.uuid(),
+		regionId: z.uuid(),
+		campusId: z.uuid(),
+		campus: baseRefSchema
+	})
+	.extend(auditMetadataSchema.shape);
 
 export type RegionCampusItem = z.infer<typeof regionCampusItemSchema>;
 

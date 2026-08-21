@@ -89,7 +89,7 @@
 						label="Nombre"
 						name="name"
 						required={true}
-						placeholder="Region Norte"
+						placeholder="Región Norte"
 						status={$errors.name ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.name}

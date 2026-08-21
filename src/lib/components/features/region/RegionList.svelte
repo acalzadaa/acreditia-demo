@@ -67,6 +67,7 @@
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Descripción</th>
+							<th class="col-metric">Total de campus</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
 						</tr>
@@ -78,6 +79,7 @@
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
 								<td class="col-text">{item.description}</td>
+								<td class="col-metric">{item.totalCampus}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
@@ -131,6 +133,9 @@
 
 						<CardContent>
 							<CardContentItem label="Descripción" value={item.description} />
+							<CardContentItem label="Total de campus">
+								{item.totalCampus}
+							</CardContentItem>
 						</CardContent>
 
 						<CardFooter>
