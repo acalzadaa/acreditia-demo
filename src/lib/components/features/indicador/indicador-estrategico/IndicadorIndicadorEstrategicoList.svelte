@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
@@ -35,7 +35,7 @@
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
-	<ToolbarV2 actionTitle="Agregar indicador estrategico" {onClickCrear} />
+	<Toolbar actionTitle="Agregar indicador estrategico" {onClickCrear} />
 	{#if items.length > 0}
 		<div class="table-container">
 			<table class="data-table text-body">
@@ -80,7 +80,7 @@
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
-	<ToolbarV2
+	<Toolbar
 		mobileVersion={true}
 		actionTitle="Agregar indicador estrategico"
 		{onClickCrear}

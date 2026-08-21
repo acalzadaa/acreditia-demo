@@ -7,7 +7,7 @@
 <script lang="ts" generics="T extends { id: string | number }">
 	import type { Snippet } from 'svelte';
 	import PageHeader from '../common/PageHeader.svelte';
-	import ToolbarV2 from '../common/ToolbarV2.svelte';
+	import Toolbar from '../common/Toolbar.svelte';
 	import EmptySection from '../common/EmptySection.svelte';
 
 	interface Props {
@@ -73,7 +73,7 @@
 	{/if}
 
 	<section class="list-view">
-		<ToolbarV2
+		<Toolbar
 			mobileVersion={!showTable}
 			{actionTitle}
 			{onClickCrear}

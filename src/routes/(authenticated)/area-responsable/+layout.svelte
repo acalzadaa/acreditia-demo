@@ -10,7 +10,7 @@
 	import Header from '$lib/components/common/Header.svelte';
 	import Subheader from '$lib/components/common/Subheader.svelte';
 	import Footer from '$lib/components/common/Footer.svelte';
-	import ToastContainer from '$lib/components/common/ToastContainer.svelte';
+	import ToastContainer from '$lib/components/ui/toast/ToastContainer.svelte';
 	import NavigationBarContainer from '$lib/components/features/navigation/NavigationBarContainer.svelte';
 	let { children }: LayoutProps = $props();
 

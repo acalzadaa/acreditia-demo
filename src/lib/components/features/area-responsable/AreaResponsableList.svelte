@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
 	import Actions from '$lib/components/ui/Actions.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
@@ -49,7 +49,7 @@
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2
+		<Toolbar
 			actionTitle="Nueva área"
 			{onClickCrear}
 			{onClickExport}
@@ -114,7 +114,7 @@
 	</section>
 
 	<section class="list-view--cards">
-		<ToolbarV2
+		<Toolbar
 			mobileVersion={true}
 			actionTitle="Nueva área"
 			{onClickCrear}

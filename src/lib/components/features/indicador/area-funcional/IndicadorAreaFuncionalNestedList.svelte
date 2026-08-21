@@ -1,6 +1,6 @@
 <script lang="ts">
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
 	import AccordionColumn from '$lib/components/ui/accordion/AccordionColumn.svelte';
 	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
@@ -41,7 +41,7 @@
 
 <section class="detail-panel">
 	<PageHeader {title} {subtitle} />
-	<ToolbarV2 actionTitle="Agregar area funcional" onClickCrear={onClickAdd} />
+	<Toolbar actionTitle="Agregar area funcional" onClickCrear={onClickAdd} />
 	{#if items && items.length > 0}
 		<AccordionColumn minWidth="360px" maxWidth="2500px">
 			{#each items as item (item.id)}

@@ -9,7 +9,7 @@
 	import type { LayoutProps } from '../$types';
 	import { auth } from '$lib/stores/auth.svelte';
 	import { page } from '$app/state';
-	import ToastContainer from '$lib/components/common/ToastContainer.svelte';
+	import ToastContainer from '$lib/components/ui/toast/ToastContainer.svelte';
 	import { getNotificacion } from '$lib/stores/data.svelte';
 	import NavigationBarContainer from '$lib/components/features/navigation/NavigationBarContainer.svelte';
 	let { children }: LayoutProps = $props();

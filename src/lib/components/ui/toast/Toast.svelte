@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import Icon, { type IconName } from './Icon.svelte';
-	import IconButton from './IconButton.svelte';
+	import type { IconName } from '../Icon.svelte';
+	import Icon from '../Icon.svelte';
+	import IconButton from '../IconButton.svelte';
 
 	type ToastVariant = 'success' | 'critical' | 'info' | 'warning';
 

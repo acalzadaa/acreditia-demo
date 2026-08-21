@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { toast } from '$lib/utils/toastManager.svelte';
-	import Toast from '../ui/Toast.svelte';
+	import Toast from './Toast.svelte';
 </script>
 
 <div class="toast-container">

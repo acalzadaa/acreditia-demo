@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
@@ -53,7 +53,7 @@
 
 	<section class="list-view--table">
 		{#if onClickCrear}
-			<ToolbarV2
+			<Toolbar
 				actionTitle="Nueva evaluacion"
 				{onClickCrear}
 				{onClickExport}
@@ -124,7 +124,7 @@
 
 	<section class="list-view--cards">
 		{#if onClickCrear}
-			<ToolbarV2
+			<Toolbar
 				mobileVersion={true}
 				actionTitle="Nueva evaluación"
 				{onClickCrear}

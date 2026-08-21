@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
@@ -38,7 +38,7 @@
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2 actionTitle="Agregar evidencia" onClickCrear={onClickAgregar} />
+		<Toolbar actionTitle="Agregar evidencia" onClickCrear={onClickAgregar} />
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
@@ -78,7 +78,7 @@
 	</section>
 
 	<section class="list-view--cards">
-		<ToolbarV2
+		<Toolbar
 			mobileVersion={true}
 			actionTitle="Agregar evidencia"
 			onClickCrear={onClickAgregar}

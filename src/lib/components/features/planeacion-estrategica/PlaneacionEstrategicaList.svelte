@@ -2,7 +2,7 @@
 	import ListActions from '$lib/components/actions/ListActions.svelte';
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
@@ -48,7 +48,7 @@
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2
+		<Toolbar
 			actionTitle="Nueva planeación"
 			{onClickCrear}
 			{onClickExport}
@@ -106,7 +106,7 @@
 
 	<!-- Vista cards — viewports < 1500px -->
 	<section class="list-view--cards">
-		<ToolbarV2
+		<Toolbar
 			mobileVersion={true}
 			actionTitle="Nueva planeación"
 			{onClickCrear}
