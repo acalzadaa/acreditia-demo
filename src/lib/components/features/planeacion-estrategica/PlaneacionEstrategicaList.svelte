@@ -49,7 +49,7 @@
 
 	<section class="list-view--table">
 		<ToolbarV2
-			actionTitle="Nueva planeacion"
+			actionTitle="Nueva planeación"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -61,7 +61,7 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Filosofia</th>
+							<th class="col-code">Filosofía</th>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Descripción</th>
@@ -108,7 +108,7 @@
 	<section class="list-view--cards">
 		<ToolbarV2
 			mobileVersion={true}
-			actionTitle="Nueva planeacion"
+			actionTitle="Nueva planeación"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -126,7 +126,7 @@
 						</CardHeader>
 
 						<CardContent>
-							<CardContentItem label="Filosofia" value={item.filosofia?.code} />
+							<CardContentItem label="Filosofía" value={item.filosofia?.code} />
 							<CardContentItem label="Descripción" value={item.description} />
 						</CardContent>
 

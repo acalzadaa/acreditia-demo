@@ -47,7 +47,7 @@
 			<PageHeader {title} {subtitle} />
 		{/if}
 		<ToolbarV2
-			actionTitle="Nueva institucion"
+			actionTitle="Nueva institución"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -107,7 +107,7 @@
 		{/if}
 		<ToolbarV2
 			mobileVersion={true}
-			actionTitle="Nueva entidad"
+			actionTitle="Nueva institución"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -115,7 +115,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1299px">
+			<CardColumn minWidth="360px" maxWidth="5000px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.code} title={item.name}>
@@ -160,7 +160,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1300px) {
+	@media (max-width: 5000px) {
 		.list-view--table {
 			display: none;
 		}
