@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { NavigationItem } from '$lib/types/navigation.types';
+		import type { NavigationItem } from '$lib/schemas/navigation.schema';
 	import NavigationBarList from './NavigationBarList.svelte';
 
 	interface Props {

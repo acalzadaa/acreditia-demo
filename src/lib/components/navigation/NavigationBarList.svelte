@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { NavigationItem } from '$lib/types/navigation.types';
 	import { slide } from 'svelte/transition';
 	import Icon from '../ui/Icon.svelte';
 	import { findParentIdByUrl } from '$lib/helpers/navigation';
+		import type { NavigationItem } from '$lib/schemas/navigation.schema';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		navigationItems: NavigationItem[];
@@ -50,7 +51,7 @@
 											<a
 												class="navbar-item--child-anchor"
 												class:current={page.url.pathname === child.href}
-												href={child.href}
+												href={resolve(child.href)}
 											>
 												{child.label}
 											</a>
@@ -63,7 +64,7 @@
 						<a
 							class="navbar-item--anchor"
 							class:current={page.url.pathname === item.href}
-							href={item.href}
+							href={resolve(item.href)}
 							data-sveltekit-preload-data="hover"
 						>
 							{item.label}

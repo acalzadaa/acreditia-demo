@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { NavigationItem } from '$lib/types/navigation.types';
+		import type { NavigationItem } from '$lib/schemas/navigation.schema';
 	import Drawer from '../ui/Drawer.svelte';
 	import NavigationBar from './NavigationBar.svelte';
 	import NavigationBarList from './NavigationBarList.svelte';
