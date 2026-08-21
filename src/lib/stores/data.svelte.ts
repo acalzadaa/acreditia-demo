@@ -16,6 +16,7 @@ import unidadAcademicaJsonData from '$lib/data/unidad-academica.json';
 import puestoJsonData from '$lib/data/puesto.json';
 
 import areaFuncionalJsonData from '$lib/data/area-funcional.json';
+import areaFuncionalPuestoJsonData from '$lib/data/area-funcional-puesto.json';
 import areaResponsableJsonData from '$lib/data/area-responsable.json';
 import areaResponsablePuestoJsonData from '$lib/data/area-responsable-puesto.json';
 
@@ -146,7 +147,15 @@ import {
 	evaluacionEtapaIndicadorItemSchema,
 	type EvaluacionEtapaIndicadorItem
 } from '$lib/schemas/evaluacionEtapaIndicador.schema';
-import { areaResponsablePuestoItemSchema, type AreaResponsablePuestoItem } from '$lib/schemas/areaResponsablePuesto.schema';
+import {
+	areaResponsablePuestoItemSchema,
+	type AreaResponsablePuestoItem
+} from '$lib/schemas/areaResponsablePuesto.schema';
+
+import {
+	areaFuncionalPuestoItemSchema,
+	type AreaFuncionalPuestoItem
+} from '$lib/schemas/areaFuncionalPuesto.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -173,6 +182,7 @@ let puesto = $state<PuestoItem[]>([]);
 let areaResponsable = $state<AreaResponsableItem[]>([]);
 let areaResponsablePuesto = $state<AreaResponsablePuestoItem[]>([]);
 let areaFuncional = $state<AreaFuncionalItem[]>([]);
+let areaFuncionalPuesto = $state<AreaFuncionalPuestoItem[]>([]);
 
 let modelo = $state<ModeloItem[]>([]);
 let capitulo = $state<CapituloItem[]>([]);
@@ -267,6 +277,17 @@ puesto = puestoRawData.map((item) => puestoItemSchema.parse(item));
 
 const areaFuncionalRawData = areaFuncionalJsonData.areaFuncionalItems;
 areaFuncional = areaFuncionalRawData.map((item) => areaFuncionalItemSchema.parse(item));
+
+const areaFuncionalPuestoRawData = areaFuncionalPuestoJsonData.areaFuncionalPuestoItems;
+areaFuncionalPuesto = areaFuncionalPuestoRawData.map((item) => {
+	try {
+		return areaFuncionalPuestoItemSchema.parse(item);
+	} catch (error) {
+		console.error('Fallo en item.id:', item.id);
+		console.error('Error:', error);
+		throw error;
+	}
+});
 
 const areaResponsableRawData = areaResponsableJsonData.areaResponsableItems;
 areaResponsable = areaResponsableRawData.map((item) => {
@@ -503,6 +524,10 @@ export function getAreaFuncionalRef() {
 	}));
 }
 
+export function getAreaFuncionalPuesto() {
+	return areaFuncionalPuesto;
+}
+
 export function getAreaResponsable() {
 	return areaResponsable;
 }
@@ -630,4 +655,3 @@ export function getUsuario() {
 export function getUsuarioPuesto() {
 	return usuarioPuesto;
 }
-

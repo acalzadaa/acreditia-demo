@@ -1,0 +1,50 @@
+{
+	"areaFuncionalPuestoItems": [
+		{
+			"id": "c86dc162-137b-4ed2-9ac9-5a832e1b17d5",
+			"uniqueId": "9ea84d68-561f-4169-a0e9-0fe7682fb89b",
+			"areaFuncional": {
+				"id": "7bf3c6a3-fe6d-4cb4-b304-f60fab8c7e8a",
+				"code": "ACPA",
+				"name": "Aseguramiento de la Calidad y Planeación Académica"
+			},
+			"puesto": {
+				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
+				"code": "DIR_CALIDAD-I",
+				"name": "Director de Calidad y Acreditación",
+				"scope": "funcional",
+				"type": "directivo"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "c86dc162-137b-4ed2-9ac9-5a832e1b17d5",
+			"uniqueId": "9ea84d68-561f-4169-a0e9-0fe7682fb89b",
+			"areaFuncional": {
+				"id": "7bf3c6a3-fe6d-4cb4-b304-f60fab8c7e8a",
+				"code": "ACPAII",
+				"name": "Aseguramiento de la Calidad y Planeación Académica"
+			},
+			"puesto": {
+				"id": "4e503703-ba1e-406c-989c-408be07f0da1",
+				"code": "CALIDAD-II",
+				"name": "Coordinacion de Calidad y Acreditación",
+				"scope": "funcional",
+				"type": "operativo"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
+}

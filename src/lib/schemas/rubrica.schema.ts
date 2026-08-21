@@ -1,7 +1,7 @@
 // rubrica.schema.ts
 import { z } from 'zod';
 import { rubricaCriterioItemSchema } from './rubricaCriterio.schema';
-import { baseRefSchema, rubricaCriterioRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema, rubricaCriterioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA
@@ -55,16 +55,10 @@ export const rubricaItemSchema = z
 		rangeStart: z.number().int(),
 		rangeEnd: z.number().int(),
 		order: z.number().int().min(1).max(5),
-		criterios: z.array(rubricaCriterioRefSchema),
-		version: z.number().int().nonnegative(),
-		isCurrent: z.boolean(),
-		validFrom: z.coerce.date(),
-		validTo: z.coerce.date().nullable(),
-		isDeleted: z.boolean(),
-		createdAt: z.coerce.date(),
-		createdBy: z.string()
+		criterios: z.array(rubricaCriterioRefSchema)
 	})
-	.extend(baseRefSchema.shape);
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadataSchema.shape);
 
 export type RubricaItem = z.infer<typeof rubricaItemSchema>;
 

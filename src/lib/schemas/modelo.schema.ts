@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -33,20 +33,13 @@ export type ModeloForm = z.infer<typeof modeloFormSchema>;
 // Datos completos, padres con datos simples REF
 // ============================================
 
-export const modeloItemSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	description: z.string(),
-	entidadAcreditadora: z.string(),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const modeloItemSchema = z
+	.object({
+		description: z.string(),
+		entidadAcreditadora: z.string()
+	})
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadataSchema.shape);
 export type ModeloItem = z.infer<typeof modeloItemSchema>;
 
 // ============================================

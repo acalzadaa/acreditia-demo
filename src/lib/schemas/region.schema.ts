@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { usuarioRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema, usuarioRefSchema } from './shared.schema';
 
 // ============================================
 // 1. FORM SCHEMA (Cliente ↔ Servidor)
@@ -28,20 +28,13 @@ export type RegionForm = z.infer<typeof regionFormSchema>;
 // ============================================
 // 2. ITEM SCHEMA (Servidor → Cliente)
 // ============================================
-export const regionItemSchema = z.object({
-	id: z.uuid(),
-	usuario: usuarioRefSchema,
-	code: z.string(),
-	name: z.string(),
-	description: z.string().default(''),
-	version: z.number().int().nonnegative().default(0),
-	isCurrent: z.boolean().default(true),
-	validFrom: z.coerce.date(),
-	validTo: z.coerce.date().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().nullable().optional(),
-	createdBy: z.string()
-});
+export const regionItemSchema = z
+	.object({
+		usuario: usuarioRefSchema,
+		description: z.string().default(''),
+		totalCampus: z.number().min(0).default(0)
+	})
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadataSchema.shape);
 
 export type RegionItem = z.infer<typeof regionItemSchema>;
-

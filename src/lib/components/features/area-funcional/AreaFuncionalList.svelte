@@ -3,6 +3,7 @@
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Actions from '$lib/components/ui/Actions.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
@@ -10,6 +11,7 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
+	import { navigateTo } from '$lib/helpers/navigation';
 	import type { AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
 
 	interface Props {
@@ -129,14 +131,20 @@
 						</CardContent>
 
 						<CardFooter>
-							<ListActions
+							<Actions
 								{item}
+								onClickDetail={() => navigateTo(item.code)}
+								isDetailDisabled={false}
+								showDetail={true}
 								onClickEdit={() => onClickEditar(item)}
-								isEditDisabled={item.isDeleted}
+								isEditDisabled={false}
+								showEdit={true}
 								onClickDelete={() => onClickBorrar(item)}
-								isDeleteDisabled={item.isDeleted}
+								isDeleteDisabled={false}
+								showDelete={true}
 								onClickRestore={() => onClickRestaurar(item)}
-								isRestoreDisabled={!item.isDeleted}
+								isRestoreDisabled={true}
+								showRestore={true}
 							/>
 						</CardFooter>
 					</Card>

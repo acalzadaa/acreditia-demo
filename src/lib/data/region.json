@@ -6,6 +6,7 @@
 			"code": "r-001",
 			"name": "Región Norte",
 			"description": "Zona norte del país, caracterizada por su desarrollo industrial y educativo",
+			"total_campus": 0,
 			"usuario": {
 				"id": "061dfb45-1261-49ea-9374-4e9b3610d533",
 				"firstName": "Martin",
@@ -26,6 +27,7 @@
 			"code": "r-002",
 			"name": "Región Centro",
 			"description": "Zona centro del país, caracterizada por su riqueza cultural y artistica",
+			"total_campus": 0,
 			"usuario": {
 				"id": "061dfb45-1261-49ea-9374-4e9b3610d533",
 				"firstName": "Martin",

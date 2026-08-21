@@ -6,6 +6,7 @@
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
+	import Tag from '$lib/components/ui/Tag.svelte';
 
 	interface Props {
 		items: RegionCampusItem[];
@@ -23,6 +24,9 @@
 		<AccordionColumn minWidth="360px" maxWidth="2700px">
 			<Accordion>
 				<AccordionHeaderButton onToggle={onClickToggle} {isVisible}>
+					{#snippet subtitle()}
+						<Tag>Total de campus: {items.length}</Tag>
+					{/snippet}
 					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>Agregar campus</Button>
 				</AccordionHeaderButton>
 

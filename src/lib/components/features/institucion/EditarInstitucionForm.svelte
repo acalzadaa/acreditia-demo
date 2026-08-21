@@ -76,7 +76,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar institucion</h2>
+			<h2 class="modal-title text-h4">Editar institución</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
