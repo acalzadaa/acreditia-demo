@@ -5,7 +5,7 @@ para una pantalla de sublista de elementos con un boton de eliminar.
 -->
 
 <script lang="ts">
-	import Actions from '../ui/Actions.svelte';
+	import Actions from "./Actions.svelte";
 
 	interface Props {
 		item: unknown;

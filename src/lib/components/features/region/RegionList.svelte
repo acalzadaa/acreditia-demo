@@ -11,7 +11,7 @@
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 	import type { RegionItem } from '$lib/schemas/region.schema';
-	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
+	import ListDetailActions from '$lib/components/ui/actions/ListDetailActions.svelte';
 
 	interface Props {
 		items: RegionItem[];

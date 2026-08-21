@@ -3,7 +3,7 @@
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
-	import Actions from '$lib/components/ui/Actions.svelte';
+	import Actions from '$lib/components/ui/actions/Actions.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';

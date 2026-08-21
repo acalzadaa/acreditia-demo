@@ -5,7 +5,8 @@ para una pantalla de lista de elementos, normalmente Edit,Delete,Restore
 -->
 
 <script lang="ts">
-	import Actions from '../ui/Actions.svelte';
+	import Actions from "./Actions.svelte";
+
 
 	interface Props {
 		item: unknown;

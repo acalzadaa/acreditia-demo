@@ -6,7 +6,7 @@ este boton de detalle normalmente tiene un onClick(navigateTo('url'))
 Usa Actions y agrega el boton de Detail a ListActions.
 -->
 <script lang="ts">
-	import Actions from '../ui/Actions.svelte';
+	import Actions from "./Actions.svelte";
 
 	interface Props {
 		item: unknown;

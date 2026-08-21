@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import Actions from '$lib/components/ui/Actions.svelte';
+	import Actions from '$lib/components/ui/actions/Actions.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';

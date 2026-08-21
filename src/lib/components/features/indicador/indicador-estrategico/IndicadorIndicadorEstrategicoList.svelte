@@ -7,7 +7,7 @@
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
-	import SublistActions from '$lib/components/actions/SublistActions.svelte';
+	import SublistActions from '$lib/components/ui/actions/SublistActions.svelte';
 	import type { IndicadorIndicadorEstrategicoItem } from '$lib/schemas/indicadorIndicadorEstrategico';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';

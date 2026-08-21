@@ -10,7 +10,7 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	import SublistActions from '$lib/components/actions/SublistActions.svelte';
+	import SublistActions from '$lib/components/ui/actions/SublistActions.svelte';
 
 	interface Props {
 		items: EvidenciaItem[];

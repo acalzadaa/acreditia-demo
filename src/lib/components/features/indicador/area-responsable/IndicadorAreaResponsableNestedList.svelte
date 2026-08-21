@@ -6,7 +6,7 @@
 	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
 	import AccordionContentItem from '$lib/components/ui/accordion/AccordionContentItem.svelte';
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
-	import Actions from '$lib/components/ui/Actions.svelte';
+	import Actions from '$lib/components/ui/actions/Actions.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';

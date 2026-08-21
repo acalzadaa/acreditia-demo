@@ -11,8 +11,8 @@
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { IndicadorItem } from '$lib/schemas/indicador.schema';
 	import { navigateTo } from '$lib/helpers/navigation';
-	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
-	import Actions from '$lib/components/ui/Actions.svelte';
+	import ListDetailActions from '$lib/components/ui/actions/ListDetailActions.svelte';
+	import Actions from '$lib/components/ui/actions/Actions.svelte';
 
 	interface Props {
 		items: IndicadorItem[];

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconButton from './IconButton.svelte';
+	import IconButton from '../IconButton.svelte';
 
 	interface Props {
 		item?: unknown;

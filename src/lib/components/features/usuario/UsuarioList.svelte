@@ -10,7 +10,7 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { UsuarioItem } from '$lib/schemas/usuario.schema';
-	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
+	import ListDetailActions from '$lib/components/ui/actions/ListDetailActions.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 
 	interface Props {

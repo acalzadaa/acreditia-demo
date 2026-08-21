@@ -11,7 +11,7 @@
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 	import { convertEvaluacionStatusToBadgeVariant, isActionDisabled } from './utils/EvaluacionUtils';
-	import Actions from '../ui/Actions.svelte';
+	import Actions from '../ui/actions/Actions.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 
 	interface Props {

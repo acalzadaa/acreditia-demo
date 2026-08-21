@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ListActions from '$lib/components/actions/ListActions.svelte';
+	import ListActions from '$lib/components/ui/actions/ListActions.svelte';
 	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';

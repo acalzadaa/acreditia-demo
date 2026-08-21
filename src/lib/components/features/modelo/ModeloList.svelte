@@ -10,7 +10,7 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { ModeloItem } from '$lib/schemas/modelo.schema';
-	import ListActions from '$lib/components/actions/ListActions.svelte';
+	import ListActions from '$lib/components/ui/actions/ListActions.svelte';
 
 	interface Props {
 		items: ModeloItem[];

@@ -6,8 +6,7 @@ para una pantalla de detalle, normalmente Edit.
 -->
 
 <script lang="ts">
-	import Actions from "../ui/Actions.svelte";
-
+	import Actions from "./Actions.svelte";
 
     interface Props {
         item: unknown;
