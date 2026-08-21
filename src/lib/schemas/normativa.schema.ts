@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMAS (Para relaciones)
@@ -24,19 +25,12 @@ export type NormativaForm = z.infer<typeof normativaFormSchema>;
 // Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
 
-export const normativaItemSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	description: z.string().default(''),
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string().optional()
-});
+export const normativaItemSchema = z
+	.object({
+		description: z.string().default('')
+	})
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadataSchema.shape);
 export type NormativaItem = z.infer<typeof normativaItemSchema>;
 
 // ============================================

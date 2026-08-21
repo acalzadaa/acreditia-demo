@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 import { modeloItemSchema } from './modelo.schema';
 
 // ============================================
@@ -41,22 +41,15 @@ export type CapituloForm = z.infer<typeof capituloFormSchema>;
 // Datos completos desde la base de datos
 // ============================================
 
-export const capituloItemSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	description: z.string(),
-	content: z.string(),
-	order: z.number(),
-	modelo: baseRefSchema,
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const capituloItemSchema = z
+	.object({
+		description: z.string(),
+		content: z.string(),
+		order: z.number(),
+		modelo: baseRefSchema
+	})
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadataSchema.shape);
 export type CapituloItem = z.infer<typeof capituloItemSchema>;
 
 // ============================================

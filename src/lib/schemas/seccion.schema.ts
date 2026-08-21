@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { baseRefSchema } from './shared.schema';
+import { auditMetadataSchema, baseRefSchema } from './shared.schema';
 import { capituloItemSchema } from './capitulo.schema';
 
 // ============================================
@@ -41,22 +41,15 @@ export type SeccionForm = z.infer<typeof seccionFormSchema>;
 // Datos completos desde la base de datos
 // ============================================
 
-export const seccionItemSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string(),
-	description: z.string(),
-	content: z.string(),
-	order: z.number(),
-	capitulo: baseRefSchema,
-	version: z.number().default(0),
-	isCurrent: z.boolean().default(false),
-	validFrom: z.coerce.date().optional(),
-	validTo: z.coerce.date().optional().nullable(),
-	isDeleted: z.boolean().default(false),
-	createdAt: z.iso.datetime().optional(),
-	createdBy: z.string()
-});
+export const seccionItemSchema = z
+	.object({
+		description: z.string(),
+		content: z.string(),
+		order: z.number(),
+		capitulo: baseRefSchema
+	})
+	.extend(baseRefSchema.shape)
+	.extend(auditMetadataSchema.shape);
 export type SeccionItem = z.infer<typeof seccionItemSchema>;
 
 // ============================================
