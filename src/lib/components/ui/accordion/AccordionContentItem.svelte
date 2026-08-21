@@ -10,7 +10,7 @@ Esto funciona para cuando se desea crear un AccordionContent a manera de subhead
 -->
 
 <script lang="ts">
-	import { createToggle } from '$lib/utils/toggle.svelte';
+	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 	import type { Snippet } from 'svelte';
 	import Button from '../Button.svelte';
 	import type { IconName } from '../Icon.svelte';

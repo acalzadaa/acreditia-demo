@@ -11,8 +11,8 @@
 		getAreaResponsableRef,
 		getIndicadorAreaResponsable,
 		getUnidadAcademicaRef
-	} from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	} from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let areaResponsableItems = getIndicadorAreaResponsable().filter(

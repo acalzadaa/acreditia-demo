@@ -4,7 +4,7 @@
 		EvaluacionEtapaIndicadorItem,
 		EvaluacionEtapaIndicadorItemFor
 	} from '$lib/schemas/evaluacionEtapaIndicador.schema';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import ConfirmAcceptInvalidateModal from '../ConfirmAcceptInvalidateModal.svelte';
 	import ConfirmFinishModal from '../ConfirmFinishModal.svelte';
 	import ConfirmRejectInvalidateModal from '../ConfirmRejectInvalidateModal.svelte';

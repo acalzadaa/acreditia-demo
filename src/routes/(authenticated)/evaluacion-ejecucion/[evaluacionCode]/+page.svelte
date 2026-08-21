@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getEvaluacion, getEvaluacionEtapa } from '$lib/stores/data.svelte';
+	import { getEvaluacion, getEvaluacionEtapa } from '$lib/components/common/stores/data.svelte';
 	import { page } from '$app/state';
 	import EvaluacionDetail from '$lib/components/evaluacion/EvaluacionDetail.svelte';
 	import EvaluacionEtapaNavigationList from '$lib/components/evaluacion/etapa/EvaluacionEtapaNavigationList.svelte';

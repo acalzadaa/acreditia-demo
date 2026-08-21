@@ -4,8 +4,8 @@
 	import IndicadorNormativaList from '$lib/components/features/indicador/normativa/IndicadorNormativaList.svelte';
 	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
 	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
-	import { getIndicadorNormativa, getNormativaRef } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getIndicadorNormativa, getNormativaRef } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let indicadorNormativaItems = getIndicadorNormativa().filter(

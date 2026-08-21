@@ -17,7 +17,7 @@
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
-	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';;
 	import EvalucionEtapaIndicadorFooterActions from '../EvalucionEtapaIndicadorFooterActions.svelte';
 	type EvaluacionEjecucionIndicadorItem =
 		EvaluacionEtapaIndicadorItemFor<'autoevaluacion-ejecucion'>;

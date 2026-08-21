@@ -6,7 +6,7 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
 	import type { AreaResponsablePuestoItem } from '$lib/schemas/areaResponsablePuesto.schema';
-	import { createToggle } from '$lib/utils/toggle.svelte';
+	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 
 	interface Props {

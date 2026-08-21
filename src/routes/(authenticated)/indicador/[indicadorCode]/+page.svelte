@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
 	import EditarIndicadorForm from '$lib/components/features/indicador/EditarIndicadorForm.svelte';
-	import { getIndicador, getIndicadorNavList, getModeloFullRef } from '$lib/stores/data.svelte';
+	import { getIndicador, getIndicadorNavList, getModeloFullRef } from '$lib/components/common/stores/data.svelte';
 	import { page } from '$app/state';
 	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';

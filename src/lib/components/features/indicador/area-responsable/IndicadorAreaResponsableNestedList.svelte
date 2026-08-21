@@ -11,7 +11,7 @@
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
 	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
-	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';;
 
 	interface Props {
 		items: IndicadorAreaResponsableItem[];

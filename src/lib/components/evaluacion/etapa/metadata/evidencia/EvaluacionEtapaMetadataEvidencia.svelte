@@ -4,7 +4,7 @@
 		EvaluacionEtapaIndicadorItemFor
 	} from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 
 	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
 	import { extractEtapaItems } from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';

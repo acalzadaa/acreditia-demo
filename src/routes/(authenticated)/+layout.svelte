@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import { auth } from '$lib/stores/auth.svelte';
+	import { auth } from '$lib/components/common/stores/auth.svelte';
 
 	let { children } = $props();
 

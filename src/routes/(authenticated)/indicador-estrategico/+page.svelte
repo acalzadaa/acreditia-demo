@@ -2,8 +2,8 @@
 	import type { IndicadorEstrategicoItem } from '$lib/schemas/indicadorEstrategico.schema';
 	import CrearIndicadorEstrategicoForm from '$lib/components/features/indicador-estrategico/CrearIndicadorEstrategicoForm.svelte';
 	import EditarIndicadorEstrategicoForm from '$lib/components/features/indicador-estrategico/EditarIndicadorEstrategicoForm.svelte';
-	import { getIndicadorEstrategico, getObjetivoEstrategico } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getIndicadorEstrategico, getObjetivoEstrategico } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import IndicadorEstrategicoList from '$lib/components/features/indicador-estrategico/IndicadorEstrategicoList.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';

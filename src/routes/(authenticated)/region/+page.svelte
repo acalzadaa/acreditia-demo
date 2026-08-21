@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getPuestoRef, getRegion } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getPuestoRef, getRegion } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import type { RegionItem } from '$lib/schemas/region.schema';

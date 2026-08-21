@@ -3,14 +3,14 @@
 	import Subheader from '$lib/components/features/layout/Subheader.svelte';
 	import NotificationBarContainer from '$lib/components/features/notification/NotificationBarContainer.svelte';
 	import Footer from '$lib/components/features/layout/Footer.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
+	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import type { LayoutProps } from '../$types';
-	import { auth } from '$lib/stores/auth.svelte';
+	import { auth } from '$lib/components/common/stores/auth.svelte';
 	import { page } from '$app/state';
 	import ToastContainer from '$lib/components/ui/toast/ToastContainer.svelte';
-	import { getNotificacion } from '$lib/stores/data.svelte';
+	import { getNotificacion } from '$lib/components/common/stores/data.svelte';
 	import NavigationBarContainer from '$lib/components/features/navigation/NavigationBarContainer.svelte';
 	let { children }: LayoutProps = $props();
 

@@ -6,8 +6,8 @@
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import type { RemoverRubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
-	import { getRubrica } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getRubrica } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let rubricaItems = getRubrica().filter((item) => item.indicador.code === indicadorCode);

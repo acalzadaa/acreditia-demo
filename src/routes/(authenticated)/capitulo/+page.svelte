@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import { getCapitulo, getModeloRef } from '$lib/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
+	import { getCapitulo, getModeloRef } from '$lib/components/common/stores/data.svelte';
 	import type { CapituloItem } from '$lib/schemas/capitulo.schema';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';

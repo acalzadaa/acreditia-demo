@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { NormativaItem } from '$lib/schemas/normativa.schema';
-	import { getNormativa } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getNormativa } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import NormativaList from '$lib/components/features/normativa/NormativaList.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';

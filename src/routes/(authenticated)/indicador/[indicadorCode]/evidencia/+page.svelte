@@ -4,8 +4,8 @@
 	import EvidenciaSublist from '$lib/components/features/indicador/evidencia/EvidenciaSublist.svelte';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	import { getEvidenciaRef, getIndicadorEvidencia } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getEvidenciaRef, getIndicadorEvidencia } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let indicadorEvidenciaItem = getIndicadorEvidencia().filter(

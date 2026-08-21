@@ -3,7 +3,7 @@
 	import { resolve } from '$app/paths';
 	import Button from '$lib/components/ui/Button.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
-	import { auth } from '$lib/stores/auth.svelte';
+	import { auth } from '$lib/components/common/stores/auth.svelte';
 
 	let email = $state('');
 	let password = $state('');

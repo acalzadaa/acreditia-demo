@@ -7,7 +7,7 @@
 		getEvaluacionEtapa,
 		getEvaluacionEtapaIndicador,
 		getRubrica
-	} from '$lib/stores/data.svelte';
+	} from '$lib/components/common/stores/data.svelte';
 
 	let evaluacionCode = page.params.evaluacionCode;
 	let etapaCode = page.params.etapaCode as EtapaCode;

@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { getCampusRef, getRegion, getRegionCampus } from '$lib/stores/data.svelte';
+	import { getCampusRef, getRegion, getRegionCampus } from '$lib/components/common/stores/data.svelte';
 	import { page } from '$app/state';
 
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import type { RegionCampusItem } from '$lib/schemas/regionCampus.schema';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import RegionDetail from '$lib/components/features/region/RegionDetail.svelte';
 	import AddRegionCampusForm from '$lib/components/features/region/campus/AddRegionCampusForm.svelte';
 	import RegionCampusList from '$lib/components/features/region/campus/RegionCampusList.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
+	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 
 	let regionCode = page.params.regionCode;
 	let regionItems = getRegion().filter((item) => item.code === regionCode);

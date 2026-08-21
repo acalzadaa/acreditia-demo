@@ -25,7 +25,7 @@
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
-	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';;
 	type EvaluacionRevisionIndicadorItem = EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>;
 
 	interface Props {

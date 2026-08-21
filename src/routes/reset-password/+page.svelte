@@ -6,7 +6,7 @@
 	import Header from '$lib/components/features/layout/Header.svelte';
 	import Footer from '$lib/components/features/layout/Footer.svelte';
 	import { resolve } from '$app/paths';
-	import { auth } from '$lib/stores/auth.svelte';
+	import { auth } from '$lib/components/common/stores/auth.svelte';
 
 	let password = $state('');
 	let confirmPassword = $state('');

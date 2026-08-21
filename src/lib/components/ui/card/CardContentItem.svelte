@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createToggle } from '$lib/utils/toggle.svelte';
+	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 	import type { Snippet } from 'svelte';
 	import Button from '../Button.svelte';
 	import { capitalizeText } from '$lib/components/common/utils/stringUtils';
