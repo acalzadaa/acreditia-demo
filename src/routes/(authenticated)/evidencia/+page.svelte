@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	import { getEvidencia } from '$lib/stores/data.svelte';
+	import { getEvidencia } from '$lib/components/common/stores/data.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import EvidenciaList from '$lib/components/features/evidencia/EvidenciaList.svelte';

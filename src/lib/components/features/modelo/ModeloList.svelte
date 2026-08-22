@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
@@ -10,7 +10,7 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { ModeloItem } from '$lib/schemas/modelo.schema';
-	import ListActions from '$lib/components/actions/ListActions.svelte';
+	import ListActions from '$lib/components/ui/actions/ListActions.svelte';
 
 	interface Props {
 		items: ModeloItem[];
@@ -50,7 +50,7 @@
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />
 		{/if}
-		<ToolbarV2
+		<Toolbar
 			actionTitle="Nuevo modelo"
 			{onClickCrear}
 			{onClickFilter}
@@ -109,7 +109,7 @@
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />
 		{/if}
-		<ToolbarV2
+		<Toolbar
 			mobileVersion={true}
 			actionTitle="Nuevo modelo"
 			{onClickCrear}

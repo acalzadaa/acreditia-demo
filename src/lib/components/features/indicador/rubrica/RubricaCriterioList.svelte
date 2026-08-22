@@ -9,7 +9,7 @@
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import type { RemoverRubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
-	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';;
 
 	interface Props {
 		items: RubricaItem[];

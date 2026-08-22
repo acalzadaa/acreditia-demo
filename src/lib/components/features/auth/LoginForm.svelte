@@ -1,0 +1,65 @@
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
+	import Button from '$lib/components/ui/Button.svelte';
+	import InputText from '$lib/components/ui/input/InputText.svelte';
+	import { auth } from '$lib/components/common/stores/auth.svelte';
+
+	let email = $state('');
+	let password = $state('');
+	let loading = $state(false);
+	let errorMsg = $state<string | null>(null);
+
+	async function handleLogin() {
+		loading = true;
+		errorMsg = null;
+
+		const { success, error } = await auth.login(email, password);
+
+		if (success) {
+			goto(resolve('/dashboard'));
+		} else {
+			errorMsg = error ?? 'Credenciales incorrectas';
+			loading = false;
+		}
+	}
+</script>
+
+<div class="form-container--spacious">
+	<header>
+		<h2 class="text-h4">Iniciar Sesión</h2>
+	</header>
+
+	<div class="modal-body">
+		<div class="form-fields">
+			<InputText
+				iconName="email"
+				iconPosition="left"
+				label="Email"
+				name="email"
+				type="email"
+				required
+				placeholder="usuario@dominio.com"
+				bind:value={email}
+			/>
+			<InputText
+				iconName="password"
+				iconPosition="left"
+				label="Password"
+				name="password"
+				type="password"
+				required
+				placeholder="********"
+				bind:value={password}
+				errors={errorMsg ?? ''}
+				onEnter={handleLogin}
+			/>
+		</div>
+	</div>
+
+	<menu class="form-actions text-body">
+		<Button type="button" variant="primary" onClick={handleLogin} disabled={loading}>
+			{loading ? 'Iniciando...' : 'Iniciar Sesión'}
+		</Button>
+	</menu>
+</div>

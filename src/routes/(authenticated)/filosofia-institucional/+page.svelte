@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { type FilosofiaInstitucionalItem } from '$lib/schemas/filosofiaInstitucional.schema';
 	import EditarFilosofiaInstitucionalForm from '$lib/components/features/filosofia-institucional/EditarFilosofiaInstitucionalForm.svelte';
-	import { getFilosofia } from '$lib/stores/data.svelte';
+	import { getFilosofia } from '$lib/components/common/stores/data.svelte';
 	import FilosofiaInstitucionalList from '$lib/components/features/filosofia-institucional/FilosofiaInstitucionalList.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import CrearFilosofiaInstitucionalForm from '$lib/components/features/filosofia-institucional/CrearFilosofiaInstitucionalForm.svelte';

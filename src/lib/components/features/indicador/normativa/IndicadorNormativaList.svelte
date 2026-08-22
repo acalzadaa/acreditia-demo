@@ -1,14 +1,14 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
-	import SublistActions from '$lib/components/actions/SublistActions.svelte';
+	import SublistActions from '$lib/components/ui/actions/SublistActions.svelte';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 
@@ -35,7 +35,7 @@
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
-	<ToolbarV2 actionTitle="Agregar normativa" {onClickCrear} />
+	<Toolbar actionTitle="Agregar normativa" {onClickCrear} />
 	{#if items.length > 0}
 		<div class="table-container">
 			<table class="data-table text-body">
@@ -80,7 +80,7 @@
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
-	<ToolbarV2
+	<Toolbar
 		mobileVersion={true}
 		actionTitle="Agregar normativa"
 		{onClickCrear}

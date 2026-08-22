@@ -5,8 +5,8 @@
 		getAreaResponsable,
 		getAreaResponsableRef,
 		getInstitucionRef
-	} from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	} from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import AreaResponsableList from '$lib/components/features/area-responsable/AreaResponsableList.svelte';

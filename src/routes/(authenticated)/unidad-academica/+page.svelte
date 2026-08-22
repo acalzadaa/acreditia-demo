@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
-	import { getUnidadAcademica } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getUnidadAcademica } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import UnidadAcademicaList from '$lib/components/features/unidad-academica/UnidadAcademicaList.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';

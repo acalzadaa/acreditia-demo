@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
-	import { getCapituloRef, getSeccion } from '$lib/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
+	import { getCapituloRef, getSeccion } from '$lib/components/common/stores/data.svelte';
 	import type { SeccionItem } from '$lib/schemas/seccion.schema';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';

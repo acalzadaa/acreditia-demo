@@ -7,8 +7,8 @@
 	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
 	import type { IndicadorAreaFuncionalItem } from '$lib/schemas/indicadorAreaFuncional';
 	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
-	import { getAreaFuncionalRef, getIndicadorAreaFuncional } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getAreaFuncionalRef, getIndicadorAreaFuncional } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let areaFuncionalItems = getIndicadorAreaFuncional().filter(

@@ -8,7 +8,7 @@
 	import DatePickerInput from '$lib/components/ui/input/DatePickerInput.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import InputCheckbox from '$lib/components/ui/input/InputCheckbox.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
+	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 
 	interface Props {
 		open: boolean;

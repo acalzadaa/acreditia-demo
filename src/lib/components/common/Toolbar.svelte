@@ -1,16 +1,10 @@
 <script lang="ts">
-/**
- * DEPRECADO
- * no usar este componente, se va a borrar al terminar la migracion a ToolbarV2
- * 
-*/
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 
 	interface Props {
-		gridArea?: string;
-
 		actionTitle?: string;
+		mobileVersion?: boolean;
 		onClickCrear: (e: MouseEvent) => void;
 		onKeydownCrear?: (e: KeyboardEvent) => void;
 
@@ -24,8 +18,8 @@
 	}
 
 	const {
-		gridArea = 'toolbar',
 		onClickCrear,
+		mobileVersion = false,
 		actionTitle = 'Crear',
 		onKeydownCrear,
 		onClickExport,
@@ -37,9 +31,10 @@
 	}: Props = $props();
 </script>
 
-<header class="toolbar" style="grid-area: {gridArea}">
+<header class="toolbar">
 	<section class="toolbar-actions text-body">
 		<Button
+			{mobileVersion}
 			variant="outline"
 			iconPosition="left"
 			name="add"
@@ -76,7 +71,8 @@
 <style>
 	/* Toolbar */
 	.toolbar {
-		grid-area: toolbar;
+		margin-left: var(--space-2);
+		margin-right: var(--space-2);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -86,6 +82,7 @@
 		border-bottom: 1px solid var(--border-light);
 		gap: 1rem;
 		flex-shrink: 0;
+		min-height: 0;
 		height: 80px;
 	}
 
@@ -96,7 +93,7 @@
 	}
 
 	/* Responsive */
-	@media (max-width: 768px) {
+	@media (max-width: 640px) {
 		.toolbar {
 			flex-direction: column;
 			align-items: stretch;

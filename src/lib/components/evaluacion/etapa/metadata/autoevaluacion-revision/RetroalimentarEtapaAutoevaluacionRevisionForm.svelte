@@ -5,7 +5,7 @@
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 
-	import { toast } from '$lib/utils/toastManager.svelte';
+	import { toast } from '$lib/components/ui/toast/stores/toastManager.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 
 	type EvaluacionRevisionIndicadorItem = EvaluacionEtapaIndicadorItemFor<'autoevaluacion-revision'>;

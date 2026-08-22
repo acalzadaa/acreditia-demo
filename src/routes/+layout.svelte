@@ -4,7 +4,7 @@
 	import type { LayoutProps } from './$types';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { auth } from '$lib/stores/auth.svelte';
+	import { auth } from '$lib/components/common/stores/auth.svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 

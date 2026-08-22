@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 
-	import { getModelo } from '$lib/stores/data.svelte';
+	import { getModelo } from '$lib/components/common/stores/data.svelte';
 
 	import type { ModeloItem } from '$lib/schemas/modelo.schema';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';

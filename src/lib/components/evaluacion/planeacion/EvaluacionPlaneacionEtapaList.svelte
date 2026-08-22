@@ -9,7 +9,7 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
-	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';;
 	import {
 	convertEvaluacionEtapaStatusToBadgeVariant,
 		formatEtapaContentItem,

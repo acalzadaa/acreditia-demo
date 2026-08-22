@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
@@ -11,8 +11,8 @@
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { IndicadorItem } from '$lib/schemas/indicador.schema';
 	import { navigateTo } from '$lib/helpers/navigation';
-	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
-	import Actions from '$lib/components/ui/Actions.svelte';
+	import ListDetailActions from '$lib/components/ui/actions/ListDetailActions.svelte';
+	import Actions from '$lib/components/ui/actions/Actions.svelte';
 
 	interface Props {
 		items: IndicadorItem[];
@@ -56,7 +56,7 @@
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />
 		{/if}
-		<ToolbarV2
+		<Toolbar
 			actionTitle="Nuevo indicador"
 			{onClickCrear}
 			{onClickFilter}
@@ -121,7 +121,7 @@
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />
 		{/if}
-		<ToolbarV2
+		<Toolbar
 			mobileVersion={true}
 			actionTitle="Nuevo indicador"
 			{onClickCrear}

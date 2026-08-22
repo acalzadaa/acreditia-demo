@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { EntidadLegalItem } from '$lib/schemas/entidadLegal.schema';
-	import { getEntidadLegal } from '$lib/stores/data.svelte';
+	import { getEntidadLegal } from '$lib/components/common/stores/data.svelte';
 	import EntidadLegalList from '$lib/components/features/entidad-legal/EntidadLegalList.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import CrearEntidadLegalForm from '$lib/components/features/entidad-legal/CrearEntidadLegalForm.svelte';

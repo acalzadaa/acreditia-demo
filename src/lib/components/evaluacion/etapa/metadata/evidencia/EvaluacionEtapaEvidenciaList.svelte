@@ -16,7 +16,7 @@
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
-	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';;
 	import EvalucionEtapaIndicadorFooterActions from '../EvalucionEtapaIndicadorFooterActions.svelte';
 	type EvidenciaIndicadorItem = EvaluacionEtapaIndicadorItemFor<'evidencia'>;
 

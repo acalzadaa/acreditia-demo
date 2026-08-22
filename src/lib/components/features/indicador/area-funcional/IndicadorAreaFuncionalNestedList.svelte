@@ -1,17 +1,17 @@
 <script lang="ts">
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
 	import AccordionColumn from '$lib/components/ui/accordion/AccordionColumn.svelte';
 	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
 	import AccordionContentItem from '$lib/components/ui/accordion/AccordionContentItem.svelte';
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
-	import Actions from '$lib/components/ui/Actions.svelte';
+	import Actions from '$lib/components/ui/actions/Actions.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { IndicadorAreaFuncionalItem } from '$lib/schemas/indicadorAreaFuncional';
 	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
-	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';;
 
 	interface Props {
 		items: IndicadorAreaFuncionalItem[];
@@ -41,7 +41,7 @@
 
 <section class="detail-panel">
 	<PageHeader {title} {subtitle} />
-	<ToolbarV2 actionTitle="Agregar area funcional" onClickCrear={onClickAdd} />
+	<Toolbar actionTitle="Agregar area funcional" onClickCrear={onClickAdd} />
 	{#if items && items.length > 0}
 		<AccordionColumn minWidth="360px" maxWidth="2500px">
 			{#each items as item (item.id)}

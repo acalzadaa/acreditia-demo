@@ -5,7 +5,7 @@
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 
-	import { toast } from '$lib/utils/toastManager.svelte';
+	import { toast } from '$lib/components/ui/toast/stores/toastManager.svelte';
 
 	interface Props {
 		open: boolean;

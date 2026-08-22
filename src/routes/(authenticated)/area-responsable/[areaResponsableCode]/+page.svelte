@@ -3,9 +3,9 @@
 		getAreaResponsable,
 		getAreaResponsablePuesto,
 		getPuestoRef
-	} from '$lib/stores/data.svelte';
+	} from '$lib/components/common/stores/data.svelte';
 	import { page } from '$app/state';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import AreaResponsableDetail from '$lib/components/features/area-responsable/AreaResponsableDetail.svelte';
 	import AreaResponsablePuestoList from '$lib/components/features/area-responsable/puesto/AreaResponsablePuestoList.svelte';
 	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';

@@ -6,7 +6,7 @@
 		EvaluacionEtapaIndicadorItemFor
 	} from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import EvaluacionEtapaAutoevaluacionRevisionDetail from './EvaluacionEtapaAutoevaluacionRevisionDetail.svelte';
 	import RetroalimentarEtapaAutoevaluacionRevisionForm from './RetroalimentarEtapaAutoevaluacionRevisionForm.svelte';
 	import SeleccionarEtapaAutoevaluacionRevisionForm from './SeleccionarEtapaAutoevaluacionRevisionForm.svelte';

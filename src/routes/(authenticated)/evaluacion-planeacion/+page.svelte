@@ -7,8 +7,8 @@
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import type { EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 
-	import { getEvaluacion, getInstitucionRef, getModeloRef } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getEvaluacion, getInstitucionRef, getModeloRef } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 
 	let evaluacionItems = getEvaluacion().filter((item) => item.startedAt === null);
 	let modeloRef = getModeloRef();

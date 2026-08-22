@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { AreaFuncionalItem } from '$lib/schemas/areaFuncional.schema';
-	import { getAreaFuncional, getAreaFuncionalRef } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getAreaFuncional, getAreaFuncionalRef } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import AreaFuncionalList from '$lib/components/features/area-funcional/AreaFuncionalList.svelte';

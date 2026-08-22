@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { InstitucionItem } from '$lib/schemas/institucion.schema';
-	import { getEntidadLegalRef, getInstitucion } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getEntidadLegalRef, getInstitucion } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import InstitucionList from '$lib/components/features/institucion/InstitucionList.svelte';

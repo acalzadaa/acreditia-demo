@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import ToolbarV2 from '$lib/components/common/ToolbarV2.svelte';
+	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
@@ -10,7 +10,7 @@
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { UsuarioItem } from '$lib/schemas/usuario.schema';
-	import ListDetailActions from '$lib/components/actions/ListDetailActions.svelte';
+	import ListDetailActions from '$lib/components/ui/actions/ListDetailActions.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 
 	interface Props {
@@ -48,7 +48,7 @@
 	{/if}
 
 	<section class="list-view--table">
-		<ToolbarV2
+		<Toolbar
 			actionTitle="Nuevo usuario"
 			{onClickCrear}
 			{onClickExport}
@@ -106,7 +106,7 @@
 	</section>
 
 	<section class="list-view--cards">
-		<ToolbarV2
+		<Toolbar
 			mobileVersion={true}
 			actionTitle="Nuevo usuario"
 			{onClickCrear}

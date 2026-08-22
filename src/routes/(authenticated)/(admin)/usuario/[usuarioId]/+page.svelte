@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { getPuestoRef, getUsuario, getUsuarioPuesto } from '$lib/stores/data.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { getPuestoRef, getUsuario, getUsuarioPuesto } from '$lib/components/common/stores/data.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import UsuarioDetail from '$lib/components/features/usuario/UsuarioDetail.svelte';
 	import UsuarioPuestoList from '$lib/components/features/usuario/puesto/UsuarioPuestoList.svelte';
-	import { createToggle } from '$lib/utils/toggle.svelte';
+	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 	import type { UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
 	import { page } from '$app/state';
 	import AddUsuarioPuestoForm from '$lib/components/features/usuario/puesto/AddUsuarioPuestoForm.svelte';

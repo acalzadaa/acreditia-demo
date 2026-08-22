@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { getCampus, getInstitucionRef } from '$lib/stores/data.svelte';
+	import { getCampus, getInstitucionRef } from '$lib/components/common/stores/data.svelte';
 	import type { CampusItem } from '$lib/schemas/campus.schema';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
 	import EditarCampusForm from '$lib/components/features/campus/EditarCampusForm.svelte';

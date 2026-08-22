@@ -7,7 +7,7 @@
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 
 	
-	import { toast } from '$lib/utils/toastManager.svelte';
+	import { toast } from '$lib/components/ui/toast/stores/toastManager.svelte';
 
 	interface Props {
 		open: boolean;

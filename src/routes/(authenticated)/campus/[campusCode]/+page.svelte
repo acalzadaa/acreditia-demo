@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import {
 		getAreaResponsableRef,
 		getCampus,
 		getCampusAreaResponsable,
 		getCampusUnidadAcademica,
 		getUnidadAcademicaRef
-	} from '$lib/stores/data.svelte';
+	} from '$lib/components/common/stores/data.svelte';
 	import { page } from '$app/state';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { AreaResponsableRef, BaseRef } from '$lib/schemas/shared.schema';
@@ -15,7 +15,7 @@
 	import CampusUnidadAcademicaList from '$lib/components/features/campus/unidad-academica/CampusUnidadAcademicaList.svelte';
 	import AddCampusAreaResponsableForm from '$lib/components/features/campus/area-responsable/AddCampusAreaResponsableForm.svelte';
 	import AddCampusUnidadAcademicaForm from '$lib/components/features/campus/unidad-academica/AddCampusUnidadAcademicaForm.svelte';
-	import { createToggleManager } from '$lib/utils/toogleManager.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';
 
 	let campusCode = page.params.campusCode;
 

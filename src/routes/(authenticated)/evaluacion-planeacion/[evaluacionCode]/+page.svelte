@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { getEvaluacion, getEvaluacionEtapa } from '$lib/stores/data.svelte';
+	import { getEvaluacion, getEvaluacionEtapa } from '$lib/components/common/stores/data.svelte';
 	import { page } from '$app/state';
 	import EvaluacionDetail from '$lib/components/evaluacion/EvaluacionDetail.svelte';
 	import EvaluacionPlaneacionEtapaList from '$lib/components/evaluacion/planeacion/EvaluacionPlaneacionEtapaList.svelte';
-	import { createModalManager } from '$lib/utils/modalManager.svelte';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
 	import EditarEvaluacionEtapaForm from '$lib/components/evaluacion/planeacion/EditarEvaluacionEtapaForm.svelte';
 
