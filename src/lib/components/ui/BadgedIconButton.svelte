@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type TooltipPosition } from '$lib/actions/tooltip';
+	import { type TooltipPosition } from '$lib/components/common/utils/tooltip';
 	import IconButton from './IconButton.svelte';
 	import Badge, { type BadgeStatus } from './Badge.svelte';
 	import type { IconName } from './Icon.svelte';

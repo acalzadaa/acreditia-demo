@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { TOOLTIP_DISMISS_EVENT } from '$lib/actions/tooltip';
+	import { TOOLTIP_DISMISS_EVENT } from '$lib/components/common/utils/tooltip';
 	import type { Snippet } from 'svelte';
 
 	interface Props {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tooltip, type TooltipPosition } from '$lib/actions/tooltip';
+	import { tooltip, type TooltipPosition } from '$lib/components/common/utils/tooltip';
 	import Icon, { type IconName } from './Icon.svelte';
 
 	interface Props {
