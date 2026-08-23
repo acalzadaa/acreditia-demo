@@ -232,7 +232,7 @@
 				{
 					"id": 602,
 					"order": 62,
-					"label": "Ejecucion",
+					"label": "Ejecución",
 					"href": "/evaluacion-ejecucion",
 					"description": "Administra un ciclo de evaluación",
 					"itemType": "link",
@@ -252,7 +252,7 @@
 		{
 			"id": 7,
 			"order": 70,
-			"label": "Configuracion",
+			"label": "Configuración",
 			"description": "Configuración del sistema",
 			"itemType": "section",
 			"status": "active", 

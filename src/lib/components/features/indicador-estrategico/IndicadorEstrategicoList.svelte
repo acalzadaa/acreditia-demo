@@ -37,7 +37,7 @@
 		onClickFilter,
 
 		showHeader = true,
-		title = 'Listado de indicadores estrategicos',
+		title = 'Listado de indicadores estratégicos',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -67,7 +67,7 @@
 							<th class="col-text">Descripción</th>
 							<th class="col-metric">Meta</th>
 							<th class="col-label">Origen de Datos</th>
-							<th class="col-text">Formula de Datos</th>
+							<th class="col-text">Fórmula de Datos</th>
 							<th class="col-code">Frecuencia</th>
 							<th class="col-badge">Estatus</th>
 							<th class="col-actions-md">Acciones</th>
@@ -138,7 +138,7 @@
 							<CardContentItem label="Descripción" value={item.description} />
 							<CardContentItem label="Meta" value={item.target + ' ' + item.targetUnit} />
 							<CardContentItem label="Origen de Datos" value={item.dataOrigin} />
-							<CardContentItem label="Formula de Datos" value={item.dataFormula} />
+							<CardContentItem label="Fórmula de Datos" value={item.dataFormula} />
 							<CardContentItem
 								label="Frecuencia"
 								value={item.frequencyValue + ' ' + item.frequencyUnit}

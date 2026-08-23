@@ -37,7 +37,7 @@
 		onClickFilter,
 
 		showHeader = true,
-		title = 'Listado de planeaciones estrategicas',
+		title = 'Listado de planeaciones estratégicas',
 		subtitle = ''
 	}: Props = $props();
 </script>

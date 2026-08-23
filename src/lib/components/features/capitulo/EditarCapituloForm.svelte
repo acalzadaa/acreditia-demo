@@ -142,9 +142,9 @@
 						rows={4}
 					/>
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
-						placeholder="Descripcion..."
+						placeholder="Descripción..."
 						status={$errors.description ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.description}

@@ -83,7 +83,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar seccion de capitulo</h2>
+			<h2 class="modal-title text-h4">Editar sección de capítulo</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -107,7 +107,7 @@
 
 				<div class="form-fields">
 					<InputSelect
-						label="Capitulo"
+						label="Capítulo"
 						name="capituloId"
 						optionsData={capituloOptions}
 						required={true}
@@ -143,9 +143,9 @@
 					/>
 
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
-						placeholder="Descripcion..."
+						placeholder="Descripción..."
 						status={$errors.description ? 'error' : 'normal'}
 						disabled={false}
 						bind:value={$form.description}

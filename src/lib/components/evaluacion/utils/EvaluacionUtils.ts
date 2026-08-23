@@ -5,7 +5,7 @@ const STATUS_TO_BADGE_CONFIG: Record<
 	EvaluacionStatus,
 	{ evaluacionStatus: EvaluacionStatus; badgeStatus: BadgeStatus; label: string }
 > = {
-	planning: { evaluacionStatus: 'planning', badgeStatus: 'info', label: 'En planeacion' },
+	planning: { evaluacionStatus: 'planning', badgeStatus: 'info', label: 'En planeación' },
 	ready: { evaluacionStatus: 'ready', badgeStatus: 'success', label: 'Listo para iniciar ciclo' },
 	running: { evaluacionStatus: 'running', badgeStatus: 'success', label: 'En ejecucion' },
 	completed: { evaluacionStatus: 'completed', badgeStatus: 'warning', label: 'Completado' }

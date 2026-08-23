@@ -48,7 +48,7 @@
 
 	<section class="list-view--table">
 		<Toolbar
-			actionTitle="Nueva filosofia"
+			actionTitle="Nueva filosofía"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -103,7 +103,7 @@
 	<section class="list-view--cards">
 		<Toolbar
 			mobileVersion={true}
-			actionTitle="Nueva filosofia"
+			actionTitle="Nueva filosofía"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

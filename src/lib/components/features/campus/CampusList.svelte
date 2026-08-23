@@ -61,7 +61,7 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Institucion</th>
+							<th class="col-code">Institución</th>
 							<th class="col-label">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-metrics">Total áreas responsables</th>
@@ -130,7 +130,7 @@
 						</CardHeader>
 
 						<CardContent>
-							<CardContentItem label="Institucion" value={item.institucion?.code} />
+							<CardContentItem label="Institución" value={item.institucion?.code} />
 							<CardContentItem label="Total de áreas responsables">
 								{item.totalAreaResponsable}
 							</CardContentItem>

@@ -93,7 +93,7 @@
 
 				<div class="form-fields">
 					<InputSelect
-						label="Institucion"
+						label="Institución"
 						name="institucionId"
 						optionsData={institucionOptions}
 						required={true}

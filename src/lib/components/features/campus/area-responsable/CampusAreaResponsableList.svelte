@@ -25,7 +25,7 @@
 			<Accordion>
 				<AccordionHeaderButton id="acc-1" {isVisible} onToggle={() => onClickToggle()}>
 					{#snippet subtitle()}
-						<Tag>Total de areas responsables: {items.length}</Tag>
+						<Tag>Total de áreas responsables: {items.length}</Tag>
 					{/snippet}
 					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>
 						Agregar área responsable

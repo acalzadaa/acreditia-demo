@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Avatar from "$lib/components/ui/Avatar.svelte";
-	import Logo from "$lib/components/ui/Logo.svelte";
 	import UserMenuContainer from "../user-menu/UserMenuContainer.svelte";
 
 
@@ -25,8 +24,7 @@
 
 <header class="header header-panel text-body">
 	<div class="header-logo">
-		<Logo companyName="acreditia"></Logo>
-		<p class="text-h4">Acreditia</p>
+		<p class="text-h3">Acreditia</p>
 	</div>
 	{#if showAuth}
 		<div class="header-user">
@@ -57,7 +55,7 @@
 		justify-items: center;
 		align-items: center;
 		gap: var(--space-3);
-		padding-left: var(--space-2);
+		padding-left: var(--space-3);
 	}
 
 	.header-user {

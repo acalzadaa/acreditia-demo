@@ -43,7 +43,7 @@
 					<tr>
 						<th class="col-code">Codigo</th>
 						<th class="col-code">Normativa</th>
-						<th class="col-label">Descripcion</th>
+						<th class="col-label">Descripción</th>
 						<th class="col-actions-md">Acciones</th>
 					</tr>
 				</thead>

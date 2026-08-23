@@ -52,7 +52,7 @@
 			<PageHeader {title} {subtitle} />
 		{/if}
 		<Toolbar
-			actionTitle="Nueva region"
+			actionTitle="Nueva región"
 			{onClickCrear}
 			{onClickFilter}
 			{onClickExport}
@@ -114,7 +114,7 @@
 		{/if}
 		<Toolbar
 			mobileVersion={true}
-			actionTitle="Nueva region"
+			actionTitle="Nueva región"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}

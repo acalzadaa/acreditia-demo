@@ -1,6 +1,6 @@
-<main class="main-container">
+<main class="main-container text-body">
 	<!-- Main Panel - Header Section -->
-	<section class="main-panel">
+	<section class="main-panel text-h6" >
 		<h1 class="main-panel--header">Mi Panel Principal</h1>
 		<p class="main-panel--subheader" style:margin-top="var(--space-2)">
 			Bienvenido a su herramienta de mejora continua
