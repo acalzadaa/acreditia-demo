@@ -18,7 +18,7 @@
 <ConfirmModal
 	{demo}
 	{id}
-	message="¿Estas seguro que deseas borrar este elemento?"
+	message="¿Estás seguro que deseas borrar este elemento?"
 	{open}
 	title="Confirmar borrado"
 	onClose={handleClose}

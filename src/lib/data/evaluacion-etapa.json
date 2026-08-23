@@ -81,7 +81,7 @@
 			"etapa": {
 				"order": 4,
 				"code": "autoevaluacion-ejecucion",
-				"name": "Captura de autoevaluacion"
+				"name": "Captura de autoevaluación"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
 			"fechaFinal": "2025-02-28T00:00:00Z",
@@ -106,7 +106,7 @@
 			"etapa": {
 				"order": 5,
 				"code": "ejecucion-revision",
-				"name": "Revision de autoevaluacion"
+				"name": "Revision de autoevaluación"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
 			"fechaFinal": "2025-02-28T00:00:00Z",
@@ -156,7 +156,7 @@
 			"etapa": {
 				"order": 7,
 				"code": "autorizacion-plan-mejora",
-				"name": "Autorizacion de plan de mejora"
+				"name": "Autorización de plan de mejora"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
 			"fechaFinal": "2025-02-28T00:00:00Z",
@@ -256,7 +256,7 @@
 			"etapa": {
 				"order": 4,
 				"code": "autoevaluacion-ejecucion",
-				"name": "Captura de autoevaluacion"
+				"name": "Captura de autoevaluación"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
 			"fechaFinal": "2025-02-28T00:00:00Z",
@@ -281,7 +281,7 @@
 			"etapa": {
 				"order": 5,
 				"code": "ejecucion-revision",
-				"name": "Revision de autoevaluacion"
+				"name": "Revision de autoevaluación"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
 			"fechaFinal": "2025-02-28T00:00:00Z",
@@ -331,7 +331,7 @@
 			"etapa": {
 				"order": 7,
 				"code": "autorizacion-plan-mejora",
-				"name": "Autorizacion de plan de mejora"
+				"name": "Autorización de plan de mejora"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
 			"fechaFinal": "2025-02-28T00:00:00Z",
@@ -506,7 +506,7 @@
 			"etapa": {
 				"order": 7,
 				"code": "autorizacion",
-				"name": "Autorizacion de plan de mejora"
+				"name": "Autorización de plan de mejora"
 			},
 			"fechaInicio": "2025-12-01T00:00:00Z",
 			"fechaFinal": "2026-01-15T00:00:00Z",

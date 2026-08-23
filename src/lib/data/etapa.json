@@ -18,12 +18,12 @@
 		{
 			"order": 4,
 			"code": "autoevaluacion-ejecucion",
-			"name": "Ejecucion de autoevaluacion"
+			"name": "Ejecución de autoevaluación"
 		},
 		{
 			"order": 5,
 			"code": "autoevaluacion-revision",
-			"name": "Revision de autoevaluacion"
+			"name": "Revisión de autoevaluación"
 		},
 		{
 			"order": 6,
@@ -33,7 +33,7 @@
 		{
 			"order": 7,
 			"code": "ejecucion",
-			"name": "Ejecucion de plan de mejora"
+			"name": "Ejecución de plan de mejora"
 		}
 	]
 }

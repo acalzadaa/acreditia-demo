@@ -51,7 +51,7 @@
 			<PageHeader {title} {subtitle} />
 		{/if}
 		<Toolbar
-			actionTitle="Nueva seccion"
+			actionTitle="Nueva sección"
 			{onClickCrear}
 			{onClickFilter}
 			{onClickExport}
@@ -63,7 +63,7 @@
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Capitulo</th>
+							<th class="col-code">Capítulo</th>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-text">Contenido</th>
@@ -113,7 +113,7 @@
 		{/if}
 		<Toolbar
 			mobileVersion={true}
-			actionTitle="Nueva seccion"
+			actionTitle="Nueva sección"
 			{onClickCrear}
 			{onClickExport}
 			{onClickFilter}
@@ -131,7 +131,7 @@
 						</CardHeader>
 
 						<CardContent>
-							<CardContentItem label="Capitulo" value={item.capitulo.code} />
+							<CardContentItem label="Capítulo" value={item.capitulo.code} />
 							<CardContentItem label="Contenido" value={item.content} />
 							<CardContentItem label="Descripción" value={item.description} />
 						</CardContent>

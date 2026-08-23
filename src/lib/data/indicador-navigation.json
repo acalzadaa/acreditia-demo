@@ -2,19 +2,19 @@
 	"indicadorNavListItem": [
 		{
 			"id": "b95d6ff5-e6d0-46af-81a0-068156f87ae4",
-			"name": "Rubrica",
+			"name": "Rúbrica",
 			"url": "/rubrica",
 			"order": 1
 		},
 		{
 			"id": "fd237590-afea-4c4f-86e9-de406c78b7f7",
-			"name": "Area Responsable",
+			"name": "Área Responsable",
 			"url": "/area-responsable",
 			"order": 2
 		},
 		{
 			"id": "169a1c83-a9a5-48b2-8219-58a7f38a9991",
-			"name": "Area Funcional",
+			"name": "Área Funcional",
 			"url": "/area-funcional",
 			"order": 3
 		},
@@ -32,7 +32,7 @@
 		},
 		{
 			"id": "6284c092-d7c9-4800-a295-3cf528f92a19",
-			"name": "Indicador Estrategico",
+			"name": "Indicador Estratégico",
 			"url": "/indicador-estrategico",
 			"order": 6
 		}

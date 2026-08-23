@@ -68,7 +68,7 @@
 					<thead class="text-body-strong">
 						<tr>
 							<th class="col-label">Modelo</th>
-							<th class="col-label">Institucion</th>
+							<th class="col-label">Institución</th>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-metric">Año</th>
@@ -146,7 +146,7 @@
 
 						<CardContent>
 							<CardContentItem label="Modelo" value={item.modelo.name} />
-							<CardContentItem label="Institucion" value={item.institucion.name} />
+							<CardContentItem label="Institución" value={item.institucion.name} />
 							<CardContentItem label="Evaluacion" value={item.name} />
 							<CardContentItem label="Año" value={item.year.toString()} />
 							<CardContentItem label="Ciclo" value={item.cycle.toString()} />

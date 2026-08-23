@@ -109,7 +109,7 @@
 				{/if}
 				<div class="form-fields">
 					<InputSelect
-						label="Objetivo Estrategico"
+						label="Objetivo Estratégico"
 						name="objetivoId"
 						optionsData={objetivoOptions}
 						required={true}
@@ -129,9 +129,9 @@
 					/>
 
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
-						placeholder="Descripcion..."
+						placeholder="Descripción..."
 						bind:value={$form.description}
 						rows={4}
 					/>
@@ -166,7 +166,7 @@
 					/>
 
 					<TextArea
-						label="Formula de Datos"
+						label="Fórmula de Datos"
 						name="dataFormula"
 						placeholder="e.j (Alumnos con beca/Total de Alumnos)*100"
 						bind:value={$form.dataFormula}

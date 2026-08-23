@@ -73,7 +73,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar objetivo estrategico</h2>
+			<h2 class="modal-title text-h4">Editar objetivo estratégico</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -131,7 +131,7 @@
 					<TextArea
 						label="Descripción"
 						name="description"
-						placeholder="Descripcion..."
+						placeholder="Descripción..."
 						bind:value={$form.description}
 						rows={4}
 					/>

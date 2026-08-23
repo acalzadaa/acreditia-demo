@@ -116,7 +116,7 @@
 					/>
 
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
 						required={false}
 						status={$errors.description ? 'error' : 'normal'}

@@ -136,9 +136,9 @@
 						{...$constraints.parentId}
 					/>
 					<TextArea
-						label="Descripcion"
+						label="Descripción"
 						name="description"
-						placeholder="Descripcion..."
+						placeholder="Descripción..."
 						bind:value={$form.description}
 						rows={4}
 					/>

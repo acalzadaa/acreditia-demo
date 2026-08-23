@@ -25,7 +25,7 @@
 			<Accordion>
 				<AccordionHeaderButton id="acc-1" {isVisible} onToggle={() => onClickToggle()}>
 					{#snippet subtitle()}
-						<Tag>Total de unidades academicas: {items.length}</Tag>
+						<Tag>Total de unidades académicas: {items.length}</Tag>
 					{/snippet}
 					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>
 						Agregar unidad academica

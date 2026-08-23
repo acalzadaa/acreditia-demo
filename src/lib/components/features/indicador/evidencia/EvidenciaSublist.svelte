@@ -46,7 +46,7 @@
 						<tr>
 							<th class="col-code">Codigo</th>
 							<th class="col-label">Nombre</th>
-							<th class="col-text">Descripcion</th>
+							<th class="col-text">Descripción</th>
 							<th class="col-actions-sm">Acciones</th>
 						</tr>
 					</thead>

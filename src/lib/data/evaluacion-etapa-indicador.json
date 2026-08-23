@@ -554,7 +554,7 @@
 			"etapa": {
 				"order": 4,
 				"code": "autoevaluacion-ejecucion",
-				"name": "Captura de autoevaluacion"
+				"name": "Captura de autoevaluación"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
@@ -597,7 +597,7 @@
 			"etapa": {
 				"order": 4,
 				"code": "autoevaluacion-ejecucion",
-				"name": "Captura de autoevaluacion"
+				"name": "Captura de autoevaluación"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
@@ -637,7 +637,7 @@
 			"etapa": {
 				"order": 5,
 				"code": "autoevaluacion-revision",
-				"name": "Revision de autoevaluacion"
+				"name": "Revision de autoevaluación"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
@@ -679,7 +679,7 @@
 			"etapa": {
 				"order": 5,
 				"code": "autoevaluacion-revision",
-				"name": "Revision de autoevaluacion"
+				"name": "Revision de autoevaluación"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
@@ -723,7 +723,7 @@
 			"etapa": {
 				"order": 5,
 				"code": "autoevaluacion-revision",
-				"name": "Revision de autoevaluacion"
+				"name": "Revision de autoevaluación"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
@@ -768,7 +768,7 @@
 			"etapa": {
 				"order": 5,
 				"code": "autoevaluacion-revision",
-				"name": "Revision de autoevaluacion"
+				"name": "Revision de autoevaluación"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
@@ -896,7 +896,7 @@
 			"etapa": {
 				"order": 7,
 				"code": "autorizacion",
-				"name": "Autorizacion de plan de mejora"
+				"name": "Autorización de plan de mejora"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
@@ -937,7 +937,7 @@
 			"etapa": {
 				"order": 7,
 				"code": "autorizacion",
-				"name": "Autorizacion de plan de mejora"
+				"name": "Autorización de plan de mejora"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
