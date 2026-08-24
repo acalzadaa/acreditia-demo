@@ -49,6 +49,8 @@ Ej.:
 		subtitle?: Snippet;
 		/** badge opcional */
 
+		enableAccordion?: boolean;
+
 		/** El Button de acción a la izquierda del header. */
 		children: Snippet;
 		class?: string;
@@ -61,6 +63,7 @@ Ej.:
 		toggleAriaLabel = 'Expandir/colapsar',
 		title,
 		subtitle,
+		enableAccordion = true,
 		children,
 		class: className = ''
 	}: Props = $props();
@@ -84,15 +87,17 @@ Ej.:
 			{@render children()}
 		</div>
 	</div>
-	<IconButton
-		name="chevron-down"
-		variant="ghost"
-		size="sm"
-		ariaLabel={toggleAriaLabel}
-		ariaExpanded={isVisible}
-		ariaControls={id}
-		iconRotate={isVisible ? 180 : 0}
-		onClick={onToggle}
-		class="accordion-header__chevron"
-	/>
+	{#if enableAccordion}
+		<IconButton
+			name="chevron-down"
+			variant="ghost"
+			size="sm"
+			ariaLabel={toggleAriaLabel}
+			ariaExpanded={isVisible}
+			ariaControls={id}
+			iconRotate={isVisible ? 180 : 0}
+			onClick={onToggle}
+			class="accordion-header__chevron"
+		/>
+	{/if}
 </div>

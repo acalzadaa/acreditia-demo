@@ -1,0 +1,50 @@
+{
+	"unidadAcademicaAreaResponsableItems": [
+		{
+			"id": "c86dc162-137b-4ed2-9ac9-5a832e1b17d5",
+			"uniqueId": "9ea84d68-561f-4169-a0e9-0fe7682fb89b",
+			"unidadAcademica": {
+				"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
+				"code": "FIC-001",
+				"name": "Facultad de Ingeniería y Ciencias Aplicadas"
+			},
+			"areaResponsable": {
+				"id": "2ec9751d-f46a-474c-99b9-42763ea38828",
+				"code": "REC_HUM_I",
+				"name": "Jefe de Recursos Humanos",
+				"scope": "responsable",
+				"type": "unidad academica"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "27f211a2-d9bf-4fa0-8fb3-21e15e5a5427",
+			"uniqueId": "f2da22ee-93cf-42f2-9cbd-2367ce6533da",
+			"unidadAcademica": {
+				"id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
+				"code": "ECO-002",
+				"name": "Escuela de Economía y Negocios Internacionales"
+			},
+			"areaResponsable": {
+				"id": "160ac4b2-5bb8-4682-96e5-75db199a255f",
+				"code": "REC_HUM_II",
+				"name": "Coordinador de Recursos Humanos",
+				"scope": "responsable",
+				"type": "unidad academica"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
+}

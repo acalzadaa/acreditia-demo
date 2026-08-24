@@ -5,13 +5,13 @@
 	import AccordionContentItem from '$lib/components/ui/accordion/AccordionContentItem.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
-	import type { AreaFuncionalPuestoItem } from '$lib/schemas/areaFuncionalPuesto.schema';
 	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
+	import type { UnidadAcademicaAreaResponsableItem } from '$lib/schemas/unidadAcademicaAreaResponsable.schema';
 
 	interface Props {
-		items: AreaFuncionalPuestoItem[];
-		onClickRemover: (item: AreaFuncionalPuestoItem) => void;
+		items: UnidadAcademicaAreaResponsableItem[];
+		onClickRemover: (item: UnidadAcademicaAreaResponsableItem) => void;
 		onClickAdd: () => void;
 	}
 
@@ -30,17 +30,17 @@
 					enableAccordion={items.length > 0}
 				>
 					{#snippet subtitle()}
-						<Tag>Total de puestos: {items.length}</Tag>
+						<Tag>Total de áreas responsables: {items.length}</Tag>
 					{/snippet}
-					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>Agregar puesto</Button>
+					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>Agregar área responsable</Button>
 				</AccordionHeaderButton>
 
 				<AccordionContent isCollapsible={true} isVisible={toggle.value}>
 					{#each items as item (item)}
 						<AccordionContentItem
 							isVisible={toggle.value}
-							label={item.puesto?.type}
-							value={item.puesto?.name}
+							label={item.areaResponsable?.type}
+							value={item.areaResponsable?.name}
 							onAction={() => onClickRemover(item)}
 							actionIcon="remove"
 							actionAriaLabel="remover elemento"

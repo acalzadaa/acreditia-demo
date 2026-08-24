@@ -12,6 +12,7 @@ import regionCampusJsonData from '$lib/data/region-campus.json';
 import institucionJsonData from '$lib/data/institucion.json';
 import campusJsonData from '$lib/data/campus.json';
 import unidadAcademicaJsonData from '$lib/data/unidad-academica.json';
+import unidadAcademicaAreaResponsableJsonData from '$lib/data/unidad-academica-area-responsable.json';
 
 import puestoJsonData from '$lib/data/puesto.json';
 
@@ -156,6 +157,10 @@ import {
 	areaFuncionalPuestoItemSchema,
 	type AreaFuncionalPuestoItem
 } from '$lib/schemas/areaFuncionalPuesto.schema';
+import {
+	unidadAcademicaAreaResponsableItemSchema,
+	type UnidadAcademicaAreaResponsableItem
+} from '$lib/schemas/unidadAcademicaAreaResponsable.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -176,6 +181,7 @@ let campusUnidadAcademica = $state<CampusUnidadAcademicaItem[]>([]);
 let campusAreaResponsable = $state<CampusAreaResponsableItem[]>([]);
 
 let unidadAcademica = $state<UnidadAcademicaItem[]>([]);
+let unidadAcademicaAreaResponsable = $state<UnidadAcademicaAreaResponsableItem[]>([]);
 
 let puesto = $state<PuestoItem[]>([]);
 
@@ -271,6 +277,12 @@ campusUnidadAcademica = campusUnidadAcademicaRawData.map((item) =>
 
 const unidadAcademicaRawData = unidadAcademicaJsonData.unidadAcademicaItems;
 unidadAcademica = unidadAcademicaRawData.map((item) => unidadAcademicaItemSchema.parse(item));
+
+const unidadAcademicaAreaResponsableRawData =
+	unidadAcademicaAreaResponsableJsonData.unidadAcademicaAreaResponsableItems;
+unidadAcademicaAreaResponsable = unidadAcademicaAreaResponsableRawData.map((item) =>
+	unidadAcademicaAreaResponsableItemSchema.parse(item)
+);
 
 const puestoRawData = puestoJsonData.puestos;
 puesto = puestoRawData.map((item) => puestoItemSchema.parse(item));
@@ -494,6 +506,10 @@ export function getUnidadAcademicaRef() {
 		code: item.code,
 		name: item.name
 	}));
+}
+
+export function getUnidadAcademicaAreaResponsable() {
+	return unidadAcademicaAreaResponsable;
 }
 
 export function getPuesto() {
