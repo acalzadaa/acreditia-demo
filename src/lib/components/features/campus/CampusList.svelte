@@ -64,10 +64,10 @@
 							<th class="col-code">Institución</th>
 							<th class="col-label">Código</th>
 							<th class="col-label">Nombre</th>
-							<th class="col-metrics">Total áreas responsables</th>
-							<th class="col-metrics">Total unidades académicas</th>
+							<th class="col-label">Total áreas responsables</th>
+							<th class="col-label">Total unidades académicas</th>
 							<th class="col-badge">Estatus</th>
-							<th class="col-actions-md">Acciones</th>
+							<th class="col-actions-lg">Acciones</th>
 						</tr>
 					</thead>
 
@@ -79,14 +79,14 @@
 								</td>
 								<td class="col-label">{item.code}</td>
 								<td class="col-label">{item.name}</td>
-								<td class="col-metrics">{item.totalAreaResponsable}</td>
-								<td class="col-metrics">{item.totalUnidadAcademica}</td>
+								<td class="col-label">{item.totalAreaResponsable}</td>
+								<td class="col-label">{item.totalUnidadAcademica}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
 									</Badge>
 								</td>
-								<td class="col-actions-md">
+								<td class="col-actions-lg">
 									<ListDetailActions
 										{item}
 										onClickDetail={() => navigateTo(item.code)}
@@ -120,7 +120,7 @@
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1599px">
+			<CardColumn minWidth="360px" maxWidth="2200px">
 				{#each items as item (item.id)}
 					<Card>
 						<CardHeader subtitle={item.code} title={item.name}>
@@ -173,7 +173,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1600px) {
+	@media (max-width: 2200px) {
 		.list-view--table {
 			display: none;
 		}

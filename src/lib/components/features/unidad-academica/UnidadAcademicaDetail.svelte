@@ -1,26 +1,14 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
 	import PageHeader from '$lib/components/common/PageHeader.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
-	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { UnidadAcademicaItem } from '$lib/schemas/unidadAcademica.schema';
-	import ListDetailActions from '$lib/components/ui/actions/ListDetailActions.svelte';
-	import { navigateTo } from '$lib/helpers/navigation';
 
 	interface Props {
 		items: UnidadAcademicaItem[];
-		onClickEditar: (item: UnidadAcademicaItem) => void;
-		onClickBorrar: (item: UnidadAcademicaItem) => void;
-		onClickRestaurar: (item: UnidadAcademicaItem) => void;
-
-		onClickCrear: () => void;
-		onClickExport: () => void;
-		onClickFilter: () => void;
-
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
@@ -28,32 +16,18 @@
 
 	const {
 		items,
-		onClickEditar,
-		onClickBorrar,
-		onClickRestaurar,
-		onClickCrear,
-		onClickExport,
-		onClickFilter,
 		showHeader = true,
 		title = 'Listado de unidades académicas',
 		subtitle = ''
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
+<main class="main-panel--inner">
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
 
 	<section class="list-view--table">
-		<Toolbar
-			actionTitle="Nueva unidad académica"
-			{onClickCrear}
-			{onClickExport}
-			{onClickFilter}
-			showExport={false}
-			showFilter={false}
-		/>
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
@@ -62,7 +36,6 @@
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
 							<th class="col-badge">Estatus</th>
-							<th class="col-actions-md">Acciones</th>
 						</tr>
 					</thead>
 
@@ -76,19 +49,6 @@
 										{item.isDeleted ? 'borrado' : 'activo'}
 									</Badge>
 								</td>
-								<td class="col-actions-md">
-									<ListDetailActions
-										{item}
-										onClickDetail={() => navigateTo(item.code)}
-										isDetailDisabled={item.isDeleted}
-										onClickEdit={() => onClickEditar(item)}
-										isEditDisabled={item.isDeleted}
-										onClickDelete={() => onClickBorrar(item)}
-										isDeleteDisabled={item.isDeleted}
-										onClickRestore={() => onClickRestaurar(item)}
-										isRestoreDisabled={!item.isDeleted}
-									/>
-								</td>
 							</tr>
 						{/each}
 					</tbody>
@@ -100,15 +60,6 @@
 	</section>
 
 	<section class="list-view--cards">
-		<Toolbar
-			mobileVersion={true}
-			actionTitle="Nueva unidad académica"
-			{onClickCrear}
-			{onClickExport}
-			{onClickFilter}
-			showExport={false}
-			showFilter={false}
-		/>
 		{#if items.length > 0}
 			<CardColumn minWidth="360px" maxWidth="1500px">
 				{#each items as item (item.id)}
@@ -118,20 +69,6 @@
 								{item.isDeleted ? 'borrado' : 'activo'}
 							</Badge>
 						</CardHeader>
-
-						<CardFooter>
-							<ListDetailActions
-								{item}
-								onClickDetail={() => navigateTo(item.code)}
-								isDetailDisabled={item.isDeleted}
-								onClickEdit={() => onClickEditar(item)}
-								isEditDisabled={item.isDeleted}
-								onClickDelete={() => onClickBorrar(item)}
-								isDeleteDisabled={item.isDeleted}
-								onClickRestore={() => onClickRestaurar(item)}
-								isRestoreDisabled={!item.isDeleted}
-							/>
-						</CardFooter>
 					</Card>
 				{/each}
 			</CardColumn>

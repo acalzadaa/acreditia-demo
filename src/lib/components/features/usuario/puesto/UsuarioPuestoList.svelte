@@ -22,7 +22,11 @@
 	<section class="list-view--cards text-body">
 		<AccordionColumn minWidth="360px" maxWidth="2700px">
 			<Accordion>
-				<AccordionHeaderButton onToggle={onClickToggle} {isVisible}>
+				<AccordionHeaderButton
+					enableAccordion={items.length > 0}
+					onToggle={onClickToggle}
+					{isVisible}
+				>
 					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>Agregar puesto</Button>
 				</AccordionHeaderButton>
 

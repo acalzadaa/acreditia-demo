@@ -23,12 +23,16 @@
 	<section class="list-view--cards text-body">
 		<AccordionColumn minWidth="360px" maxWidth="4500px">
 			<Accordion>
-				<AccordionHeaderButton id="acc-1" isVisible={toggle.value} onToggle={toggle.onClick}>
-				{#snippet subtitle()}
-				<Tag>Total de puestos: {items.length}</Tag>
-				{/snippet}
+				<AccordionHeaderButton
+					id="acc-1"
+					isVisible={toggle.value}
+					onToggle={toggle.onClick}
+					enableAccordion={items.length > 0}
+				>
+					{#snippet subtitle()}
+						<Tag>Total de puestos: {items.length}</Tag>
+					{/snippet}
 					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>Agregar puesto</Button>
-					
 				</AccordionHeaderButton>
 
 				<AccordionContent isCollapsible={true} isVisible={toggle.value}>
