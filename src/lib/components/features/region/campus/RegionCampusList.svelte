@@ -23,7 +23,11 @@
 	<section class="list-view--cards text-body">
 		<AccordionColumn minWidth="360px" maxWidth="2700px">
 			<Accordion>
-				<AccordionHeaderButton onToggle={onClickToggle} {isVisible}>
+				<AccordionHeaderButton
+					enableAccordion={items.length > 0}
+					onToggle={onClickToggle}
+					{isVisible}
+				>
 					{#snippet subtitle()}
 						<Tag>Total de campus: {items.length}</Tag>
 					{/snippet}
