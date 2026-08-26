@@ -7,8 +7,8 @@
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
 	import type { AreaResponsablePuestoItem } from '$lib/schemas/areaResponsablePuesto.schema';
 	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
-	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { AreaResponsableTotalPuestosItem } from '$lib/schemas/areaResponsable.schema';
+	import AreaResponsablePuestoTag from './AreaResponsablePuestoTag.svelte';
 
 	interface Props {
 		items: AreaResponsablePuestoItem[];
@@ -32,15 +32,7 @@
 					enableAccordion={items.length > 0}
 				>
 					{#snippet subtitle()}
-						{#if totales.total == 0}
-							<Tag variant="error">Faltan por agregar dos puestos</Tag>
-						{:else if totales.operativo == 0}
-							<Tag variant="warning">Falta por agregar un puesto operativo</Tag>
-						{:else if totales.directivo == 0}
-							<Tag variant="warning">Falta por agregar un puesto directivo</Tag>
-						{:else if totales.total >= 2}
-							<Tag variant="success">Total de puestos: {totales.total}</Tag>
-						{/if}
+						<AreaResponsablePuestoTag item={totales} />
 					{/snippet}
 					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>Agregar puesto</Button>
 				</AccordionHeaderButton>
