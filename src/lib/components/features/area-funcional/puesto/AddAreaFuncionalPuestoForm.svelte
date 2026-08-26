@@ -4,34 +4,39 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { BaseRef } from '$lib/schemas/shared.schema';
+	import type { PuestoRef } from '$lib/schemas/shared.schema';
+	import InputRadio from '$lib/components/ui/input/InputRadio.svelte';
 
 	interface Props {
 		open: boolean;
-		ref: BaseRef[];
+		ref: PuestoRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ref = [] }: Props = $props();
 
+	const DEFAULT_TYPE = 'directivo';
 	// Estado local del formulario
 	let formData = $state({
-		code: ''
+		id: '',
+		type: 'directivo'
 	});
 
 	let errorMessage = $state('');
 
 	// Opciones para el select de puesto
 	const puestoOptions = $derived(
-		ref.map((ref) => ({
-			id: ref.code,
-			option: `${ref.code} - ${ref.name}`
-		}))
+		ref
+			.filter((r) => r.type === formData.type)
+			.map((ref) => ({
+				id: ref.id,
+				option: `${ref.code} - ${ref.name}`
+			}))
 	);
 
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.code) {
+		if (!formData.id) {
 			errorMessage = 'Debes seleccionar un puesto';
 			return;
 		}
@@ -41,7 +46,8 @@
 
 		// Limpiar formulario
 		formData = {
-			code: ''
+			id: '',
+			type: DEFAULT_TYPE
 		};
 
 		// Limpiar mensaje de error
@@ -51,10 +57,15 @@
 		handleClose();
 	}
 
+	function handleTypeChange() {
+		formData.id = '';
+	}
+
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			code: ''
+			id: '',
+			type: DEFAULT_TYPE
 		};
 		errorMessage = '';
 		onClose();
@@ -100,21 +111,41 @@
 						</div>
 					{/if}
 
+					<fieldset class="form-check-group">
+						<legend class="form-label text-caption">Tipo de puesto</legend>
+						<InputRadio
+							name="type"
+							label="Directivo"
+							value="directivo"
+							status="warning"
+							bind:group={formData.type}
+							onChange={handleTypeChange}
+						/>
+						<InputRadio
+							name="type"
+							label="Operativo"
+							value="operativo"
+							status="warning"
+							bind:group={formData.type}
+							onChange={handleTypeChange}
+						/>
+					</fieldset>
+
 					<InputSelect
 						label="Puesto"
-						name="code"
+						name="id"
 						optionsData={puestoOptions}
 						required={true}
-						bind:value={formData.code}
-						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
+						bind:value={formData.id}
+						errors={errorMessage && !formData.id ? [errorMessage] : undefined}
 					/>
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
 				<Button type="submit" variant="primary">Agregar</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>
