@@ -41,7 +41,7 @@
 			code: props.selectedItem.code,
 			name: props.selectedItem.name,
 			description: props.selectedItem.description,
-			parentId: props.selectedItem.parentId ?? '',
+			parentId: props.selectedItem.parent?.id ?? '',
 			createdBy: props.selectedItem.createdBy
 		},
 		{
@@ -80,7 +80,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar area funcional</h2>
+			<h2 class="modal-title text-h4">Editar área funcional</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -127,7 +127,7 @@
 						label="Reporta a"
 						name="parentId"
 						optionsData={areaFuncionalOptions}
-						required={true}
+						required={false}
 						bind:value={$form.parentId}
 						nullOption="Ninguno (es un elemento raiz)"
 						errors={$errors.parentId}

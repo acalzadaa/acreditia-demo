@@ -162,7 +162,7 @@
 						label="Reporta a"
 						name="parentId"
 						optionsData={areaFuncionalOptions}
-						required={true}
+						required={false}
 						bind:value={formData.parentId}
 						nullOption="Ninguno (es un elemento raiz)"
 						errors={errorMessage && !formData.parentId ? [errorMessage] : undefined}
