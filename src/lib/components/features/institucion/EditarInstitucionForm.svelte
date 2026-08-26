@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		institucionFormSchema,
-		type InstitucionItem
-	} from '$lib/schemas/institucion.schema';
+	import { institucionFormSchema, type InstitucionItem } from '$lib/schemas/institucion.schema';
 	import type { EntidadLegalRef } from '$lib/schemas/entidadLegal.schema';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
@@ -108,7 +105,7 @@
 						bind:value={$form.entidadLegalId}
 						errors={$errors.entidadLegalId}
 						{...$constraints.entidadLegalId}
-					></InputSelect>
+					/>
 
 					<InputText
 						label="Nombre"

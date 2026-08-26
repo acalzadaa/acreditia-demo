@@ -64,7 +64,7 @@
 			<IconButton
 				isDisabled={isExecuteDisabled}
 				name="play"
-				tooltipLabel="Ejecutar proceso"
+				tooltipLabel="Ejecutar éste proceso"
 				size="md"
 				borderShape="square"
 				variant="ghost"
@@ -76,7 +76,7 @@
 			<IconButton
 				isDisabled={isDetailDisabled}
 				name="detail"
-				tooltipLabel="Ver detalle"
+				tooltipLabel="Ver el detalle de éste elemento"
 				size="md"
 				borderShape="square"
 				variant="ghost"
@@ -87,7 +87,7 @@
 			<IconButton
 				isDisabled={isEditDisabled}
 				name="edit"
-				tooltipLabel="Editar registro"
+				tooltipLabel="Editar éste registro"
 				size="md"
 				borderShape="square"
 				variant="ghost"
@@ -99,7 +99,7 @@
 			<IconButton
 				isDisabled={isDeleteDisabled}
 				name="delete"
-				tooltipLabel="Borrar registro"
+				tooltipLabel="Borrar éste registro"
 				size="md"
 				borderShape="square"
 				variant="ghost"
@@ -111,7 +111,7 @@
 			<IconButton
 				isDisabled={isRestoreDisabled}
 				name="restore"
-				tooltipLabel="Restaurar registro"
+				tooltipLabel="Restaurar éste registro"
 				size="md"
 				borderShape="square"
 				variant="ghost"
@@ -123,7 +123,7 @@
 			<IconButton
 				isDisabled={isRemoveDisabled}
 				name="remove"
-				tooltipLabel="Remover registro"
+				tooltipLabel="Remover éste registro"
 				size="md"
 				borderShape="square"
 				variant="ghost"
@@ -135,7 +135,7 @@
 			<IconButton
 				isDisabled={isCalendarDisabled}
 				name="calendar"
-				tooltipLabel="Seleccionar fecha"
+				tooltipLabel="Seleccionar una fecha"
 				size="md"
 				borderShape="square"
 				variant="ghost"

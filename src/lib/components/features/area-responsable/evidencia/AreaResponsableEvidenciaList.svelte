@@ -6,18 +6,16 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
 	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
-	import Tag from '$lib/components/ui/Tag.svelte';
-	import type { AreaResponsableTotalPuestosItem } from '$lib/schemas/areaResponsable.schema';
 	import type { AreaResponsableEvidenciaItem } from '$lib/schemas/areaResponsableEvidencia.schema';
+	import AreaResponsableEvidenciaTag from './AreaResponsableEvidenciaTag.svelte';
 
 	interface Props {
 		items: AreaResponsableEvidenciaItem[];
-		totales: AreaResponsableTotalPuestosItem;
 		onClickRemover: (item: AreaResponsableEvidenciaItem) => void;
 		onClickAdd: () => void;
 	}
 
-	const { items, totales, onClickRemover, onClickAdd }: Props = $props();
+	const { items, onClickRemover, onClickAdd }: Props = $props();
 	let toggle = createToggle();
 </script>
 
@@ -32,12 +30,7 @@
 					enableAccordion={items.length > 0}
 				>
 					{#snippet subtitle()}
-					<p>test</p>
-						{#if totales.operativo > 0 || items.length == 0}
-							<Tag variant="warning">Falta agregar una evidencia</Tag>
-						{:else if items.length > 0}
-							<Tag variant="success">Total de evidencias: {items.length}</Tag>
-						{/if}
+						<AreaResponsableEvidenciaTag {items} />
 					{/snippet}
 					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>
 						Agregar evidencia

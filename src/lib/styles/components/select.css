@@ -1,0 +1,134 @@
+/* ==========================================================================
+   REEMPLAZA el bloque ".form-select { appearance:none; background-image:... }"
+   de form-additions.css. Ya no hay un <select> nativo: el chevron ahora es
+   un <svg> dentro del botón, no un background-image.
+   ========================================================================== */
+
+.select-wrapper {
+	position: relative;
+}
+
+button.form-select {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-2);
+	text-align: left;
+	font: inherit;
+	color: var(--form-input-text);
+	cursor: pointer;
+}
+
+button.form-select:disabled {
+	cursor: not-allowed;
+}
+
+.form-select__value {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.form-select__placeholder {
+	color: var(--form-input-placeholder);
+}
+
+.form-select__chevron {
+	flex-shrink: 0;
+	color: var(--text-muted);
+	transition: transform 0.15s ease;
+}
+
+button.form-select[aria-expanded='true'] .form-select__chevron {
+	transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   PANEL DE OPCIONES (listbox)
+   Mismo lenguaje visual que .drawer-panel, pero anclado abajo del trigger
+   y con el ancho del campo — no una esquina del contenedor posicionado
+   más cercano en la jerarquía general (que dentro de un modal, sería
+   el modal completo).
+   ========================================================================== */
+
+.select-options {
+	position: absolute;
+	top: calc(100% + var(--space-1));
+	left: 0;
+	width: 100%;
+	max-height: 280px;
+	overflow-y: auto;
+	margin: 0;
+	padding: var(--space-1);
+	background-color: var(--bg-drawer);
+	border: var(--border-width-thin) solid var(--border-light);
+	border-radius: var(--border-radius-md);
+	box-shadow: var(--shadow-md);
+	z-index: var(--z-drawer);
+	animation: select-options-in 0.15s ease-in-out;
+	scrollbar-width: thin;
+	scrollbar-color: var(--border-regular) var(--bg-ground);
+}
+
+@keyframes select-options-in {
+	from {
+		opacity: 0;
+		transform: translateY(-4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.select-options::-webkit-scrollbar {
+	width: 8px;
+}
+.select-options::-webkit-scrollbar-track {
+	background: var(--bg-ground);
+	border-radius: 4px;
+}
+.select-options::-webkit-scrollbar-thumb {
+	background-color: var(--border-regular);
+	border-radius: 4px;
+	border: 2px solid var(--bg-ground);
+}
+.select-options::-webkit-scrollbar-thumb:hover {
+	background-color: var(--border-brand);
+}
+
+.select-option {
+	display: block;
+	width: 100%;
+	padding: var(--space-2) var(--space-3);
+	margin: 0;
+	border: none;
+	border-radius: var(--border-radius-sm, var(--border-radius-md));
+	background: transparent;
+	color: var(--form-input-text);
+	text-align: left;
+	font: inherit;
+	cursor: pointer;
+}
+
+.select-option:hover {
+	background-color: var(--form-input-bg-hover);
+}
+
+.select-option:focus-visible {
+	outline: none;
+	background-color: var(--form-input-bg-hover);
+	box-shadow: inset 0 0 0 2px var(--form-input-border-focus);
+}
+
+.select-option[aria-selected='true'] {
+	background-color: var(--primary-100);
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.select-options__empty {
+	padding: var(--space-3);
+	color: var(--text-muted);
+	text-align: center;
+}

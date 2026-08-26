@@ -85,9 +85,9 @@
 								<td class="col-actions-md">
 									<ListActions
 										{item}
-										onClickDelete={() => onClickEditar(item)}
+										onClickDelete={() => onClickBorrar(item)}
 										isDeleteDisabled={item.isDeleted}
-										onClickEdit={() => onClickBorrar(item)}
+										onClickEdit={() => onClickEditar(item)}
 										isEditDisabled={item.isDeleted}
 										onClickRestore={() => onClickRestaurar(item)}
 										isRestoreDisabled={!item.isDeleted}
