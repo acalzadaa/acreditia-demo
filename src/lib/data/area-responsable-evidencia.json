@@ -1,0 +1,46 @@
+{
+	"areaResponsablePuestoItems": [
+		{
+			"id": "c86dc162-137b-4ed2-9ac9-5a832e1b17d5",
+			"uniqueId": "9ea84d68-561f-4169-a0e9-0fe7682fb89b",
+			"areaResponsable": {
+				"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+				"code": "RH-I",
+				"name": "Direccion de Recursos Humanos"
+			},
+			"evidencia": {
+				"id": "be5d6037-0edc-435d-8ba0-b3798482dd66",
+				"code": "EV-001",
+				"name": "Acta de Consejo Académico por programa"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		},
+		{
+			"id": "27f211a2-d9bf-4fa0-8fb3-21e15e5a5427",
+			"uniqueId": "f2da22ee-93cf-42f2-9cbd-2367ce6533da",
+			"areaResponsable": {
+				"id": "b820e34c-46c7-4d39-958d-d4c312cc3e50",
+				"code": "RH-I",
+				"name": "Direccion de Recursos Humanos"
+			},
+			"evidencia": {
+				"id": "8b066f4e-651d-403a-9444-e70dfeced066",
+				"code": "EV-002",
+				"name": "Reporte de seguimiento de egresados"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-02-01T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-02-01T11:00:00Z",
+			"createdBy": "admin@system.com"
+		}
+	]
+}

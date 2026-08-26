@@ -17,12 +17,13 @@
 </script>
 
 <main class="detail-panel">
-	<PageHeader title="Niveles de desempeño" subtitle='agregue los criterios de evaluacion'/>
+	<PageHeader title="Niveles de desempeño" subtitle='Agrégue los critérios de evaluación'/>
 	<RubricaCriterioList
 		items={rubricaItems}
 		onClickRemover={modalCriterio.handlers('remove').onClickItem}
 		onClickAdd={modal.handlers('add').onClickItem}
 	/>
+
 	<CrearRubricaCriterioForm
 		open={modal.isOpen('add')}
 		onClose={modal.close}

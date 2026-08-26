@@ -7,7 +7,12 @@
 			"description": "Responsable de los recursos humanos",
 			"parent": null,
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 2,
+				"directivo": 1,
+				"operativo": 1
+			},
+			"totalEvidencias": 2,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -23,7 +28,12 @@
 			"description": "Autoridad maxima del campus",
 			"parent": null,
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -39,7 +49,12 @@
 			"description": "Direccion de soporte a asuntos educativos",
 			"parent": null,
 			"type": "campus",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -55,7 +70,12 @@
 			"description": "Autoridad de las escuelas relacionadas con Ingenieria",
 			"parent": null,
 			"type": "unidad academica",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -76,7 +96,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -102,7 +127,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -128,7 +158,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -154,7 +189,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -180,7 +220,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -206,7 +251,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -232,7 +282,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -258,7 +313,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -284,7 +344,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
@@ -310,7 +375,12 @@
 				"name": "Universidad Tecnológica del Norte"
 			},
 			"type": "global",
-			"totalpuestos": 0,
+			"totalPuestos": {
+				"total": 0,
+				"directivo": 0,
+				"operativo": 0
+			},
+			"totalEvidencias": 0,
 			"version": 1,
 			"isCurrent": true,
 			"validFrom": "2024-02-01T00:00:00Z",
