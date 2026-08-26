@@ -101,7 +101,7 @@
 					{/if}
 
 					<InputSelect
-						label="Puesto"
+						label="Área responsable"
 						name="code"
 						optionsData={puestoOptions}
 						required={true}

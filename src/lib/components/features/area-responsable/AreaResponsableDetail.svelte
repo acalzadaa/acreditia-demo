@@ -54,7 +54,7 @@
 								<td class="col-label">{capitalizeText(item.type)}</td>
 								<td class="col-text">{item.description}</td>
 								<td class="col-label">{item.parent?.name}</td>
-								<th class="col-metrics">{item.totalPuestos}</th>
+								<th class="col-metrics">{item.totalPuestos.total}</th>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
@@ -88,7 +88,7 @@
 								<CardContentItem label="Depende de" value={item.parent?.name} />
 							{/if}
 							<CardContentItem label="Total de puestos">
-								{item.totalPuestos}
+								{item.totalPuestos.total}
 							</CardContentItem>
 						</CardContent>
 					</Card>

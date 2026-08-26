@@ -98,6 +98,10 @@
   <symbol id="feedback" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M 23.000999450683594 1.0410000085830688 L 1 1 L 1 16 L 5 16 L 1 23 L 11 16 L 23 16 Z" />
   </symbol>
+  <symbol id="search" viewBox="24 24 24 24">
+    <circle cx="34.5" cy="34.5" r="7.5" fill="none" stroke="currentColor" stroke-linecap="round"/>
+    <path d="M39.556 40.077 45 45" fill="none" stroke="currentColor" stroke-linecap="round"/>
+  </symbol>
 
   <!-- SEMANTIC -->
   <symbol id="warning" viewBox="0 0 24 24">

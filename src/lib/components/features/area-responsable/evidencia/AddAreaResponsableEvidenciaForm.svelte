@@ -2,42 +2,37 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { PuestoRef } from '$lib/schemas/shared.schema';
-	import InputRadio from '$lib/components/ui/input/InputRadio.svelte';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
+	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;
-		ref: PuestoRef[];
+		ref: BaseRef[];
 		onClose: () => void;
 	}
 
 	let { open = $bindable(false), onClose, ref = [] }: Props = $props();
 
-	const DEFAULT_TYPE = 'directivo';
 	// Estado local del formulario
 	let formData = $state({
-		id: '',
-		type: 'directivo'
+		id: ''
 	});
 
 	let errorMessage = $state('');
 
 	// Opciones para el select de puesto
-	const puestoOptions = $derived(
-		ref
-			.filter((r) => r.type === formData.type)
-			.map((ref) => ({
-				id: ref.id,
-				option: `${ref.code} - ${ref.name}`
-			}))
+	const evidenciaOptions = $derived(
+		ref.map((ref) => ({
+			id: ref.id,
+			option: `${ref.code} - ${ref.name}`
+		}))
 	);
 
 	function handleSubmit() {
 		// Validación básica
 		if (!formData.id) {
-			errorMessage = 'Debes seleccionar un puesto';
+			errorMessage = 'Debes seleccionar una evidencia';
 			return;
 		}
 
@@ -46,8 +41,7 @@
 
 		// Limpiar formulario
 		formData = {
-			id: '',
-			type: DEFAULT_TYPE
+			id: ''
 		};
 
 		// Limpiar mensaje de error
@@ -57,15 +51,10 @@
 		handleClose();
 	}
 
-	function handleTypeChange() {
-		formData.id = '';
-	}
-
 	function handleClose() {
 		// Limpiar estado al cerrar
 		formData = {
-			id: '',
-			type: DEFAULT_TYPE
+			id: ''
 		};
 		errorMessage = '';
 		onClose();
@@ -86,7 +75,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Agregar puesto</h2>
+			<h2 class="modal-title text-h4">Agregar evidencia</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -111,30 +100,10 @@
 						</div>
 					{/if}
 
-					<fieldset class="form-check-group">
-						<legend class="form-label text-caption">Tipo de puesto</legend>
-						<InputRadio
-							name="type"
-							label="Directivo"
-							value="directivo"
-							status="warning"
-							bind:group={formData.type}
-							onChange={handleTypeChange}
-						/>
-						<InputRadio
-							name="type"
-							label="Operativo"
-							value="operativo"
-							status="warning"
-							bind:group={formData.type}
-							onChange={handleTypeChange}
-						/>
-					</fieldset>
-
 					<InputSelect
-						label="Puesto"
+						label="Evidencia"
 						name="id"
-						optionsData={puestoOptions}
+						optionsData={evidenciaOptions}
 						required={true}
 						bind:value={formData.id}
 						errors={errorMessage && !formData.id ? [errorMessage] : undefined}

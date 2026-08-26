@@ -121,7 +121,7 @@
 			"createdBy": "admin@system.com"
 		},
 		{
-			"id": "7c45040d-f9bd-4639-bcb9-13861fb66bb9",
+			"id": "cc1a811c-0b08-431e-aae4-ac40ad97285e",
 			"code": "ING-III",
 			"name": "Coordinador de Ingenieria de la Facultad de Ingenieria",
 			"scope": "responsable",
@@ -136,7 +136,7 @@
 			"createdBy": "admin@system.com"
 		},
 		{
-			"id": "21f114d4-656c-4995-88a5-6a0c085b5ccd",
+			"id": "c2794e4c-36e7-41f0-af0a-241c3e81f3b8",
 			"code": "SIST-III",
 			"name": "Coordinador de Sistemas de la Facultad de Ingenieria",
 			"scope": "responsable",

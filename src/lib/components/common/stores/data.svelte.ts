@@ -20,6 +20,7 @@ import areaFuncionalJsonData from '$lib/data/area-funcional.json';
 import areaFuncionalPuestoJsonData from '$lib/data/area-funcional-puesto.json';
 import areaResponsableJsonData from '$lib/data/area-responsable.json';
 import areaResponsablePuestoJsonData from '$lib/data/area-responsable-puesto.json';
+import areaResponsableEvidenciaJsonData from '$lib/data/area-responsable-evidencia.json';
 
 import modeloJsonData from '$lib/data/modelo.json';
 import capituloJsonData from '$lib/data/capitulo.json';
@@ -161,6 +162,10 @@ import {
 	unidadAcademicaAreaResponsableItemSchema,
 	type UnidadAcademicaAreaResponsableItem
 } from '$lib/schemas/unidadAcademicaAreaResponsable.schema';
+import {
+	areaResponsableEvidenciaItemSchema,
+	type AreaResponsableEvidenciaItem
+} from '$lib/schemas/areaResponsableEvidencia.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -187,6 +192,7 @@ let puesto = $state<PuestoItem[]>([]);
 
 let areaResponsable = $state<AreaResponsableItem[]>([]);
 let areaResponsablePuesto = $state<AreaResponsablePuestoItem[]>([]);
+let areaResponsableEvidencia = $state<AreaResponsableEvidenciaItem[]>([]);
 let areaFuncional = $state<AreaFuncionalItem[]>([]);
 let areaFuncionalPuesto = $state<AreaFuncionalPuestoItem[]>([]);
 
@@ -316,6 +322,17 @@ const areaResponsablePuestoRawData = areaResponsablePuestoJsonData.areaResponsab
 areaResponsablePuesto = areaResponsablePuestoRawData.map((item) => {
 	try {
 		return areaResponsablePuestoItemSchema.parse(item);
+	} catch (error) {
+		console.error('Fallo en item.id:', item.id);
+		console.error('Error:', error);
+		throw error;
+	}
+});
+
+const areaResponsableEvidenciaRawData = areaResponsableEvidenciaJsonData.areaResponsablePuestoItems;
+areaResponsableEvidencia = areaResponsableEvidenciaRawData.map((item) => {
+	try {
+		return areaResponsableEvidenciaItemSchema.parse(item);
 	} catch (error) {
 		console.error('Fallo en item.id:', item.id);
 		console.error('Error:', error);
@@ -558,6 +575,10 @@ export function getAreaResponsableRef() {
 
 export function getAreaResponsablePuesto() {
 	return areaResponsablePuesto;
+}
+
+export function getAreaResponsableEvidencia() {
+	return areaResponsableEvidencia;
 }
 
 export function getModelo() {

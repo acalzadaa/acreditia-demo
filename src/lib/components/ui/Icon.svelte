@@ -30,7 +30,8 @@
 		| 'email'
 		| 'password'
 		| 'remove'
-		| 'feedback';
+		| 'feedback'
+		| 'search';
 
 	export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 

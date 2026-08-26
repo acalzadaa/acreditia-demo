@@ -5,15 +5,15 @@
 	import AccordionContentItem from '$lib/components/ui/accordion/AccordionContentItem.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
-	import type { AreaResponsablePuestoItem } from '$lib/schemas/areaResponsablePuesto.schema';
 	import { createToggle } from '$lib/components/common/stores/toggle.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { AreaResponsableTotalPuestosItem } from '$lib/schemas/areaResponsable.schema';
+	import type { AreaResponsableEvidenciaItem } from '$lib/schemas/areaResponsableEvidencia.schema';
 
 	interface Props {
-		items: AreaResponsablePuestoItem[];
+		items: AreaResponsableEvidenciaItem[];
 		totales: AreaResponsableTotalPuestosItem;
-		onClickRemover: (item: AreaResponsablePuestoItem) => void;
+		onClickRemover: (item: AreaResponsableEvidenciaItem) => void;
 		onClickAdd: () => void;
 	}
 
@@ -32,25 +32,24 @@
 					enableAccordion={items.length > 0}
 				>
 					{#snippet subtitle()}
-						{#if totales.total == 0}
-							<Tag variant="error">Faltan por agregar dos puestos</Tag>
-						{:else if totales.operativo == 0}
-							<Tag variant="warning">Falta por agregar un puesto operativo</Tag>
-						{:else if totales.directivo == 0}
-							<Tag variant="warning">Falta por agregar un puesto directivo</Tag>
-						{:else if totales.total >= 2}
-							<Tag variant="success">Total de puestos: {totales.total}</Tag>
+					<p>test</p>
+						{#if totales.operativo > 0 || items.length == 0}
+							<Tag variant="warning">Falta agregar una evidencia</Tag>
+						{:else if items.length > 0}
+							<Tag variant="success">Total de evidencias: {items.length}</Tag>
 						{/if}
 					{/snippet}
-					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>Agregar puesto</Button>
+					<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>
+						Agregar evidencia
+					</Button>
 				</AccordionHeaderButton>
 
 				<AccordionContent isCollapsible={true} isVisible={toggle.value}>
 					{#each items as item (item)}
 						<AccordionContentItem
 							isVisible={toggle.value}
-							label={item.puesto?.type}
-							value={item.puesto?.name}
+							label={item.evidencia?.code}
+							value={item.evidencia?.name}
 							onAction={() => onClickRemover(item)}
 							actionIcon="remove"
 							actionAriaLabel="remover elemento"

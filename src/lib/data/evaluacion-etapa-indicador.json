@@ -979,7 +979,7 @@
 			"etapa": {
 				"order": 8,
 				"code": "ejecucion",
-				"name": "Ejecucion de plan de mejora"
+				"name": "Ejecución de plan de mejora"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
@@ -1019,7 +1019,7 @@
 			"etapa": {
 				"order": 8,
 				"code": "ejecucion",
-				"name": "Ejecucion de plan de mejora"
+				"name": "Ejecución de plan de mejora"
 			},
 			"indicador": {
 				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
