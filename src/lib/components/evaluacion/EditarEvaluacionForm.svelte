@@ -95,7 +95,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Editar evaluacion</h2>
+			<h2 class="modal-title text-h4">Editar evaluación</h2>
 			<IconButton
 				name="close"
 				variant="ghost"

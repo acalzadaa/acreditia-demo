@@ -45,18 +45,19 @@ button.form-select[aria-expanded='true'] .form-select__chevron {
 
 /* ==========================================================================
    PANEL DE OPCIONES (listbox)
-   Mismo lenguaje visual que .drawer-panel, pero anclado abajo del trigger
-   y con el ancho del campo — no una esquina del contenedor posicionado
-   más cercano en la jerarquía general (que dentro de un modal, sería
-   el modal completo).
+   Mismo lenguaje visual que .drawer-panel, anclado abajo (o arriba, si no
+   hay espacio) del trigger y con su mismo ancho.
+
+   position/top/left/bottom/width/max-height NO se definen acá: el
+   componente (OptionsList.svelte) los calcula en JS con
+   getBoundingClientRect() del trigger y los aplica como inline style,
+   usando position:fixed. Esto es necesario porque el panel se portea
+   (use:portal) fuera de .form-field para escapar del overflow de
+   .modal-body / .form-fields--scrollable — con position:absolute clásico,
+   ningún z-index lo salva de quedar recortado por esos ancestros.
    ========================================================================== */
 
 .select-options {
-	position: absolute;
-	top: calc(100% + var(--space-1));
-	left: 0;
-	width: 100%;
-	max-height: 280px;
 	overflow-y: auto;
 	margin: 0;
 	padding: var(--space-1);

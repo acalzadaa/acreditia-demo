@@ -86,13 +86,17 @@
 		}
 	}
 
-	// Cerrar al hacer click fuera del wrapper (trigger + panel).
-	// No hace falta un handler de click afuera separado para el panel:
-	// wrapperEl envuelve a ambos.
+	// Cerrar al hacer click fuera del trigger y fuera del panel.
+	// El panel ya NO es hijo DOM de wrapperEl: se portea afuera (ver
+	// use:portal en OptionsList) para escapar del overflow del modal,
+	// así que hay que chequearlo aparte por su id.
 	function handleWindowMousedown(e: MouseEvent) {
 		if (!open) return;
 		const target = e.target as Node;
-		if (wrapperEl && !wrapperEl.contains(target)) {
+		const panelEl = document.getElementById(listboxId);
+		const insideTrigger = wrapperEl?.contains(target);
+		const insidePanel = panelEl?.contains(target);
+		if (!insideTrigger && !insidePanel) {
 			closeList();
 		}
 	}
@@ -111,10 +115,12 @@
 	{/if}
 
 	<!--
-		select-wrapper es el ancestro position:relative del que cuelga
-		el listbox (top:100%). Vive dentro de .form-field, así que el
-		panel se posiciona respecto al campo, no respecto al .modal
-		ni al viewport — igual que pediste.
+		select-wrapper ya no es el contenedor position:relative del que
+		"cuelga" el panel: el panel (OptionsList) se portea afuera del
+		modal/overflow y se posiciona con position:fixed calculado desde
+		el getBoundingClientRect de este wrapper (ver anchorEl). Así el
+		ancho y la posición siguen atados visualmente a este campo, pero
+		el panel puede pintarse por encima de todo, modal incluido.
 	-->
 	<div class="select-wrapper text-body" bind:this={wrapperEl}>
 		<button
@@ -146,6 +152,7 @@
 			show={open}
 			options={allOptions}
 			{value}
+			anchorEl={wrapperEl}
 			onSelect={handleSelect}
 			onClose={() => closeList(true)}
 		/>

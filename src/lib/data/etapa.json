@@ -27,13 +27,8 @@
 		},
 		{
 			"order": 6,
-			"code": "captura",
-			"name": "Captura de plan de mejora"
-		},
-		{
-			"order": 7,
-			"code": "ejecucion",
-			"name": "Ejecución de plan de mejora"
+			"code": "plan-de-mejora",
+			"name": "Plan de mejora"
 		}
 	]
 }

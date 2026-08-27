@@ -501,56 +501,6 @@
 			}
 		},
 		{
-			"id": "79acfcfe-c679-416d-b001-b5da09e45f35",
-			"evaluacionId": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
-			"etapa": {
-				"order": 7,
-				"code": "autorizacion",
-				"name": "Autorización de plan de mejora"
-			},
-			"fechaInicio": "2025-12-01T00:00:00Z",
-			"fechaFinal": "2026-01-15T00:00:00Z",
-			"periodoExtraordinario": false,
-			"periodoExtraordinarioInicio": null,
-			"periodoExtraordinarioFinal": null,
-			"status": "active",
-			"createdAt": "2024-01-01T10:30:00Z",
-			"updatedAt": "2024-01-01T10:30:00Z",
-			"createdBy": "admin@system.com",
-			"updatedBy": null,
-			"isDeleted": false,
-			"evaluacion": {
-				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
-				"code": "2025-3",
-				"name": "Invierno 2025"
-			}
-		},
-		{
-			"id": "60f8e953-f85f-44e7-b830-bd8baf6567ac",
-			"evaluacionId": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
-			"etapa": {
-				"order": 8,
-				"code": "ejecucion",
-				"name": "Ejecución de plan de mejora"
-			},
-			"fechaInicio": "2025-12-01T00:00:00Z",
-			"fechaFinal": "2026-01-15T00:00:00Z",
-			"periodoExtraordinario": false,
-			"periodoExtraordinarioInicio": null,
-			"periodoExtraordinarioFinal": null,
-			"status": "active",
-			"createdAt": "2024-01-01T10:30:00Z",
-			"updatedAt": "2024-01-01T10:30:00Z",
-			"createdBy": "admin@system.com",
-			"updatedBy": null,
-			"isDeleted": false,
-			"evaluacion": {
-				"id": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
-				"code": "2025-3",
-				"name": "Invierno 2025"
-			}
-		},
-		{
 			"id": "deac0515-10f1-4497-aa88-6c5c30ad6682",
 			"evaluacionId": "fda91ef4-4fc3-4c24-ab22-99f2d90aeef0",
 			"etapa": {
@@ -680,8 +630,8 @@
 			"evaluacionId": "fda91ef4-4fc3-4c24-ab22-99f2d90aeef0",
 			"etapa": {
 				"order": 6,
-				"code": "crear-plan-mejora-continua",
-				"name": "Crear plan de mejora continua"
+				"code": "plan-de-mejora",
+				"name": "Plan de mejora continua"
 			},
 			"fechaInicio": "2025-12-16T00:00:00Z",
 			"fechaFinal": "2026-01-31T00:00:00Z",
@@ -691,31 +641,6 @@
 			"status": "active",
 			"createdAt": "2024-01-01T10:30:00Z",
 			"updatedAt": "2025-12-16T10:00:00Z",
-			"createdBy": "admin@system.com",
-			"updatedBy": "coordinator@system.com",
-			"isDeleted": false,
-			"evaluacion": {
-				"id": "fda91ef4-4fc3-4c24-ab22-99f2d90aeef0",
-				"code": "2025-2",
-				"name": "Verano 2025"
-			}
-		},
-		{
-			"id": "5f910f89-ebf5-418b-978c-aacb1b6e9393",
-			"evaluacionId": "fda91ef4-4fc3-4c24-ab22-99f2d90aeef0",
-			"etapa": {
-				"order": 7,
-				"code": "ejecutar-plan-mejora-continua",
-				"name": "Ejecutar plan de mejora continua"
-			},
-			"fechaInicio": "2026-02-01T00:00:00Z",
-			"fechaFinal": "2026-03-15T00:00:00Z",
-			"periodoExtraordinario": false,
-			"periodoExtraordinarioInicio": null,
-			"periodoExtraordinarioFinal": null,
-			"status": "active",
-			"createdAt": "2024-01-01T10:30:00Z",
-			"updatedAt": "2026-02-01T10:00:00Z",
 			"createdBy": "admin@system.com",
 			"updatedBy": "coordinator@system.com",
 			"isDeleted": false,
@@ -855,8 +780,8 @@
 			"evaluacionId": "a95ecd86-ad5c-43c2-8762-18001e661069",
 			"etapa": {
 				"order": 6,
-				"code": "crear-plan-mejora-continua",
-				"name": "Crear plan de mejora continua"
+				"code": "plan-de-mejora",
+				"name": "Plan de mejora continua"
 			},
 			"fechaInicio": "2025-09-01T00:00:00Z",
 			"fechaFinal": "2025-10-15T00:00:00Z",
@@ -866,31 +791,6 @@
 			"status": "active",
 			"createdAt": "2024-01-01T10:30:00Z",
 			"updatedAt": "2025-09-01T10:00:00Z",
-			"createdBy": "admin@system.com",
-			"updatedBy": "coordinator@system.com",
-			"isDeleted": false,
-			"evaluacion": {
-				"id": "a95ecd86-ad5c-43c2-8762-18001e661069",
-				"code": "2025-1",
-				"name": "Primavera 2025"
-			}
-		},
-		{
-			"id": "b6626b5d-dda9-4792-a562-c76d9b931ea2",
-			"evaluacionId": "a95ecd86-ad5c-43c2-8762-18001e661069",
-			"etapa": {
-				"order": 7,
-				"code": "ejecutar-plan-mejora-continua",
-				"name": "Ejecutar plan de mejora continua"
-			},
-			"fechaInicio": "2025-10-16T00:00:00Z",
-			"fechaFinal": "2025-11-30T00:00:00Z",
-			"periodoExtraordinario": true,
-			"periodoExtraordinarioInicio": "2025-12-05T00:00:00Z",
-			"periodoExtraordinarioFinal": "2025-12-20T00:00:00Z",
-			"status": "active",
-			"createdAt": "2024-01-01T10:30:00Z",
-			"updatedAt": "2025-10-16T10:00:00Z",
 			"createdBy": "admin@system.com",
 			"updatedBy": "coordinator@system.com",
 			"isDeleted": false,

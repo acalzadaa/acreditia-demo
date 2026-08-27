@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import InputSelectSearch from './InputSelectSearch.svelte';
+	import InputSelectSearch from '$lib/components/ui/select/InputSelectCustom.svelte';
 	import { fn } from 'storybook/test';
 
 	const { Story } = defineMeta({
