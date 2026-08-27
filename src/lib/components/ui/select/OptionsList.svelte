@@ -39,7 +39,7 @@
 	let activeIndex = $state(0);
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	let ready = false;
-	let panelStyle = $state('');
+	let panelStyle = $state('position: fixed; top: -9999px; left: -9999px; visibility: hidden;');
 	let optionEls: (HTMLButtonElement | null)[] = [];
 	let typeaheadBuffer = '';
 	let typeaheadTimeout: ReturnType<typeof setTimeout>;
@@ -94,7 +94,7 @@
 		if (show) {
 			const raf = requestAnimationFrame(() => {
 				updateState();
-				tick().then(() => optionEls[activeIndex]?.focus());
+				tick().then(() => optionEls[activeIndex]?.focus({ preventScroll: true }));
 			});
 
 			const handleReposition = () => {
@@ -182,7 +182,7 @@
 	<div
 		{id}
 		use:portal={portalTarget}
-		class="select-options"
+		class="select-options text-body"
 		style={panelStyle}
 		role="listbox"
 		aria-labelledby={labelledBy}

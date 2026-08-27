@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AddIndicadorEvidenciaPicker from '$lib/components/features/indicador/evidencia/AddIndicadorEvidenciaPicker.svelte';
+	import AddIndicadorEvidenciaForm from '$lib/components/features/indicador/evidencia/AddIndicadorEvidenciaForm.svelte';
 	import EvidenciaSublist from '$lib/components/features/indicador/evidencia/EvidenciaSublist.svelte';
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
@@ -25,7 +25,7 @@
 />
 
 <!-- MODAL CREAR -->
-<AddIndicadorEvidenciaPicker open={modal.isOpen('add')} {evidenciaRef} onClose={modal.close} />
+<AddIndicadorEvidenciaForm open={modal.isOpen('add')} {evidenciaRef} onClose={modal.close} />
 
 {#if modal.selectedItem}
 	<ConfirmModal

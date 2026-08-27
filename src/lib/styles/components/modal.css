@@ -60,6 +60,7 @@
 	padding: var(--space-6);
 	scrollbar-width: thin;
 	scrollbar-color: var(--border-regular) var(--bg-ground);
+	overflow-anchor: none;
 }
 
 .modal-body::-webkit-scrollbar {
