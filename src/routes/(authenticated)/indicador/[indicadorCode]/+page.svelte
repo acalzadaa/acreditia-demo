@@ -20,7 +20,7 @@
 
 <div class="detail-panel">
 	<IndicadorDetail title="Indicador" subtitle={indicadorCode} items={indicadorItems} />
-	<IndicadorNavList showHeader={true} items={indicadorNavItem} title='Agregar complementos'/>
+	<IndicadorNavList showHeader={true} items={indicadorNavItem} title='Configuracion del indicador'/>
 </div>
 
 {#if modal.selectedItem}
