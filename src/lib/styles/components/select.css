@@ -69,6 +69,7 @@ button.form-select[aria-expanded='true'] .form-select__chevron {
 	animation: select-options-in 0.15s ease-in-out;
 	scrollbar-width: thin;
 	scrollbar-color: var(--border-regular) var(--bg-ground);
+	margin-bottom: var(--space-1);
 }
 
 @keyframes select-options-in {
@@ -132,4 +133,22 @@ button.form-select[aria-expanded='true'] .form-select__chevron {
 	padding: var(--space-3);
 	color: var(--text-muted);
 	text-align: center;
+}
+
+.select-combobox-search {
+	position: relative;
+	margin-bottom: var(--space-1);
+}
+
+/* deja espacio a la izquierda para el ícono de búsqueda y a la derecha
+   para el botón de limpiar */
+.select-combobox-search .form-input {
+	padding-right: var(--space-8);
+}
+
+.select-combobox-clear-btn {
+	position: absolute;
+	right: var(--space-1);
+	top: 50%;
+	transform: translateY(-50%);
 }

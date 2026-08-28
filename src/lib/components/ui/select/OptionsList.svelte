@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { tick } from 'svelte';
-	import type { OptionData } from './InputSelectCustom.svelte';
+	import { tick, type Snippet } from 'svelte';
 	import { getPortalTarget, portal } from '../modal/utils/portal';
+	import type { OptionData } from './utils/select';
 
 	interface Props {
 		/** id del panel — debe matchear el aria-controls del trigger */
@@ -21,6 +21,23 @@
 		onSelect: (id: string) => void;
 		onClose: () => void;
 		emptyMessage?: string;
+		/**
+		 * Contenido opcional que se renderiza DENTRO del panel porteado,
+		 * antes de la lista de opciones (ej: input de búsqueda en
+		 * InputSelectSearch). Vive dentro del mismo div con onkeydown, así
+		 * que las flechas/Escape/Tab tecleadas ahí también navegan la
+		 * lista — no hace falta reimplementar nada, solo NO robarle el
+		 * foco al abrir (ver `autofocusOption`).
+		 */
+		header?: Snippet;
+		/**
+		 * Si es `false`, al abrir el panel NO se mueve el foco a la opción
+		 * activa/seleccionada — útil cuando `header` trae su propio
+		 * elemento focuseable (el input de búsqueda) que debe quedarse
+		 * con el foco. El padre es responsable de enfocarlo.
+		 * @default true
+		 */
+		autofocusOption?: boolean;
 	}
 
 	const {
@@ -32,7 +49,9 @@
 		anchorEl,
 		onSelect,
 		onClose,
-		emptyMessage = 'Sin opciones'
+		emptyMessage = 'Sin opciones',
+		header,
+		autofocusOption = true
 	}: Props = $props();
 
 	// Roving tabindex: un solo <button role="option"> es tab-stop a la vez.
@@ -75,8 +94,10 @@
 
 	const portalTarget = $derived(show ? getPortalTarget(anchorEl) : undefined);
 
-	// Al abrir: enfocar la opción seleccionada (o la primera), calcular
-	// posición, y mantenerla al día mientras el panel esté abierto.
+	// Al abrir: enfocar la opción seleccionada (o la primera) — salvo que
+	// autofocusOption sea false, en cuyo caso el padre se encarga de
+	// enfocar su propio elemento (ej: el input de búsqueda de header) —,
+	// calcular posición, y mantenerla al día mientras el panel esté abierto.
 	//
 	// La primera medición se hace dentro de un requestAnimationFrame, no
 	// apenas `show` pasa a true. Motivo: en el instante exacto en que se
@@ -94,7 +115,9 @@
 		if (show) {
 			const raf = requestAnimationFrame(() => {
 				updateState();
-				tick().then(() => optionEls[activeIndex]?.focus({ preventScroll: true }));
+				if (autofocusOption) {
+					tick().then(() => optionEls[activeIndex]?.focus({ preventScroll: true }));
+				}
 			});
 
 			const handleReposition = () => {
@@ -160,7 +183,10 @@
 				onClose();
 				break;
 			default:
-				handleTypeahead(e);
+				// Si hay header (ej: input de búsqueda propio), el filtrado ya
+				// lo maneja el padre — el typeahead interno queda deshabilitado
+				// para no pisarle la escritura al input.
+				if (!header) handleTypeahead(e);
 		}
 	}
 </script>
@@ -189,6 +215,10 @@
 		tabindex="-1"
 		onkeydown={handleKeydown}
 	>
+		{#if header}
+			{@render header()}
+		{/if}
+
 		{#if options.length === 0}
 			<p class="select-options__empty text-body-small">{emptyMessage}</p>
 		{:else}

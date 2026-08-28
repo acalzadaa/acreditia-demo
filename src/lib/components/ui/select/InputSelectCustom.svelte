@@ -1,12 +1,10 @@
 <script lang="ts">
 	import OptionsList from './OptionsList.svelte';
+	import type { OptionData } from './utils/select';
 
 	type Status = 'normal' | 'success' | 'error' | 'warning' | 'info';
 
-	export type OptionData = {
-		id: string;
-		option: string;
-	};
+	
 	interface Props {
 		name: string;
 		label?: string;
