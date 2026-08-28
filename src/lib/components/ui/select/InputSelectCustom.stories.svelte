@@ -1,11 +1,10 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import InputSelectSearch from './InputSelectSearch.svelte';
-	import { fn } from 'storybook/test';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
 
 	const { Story } = defineMeta({
-		title: 'ui/InputSelectSearch',
-		component: InputSelectSearch,
+		title: 'ui/select/InputSelectCustom',
+		component: InputSelectCustom,
 		tags: ['autodocs'],
 		args: {
 			name: 'example',
@@ -17,18 +16,20 @@
 				{ id: 'option3', option: 'Option 3' },
 				{ id: 'option4', option: 'Option 4' }
 			],
-			placeholder: 'Selecciona una opcion',
+			placeholder: 'Selecciona una opción',
+			status: 'normal',
 			required: false,
 			disabled: false,
-			errors: [],
-			onChange: fn(),
-			onFocus: fn(),
-			onBlur: fn()
+			errors: []
 		},
 		argTypes: {
 			optionsData: {
 				control: { type: 'object' },
-				description: 'Array of options with id and option properties'
+				description: 'Array de opciones con propiedades id y option'
+			},
+			status: {
+				control: { type: 'select' },
+				options: ['normal', 'success', 'error', 'warning', 'info']
 			},
 			required: {
 				control: { type: 'boolean' }
@@ -46,54 +47,48 @@
 <!-- Basic Variants -->
 <Story name="Default">
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
-			value={args.value}
+			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
+			status={args.status}
 			required={args.required}
-			disabled={args['disabled']}
+			disabled={args.disabled}
 			errors={args.errors}
-			onChange={args['onChange']}
-			onFocus={args['onFocus']}
-			onBlur={args['onBlur']}
 		/>
 	{/snippet}
 </Story>
 
 <Story name="Required" args={{ label: 'Category', required: true }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
-			value={args.value}
+			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
+			status={args.status}
 			required={args.required}
-			disabled={args['disabled']}
+			disabled={args.disabled}
 			errors={args.errors}
-			onChange={args['onChange']}
-			onFocus={args['onFocus']}
-			onBlur={args['onBlur']}
 		/>
 	{/snippet}
 </Story>
 
 <Story name="Preselected Value" args={{ value: 'option2' }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
-			value={args.value}
+			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
+			status={args.status}
 			required={args.required}
-			disabled={args['disabled']}
+			disabled={args.disabled}
 			errors={args.errors}
-			onChange={args['onChange']}
-			onFocus={args['onFocus']}
-			onBlur={args['onBlur']}
 		/>
 	{/snippet}
 </Story>
@@ -101,19 +96,17 @@
 <!-- Con "ninguno" seleccionable -->
 <Story name="With Null Option" args={{ nullOption: 'Ninguno', value: 'option2' }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
-			value={args.value}
+			bind:value={args.value}
 			nullOption={args.nullOption}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
+			status={args.status}
 			required={args.required}
-			disabled={args['disabled']}
+			disabled={args.disabled}
 			errors={args.errors}
-			onChange={args['onChange']}
-			onFocus={args['onFocus']}
-			onBlur={args['onBlur']}
 		/>
 	{/snippet}
 </Story>
@@ -133,23 +126,21 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
-			value={args.value}
+			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
+			status={args.status}
 			required={args.required}
-			disabled={args['disabled']}
+			disabled={args.disabled}
 			errors={args.errors}
-			onChange={args['onChange']}
-			onFocus={args['onFocus']}
-			onBlur={args['onBlur']}
 		/>
 	{/snippet}
 </Story>
 
-<!-- Lista grande: donde el buscador realmente se nota -->
+<!-- Lista grande: para revisar scroll y navegación con teclado -->
 <Story
 	name="Large Options List"
 	args={{
@@ -161,18 +152,49 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
-			value={args.value}
+			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
+			status={args.status}
 			required={args.required}
-			disabled={args['disabled']}
+			disabled={args.disabled}
 			errors={args.errors}
-			onChange={args['onChange']}
-			onFocus={args['onFocus']}
-			onBlur={args['onBlur']}
+		/>
+	{/snippet}
+</Story>
+
+<!-- Status Variants -->
+<Story name="Success" args={{ label: 'Status', status: 'success', value: 'option1' }}>
+	{#snippet template(args)}
+		<InputSelectCustom
+			name={args.name}
+			label={args.label}
+			bind:value={args.value}
+			optionsData={args.optionsData}
+			placeholder={args.placeholder}
+			status={args.status}
+			required={args.required}
+			disabled={args.disabled}
+			errors={args.errors}
+		/>
+	{/snippet}
+</Story>
+
+<Story name="Warning" args={{ label: 'Status', status: 'warning', value: 'option1' }}>
+	{#snippet template(args)}
+		<InputSelectCustom
+			name={args.name}
+			label={args.label}
+			bind:value={args.value}
+			optionsData={args.optionsData}
+			placeholder={args.placeholder}
+			status={args.status}
+			required={args.required}
+			disabled={args.disabled}
+			errors={args.errors}
 		/>
 	{/snippet}
 </Story>
@@ -182,23 +204,46 @@
 	name="With Single Error"
 	args={{
 		label: 'Priority',
+		status: 'error',
 		errors: ['This field is required'],
 		required: true
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
-			value={args.value}
+			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
+			status={args.status}
 			required={args.required}
-			disabled={args['disabled']}
+			disabled={args.disabled}
 			errors={args.errors}
-			onChange={args['onChange']}
-			onFocus={args['onFocus']}
-			onBlur={args['onBlur']}
+		/>
+	{/snippet}
+</Story>
+
+<Story
+	name="With Multiple Errors"
+	args={{
+		label: 'Priority',
+		status: 'error',
+		errors: ['This field is required', 'Value must be one of the listed options'],
+		required: true
+	}}
+>
+	{#snippet template(args)}
+		<InputSelectCustom
+			name={args.name}
+			label={args.label}
+			bind:value={args.value}
+			optionsData={args.optionsData}
+			placeholder={args.placeholder}
+			status={args.status}
+			required={args.required}
+			disabled={args.disabled}
+			errors={args.errors}
 		/>
 	{/snippet}
 </Story>
@@ -213,18 +258,33 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
-			value={args.value}
+			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
+			status={args.status}
 			required={args.required}
-			disabled={args['disabled']}
+			disabled={args.disabled}
 			errors={args.errors}
-			onChange={args['onChange']}
-			onFocus={args['onFocus']}
-			onBlur={args['onBlur']}
+		/>
+	{/snippet}
+</Story>
+
+<!-- Sin label -->
+<Story name="Without Label" args={{ label: '' }}>
+	{#snippet template(args)}
+		<InputSelectCustom
+			name={args.name}
+			label={args.label}
+			bind:value={args.value}
+			optionsData={args.optionsData}
+			placeholder={args.placeholder}
+			status={args.status}
+			required={args.required}
+			disabled={args.disabled}
+			errors={args.errors}
 		/>
 	{/snippet}
 </Story>

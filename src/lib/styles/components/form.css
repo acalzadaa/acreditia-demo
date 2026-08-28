@@ -127,6 +127,7 @@
 	overflow-y: auto;
 	scrollbar-width: thin;
 	scrollbar-color: var(--border-regular) var(--bg-ground);
+	overflow-anchor: none;
 }
 
 .form-fields--scrollable::-webkit-scrollbar {

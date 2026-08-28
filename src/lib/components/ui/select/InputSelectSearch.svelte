@@ -1,10 +1,28 @@
 <script lang="ts">
+	/**
+	 * @component InputSelectSearch
+	 *
+	 * Select con filtro de búsqueda. Es `InputSelectCustom` + un input de
+	 * búsqueda: reutiliza el mismo `OptionsList` (portal, posicionamiento
+	 * fixed calculado con getBoundingClientRect, navegación con flechas,
+	 * Home/End/Escape/Tab) pasándole `options={filteredOptions}` y un
+	 * `header` con el input de búsqueda (ícono `search` a la izquierda,
+	 * ícono `close` a la derecha para limpiar).
+	 *
+	 * Como el input de búsqueda vive DENTRO del mismo div porteado que
+	 * escucha `onkeydown` en OptionsList, las flechas tecleadas ahí
+	 * también mueven el foco entre opciones sin código extra (event
+	 * bubbling) — por eso acá no hace falta reimplementar navegación,
+	 * solo evitar que OptionsList le robe el foco al input al abrir
+	 * (`autofocusOption={false}`).
+	 */
+	import Icon, { type IconName } from '../Icon.svelte';
+	import IconButton from '../IconButton.svelte';
 	import OptionsList from './OptionsList.svelte';
 	import type { OptionData } from './utils/select';
 
 	type Status = 'normal' | 'success' | 'error' | 'warning' | 'info';
 
-	
 	interface Props {
 		name: string;
 		label?: string;
@@ -13,12 +31,17 @@
 		errors?: string | string[];
 		required?: boolean;
 		placeholder?: string;
+		/** Placeholder del input de búsqueda dentro del panel. */
+		searchPlaceholder?: string;
+		/** Texto mostrado cuando el filtro no encuentra opciones. */
+		noResultsText?: string;
 		status?: Status;
 		disabled?: boolean;
 		optionsData: OptionData[];
 		class?: string;
 		[key: string]: unknown;
 	}
+
 	let {
 		name,
 		label = '',
@@ -27,6 +50,8 @@
 		errors = [],
 		required = false,
 		placeholder = 'Selecciona una opción',
+		searchPlaceholder = 'Buscar...',
+		noResultsText = 'Sin resultados',
 		status = 'normal',
 		disabled = false,
 		optionsData,
@@ -34,17 +59,34 @@
 		...props
 	}: Props = $props();
 
-	// Normalizar errors siempre a string[]
 	const errorList = $derived(Array.isArray(errors) ? errors : errors ? [errors] : []);
 	const hasErrors = $derived(errorList.length > 0);
 
-	// nullOption se resuelve como una opción más (id: '') para que el listbox
-	// la maneje igual que cualquier otra — nada de casos especiales al navegar.
+	// nullOption se resuelve como una opción más (id: '') — igual que en
+	// InputSelectCustom, para que el listbox no necesite casos especiales.
 	const allOptions = $derived(
 		nullOption ? [{ id: '', option: nullOption }, ...optionsData] : optionsData
 	);
 
 	const selectedOption = $derived(allOptions.find((o) => o.id === value));
+
+	function normalize(str: string) {
+		return str
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.toLowerCase();
+	}
+
+	let query = $state('');
+
+	const filteredOptions = $derived(
+		query.trim() === ''
+			? allOptions
+			: allOptions.filter((o) => normalize(o.option).includes(normalize(query)))
+	);
+
+	// El botón X limpia tanto el texto buscado como la selección actual
+	const showClearButton = $derived(query.length > 0 || value !== '');
 
 	const listboxId = `${name}-listbox`;
 	const labelId = `${name}-label`;
@@ -52,19 +94,23 @@
 	let open = $state(false);
 	let wrapperEl: HTMLDivElement;
 	let triggerEl: HTMLButtonElement;
+	let searchInputEl: HTMLInputElement | undefined = $state();
 
 	function toggleOpen() {
 		if (disabled) return;
 		open = !open;
+		if (open) query = '';
 	}
 
 	function openList() {
 		if (disabled || open) return;
 		open = true;
+		query = '';
 	}
 
 	function closeList(refocus = false) {
 		open = false;
+		query = '';
 		if (refocus) triggerEl?.focus();
 	}
 
@@ -73,9 +119,17 @@
 		closeList(true);
 	}
 
-	// El trigger es un <button role="combobox">, no un <select>: hay que
-	// replicar a mano lo que el navegador da gratis en el nativo
-	// (abrir con flecha/enter/espacio, cerrar con escape, etc).
+	function clearSelection(e: MouseEvent) {
+		e.stopPropagation();
+		value = '';
+		query = '';
+		searchInputEl?.focus();
+	}
+
+	function handleSearchInput(e: Event) {
+		query = (e.target as HTMLInputElement).value;
+	}
+
 	function handleTriggerKeydown(e: KeyboardEvent) {
 		if (disabled) return;
 		if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
@@ -84,10 +138,19 @@
 		}
 	}
 
-	// Cerrar al hacer click fuera del trigger y fuera del panel.
-	// El panel ya NO es hijo DOM de wrapperEl: se portea afuera (ver
-	// use:portal en OptionsList) para escapar del overflow del modal,
-	// así que hay que chequearlo aparte por su id.
+	// OptionsList no le roba el foco al input (autofocusOption={false}),
+	// así que acá lo enfocamos nosotros apenas se abre. Mismo motivo que
+	// en OptionsList: rAF, no directo, para esperar a que el panel
+	// porteado ya esté en el DOM.
+	$effect(() => {
+		if (open) {
+			const raf = requestAnimationFrame(() => searchInputEl?.focus());
+			return () => cancelAnimationFrame(raf);
+		}
+	});
+
+	// Cerrar al hacer click fuera del trigger y fuera del panel porteado
+	// (mismo mecanismo que InputSelectCustom).
 	function handleWindowMousedown(e: MouseEvent) {
 		if (!open) return;
 		const target = e.target as Node;
@@ -112,14 +175,6 @@
 		</label>
 	{/if}
 
-	<!--
-		select-wrapper ya no es el contenedor position:relative del que
-		"cuelga" el panel: el panel (OptionsList) se portea afuera del
-		modal/overflow y se posiciona con position:fixed calculado desde
-		el getBoundingClientRect de este wrapper (ver anchorEl). Así el
-		ancho y la posición siguen atados visualmente a este campo, pero
-		el panel puede pintarse por encima de todo, modal incluido.
-	-->
 	<div class="select-wrapper text-body" bind:this={wrapperEl}>
 		<button
 			type="button"
@@ -148,12 +203,44 @@
 			id={listboxId}
 			labelledBy={label ? labelId : undefined}
 			show={open}
-			options={allOptions}
+			options={filteredOptions}
 			{value}
 			anchorEl={wrapperEl}
 			onSelect={handleSelect}
 			onClose={() => closeList(true)}
-		/>
+			emptyMessage={noResultsText}
+			autofocusOption={false}
+		>
+			{#snippet header()}
+				<div class="select-combobox-search">
+					<span class="form-input-icon form-input-icon--left">
+						<Icon name={'search' as IconName} size="sm" />
+					</span>
+					<input
+						bind:this={searchInputEl}
+						type="text"
+						class="form-input text-body form-input--with-icon-left"
+						value={query}
+						placeholder={searchPlaceholder}
+						autocomplete="off"
+						spellcheck="false"
+						aria-label={label ? `Buscar en ${label}` : 'Buscar opción'}
+						aria-controls={listboxId}
+						oninput={handleSearchInput}
+					/>
+					{#if showClearButton}
+						<IconButton
+							name="close"
+							size="sm"
+							variant="ghost"
+							ariaLabel="Limpiar selección"
+							class="select-combobox-clear-btn"
+							onClick={clearSelection}
+						/>
+					{/if}
+				</div>
+			{/snippet}
+		</OptionsList>
 	</div>
 
 	{#if hasErrors}
