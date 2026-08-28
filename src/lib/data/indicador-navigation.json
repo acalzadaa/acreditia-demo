@@ -1,40 +1,52 @@
 {
 	"indicadorNavListItem": [
 		{
-			"id": "b95d6ff5-e6d0-46af-81a0-068156f87ae4",
-			"name": "Rúbrica",
-			"url": "/rubrica",
+			"id": "8215d423-d605-4833-9710-f45effb251d1",
+			"name": "Modelo de calidad",
+			"url": "/seccion",
 			"order": 1
+		},
+		{
+			"id": "14f0fb3a-98fd-481e-85f8-8d88e6c8bd96",
+			"name": "Meta institucional",
+			"url": "/meta",
+			"order": 2
 		},
 		{
 			"id": "fd237590-afea-4c4f-86e9-de406c78b7f7",
 			"name": "Área Responsable",
 			"url": "/area-responsable",
-			"order": 2
+			"order": 3
 		},
 		{
 			"id": "169a1c83-a9a5-48b2-8219-58a7f38a9991",
 			"name": "Área Funcional",
 			"url": "/area-funcional",
-			"order": 3
+			"order": 4
+		},
+		{
+			"id": "b95d6ff5-e6d0-46af-81a0-068156f87ae4",
+			"name": "Rúbrica",
+			"url": "/rubrica",
+			"order": 5
 		},
 		{
 			"id": "0cc676ec-474f-4646-9619-ba1e0dd5ee48",
 			"name": "Normativa",
 			"url": "/normativa",
-			"order": 4
+			"order": 6
 		},
 		{
 			"id": "189e61cd-88fd-458e-ac3f-695184664d5b",
 			"name": "Evidencia",
 			"url": "/evidencia",
-			"order": 5
+			"order": 7
 		},
 		{
 			"id": "6284c092-d7c9-4800-a295-3cf528f92a19",
 			"name": "Indicador Estratégico",
 			"url": "/indicador-estrategico",
-			"order": 6
+			"order": 8
 		}
 	]
 }

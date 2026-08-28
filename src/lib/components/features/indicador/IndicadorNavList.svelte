@@ -1,5 +1,6 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
+	import Icon from '$lib/components/ui/Icon.svelte';
 	import Panel from '$lib/components/ui/panel/Panel.svelte';
 	import PanelContent from '$lib/components/ui/panel/PanelContent.svelte';
 	import PanelHeader from '$lib/components/ui/panel/PanelHeader.svelte';
@@ -27,7 +28,10 @@
 		{#if sortedItems.length > 0}
 			{#each sortedItems as item (item.id)}
 				<PanelListItemButton onClick={() => navigateTo(item.url)}>
-					{item.name}
+					<Icon weight={1} isFilled={true} color='red' name="check" />
+					<p>
+						{item.name}
+					</p>
 				</PanelListItemButton>
 			{/each}
 		{:else}
