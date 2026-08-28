@@ -1,10 +1,10 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import InputSelectSearch from '$lib/components/ui/select/InputSelectSearch.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
 
 	const { Story } = defineMeta({
-		title: 'ui/select/InputSelectSearch',
-		component: InputSelectSearch,
+		title: 'ui/select/InputSelectCustom',
+		component: InputSelectCustom,
 		tags: ['autodocs'],
 		args: {
 			name: 'example',
@@ -17,8 +17,6 @@
 				{ id: 'option4', option: 'Option 4' }
 			],
 			placeholder: 'Selecciona una opción',
-			searchPlaceholder: 'Buscar...',
-			noResultsText: 'Sin resultados',
 			status: 'normal',
 			required: false,
 			disabled: false,
@@ -49,14 +47,12 @@
 <!-- Basic Variants -->
 <Story name="Default">
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -67,14 +63,12 @@
 
 <Story name="Required" args={{ label: 'Category', required: true }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -85,14 +79,12 @@
 
 <Story name="Preselected Value" args={{ value: 'option2' }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -104,15 +96,13 @@
 <!-- Con "ninguno" seleccionable -->
 <Story name="With Null Option" args={{ nullOption: 'Ninguno', value: 'option2' }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			nullOption={args.nullOption}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -136,14 +126,12 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -152,7 +140,7 @@
 	{/snippet}
 </Story>
 
-<!-- Lista grande: donde el buscador realmente se nota -->
+<!-- Lista grande: para revisar scroll y navegación con teclado -->
 <Story
 	name="Large Options List"
 	args={{
@@ -164,40 +152,12 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
-			status={args.status}
-			required={args.required}
-			disabled={args.disabled}
-			errors={args.errors}
-		/>
-	{/snippet}
-</Story>
-
-<!-- Texto de búsqueda / sin resultados personalizados -->
-<Story
-	name="Custom Search Texts"
-	args={{
-		label: 'Producto',
-		searchPlaceholder: 'Escribe para filtrar...',
-		noResultsText: 'No se encontraron productos'
-	}}
->
-	{#snippet template(args)}
-		<InputSelectSearch
-			name={args.name}
-			label={args.label}
-			bind:value={args.value}
-			optionsData={args.optionsData}
-			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -209,14 +169,12 @@
 <!-- Status Variants -->
 <Story name="Success" args={{ label: 'Status', status: 'success', value: 'option1' }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -227,14 +185,12 @@
 
 <Story name="Warning" args={{ label: 'Status', status: 'warning', value: 'option1' }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -254,14 +210,12 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -280,14 +234,12 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -306,14 +258,12 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
@@ -325,14 +275,12 @@
 <!-- Sin label -->
 <Story name="Without Label" args={{ label: '' }}>
 	{#snippet template(args)}
-		<InputSelectSearch
+		<InputSelectCustom
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
 			optionsData={args.optionsData}
 			placeholder={args.placeholder}
-			searchPlaceholder={args.searchPlaceholder}
-			noResultsText={args.noResultsText}
 			status={args.status}
 			required={args.required}
 			disabled={args.disabled}
