@@ -37,7 +37,7 @@
 		name,
 		variant = 'ghost',
 		size = 'md',
-		color,
+		color = 'currentColor',
 		shape = 'circle',
 		iconRotate = 0,
 		isActive = false,
