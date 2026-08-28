@@ -1,10 +1,10 @@
 <script lang="ts">
 	import OptionsList from './OptionsList.svelte';
-	import type { OptionData } from './utils/select';
+	import { createSelectState } from './stores/inputSelect.svelte';
+	import type { OptionData } from './utils/inputSelect';
 
 	type Status = 'normal' | 'success' | 'error' | 'warning' | 'info';
 
-	
 	interface Props {
 		name: string;
 		label?: string;
@@ -17,6 +17,15 @@
 		disabled?: boolean;
 		optionsData: OptionData[];
 		class?: string;
+		/**
+		 * Se dispara cuando el usuario elige una opción (no en cada render,
+		 * solo en la interacción). Pensado para efectos secundarios —
+		 * analytics, fetch dependiente, etc. — sin depender de que el padre
+		 * arme un $effect sobre `value`. Distinto de un `onchange` nativo:
+		 * como el trigger es un <button>, pasar `onchange` por props no
+		 * hace nada (los botones no emiten evento `change`).
+		 */
+		onValueChange?: (id: string) => void;
 		[key: string]: unknown;
 	}
 	let {
@@ -31,6 +40,7 @@
 		disabled = false,
 		optionsData,
 		class: className = '',
+		onValueChange,
 		...props
 	}: Props = $props();
 
@@ -46,68 +56,23 @@
 
 	const selectedOption = $derived(allOptions.find((o) => o.id === value));
 
-	const listboxId = `${name}-listbox`;
-	const labelId = `${name}-label`;
-
-	let open = $state(false);
-	let wrapperEl: HTMLDivElement;
-	let triggerEl: HTMLButtonElement;
-
-	function toggleOpen() {
-		if (disabled) return;
-		open = !open;
-	}
-
-	function openList() {
-		if (disabled || open) return;
-		open = true;
-	}
-
-	function closeList(refocus = false) {
-		open = false;
-		if (refocus) triggerEl?.focus();
-	}
+	const select = createSelectState({ name, disabled: () => disabled });
 
 	function handleSelect(id: string) {
 		value = id;
-		closeList(true);
-	}
-
-	// El trigger es un <button role="combobox">, no un <select>: hay que
-	// replicar a mano lo que el navegador da gratis en el nativo
-	// (abrir con flecha/enter/espacio, cerrar con escape, etc).
-	function handleTriggerKeydown(e: KeyboardEvent) {
-		if (disabled) return;
-		if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
-			e.preventDefault();
-			openList();
-		}
-	}
-
-	// Cerrar al hacer click fuera del trigger y fuera del panel.
-	// El panel ya NO es hijo DOM de wrapperEl: se portea afuera (ver
-	// use:portal en OptionsList) para escapar del overflow del modal,
-	// así que hay que chequearlo aparte por su id.
-	function handleWindowMousedown(e: MouseEvent) {
-		if (!open) return;
-		const target = e.target as Node;
-		const panelEl = document.getElementById(listboxId);
-		const insideTrigger = wrapperEl?.contains(target);
-		const insidePanel = panelEl?.contains(target);
-		if (!insideTrigger && !insidePanel) {
-			closeList();
-		}
+		onValueChange?.(id);
+		select.closeList(true);
 	}
 </script>
 
-<svelte:window onmousedown={handleWindowMousedown} />
+<svelte:window onpointerdown={select.handleWindowPointerdown} />
 
 <div class={['form-field', className, { [`form-field--${status}`]: status !== 'normal' }]}>
 	{#if label}
-		<label id={labelId} for={name} class="form-label text-caption">
+		<label id={select.labelId} for={name} class="form-label text-caption">
 			{label}
 			{#if required}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 			{/if}
 		</label>
 	{/if}
@@ -120,41 +85,64 @@
 		ancho y la posición siguen atados visualmente a este campo, pero
 		el panel puede pintarse por encima de todo, modal incluido.
 	-->
-	<div class="select-wrapper text-body" bind:this={wrapperEl}>
+	<div class="select-wrapper text-body" bind:this={select.wrapperEl}>
 		<button
 			type="button"
-			bind:this={triggerEl}
+			bind:this={select.triggerEl}
 			id={name}
 			class="form-select text-body"
 			role="combobox"
 			aria-haspopup="listbox"
-			aria-expanded={open}
-			aria-controls={listboxId}
-			aria-labelledby={label ? labelId : undefined}
+			aria-expanded={select.open}
+			aria-controls={select.listboxId}
+			aria-labelledby={label ? select.labelId : undefined}
 			aria-invalid={hasErrors ? 'true' : undefined}
 			aria-required={required}
 			aria-describedby={hasErrors ? `${name}-error` : undefined}
 			{disabled}
-			onclick={toggleOpen}
-			onkeydown={handleTriggerKeydown}
+			onclick={select.toggleOpen}
+			onkeydown={select.handleTriggerKeydown}
 			{...props}
 		>
 			<span class="form-select__value" class:form-select__placeholder={!selectedOption}>
 				{selectedOption ? selectedOption.option : placeholder}
 			</span>
+			<svg
+				class="form-select__chevron"
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"
+			>
+				<polyline points="6 9 12 15 18 9" />
+			</svg>
 		</button>
 
 		<OptionsList
-			id={listboxId}
-			labelledBy={label ? labelId : undefined}
-			show={open}
+			id={select.listboxId}
+			labelledBy={label ? select.labelId : undefined}
+			show={select.open}
 			options={allOptions}
 			{value}
-			anchorEl={wrapperEl}
+			anchorEl={select.wrapperEl}
 			onSelect={handleSelect}
-			onClose={() => closeList(true)}
+			onClose={() => select.closeList(true)}
 		/>
 	</div>
+
+	<!--
+		Sin esto, el valor de este campo nunca viaja en un submit nativo /
+		FormData: el trigger es un <button>, no un <select>, así que el
+		browser no lo incluye por su cuenta. Necesario para progressive
+		enhancement (ej. form actions de SvelteKit) o cualquier <form
+		method="post"> plano.
+	-->
+	<input type="hidden" {name} {value} />
 
 	{#if hasErrors}
 		<div class="form-feedback-container" id="{name}-error" role="alert">
