@@ -23,6 +23,17 @@ button.form-select:disabled {
 	cursor: not-allowed;
 }
 
+button.form-select {
+	appearance: none;
+	cursor: pointer;
+}
+
+.form-select__input {
+	background-size: 16px;
+	padding-right: var(--space-4);
+	cursor: pointer;
+}
+
 .form-select__value {
 	overflow: hidden;
 	text-overflow: ellipsis;
