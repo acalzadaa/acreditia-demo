@@ -40,7 +40,7 @@
 		size?: IconSize;
 		color?: string;
 		isFilled?: boolean;
-		weight?: number;
+		strokeWidth?: number;
 		class?: string;
 		rotate?: number;
 		[key: string]: unknown;
@@ -51,7 +51,7 @@
 		size = 'md',
 		color = 'currentColor',
 		isFilled = false,
-		weight = 2,
+		strokeWidth = 2,
 		class: className = '',
 		rotate = 0,
 		...restProps
@@ -71,14 +71,12 @@
 <svg
 	viewBox="0 0 24 24"
 	fill={isFilled ? 'currentColor' : 'none'}
-	stroke={color}
-	stroke-width={weight}
-	stroke-linecap="round"
-	stroke-linejoin="round"
 	width={currentSize}
 	height={currentSize}
-	class={className}
+	class={['icon', className]}
 	aria-hidden="true"
+	style:color={color}
+	style:stroke-width={strokeWidth}
 	style:transform="rotate({rotate}deg)"
 	style:display="block"
 	{...restProps}
