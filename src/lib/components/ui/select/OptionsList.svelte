@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tick, type Snippet } from 'svelte';
 	import { getPortalTarget, portal } from '../modal/utils/portal';
-	import type { OptionData } from './utils/select';
+	import type { OptionData } from './utils/inputSelect';
 
 	interface Props {
 		/** id del panel — debe matchear el aria-controls del trigger */
@@ -56,25 +56,10 @@
 
 	// Roving tabindex: un solo <button role="option"> es tab-stop a la vez.
 	let activeIndex = $state(0);
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	let ready = false;
 	let panelStyle = $state('position: fixed; top: -9999px; left: -9999px; visibility: hidden;');
 	let optionEls: (HTMLButtonElement | null)[] = [];
 	let typeaheadBuffer = '';
 	let typeaheadTimeout: ReturnType<typeof setTimeout>;
-
-	// Función pura para actualizar estado
-	function updateState() {
-		if (!show) {
-			ready = false;
-			return;
-		}
-
-		const selectedIdx = options.findIndex((o) => o.id === value);
-		activeIndex = selectedIdx >= 0 ? selectedIdx : 0;
-		updatePosition();
-		ready = true;
-	}
 
 	function updatePosition() {
 		if (!anchorEl || !show) return;
@@ -94,10 +79,24 @@
 
 	const portalTarget = $derived(show ? getPortalTarget(anchorEl) : undefined);
 
+	// Mantiene activeIndex apuntando a la opción seleccionada (o la primera)
+	// cada vez que cambia la lista de opciones mientras el panel está
+	// abierto — esto es lo que hace que, al filtrar con el buscador, el
+	// roving tabindex no se quede señalando un índice que ya no corresponde
+	// a nada visible.
+	$effect(() => {
+		if (!show) return;
+		const selectedIdx = options.findIndex((o) => o.id === value);
+		activeIndex = selectedIdx >= 0 ? selectedIdx : 0;
+	});
+
 	// Al abrir: enfocar la opción seleccionada (o la primera) — salvo que
 	// autofocusOption sea false, en cuyo caso el padre se encarga de
-	// enfocar su propio elemento (ej: el input de búsqueda de header) —,
-	// calcular posición, y mantenerla al día mientras el panel esté abierto.
+	// enfocar su propio elemento (ej: el input de búsqueda de header). Si
+	// no se mueve el foco, igual hacemos scrollIntoView de la opción activa
+	// para que quede visible sin que el usuario tenga que buscarla scrolleando.
+	// También calcula posición y la mantiene al día mientras el panel esté
+	// abierto.
 	//
 	// La primera medición se hace dentro de un requestAnimationFrame, no
 	// apenas `show` pasa a true. Motivo: en el instante exacto en que se
@@ -114,10 +113,14 @@
 	$effect(() => {
 		if (show) {
 			const raf = requestAnimationFrame(() => {
-				updateState();
-				if (autofocusOption) {
-					tick().then(() => optionEls[activeIndex]?.focus({ preventScroll: true }));
-				}
+				updatePosition();
+				tick().then(() => {
+					if (autofocusOption) {
+						optionEls[activeIndex]?.focus({ preventScroll: true });
+					} else {
+						optionEls[activeIndex]?.scrollIntoView({ block: 'nearest' });
+					}
+				});
 			});
 
 			const handleReposition = () => {
@@ -131,10 +134,7 @@
 				cancelAnimationFrame(raf);
 				window.removeEventListener('scroll', handleReposition, true);
 				window.removeEventListener('resize', handleReposition);
-				ready = false;
 			};
-		} else {
-			ready = false;
 		}
 	});
 

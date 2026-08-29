@@ -19,7 +19,8 @@
 	import Icon, { type IconName } from '../Icon.svelte';
 	import IconButton from '../IconButton.svelte';
 	import OptionsList from './OptionsList.svelte';
-	import type { OptionData } from './utils/select';
+	import { createSelectState } from './stores/inputSelect.svelte';
+	import type { OptionData } from './utils/inputSelect';
 
 	type Status = 'normal' | 'success' | 'error' | 'warning' | 'info';
 
@@ -39,6 +40,12 @@
 		disabled?: boolean;
 		optionsData: OptionData[];
 		class?: string;
+		/**
+		 * Se dispara cuando el usuario elige una opción. Ver la misma nota
+		 * en InputSelectCustom: no es un `onchange` nativo, es explícito
+		 * porque el trigger es un <button> y no emite `change`.
+		 */
+		onValueChange?: (id: string) => void;
 		[key: string]: unknown;
 	}
 
@@ -56,6 +63,7 @@
 		disabled = false,
 		optionsData,
 		class: className = '',
+		onValueChange,
 		...props
 	}: Props = $props();
 
@@ -88,54 +96,35 @@
 	// El botón X limpia tanto el texto buscado como la selección actual
 	const showClearButton = $derived(query.length > 0 || value !== '');
 
-	const listboxId = `${name}-listbox`;
-	const labelId = `${name}-label`;
-
-	let open = $state(false);
-	let wrapperEl: HTMLDivElement;
-	let triggerEl: HTMLButtonElement;
 	let searchInputEl: HTMLInputElement | undefined = $state();
 
-	function toggleOpen() {
-		if (disabled) return;
-		open = !open;
-		if (open) query = '';
-	}
+	const select = createSelectState({ name, disabled: () => disabled });
 
-	function openList() {
-		if (disabled || open) return;
-		open = true;
-		query = '';
+	// Envolvemos open/close para además resetear `query`, sin duplicar el
+	// resto de la lógica de apertura/cierre (eso vive en createSelectState).
+	function toggleOpen() {
+		const wasOpen = select.open;
+		select.toggleOpen();
+		if (!wasOpen) query = '';
 	}
 
 	function closeList(refocus = false) {
-		open = false;
+		select.closeList(refocus);
 		query = '';
-		if (refocus) triggerEl?.focus();
 	}
 
 	function handleSelect(id: string) {
 		value = id;
+		onValueChange?.(id);
 		closeList(true);
 	}
 
 	function clearSelection(e: MouseEvent) {
 		e.stopPropagation();
 		value = '';
+		onValueChange?.('');
 		query = '';
 		searchInputEl?.focus();
-	}
-
-	function handleSearchInput(e: Event) {
-		query = (e.target as HTMLInputElement).value;
-	}
-
-	function handleTriggerKeydown(e: KeyboardEvent) {
-		if (disabled) return;
-		if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
-			e.preventDefault();
-			openList();
-		}
 	}
 
 	// OptionsList no le roba el foco al input (autofocusOption={false}),
@@ -143,69 +132,70 @@
 	// en OptionsList: rAF, no directo, para esperar a que el panel
 	// porteado ya esté en el DOM.
 	$effect(() => {
-		if (open) {
+		if (select.open) {
 			const raf = requestAnimationFrame(() => searchInputEl?.focus());
 			return () => cancelAnimationFrame(raf);
 		}
 	});
-
-	// Cerrar al hacer click fuera del trigger y fuera del panel porteado
-	// (mismo mecanismo que InputSelectCustom).
-	function handleWindowMousedown(e: MouseEvent) {
-		if (!open) return;
-		const target = e.target as Node;
-		const panelEl = document.getElementById(listboxId);
-		const insideTrigger = wrapperEl?.contains(target);
-		const insidePanel = panelEl?.contains(target);
-		if (!insideTrigger && !insidePanel) {
-			closeList();
-		}
-	}
 </script>
 
-<svelte:window onmousedown={handleWindowMousedown} />
+<svelte:window onpointerdown={select.handleWindowPointerdown} />
 
 <div class={['form-field', className, { [`form-field--${status}`]: status !== 'normal' }]}>
 	{#if label}
-		<label id={labelId} for={name} class="form-label text-caption">
+		<label id={select.labelId} for={name} class="form-label text-caption">
 			{label}
 			{#if required}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 			{/if}
 		</label>
 	{/if}
 
-	<div class="select-wrapper text-body" bind:this={wrapperEl}>
+	<div class="select-wrapper text-body" bind:this={select.wrapperEl}>
 		<button
 			type="button"
-			bind:this={triggerEl}
+			bind:this={select.triggerEl}
 			id={name}
 			class="form-select text-body"
 			role="combobox"
 			aria-haspopup="listbox"
-			aria-expanded={open}
-			aria-controls={listboxId}
-			aria-labelledby={label ? labelId : undefined}
+			aria-expanded={select.open}
+			aria-controls={select.listboxId}
+			aria-labelledby={label ? select.labelId : undefined}
 			aria-invalid={hasErrors ? 'true' : undefined}
 			aria-required={required}
 			aria-describedby={hasErrors ? `${name}-error` : undefined}
 			{disabled}
 			onclick={toggleOpen}
-			onkeydown={handleTriggerKeydown}
+			onkeydown={select.handleTriggerKeydown}
 			{...props}
 		>
 			<span class="form-select__value" class:form-select__placeholder={!selectedOption}>
 				{selectedOption ? selectedOption.option : placeholder}
 			</span>
+			<svg
+				class="form-select__chevron"
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"
+			>
+				<polyline points="6 9 12 15 18 9" />
+			</svg>
 		</button>
 
 		<OptionsList
-			id={listboxId}
-			labelledBy={label ? labelId : undefined}
-			show={open}
+			id={select.listboxId}
+			labelledBy={label ? select.labelId : undefined}
+			show={select.open}
 			options={filteredOptions}
 			{value}
-			anchorEl={wrapperEl}
+			anchorEl={select.wrapperEl}
 			onSelect={handleSelect}
 			onClose={() => closeList(true)}
 			emptyMessage={noResultsText}
@@ -220,13 +210,12 @@
 						bind:this={searchInputEl}
 						type="text"
 						class="form-input text-body form-input--with-icon-left"
-						value={query}
+						bind:value={query}
 						placeholder={searchPlaceholder}
 						autocomplete="off"
 						spellcheck="false"
 						aria-label={label ? `Buscar en ${label}` : 'Buscar opción'}
-						aria-controls={listboxId}
-						oninput={handleSearchInput}
+						aria-controls={select.listboxId}
 					/>
 					{#if showClearButton}
 						<IconButton
@@ -242,6 +231,10 @@
 			{/snippet}
 		</OptionsList>
 	</div>
+
+	<!-- Ver la misma nota en InputSelectCustom: necesario para que el valor
+		viaje en un submit nativo / FormData. -->
+	<input type="hidden" {name} {value} />
 
 	{#if hasErrors}
 		<div class="form-feedback-container" id="{name}-error" role="alert">
