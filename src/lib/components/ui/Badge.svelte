@@ -47,7 +47,7 @@
 >
 	{#if icon && iconPosition === 'left'}
 		<span class="status-badge--icon">
-			<Icon name={icon} rotate={iconRotate} size="sm" color="currentColor" />
+			<Icon name={icon} rotate={iconRotate} size="md" color="currentColor" />
 		</span>
 	{/if}
 
@@ -55,7 +55,7 @@
 
 	{#if icon && iconPosition === 'right'}
 		<span class="status-badge--icon">
-			<Icon name={icon} rotate={iconRotate} size="sm" color="currentColor" />
+			<Icon name={icon} rotate={iconRotate} size="md" color="currentColor" />
 		</span>
 	{/if}
 </span>

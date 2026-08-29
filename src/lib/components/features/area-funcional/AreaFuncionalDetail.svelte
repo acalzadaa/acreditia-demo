@@ -51,7 +51,7 @@
 								<td class="col-label">{item.name}</td>
 								<td class="col-text">{item.description}</td>
 								<td class="col-label">{item.parent?.name}</td>
-								<th class="col-metrics">{item.totalPuestos}</th>
+								<td class="col-metrics">{item.totalPuestos}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
