@@ -54,7 +54,7 @@
 								<td class="col-label">{capitalizeText(item.type)}</td>
 								<td class="col-text">{item.description}</td>
 								<td class="col-label">{item.parent?.name}</td>
-								<th class="col-metrics">{item.totalPuestos.total}</th>
+								<td class="col-metrics">{item.totalPuestos.total}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
