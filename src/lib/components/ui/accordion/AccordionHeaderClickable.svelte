@@ -31,6 +31,7 @@ Ej.:
 		isVisible: boolean;
 		onToggle: () => void;
 		toggleAriaLabel?: string;
+		showChevron?: boolean;
 
 		/** titulo y/o subtitulo */
 		title?: Snippet;
@@ -49,6 +50,7 @@ Ej.:
 		isVisible,
 		onToggle,
 		toggleAriaLabel = 'Expandir/colapsar',
+		showChevron = true,
 		children,
 		class: className = ''
 	}: Props = $props();
@@ -79,5 +81,7 @@ Ej.:
 			</div>
 		{/if}
 	</div>
-	<Icon name="chevron-down" class="accordion-header__chevron" rotate={isVisible ? 180 : 0} />
+	{#if showChevron}
+		<Icon name="chevron-down" class="accordion-header__chevron" rotate={isVisible ? 180 : 0} />
+	{/if}
 </button>
