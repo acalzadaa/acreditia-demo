@@ -3,10 +3,10 @@
 	import Button from '../ui/Button.svelte';
 	import IconButton from '../ui/IconButton.svelte';
 	import Icon from '../ui/Icon.svelte';
-	import InputSelect from '../ui/input/InputSelect.svelte';
 	import type { BaseRef } from '$lib/schemas/shared.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
 	import InputText from '../ui/input/InputText.svelte';
+	import InputSelectCustom from '../ui/select/InputSelectCustom.svelte';
 
 	interface Props {
 		open: boolean;
@@ -153,7 +153,7 @@
 						</div>
 					{/if}
 
-					<InputSelect
+					<InputSelectCustom
 						label="Modelo"
 						name="modeloId"
 						optionsData={modeloOptions}
@@ -162,7 +162,7 @@
 						errors={errorMessage && !formData.modeloId ? [errorMessage] : undefined}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Institución"
 						name="institucionId"
 						optionsData={institucionOptions}

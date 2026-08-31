@@ -3,7 +3,7 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
-	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
@@ -223,7 +223,7 @@
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Modelo"
 						name="modelo"
 						optionsData={modeloOptions}
@@ -232,7 +232,7 @@
 						onChange={onModeloChange}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Capítulo"
 						name="capitulo"
 						optionsData={capituloOptions}
@@ -242,7 +242,7 @@
 						disabled={!selectedModeloCode}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Sección"
 						name="seccion"
 						optionsData={seccionOptions}
@@ -294,7 +294,7 @@
 						errors={errorMessage && !formData.targetUnit ? [errorMessage] : undefined}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Tipo"
 						name="indicadorType"
 						optionsData={indicadorTypeOptions}

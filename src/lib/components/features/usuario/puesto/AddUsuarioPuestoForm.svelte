@@ -2,7 +2,7 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { PuestoRef } from '$lib/schemas/shared.schema';
 
@@ -100,7 +100,7 @@
 						</div>
 					{/if}
 
-					<InputSelect
+					<InputSelectCustom
 						label="Puesto"
 						name="puesto"
 						optionsData={puestoOptions}

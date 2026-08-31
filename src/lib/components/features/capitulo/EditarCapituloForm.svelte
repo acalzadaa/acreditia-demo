@@ -7,7 +7,7 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
@@ -107,7 +107,7 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelect
+					<InputSelectCustom
 						label="modelo"
 						name="modeloId"
 						optionsData={modeloOptions}
