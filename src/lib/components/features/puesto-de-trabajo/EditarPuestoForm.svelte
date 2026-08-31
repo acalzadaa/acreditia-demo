@@ -7,7 +7,7 @@
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import { jobScopeOptions, jobTypeOptions } from './utils/puesto';
@@ -97,7 +97,7 @@
 						errors={$errors.name}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Ámbito del puesto"
 						name="scope"
 						optionsData={jobScopeOptions}

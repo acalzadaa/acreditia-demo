@@ -6,7 +6,7 @@
 	import type { BaseRef } from '$lib/schemas/shared.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
 	import InputText from '../ui/input/InputText.svelte';
-	import InputSelectCustom from '../ui/select/InputSelectCustom.svelte';
+	import InputSelectCustom from '../ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;

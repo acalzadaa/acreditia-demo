@@ -4,7 +4,7 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { BaseRef } from '$lib/schemas/shared.schema';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;

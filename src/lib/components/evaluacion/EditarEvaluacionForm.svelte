@@ -10,7 +10,7 @@
 	import { type BaseRef } from '$lib/schemas/shared.schema';
 	import { evaluacionFormSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
-	import InputSelectCustom from '../ui/select/InputSelectCustom.svelte';
+	import InputSelectCustom from '../ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;

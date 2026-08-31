@@ -6,14 +6,14 @@
 	} from '$lib/schemas/objetivoEstrategico.schema';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import type { PlaneacionEstrategicaRef } from '$lib/schemas/planeacionEstrategica.schema';
-	import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import type { OptionData } from '$lib/components/ui/select/utils/inputSelect';
 
 	interface Props {
 		open: boolean;

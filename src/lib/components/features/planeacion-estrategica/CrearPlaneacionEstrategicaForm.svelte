@@ -8,7 +8,7 @@
 
 	
 	import type { FilosofiaInstitucionalRef } from '$lib/schemas/filosofiaInstitucional.schema';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;

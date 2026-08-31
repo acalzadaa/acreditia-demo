@@ -2,7 +2,7 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelectCustom.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
 

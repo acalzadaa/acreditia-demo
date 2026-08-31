@@ -3,7 +3,7 @@ import {
 	objetivoEstrategicoItemSchema,
 	objetivoEstrategicoRefSchema
 } from './objetivoEstrategico.schema';
-import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
+import type { OptionData } from '$lib/components/ui/select/utils/inputSelect';
 
 export const FREQUENCY_UNIT = ['dia', 'semana', 'mes', 'año'] as const;
 
