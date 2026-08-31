@@ -10,7 +10,7 @@
 	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
@@ -157,7 +157,7 @@
 					</div>
 				{/if}
 				<div class="form-fields">
-					<InputSelect
+					<InputSelectCustom
 						label="Modelo"
 						name="modelo"
 						optionsData={modeloOptions}
@@ -166,7 +166,7 @@
 						onChange={onModeloChange}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Capítulo"
 						name="capitulo"
 						optionsData={capituloOptions}
@@ -176,7 +176,7 @@
 						disabled={!selectedModeloCode}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Sección"
 						name="seccion"
 						optionsData={seccionOptions}
@@ -229,7 +229,7 @@
 						errors={$errors.targetUnit}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Tipo"
 						name="type"
 						optionsData={indicadorTypeOptions}

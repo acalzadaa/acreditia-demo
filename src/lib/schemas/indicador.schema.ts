@@ -1,7 +1,7 @@
-import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
 import { z } from 'zod';
 import { baseRefSchema } from './shared.schema';
 import { seccionItemSchema } from './seccion.schema';
+import type { OptionData } from '$lib/components/ui/select/utils/inputSelect';
 
 /* Especifico es especifico de un area responsable de un campus, 
 mientras que campus

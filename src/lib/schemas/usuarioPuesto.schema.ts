@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { auditMetadataSchema, puestoRefSchema } from './shared.schema';
-import type { OptionData } from '$lib/components/ui/input/InputSelect.svelte';
+import type { OptionData } from '$lib/components/ui/select/utils/inputSelect';
 
 // ============================================
 // 1. REFERENCE SCHEMAS

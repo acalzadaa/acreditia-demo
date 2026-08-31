@@ -1,12 +1,12 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { EtapaRevisionAutoevaluacionItem } from '$lib/schemas/etapaMetadata.schema';
+	import type { EtapaAutoevaluacionRevisionItem } from '$lib/schemas/etapaMetadata.schema';
 
 	interface Props {
-		items: EtapaRevisionAutoevaluacionItem[];
-		onClickEditar: (item: EtapaRevisionAutoevaluacionItem) => void;
-		onClickFinish: (item: EtapaRevisionAutoevaluacionItem) => void;
+		items: EtapaAutoevaluacionRevisionItem[];
+		onClickEditar: (item: EtapaAutoevaluacionRevisionItem) => void;
+		onClickFinish: (item: EtapaAutoevaluacionRevisionItem) => void;
 	}
 
 	const { items, onClickEditar, onClickFinish }: Props = $props();

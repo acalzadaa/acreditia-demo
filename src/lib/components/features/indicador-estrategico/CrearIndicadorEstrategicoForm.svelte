@@ -5,7 +5,7 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
@@ -155,7 +155,7 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelect
+					<InputSelectCustom
 						label="Objetivo Estratégico"
 						name="objetivoId"
 						optionsData={objetivoOptions}
@@ -255,7 +255,7 @@
 							: undefined}
 					/>
 
-					<InputSelect
+					<InputSelectCustom
 						label="Unidad de Frecuencia"
 						name="frequencyUnit"
 						optionsData={frequencyUnitOptions}

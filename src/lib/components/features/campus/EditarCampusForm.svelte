@@ -6,7 +6,7 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
+	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 
@@ -92,7 +92,7 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelect
+					<InputSelectCustom
 						label="Institución"
 						name="institucionId"
 						optionsData={institucionOptions}
@@ -100,7 +100,7 @@
 						bind:value={$form.institucionId}
 						errors={$errors.institucionId}
 						{...$constraints.institucionId}
-					></InputSelect>
+					></InputSelectCustom>
 
 					<InputText
 						label="Nombre"

@@ -32,8 +32,9 @@
 				<Accordion>
 					<AccordionHeaderClickable
 						id="acc-{item.id}"
-						isVisible={accordions.isOpen(item.id) || item.criterios.length > 0}
+						isVisible={accordions.isOpen(item.id)}
 						onToggle={() => accordions.toggle(item.id)}
+						showChevron={items.length > 0}
 					>
 						{#snippet title()}
 							<p class="text-caption">Nivel {item.order}</p>
