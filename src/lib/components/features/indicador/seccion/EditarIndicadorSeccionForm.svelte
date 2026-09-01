@@ -2,8 +2,8 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import InputSelect from '$lib/components/ui/input/InputSelect.svelte';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
+	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
 
 	interface Props {
@@ -193,7 +193,6 @@
 		</header>
 
 		<form
-			
 			onsubmit={(e) => {
 				e.preventDefault();
 				handleSubmit();
@@ -208,8 +207,6 @@
 				{/if}
 
 				<div class="form-fields">
-					
-
 					<InputSelect
 						label="Modelo"
 						name="modelo"
@@ -239,7 +236,6 @@
 						disabled={!selectedCapituloCode}
 						errors={errorMessage && !formData.seccionCode ? [errorMessage] : undefined}
 					/>
-
 				</div>
 			</div>
 

@@ -6,7 +6,7 @@ import type { OptionData } from '$lib/components/ui/select/utils/inputSelect';
 /* Especifico es especifico de un area responsable de un campus, 
 mientras que campus
 esta relacionada con todo el campus y, las areas responsables y unidades academicas que lo componen*/
-export const INDICADOR_TYPE = ['campus', 'especifico'] as const;
+export const INDICADOR_TYPE = ['global', 'campus', 'unidadAcademica'] as const;
 
 export const indicadorTypeOptions: OptionData[] =
 	INDICADOR_TYPE.map((v) => ({
@@ -41,7 +41,7 @@ export const indicadorFormSchema = z.object({
 		),
 	target: z.coerce.number().nonnegative().min(0, 'La meta debe ser mayor o igual a cero'),
 	targetUnit: z.string().min(1, 'La unidad de la meta es requerido'),
-	indicadorType: z.enum(INDICADOR_TYPE).default('especifico'),
+	indicadorType: z.enum(INDICADOR_TYPE).default('global'),
 	createdBy: z.string().default('')
 });
 

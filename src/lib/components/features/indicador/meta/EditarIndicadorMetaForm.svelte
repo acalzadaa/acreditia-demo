@@ -69,17 +69,6 @@
 		}
 	}
 
-	// Estados para los selects
-
-	// Opciones de modelo (todos los modelos)
-
-
-
-	// Resetear selecciones cuando cambia el modelo
-
-	// Resetear selección de sección cuando cambia el capítulo
-
-	// Actualizar el valor del formulario cuando se selecciona una sección
 </script>
 
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
@@ -133,7 +122,7 @@
 
 			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Editar meta</Button>
+				<Button type="submit" variant="primary">Editar</Button>
 			</menu>
 		</form>
 	</div>

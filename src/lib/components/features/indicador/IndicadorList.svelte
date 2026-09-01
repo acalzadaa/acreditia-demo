@@ -42,7 +42,7 @@
 		showHeader = true,
 		showExport = false,
 		showFilter = false,
-		title = 'Detalle de indicador',
+		title = 'Listado de indicadores',
 		subtitle = ''
 	}: Props = $props();
 

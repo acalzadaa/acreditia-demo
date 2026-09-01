@@ -13,7 +13,6 @@
 	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
-	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 
 	interface Props {
@@ -71,65 +70,6 @@
 			handleClose();
 		}
 	}
-
-	// Estados para los selects
-	let selectedModeloCode = $state<string>('');
-	let selectedCapituloCode = $state<string>('');
-	let selectedSeccionCode = $state<string>('');
-
-	// Opciones de modelo (todos los modelos)
-	let modeloOptions = $derived(
-		props.modeloFullRef.map((item) => ({
-			id: item.code,
-			option: `${item.code} - ${item.name}`
-		}))
-	);
-
-	let capituloOptions = $derived(
-		!selectedModeloCode
-			? []
-			: (props.modeloFullRef
-					.find((m) => m.code === selectedModeloCode)
-					?.capitulos?.map((c) => ({
-						id: c.code,
-						option: `${c.code} - ${c.name || `Capítulo ${c.code}`}`
-					})) ?? [])
-	);
-
-	let seccionOptions = $derived(
-		!selectedModeloCode || !selectedCapituloCode
-			? []
-			: (props.modeloFullRef
-					.find((m) => m.code === selectedModeloCode)
-					?.capitulos?.find((c) => c.code === selectedCapituloCode)
-					?.secciones?.map((s) => ({
-						id: s?.code,
-						option: `${s?.code} - ${s?.name || `Sección ${s?.code}`}`
-					})) ?? [])
-	);
-
-	// Resetear selecciones cuando cambia el modelo
-	function onModeloChange(value: string) {
-		console.log('modelo changed!!');
-		selectedModeloCode = value;
-		console.log(selectedModeloCode, value);
-		selectedCapituloCode = '';
-		selectedSeccionCode = '';
-		$form.seccionCode = '';
-	}
-
-	// Resetear selección de sección cuando cambia el capítulo
-	function onCapituloChange(value: string) {
-		selectedCapituloCode = value;
-		selectedSeccionCode = '';
-		$form.seccionCode = '';
-	}
-
-	// Actualizar el valor del formulario cuando se selecciona una sección
-	function onSeccionChange(value: string) {
-		selectedSeccionCode = value;
-		$form.seccionCode = value;
-	}
 </script>
 
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
@@ -145,7 +85,7 @@
 			/>
 		</header>
 
-		<form  method="POST" action="?/edit" use:enhance>
+		<form method="POST" action="?/edit" use:enhance>
 			<!-- Hidden input para el ID -->
 			<input type="hidden" name="code" value={$form.code} />
 
@@ -158,36 +98,14 @@
 				{/if}
 				<div class="form-fields">
 					<InputSelectCustom
-						label="Modelo"
-						name="modelo"
-						optionsData={modeloOptions}
+						label="Tipo"
+						name="type"
+						optionsData={indicadorTypeOptions}
 						required={true}
-						bind:value={selectedModeloCode}
-						onChange={onModeloChange}
+						bind:value={$form.indicadorType}
+						errors={$errors.indicadorType}
+						{...$constraints.indicadorType}
 					/>
-
-					<InputSelectCustom
-						label="Capítulo"
-						name="capitulo"
-						optionsData={capituloOptions}
-						required={true}
-						bind:value={selectedCapituloCode}
-						onChange={onCapituloChange}
-						disabled={!selectedModeloCode}
-					/>
-
-					<InputSelectCustom
-						label="Sección"
-						name="seccion"
-						optionsData={seccionOptions}
-						required={true}
-						bind:value={selectedSeccionCode}
-						onChange={onSeccionChange}
-						disabled={!selectedCapituloCode}
-						errors={$errors.seccionCode}
-						{...$constraints.seccionCode}
-					/>
-
 					<InputText
 						label="Nombre"
 						name="name"
@@ -198,7 +116,6 @@
 						bind:value={$form.name}
 						errors={$errors.name}
 					/>
-
 					<TextArea
 						label="Descripción"
 						name="description"
@@ -206,44 +123,12 @@
 						bind:value={$form.description}
 						rows={4}
 					/>
-
-					<InputNumber
-						label="Meta"
-						name="target"
-						required={true}
-						placeholder="20"
-						status={$errors.target ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.target}
-						errors={$errors.target}
-					/>
-
-					<InputText
-						label="Unidades de Meta"
-						name="targetUnit"
-						required={true}
-						placeholder="20"
-						status={$errors.targetUnit ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={$form.targetUnit}
-						errors={$errors.targetUnit}
-					/>
-
-					<InputSelectCustom
-						label="Tipo"
-						name="type"
-						optionsData={indicadorTypeOptions}
-						required={true}
-						bind:value={$form.indicadorType}
-						errors={$errors.indicadorType}
-						{...$constraints.indicadorType}
-					/>
 				</div>
 			</div>
 
 			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleClose}>Cancelar</Button>
-				<Button type="submit" variant="primary">Editar indicador</Button>
+				<Button type="submit" variant="primary">Editar</Button>
 			</menu>
 		</form>
 	</div>
