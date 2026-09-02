@@ -31,7 +31,8 @@
 		| 'password'
 		| 'remove'
 		| 'feedback'
-		| 'search';
+		| 'search'
+		| 'spinner';
 
 	export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -75,7 +76,7 @@
 	height={currentSize}
 	class={['icon', className]}
 	aria-hidden="true"
-	style:color={color}
+	style:color
 	style:stroke-width={strokeWidth}
 	style:transform="rotate({rotate}deg)"
 	style:display="block"
