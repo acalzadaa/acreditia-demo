@@ -46,7 +46,7 @@
 	--bg-success-subtle: var(--success-50);
 	--bg-success-bold: var(--success-500);
 	--bg-warning-subtle: var(--warning-50);
-	--bg-warning-bold: var(--warning-500);
+	--bg-warning-bold: var(--warning-300);
 	--bg-error-subtle: var(--error-50);
 	--bg-error-bold: var(--error-500);
 	--bg-info-subtle: var(--info-50);
