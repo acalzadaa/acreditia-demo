@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { baseRefSchema } from './shared.schema';
 import { seccionItemSchema } from './seccion.schema';
 import type { OptionData } from '$lib/components/ui/select/utils/inputSelect';
 
@@ -7,6 +6,17 @@ import type { OptionData } from '$lib/components/ui/select/utils/inputSelect';
 mientras que campus
 esta relacionada con todo el campus y, las areas responsables y unidades academicas que lo componen*/
 export const INDICADOR_TYPE = ['global', 'campus', 'unidadAcademica'] as const;
+export const INDICADOR_CONFIG_TYPE = [
+	'meta',
+	'seccion',
+	'funcional',
+	'responsable',
+	'normativa',
+	'indicadorEstrategico',
+	'rubrica'
+] as const;
+
+export const INDICADOR_CONFIG_STATUS = ['pending', 'complete'];
 
 export const indicadorTypeOptions: OptionData[] =
 	INDICADOR_TYPE.map((v) => ({
@@ -31,16 +41,6 @@ export const indicadorFormSchema = z.object({
 		),
 	name: z.string().min(1, 'Nombre requerido').max(255),
 	description: z.string().default(''),
-	seccionCode: z
-		.string()
-		.min(3, 'Code debe tener al menos 3 caracteres')
-		.max(100, 'Code no puede exceder 100 caracteres')
-		.regex(
-			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
-			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
-		),
-	target: z.coerce.number().nonnegative().min(0, 'La meta debe ser mayor o igual a cero'),
-	targetUnit: z.string().min(1, 'La unidad de la meta es requerido'),
 	indicadorType: z.enum(INDICADOR_TYPE).default('global'),
 	createdBy: z.string().default('')
 });
@@ -52,15 +52,20 @@ export type IndicadorForm = z.infer<typeof indicadorFormSchema>;
 // Datos completos desde la base de datos, incluyendo timestamps y relaciones
 // ============================================
 
+export const indicadorNavigationStatusSchema = z.object({
+	id: z.uuid(),
+	code: z.enum(INDICADOR_CONFIG_TYPE).optional(),
+	count: z.number().min(0).default(0),
+	status: z.enum(INDICADOR_CONFIG_TYPE).optional()
+});
+
 export const indicadorItemSchema = z.object({
 	id: z.uuid(),
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	section: baseRefSchema, //referencia a la seccion del sistema de calidad
-	target: z.coerce.number(), //referencia a la meta que se desea obtener
-	targetUnit: z.string(),
 	indicadorType: z.string(),
+	navStatus: z.array(indicadorNavigationStatusSchema).default([]),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),

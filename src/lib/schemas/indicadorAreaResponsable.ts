@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { areaResponsableRefSchema, baseRefSchema } from './shared.schema';
+import { baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA (Para relaciones)
@@ -28,8 +28,7 @@ export const indicadorAreaResponsableFormSchema = z.object({
 			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
 			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
 		),
-
-	unidadesAcademicas: z.array(baseRefSchema).default([]),
+	areaResponsableCode: z.string(),
 	createdBy: z.string().min(1, 'El creador es requerido')
 });
 
@@ -44,8 +43,7 @@ export const indicadorAreaResponsableItemSchema = z.object({
 	id: z.uuid(),
 	indicador: baseRefSchema,
 	code: z.string(),
-	areaResponsable: areaResponsableRefSchema,
-	unidadesAcademicas: z.array(baseRefSchema).default([]),
+	areaResponsable: z.array(baseRefSchema).default([]),
 	version: z.number().int().nonnegative(),
 	isCurrent: z.boolean(),
 	validFrom: z.coerce.date(),

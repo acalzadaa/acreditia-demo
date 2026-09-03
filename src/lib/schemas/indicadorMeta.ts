@@ -2,22 +2,11 @@ import { z } from 'zod';
 import { baseRefSchema } from './shared.schema';
 
 // ============================================
-// 1. REFERENCE SCHEMA (Para relaciones)
-// ============================================
-export const indicadorNormativaRefSchema = z.object({
-	id: z.uuid(),
-	code: z.string(),
-	name: z.string()
-});
-
-export type IndicadorNormativaRef = z.infer<typeof indicadorNormativaRefSchema>;
-
-// ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
 // Para operaciones CRUD: crear y actualizar
 // ============================================
 
-export const indicadorNormativaFormSchema = z.object({
+export const indicadorMetaFormSchema = z.object({
 	id: z.uuid().optional(),
 	code: z
 		.string()
@@ -27,22 +16,24 @@ export const indicadorNormativaFormSchema = z.object({
 			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
 			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
 		),
-	normativaCode: z.string(),
+	target: z.coerce.number(), //referencia a la meta que se desea obtener
+	targetUnit: z.string(),
 	createdBy: z.string().min(1, 'El creador es requerido')
 });
 
-export type IndicadorNormativaFormSchema = z.infer<typeof indicadorNormativaFormSchema>;
+export type IndicadorMetaFormSchema = z.infer<typeof indicadorMetaFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // Datos completos desde la base de datos, incluyendo timestamps
 // ============================================
 
-export const indicadorNormativaItemSchema = z.object({
+export const indicadorMetaItemSchema = z.object({
 	id: z.uuid(),
 	indicador: baseRefSchema,
 	code: z.string(),
-	normativa: baseRefSchema,
+	target: z.coerce.number(), //referencia a la meta que se desea obtener
+	targetUnit: z.string(),
 	version: z.number().int().nonnegative(),
 	isCurrent: z.boolean(),
 	validFrom: z.coerce.date(),
@@ -52,4 +43,4 @@ export const indicadorNormativaItemSchema = z.object({
 	createdBy: z.string()
 });
 
-export type IndicadorNormativaItem = z.infer<typeof indicadorNormativaItemSchema>;
+export type IndicadorMetaItem = z.infer<typeof indicadorMetaItemSchema>;
