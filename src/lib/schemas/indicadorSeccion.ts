@@ -6,7 +6,7 @@ import { baseRefSchema } from './shared.schema';
 // Para operaciones CRUD: crear y actualizar
 // ============================================
 
-export const indicadorMetaFormSchema = z.object({
+export const indicadorSeccionFormSchema = z.object({
 	id: z.uuid().optional(),
 	code: z
 		.string()
@@ -20,19 +20,20 @@ export const indicadorMetaFormSchema = z.object({
 	createdBy: z.string().min(1, 'El creador es requerido')
 });
 
-export type IndicadorMetaFormSchema = z.infer<typeof indicadorMetaFormSchema>;
+export type IndicadorSeccionFormSchema = z.infer<typeof indicadorSeccionFormSchema>;
 
 // ============================================
 // 3. ITEM SCHEMA (Servidor → Cliente)
 // Datos completos desde la base de datos, incluyendo timestamps
 // ============================================
 
-export const indicadorMetaItemSchema = z.object({
+export const indicadorSeccionItemSchema = z.object({
 	id: z.uuid(),
 	indicador: baseRefSchema,
 	code: z.string(),
-	target: z.coerce.number(), //referencia a la meta que se desea obtener
-	targetUnit: z.string(),
+	modelo: baseRefSchema,
+	capitulo: baseRefSchema,
+	seccion: baseRefSchema,
 	version: z.number().int().nonnegative(),
 	isCurrent: z.boolean(),
 	validFrom: z.coerce.date(),
@@ -42,4 +43,4 @@ export const indicadorMetaItemSchema = z.object({
 	createdBy: z.string()
 });
 
-export type IndicadorMetaItem = z.infer<typeof indicadorMetaItemSchema>;
+export type IndicadorSeccionItem = z.infer<typeof indicadorSeccionItemSchema>;

@@ -1,44 +1,47 @@
 <script lang="ts">
-	import { page } from '$app/state';
-	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import CrearRubricaCriterioForm from '$lib/components/features/indicador/rubrica/CrearRubricaCriterioForm.svelte';
-	import RubricaCriterioList from '$lib/components/features/indicador/rubrica/RubricaCriterioList.svelte';
-	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
-	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
-	import type { RemoverRubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
-	import { getRubrica } from '$lib/components/common/stores/data.svelte';
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
-
+	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
+	import EditarIndicadorForm from '$lib/components/features/indicador/EditarIndicadorForm.svelte';
+	import {
+		getIndicador,
+		getModeloFullRef
+	} from '$lib/components/common/stores/data.svelte';
+	import { page } from '$app/state';
+	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
+	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
+	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
+	
 	let indicadorCode = page.params.indicadorCode;
-	let rubricaItems = getRubrica().filter((item) => item.indicador.code === indicadorCode);
 
-	let modal = createModalManager<RubricaItem>();
-	let modalCriterio = createModalManager<RemoverRubricaCriterioItem>();
+	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
+	let modeloFullRef = getModeloFullRef();
+	let modal = createModalManager<IndicadorItem>();
 </script>
 
-<main class="detail-panel">
-	<PageHeader title="Niveles de desempeño" subtitle='Agrégue los critérios de evaluación'/>
-	<RubricaCriterioList
-		items={rubricaItems}
-		onClickRemover={modalCriterio.handlers('remove').onClickItem}
-		onClickAdd={modal.handlers('add').onClickItem}
+<div class="detail-panel">
+	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
+	<IndicadorSeccionDetail
+		showHeader={true}
+		items={navListItem}
+		title="Configuracion del indicador"
 	/>
+</div>
 
-	<CrearRubricaCriterioForm
-		open={modal.isOpen('add')}
+{#if modal.selectedItem}
+	<EditarIndicadorForm
+		open={modal.isOpen('edit')}
+		{modeloFullRef}
+		selectedItem={modal.selectedItem}
 		onClose={modal.close}
 	/>
+{/if}
 
-	{#if modalCriterio.selectedItem}
-		<ConfirmModal
-			demo={true}
-			message="¿Desea remover el registro?"
-			title="Remover criterio"
-			buttonLabel="Remover"
-			open={modalCriterio.isOpen('remove')}
-			id={modalCriterio.selectedItem.id}
-			onClose={modalCriterio.close}
-			actionButtonVariant="critical"
-		/>
-	{/if}
-</main>
+<style>
+	.detail-panel {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+	}
+</style>
