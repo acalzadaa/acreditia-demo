@@ -130,12 +130,12 @@
       }
       
       .spinner {
-        animation: spin 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+        animation: spin 2s linear infinite;
       }
     </style>
     <symbol id='spinner' viewBox="0 0 24 24">
-      <ellipse style="fill: none; stroke: #cccccc; stroke-width: 2;" cx="12" cy="12" rx="10" ry="10" />
-      <path class="spinner" style="fill: none; stroke: #2196F3; stroke-width: 2; stroke-linecap: round;" d="M 11.886 1.978 C 14.088 1.978 16.232 2.687 18 4" id="arc" />
+      <ellipse fill="none" stroke="var(--base, #cccccc)" cx="12" cy="12" rx="10" ry="10" />
+      <path class="spinner" fill="none" stroke="var(--active, currentColor)" d="M 11.886 1.978 C 14.088 1.978 16.232 2.687 18 4" id="arc" />
     </symbol>
   </defs>
 </svg>
