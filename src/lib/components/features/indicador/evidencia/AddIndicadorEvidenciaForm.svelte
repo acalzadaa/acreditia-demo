@@ -4,7 +4,7 @@
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { EvidenciaRef } from '$lib/schemas/evidencia.schema';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
+	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;
@@ -100,7 +100,7 @@
 						</div>
 					{/if}
 
-					<InputSelectCustom
+					<InputSelect
 						label="Evidencia"
 						name="code"
 						optionsData={evidenciaOptions}

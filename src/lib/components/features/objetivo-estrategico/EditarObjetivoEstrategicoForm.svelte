@@ -9,7 +9,7 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
+	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
@@ -97,14 +97,14 @@
 					</div>
 				{/if}
 				<div class="form-fields">
-					<InputSelectCustom
+					<InputSelect
 						label="Planeación Estratégica"
 						name="planeacionId"
 						optionsData={planeacionesOptions}
 						required={true}
 						bind:value={$form.planeacionId}
 						errors={$errors.planeacionId}
-					></InputSelectCustom>
+					></InputSelect>
 
 					<InputText
 						label="Código"

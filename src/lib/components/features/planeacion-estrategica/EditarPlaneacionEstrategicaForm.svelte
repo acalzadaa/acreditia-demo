@@ -15,7 +15,7 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
+	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;
@@ -99,7 +99,7 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelectCustom
+					<InputSelect
 						label="Filosofía Institucional"
 						name="filosofiaId"
 						optionsData={filosofiaOptions}
@@ -107,7 +107,7 @@
 						bind:value={$form.filosofiaId}
 						errors={$errors.filosofiaId}
 						{...$constraints.filosofiaId}
-					></InputSelectCustom>
+					></InputSelect>
 
 					<InputText
 						label="Nombre"

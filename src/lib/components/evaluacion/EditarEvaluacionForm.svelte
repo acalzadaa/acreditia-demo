@@ -10,7 +10,7 @@
 	import { type BaseRef } from '$lib/schemas/shared.schema';
 	import { evaluacionFormSchema, type EvaluacionItem } from '$lib/schemas/evaluacion.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
-	import InputSelectCustom from '../ui/select/InputSelect.svelte';
+	import InputSelect from '../ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;
@@ -118,7 +118,7 @@
 				{/if}
 
 				<div class="form-fields">
-					<InputSelectCustom
+					<InputSelect
 						label="modelo"
 						name="modeloId"
 						optionsData={modeloOptions}
@@ -128,7 +128,7 @@
 						{...$constraints.modeloId}
 					/>
 
-					<InputSelectCustom
+					<InputSelect
 						label="Institución"
 						name="institucionId"
 						optionsData={institucionOptions}

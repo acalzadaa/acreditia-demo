@@ -6,7 +6,7 @@
 	import type { BaseRef } from '$lib/schemas/shared.schema';
 	import InputNumber from '../ui/input/InputNumber.svelte';
 	import InputText from '../ui/input/InputText.svelte';
-	import InputSelectCustom from '../ui/select/InputSelect.svelte';
+	import InputSelect from '../ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;
@@ -153,7 +153,7 @@
 						</div>
 					{/if}
 
-					<InputSelectCustom
+					<InputSelect
 						label="Modelo"
 						name="modeloId"
 						optionsData={modeloOptions}
@@ -162,7 +162,7 @@
 						errors={errorMessage && !formData.modeloId ? [errorMessage] : undefined}
 					/>
 
-					<InputSelectCustom
+					<InputSelect
 						label="Institución"
 						name="institucionId"
 						optionsData={institucionOptions}

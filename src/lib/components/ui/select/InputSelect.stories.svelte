@@ -1,10 +1,10 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
+	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 
 	const { Story } = defineMeta({
-		title: 'ui/select/InputSelectCustom',
-		component: InputSelectCustom,
+		title: 'ui/select/InputSelect',
+		component: InputSelect,
 		tags: ['autodocs'],
 		args: {
 			name: 'example',
@@ -47,7 +47,7 @@
 <!-- Basic Variants -->
 <Story name="Default">
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -63,7 +63,7 @@
 
 <Story name="Required" args={{ label: 'Category', required: true }}>
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -79,7 +79,7 @@
 
 <Story name="Preselected Value" args={{ value: 'option2' }}>
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -96,7 +96,7 @@
 <!-- Con "ninguno" seleccionable -->
 <Story name="With Null Option" args={{ nullOption: 'Ninguno', value: 'option2' }}>
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -126,7 +126,7 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -152,7 +152,7 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -169,7 +169,7 @@
 <!-- Status Variants -->
 <Story name="Success" args={{ label: 'Status', status: 'success', value: 'option1' }}>
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -185,7 +185,7 @@
 
 <Story name="Warning" args={{ label: 'Status', status: 'warning', value: 'option1' }}>
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -210,7 +210,7 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -234,7 +234,7 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -258,7 +258,7 @@
 	}}
 >
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}
@@ -275,7 +275,7 @@
 <!-- Sin label -->
 <Story name="Without Label" args={{ label: '' }}>
 	{#snippet template(args)}
-		<InputSelectCustom
+		<InputSelect
 			name={args.name}
 			label={args.label}
 			bind:value={args.value}

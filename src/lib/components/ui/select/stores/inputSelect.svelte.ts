@@ -1,5 +1,5 @@
 /**
- * Estado compartido por InputSelectCustom e InputSelectSearch: abrir/cerrar,
+ * Estado compartido por InputSelect e InputSelectSearch: abrir/cerrar,
  * refs del wrapper/trigger, navegación de teclado en el trigger, y cierre al
  * hacer click/tap afuera. Antes esto estaba duplicado línea por línea en
  * los dos componentes — moverlo acá es lo único que hay que tocar si mañana

@@ -4,6 +4,7 @@
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
+	import InputSelectSearch from '$lib/components/ui/select/InputSelectSearch.svelte';
 	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
 
 	interface Props {
@@ -216,7 +217,7 @@
 						onChange={onModeloChange}
 					/>
 
-					<InputSelect
+					<InputSelectSearch
 						label="Capítulo"
 						name="capitulo"
 						optionsData={capituloOptions}
@@ -226,7 +227,7 @@
 						disabled={!selectedModeloCode}
 					/>
 
-					<InputSelect
+					<InputSelectSearch
 						label="Sección"
 						name="seccion"
 						optionsData={seccionOptions}
