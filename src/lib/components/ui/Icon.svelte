@@ -40,6 +40,7 @@
 		name: IconName;
 		size?: IconSize;
 		color?: string;
+		baseColor?: string;
 		isFilled?: boolean;
 		strokeWidth?: number;
 		class?: string;
@@ -51,6 +52,7 @@
 		name,
 		size = 'md',
 		color = 'currentColor',
+		baseColor = '#ccccccc',
 		isFilled = false,
 		strokeWidth = 2,
 		class: className = '',
@@ -77,6 +79,8 @@
 	class={['icon', className]}
 	aria-hidden="true"
 	style:color
+	style:--base={baseColor}
+	style:--active={color}
 	style:stroke-width={strokeWidth}
 	style:transform="rotate({rotate}deg)"
 	style:display="block"
