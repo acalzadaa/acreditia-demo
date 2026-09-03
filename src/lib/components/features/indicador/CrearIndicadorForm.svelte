@@ -6,7 +6,7 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
-	import { indicadorTypeOptions } from '$lib/schemas/indicador.schema';
+	import { indicadorTypeOptions } from './utils/indicadorUtils';
 	
 	interface Props {
 		open: boolean;

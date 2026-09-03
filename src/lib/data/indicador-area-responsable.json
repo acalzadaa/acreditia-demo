@@ -8,22 +8,12 @@
 				"code": "ind-001",
 				"name": "Tasa de Retención Estudiantil"
 			},
-			"areaResponsable": {
-				"type": "global",
-				"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
-				"code": "AR_DIR_CAMPUS",
-				"name": "Dirección del Campus"
-			},
-			"unidadesAcademicas": [
+			"areaResponsable": [
 				{
-					"id": "8f60bfd8-83e0-4a89-9d53-8ebfdcd06896",
-					"code": "FIC-001",
-					"name": "Facultad de Ingeniería y Ciencias Aplicadas"
-				},
-				{
-					"id": "0eb92fbb-bd2c-4f9e-8728-fe6e523446e3",
-					"code": "ECO-002",
-					"name": "Escuela de Economía y Negocios Internacionales"
+					"type": "global",
+					"id": "a63c5764-ecdd-40fb-9f2d-7366972ea9a9",
+					"code": "AR_DIR_CAMPUS",
+					"name": "Dirección del Campus"
 				}
 			],
 			"version": 1,

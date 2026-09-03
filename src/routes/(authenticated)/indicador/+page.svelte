@@ -26,7 +26,7 @@
 	/>
 </div>
 
-<CrearIndicadorForm open={modal.isOpen('create')} {modeloFullRef} onClose={modal.close} />
+<CrearIndicadorForm open={modal.isOpen('create')} onClose={modal.close} />
 
 {#if modal.selectedItem}
 	<EditarIndicadorForm

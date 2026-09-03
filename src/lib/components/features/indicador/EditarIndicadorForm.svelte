@@ -4,7 +4,6 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 	import {
 		indicadorFormSchema,
-		indicadorTypeOptions,
 		type IndicadorItem
 	} from '$lib/schemas/indicador.schema';
 	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
@@ -14,6 +13,7 @@
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import { indicadorTypeOptions } from './utils/indicadorUtils';
 
 	interface Props {
 		open: boolean;
@@ -34,9 +34,6 @@
 			code: props.selectedItem.code,
 			name: props.selectedItem.name,
 			description: props.selectedItem.description,
-			seccionCode: props.selectedItem.section.code,
-			target: props.selectedItem.target,
-			targetUnit: props.selectedItem.targetUnit,
 			indicadorType: props.selectedItem.indicadorType
 		},
 		{

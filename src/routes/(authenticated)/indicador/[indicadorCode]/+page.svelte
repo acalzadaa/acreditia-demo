@@ -2,7 +2,11 @@
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
 	import EditarIndicadorForm from '$lib/components/features/indicador/EditarIndicadorForm.svelte';
-	import { getIndicador, getIndicadorNavList, getModeloFullRef } from '$lib/components/common/stores/data.svelte';
+	import {
+		getIndicador,
+		getIndicadorNavList,
+		getModeloFullRef
+	} from '$lib/components/common/stores/data.svelte';
 	import { page } from '$app/state';
 	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
 	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
@@ -11,16 +15,21 @@
 
 	let indicadorCode = page.params.indicadorCode;
 
-	let indicadorItems = getIndicador().filter((item) => item.code === indicadorCode) || [];
+	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
 	let modeloFullRef = getModeloFullRef();
-	let indicadorNavItem = getIndicadorNavList();
-
+	let navStatusItem = indicadorItem?.navigationStatus;
+	let navListItem = getIndicadorNavList();
 	let modal = createModalManager<IndicadorItem>();
 </script>
 
 <div class="detail-panel">
-	<IndicadorDetail title="Indicador" subtitle={indicadorCode} items={indicadorItems} />
-	<IndicadorNavList showHeader={true} items={indicadorNavItem} title='Configuracion del indicador'/>
+	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
+	<IndicadorNavList
+		showHeader={true}
+		items={navListItem}
+		navigationStatusItem={navStatusItem}
+		title="Configuracion del indicador"
+	/>
 </div>
 
 {#if modal.selectedItem}

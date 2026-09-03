@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { seccionItemSchema } from './seccion.schema';
-import type { OptionData } from '$lib/components/ui/select/utils/inputSelect';
 
 /* Especifico es especifico de un area responsable de un campus, 
 mientras que campus
@@ -13,16 +12,11 @@ export const INDICADOR_CONFIG_TYPE = [
 	'responsable',
 	'normativa',
 	'indicadorEstrategico',
-	'rubrica'
+	'rubrica',
+	'evidencia'
 ] as const;
 
-export const INDICADOR_CONFIG_STATUS = ['pending', 'complete'];
-
-export const indicadorTypeOptions: OptionData[] =
-	INDICADOR_TYPE.map((v) => ({
-		id: v,
-		option: v.toUpperCase()
-	})) ?? [];
+export const INDICADOR_CONFIG_STATUS = ['pending', 'complete'] as const;
 
 // ============================================
 // 2. FORM SCHEMA (Cliente ↔ Servidor)
@@ -56,8 +50,10 @@ export const indicadorNavigationStatusSchema = z.object({
 	id: z.uuid(),
 	code: z.enum(INDICADOR_CONFIG_TYPE).optional(),
 	count: z.number().min(0).default(0),
-	status: z.enum(INDICADOR_CONFIG_TYPE).optional()
+	status: z.enum(INDICADOR_CONFIG_STATUS).optional()
 });
+
+export type IndicadorNavigationStatusItem = z.infer<typeof indicadorNavigationStatusSchema>;
 
 export const indicadorItemSchema = z.object({
 	id: z.uuid(),
@@ -65,7 +61,7 @@ export const indicadorItemSchema = z.object({
 	name: z.string(),
 	description: z.string(),
 	indicadorType: z.string(),
-	navStatus: z.array(indicadorNavigationStatusSchema).default([]),
+	navigationStatus: z.array(indicadorNavigationStatusSchema).optional(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),
 	validFrom: z.coerce.date().optional(),
