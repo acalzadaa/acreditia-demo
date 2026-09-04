@@ -5,8 +5,6 @@
 			"code": "ind-001",
 			"name": "Tasa de Retención Estudiantil",
 			"description": "Porcentaje de estudiantes que continúan sus estudios después del primer año",
-			"target": 85,
-			"targetUnit": "porcentaje",
 			"indicadorType": "global",
 			"navigationStatus": [
 				{
@@ -14,58 +12,38 @@
 					"code": "seccion",
 					"count": 0,
 					"status": "complete"
+				},
+				{
+					"id": "4215d423-d605-4833-9710-f45effb251d1",
+					"code": "meta",
+					"count": 0,
+					"status": "complete"
 				}
-			],
-			"section": {
-				"id": "95c7ddf6-66de-4438-9832-a5549d463976",
-				"code": "1-1",
-				"name": "1.1"
-			}
+			]
 		},
 		{
 			"id": "8cec38ea-1b46-49a8-b4dc-13081a5334ae",
 			"code": "ind-002",
 			"name": "Índice de Satisfacción Estudiantil",
 			"description": "Nivel de satisfacción de los estudiantes con la institución",
-			"target": 90,
-			"targetUnit": "porcentaje",
 			"indicadorType": "campus",
-			"navigationStatus": [],
-			"section": {
-				"id": "4239a45b-27fe-49f3-a920-ed5328167039",
-				"code": "1-2",
-				"name": "1.2"
-			}
+			"navigationStatus": []
 		},
 		{
 			"id": "102441de-7563-401a-b56d-b287bc6e7202",
 			"code": "ind-003",
 			"name": "Número de Programas Acreditados",
 			"description": "Cantidad de programas académicos con acreditación vigente",
-			"target": 5,
-			"targetUnit": "programas",
 			"indicadorType": "campus",
-			"navigationStatus": [],
-			"section": {
-				"id": "b70dcad4-2826-4997-8a04-cd0a11f5592c",
-				"code": "2-1",
-				"name": "2.1"
-			}
+			"navigationStatus": []
 		},
 		{
 			"id": "371be515-05c3-417a-b720-b3506cb8fdd8",
 			"code": "ind-004",
 			"name": "Tasa de Graduación",
 			"description": "Porcentaje de estudiantes que se gradúan en el tiempo esperado",
-			"target": 75,
-			"targetUnit": "porcentaje",
 			"indicadorType": "global",
-			"navigationStatus": [],
-			"section": {
-				"id": "e450c17d-b317-48b3-9235-414f9aedd32d",
-				"code": "2-2",
-				"name": "2.2"
-			}
+			"navigationStatus": []
 		},
 		{
 			"id": "624ef8d5-2939-47b3-a569-88bcc8b311ba",

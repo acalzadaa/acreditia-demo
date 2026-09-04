@@ -4,17 +4,17 @@
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
-	import type { IndicadorSeccionItem } from '$lib/schemas/indicadorSeccion.schema';
 	import CardHeaderCustom from '$lib/components/ui/card/CardHeaderCustom.svelte';
 	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import { getSafeText } from '$lib/components/evaluacion/utils/EvaluacionUtils';
 	import Button from '$lib/components/ui/Button.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import Badge from '$lib/components/ui/Badge.svelte';
+	import type { IndicadorMetaItem } from '$lib/schemas/indicadorMeta.schema';
 
 	interface Props {
-		item?: IndicadorSeccionItem;
-		onClickEditar: (item: IndicadorSeccionItem) => void;
+		item?: IndicadorMetaItem;
+		onClickEditar: (item: IndicadorMetaItem) => void;
 	}
 
 	const { item, onClickEditar }: Props = $props();
@@ -31,21 +31,20 @@
 								<Tag variant="info">Configuración del indicador</Tag>
 							</div>
 
-							<p>Sección del modelo de calidad</p>
+							<p>Meta del indicador</p>
 						{/snippet}
 						<Badge variant="success">Completo</Badge>
 					</CardHeaderCustom>
 
 					<CardContent>
 						<CardContentItem label="Modelo">
-							{getSafeText(item.modelo?.name, 'Falta asignar el modelo')}
+							<Button onClick={() => onClickEditar(item)} variant="text">
+								{getSafeText(item.target, 'Falta definir la meta')}
+							</Button>
 						</CardContentItem>
 						<CardContentItem label="Capítulo">
-							{getSafeText(item.capitulo?.name, 'Falta asignar el capítulo')}
-						</CardContentItem>
-						<CardContentItem label="Sección">
 							<Button onClick={() => onClickEditar(item)} variant="text">
-								{getSafeText(item.seccion?.code, 'Agrega la sección')}
+								{getSafeText(item.targetUnit, 'Falta definir la unidad de la meta')}
 							</Button>
 						</CardContentItem>
 					</CardContent>

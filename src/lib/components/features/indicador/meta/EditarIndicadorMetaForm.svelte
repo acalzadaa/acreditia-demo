@@ -2,21 +2,17 @@
 	import { superForm } from 'sveltekit-superforms';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import {
-		indicadorFormSchema,
-		type IndicadorItem
-	} from '$lib/schemas/indicador.schema';
-	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
+	import { indicadorFormSchema } from '$lib/schemas/indicador.schema';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import type { IndicadorMetaItem } from '$lib/schemas/indicadorMeta.schema';
 
 	interface Props {
 		open: boolean;
-		selectedItem: IndicadorItem;
-		modeloFullRef: ModeloFullRef[];
+		selectedItem: IndicadorMetaItem;
 		onClose: () => void;
 	}
 
@@ -30,12 +26,8 @@
 		{
 			id: props.selectedItem.id,
 			code: props.selectedItem.code,
-			name: props.selectedItem.name,
-			description: props.selectedItem.description,
-			seccionCode: props.selectedItem.section.code,
 			target: props.selectedItem.target,
-			targetUnit: props.selectedItem.targetUnit,
-			indicadorType: props.selectedItem.indicadorType
+			targetUnit: props.selectedItem.targetUnit
 		},
 		{
 			dataType: 'json',
@@ -68,7 +60,6 @@
 			handleClose();
 		}
 	}
-
 </script>
 
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
