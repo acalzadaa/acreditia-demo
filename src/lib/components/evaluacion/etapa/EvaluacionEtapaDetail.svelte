@@ -4,7 +4,7 @@
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
-	import CardHeaderCustom from '$lib/components/ui/card/CardHeaderCustom.svelte';
+	import CardHeaderClickable from '$lib/components/ui/card/CardHeaderClickable.svelte';
 	import {
 		convertEvaluacionEtapaStatusToBadgeVariant,
 		formatEtapaDateRange,
@@ -24,7 +24,7 @@
 		<CardColumn minWidth="360px" maxWidth="3000px">
 			{#each items as item (item.id)}
 				<Card>
-					<CardHeaderCustom>
+					<CardHeaderClickable>
 						{#snippet title()}
 							<Tag class="text-caption" variant="info">Etapa {item.etapa.order}</Tag>
 							<p style="text-transform: capitalize;">
@@ -50,7 +50,7 @@
 							icon={convertEvaluacionEtapaStatusToBadgeVariant(item.status).icon}
 							>{convertEvaluacionEtapaStatusToBadgeVariant(item.status).label}</Badge
 						>
-					</CardHeaderCustom>
+					</CardHeaderClickable>
 				</Card>
 			{/each}
 		</CardColumn>

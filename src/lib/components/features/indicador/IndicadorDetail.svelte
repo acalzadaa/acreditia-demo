@@ -8,6 +8,7 @@
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import type { IndicadorItem } from '$lib/schemas/indicador.schema';
+	import { convertIndicadorTypeToLabel } from './utils/indicadorUtils';
 
 	interface Props {
 		item?: IndicadorItem;
@@ -36,6 +37,7 @@
 						<tr>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
+							<th class="col-label">Tipo</th>
 							<th class="col-text">Descripción</th>
 							<th class="col-badge">Estatus</th>
 						</tr>
@@ -45,6 +47,7 @@
 						<tr class="table-row tr-expandable">
 							<td class="col-code">{item.code}</td>
 							<td class="col-label">{item.name}</td>
+							<td class="col-label">{convertIndicadorTypeToLabel(item.indicadorType)}</td>
 							<td class="col-text">{item.description}</td>
 							<td class="col-badge">
 								<Badge variant={item.isDeleted ? 'error' : 'success'}>
@@ -62,7 +65,7 @@
 
 	<section class="list-view--cards">
 		{#if item}
-			<CardColumn minWidth="360px" maxWidth="2500px">
+			<CardColumn minWidth="360px">
 				<Card>
 					<CardHeader subtitle={item.code} title={item.name}>
 						<Badge variant={item.isDeleted ? 'error' : 'success'}>
@@ -72,7 +75,7 @@
 
 					<CardContent>
 						<CardContentItem label="Descripción" value={item.description} />
-						<CardContentItem label="Tipo" value={item.indicadorType} />
+						<CardContentItem label="Tipo" value={convertIndicadorTypeToLabel(item.indicadorType)} />
 					</CardContent>
 				</Card>
 			</CardColumn>
@@ -100,7 +103,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 2500px) {
+	@media (max-width: 99999px) {
 		.list-view--table {
 			display: none;
 		}

@@ -3,7 +3,7 @@
 	import AddIndicadorNormativa from '$lib/components/features/indicador/normativa/AddIndicadorNormativa.svelte';
 	import IndicadorNormativaList from '$lib/components/features/indicador/normativa/IndicadorNormativaList.svelte';
 	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
-	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa';
+	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa.schema';
 	import { getIndicadorNormativa, getNormativaRef } from '$lib/components/common/stores/data.svelte';
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 

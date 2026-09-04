@@ -60,7 +60,7 @@ export const indicadorItemSchema = z.object({
 	code: z.string(),
 	name: z.string(),
 	description: z.string(),
-	indicadorType: z.string(),
+	indicadorType: z.enum(INDICADOR_TYPE).default('global'),
 	navigationStatus: z.array(indicadorNavigationStatusSchema).optional(),
 	version: z.number().default(0),
 	isCurrent: z.boolean().default(false),

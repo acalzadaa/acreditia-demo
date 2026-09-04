@@ -7,13 +7,13 @@
 			"description": "Porcentaje de estudiantes que continúan sus estudios después del primer año",
 			"target": 85,
 			"targetUnit": "porcentaje",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [
 				{
 					"id": "8215d423-d605-4833-9710-f45effb251d1",
-					"code": "meta",
+					"code": "seccion",
 					"count": 0,
-					"status": "pending"
+					"status": "complete"
 				}
 			],
 			"section": {
@@ -59,7 +59,7 @@
 			"description": "Porcentaje de estudiantes que se gradúan en el tiempo esperado",
 			"target": 75,
 			"targetUnit": "porcentaje",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "e450c17d-b317-48b3-9235-414f9aedd32d",
@@ -89,7 +89,7 @@
 			"description": "Porcentaje de egresados con empleo en el primer año",
 			"target": 80,
 			"targetUnit": "porcentaje",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "e1792f40-cb2c-4ff8-b26f-b23ca23fb46a",
@@ -134,7 +134,7 @@
 			"description": "Nivel de satisfacción de los profesores con su trabajo",
 			"target": 85,
 			"targetUnit": "porcentaje",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "a5c4324c-ce55-4a9c-b917-92220d556eb5",
@@ -179,7 +179,7 @@
 			"description": "Cantidad de proyectos de investigación educativa",
 			"target": 5,
 			"targetUnit": "proyectos",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "59697610-ecc3-4f78-9e23-f4092402bc31",
@@ -239,7 +239,7 @@
 			"description": "Cantidad de convenios con otras instituciones",
 			"target": 10,
 			"targetUnit": "convenios",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "b4772c6d-6048-43e8-978a-80fbf1745104",
@@ -284,7 +284,7 @@
 			"description": "Porcentaje de profesores evaluados anualmente",
 			"target": 100,
 			"targetUnit": "porcentaje",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "a999089a-3633-4609-81f6-6c29ceb3e7e6",
@@ -329,7 +329,7 @@
 			"description": "Número de normas y procedimientos docentes",
 			"target": 6,
 			"targetUnit": "normas",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "ca2cd6e3-873e-48a8-8954-1b1f599f7a18",
@@ -374,7 +374,7 @@
 			"description": "Programas para reducir reprobación y deserción",
 			"target": 4,
 			"targetUnit": "programas",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "2e5268c0-25b3-4633-9352-cbd6ef41b166",
@@ -434,7 +434,7 @@
 			"description": "Porcentaje de expedientes actualizados",
 			"target": 100,
 			"targetUnit": "porcentaje",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "4315003a-a752-47d2-af5e-13b1d675a1a3",
@@ -479,7 +479,7 @@
 			"description": "Personal capacitado para biblioteca",
 			"target": 5,
 			"targetUnit": "personas",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "7936a1db-0f5c-412b-99d1-b69b680463a5",
@@ -524,7 +524,7 @@
 			"description": "Existencia de políticas de adquisición",
 			"target": 100,
 			"targetUnit": "porcentaje",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "f0e3b612-888b-4988-9eca-9f9fae383825",
@@ -569,7 +569,7 @@
 			"description": "Efectividad del programa de seguridad",
 			"target": 95,
 			"targetUnit": "porcentaje",
-			"indicadorType": "especifico",
+			"indicadorType": "global",
 			"navigationStatus": [],
 			"section": {
 				"id": "bea611c2-f812-4cdb-a083-154374d1caee",

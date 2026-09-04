@@ -16,6 +16,8 @@ export const indicadorSeccionFormSchema = z.object({
 			/^[a-z0-9]+(?:-[a-z0-9]+)*$/,
 			'Code solo puede contener letras minúsculas, números y guiones (sin espacios ni caracteres especiales)'
 		),
+	modeloId: z.uuid(),
+	capituloId: z.uuid(),
 	sectionId: z.uuid(), //referencia a la seccion del sistema de calidad
 	createdBy: z.string().min(1, 'El creador es requerido')
 });
@@ -31,9 +33,9 @@ export const indicadorSeccionItemSchema = z.object({
 	id: z.uuid(),
 	indicador: baseRefSchema,
 	code: z.string(),
-	modelo: baseRefSchema,
-	capitulo: baseRefSchema,
-	seccion: baseRefSchema,
+	modelo: baseRefSchema.optional(),
+	capitulo: baseRefSchema.optional(),
+	seccion: baseRefSchema.optional(),
 	version: z.number().int().nonnegative(),
 	isCurrent: z.boolean(),
 	validFrom: z.coerce.date(),

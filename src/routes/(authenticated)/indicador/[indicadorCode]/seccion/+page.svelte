@@ -1,37 +1,40 @@
 <script lang="ts">
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
-	import { type IndicadorItem } from '$lib/schemas/indicador.schema';
-	import EditarIndicadorForm from '$lib/components/features/indicador/EditarIndicadorForm.svelte';
 	import {
 		getIndicador,
+		getIndicadorSeccion,
 		getModeloFullRef
 	} from '$lib/components/common/stores/data.svelte';
 	import { page } from '$app/state';
 	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
-	import ConfirmDeleteModal from '$lib/components/ui/confirm/ConfirmDeleteModal.svelte';
-	import ConfirmRestoreModal from '$lib/components/ui/confirm/ConfirmRestoreModal.svelte';
-	
+	import EditarIndicadorSeccionForm from '$lib/components/features/indicador/seccion/EditarIndicadorSeccionForm.svelte';
+	import IndicadorSeccionEditor from '$lib/components/features/indicador/seccion/IndicadorSeccionEditor.svelte';
+	import type { IndicadorSeccionItem } from '$lib/schemas/indicadorSeccion.schema';
+
 	let indicadorCode = page.params.indicadorCode;
 
 	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
 	let modeloFullRef = getModeloFullRef();
-	let modal = createModalManager<IndicadorItem>();
+	let indicadorSeccionItem = getIndicadorSeccion().find(
+		(item) => item.indicador.code === indicadorCode
+	);
+
+	let modal = createModalManager<IndicadorSeccionItem>();
 </script>
 
 <div class="detail-panel">
 	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
-	<IndicadorSeccionDetail
-		showHeader={true}
-		items={navListItem}
-		title="Configuracion del indicador"
+	<IndicadorSeccionEditor
+		item={indicadorSeccionItem}
+		onClickEditar={modal.handlers('edit').onClickItem}
 	/>
 </div>
 
 {#if modal.selectedItem}
-	<EditarIndicadorForm
+	<EditarIndicadorSeccionForm
 		open={modal.isOpen('edit')}
 		{modeloFullRef}
-		selectedItem={modal.selectedItem}
+		item={modal.selectedItem}
 		onClose={modal.close}
 	/>
 {/if}

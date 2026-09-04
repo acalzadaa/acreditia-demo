@@ -13,3 +13,16 @@ export const indicadorTypeOptions: OptionData[] = INDICADOR_TYPE.map((v) => ({
 	id: v,
 	option: INDICADOR_TYPE_LABELS[v].toUpperCase()
 }));
+
+export function convertIndicadorTypeToLabel(type: IndicadorType): string {
+	switch (type) {
+		case 'campus':
+			return INDICADOR_TYPE_LABELS['campus'];
+		case 'global':
+			return INDICADOR_TYPE_LABELS['global'];
+		case 'unidadAcademica':
+			return INDICADOR_TYPE_LABELS['unidadAcademica'];
+		default:
+			return '';
+	}
+}

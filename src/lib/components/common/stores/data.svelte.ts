@@ -122,11 +122,11 @@ import {
 import {
 	indicadorNormativaItemSchema,
 	type IndicadorNormativaItem
-} from '$lib/schemas/indicadorNormativa';
+} from '$lib/schemas/indicadorNormativa.schema';
 import {
 	indicadorIndicadorEstrategicoItemSchema,
 	type IndicadorIndicadorEstrategicoItem
-} from '$lib/schemas/indicadorIndicadorEstrategico';
+} from '$lib/schemas/indicadorIndicadorEstrategico.schema';
 import {
 	rubricaCriterioItemSchema,
 	type RubricaCriterioItem
@@ -141,7 +141,7 @@ import { notificationItemSchema, type NotificationItem } from '$lib/schemas/noti
 import {
 	indicadorEvidenciaItemSchema,
 	type IndicadorEvidenciaItem
-} from '$lib/schemas/indicadorEvidencia';
+} from '$lib/schemas/indicadorEvidencia.schema';
 import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
 import { usuarioPuestoItemSchema, type UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
 import {
@@ -170,8 +170,8 @@ import {
 	type IndicadorNavListItem
 } from '$lib/schemas/indicadorNavigation.schema';
 import { indicadorItemSchema, type IndicadorItem } from '$lib/schemas/indicador.schema';
-import { indicadorMetaItemSchema, type IndicadorMetaItem } from '$lib/schemas/indicadorMeta';
-import { indicadorSeccionItemSchema, type IndicadorSeccionItem } from '$lib/schemas/indicadorSeccion';
+import { indicadorMetaItemSchema, type IndicadorMetaItem } from '$lib/schemas/indicadorMeta.schema';
+import { indicadorSeccionItemSchema, type IndicadorSeccionItem } from '$lib/schemas/indicadorSeccion.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);

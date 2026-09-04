@@ -14,10 +14,16 @@
 		title?: string;
 		subtitle?: string;
 		items?: IndicadorNavListItem[];
-		navigationStatusItem?: IndicadorNavigationStatusItem[];
+		navigationStatusItems?: IndicadorNavigationStatusItem[];
 	}
 
-	const { showHeader = false, title = 'Add', subtitle = '', items = [], navigationStatusItem }: Props = $props();
+	const {
+		showHeader = false,
+		title = 'Add',
+		subtitle = '',
+		items = [],
+		navigationStatusItems
+	}: Props = $props();
 
 	const sortedItems = $derived([...items].sort((a, b) => a.order - b.order));
 </script>
@@ -31,10 +37,7 @@
 			{#each sortedItems as item (item.id)}
 				<PanelListItemButton onClick={() => navigateTo(item.url)}>
 					<div style="display: flex; gap: 4px;">
-						<IndicadorNavigationStatusIcon 
-						navigationItem={item}
-						navigationStatusItem={navigationStatusItem}
-						/>
+						<IndicadorNavigationStatusIcon navigationItem={item} {navigationStatusItems} />
 						<p>
 							{item.name}
 						</p>

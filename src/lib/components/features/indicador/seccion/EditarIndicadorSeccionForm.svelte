@@ -5,23 +5,23 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 	import InputSelectSearch from '$lib/components/ui/select/InputSelectSearch.svelte';
+	import type { IndicadorSeccionItem } from '$lib/schemas/indicadorSeccion.schema';
 	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
 
 	interface Props {
 		open: boolean;
+		item: IndicadorSeccionItem;
 		modeloFullRef: ModeloFullRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, modeloFullRef = [] }: Props = $props();
+	let { open = $bindable(false), onClose, item, modeloFullRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
 		code: '',
 		name: '',
 		description: '',
-		target: 0,
-		targetUnit: '',
 		indicadorType: '',
 		seccionCode: ''
 	});
@@ -65,6 +65,26 @@
 					})) ?? [])
 	);
 
+	// Inicializar el formulario a partir de `item` cada vez que el modal se abre
+	// (o si `item` cambia mientras está abierto, ej. se reutiliza el modal para otro registro).
+	// item.modelo / item.capitulo / item.seccion vienen todos juntos o todos vacíos,
+	// así que basta con leer item.modelo?.code como "gate".
+	$effect(() => {
+		if (!open) return;
+
+		formData = {
+			code: item.code ?? '',
+			name: item.indicador?.name ?? '',
+			description: '',
+			indicadorType: '',
+			seccionCode: item.seccion?.code ?? ''
+		};
+
+		selectedModeloCode = item.modelo?.code ?? '';
+		selectedCapituloCode = item.capitulo?.code ?? '';
+		selectedSeccionCode = item.seccion?.code ?? '';
+	});
+
 	// Resetear selecciones cuando cambia el modelo
 	function onModeloChange(value: string) {
 		selectedModeloCode = value;
@@ -88,10 +108,7 @@
 
 	function handleSubmit() {
 		// Validación básica
-		if (!formData.code) {
-			errorMessage = 'El código es requerido';
-			return;
-		}
+
 		if (!selectedModeloCode) {
 			errorMessage = 'Debes seleccionar un modelo';
 			return;
@@ -102,22 +119,6 @@
 		}
 		if (!selectedSeccionCode) {
 			errorMessage = 'Debes seleccionar una sección';
-			return;
-		}
-		if (!formData.name) {
-			errorMessage = 'El nombre es requerido';
-			return;
-		}
-		if (!formData.target && formData.target !== 0) {
-			errorMessage = 'La meta es requerida';
-			return;
-		}
-		if (!formData.targetUnit) {
-			errorMessage = 'Las unidades de meta son requeridas';
-			return;
-		}
-		if (!formData.indicadorType) {
-			errorMessage = 'El tipo es requerido';
 			return;
 		}
 
@@ -134,8 +135,6 @@
 			code: '',
 			name: '',
 			description: '',
-			target: 0,
-			targetUnit: '',
 			indicadorType: '',
 			seccionCode: ''
 		};
@@ -156,8 +155,6 @@
 			code: '',
 			name: '',
 			description: '',
-			target: 0,
-			targetUnit: '',
 			indicadorType: '',
 			seccionCode: ''
 		};
