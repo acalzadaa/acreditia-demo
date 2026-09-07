@@ -28,7 +28,7 @@
 		showHeader={true}
 		items={navListItem}
 		navigationStatusItems={navStatusItem}
-		title="Configuracion del indicador"
+		title="Configuración del indicador"
 	/>
 </div>
 

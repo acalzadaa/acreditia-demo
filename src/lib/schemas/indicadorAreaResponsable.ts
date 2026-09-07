@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { baseRefSchema } from './shared.schema';
+import { areaResponsableRefSchema, baseRefSchema } from './shared.schema';
 
 // ============================================
 // 1. REFERENCE SCHEMA (Para relaciones)
@@ -43,7 +43,7 @@ export const indicadorAreaResponsableItemSchema = z.object({
 	id: z.uuid(),
 	indicador: baseRefSchema,
 	code: z.string(),
-	areaResponsable: z.array(baseRefSchema).default([]),
+	areaResponsable: z.array(areaResponsableRefSchema).default([]),
 	version: z.number().int().nonnegative(),
 	isCurrent: z.boolean(),
 	validFrom: z.coerce.date(),

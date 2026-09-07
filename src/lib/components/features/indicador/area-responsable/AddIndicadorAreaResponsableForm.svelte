@@ -2,17 +2,17 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
-	import type { BaseRef } from '$lib/schemas/shared.schema';
+	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
+	import InputSelectSearch from '$lib/components/ui/select/InputSelectSearch.svelte';
 
 	interface Props {
 		open: boolean;
-		unidadAcademicaRef: BaseRef[];
+		areaResponsableRef: AreaResponsableRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, unidadAcademicaRef = [] }: Props = $props();
+	let { open = $bindable(false), onClose, areaResponsableRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
@@ -22,8 +22,8 @@
 	let errorMessage = $state('');
 
 	// Opciones para el select de área responsable
-	const unidadAcademicaOptions = $derived(
-		unidadAcademicaRef.map((ref) => ({
+	const areaResponsableOptions = $derived(
+		areaResponsableRef.map((ref) => ({
 			id: ref.code,
 			option: `${ref.code} - ${ref.name}`
 		}))
@@ -75,7 +75,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Agregar unidad academica</h2>
+			<h2 class="modal-title text-h4">Agregar área responsable</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -100,10 +100,10 @@
 						</div>
 					{/if}
 
-					<InputSelect
-						label="Unidad académica"
+					<InputSelectSearch
+						label="Área Responsable"
 						name="code"
-						optionsData={unidadAcademicaOptions}
+						optionsData={areaResponsableOptions}
 						required={true}
 						bind:value={formData.code}
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
