@@ -38,6 +38,8 @@ import indicadorJsonData from '$lib/data/indicador.json';
 import rubricaJsonData from '$lib/data/rubrica.json';
 import rubricaCriterioJsonData from '$lib/data/rubrica-criterio.json';
 
+import indicadorMetaJsonData from '$lib/data/indicador-meta.json';
+import indicadorSeccionJsonData from '$lib/data/indicador-seccion.json';
 import indicadorAreaResponsableJsonData from '$lib/data/indicador-area-responsable.json';
 import indicadorAreaFuncionalJsonData from '$lib/data/indicador-area-funcional.json';
 import indicadorNormativaJsonData from '$lib/data/indicador-normativa.json';
@@ -106,8 +108,9 @@ import {
 	areaResponsableItemSchema,
 	type AreaResponsableItem
 } from '$lib/schemas/areaResponsable.schema';
-import { indicadorItemSchema, type IndicadorItem } from '$lib/schemas/indicador.schema';
+
 import { rubricaItemSchema, type RubricaItem } from '$lib/schemas/rubrica.schema';
+
 import {
 	indicadorAreaResponsableItemSchema,
 	type IndicadorAreaResponsableItem
@@ -119,15 +122,11 @@ import {
 import {
 	indicadorNormativaItemSchema,
 	type IndicadorNormativaItem
-} from '$lib/schemas/indicadorNormativa';
+} from '$lib/schemas/indicadorNormativa.schema';
 import {
 	indicadorIndicadorEstrategicoItemSchema,
 	type IndicadorIndicadorEstrategicoItem
-} from '$lib/schemas/indicadorIndicadorEstrategico';
-import {
-	indicadorNavListItemSchema,
-	type indicadorNavListItem
-} from '$lib/schemas/indicadorNavigation.schema';
+} from '$lib/schemas/indicadorIndicadorEstrategico.schema';
 import {
 	rubricaCriterioItemSchema,
 	type RubricaCriterioItem
@@ -142,7 +141,7 @@ import { notificationItemSchema, type NotificationItem } from '$lib/schemas/noti
 import {
 	indicadorEvidenciaItemSchema,
 	type IndicadorEvidenciaItem
-} from '$lib/schemas/indicadorEvidencia';
+} from '$lib/schemas/indicadorEvidencia.schema';
 import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
 import { usuarioPuestoItemSchema, type UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
 import {
@@ -166,6 +165,13 @@ import {
 	areaResponsableEvidenciaItemSchema,
 	type AreaResponsableEvidenciaItem
 } from '$lib/schemas/areaResponsableEvidencia.schema';
+import {
+	indicadorNavListItemSchema,
+	type IndicadorNavListItem
+} from '$lib/schemas/indicadorNavigation.schema';
+import { indicadorItemSchema, type IndicadorItem } from '$lib/schemas/indicador.schema';
+import { indicadorMetaItemSchema, type IndicadorMetaItem } from '$lib/schemas/indicadorMeta.schema';
+import { indicadorSeccionItemSchema, type IndicadorSeccionItem } from '$lib/schemas/indicadorSeccion.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -209,12 +215,14 @@ let evaluacionEtapa = $state<EvaluacionEtapaItem[]>([]);
 let indicador = $state<IndicadorItem[]>([]);
 let rubrica = $state<RubricaItem[]>([]);
 let rubricaCriterio = $state<RubricaCriterioItem[]>([]);
+let indicadorMeta = $state<IndicadorMetaItem[]>([]);
+let indicadorSeccion = $state<IndicadorSeccionItem[]>([]);
 let indicadorAreaResponsable = $state<IndicadorAreaResponsableItem[]>([]);
 let indicadorAreaFuncional = $state<IndicadorAreaFuncionalItem[]>([]);
 let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 let indicadorEvidencia = $state<IndicadorEvidenciaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
-let indicadorNavList = $state<indicadorNavListItem[]>([]);
+let indicadorNavList = $state<IndicadorNavListItem[]>([]);
 let evaluacionEtapaIndicador = $state<EvaluacionEtapaIndicadorItem[]>([]);
 
 let notification = $state<NotificationItem[]>([]);
@@ -372,9 +380,20 @@ evaluacionEtapa = evaluacionEtapaRawData.map((item) => evaluacionEtapaItemSchema
 
 const evaluacionEtapaIndicadorRawData =
 	evaluacionEtapaIndicadorJsonData.evaluacionEtapaIndicadorItems;
-
 evaluacionEtapaIndicador = evaluacionEtapaIndicadorRawData.map((item) =>
 	evaluacionEtapaIndicadorItemSchema.parse(item)
+);
+
+const indicadorMetaRawData =
+	indicadorMetaJsonData.indicadorMetaItems;
+indicadorMeta = indicadorMetaRawData.map((item) =>
+	indicadorMetaItemSchema.parse(item)
+);
+
+const indicadorSeccionRawData =
+	indicadorSeccionJsonData.indicadorSeccionItems;
+indicadorSeccion = indicadorSeccionRawData.map((item) =>
+	indicadorSeccionItemSchema.parse(item)
 );
 
 const indicadorAreaResponsableRawData =
@@ -653,6 +672,14 @@ export function getRubricaCriterio() {
 	return rubricaCriterio;
 }
 
+export function getIndicadorMeta() {
+	return indicadorMeta;
+}
+
+export function getIndicadorSeccion() {
+	return indicadorSeccion;
+}
+
 export function getIndicadorAreaResponsable() {
 	return indicadorAreaResponsable;
 }
@@ -669,6 +696,10 @@ export function getIndicadorIndicadorEstrategico() {
 	return indicadorIndicadorEstrategico;
 }
 
+export function getIndicadorEvidencia() {
+	return indicadorEvidencia;
+}
+
 export function getIndicadorNavList() {
 	return indicadorNavList;
 }
@@ -679,10 +710,6 @@ export function getEvaluacionEtapaIndicador() {
 
 export function getNotificacion() {
 	return notification;
-}
-
-export function getIndicadorEvidencia() {
-	return indicadorEvidencia;
 }
 
 export function getUsuario() {

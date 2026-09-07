@@ -8,7 +8,7 @@
 
 	
 	import type { FilosofiaInstitucionalRef } from '$lib/schemas/filosofiaInstitucional.schema';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
+	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 
 	interface Props {
 		open: boolean;
@@ -127,7 +127,7 @@
 							{errorMessage}
 						</div>
 					{/if}
-					<InputSelectCustom
+					<InputSelect
 						label="Filosofía Institucional"
 						name="filosofiaId"
 						optionsData={filosofiaOptions}

@@ -2,21 +2,18 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
-	import InputNumber from '$lib/components/ui/input/InputNumber.svelte';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
+	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 	import InputText from '$lib/components/ui/input/InputText.svelte';
 	import TextArea from '$lib/components/ui/input/TextArea.svelte';
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
-	import { indicadorTypeOptions } from '$lib/schemas/indicador.schema';
-	import type { ModeloFullRef } from '$lib/schemas/modelo.schema';
-
+	import { indicadorTypeOptions } from './utils/indicadorUtils';
+	
 	interface Props {
 		open: boolean;
-		modeloFullRef: ModeloFullRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, modeloFullRef = [] }: Props = $props();
+	let { open = $bindable(false), onClose }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
@@ -38,56 +35,14 @@
 	let selectedSeccionCode = $state<string>('');
 
 	// Opciones de modelo (todos los modelos)
-	let modeloOptions = $derived(
-		modeloFullRef.map((item) => ({
-			id: item.code,
-			option: `${item.code} - ${item.name}`
-		}))
-	);
 
-	let capituloOptions = $derived(
-		!selectedModeloCode
-			? []
-			: (modeloFullRef
-					.find((m) => m.code === selectedModeloCode)
-					?.capitulos?.map((c) => ({
-						id: c.code,
-						option: `${c.code} - ${c.name || `Capítulo ${c.code}`}`
-					})) ?? [])
-	);
 
-	let seccionOptions = $derived(
-		!selectedModeloCode || !selectedCapituloCode
-			? []
-			: (modeloFullRef
-					.find((m) => m.code === selectedModeloCode)
-					?.capitulos?.find((c) => c.code === selectedCapituloCode)
-					?.secciones?.map((s) => ({
-						id: s?.code,
-						option: `${s?.code} - ${s?.name || `Sección ${s?.code}`}`
-					})) ?? [])
-	);
 
 	// Resetear selecciones cuando cambia el modelo
-	function onModeloChange(value: string) {
-		selectedModeloCode = value;
-		selectedCapituloCode = '';
-		selectedSeccionCode = '';
-		formData.seccionCode = '';
-	}
 
 	// Resetear selección de sección cuando cambia el capítulo
-	function onCapituloChange(value: string) {
-		selectedCapituloCode = value;
-		selectedSeccionCode = '';
-		formData.seccionCode = '';
-	}
 
 	// Actualizar el valor del formulario cuando se selecciona una sección
-	function onSeccionChange(value: string) {
-		selectedSeccionCode = value;
-		formData.seccionCode = value;
-	}
 
 	function handleSubmit() {
 		// Validación básica
@@ -197,7 +152,6 @@
 		</header>
 
 		<form
-			
 			onsubmit={(e) => {
 				e.preventDefault();
 				handleSubmit();
@@ -212,6 +166,24 @@
 				{/if}
 
 				<div class="form-fields">
+					<InputSelect
+						label="Tipo"
+						name="indicadorType"
+						optionsData={indicadorTypeOptions}
+						required={true}
+						bind:value={formData.indicadorType}
+						errors={errorMessage && !formData.indicadorType ? [errorMessage] : undefined}
+					/>
+					<InputText
+						label="Nombre"
+						name="name"
+						required={true}
+						placeholder="Tasa de graduación"
+						status={errorMessage && !formData.name ? 'error' : 'normal'}
+						disabled={false}
+						bind:value={formData.name}
+						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
+					/>
 					<InputText
 						label="Código"
 						name="code"
@@ -223,47 +195,6 @@
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
 					/>
 
-					<InputSelectCustom
-						label="Modelo"
-						name="modelo"
-						optionsData={modeloOptions}
-						required={true}
-						bind:value={selectedModeloCode}
-						onChange={onModeloChange}
-					/>
-
-					<InputSelectCustom
-						label="Capítulo"
-						name="capitulo"
-						optionsData={capituloOptions}
-						required={true}
-						bind:value={selectedCapituloCode}
-						onChange={onCapituloChange}
-						disabled={!selectedModeloCode}
-					/>
-
-					<InputSelectCustom
-						label="Sección"
-						name="seccion"
-						optionsData={seccionOptions}
-						required={true}
-						bind:value={selectedSeccionCode}
-						onChange={onSeccionChange}
-						disabled={!selectedCapituloCode}
-						errors={errorMessage && !formData.seccionCode ? [errorMessage] : undefined}
-					/>
-
-					<InputText
-						label="Nombre"
-						name="name"
-						required={true}
-						placeholder="Tasa de graduación"
-						status={errorMessage && !formData.name ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={formData.name}
-						errors={errorMessage && !formData.name ? [errorMessage] : undefined}
-					/>
-
 					<TextArea
 						label="Descripción"
 						name="description"
@@ -271,43 +202,12 @@
 						bind:value={formData.description}
 						rows={4}
 					/>
-
-					<InputNumber
-						label="Meta"
-						name="target"
-						required={true}
-						placeholder="20"
-						status={errorMessage && !formData.target ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={formData.target}
-						errors={errorMessage && !formData.target ? [errorMessage] : undefined}
-					/>
-
-					<InputText
-						label="Unidades de Meta"
-						name="targetUnit"
-						required={true}
-						placeholder="%"
-						status={errorMessage && !formData.targetUnit ? 'error' : 'normal'}
-						disabled={false}
-						bind:value={formData.targetUnit}
-						errors={errorMessage && !formData.targetUnit ? [errorMessage] : undefined}
-					/>
-
-					<InputSelectCustom
-						label="Tipo"
-						name="indicadorType"
-						optionsData={indicadorTypeOptions}
-						required={true}
-						bind:value={formData.indicadorType}
-						errors={errorMessage && !formData.indicadorType ? [errorMessage] : undefined}
-					/>
 				</div>
 			</div>
 
 			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Crear indicador</Button>
+				<Button type="submit" variant="primary">Crear</Button>
 			</menu>
 		</form>
 	</div>

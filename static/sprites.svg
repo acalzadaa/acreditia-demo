@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+
   <!-- NAVIGATION-->
   <symbol id="menu" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" d="M3 17h18M3 12h18M3 7h18"/>
@@ -10,14 +11,6 @@
     <path stroke="currentColor" d="M15 17v1a3 3 0 1 1-6 0v-1m6 0H9m6 0h3.59c.383 0 .575 0 .73-.052a1 1 0 0 0 .627-.628c.053-.156.053-.348.053-.734c0-.169 0-.253-.014-.334a1 1 0 0 0-.173-.42c-.048-.067-.108-.127-.227-.246l-.39-.39a.67.67 0 0 1-.196-.474V10a7 7 0 1 0-14 0v3.722a.67.67 0 0 1-.196.474l-.39.39c-.12.12-.179.179-.226.245a1 1 0 0 0-.175.421c-.013.08-.013.165-.013.334c0 .386 0 .578.052.734a1 1 0 0 0 .629.628c.155.052.346.052.729.052H9"/>
   </symbol>
 
-  <!-- NAVIGATION -->
-  <symbol id="chevron-down" viewBox="0 0 24 24">
-    <path fill="none" stroke="currentColor" d="m16 10l-4 4l-4-4"/>
-  </symbol>
-  <symbol id="chevron-right" viewBox="0 0 24 24">
-    <path fill="none" stroke="currentColor" d="m10 8l4 4l-4 4"/>
-  </symbol>
-
   <!-- CRUD -->
   <symbol id="add" viewBox="0 0 24 24">
     <path fill="none" d="M13 5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2h-6z" stroke="currentColor" />
@@ -25,8 +18,6 @@
   <symbol id="add-list" viewBox="0 0 24 24">
     <path fill="none" d="M5.116 20q-.691 0-1.153-.462T3.5 18.384V5.616q0-.691.463-1.153T5.115 4h9.308v1H5.116q-.231 0-.424.192t-.192.424v12.769q0 .23.192.423t.423.192h12.77q.23 0 .423-.192t.192-.423V9.077h1v9.308q0 .69-.462 1.153T17.884 20zM8 16.5v-1h7v1zm0-3v-1h7v1zm0-3v-1h7v1zM17.5 8V6h-2V5h2V3h1v2h2v1h-2v2z" />
   </symbol>
-
-
   <symbol id="delete" viewBox="0 0 24 24">
     <path fill="none" stroke="currentColor" stroke-linecap="round" d="m19.5 5.5l-.62 10.025c-.158 2.561-.237 3.842-.88 4.763a4 4 0 0 1-1.2 1.128c-.957.584-2.24.584-4.806.584c-2.57 0-3.855 0-4.814-.585a4 4 0 0 1-1.2-1.13c-.642-.922-.72-2.205-.874-4.77L4.5 5.5M3 5.5h18m-4.944 0l-.683-1.408c-.453-.936-.68-1.403-1.071-1.695a2 2 0 0 0-.275-.172C13.594 2 13.074 2 12.035 2c-1.066 0-1.599 0-2.04.234a2 2 0 0 0-.278.18c-.395.303-.616.788-1.058 1.757L8.053 5.5m1.447 11v-6m5 6v-6" />
   </symbol>
@@ -68,8 +59,6 @@
   <symbol id="check" viewBox="0 0 24 24">
     <path fill="currentColor" d="m9.55 15.15l8.475-8.475q.3-.3.7-.3t.7.3t.3.713t-.3.712l-9.175 9.2q-.3.3-.7.3t-.7-.3L4.55 13q-.3-.3-.288-.712t.313-.713t.713-.3t.712.3z" />
   </symbol>
-
-
   <symbol id="detail" viewBox="0 0 24 24">
     <path d="M15.965 22.994 1 23V1h15l7 7v8" style="fill:none;stroke:currentColor;paint-order:stroke;stroke-linecap:round;stroke-linejoin:round"/>
     <path d="M15.988 1.244 16 8h7" style="fill:none;stroke:currentColor;stroke-linejoin:round"/>
@@ -88,9 +77,7 @@
       <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
     </g>
   </symbol>
-  <symbol id="eye-closed" viewBox="0 0 24 24">
-    <path fill="none" stroke="currentColor" d="m19.5 16l-2.475-3.396M12 17.5V14m-7.5 2l2.469-3.388M3 8c3.6 8 14.4 8 18 0" />
-  </symbol>
+
   <symbol id="email" viewBox="0 0 24 24">
     <path fill="currentColor" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z" />
   </symbol>
@@ -103,6 +90,17 @@
   <symbol id="search" viewBox="24 24 24 24">
     <circle cx="34.5" cy="34.5" r="7.5" fill="none" stroke="currentColor" stroke-linecap="round"/>
     <path d="M39.556 40.077 45 45" fill="none" stroke="currentColor" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- SIGNS -->
+  <symbol id="chevron-down" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" d="m16 10l-4 4l-4-4"/>
+  </symbol>
+  <symbol id="chevron-right" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" d="m10 8l4 4l-4 4"/>
+  </symbol>
+  <symbol id="eye-closed" viewBox="0 0 24 24">
+    <path fill="none" stroke="currentColor" d="m19.5 16l-2.475-3.396M12 17.5V14m-7.5 2l2.469-3.388M3 8c3.6 8 14.4 8 18 0" />
   </symbol>
 
   <!-- SEMANTIC -->
@@ -121,4 +119,25 @@
   <symbol id="info" viewBox="0 0 24 24">
     <path fill="none" d="M12.713 16.713Q13 16.425 13 16v-4q0-.425-.288-.712T12 11t-.712.288T11 12v4q0 .425.288.713T12 17t.713-.288m0-8Q13 8.425 13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9t.713-.288M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8" />
   </symbol>
+
+  <!-- ANIMATIONS -->
+
+  <defs>
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); transform-origin: 12px 12px; }
+        100% { transform: rotate(360deg); transform-origin: 12px 12px; }
+      }
+      
+      .spinner {
+        animation: spin 2s linear infinite;
+      }
+    </style>
+    <symbol id='spinner' viewBox="0 0 24 24">
+      <ellipse fill="none" stroke="var(--base, #cccccc)" cx="12" cy="12" rx="10" ry="10" />
+      <path class="spinner" fill="none" stroke="var(--active, currentColor)" d="M 11.886 1.978 C 14.088 1.978 16.232 2.687 18 4" id="arc" />
+    </symbol>
+  </defs>
 </svg>
+
+

@@ -1,64 +1,63 @@
 <script lang="ts">
-	import { page } from '$app/state';
-	import AddIndicadorAreaResponsable from '$lib/components/features/indicador/area-responsable/AddIndicadorAreaResponsable.svelte';
-	import IndicadorAreaResponsableNestedList from '$lib/components/features/indicador/area-responsable/IndicadorAreaResponsableNestedList.svelte';
-	import AddIndicadorUnidadAcademica from '$lib/components/features/indicador/area-responsable/unidad-academica/AddIndicadorUnidadAcademica.svelte';
-	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
-	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
-	import type { IndicadorAreaResponsableItem } from '$lib/schemas/indicadorAreaResponsable';
-	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
+	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import {
 		getAreaResponsableRef,
-		getIndicadorAreaResponsable,
-		getUnidadAcademicaRef
+		getIndicador,
+		getIndicadorAreaResponsable
 	} from '$lib/components/common/stores/data.svelte';
-	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
+	import { page } from '$app/state';
+	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
+	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
+	import AddIndicadorAreaResponsableForm from '$lib/components/features/indicador/area-responsable/AddIndicadorAreaResponsableForm.svelte';
+	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';
+	import IndicadorAreaResponsableList from '$lib/components/features/indicador/area-responsable/IndicadorAreaResponsableList.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
-	let areaResponsableItems = getIndicadorAreaResponsable().filter(
-		(item) => item.indicador.code === indicadorCode
-	);
-	let areaResponsableRef = getAreaResponsableRef();
-	let modalChild = createModalManager<IdentifyParentChildItemSchema>();
-	let modal = createModalManager<IndicadorAreaResponsableItem>();
 
-	let unidadAcademicaRef = getUnidadAcademicaRef();
+	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
+
+	let indicadorAreaResponsableItems = getIndicadorAreaResponsable()
+		.find((item) => item.indicador.code === indicadorCode)
+		?.areaResponsable.filter((item) => item.type === indicadorItem?.indicadorType);
+
+	let areaResponsableRef = getAreaResponsableRef();
+	let modalAreaResponsable = createModalManager<AreaResponsableRef>();
+	let toggle = createToggleManager({ defaultOpen: true, exclusive: false });
 </script>
 
-<IndicadorAreaResponsableNestedList
-	onClickRemover={modal.handlers('remove').onClickItem}
-	onClickRemoverChild={modalChild.handlers('remove').onClickItem}
-	onClickAdd={modal.handlers('add').onClick}
-	onClickAddChild={modalChild.handlers('add').onClickItem}
-	items={areaResponsableItems}
-/>
+<div class="detail-panel">
+	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
+	<IndicadorAreaResponsableList
+		items={indicadorAreaResponsableItems}
+		isVisible={toggle.isOpen('area-responsable')}
+		onClickToggle={toggle.handlers('area-responsable').onClick}
+		onClickAdd={modalAreaResponsable.handlers('add').onClick}
+		onClickRemover={modalAreaResponsable.handlers('remove').onClickItem}
+	/>
+</div>
 
-<AddIndicadorAreaResponsable
-	open={modal.isOpen('add')}
+<AddIndicadorAreaResponsableForm
+	open={modalAreaResponsable.isOpen('add')}
 	{areaResponsableRef}
-	onClose={modal.close}
+	onClose={modalAreaResponsable.close}
 />
 
-<AddIndicadorUnidadAcademica
-	open={modalChild.isOpen('add')}
-	{unidadAcademicaRef}
-	onClose={modalChild.close}
-/>
-
-{#if modal.selectedItem}
+{#if modalAreaResponsable.selectedItem}
 	<ConfirmRemoveModal
 		demo={true}
-		open={modal.isOpen('remove')}
-		id={modal.selectedItem.id}
-		onClose={modal.close}
+		open={modalAreaResponsable.isOpen('remove')}
+		id={modalAreaResponsable.selectedItem.id}
+		onClose={modalAreaResponsable.close}
 	/>
 {/if}
 
-{#if modalChild.selectedItem}
-	<ConfirmRemoveModalParentChild
-		demo={true}
-		open={modalChild.isOpen('remove')}
-		id={modalChild.selectedItem}
-		onClose={modalChild.close}
-	/>
-{/if}
+<style>
+	.detail-panel {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+	}
+</style>

@@ -3,7 +3,7 @@
 	import Badge from '$lib/components/ui/Badge.svelte';
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
-	import CardHeaderCustom from '$lib/components/ui/card/CardHeaderCustom.svelte';
+	import CardHeaderClickable from '$lib/components/ui/card/CardHeaderClickable.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
 	import { convertEvaluacionEtapaIndicadorStatusToBadgeVariant } from '$lib/components/evaluacion/utils/EvaluacionEtapaIndicadorUtils';
@@ -39,7 +39,7 @@
 		<CardColumn minWidth="360px" maxWidth="3000px">
 			{#each items as item (item.id)}
 				<Card>
-					<CardHeaderCustom>
+					<CardHeaderClickable>
 						{#snippet title()}
 							<Tag class="text-caption" variant="info">Indicador</Tag>
 							<p style="text-transform: capitalize;">
@@ -52,7 +52,7 @@
 							icon={convertEvaluacionEtapaIndicadorStatusToBadgeVariant(item.status).icon}
 							>{convertEvaluacionEtapaIndicadorStatusToBadgeVariant(item.status).label}</Badge
 						>
-					</CardHeaderCustom>
+					</CardHeaderClickable>
 					<CardContent>
 						<CardContentItem label="Campus" value={item.campus.name} />
 						<CardContentItem label="Unidad académica" value={item.unidadAcademica.name} />

@@ -31,7 +31,8 @@
 		| 'password'
 		| 'remove'
 		| 'feedback'
-		| 'search';
+		| 'search'
+		| 'spinner';
 
 	export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -39,6 +40,7 @@
 		name: IconName;
 		size?: IconSize;
 		color?: string;
+		baseColor?: string;
 		isFilled?: boolean;
 		strokeWidth?: number;
 		class?: string;
@@ -50,6 +52,7 @@
 		name,
 		size = 'md',
 		color = 'currentColor',
+		baseColor = '#ccccccc',
 		isFilled = false,
 		strokeWidth = 2,
 		class: className = '',
@@ -75,7 +78,9 @@
 	height={currentSize}
 	class={['icon', className]}
 	aria-hidden="true"
-	style:color={color}
+	style:color
+	style:--base={baseColor}
+	style:--active={color}
 	style:stroke-width={strokeWidth}
 	style:transform="rotate({rotate}deg)"
 	style:display="block"

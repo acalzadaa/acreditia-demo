@@ -42,13 +42,9 @@
 		showHeader = true,
 		showExport = false,
 		showFilter = false,
-		title = 'Detalle de indicador',
+		title = 'Listado de indicadores',
 		subtitle = ''
 	}: Props = $props();
-
-	function buildTarget(item: IndicadorItem): string {
-		return item.target + ' ' + item.targetUnit;
-	}
 </script>
 
 <main class="main-panel">
@@ -83,12 +79,10 @@
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
-								<td class="col-code">{item.section.code}</td>
 								<td class="col-code">{item.code}</td>
 								<td class="col-label">{item.name}</td>
 								<td class="col-label">{item.indicadorType}</td>
 								<td class="col-text">{item.description}</td>
-								<td class="col-metric">{buildTarget(item)}</td>
 								<td class="col-badge">
 									<Badge variant={item.isDeleted ? 'error' : 'success'}>
 										{item.isDeleted ? 'borrado' : 'activo'}
@@ -143,7 +137,6 @@
 						<CardContent>
 							<CardContentItem label="Descripción" value={item.description} />
 							<CardContentItem label="Tipo" value={item.indicadorType} />
-							<CardContentItem label="Meta" value={buildTarget(item)} />
 						</CardContent>
 
 						<CardFooter>

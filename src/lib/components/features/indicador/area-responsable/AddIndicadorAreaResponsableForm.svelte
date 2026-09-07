@@ -2,9 +2,9 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelectCustom from '$lib/components/ui/select/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { AreaResponsableRef } from '$lib/schemas/shared.schema';
+	import InputSelectSearch from '$lib/components/ui/select/InputSelectSearch.svelte';
 
 	interface Props {
 		open: boolean;
@@ -75,7 +75,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Agregar area responsable</h2>
+			<h2 class="modal-title text-h4">Agregar área responsable</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -100,8 +100,8 @@
 						</div>
 					{/if}
 
-					<InputSelectCustom
-						label="Area Responsable"
+					<InputSelectSearch
+						label="Área Responsable"
 						name="code"
 						optionsData={areaResponsableOptions}
 						required={true}

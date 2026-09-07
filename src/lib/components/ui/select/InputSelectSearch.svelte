@@ -2,7 +2,7 @@
 	/**
 	 * @component InputSelectSearch
 	 *
-	 * Select con filtro de búsqueda. Es `InputSelectCustom` + un input de
+	 * Select con filtro de búsqueda. Es `InputSelect` + un input de
 	 * búsqueda: reutiliza el mismo `OptionsList` (portal, posicionamiento
 	 * fixed calculado con getBoundingClientRect, navegación con flechas,
 	 * Home/End/Escape/Tab) pasándole `options={filteredOptions}` y un
@@ -42,7 +42,7 @@
 		class?: string;
 		/**
 		 * Se dispara cuando el usuario elige una opción. Ver la misma nota
-		 * en InputSelectCustom: no es un `onchange` nativo, es explícito
+		 * en InputSelect: no es un `onchange` nativo, es explícito
 		 * porque el trigger es un <button> y no emite `change`.
 		 */
 		onValueChange?: (id: string) => void;
@@ -71,7 +71,7 @@
 	const hasErrors = $derived(errorList.length > 0);
 
 	// nullOption se resuelve como una opción más (id: '') — igual que en
-	// InputSelectCustom, para que el listbox no necesite casos especiales.
+	// InputSelect, para que el listbox no necesite casos especiales.
 	const allOptions = $derived(
 		nullOption ? [{ id: '', option: nullOption }, ...optionsData] : optionsData
 	);
@@ -232,7 +232,7 @@
 		</OptionsList>
 	</div>
 
-	<!-- Ver la misma nota en InputSelectCustom: necesario para que el valor
+	<!-- Ver la misma nota en InputSelect: necesario para que el valor
 		viaje en un submit nativo / FormData. -->
 	<input type="hidden" {name} {value} />
 

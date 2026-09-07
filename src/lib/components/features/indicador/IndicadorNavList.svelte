@@ -5,16 +5,25 @@
 	import PanelHeader from '$lib/components/ui/panel/PanelHeader.svelte';
 	import PanelListItemButton from '$lib/components/ui/panel/PanelListItemButton.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
-	import type { indicadorNavListItem } from '$lib/schemas/indicadorNavigation.schema';
+	import type { IndicadorNavigationStatusItem } from '$lib/schemas/indicador.schema';
+	import type { IndicadorNavListItem } from '$lib/schemas/indicadorNavigation.schema';
+	import IndicadorNavigationStatusIcon from './IndicadorNavigationStatusIcon.svelte';
 
 	interface Props {
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
-		items: indicadorNavListItem[];
+		items?: IndicadorNavListItem[];
+		navigationStatusItems?: IndicadorNavigationStatusItem[];
 	}
 
-	const { showHeader = false, title = 'Add', subtitle = '', items }: Props = $props();
+	const {
+		showHeader = false,
+		title = 'Add',
+		subtitle = '',
+		items = [],
+		navigationStatusItems
+	}: Props = $props();
 
 	const sortedItems = $derived([...items].sort((a, b) => a.order - b.order));
 </script>
@@ -27,7 +36,12 @@
 		{#if sortedItems.length > 0}
 			{#each sortedItems as item (item.id)}
 				<PanelListItemButton onClick={() => navigateTo(item.url)}>
-					{item.name}
+					<div style="display: flex; gap: 4px;">
+						<IndicadorNavigationStatusIcon navigationItem={item} {navigationStatusItems} />
+						<p>
+							{item.name}
+						</p>
+					</div>
 				</PanelListItemButton>
 			{/each}
 		{:else}

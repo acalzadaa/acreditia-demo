@@ -7,7 +7,7 @@
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
-	import CardHeaderCustom from '$lib/components/ui/card/CardHeaderCustom.svelte';
+	import CardHeaderClickable from '$lib/components/ui/card/CardHeaderClickable.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import { navigateTo } from '$lib/helpers/navigation';
 	import type { EvaluacionEtapaIndicadorItemFor } from '$lib/schemas/evaluacionEtapaIndicador.schema';
@@ -26,7 +26,7 @@
 			<CardColumn minWidth="360px" maxWidth="2500px">
 				<Card>
 					<!-- Datos de indicador -->
-					<CardHeaderCustom onClick={() => navigateTo(item.id)}>
+					<CardHeaderClickable onClick={() => navigateTo(item.id)}>
 						{#snippet title()}
 							<Tag class="text-caption" variant="info">Indicador</Tag>
 							<p>{capitalizeText(item.indicador.name)}</p>
@@ -38,7 +38,7 @@
 						>
 							{convertEvaluacionEtapaIndicadorStatusToBadgeVariant(item.status).label}
 						</Badge>
-					</CardHeaderCustom>
+					</CardHeaderClickable>
 					<!-- Datos de rubrica seleccionada -->
 					<CardContent>
 						<CardContentItem label="Campus" value={capitalizeText(item.campus.name)} />

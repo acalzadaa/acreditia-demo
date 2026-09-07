@@ -8,24 +8,21 @@
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
 	import type { IndicadorItem } from '$lib/schemas/indicador.schema';
+	import { convertIndicadorTypeToLabel } from './utils/indicadorUtils';
 
 	interface Props {
-		items: IndicadorItem[];
+		item?: IndicadorItem;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
 	}
 
 	const {
-		items,
+		item,
 		showHeader = true,
 		title = 'Detalle de indicador',
 		subtitle = ''
 	}: Props = $props();
-
-	function buildTarget(item: IndicadorItem): string {
-		return item.target + ' ' + item.targetUnit;
-	}
 </script>
 
 <main class="main-panel--inline">
@@ -33,35 +30,31 @@
 		{#if showHeader}
 			<PageHeader {title} {subtitle} />
 		{/if}
-		{#if items.length > 0}
+		{#if item}
 			<div class="table-container--inline">
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Seccion</th>
 							<th class="col-code">Código</th>
 							<th class="col-label">Nombre</th>
+							<th class="col-label">Tipo</th>
 							<th class="col-text">Descripción</th>
-							<th class="col-metric">Meta</th>
 							<th class="col-badge">Estatus</th>
 						</tr>
 					</thead>
 
 					<tbody class="text-body">
-						{#each items as item (item.id)}
-							<tr class="table-row tr-expandable">
-								<td class="col-code">{item.section.code}</td>
-								<td class="col-code">{item.code}</td>
-								<td class="col-label">{item.name}</td>
-								<td class="col-text">{item.description}</td>
-								<td class="col-metric">{buildTarget(item)}</td>
-								<td class="col-badge">
-									<Badge variant={item.isDeleted ? 'error' : 'success'}>
-										{item.isDeleted ? 'borrado' : 'activo'}
-									</Badge>
-								</td>
-							</tr>
-						{/each}
+						<tr class="table-row tr-expandable">
+							<td class="col-code">{item.code}</td>
+							<td class="col-label">{item.name}</td>
+							<td class="col-label">{convertIndicadorTypeToLabel(item.indicadorType)}</td>
+							<td class="col-text">{item.description}</td>
+							<td class="col-badge">
+								<Badge variant={item.isDeleted ? 'error' : 'success'}>
+									{item.isDeleted ? 'borrado' : 'activo'}
+								</Badge>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -71,23 +64,20 @@
 	</section>
 
 	<section class="list-view--cards">
-		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="2500px">
-				{#each items as item (item.id)}
-					<Card>
-						<CardHeader subtitle={item.code} title={item.name}>
-							<Badge variant={item.isDeleted ? 'error' : 'success'}>
-								{item.isDeleted ? 'borrado' : 'activo'}
-							</Badge>
-						</CardHeader>
+		{#if item}
+			<CardColumn minWidth="360px">
+				<Card>
+					<CardHeader subtitle={item.code} title={item.name}>
+						<Badge variant={item.isDeleted ? 'error' : 'success'}>
+							{item.isDeleted ? 'borrado' : 'activo'}
+						</Badge>
+					</CardHeader>
 
-						<CardContent>
-							<CardContentItem label="Descripción" value={item.description} />
-							<CardContentItem label="Tipo" value={item.indicadorType} />
-							<CardContentItem label="Meta" value={buildTarget(item)} />
-						</CardContent>
-					</Card>
-				{/each}
+					<CardContent>
+						<CardContentItem label="Descripción" value={item.description} />
+						<CardContentItem label="Tipo" value={convertIndicadorTypeToLabel(item.indicadorType)} />
+					</CardContent>
+				</Card>
 			</CardColumn>
 		{:else}
 			<EmptySection message="No hay elementos"></EmptySection>
@@ -113,7 +103,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 2500px) {
+	@media (max-width: 99999px) {
 		.list-view--table {
 			display: none;
 		}

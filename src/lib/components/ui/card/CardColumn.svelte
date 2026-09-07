@@ -8,7 +8,7 @@
 		children: Snippet;
 	}
 
-	const { maxWidth, minWidth, class: className = '', children }: Props = $props();
+	const { maxWidth = '99999px', minWidth, class: className = '', children }: Props = $props();
 
 	const style = $derived(
 		[

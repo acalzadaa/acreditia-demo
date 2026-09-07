@@ -6,39 +6,43 @@
 	import ConfirmModal from '$lib/components/ui/confirm/ConfirmModal.svelte';
 	import type { RubricaItem } from '$lib/schemas/rubrica.schema';
 	import type { RemoverRubricaCriterioItem } from '$lib/schemas/rubricaCriterio.schema';
-	import { getRubrica } from '$lib/components/common/stores/data.svelte';
+	import { getIndicador, getRubrica } from '$lib/components/common/stores/data.svelte';
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
+	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
-	let rubricaItems = getRubrica().filter((item) => item.indicador.code === indicadorCode);
+	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
 
+	let rubricaItems = getRubrica().filter((item) => item.indicador.code === indicadorCode);
 	let modal = createModalManager<RubricaItem>();
 	let modalCriterio = createModalManager<RemoverRubricaCriterioItem>();
 </script>
 
 <main class="detail-panel">
-	<PageHeader title="Niveles de desempeño" subtitle='Agrégue los critérios de evaluación'/>
-	<RubricaCriterioList
-		items={rubricaItems}
-		onClickRemover={modalCriterio.handlers('remove').onClickItem}
-		onClickAdd={modal.handlers('add').onClickItem}
-	/>
+	<div class="detail-panel--static">
+		<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
+		<PageHeader title="Niveles de desempeño" subtitle="Agrégue los critérios de evaluación" />
+	</div>
 
-	<CrearRubricaCriterioForm
-		open={modal.isOpen('add')}
-		onClose={modal.close}
-	/>
-
-	{#if modalCriterio.selectedItem}
-		<ConfirmModal
-			demo={true}
-			message="¿Desea remover el registro?"
-			title="Remover criterio"
-			buttonLabel="Remover"
-			open={modalCriterio.isOpen('remove')}
-			id={modalCriterio.selectedItem.id}
-			onClose={modalCriterio.close}
-			actionButtonVariant="critical"
+	<div class="detail-content">
+		<RubricaCriterioList
+			items={rubricaItems}
+			onClickRemover={modalCriterio.handlers('remove').onClickItem}
+			onClickAdd={modal.handlers('add').onClickItem}
 		/>
-	{/if}
+	</div>
 </main>
+<CrearRubricaCriterioForm open={modal.isOpen('add')} onClose={modal.close} />
+
+{#if modalCriterio.selectedItem}
+	<ConfirmModal
+		demo={true}
+		message="¿Desea remover el registro?"
+		title="Remover criterio"
+		buttonLabel="Remover"
+		open={modalCriterio.isOpen('remove')}
+		id={modalCriterio.selectedItem.id}
+		onClose={modalCriterio.close}
+		actionButtonVariant="critical"
+	/>
+{/if}
