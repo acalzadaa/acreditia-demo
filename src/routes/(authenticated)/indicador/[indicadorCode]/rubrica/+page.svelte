@@ -31,19 +31,18 @@
 			onClickAdd={modal.handlers('add').onClickItem}
 		/>
 	</div>
-
-	<CrearRubricaCriterioForm open={modal.isOpen('add')} onClose={modal.close} />
-
-	{#if modalCriterio.selectedItem}
-		<ConfirmModal
-			demo={true}
-			message="¿Desea remover el registro?"
-			title="Remover criterio"
-			buttonLabel="Remover"
-			open={modalCriterio.isOpen('remove')}
-			id={modalCriterio.selectedItem.id}
-			onClose={modalCriterio.close}
-			actionButtonVariant="critical"
-		/>
-	{/if}
 </main>
+<CrearRubricaCriterioForm open={modal.isOpen('add')} onClose={modal.close} />
+
+{#if modalCriterio.selectedItem}
+	<ConfirmModal
+		demo={true}
+		message="¿Desea remover el registro?"
+		title="Remover criterio"
+		buttonLabel="Remover"
+		open={modalCriterio.isOpen('remove')}
+		id={modalCriterio.selectedItem.id}
+		onClose={modalCriterio.close}
+		actionButtonVariant="critical"
+	/>
+{/if}

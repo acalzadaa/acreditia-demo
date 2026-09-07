@@ -43,18 +43,11 @@
 			"order": 6
 		},
 		{
-			"id": "189e61cd-88fd-458e-ac3f-695184664d5b",
-			"name": "Evidencia",
-			"code": "evidencia",
-			"url": "/evidencia",
-			"order": 7
-		},
-		{
 			"id": "6284c092-d7c9-4800-a295-3cf528f92a19",
 			"name": "Indicador Estratégico",
 			"code": "indicadorEstrategico",
 			"url": "/indicador-estrategico",
-			"order": 8
+			"order": 7
 		}
 	]
 }
