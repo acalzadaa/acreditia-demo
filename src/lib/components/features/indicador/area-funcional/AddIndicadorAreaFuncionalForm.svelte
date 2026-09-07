@@ -2,17 +2,17 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { BaseRef } from '$lib/schemas/shared.schema';
+	import InputSelectSearch from '$lib/components/ui/select/InputSelectSearch.svelte';
 
 	interface Props {
 		open: boolean;
-		subareaFuncionalRef: BaseRef[];
+		areaFuncionalRef: BaseRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, subareaFuncionalRef = [] }: Props = $props();
+	let { open = $bindable(false), onClose, areaFuncionalRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
@@ -22,8 +22,8 @@
 	let errorMessage = $state('');
 
 	// Opciones para el select de área responsable
-	const subareaFuncionalOptions = $derived(
-		subareaFuncionalRef.map((ref) => ({
+	const areaFuncionalOptions = $derived(
+		areaFuncionalRef.map((ref) => ({
 			id: ref.code,
 			option: `${ref.code} - ${ref.name}`
 		}))
@@ -75,7 +75,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Agregar area funcional</h2>
+			<h2 class="modal-title text-h4">Agregar área funcional</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -100,10 +100,10 @@
 						</div>
 					{/if}
 
-					<InputSelect
-						label="Area Funcional"
+					<InputSelectSearch
+						label="Área funcional"
 						name="code"
-						optionsData={subareaFuncionalOptions}
+						optionsData={areaFuncionalOptions}
 						required={true}
 						bind:value={formData.code}
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
@@ -111,10 +111,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Agregar subarea</Button>
-			</footer>
+				<Button type="submit" variant="primary">Agregar área</Button>
+			</menu>
 		</form>
 	</div>
 </Modal>

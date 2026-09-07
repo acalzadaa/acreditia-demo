@@ -1,54 +1,62 @@
 <script lang="ts">
-	import { page } from '$app/state';
-	import AddIndicadorAreaFuncional from '$lib/components/features/indicador/area-funcional/AddIndicadorAreaFuncionalPicker.svelte';
-	import IndicadorAreaFuncionalNestedList from '$lib/components/features/indicador/area-funcional/IndicadorAreaFuncionalNestedList.svelte';
-	import AddIndicadorSubareaFuncional from '$lib/components/features/indicador/area-funcional/subarea-funcional/AddIndicadorSubareaFuncional.svelte';
-	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
-	import ConfirmRemoveModalParentChild from '$lib/components/ui/confirm/ConfirmRemoveModalParentChild.svelte';
-	import type { IndicadorAreaFuncionalItem } from '$lib/schemas/indicadorAreaFuncional';
-	import type { IdentifyParentChildItemSchema } from '$lib/schemas/shared.schema';
-	import { getAreaFuncionalRef, getIndicadorAreaFuncional } from '$lib/components/common/stores/data.svelte';
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
-
+	import {
+	getAreaFuncionalRef,
+		getIndicador,
+		getIndicadorAreaFuncional	} from '$lib/components/common/stores/data.svelte';
+	import { page } from '$app/state';
+	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
+	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';
+	import IndicadorAreaFuncionalList from '$lib/components/features/indicador/area-funcional/IndicadorAreaFuncionalList.svelte';
+	import AddIndicadorAreaFuncionalForm from '$lib/components/features/indicador/area-funcional/AddIndicadorAreaFuncionalForm.svelte';
+	
 	let indicadorCode = page.params.indicadorCode;
-	let areaFuncionalItems = getIndicadorAreaFuncional().filter(
-		(item) => item.indicador.code === indicadorCode
-	);
-	let subareaFuncionalRef = getAreaFuncionalRef();
-	let modalChild = createModalManager<IdentifyParentChildItemSchema>();
-	let modal = createModalManager<IndicadorAreaFuncionalItem>();
+
+	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
+
+	let indicadorAreaFuncionalItems = getIndicadorAreaFuncional()
+		.find((item) => item.indicador.code === indicadorCode)
+		?.areaFuncional;
+
+	let areaFuncionalRef = getAreaFuncionalRef();
+	let modalAreaFuncional = createModalManager<BaseRef>();
+	let toggle = createToggleManager({ defaultOpen: true, exclusive: false });
 </script>
 
-<IndicadorAreaFuncionalNestedList
-	onClickRemover={modal.handlers('remove').onClickItem}
-	onClickRemoverChild={modalChild.handlers('remove').onClickItem}
-	onClickAdd={modal.handlers('add').onClick}
-	onClickAddChild={modalChild.handlers('add').onClickItem}
-	items={areaFuncionalItems}
+<div class="detail-panel">
+	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
+	<IndicadorAreaFuncionalList
+		items={indicadorAreaFuncionalItems}
+		isVisible={toggle.isOpen('area-funcional')}
+		onClickToggle={toggle.handlers('area-funcional').onClick}
+		onClickAdd={modalAreaFuncional.handlers('add').onClick}
+		onClickRemover={modalAreaFuncional.handlers('remove').onClickItem}
+	/>
+</div>
+
+<AddIndicadorAreaFuncionalForm
+	open={modalAreaFuncional.isOpen('add')}
+	{areaFuncionalRef}
+	onClose={modalAreaFuncional.close}
 />
 
-<AddIndicadorAreaFuncional open={modal.isOpen('add')} {subareaFuncionalRef} onClose={modal.close} />
-
-<AddIndicadorSubareaFuncional
-	open={modalChild.isOpen('add')}
-	{subareaFuncionalRef}
-	onClose={modalChild.close}
-/>
-
-{#if modal.selectedItem}
+{#if modalAreaFuncional.selectedItem}
 	<ConfirmRemoveModal
 		demo={true}
-		open={modal.isOpen('remove')}
-		id={modal.selectedItem.id}
-		onClose={modal.close}
+		open={modalAreaFuncional.isOpen('remove')}
+		id={modalAreaFuncional.selectedItem.id}
+		onClose={modalAreaFuncional.close}
 	/>
 {/if}
 
-{#if modalChild.selectedItem}
-	<ConfirmRemoveModalParentChild
-		demo={true}
-		open={modalChild.isOpen('remove')}
-		id={modalChild.selectedItem}
-		onClose={modalChild.close}
-	/>
-{/if}
+<style>
+	.detail-panel {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+	}
+</style>
