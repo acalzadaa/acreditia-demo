@@ -26,7 +26,7 @@
 		onClickRemover,
 		onClickCrear,
 		showHeader = true,
-		title = 'Detalle de indicador estrategico',
+		title = 'Detalle de indicador estratégico',
 		subtitle = ''
 	}: Props = $props();
 </script>
@@ -35,14 +35,14 @@
 	{#if showHeader}
 		<PageHeader {title} {subtitle} />
 	{/if}
-	<Toolbar actionTitle="Agregar indicador estrategico" {onClickCrear} />
+	<Toolbar actionTitle="Agregar indicador estratégico" {onClickCrear} />
 	{#if items.length > 0}
 		<div class="table-container">
 			<table class="data-table text-body">
 				<thead class="text-body-strong">
 					<tr>
-						<th class="col-code">Codigo</th>
-						<th class="col-code">Indicador Estrategico</th>
+						<th class="col-code">Código</th>
+						<th class="col-code">Indicador Estratégico</th>
 						<th class="col-label">Descripción</th>
 						<th class="col-actions-md">Acciones</th>
 					</tr>
@@ -82,7 +82,7 @@
 	{/if}
 	<Toolbar
 		mobileVersion={true}
-		actionTitle="Agregar indicador estrategico"
+		actionTitle="Agregar indicador estratégico"
 		{onClickCrear}
 		showExport={false}
 		showFilter={false}
@@ -97,7 +97,7 @@
 						</Badge>
 					</CardHeader>
 					<CardContent>
-						<CardContentItem label="Codigo" value={item.indicadorEstrategico.code} />
+						<CardContentItem label="Código" value={item.indicadorEstrategico.code} />
 					</CardContent>
 					<CardFooter>
 						<SublistActions
