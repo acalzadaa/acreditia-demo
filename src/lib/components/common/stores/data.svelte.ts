@@ -42,6 +42,7 @@ import indicadorMetaJsonData from '$lib/data/indicador-meta.json';
 import indicadorSeccionJsonData from '$lib/data/indicador-seccion.json';
 import indicadorAreaResponsableJsonData from '$lib/data/indicador-area-responsable.json';
 import indicadorAreaFuncionalJsonData from '$lib/data/indicador-area-funcional.json';
+import indicadorPuestoJsonData from '$lib/data/indicador-puesto.json';
 import indicadorNormativaJsonData from '$lib/data/indicador-normativa.json';
 import indicadorIndicadorEstrategicoJsonData from '$lib/data/indicador-indicador-estrategico.json';
 import indicadorEvidenciaJsonData from '$lib/data/indicador-evidencia.json';
@@ -171,7 +172,14 @@ import {
 } from '$lib/schemas/indicadorNavigation.schema';
 import { indicadorItemSchema, type IndicadorItem } from '$lib/schemas/indicador.schema';
 import { indicadorMetaItemSchema, type IndicadorMetaItem } from '$lib/schemas/indicadorMeta.schema';
-import { indicadorSeccionItemSchema, type IndicadorSeccionItem } from '$lib/schemas/indicadorSeccion.schema';
+import {
+	indicadorSeccionItemSchema,
+	type IndicadorSeccionItem
+} from '$lib/schemas/indicadorSeccion.schema';
+import {
+	type indicadorPuestoItem,
+	indicadorPuestoItemSchema
+} from '$lib/schemas/indicadorPuesto.schema';
 
 // Estado reactivo
 let filosofias = $state<FilosofiaInstitucionalItem[]>([]);
@@ -219,6 +227,7 @@ let indicadorMeta = $state<IndicadorMetaItem[]>([]);
 let indicadorSeccion = $state<IndicadorSeccionItem[]>([]);
 let indicadorAreaResponsable = $state<IndicadorAreaResponsableItem[]>([]);
 let indicadorAreaFuncional = $state<IndicadorAreaFuncionalItem[]>([]);
+let indicadorPuesto = $state<indicadorPuestoItem[]>([]);
 let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
 let indicadorEvidencia = $state<IndicadorEvidenciaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
@@ -384,17 +393,11 @@ evaluacionEtapaIndicador = evaluacionEtapaIndicadorRawData.map((item) =>
 	evaluacionEtapaIndicadorItemSchema.parse(item)
 );
 
-const indicadorMetaRawData =
-	indicadorMetaJsonData.indicadorMetaItems;
-indicadorMeta = indicadorMetaRawData.map((item) =>
-	indicadorMetaItemSchema.parse(item)
-);
+const indicadorMetaRawData = indicadorMetaJsonData.indicadorMetaItems;
+indicadorMeta = indicadorMetaRawData.map((item) => indicadorMetaItemSchema.parse(item));
 
-const indicadorSeccionRawData =
-	indicadorSeccionJsonData.indicadorSeccionItems;
-indicadorSeccion = indicadorSeccionRawData.map((item) =>
-	indicadorSeccionItemSchema.parse(item)
-);
+const indicadorSeccionRawData = indicadorSeccionJsonData.indicadorSeccionItems;
+indicadorSeccion = indicadorSeccionRawData.map((item) => indicadorSeccionItemSchema.parse(item));
 
 const indicadorAreaResponsableRawData =
 	indicadorAreaResponsableJsonData.indicadorAreaResponsableItems;
@@ -406,6 +409,9 @@ const indicadorAreaFuncionalRawData = indicadorAreaFuncionalJsonData.indicadorAr
 indicadorAreaFuncional = indicadorAreaFuncionalRawData.map((item) =>
 	indicadorAreaFuncionalItemSchema.parse(item)
 );
+
+const indicadorPuestoRawData = indicadorPuestoJsonData.indicadorPuestoItems;
+indicadorPuesto = indicadorPuestoRawData.map((item) => indicadorPuestoItemSchema.parse(item));
 
 const indicadorNormativaRawData = indicadorNormativaJsonData.indicadorNormativaItems;
 indicadorNormativa = indicadorNormativaRawData.map((item) =>
@@ -686,6 +692,10 @@ export function getIndicadorAreaResponsable() {
 
 export function getIndicadorAreaFuncional() {
 	return indicadorAreaFuncional;
+}
+
+export function getIndicadorPuesto() {
+	return indicadorPuesto;
 }
 
 export function getIndicadorNormativa() {
