@@ -1,0 +1,46 @@
+{
+	"indicadorNormativaItems": [
+		{
+			"id": "55bbcf82-8cf4-4081-ae48-45bb4949efd3",
+			"code": "ind-001-NOR-AC-001",
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"puesto": {
+				"id": "11935fea-37be-44a6-9545-e62f28bf60bc",
+				"code": "DIR_CALIDAD-I",
+				"name": "Director de Calidad y Acreditación"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-15T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-15T10:30:00Z",
+			"createdBy": "planeacion@universidad.edu"
+		},
+		{
+			"id": "3b25f44a-1419-472f-86d6-3e34338a1d94",
+			"code": "ind-001-NOR-DOC-002",
+			"indicador": {
+				"id": "01224bbe-38f0-4c7c-b0d7-41f6701020ac",
+				"code": "ind-001",
+				"name": "Tasa de Retención Estudiantil"
+			},
+			"puesto": {
+				"id": "f0aa4efd-daf5-4ffb-81af-a0cc1105168d",
+				"code": "SIST-I",
+				"name": "Director de Sistemas"
+			},
+			"version": 1,
+			"isCurrent": true,
+			"validFrom": "2024-01-15T00:00:00Z",
+			"validTo": null,
+			"isDeleted": false,
+			"createdAt": "2024-01-15T10:30:00Z",
+			"createdBy": "planeacion@universidad.edu"
+		}
+	]
+}
