@@ -1,119 +1,57 @@
 <script lang="ts">
 	import EmptySection from '$lib/components/common/EmptySection.svelte';
-	import Badge from '$lib/components/ui/Badge.svelte';
-	import Toolbar from '$lib/components/common/Toolbar.svelte';
-	import PageHeader from '$lib/components/common/PageHeader.svelte';
-	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
-	import Card from '$lib/components/ui/card/Card.svelte';
-	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
-	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
 	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa.schema';
-	import SublistActions from '$lib/components/ui/actions/SublistActions.svelte';
-	import CardContent from '$lib/components/ui/card/CardContent.svelte';
-	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
+	import AccordionColumn from '$lib/components/ui/accordion/AccordionColumn.svelte';
+	import Accordion from '$lib/components/ui/accordion/Accordion.svelte';
+	import Tag from '$lib/components/ui/Tag.svelte';
+	import AccordionHeaderButton from '$lib/components/ui/accordion/AccordionHeaderButton.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import AccordionContent from '$lib/components/ui/accordion/AccordionContent.svelte';
+	import AccordionContentItem from '$lib/components/ui/accordion/AccordionContentItem.svelte';
 
 	interface Props {
 		items: IndicadorNormativaItem[];
+		isVisible: boolean;
+		onClickToggle: () => void;
 		onClickRemover: (item: IndicadorNormativaItem) => void;
-		onClickCrear: () => void;
-		showHeader?: boolean;
-		title?: string;
-		subtitle?: string;
+		onClickAdd: () => void;
 	}
 
-	const {
-		items,
-		onClickRemover,
-		onClickCrear,
-		showHeader = true,
-		title = 'Detalle de normativa',
-		subtitle = ''
-	}: Props = $props();
+	const { items, isVisible = true, onClickToggle, onClickRemover, onClickAdd }: Props = $props();
 </script>
 
-<section class="list-view--table">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-	<Toolbar actionTitle="Agregar normativa" {onClickCrear} />
-	{#if items.length > 0}
-		<div class="table-container">
-			<table class="data-table text-body">
-				<thead class="text-body-strong">
-					<tr>
-						<th class="col-code">Codigo</th>
-						<th class="col-code">Normativa</th>
-						<th class="col-label">Descripción</th>
-						<th class="col-actions-md">Acciones</th>
-					</tr>
-				</thead>
+<main class="main-panel--inline">
+	<section class="list-view--cards text-body">
+		{#if items}
+			<AccordionColumn minWidth="360px" maxWidth="2500px">
+				<Accordion>
+					<AccordionHeaderButton id="acc-1" {isVisible} onToggle={() => onClickToggle()}>
+						{#snippet subtitle()}
+							<Tag>Total de normativas: {items.length}</Tag>
+						{/snippet}
+						<Button variant="ghost" size="sm" name="add" onClick={onClickAdd}>
+							Agregar normativa
+						</Button>
+					</AccordionHeaderButton>
 
-				<tbody class="text-body">
-					{#each items as item (item.id)}
-						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.indicador.code}</td>
-							<td class="col-code">
-								<Badge variant="info">{item.normativa.code}</Badge>
-							</td>
-							<td class="col-label">
-								{item.normativa.name}
-							</td>
-							<td class="col-actions-md">
-								<SublistActions
-									{item}
-									onClickRemove={() => onClickRemover(item)}
-									isRemoveDisabled={item.isDeleted}
-									showRemove={true}
-								/>
-							</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
-	{:else}
-		<EmptySection />
-	{/if}
-</section>
-
-<section class="list-view--cards">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-	<Toolbar
-		mobileVersion={true}
-		actionTitle="Agregar normativa"
-		{onClickCrear}
-		showExport={false}
-		showFilter={false}
-	/>
-	{#if items.length > 0}
-		<CardColumn minWidth="360px" maxWidth="900px">
-			{#each items as item (item.id)}
-				<Card>
-					<CardHeader subtitle={item.indicador.code} title={item.normativa.name}>
-						<Badge variant={item.isDeleted ? 'error' : 'success'}>
-							{item.isDeleted ? 'borrado' : 'activo'}
-						</Badge>
-					</CardHeader>
-					<CardContent>
-						<CardContentItem label="Codigo de normativa" value={item.normativa.code} />
-					</CardContent>
-					<CardFooter>
-						<SublistActions
-							{item}
-							onClickRemove={() => onClickRemover(item)}
-							showRemove={true}
-							isRemoveDisabled={item.isDeleted}
-						/>
-					</CardFooter>
-				</Card>
-			{/each}
-		</CardColumn>
-	{:else}
-		<EmptySection message="No hay elementos"></EmptySection>
-	{/if}
-</section>
+					<AccordionContent isCollapsible={true} {isVisible}>
+						{#each items as item (item)}
+							<AccordionContentItem
+								label={item.normativa?.code}
+								value={item.normativa?.name}
+								onAction={() => onClickRemover(item)}
+								actionIcon="remove"
+								actionAriaLabel="remover elemento"
+							/>
+						{/each}
+					</AccordionContent>
+				</Accordion>
+			</AccordionColumn>
+		{:else}
+			<EmptySection message="No hay elementos" />
+		{/if}
+	</section>
+</main>
 
 <style>
 	.list-view--table {

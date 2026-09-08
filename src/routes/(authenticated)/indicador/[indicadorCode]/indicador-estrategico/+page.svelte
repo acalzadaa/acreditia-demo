@@ -11,6 +11,7 @@
 	} from '$lib/components/common/stores/data.svelte';
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
@@ -20,24 +21,23 @@
 	);
 	let indicadorEstrategicoRef = getIndicadorEstrategicoRef();
 	let modal = createModalManager<IndicadorIndicadorEstrategicoItem>();
+		let toggle = createToggleManager({ defaultOpen: true, exclusive: false });
+
 </script>
 
 <main class="detail-panel">
-	<div class="detail-panel--static">
-		<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
-	</div>
-
-	<div class="detail-content">
-		<IndicadorIndicadorEstrategicoList
-			onClickRemover={modal.handlers('remove').onClickItem}
-			onClickCrear={modal.handlers('create').onClick}
-			items={indicadorIndicadorEstrategicoItems}
-		/>
-	</div>
+	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
+	<IndicadorIndicadorEstrategicoList
+		onClickRemover={modal.handlers('remove').onClickItem}
+		isVisible={toggle.isOpen('indicador-estrategico')}
+		onClickToggle={toggle.handlers('indicador-estrategico').onClick}
+		onClickAdd={modal.handlers('add').onClick}
+		items={indicadorIndicadorEstrategicoItems}
+	/>
 </main>
 
 <AddIndicadorIndicadorEstrategicoPicker
-	open={modal.isOpen('create')}
+	open={modal.isOpen('add')}
 	{indicadorEstrategicoRef}
 	onClose={modal.close}
 />

@@ -19,18 +19,13 @@
 </script>
 
 <main class="detail-panel">
-	<div class="detail-panel--static">
-		<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
-		<PageHeader title="Niveles de desempeño" subtitle="Agrégue los critérios de evaluación" />
-	</div>
-
-	<div class="detail-content">
-		<RubricaCriterioList
-			items={rubricaItems}
-			onClickRemover={modalCriterio.handlers('remove').onClickItem}
-			onClickAdd={modal.handlers('add').onClickItem}
-		/>
-	</div>
+	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
+	<PageHeader title="Niveles de desempeño" subtitle="Agrégue los critérios de evaluación" />
+	<RubricaCriterioList
+		items={rubricaItems}
+		onClickRemover={modalCriterio.handlers('remove').onClickItem}
+		onClickAdd={modal.handlers('add').onClickItem}
+	/>
 </main>
 <CrearRubricaCriterioForm open={modal.isOpen('add')} onClose={modal.close} />
 
