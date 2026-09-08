@@ -11,6 +11,7 @@
 	} from '$lib/components/common/stores/data.svelte';
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
@@ -20,18 +21,21 @@
 	);
 	let modal = createModalManager<IndicadorNormativaItem>();
 	let normativaRef = getNormativaRef();
+	let toggle = createToggleManager({ defaultOpen: true, exclusive: false });
 </script>
 
 <main class="detail-panel">
 	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
 	<IndicadorNormativaList
-		onClickCrear={modal.handlers('create').onClick}
+		isVisible={toggle.isOpen('normativa')}
+		onClickToggle={toggle.handlers('normativa').onClick}
+		onClickAdd={modal.handlers('add').onClick}
 		onClickRemover={modal.handlers('remove').onClickItem}
 		items={indicadorNormativaItems}
 	/>
 </main>
 
-<AddIndicadorNormativa open={modal.isOpen('create')} {normativaRef} onClose={modal.close} />
+<AddIndicadorNormativa open={modal.isOpen('add')} {normativaRef} onClose={modal.close} />
 
 {#if modal.selectedItem}
 	<ConfirmRemoveModal

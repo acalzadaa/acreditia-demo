@@ -2,9 +2,9 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { IndicadorEstrategicoRef } from '$lib/schemas/indicadorEstrategico.schema';
+	import InputSelectSearch from '$lib/components/ui/select/InputSelectSearch.svelte';
 
 	interface Props {
 		open: boolean;
@@ -100,7 +100,7 @@
 						</div>
 					{/if}
 
-					<InputSelect
+					<InputSelectSearch
 						label="Indicador Estrategico"
 						name="code"
 						optionsData={indicadorEstrategicoOptions}

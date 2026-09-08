@@ -32,7 +32,7 @@
 	function handleSubmit() {
 		// Validación básica
 		if (!formData.code) {
-			errorMessage = 'Debes seleccionar un indicador estrategico';
+			errorMessage = 'Debes seleccionar un puesto';
 			return;
 		}
 

@@ -2,9 +2,9 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { BaseRef } from '$lib/schemas/shared.schema';
+	import InputSelectSearch from '$lib/components/ui/select/InputSelectSearch.svelte';
 
 	interface Props {
 		open: boolean;
@@ -100,7 +100,7 @@
 						</div>
 					{/if}
 
-					<InputSelect
+					<InputSelectSearch
 						label="Normativa"
 						name="code"
 						optionsData={subareaFuncionalOptions}
@@ -111,10 +111,10 @@
 				</div>
 			</div>
 
-			<footer class="modal-footer text-body">
+			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
 				<Button type="submit" variant="primary">Agregar</Button>
-			</footer>
+			</menu>
 		</form>
 	</div>
 </Modal>

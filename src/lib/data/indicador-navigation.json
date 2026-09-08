@@ -16,14 +16,14 @@
 		},
 		{
 			"id": "fd237590-afea-4c4f-86e9-de406c78b7f7",
-			"name": "Área Responsable",
+			"name": "Área responsable",
 			"code": "responsable",
 			"url": "/area-responsable",
 			"order": 3
 		},
 		{
 			"id": "169a1c83-a9a5-48b2-8219-58a7f38a9991",
-			"name": "Área Funcional",
+			"name": "Área funcional",
 			"code": "funcional",
 			"url": "/area-funcional",
 			"order": 4
@@ -51,7 +51,7 @@
 		},
 		{
 			"id": "6284c092-d7c9-4800-a295-3cf528f92a19",
-			"name": "Indicador Estratégico",
+			"name": "Indicador estratégico",
 			"code": "indicadorEstrategico",
 			"url": "/indicador-estrategico",
 			"order": 8
