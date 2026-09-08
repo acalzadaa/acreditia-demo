@@ -1,37 +1,37 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AddIndicadorNormativa from '$lib/components/features/indicador/normativa/AddIndicadorNormativa.svelte';
-	import IndicadorNormativaList from '$lib/components/features/indicador/normativa/IndicadorNormativaList.svelte';
 	import ConfirmRemoveModal from '$lib/components/ui/confirm/ConfirmRemoveModal.svelte';
-	import type { IndicadorNormativaItem } from '$lib/schemas/indicadorNormativa.schema';
 	import {
 		getIndicador,
-		getIndicadorNormativa,
-		getNormativaRef
+		getIndicadorPuesto,
+		getPuestoRef
 	} from '$lib/components/common/stores/data.svelte';
 	import { createModalManager } from '$lib/components/ui/modal/stores/modalManager.svelte';
 	import IndicadorDetail from '$lib/components/features/indicador/IndicadorDetail.svelte';
+	import type { IndicadorPuestoItem } from '$lib/schemas/indicadorPuesto.schema';
+	import IndicadorPuestoList from '$lib/components/features/indicador/puesto/IndicadorPuestoList.svelte';
+	import AddIndicadorPuesto from '$lib/components/features/indicador/puesto/AddIndicadorPuesto.svelte';
 
 	let indicadorCode = page.params.indicadorCode;
 	let indicadorItem = getIndicador().find((item) => item.code === indicadorCode);
 
-	let indicadorNormativaItems = getIndicadorNormativa().filter(
+	let indicadorPuestoItems = getIndicadorPuesto().filter(
 		(item) => item.indicador.code === indicadorCode
 	);
-	let modal = createModalManager<IndicadorNormativaItem>();
-	let normativaRef = getNormativaRef();
+	let modal = createModalManager<IndicadorPuestoItem>();
+	let puestoRef = getPuestoRef('responsable').filter((item) => item.type === 'directivo');
 </script>
 
 <main class="detail-panel">
 	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
-	<IndicadorNormativaList
+	<IndicadorPuestoList
 		onClickCrear={modal.handlers('create').onClick}
 		onClickRemover={modal.handlers('remove').onClickItem}
-		items={indicadorNormativaItems}
+		items={indicadorPuestoItems}
 	/>
 </main>
 
-<AddIndicadorNormativa open={modal.isOpen('create')} {normativaRef} onClose={modal.close} />
+<AddIndicadorPuesto open={modal.isOpen('create')} {puestoRef} onClose={modal.close} />
 
 {#if modal.selectedItem}
 	<ConfirmRemoveModal

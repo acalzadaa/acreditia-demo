@@ -23,17 +23,12 @@
 </script>
 
 <main class="detail-panel">
-	<div class="detail-panel--static">
-		<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
-	</div>
-
-	<div class="detail-content">
-		<IndicadorIndicadorEstrategicoList
-			onClickRemover={modal.handlers('remove').onClickItem}
-			onClickCrear={modal.handlers('create').onClick}
-			items={indicadorIndicadorEstrategicoItems}
-		/>
-	</div>
+	<IndicadorDetail title="Indicador" subtitle={indicadorCode} item={indicadorItem} />
+	<IndicadorIndicadorEstrategicoList
+		onClickRemover={modal.handlers('remove').onClickItem}
+		onClickCrear={modal.handlers('create').onClick}
+		items={indicadorIndicadorEstrategicoItems}
+	/>
 </main>
 
 <AddIndicadorIndicadorEstrategicoPicker

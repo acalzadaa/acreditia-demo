@@ -6,16 +6,16 @@
 	import CardColumn from '$lib/components/ui/card/CardColumn.svelte';
 	import Card from '$lib/components/ui/card/Card.svelte';
 	import CardHeader from '$lib/components/ui/card/CardHeader.svelte';
+	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
+	import SublistActions from '$lib/components/ui/actions/SublistActions.svelte';
 	import CardContent from '$lib/components/ui/card/CardContent.svelte';
 	import CardContentItem from '$lib/components/ui/card/CardContentItem.svelte';
-	import CardFooter from '$lib/components/ui/card/CardFooter.svelte';
-	import type { EvidenciaItem } from '$lib/schemas/evidencia.schema';
-	import SublistActions from '$lib/components/ui/actions/SublistActions.svelte';
+	import type { IndicadorPuestoItem } from '$lib/schemas/indicadorPuesto.schema';
 
 	interface Props {
-		items: EvidenciaItem[];
-		onClickRemover: (item: EvidenciaItem) => void;
-		onClickAgregar: () => void;
+		items: IndicadorPuestoItem[];
+		onClickRemover: (item: IndicadorPuestoItem) => void;
+		onClickCrear: () => void;
 		showHeader?: boolean;
 		title?: string;
 		subtitle?: string;
@@ -24,47 +24,45 @@
 	const {
 		items,
 		onClickRemover,
-		onClickAgregar,
-
+		onClickCrear,
 		showHeader = true,
-		title = 'Listado de evidencias',
+		title = 'Detalle de puestos a informar',
 		subtitle = ''
 	}: Props = $props();
 </script>
 
-<main class="main-panel">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-
+<main class="main-panel--inline">
 	<section class="list-view--table">
-		<Toolbar actionTitle="Agregar evidencia" onClickCrear={onClickAgregar} />
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
+		<Toolbar actionTitle="Agregar puesto a informar" {onClickCrear} />
 		{#if items.length > 0}
 			<div class="table-container">
 				<table class="data-table text-body">
 					<thead class="text-body-strong">
 						<tr>
-							<th class="col-code">Codigo</th>
-							<th class="col-label">Nombre</th>
-							<th class="col-text">Descripción</th>
-							<th class="col-actions-sm">Acciones</th>
+							<th class="col-code">Puesto</th>
+							<th class="col-label">Descripción</th>
+							<th class="col-actions-md">Acciones</th>
 						</tr>
 					</thead>
+
 					<tbody class="text-body">
 						{#each items as item (item.id)}
 							<tr class="table-row tr-expandable">
-								<td class="col-code">{item.code}</td>
-								<td class="col-label">{item.name}</td>
-								<td class="col-text">
-									{item.description}
+								<td class="col-code">
+									{item.puesto?.code}
 								</td>
-
-								<td class="col-actions-sm">
+								<td class="col-label">
+									{item.puesto?.name}
+								</td>
+								<td class="col-actions-md">
 									<SublistActions
 										{item}
-										showRemove={true}
-										isRemoveDisabled={false}
 										onClickRemove={() => onClickRemover(item)}
+										isRemoveDisabled={item.isDeleted}
+										showRemove={true}
 									/>
 								</td>
 							</tr>
@@ -78,47 +76,48 @@
 	</section>
 
 	<section class="list-view--cards">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
 		<Toolbar
 			mobileVersion={true}
-			actionTitle="Agregar evidencia"
-			onClickCrear={onClickAgregar}
+			actionTitle="Agregar puesto a informar"
+			{onClickCrear}
 			showExport={false}
 			showFilter={false}
 		/>
 		{#if items.length > 0}
-			<CardColumn minWidth="360px" maxWidth="1500px">
+			<CardColumn minWidth="360px" maxWidth="900px">
 				{#each items as item (item.id)}
 					<Card>
-						<CardHeader subtitle={item.code} title={item.name}>
+						<CardHeader subtitle={item.indicador.code} title={item.indicador.name}>
 							<Badge variant={item.isDeleted ? 'error' : 'success'}>
 								{item.isDeleted ? 'borrado' : 'activo'}
 							</Badge>
 						</CardHeader>
-
 						<CardContent>
-							<CardContentItem label="Descripción" value={item.description} />
+							<CardContentItem label="Puesto" value={item.puesto?.code} />
+							<CardContentItem label="Descripción" value={item.puesto?.name} />
 						</CardContent>
 
 						<CardFooter>
 							<SublistActions
 								{item}
-								showRemove={true}
-								isRemoveDisabled={false}
 								onClickRemove={() => onClickRemover(item)}
+								showRemove={true}
+								isRemoveDisabled={item.isDeleted}
 							/>
 						</CardFooter>
 					</Card>
 				{/each}
 			</CardColumn>
 		{:else}
-			<EmptySection />
+			<EmptySection message="No hay elementos"></EmptySection>
 		{/if}
 	</section>
 </main>
 
 <style>
-	/* Por default (>= 1500px) gana la tabla; las cards quedan ocultas
-	   y fuera del flujo para no pelear por el flex del panel. */
 	.list-view--table {
 		display: contents;
 	}
@@ -128,7 +127,7 @@
 	}
 
 	/* Ajustar el max-width dependiendo el contenido! */
-	@media (max-width: 1500px) {
+	@media (max-width: 900px) {
 		.list-view--table {
 			display: none;
 		}

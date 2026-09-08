@@ -45,7 +45,6 @@ import indicadorAreaFuncionalJsonData from '$lib/data/indicador-area-funcional.j
 import indicadorPuestoJsonData from '$lib/data/indicador-puesto.json';
 import indicadorNormativaJsonData from '$lib/data/indicador-normativa.json';
 import indicadorIndicadorEstrategicoJsonData from '$lib/data/indicador-indicador-estrategico.json';
-import indicadorEvidenciaJsonData from '$lib/data/indicador-evidencia.json';
 
 import indicadorNavigationJsonData from '$lib/data/indicador-navigation.json';
 import evaluacionEtapaIndicadorJsonData from '$lib/data/evaluacion-etapa-indicador.json';
@@ -139,10 +138,6 @@ import {
 } from '$lib/schemas/evaluacionEtapa.schema';
 
 import { notificationItemSchema, type NotificationItem } from '$lib/schemas/notificacion.schema';
-import {
-	indicadorEvidenciaItemSchema,
-	type IndicadorEvidenciaItem
-} from '$lib/schemas/indicadorEvidencia.schema';
 import { type UsuarioItem, usuarioItemSchema } from '$lib/schemas/usuario.schema';
 import { usuarioPuestoItemSchema, type UsuarioPuestoItem } from '$lib/schemas/usuarioPuesto.schema';
 import {
@@ -177,7 +172,7 @@ import {
 	type IndicadorSeccionItem
 } from '$lib/schemas/indicadorSeccion.schema';
 import {
-	type indicadorPuestoItem,
+	type IndicadorPuestoItem,
 	indicadorPuestoItemSchema
 } from '$lib/schemas/indicadorPuesto.schema';
 
@@ -227,9 +222,8 @@ let indicadorMeta = $state<IndicadorMetaItem[]>([]);
 let indicadorSeccion = $state<IndicadorSeccionItem[]>([]);
 let indicadorAreaResponsable = $state<IndicadorAreaResponsableItem[]>([]);
 let indicadorAreaFuncional = $state<IndicadorAreaFuncionalItem[]>([]);
-let indicadorPuesto = $state<indicadorPuestoItem[]>([]);
+let indicadorPuesto = $state<IndicadorPuestoItem[]>([]);
 let indicadorNormativa = $state<IndicadorNormativaItem[]>([]);
-let indicadorEvidencia = $state<IndicadorEvidenciaItem[]>([]);
 let indicadorIndicadorEstrategico = $state<IndicadorIndicadorEstrategicoItem[]>([]);
 let indicadorNavList = $state<IndicadorNavListItem[]>([]);
 let evaluacionEtapaIndicador = $state<EvaluacionEtapaIndicadorItem[]>([]);
@@ -416,11 +410,6 @@ indicadorPuesto = indicadorPuestoRawData.map((item) => indicadorPuestoItemSchema
 const indicadorNormativaRawData = indicadorNormativaJsonData.indicadorNormativaItems;
 indicadorNormativa = indicadorNormativaRawData.map((item) =>
 	indicadorNormativaItemSchema.parse(item)
-);
-
-const indicadorEvidenciaRawData = indicadorEvidenciaJsonData.indicadorEvidenciaItems;
-indicadorEvidencia = indicadorEvidenciaRawData.map((item) =>
-	indicadorEvidenciaItemSchema.parse(item)
 );
 
 const indicadorIndicadorEstrategicoRawData =
@@ -704,10 +693,6 @@ export function getIndicadorNormativa() {
 
 export function getIndicadorIndicadorEstrategico() {
 	return indicadorIndicadorEstrategico;
-}
-
-export function getIndicadorEvidencia() {
-	return indicadorEvidencia;
 }
 
 export function getIndicadorNavList() {

@@ -2,17 +2,17 @@
 	import Modal from '$lib/components/ui/modal/Modal.svelte';
 	import IconButton from '$lib/components/ui/IconButton.svelte';
 	import Icon from '$lib/components/ui/Icon.svelte';
-	import Button from '$lib/components/ui/Button.svelte';
-	import type { EvidenciaRef } from '$lib/schemas/evidencia.schema';
 	import InputSelect from '$lib/components/ui/select/InputSelect.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
+	import type { BaseRef } from '$lib/schemas/shared.schema';
 
 	interface Props {
 		open: boolean;
-		evidenciaRef: EvidenciaRef[];
+		puestoRef: BaseRef[];
 		onClose: () => void;
 	}
 
-	let { open = $bindable(false), onClose, evidenciaRef = [] }: Props = $props();
+	let { open = $bindable(false), onClose, puestoRef = [] }: Props = $props();
 
 	// Estado local del formulario
 	let formData = $state({
@@ -22,8 +22,8 @@
 	let errorMessage = $state('');
 
 	// Opciones para el select de área responsable
-	const evidenciaOptions = $derived(
-		evidenciaRef.map((ref) => ({
+	const puestoOptions = $derived(
+		puestoRef.map((ref) => ({
 			id: ref.code,
 			option: `${ref.code} - ${ref.name}`
 		}))
@@ -32,7 +32,7 @@
 	function handleSubmit() {
 		// Validación básica
 		if (!formData.code) {
-			errorMessage = 'Debes seleccionar una evidencia';
+			errorMessage = 'Debes seleccionar un indicador estrategico';
 			return;
 		}
 
@@ -75,7 +75,7 @@
 <Modal bind:open onClickClose={handleClose} closeOnEscape closeOnBackdropClick>
 	<div class="modal">
 		<header class="modal-header">
-			<h2 class="modal-title text-h4">Agregar evidencia</h2>
+			<h2 class="modal-title text-h4">Agregar puesto a informar</h2>
 			<IconButton
 				name="close"
 				variant="ghost"
@@ -101,9 +101,9 @@
 					{/if}
 
 					<InputSelect
-						label="Evidencia"
+						label="Puesto a informar"
 						name="code"
-						optionsData={evidenciaOptions}
+						optionsData={puestoOptions}
 						required={true}
 						bind:value={formData.code}
 						errors={errorMessage && !formData.code ? [errorMessage] : undefined}
@@ -113,7 +113,7 @@
 
 			<menu class="modal-footer text-body">
 				<Button type="button" variant="ghost" onClick={handleCancel}>Cancelar</Button>
-				<Button type="submit" variant="primary">Agregar evidencia</Button>
+				<Button type="submit" variant="primary">Agregar puesto</Button>
 			</menu>
 		</form>
 	</div>

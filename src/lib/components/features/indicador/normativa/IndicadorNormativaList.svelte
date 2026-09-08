@@ -31,89 +31,91 @@
 	}: Props = $props();
 </script>
 
-<section class="list-view--table">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-	<Toolbar actionTitle="Agregar normativa" {onClickCrear} />
-	{#if items.length > 0}
-		<div class="table-container">
-			<table class="data-table text-body">
-				<thead class="text-body-strong">
-					<tr>
-						<th class="col-code">Codigo</th>
-						<th class="col-code">Normativa</th>
-						<th class="col-label">Descripción</th>
-						<th class="col-actions-md">Acciones</th>
-					</tr>
-				</thead>
-
-				<tbody class="text-body">
-					{#each items as item (item.id)}
-						<tr class="table-row tr-expandable">
-							<td class="col-code">{item.indicador.code}</td>
-							<td class="col-code">
-								<Badge variant="info">{item.normativa.code}</Badge>
-							</td>
-							<td class="col-label">
-								{item.normativa.name}
-							</td>
-							<td class="col-actions-md">
-								<SublistActions
-									{item}
-									onClickRemove={() => onClickRemover(item)}
-									isRemoveDisabled={item.isDeleted}
-									showRemove={true}
-								/>
-							</td>
+<main class="main-panel--inline">
+	<section class="list-view--table">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
+		<Toolbar actionTitle="Agregar normativa" {onClickCrear} />
+		{#if items.length > 0}
+			<div class="table-container">
+				<table class="data-table text-body">
+					<thead class="text-body-strong">
+						<tr>
+							<th class="col-code">Codigo</th>
+							<th class="col-code">Normativa</th>
+							<th class="col-label">Descripción</th>
+							<th class="col-actions-md">Acciones</th>
 						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
-	{:else}
-		<EmptySection />
-	{/if}
-</section>
+					</thead>
 
-<section class="list-view--cards">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-	<Toolbar
-		mobileVersion={true}
-		actionTitle="Agregar normativa"
-		{onClickCrear}
-		showExport={false}
-		showFilter={false}
-	/>
-	{#if items.length > 0}
-		<CardColumn minWidth="360px" maxWidth="900px">
-			{#each items as item (item.id)}
-				<Card>
-					<CardHeader subtitle={item.indicador.code} title={item.normativa.name}>
-						<Badge variant={item.isDeleted ? 'error' : 'success'}>
-							{item.isDeleted ? 'borrado' : 'activo'}
-						</Badge>
-					</CardHeader>
-					<CardContent>
-						<CardContentItem label="Codigo de normativa" value={item.normativa.code} />
-					</CardContent>
-					<CardFooter>
-						<SublistActions
-							{item}
-							onClickRemove={() => onClickRemover(item)}
-							showRemove={true}
-							isRemoveDisabled={item.isDeleted}
-						/>
-					</CardFooter>
-				</Card>
-			{/each}
-		</CardColumn>
-	{:else}
-		<EmptySection message="No hay elementos"></EmptySection>
-	{/if}
-</section>
+					<tbody class="text-body">
+						{#each items as item (item.id)}
+							<tr class="table-row tr-expandable">
+								<td class="col-code">{item.indicador.code}</td>
+								<td class="col-code">
+									<Badge variant="info">{item.normativa.code}</Badge>
+								</td>
+								<td class="col-label">
+									{item.normativa.name}
+								</td>
+								<td class="col-actions-md">
+									<SublistActions
+										{item}
+										onClickRemove={() => onClickRemover(item)}
+										isRemoveDisabled={item.isDeleted}
+										showRemove={true}
+									/>
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</div>
+		{:else}
+			<EmptySection />
+		{/if}
+	</section>
+
+	<section class="list-view--cards">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
+		<Toolbar
+			mobileVersion={true}
+			actionTitle="Agregar normativa"
+			{onClickCrear}
+			showExport={false}
+			showFilter={false}
+		/>
+		{#if items.length > 0}
+			<CardColumn minWidth="360px" maxWidth="900px">
+				{#each items as item (item.id)}
+					<Card>
+						<CardHeader subtitle={item.indicador.code} title={item.normativa.name}>
+							<Badge variant={item.isDeleted ? 'error' : 'success'}>
+								{item.isDeleted ? 'borrado' : 'activo'}
+							</Badge>
+						</CardHeader>
+						<CardContent>
+							<CardContentItem label="Codigo de normativa" value={item.normativa.code} />
+						</CardContent>
+						<CardFooter>
+							<SublistActions
+								{item}
+								onClickRemove={() => onClickRemover(item)}
+								showRemove={true}
+								isRemoveDisabled={item.isDeleted}
+							/>
+						</CardFooter>
+					</Card>
+				{/each}
+			</CardColumn>
+		{:else}
+			<EmptySection message="No hay elementos"></EmptySection>
+		{/if}
+	</section>
+</main>
 
 <style>
 	.list-view--table {

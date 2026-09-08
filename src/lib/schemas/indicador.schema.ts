@@ -8,12 +8,12 @@ export const INDICADOR_TYPE = ['global', 'campus', 'unidadAcademica'] as const;
 export const INDICADOR_CONFIG_TYPE = [
 	'meta',
 	'seccion',
-	'funcional',
 	'responsable',
+	'funcional',
+	'rubrica',
 	'normativa',
 	'indicadorEstrategico',
-	'rubrica',
-	'evidencia'
+	'puesto'
 ] as const;
 
 export const INDICADOR_CONFIG_STATUS = ['pending', 'complete'] as const;

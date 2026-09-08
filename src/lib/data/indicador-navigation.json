@@ -29,25 +29,32 @@
 			"order": 4
 		},
 		{
+			"id": "a95d6ff5-e6d0-46af-81a0-068156f87ae4",
+			"name": "Puestos a informar",
+			"code": "puesto",
+			"url": "/puesto",
+			"order": 5
+		},
+		{
 			"id": "b95d6ff5-e6d0-46af-81a0-068156f87ae4",
 			"name": "Rúbrica",
 			"code": "rubrica",
 			"url": "/rubrica",
-			"order": 5
+			"order": 6
 		},
 		{
 			"id": "0cc676ec-474f-4646-9619-ba1e0dd5ee48",
 			"name": "Normativa",
 			"code": "normativa",
 			"url": "/normativa",
-			"order": 6
+			"order": 7
 		},
 		{
 			"id": "6284c092-d7c9-4800-a295-3cf528f92a19",
 			"name": "Indicador Estratégico",
 			"code": "indicadorEstrategico",
 			"url": "/indicador-estrategico",
-			"order": 7
+			"order": 8
 		}
 	]
 }

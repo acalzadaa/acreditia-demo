@@ -75,45 +75,46 @@
 		<EmptySection />
 	{/if}
 </section>
-
-<section class="list-view--cards">
-	{#if showHeader}
-		<PageHeader {title} {subtitle} />
-	{/if}
-	<Toolbar
-		mobileVersion={true}
-		actionTitle="Agregar indicador estratégico"
-		{onClickCrear}
-		showExport={false}
-		showFilter={false}
-	/>
-	{#if items.length > 0}
-		<CardColumn minWidth="360px" maxWidth="900px">
-			{#each items as item (item.id)}
-				<Card>
-					<CardHeader subtitle={item.indicador.code} title={item.indicadorEstrategico.name}>
-						<Badge variant={item.isDeleted ? 'error' : 'success'}>
-							{item.isDeleted ? 'borrado' : 'activo'}
-						</Badge>
-					</CardHeader>
-					<CardContent>
-						<CardContentItem label="Código" value={item.indicadorEstrategico.code} />
-					</CardContent>
-					<CardFooter>
-						<SublistActions
-							{item}
-							onClickRemove={() => onClickRemover(item)}
-							showRemove={true}
-							isRemoveDisabled={item.isDeleted}
-						/>
-					</CardFooter>
-				</Card>
-			{/each}
-		</CardColumn>
-	{:else}
-		<EmptySection message="No hay elementos"></EmptySection>
-	{/if}
-</section>
+<main class="main-panel--inline">
+	<section class="list-view--cards">
+		{#if showHeader}
+			<PageHeader {title} {subtitle} />
+		{/if}
+		<Toolbar
+			mobileVersion={true}
+			actionTitle="Agregar indicador estratégico"
+			{onClickCrear}
+			showExport={false}
+			showFilter={false}
+		/>
+		{#if items.length > 0}
+			<CardColumn minWidth="360px" maxWidth="900px">
+				{#each items as item (item.id)}
+					<Card>
+						<CardHeader subtitle={item.indicador.code} title={item.indicadorEstrategico.name}>
+							<Badge variant={item.isDeleted ? 'error' : 'success'}>
+								{item.isDeleted ? 'borrado' : 'activo'}
+							</Badge>
+						</CardHeader>
+						<CardContent>
+							<CardContentItem label="Código" value={item.indicadorEstrategico.code} />
+						</CardContent>
+						<CardFooter>
+							<SublistActions
+								{item}
+								onClickRemove={() => onClickRemover(item)}
+								showRemove={true}
+								isRemoveDisabled={item.isDeleted}
+							/>
+						</CardFooter>
+					</Card>
+				{/each}
+			</CardColumn>
+		{:else}
+			<EmptySection message="No hay elementos"></EmptySection>
+		{/if}
+	</section>
+</main>
 
 <style>
 	.list-view--table {

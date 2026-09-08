@@ -32,7 +32,7 @@ export const indicadorPuestoItemSchema = z
 	})
 	.extend(auditMetadataSchema.shape);
 
-export type indicadorPuestoItem = z.infer<typeof indicadorPuestoItemSchema>;
+export type IndicadorPuestoItem = z.infer<typeof indicadorPuestoItemSchema>;
 
 export const indicadorPuestoWithRelationsItemSchema = indicadorPuestoItemSchema.extend({
 	puestos: z.array(puestoItemSchema)
