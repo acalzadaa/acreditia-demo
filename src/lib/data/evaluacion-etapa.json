@@ -130,33 +130,8 @@
 			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
 			"etapa": {
 				"order": 6,
-				"code": "captura-plan-mejora",
-				"name": "Captura de plan de mejora"
-			},
-			"fechaInicio": "2025-01-15T00:00:00Z",
-			"fechaFinal": "2025-02-28T00:00:00Z",
-			"periodoExtraordinario": false,
-			"periodoExtraordinarioInicio": null,
-			"periodoExtraordinarioFinal": null,
-			"status": "planning",
-			"createdAt": "2024-01-01T10:30:00Z",
-			"updatedAt": "2024-01-01T10:30:00Z",
-			"createdBy": "admin@system.com",
-			"updatedBy": null,
-			"isDeleted": false,
-			"evaluacion": {
-				"id": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
-				"code": "2026-2",
-				"name": "Verano 2026"
-			}
-		},
-		{
-			"id": "dd78d6a3-808f-48b9-82ec-c6c439c4ca6e",
-			"evaluacionId": "a1c9ec06-4771-4ee0-9022-21bb96a3406c",
-			"etapa": {
-				"order": 7,
-				"code": "autorizacion-plan-mejora",
-				"name": "Autorización de plan de mejora"
+				"code": "resolucion",
+				"name": "Resolución"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
 			"fechaFinal": "2025-02-28T00:00:00Z",
@@ -305,33 +280,8 @@
 			"evaluacionId": "b9e8b5eb-dd82-49ad-8173-538926c0fb53",
 			"etapa": {
 				"order": 6,
-				"code": "captura-plan-mejora",
-				"name": "Captura de plan de mejora"
-			},
-			"fechaInicio": "2025-01-15T00:00:00Z",
-			"fechaFinal": "2025-02-28T00:00:00Z",
-			"periodoExtraordinario": false,
-			"periodoExtraordinarioInicio": null,
-			"periodoExtraordinarioFinal": null,
-			"status": "ready",
-			"createdAt": "2024-01-01T10:30:00Z",
-			"updatedAt": "2024-01-01T10:30:00Z",
-			"createdBy": "admin@system.com",
-			"updatedBy": null,
-			"isDeleted": false,
-			"evaluacion": {
-				"id": "b9e8b5eb-dd82-49ad-8173-538926c0fb53",
-				"code": "2026-1",
-				"name": "Primavera 2026"
-			}
-		},
-		{
-			"id": "21cad468-fbfb-4c2d-a3e2-ae9766d5961a",
-			"evaluacionId": "b9e8b5eb-dd82-49ad-8173-538926c0fb53",
-			"etapa": {
-				"order": 7,
-				"code": "autorizacion-plan-mejora",
-				"name": "Autorización de plan de mejora"
+				"code": "resolucion",
+				"name": "Resolución"
 			},
 			"fechaInicio": "2025-01-15T00:00:00Z",
 			"fechaFinal": "2025-02-28T00:00:00Z",
@@ -480,8 +430,8 @@
 			"evaluacionId": "28eeb6c5-1a18-4426-9a9e-3c31494dadc7",
 			"etapa": {
 				"order": 6,
-				"code": "captura",
-				"name": "Captura de plan de mejora"
+				"code": "Resolución",
+				"name": "Resolución"
 			},
 			"fechaInicio": "2025-12-01T00:00:00Z",
 			"fechaFinal": "2026-01-15T00:00:00Z",
@@ -630,8 +580,8 @@
 			"evaluacionId": "fda91ef4-4fc3-4c24-ab22-99f2d90aeef0",
 			"etapa": {
 				"order": 6,
-				"code": "plan-de-mejora",
-				"name": "Plan de mejora continua"
+				"code": "resolucion",
+				"name": "Resolución"
 			},
 			"fechaInicio": "2025-12-16T00:00:00Z",
 			"fechaFinal": "2026-01-31T00:00:00Z",
@@ -780,8 +730,8 @@
 			"evaluacionId": "a95ecd86-ad5c-43c2-8762-18001e661069",
 			"etapa": {
 				"order": 6,
-				"code": "plan-de-mejora",
-				"name": "Plan de mejora continua"
+				"code": "resolucion",
+				"name": "Resolución"
 			},
 			"fechaInicio": "2025-09-01T00:00:00Z",
 			"fechaFinal": "2025-10-15T00:00:00Z",

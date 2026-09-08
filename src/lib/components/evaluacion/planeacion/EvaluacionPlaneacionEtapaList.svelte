@@ -9,13 +9,14 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import Tag from '$lib/components/ui/Tag.svelte';
 	import type { EvaluacionEtapaItem } from '$lib/schemas/evaluacionEtapa.schema';
-	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';;
+	import { createToggleManager } from '$lib/components/common/stores/toogleManager.svelte';
 	import {
-	convertEvaluacionEtapaStatusToBadgeVariant,
+		convertEvaluacionEtapaStatusToBadgeVariant,
 		formatEtapaContentItem,
 		formatEtapaDateRange,
 		isEtapaDateRange
 	} from '../utils/EvaluacionEtapaUtils';
+	import AccordionFooter from '$lib/components/ui/accordion/AccordionFooter.svelte';
 
 	interface Props {
 		items: EvaluacionEtapaItem[];
@@ -93,6 +94,9 @@
 							</AccordionContentItem>
 						{/if}
 					</AccordionContent>
+					<AccordionFooter class="text-body">
+						<Button name="edit" onClick={() => onEditCalendar(item)} variant="outline">Edit</Button>
+					</AccordionFooter>
 				</Accordion>
 			{/each}
 		</AccordionColumn>
