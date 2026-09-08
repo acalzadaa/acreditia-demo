@@ -11,7 +11,8 @@ export const EtapaCodeEnum = z.enum([
 	'autoevaluacion-ejecucion',
 	'autoevaluacion-revision',
 	'planeacion',
-	'ejecucion'
+	'ejecucion',
+	'resolucion'
 ]);
 export type EtapaCode = z.infer<typeof EtapaCodeEnum>;
 
@@ -160,6 +161,19 @@ export const etapaAutoevaluacionRevisionItemSchema = z
 export type EtapaAutoevaluacionRevisionItem = z.infer<typeof etapaAutoevaluacionRevisionItemSchema>;
 
 //etapa 6
+export const etapaResolucionItemSchema = z
+	.object({
+		code: z.literal('resolucion')
+	})
+	.extend(etapaInvalidatedItemSchema.shape);
+
+export type EtapaResolucionItem = z.infer<typeof etapaResolucionItemSchema>;
+
+/** Las siguientes 3 etapas estan deprecadas, ahora estaran contenidas en 1 sola etapa
+ * llamada etapa Cierre Evaluacion y Plan de Mejora.
+ */
+// Las siguientes 3 etapas estan deprecadas
+//etapa 6
 export const etapaCapturaPlanMejoraItemSchema = z
 	.object({
 		code: z.literal('captura'),
@@ -203,6 +217,7 @@ export const etapaMetadataSchema = z.discriminatedUnion('code', [
 	etapaResultadosItemSchema,
 	etapaAutoevaluacionEjecucionItemSchema,
 	etapaAutoevaluacionRevisionItemSchema,
+	etapaResolucionItemSchema,
 	etapaCapturaPlanMejoraItemSchema,
 	etapaAutorizacionPlanMejoraItemSchema,
 	etapaEjecucionPlanMejoraItemSchema
